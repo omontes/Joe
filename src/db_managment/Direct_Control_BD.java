@@ -621,21 +621,6 @@ public class Direct_Control_BD {
         return stringBuilder.toString();
     }
 
-    public void insertarMovimientos(String Fecha, String Detalle, String Tipo) {
-        try {
-            String movimientos = this.readSql("../Joe/src/sql_files/"
-                    + "InsertarMovimientos.sql");
-            PreparedStatement stm = this.conection.prepareStatement(movimientos);
-            stm.setString(1, Fecha);
-            stm.setString(2, Detalle);
-            stm.setString(3, Tipo);
-            stm.executeUpdate();
-
-        } catch (Exception e) {
-            System.out.println("Error al insertar movimiento");
-        }
-    }
-
     public void cantidadDeProductos() {//esta bien
         try {
             String CantidadProductos = this.readSql("../Joe/"
@@ -1046,6 +1031,50 @@ VALUES (?, ?, ?, ?, ?, ?);
             return 0;
         }
 
+    }
+    /**
+     * Permite insertar una factura pendiente.
+     * @param idFactura
+     * @param saldo
+     * @param fechaVencimiento 
+     */
+    public void insertarFacturasPendientes(int idFactura,int saldo, String fechaVencimiento) {
+        try {
+            String insertarFacturasPendientes = this.readSql("../Joe/src/sql_files/"
+                    + "insertarFacturasPendientes.sql");
+            PreparedStatement stm = this.conection.prepareStatement(insertarFacturasPendientes);
+            stm.setInt(1, idFactura);
+            stm.setInt(2, saldo);
+            stm.setString(3, fechaVencimiento);
+            stm.executeUpdate();
+            
+
+        } catch (Exception e) {
+            System.out.println("Error al insertar una Factura Pendiente");
+            
+        }
+    }
+    /**
+     * Permite insertar un pago en una factura pendiente.
+     * @param fecha
+     * @param idFacturaPendiente
+     * @param montoDePago 
+     */
+    public void insertarPago(String fecha,int montoDePago,int idFacturaPendiente) {
+        try {
+            String insertarPago = this.readSql("../Joe/src/sql_files/"
+                    + "insertarPago.sql");
+            PreparedStatement stm = this.conection.prepareStatement(insertarPago);
+            stm.setString(1, fecha);
+            stm.setInt(2, montoDePago);
+            stm.setInt(3, idFacturaPendiente);
+            stm.executeUpdate();
+            
+
+        } catch (Exception e) {
+            System.out.println("Error al insertar un Pago a una Factura Pendiente");
+            
+        }
     }
 }
    

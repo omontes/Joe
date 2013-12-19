@@ -44,6 +44,8 @@ public class main {
         //AdministradorBD.crearCierreDeCaja("2010-01-01", "2020-01-01");
       // AdministradorBD.crearCierreDeCaja("2010-01-01", "2020-01-01", 1, "luis", "observaion", 1000);
         //AdministradorBD.cierreDeVentasXFecha("2010-01-01", "2020-01-01");
+       AdministradorBD.insertarFacturasPendientes(1, 1000, "2020-01-01");
+       AdministradorBD.insertarPago("2020-01-01",1000,1);
     }
 
 }

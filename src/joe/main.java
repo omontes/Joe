@@ -36,7 +36,7 @@ public class main {
   //AdministradorBD.consultarVentasXVendedor(4);
   // AdministradorBD.consultarVentasXProducto("1020");
   // AdministradorBD.consultarVentasXCliente(1);
-  // AdministradorBD.verProductosAgotados("Bodega");
+  AdministradorBD.valorInventario("General");
       //  AdministradorBD.consultarVentasXTipoPago("Contado");
        // AdministradorBD.consultarVentasXVendedorYCliente(4);
       //  AdministradorBD.consultarMovimientosProductos("1020");

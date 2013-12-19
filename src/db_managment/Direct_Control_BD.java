@@ -45,7 +45,8 @@ public class Direct_Control_BD {
      */
     public void valorInventario(String UbicacionInv) {// esta bien
         try {
-            String valorInventario = this.readSql("../monicaticoo/"
+            
+            String valorInventario = this.readSql("../Joe/"
                     + "src/sql_files/ValorInventario.sql");
             PreparedStatement stm = this.conection.prepareStatement(valorInventario);
             stm.setString(1, UbicacionInv);

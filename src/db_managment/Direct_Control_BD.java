@@ -288,7 +288,7 @@ public class Direct_Control_BD {
 
     }
 
-    public ResultSet cierreDeVentasXFecha(String FechaInicio, String FechaFinal) {
+    public int cierreDeVentasXFecha(String FechaInicio, String FechaFinal) {
         try {
            
             String dato = this.readSql("../Joe/src/"
@@ -302,18 +302,21 @@ public class Direct_Control_BD {
 
             ResultSet resultset = stm.executeQuery();
             //Imprime el resultado obtenido de ver productos agotados
+            int totalVendido=0;
             while (resultset.next()) {
-              
-                System.out.println(resultset.getString(1)
-                        + "||" + resultset.getString(2) + "||"
-                        + resultset.getInt(3));
-                
+                totalVendido+=resultset.getInt(3);
+             // resultset.getInt(3);
+               // System.out.println(resultset.getString(1)
+                 //       + "||" + resultset.getString(2) + "||"
+                  //      + resultset.getInt(3));
+               // System.out.println(totalVendido);
             }
-          return resultset;
+            
+          return totalVendido;
 
         } catch (Exception e) {
             System.out.println("Error al obtener las ventas x fechha");
-            return null;
+            return 0;
         }
         
         
@@ -982,20 +985,66 @@ VALUES (?, ?, ?, ?, ?, ?);
     }
     
     public void crearCierreDeCaja(String FechaInicio, String FechaFinal,int Cajero,String NombreCaja
-    , String Observacines)
+    , String Observaciones, int ReporteInicial)
     {
-        ResultSet resultset = cierreDeVentasXFecha(FechaInicio,FechaFinal);
-        try {
-            while (resultset.next()) {
-                String datos1=resultset.getString(1);
-                String datos2=resultset.getString(2);
-                int datos3=resultset.getInt(3);
-
-                
+       int totalVendido = cierreDeVentasXFecha(FechaInicio,FechaFinal);
+        try {  
+            String devolucion;
+            try {
+                devolucion = this.readSql("../Joe/src/sql_files/"
+                        + "crearCierreDeVentas.sql");
+                 PreparedStatement stm = this.conection.prepareStatement(devolucion);
+                int consultarVentasXTipoPagoYFecha = consultarVentasXTipoPagoYFecha(FechaInicio,FechaFinal, "Contado");
+                int consultarVentasXTipoPagoYFecha1 = consultarVentasXTipoPagoYFecha(FechaInicio,FechaFinal, "Tarjeta");
+            stm.setString(1, FechaInicio);
+            stm.setString(2, FechaFinal);
+            stm.setInt(3, totalVendido);
+            stm.setInt(4, Cajero);
+            stm.setString(5, NombreCaja);
+            stm.setString(6, Observaciones);
+            stm.setInt(7, ReporteInicial);
+            stm.setInt(8, ReporteInicial+totalVendido);
+            stm.setInt(9, consultarVentasXTipoPagoYFecha);
+            stm.setInt(10, consultarVentasXTipoPagoYFecha1);
+            stm.executeUpdate();
+            
+            } catch (IOException ex) {
+                Logger.getLogger(Direct_Control_BD.class.getName()).log(Level.SEVERE, null, ex);
             }
+           
+            
+            
+            
+        
         } catch (SQLException ex) {
             System.out.println("Error al recorrer los cierre de ventas");
         }
+        
+    }
+    
+    public int consultarVentasXTipoPagoYFecha(String FechaInicio, String FechaFinal
+    ,String TipoPago) {
+        try {
+
+            String BuscarCategoriaPorDescripcion = this.readSql("../Joe"
+                    + "/src/sql_files/consultarVentasXTipoDePagoXFecha.sql");
+            PreparedStatement stm
+                    = this.conection.prepareStatement(BuscarCategoriaPorDescripcion);
+            stm.setString(1, TipoPago);
+            stm.setString(2, FechaInicio);
+            stm.setString(3, FechaFinal);
+            ResultSet rs = stm.executeQuery();
+            int ventas=0;
+            rs.next();
+            ventas=rs.getInt("Precio");
+           
+            
+            return ventas;
+        } catch (Exception e) {
+            System.out.println("Error al obtener precio categoria x tipo de fecha y pago");
+            return 0;
+        }
+
     }
 }
    

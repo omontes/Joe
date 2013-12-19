@@ -42,6 +42,8 @@ public class main {
       //  AdministradorBD.consultarMovimientosProductos("1020");
     //  AdministradorBD.cierreDeVentasXFecha("2000-01-01", "2020-01-01");
         //AdministradorBD.crearCierreDeCaja("2010-01-01", "2020-01-01");
+      // AdministradorBD.crearCierreDeCaja("2010-01-01", "2020-01-01", 1, "luis", "observaion", 1000);
+        //AdministradorBD.cierreDeVentasXFecha("2010-01-01", "2020-01-01");
     }
 
 }

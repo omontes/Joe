@@ -658,7 +658,7 @@ public class Direct_Control_BD {
 //esta bien
         try {
 
-            String listaDePrecios = this.readSql("../Joe/src/sql_files/"
+            String listaDePrecios = this.readSql("../monicaticoo/src/sql_files/"
                     + "ListaDePreciosDelInventario.sql");
 
             PreparedStatement stm = this.conection.prepareStatement(listaDePrecios);
@@ -852,7 +852,7 @@ public class Direct_Control_BD {
         try {
 
             String BuscarCategoriaPorDescripcion = this.readSql("../Joe"
-                  + "/src/sql_files/BuscarCategoriaPorDescripcion.sql");
+                    + "/src/sql_files/BuscarCategoriaPorDescripcion.sql");
             PreparedStatement stm
                     = this.conection.prepareStatement(BuscarCategoriaPorDescripcion);
             stm.setString(1, descripcionDeCategoria);

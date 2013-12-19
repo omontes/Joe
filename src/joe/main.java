@@ -36,11 +36,11 @@ public class main {
   //AdministradorBD.consultarVentasXVendedor(4);
   // AdministradorBD.consultarVentasXProducto("1020");
   // AdministradorBD.consultarVentasXCliente(1);
-  // AdministradorBD.verProductosAgotados("Bodega");
+  // AdministradorBD.verProductosAgotados("General");
       //  AdministradorBD.consultarVentasXTipoPago("Contado");
-       // AdministradorBD.consultarVentasXVendedorYCliente(4);
+       //AdministradorBD.consultarVentasXVendedorYCliente(4);
       //  AdministradorBD.consultarMovimientosProductos("1020");
-      //  AdministradorBD.cierreDeVentasXFecha("2000-01-01", "2020-01-01");
+    //  AdministradorBD.cierreDeVentasXFecha("2000-01-01", "2020-01-01");
         //AdministradorBD.crearCierreDeCaja("2010-01-01", "2020-01-01");
     }
 

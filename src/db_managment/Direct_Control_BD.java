@@ -72,7 +72,7 @@ public class Direct_Control_BD {
      */
     public void verProductosAgotados(String UbicacionInv) {//esta bien
         try {
-            String verProductosAgotados = this.readSql("../monicaticoo/src/"
+            String verProductosAgotados = this.readSql("../Joe/src/"
                     + "sql_files/"
                     + "verProductosAgotados.sql");
             PreparedStatement stm = this.conection.prepareStatement(verProductosAgotados);
@@ -99,7 +99,7 @@ public class Direct_Control_BD {
      */
     public void consultarVentasXCliente(int idCliente) {
         try {
-            String dato = this.readSql("../monicaticoo/src/"
+            String dato = this.readSql("../Joe/src/"
                     + "sql_files/"
                     + "consultarVentasXCliente.sql");
             PreparedStatement stm = this.conection.prepareStatement(dato);
@@ -128,7 +128,7 @@ public class Direct_Control_BD {
      */
     public void consultarVentasXVendedor(int idVendedor) {
         try {
-            String dato = this.readSql("../monicaticoo/src/"
+            String dato = this.readSql("../Joe/src/"
                     + "sql_files/"
                     + "consultarVentasxVendedor.sql");
             PreparedStatement stm = conection.prepareStatement(dato);
@@ -158,7 +158,7 @@ public class Direct_Control_BD {
      */
     public void consultarVentasXProducto(String idProducto) {
         try {
-            String dato = this.readSql("../monicaticoo/src/"
+            String dato = this.readSql("../Joe/src/"
                     + "sql_files/"
                     + "consultarVentasXProducto.sql");
             PreparedStatement stm = conection.prepareStatement(dato);
@@ -184,7 +184,7 @@ public class Direct_Control_BD {
      */
     public void consultarPagosCliente(int idCliente) {
         try {
-            String dato = this.readSql("../monicaticoo/src/"
+            String dato = this.readSql("../Joe/src/"
                     + "sql_files/"
                     + "consultarPagosCliente.sql");
             PreparedStatement stm = conection.prepareStatement(dato);
@@ -211,7 +211,7 @@ public class Direct_Control_BD {
      */
     public void consultarVentasXTipoPago(String TipoDePago) {
         try {
-            String dato = this.readSql("../monicaticoo/src/"
+            String dato = this.readSql("../Joe/src/"
                     + "sql_files/"
                     + "consultarVentasXTipoPago.sql");
             PreparedStatement stm = conection.prepareStatement(dato);
@@ -239,7 +239,7 @@ public class Direct_Control_BD {
      */
     public void consultarVentasXVendedorYCliente(int idVendedor) {
         try {
-            String dato = this.readSql("../monicaticoo/src/"
+            String dato = this.readSql("../Joe/src/"
                     + "sql_files/"
                     + "consultarVentasXVendedorYCliente.sql");
             PreparedStatement stm = conection.prepareStatement(dato);
@@ -266,7 +266,7 @@ public class Direct_Control_BD {
      */
     public void consultarMovimientosProductos(String idProducto) {
         try {
-            String dato = this.readSql("../monicaticoo/src/"
+            String dato = this.readSql("../Joe/src/"
                     + "sql_files/"
                     + "consultarMovimientosProductos.sql");
             PreparedStatement stm = conection.prepareStatement(dato);
@@ -289,10 +289,10 @@ public class Direct_Control_BD {
 
     }
 
-    public ResultSet cierreDeVentasXFecha(String FechaInicio, String FechaFinal) {
+    public int cierreDeVentasXFecha(String FechaInicio, String FechaFinal) {
         try {
            
-            String dato = this.readSql("../monicaticoo/src/"
+            String dato = this.readSql("../Joe/src/"
                     + "sql_files/"
                     + "CierreDeVentasxFecha.sql");
             PreparedStatement stm = this.conection.prepareStatement(dato);
@@ -303,18 +303,21 @@ public class Direct_Control_BD {
 
             ResultSet resultset = stm.executeQuery();
             //Imprime el resultado obtenido de ver productos agotados
+            int totalVendido=0;
             while (resultset.next()) {
-              
-                System.out.println(resultset.getString(1)
-                        + "||" + resultset.getString(2) + "||"
-                        + resultset.getInt(3));
-                
+                totalVendido+=resultset.getInt(3);
+             // resultset.getInt(3);
+               // System.out.println(resultset.getString(1)
+                 //       + "||" + resultset.getString(2) + "||"
+                  //      + resultset.getInt(3));
+               // System.out.println(totalVendido);
             }
-          return resultset;
+            
+          return totalVendido;
 
         } catch (Exception e) {
             System.out.println("Error al obtener las ventas x fechha");
-            return null;
+            return 0;
         }
         
         
@@ -362,7 +365,7 @@ public class Direct_Control_BD {
             int costo, String fechaCreacion, String estado, String Descripcion,
             int idCategoria) {//revisado +
         try {
-            String CrearProducto = this.readSql("../monicaticoo/src/"
+            String CrearProducto = this.readSql("../Joe/src/"
                     + "sql_files/CrearProducto.sql");
             PreparedStatement stm = conection.prepareStatement(CrearProducto);
             stm.setString(1, idProducto);
@@ -390,7 +393,7 @@ public class Direct_Control_BD {
     public void insertarEnInventario(String idProducto, int idUbicacionProducto,
             int cantidad) {// revisado+
         try {
-            String insertarProductoEnInventario = this.readSql("../monicaticoo/src/"
+            String insertarProductoEnInventario = this.readSql("../Joe/src/"
                     + "sql_files/InsertarProductoEnInventario.sql");
             PreparedStatement stm = conection.prepareStatement(insertarProductoEnInventario);
             stm.setString(1, idProducto);
@@ -410,7 +413,7 @@ public class Direct_Control_BD {
      */
     public void verFacturasPendientes() {//Bueno+
         try {
-            String VerFacturasPendientes = readSql("../monicaticoo/src/"
+            String VerFacturasPendientes = readSql("../Joe/src/"
                     + "sql_files/VerFacturasPendientes.sql");
             ResultSet rs = statement.executeQuery(VerFacturasPendientes);
             while (rs.next()) {
@@ -431,7 +434,7 @@ public class Direct_Control_BD {
      */
     public void verApartados() {//Bueno+
         try {
-            String VerApartados = readSql("../monicaticoo/src/"
+            String VerApartados = readSql("../Joe/src/"
                     + "sql_files/VerApartados.sql");
             ResultSet rs = statement.executeQuery(VerApartados);
             while (rs.next()) {
@@ -452,7 +455,7 @@ public class Direct_Control_BD {
      */
     public void verApartadosPendientes() {//Bueno+
         try {
-            String VerApartadosPen = readSql("../monicaticoo/src/"
+            String VerApartadosPen = readSql("../Joe/src/"
                     + "sql_files/VerApartadosPendientes.sql");
             ResultSet rs = statement.executeQuery(VerApartadosPen);
             while (rs.next()) {
@@ -473,7 +476,7 @@ public class Direct_Control_BD {
      */
     public void verCreditos() {//Bueno+
         try {
-            String VerCreditos = readSql("../monicaticoo/src/"
+            String VerCreditos = readSql("../Joe/src/"
                     + "sql_files/VerCreditos.sql");
             ResultSet rs = statement.executeQuery(VerCreditos);
             while (rs.next()) {
@@ -494,7 +497,7 @@ public class Direct_Control_BD {
      */
     public void verCreditosPendientes() {//Bueno+
         try {
-            String VerCreditosPendientes = readSql("../monicaticoo/src/"
+            String VerCreditosPendientes = readSql("../Joe/src/"
                     + "sql_files/VerCreditosPendientes.sql");
             ResultSet rs = statement.executeQuery(VerCreditosPendientes);
             while (rs.next()) {
@@ -519,7 +522,7 @@ public class Direct_Control_BD {
     public void VentasProductoPorCategoriaFecha(int categoria,
             String fechaInicial, String fechaFinal) {//Revisado++
         try {
-            String ventasProductoPorCategoria = this.readSql("../monicaticoo/src/"
+            String ventasProductoPorCategoria = this.readSql("../Joe/src/"
                     + "sql_files/VentasProductoPorCategoriaYFecha.sql");
             PreparedStatement stm = conection.prepareStatement(ventasProductoPorCategoria);
             stm.setInt(1, categoria);
@@ -557,7 +560,7 @@ public class Direct_Control_BD {
         String fecha = dateFormat.format(date);
 
         try {
-            String CrearFactura = this.readSql("../monicaticoo/src/"
+            String CrearFactura = this.readSql("../Joe/src/"
                     + "sql_files/CrearFactura.sql");
             PreparedStatement stm = conection.prepareStatement
         (CrearFactura,statement.RETURN_GENERATED_KEYS);
@@ -585,7 +588,7 @@ public class Direct_Control_BD {
 
     public void consultarProducto(String idProducto) {//esta bien
         try {
-            String valorInventario = this.readSql("../monicaticoo/src/"
+            String valorInventario = this.readSql("../Joe/src/"
                     + "sql_files/consultarProducto.sql");
             PreparedStatement stm = this.conection.prepareStatement(valorInventario);
             stm.setString(1, idProducto);
@@ -620,7 +623,7 @@ public class Direct_Control_BD {
 
     public void insertarMovimientos(String Fecha, String Detalle, String Tipo) {
         try {
-            String movimientos = this.readSql("../monicaticoo/src/sql_files/"
+            String movimientos = this.readSql("../Joe/src/sql_files/"
                     + "InsertarMovimientos.sql");
             PreparedStatement stm = this.conection.prepareStatement(movimientos);
             stm.setString(1, Fecha);
@@ -635,7 +638,7 @@ public class Direct_Control_BD {
 
     public void cantidadDeProductos() {//esta bien
         try {
-            String CantidadProductos = this.readSql("../monicaticoo/"
+            String CantidadProductos = this.readSql("../Joe/"
                     + "src/sql_files/CantidadDeProductos.sql");
 
             ResultSet rs = statement.executeQuery(CantidadProductos);
@@ -688,7 +691,7 @@ public class Direct_Control_BD {
             String LugarInventario) {//esta bien
         try {
 
-            String productosPorCategoria = this.readSql("../monicaticoo/"
+            String productosPorCategoria = this.readSql("../Joe/"
                     + "src/sql_files/ProductosPorCategoriaDeUnInventario.sql");
             PreparedStatement stm
                     = this.conection.prepareStatement(productosPorCategoria);
@@ -715,7 +718,7 @@ public class Direct_Control_BD {
     public void verProductosSinCategoriaDeUnInv(String lugarDeUnInv) {//estabien
         try {
 
-            String productosSinCategoria = this.readSql("../monicaticoo/"
+            String productosSinCategoria = this.readSql("../Joe/"
                     + "src/sql_files/ProductosSinCategoria.sql");
             PreparedStatement stm
                     = this.conection.prepareStatement(productosSinCategoria);
@@ -744,7 +747,7 @@ public class Direct_Control_BD {
     public void verMovProductosFacturados(String lugarDeUnInv, String fechaInicio, String fechaFinal) {//esta bien
         try {
 
-            String verMovProductosFacturados = this.readSql("../monicaticoo/"
+            String verMovProductosFacturados = this.readSql("../Joe/"
                     + "src/sql_files/MovProductoFacturado.sql");
             PreparedStatement stm
                     = this.conection.prepareStatement(verMovProductosFacturados);
@@ -776,7 +779,7 @@ public class Direct_Control_BD {
     public void verMovProductosOrdenadosPorTipo(String lugarDeUnInv, String fechaInicio, String fechaFinal) {//esta bien
         try {
 
-            String verMovProductosFacturadosPorTipo = this.readSql("../monicaticoo/"
+            String verMovProductosFacturadosPorTipo = this.readSql("../Joe/"
                     + "src/sql_files/MovProductosPorTipo.sql");
             PreparedStatement stm
                     = this.conection.prepareStatement(verMovProductosFacturadosPorTipo);
@@ -809,7 +812,7 @@ public class Direct_Control_BD {
             String lugarDeUnInv, String fechaInicio, String fechaFinal) {//esta bien
         try {
 
-            String verMovProductoOrdenadoPorTipo = this.readSql("../monicaticoo/"
+            String verMovProductoOrdenadoPorTipo = this.readSql("../Joe/"
                     + "src/sql_files/MovProductoPorTipo.sql");
             PreparedStatement stm
                     = this.conection.prepareStatement(verMovProductoOrdenadoPorTipo);
@@ -833,7 +836,7 @@ public class Direct_Control_BD {
     public void modificarProducto(String idProducto, String nombre,
             int precio, int idCategoria) {//esta bien
         try {
-            String ModificarProducto = this.readSql("../monicaticoo"
+            String ModificarProducto = this.readSql("../Joe"
                     + "/src/sql_files/ModificarProducto.sql");
             PreparedStatement stm
                     = this.conection.prepareStatement(ModificarProducto);
@@ -852,8 +855,8 @@ public class Direct_Control_BD {
     public void BuscarCategoriaPorDescripcion(String descripcionDeCategoria) {
         try {
 
-            String BuscarCategoriaPorDescripcion = this.readSql("../monic"
-                    + "aticoo/src/sql_files/BuscarCategoriaPorDescripcion.sql");
+            String BuscarCategoriaPorDescripcion = this.readSql("../Joe"
+                    + "/src/sql_files/BuscarCategoriaPorDescripcion.sql");
             PreparedStatement stm
                     = this.conection.prepareStatement(BuscarCategoriaPorDescripcion);
             stm.setString(1, descripcionDeCategoria);
@@ -875,8 +878,8 @@ public class Direct_Control_BD {
     public void ventasPorVendedor(int idVendedor) {//falta hacerla por fecha
         try {
 
-            String ventasPorVend = this.readSql("../monic"
-                    + "aticoo/src/sql_files/VentasPorVendedor.sql");
+            String ventasPorVend = this.readSql("../Joe"
+                    + "/src/sql_files/VentasPorVendedor.sql");
             PreparedStatement stm
                     = this.conection.prepareStatement(ventasPorVend);
             stm.setInt(1, idVendedor);
@@ -908,7 +911,7 @@ VALUES (?, ?, ?, ?, ?, ?);
     public int insertarDevoluciones(String Fecha, String TipoPago, int TotalFacturado,int idCliente
     ,int idVendedor, String Nota) {
         try {
-            String devolucion = this.readSql("../monicaticoo/src/sql_files/"
+            String devolucion = this.readSql("../Joe/src/sql_files/"
                     + "insertarDevolucion.sql");
             PreparedStatement stm = this.conection.prepareStatement(devolucion, statement.RETURN_GENERATED_KEYS);
             stm.setString(1, Fecha);
@@ -944,7 +947,7 @@ VALUES (?, ?, ?, ?, ?, ?);
     public void insertarproductocantidaddev(String idProductoDev, int Cantidad, int idDevolucion,int idCliente
     ,int PrecioDev) {
         try {
-            String devolucion = this.readSql("../monicaticoo/src/sql_files/"
+            String devolucion = this.readSql("../Joe/src/sql_files/"
                     + "insertarProductoCantidadDev.sql");
             PreparedStatement stm = this.conection.prepareStatement(devolucion);
             stm.setString(1, idProductoDev);
@@ -965,7 +968,7 @@ VALUES (?, ?, ?, ?, ?, ?);
     public void insertarmovimiento(String Fecha, String Detalle, int idTipoMovimiento,
     int CantidadMovida, int Balance, String idProductoMovimiento,int idLugarMovimiento) {
         try {
-            String devolucion = this.readSql("../monicaticoo/src/sql_files/"
+            String devolucion = this.readSql("../Joe/src/sql_files/"
                     + "insertarMovimiento.sql");
             PreparedStatement stm = this.conection.prepareStatement(devolucion);
             stm.setString(1, Fecha);
@@ -983,20 +986,66 @@ VALUES (?, ?, ?, ?, ?, ?);
     }
     
     public void crearCierreDeCaja(String FechaInicio, String FechaFinal,int Cajero,String NombreCaja
-    , String Observacines)
+    , String Observaciones, int ReporteInicial)
     {
-        ResultSet resultset = cierreDeVentasXFecha(FechaInicio,FechaFinal);
-        try {
-            while (resultset.next()) {
-                String datos1=resultset.getString(1);
-                String datos2=resultset.getString(2);
-                int datos3=resultset.getInt(3);
-
-                
+       int totalVendido = cierreDeVentasXFecha(FechaInicio,FechaFinal);
+        try {  
+            String devolucion;
+            try {
+                devolucion = this.readSql("../Joe/src/sql_files/"
+                        + "crearCierreDeVentas.sql");
+                 PreparedStatement stm = this.conection.prepareStatement(devolucion);
+                int consultarVentasXTipoPagoYFecha = consultarVentasXTipoPagoYFecha(FechaInicio,FechaFinal, "Contado");
+                int consultarVentasXTipoPagoYFecha1 = consultarVentasXTipoPagoYFecha(FechaInicio,FechaFinal, "Tarjeta");
+            stm.setString(1, FechaInicio);
+            stm.setString(2, FechaFinal);
+            stm.setInt(3, totalVendido);
+            stm.setInt(4, Cajero);
+            stm.setString(5, NombreCaja);
+            stm.setString(6, Observaciones);
+            stm.setInt(7, ReporteInicial);
+            stm.setInt(8, ReporteInicial+totalVendido);
+            stm.setInt(9, consultarVentasXTipoPagoYFecha);
+            stm.setInt(10, consultarVentasXTipoPagoYFecha1);
+            stm.executeUpdate();
+            
+            } catch (IOException ex) {
+                Logger.getLogger(Direct_Control_BD.class.getName()).log(Level.SEVERE, null, ex);
             }
+           
+            
+            
+            
+        
         } catch (SQLException ex) {
             System.out.println("Error al recorrer los cierre de ventas");
         }
+        
+    }
+    
+    public int consultarVentasXTipoPagoYFecha(String FechaInicio, String FechaFinal
+    ,String TipoPago) {
+        try {
+
+            String BuscarCategoriaPorDescripcion = this.readSql("../Joe"
+                    + "/src/sql_files/consultarVentasXTipoDePagoXFecha.sql");
+            PreparedStatement stm
+                    = this.conection.prepareStatement(BuscarCategoriaPorDescripcion);
+            stm.setString(1, TipoPago);
+            stm.setString(2, FechaInicio);
+            stm.setString(3, FechaFinal);
+            ResultSet rs = stm.executeQuery();
+            int ventas=0;
+            rs.next();
+            ventas=rs.getInt("Precio");
+           
+            
+            return ventas;
+        } catch (Exception e) {
+            System.out.println("Error al obtener precio categoria x tipo de fecha y pago");
+            return 0;
+        }
+
     }
 }
    

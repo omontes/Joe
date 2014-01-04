@@ -90,6 +90,8 @@ public class MyTableModelListener_FACT implements TableModelListener {
           
           
               String codigo = data.toString();
+              System.out.println("soy el codigo incompleto");
+              System.out.println(codigo);
               int precio = this.BDmanagment.verPrecio(codigo);
               if (precio == 0 & !info.equals("")) {
                   JOptionPane.showMessageDialog(
@@ -98,7 +100,7 @@ public class MyTableModelListener_FACT implements TableModelListener {
                           "Alert!", JOptionPane.ERROR_MESSAGE);
                   System.out.println("SOY ROW");
                   System.out.println(row);
-                  //((MyTableModel_FACT)model).removeRow(row);
+                  ((MyTableModel_FACT)model).removeRow(row);
                   return;
               }
               //En caso de que no escriba nada el usuario

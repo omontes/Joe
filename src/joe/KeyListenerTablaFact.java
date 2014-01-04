@@ -12,7 +12,7 @@ import java.awt.event.KeyListener;
  *
  * @author Oscar Montes
  */
-public class MyKeyListener implements KeyListener {
+public class KeyListenerTablaFact implements KeyListener {
 
     @Override
     public void keyPressed(KeyEvent e) {

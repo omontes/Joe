@@ -46,10 +46,10 @@ public class VentanaDeInicio extends javax.swing.JFrame {
     private void initComponents() {
 
         jPanel_CrearFactura = new javax.swing.JPanel();
-        jButton2 = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
-        jButton4 = new javax.swing.JButton();
-        jButton5 = new javax.swing.JButton();
+        jButton_CreaProducto = new javax.swing.JButton();
+        jButton_VerProducto = new javax.swing.JButton();
+        jButton_EliminaFila = new javax.swing.JButton();
+        jButton_Descuento = new javax.swing.JButton();
         jButton_RegresarFact = new javax.swing.JButton();
         jScrollPane2 = new javax.swing.JScrollPane();
         jTable_Factura = new javax.swing.JTable();
@@ -71,18 +71,28 @@ public class VentanaDeInicio extends javax.swing.JFrame {
         jButton_Facturacion = new javax.swing.JButton();
         jButton_Inventario = new javax.swing.JButton();
 
-        jButton2.setText("Crear Producto");
+        jButton_CreaProducto.setText("Crear Producto");
 
-        jButton3.setText("Ver Producto");
-        jButton3.addActionListener(new java.awt.event.ActionListener() {
+        jButton_VerProducto.setText("Ver Producto");
+        jButton_VerProducto.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton3ActionPerformed(evt);
+                jButton_VerProductoActionPerformed(evt);
             }
         });
 
-        jButton4.setText("Eliminar Fila");
+        jButton_EliminaFila.setText("Eliminar Fila");
+        jButton_EliminaFila.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton_EliminaFilaActionPerformed(evt);
+            }
+        });
 
-        jButton5.setText("Descuento");
+        jButton_Descuento.setText("Descuento");
+        jButton_Descuento.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton_DescuentoActionPerformed(evt);
+            }
+        });
 
         jButton_RegresarFact.setText("Regresar");
         jButton_RegresarFact.addActionListener(new java.awt.event.ActionListener() {
@@ -104,6 +114,11 @@ public class VentanaDeInicio extends javax.swing.JFrame {
         ));
         jTable_Factura.setCellSelectionEnabled(true);
         jTable_Factura.setFillsViewportHeight(true);
+        jTable_Factura.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                jTable_FacturaKeyPressed(evt);
+            }
+        });
         jScrollPane2.setViewportView(jTable_Factura);
 
         jTextField_Total.setForeground(new java.awt.Color(204, 0, 51));
@@ -123,10 +138,10 @@ public class VentanaDeInicio extends javax.swing.JFrame {
             .addGroup(jPanel_CrearFacturaLayout.createSequentialGroup()
                 .addGap(42, 42, 42)
                 .addGroup(jPanel_CrearFacturaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jButton2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jButton3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jButton4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jButton5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(jButton_CreaProducto, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jButton_VerProducto, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jButton_EliminaFila, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jButton_Descuento, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGroup(jPanel_CrearFacturaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel_CrearFacturaLayout.createSequentialGroup()
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -149,13 +164,13 @@ public class VentanaDeInicio extends javax.swing.JFrame {
                         .addComponent(jTextField_Total, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel_CrearFacturaLayout.createSequentialGroup()
                         .addGap(98, 98, 98)
-                        .addComponent(jButton2)
+                        .addComponent(jButton_CreaProducto)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jButton3)
+                        .addComponent(jButton_VerProducto)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jButton4)
+                        .addComponent(jButton_EliminaFila)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jButton5)
+                        .addComponent(jButton_Descuento)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jButton_RegresarFact)))
                 .addGap(28, 28, 28))
@@ -180,6 +195,11 @@ public class VentanaDeInicio extends javax.swing.JFrame {
         jButton_Modificar.setText("Modificar");
 
         jButton_Eliminar.setText("Eliminar");
+        jButton_Eliminar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton_EliminarActionPerformed(evt);
+            }
+        });
 
         jButton_Ver.setText("Ver");
 
@@ -356,9 +376,9 @@ public class VentanaDeInicio extends javax.swing.JFrame {
               
     }//GEN-LAST:event_jButton_FacturacionActionPerformed
 
-    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+    private void jButton_VerProductoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_VerProductoActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButton3ActionPerformed
+    }//GEN-LAST:event_jButton_VerProductoActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         this.remove(this.jPanel_Facturacion);
@@ -399,6 +419,36 @@ public class VentanaDeInicio extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jTextField_TotalActionPerformed
 
+    private void jButton_EliminaFilaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_EliminaFilaActionPerformed
+         MyTableModel_FACT model= (MyTableModel_FACT)jTable_Factura.getModel();
+         int row=jTable_Factura.getSelectedRow();
+         ///Elimina lo que se esta escribiendo en la celda
+         if (jTable_Factura.isEditing()) {
+             jTable_Factura.getCellEditor().cancelCellEditing();
+         }
+         int subtotal=Integer.parseInt(model.getValueAt(row, 4).toString());
+         model.removeRow(row);
+         int total=Integer.parseInt(this.jTextField_Total.getText());
+         this.jTextField_Total.setText(Integer.toString(total-subtotal));
+         jTable_Factura.revalidate();
+         jTable_Factura.repaint();
+         jTable_Factura.requestFocusInWindow();
+    }//GEN-LAST:event_jButton_EliminaFilaActionPerformed
+
+    private void jButton_DescuentoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_DescuentoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton_DescuentoActionPerformed
+
+    private void jTable_FacturaKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTable_FacturaKeyPressed
+        if(evt.getKeyCode()==120){
+            this.jButton_EliminaFila.doClick();
+        }
+    }//GEN-LAST:event_jTable_FacturaKeyPressed
+
+    private void jButton_EliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_EliminarActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton_EliminarActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -438,12 +488,11 @@ public class VentanaDeInicio extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
-    private javax.swing.JButton jButton4;
-    private javax.swing.JButton jButton5;
     private javax.swing.JButton jButton_CierreCaja;
+    private javax.swing.JButton jButton_CreaProducto;
     private javax.swing.JButton jButton_Crear;
+    private javax.swing.JButton jButton_Descuento;
+    private javax.swing.JButton jButton_EliminaFila;
     private javax.swing.JButton jButton_Eliminar;
     private javax.swing.JButton jButton_Facturacion;
     private javax.swing.JButton jButton_Imprimir;
@@ -451,6 +500,7 @@ public class VentanaDeInicio extends javax.swing.JFrame {
     private javax.swing.JButton jButton_Modificar;
     private javax.swing.JButton jButton_RegresarFact;
     private javax.swing.JButton jButton_Ver;
+    private javax.swing.JButton jButton_VerProducto;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel_CrearFactura;
     private javax.swing.JPanel jPanel_Facturacion;
@@ -520,9 +570,9 @@ public class VentanaDeInicio extends javax.swing.JFrame {
                 setCellEditor(new SeleccionadorEditor(desc_Productos,jTable_Factura));**/
         //Costumisando Precio y Cantidad (Solo van a permitir numeros)
         this.jTable_Factura.getColumnModel().getColumn(2).
-                setCellEditor(new MyCellEditor());
+                setCellEditor(new EditorDeCeldaNumeros());
         this.jTable_Factura.getColumnModel().getColumn(3).
-                setCellEditor(new MyCellEditor());
+                setCellEditor(new EditorDeCeldaNumeros());
         //Demasiado importante ******Permite que se pueda editar apenas se 
         //ingresan datos*****
         this.jTable_Factura.setSurrendersFocusOnKeystroke(true);

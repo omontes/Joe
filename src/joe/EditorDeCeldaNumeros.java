@@ -20,15 +20,15 @@ import javax.swing.border.LineBorder;
  *
  * @author Oscar Montes
  */
-public class MyCellEditor extends DefaultCellEditor {
+public class EditorDeCeldaNumeros extends DefaultCellEditor {
 
     private final JTextField tf;
 
-    public MyCellEditor() {
+    public EditorDeCeldaNumeros() {
         super(new JTextField());
         tf = (JTextField) getComponent();
         //Para cuando esta editando para que no acepte letras
-        tf.addKeyListener(new MyKeyListener());
+        tf.addKeyListener(new KeyListenerTablaFact());
         setClickCountToStart(1);
         tf.setBorder(null);
     }

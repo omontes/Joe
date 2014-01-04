@@ -27,8 +27,8 @@ public class Direct_Control_BD {
 
     private Connection conection;
     private Statement statement;
-    private String[] columnNames;
-    private Object[][] data;
+    private String[] NombresColumnas;
+    private Object[][] Informacion;
 
     public Direct_Control_BD(Connection conection, Statement statement) {
         this.conection = conection;
@@ -1032,6 +1032,7 @@ VALUES (?, ?, ?, ?, ?, ?);
         }
 
     }
+    
     /**
      * Permite insertar una factura pendiente.
      * @param idFactura
@@ -1076,5 +1077,164 @@ VALUES (?, ?, ?, ?, ?, ?);
             
         }
     }
+     /**
+     * Obtiene la informacion de las ultimas 100 facturas.
+     */
+    public void verFacturas() {
+         try{
+            String verFacts = this.readSql("../Joe/src/sql_files/"
+                    + "VerFacturas.sql");
+            ResultSet rs = statement.executeQuery(verFacts);
+            this.setColumnNames(this.Get_Columnas(rs));
+            this.setData(this.ResultSet_Array(rs));
+        }
+        catch (Exception e) {
+            System.out.println("Error al obtener las facturas");
+        }
+
+    }
+
+    /**
+     * @return the NombresColumnas
+     */
+    public String[] getColumnNames() {
+        return NombresColumnas;
+    }
+
+    /**
+     * @param columnNames the NombresColumnas to set
+     */
+    public void setColumnNames(String[] columnNames) {
+        this.NombresColumnas = columnNames;
+    }
+
+    /**
+     * @return the Informacion
+     */
+    public Object[][] getData() {
+        return Informacion;
+    }
+
+    /**
+     * @param data the Informacion to set
+     */
+    public void setData(Object[][] data) {
+        this.Informacion = data;
+    }
+    
+    /**
+     * Obtiene las columnas de la consulta
+     * @param rs
+     * @return 
+     */
+    private String[] Get_Columnas(ResultSet rs){
+        String[] etiquetas = null;
+        try {
+            ResultSetMetaData metaDatos = rs.getMetaData();
+            int numeroColumnas = metaDatos.getColumnCount();
+            etiquetas = new String[numeroColumnas];
+            for (int i = 0; i < numeroColumnas; i++) {
+                etiquetas[i] = metaDatos.getColumnLabel(i + 1);
+            }
+        } catch (Exception e) {
+            System.out.println("No se pudo obtener las columnas");
+
+        }
+        return etiquetas;
+    }
+    /**
+     * Convierte en un arreglo la tabla consultada
+     * @param rs
+     * @return 
+     */
+    private Object[][] ResultSet_Array(ResultSet rs){
+        Object[][] lista_datos=null;
+        try{
+            rs.last();
+            ResultSetMetaData rsmd=rs.getMetaData();
+            int numCols= rsmd.getColumnCount();
+            int numFils=rs.getRow();
+            lista_datos=new Object[numFils][numCols];
+            int j=0;
+            rs.beforeFirst();
+            while(rs.next()){
+                for (int i = 0; i < numCols; i++) {
+                    lista_datos[j][i]=rs.getObject(i+1);
+                }
+                j++;
+                    
+                }
+            }       
+            
+        
+        catch(Exception e){
+            System.out.println("No se pudo convertir en arreglo");
+            
+        }
+        return lista_datos;
+    }
+     /**
+     * Obtiene la descripcion de un producto segun el codigo
+     */
+    public String verDescripcion(String codigo){
+        try {
+            String verDescripcion = this.readSql("../Joe"
+                    + "/src/sql_files/verDescripcionPorCodigo.sql");
+            PreparedStatement stm
+                    = this.conection.prepareStatement(verDescripcion);
+            stm.setString(1, codigo);
+            ResultSet rs = stm.executeQuery();
+            String descripcion="";
+            while (rs.next()) {
+                descripcion = rs.getString("Descripcion");
+            }
+            return descripcion;
+        } catch (Exception e) {
+            System.out.println(codigo);
+            System.out.println("Error al obtener la descricpcion");
+            return "";
+        }
+    }
+     /**
+     * Obtiene el precio de un producto segun el codigo
+     */
+    public int verPrecio(String codigo){
+        int precio = 0;
+        try {
+            String verDescripcion = this.readSql("../Joe"
+                    + "/src/sql_files/verPrecioPorCodigo.sql");
+            PreparedStatement stm
+                    = this.conection.prepareStatement(verDescripcion);
+            stm.setString(1, codigo);
+            ResultSet rs = stm.executeQuery();
+            while (rs.next()) {
+                precio = rs.getInt("Precio");
+            }
+            return precio;
+        } catch (Exception e) {
+            System.out.println(codigo);
+            System.out.println("Error al obtener el precio");
+            return 0;
+        }
+    }
+    /**
+     * Obtiene los codigos de los productos
+     */
+    public void verCodigos(){
+        try{
+             String verCodigos = this.readSql("../Joe"
+                    + "/src/sql_files/verCodigos.sql");
+            ResultSet rs = statement.executeQuery(verCodigos);
+            this.setColumnNames(this.Get_Columnas(rs));
+            this.setData(this.ResultSet_Array(rs));
+        }
+        catch (Exception e) {
+            System.out.println("Error al obtener todos los codigos");
+        }
+
+
+    
+    }
+
 }
    

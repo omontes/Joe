@@ -32,6 +32,7 @@ public class Direct_Control_BD {
     private String[] NombresColumnas;
     private Object[][] Informacion;
     private static Direct_Control_BD AdminBD;
+    
     public Direct_Control_BD(Connection conection, Statement statement) {
         this.conection = conection;
         this.statement = statement;
@@ -1101,6 +1102,20 @@ VALUES (?, ?, ?, ?, ?, ?);
             System.out.println("Error al obtener las facturas");
         }
 
+    }
+    
+    public void verInventario()
+    {
+        try{
+            String verInventario= this.readSql("../Joe/src/sql_files/"
+                    + "consultarInventarioxSucursal.sql");
+            ResultSet rs = statement.executeQuery(verInventario);
+            this.setColumnNames(this.Get_Columnas(rs));
+            this.setData(this.ResultSet_Array(rs));
+        }
+        catch (Exception e) {
+            System.out.println("Error al obtener el inventario");
+        }
     }
 
     /**

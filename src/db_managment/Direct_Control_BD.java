@@ -19,6 +19,8 @@ import java.util.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
+
+
 /**
  *
  * @author Monicaticooo
@@ -29,11 +31,18 @@ public class Direct_Control_BD {
     private Statement statement;
     private String[] NombresColumnas;
     private Object[][] Informacion;
-
+    private static Direct_Control_BD AdminBD;
     public Direct_Control_BD(Connection conection, Statement statement) {
         this.conection = conection;
         this.statement = statement;
 
+    }
+     public static Direct_Control_BD getInstance(){
+         if (AdminBD == null) {
+             Setting_Up_BD setting = new Setting_Up_BD();
+             AdminBD = new Direct_Control_BD(setting.getConection(), setting.getStatement());
+         }
+        return AdminBD;
     }
 
     /**
@@ -1234,6 +1243,52 @@ VALUES (?, ?, ?, ?, ?, ?);
 
 
     
+    }
+    /**
+     * Obtiene la ultima factura realizada
+     * @return 
+     */
+    public int ObtenerUltimoidFact() {
+        int result = 0;
+        try {
+            String valorInventario = this.readSql("../Joe/"
+                    + "src/sql_files/ObtenerUltimoidFact.sql");
+            PreparedStatement stm = this.conection.prepareStatement(valorInventario);
+            ResultSet resultset = stm.executeQuery();
+            //Imprime el resultado obtenido del valor del inventario
+            while (resultset.next()) {
+                result = resultset.getInt(1);
+
+            }
+
+        } catch (Exception e) {
+            System.out.println("Error al obtener el ultimo idFactura");
+        }
+        return result;
+
+    }
+    
+     /**
+     * Obtiene el nombre de un producto segun el codigo
+     */
+    public String verNombre(String codigo) {
+        try {
+            String verNombre = this.readSql("../Joe"
+                    + "/src/sql_files/verNombrePorCodigo.sql");
+            PreparedStatement stm
+                    = this.conection.prepareStatement(verNombre);
+            stm.setString(1, codigo);
+            ResultSet rs = stm.executeQuery();
+            String descripcion = "";
+            while (rs.next()) {
+                descripcion = rs.getString("Nombre");
+            }
+            return descripcion;
+        } catch (Exception e) {
+            System.out.println(codigo);
+            System.out.println("Error al obtener el nombre");
+            return "";
+        }
     }
 
 }

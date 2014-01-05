@@ -52,6 +52,7 @@ public class VentanaDeInicio extends javax.swing.JFrame {
         jPanel_VentanaPrincipal = new javax.swing.JPanel();
         jButton_Facturacion = new javax.swing.JButton();
         jButton_Inventario = new javax.swing.JButton();
+        jButton1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -66,6 +67,8 @@ public class VentanaDeInicio extends javax.swing.JFrame {
 
         jButton_Inventario.setText("Inventario");
 
+        jButton1.setText("Reportes");
+
         javax.swing.GroupLayout jPanel_VentanaPrincipalLayout = new javax.swing.GroupLayout(jPanel_VentanaPrincipal);
         jPanel_VentanaPrincipal.setLayout(jPanel_VentanaPrincipalLayout);
         jPanel_VentanaPrincipalLayout.setHorizontalGroup(
@@ -75,14 +78,18 @@ public class VentanaDeInicio extends javax.swing.JFrame {
                 .addGroup(jPanel_VentanaPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jButton_Facturacion, javax.swing.GroupLayout.DEFAULT_SIZE, 170, Short.MAX_VALUE)
                     .addComponent(jButton_Inventario, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap(613, Short.MAX_VALUE))
+                .addGap(89, 89, 89)
+                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 139, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(385, Short.MAX_VALUE))
         );
         jPanel_VentanaPrincipalLayout.setVerticalGroup(
             jPanel_VentanaPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel_VentanaPrincipalLayout.createSequentialGroup()
-                .addGap(78, 78, 78)
-                .addComponent(jButton_Facturacion, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(30, 30, 30)
+                .addGap(76, 76, 76)
+                .addGroup(jPanel_VentanaPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jButton_Facturacion, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(29, 29, 29)
                 .addComponent(jButton_Inventario, javax.swing.GroupLayout.PREFERRED_SIZE, 69, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(184, Short.MAX_VALUE))
         );
@@ -129,6 +136,7 @@ public class VentanaDeInicio extends javax.swing.JFrame {
    
    
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton_Facturacion;
     private javax.swing.JButton jButton_Inventario;
     public javax.swing.JPanel jPanel_VentanaPrincipal;

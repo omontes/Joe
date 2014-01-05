@@ -67,11 +67,27 @@ public class VentanaDeInicio extends javax.swing.JFrame {
         jTable_Facturacion = new javax.swing.JTable();
         jButton1 = new javax.swing.JButton();
         jPanel1 = new javax.swing.JPanel();
+        jDialog_CrearProducto = new javax.swing.JDialog();
+        jPanel2 = new javax.swing.JPanel();
+        jTextField_codigo = new javax.swing.JTextField();
+        jLabel1 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
+        jTextField_nombre = new javax.swing.JTextField();
+        jLabel3 = new javax.swing.JLabel();
+        jTextField_Precio = new javax.swing.JTextField();
+        jLabel4 = new javax.swing.JLabel();
+        jTextField_Cantidad = new javax.swing.JTextField();
+        jButton_CrearProducto = new javax.swing.JButton();
         jPanel_VentanaPrincipal = new javax.swing.JPanel();
         jButton_Facturacion = new javax.swing.JButton();
         jButton_Inventario = new javax.swing.JButton();
 
         jButton_CreaProducto.setText("Crear Producto");
+        jButton_CreaProducto.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton_CreaProductoActionPerformed(evt);
+            }
+        });
 
         jButton_VerProducto.setText("Ver Producto");
         jButton_VerProducto.addActionListener(new java.awt.event.ActionListener() {
@@ -302,6 +318,81 @@ public class VentanaDeInicio extends javax.swing.JFrame {
                 .addContainerGap())
         );
 
+        jPanel2.setBackground(new java.awt.Color(153, 153, 153));
+
+        jLabel1.setText("Codigo del Producto");
+
+        jLabel2.setText("Nombre del Producto");
+
+        jLabel3.setText("Precio del Producto");
+
+        jLabel4.setText("Cantidad del Producto");
+
+        jButton_CrearProducto.setText("Aceptar");
+        jButton_CrearProducto.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton_CrearProductoActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
+        jPanel2.setLayout(jPanel2Layout);
+        jPanel2Layout.setHorizontalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addGap(100, 100, 100)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jLabel1)
+                    .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(18, 18, 18)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jTextField_Precio)
+                    .addComponent(jTextField_Cantidad, javax.swing.GroupLayout.DEFAULT_SIZE, 175, Short.MAX_VALUE)
+                    .addComponent(jTextField_codigo)
+                    .addComponent(jTextField_nombre))
+                .addGap(75, 75, 75))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jButton_CrearProducto)
+                .addGap(27, 27, 27))
+        );
+        jPanel2Layout.setVerticalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addGap(27, 27, 27)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jTextField_codigo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel1))
+                .addGap(18, 18, 18)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel2)
+                    .addComponent(jTextField_nombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel3)
+                    .addComponent(jTextField_Precio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel4)
+                    .addComponent(jTextField_Cantidad, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addComponent(jButton_CrearProducto)
+                .addContainerGap(47, Short.MAX_VALUE))
+        );
+
+        javax.swing.GroupLayout jDialog_CrearProductoLayout = new javax.swing.GroupLayout(jDialog_CrearProducto.getContentPane());
+        jDialog_CrearProducto.getContentPane().setLayout(jDialog_CrearProductoLayout);
+        jDialog_CrearProductoLayout.setHorizontalGroup(
+            jDialog_CrearProductoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+        );
+        jDialog_CrearProductoLayout.setVerticalGroup(
+            jDialog_CrearProductoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+        );
+
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jPanel_VentanaPrincipal.setPreferredSize(new java.awt.Dimension(874, 418));
@@ -420,19 +511,35 @@ public class VentanaDeInicio extends javax.swing.JFrame {
     }//GEN-LAST:event_jTextField_TotalActionPerformed
 
     private void jButton_EliminaFilaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_EliminaFilaActionPerformed
-         MyTableModel_FACT model= (MyTableModel_FACT)jTable_Factura.getModel();
-         int row=jTable_Factura.getSelectedRow();
-         ///Elimina lo que se esta escribiendo en la celda
-         if (jTable_Factura.isEditing()) {
-             jTable_Factura.getCellEditor().cancelCellEditing();
-         }
-         int subtotal=Integer.parseInt(model.getValueAt(row, 4).toString());
-         model.removeRow(row);
-         int total=Integer.parseInt(this.jTextField_Total.getText());
-         this.jTextField_Total.setText(Integer.toString(total-subtotal));
-         jTable_Factura.revalidate();
-         jTable_Factura.repaint();
-         jTable_Factura.requestFocusInWindow();
+        MyTableModel_FACT model = (MyTableModel_FACT) jTable_Factura.getModel();
+        int row = jTable_Factura.getSelectedRow();
+         ///Si se esta escribiendo en la celda para el editor y luego elimina la
+        // fila
+        if (jTable_Factura.isEditing()) {
+            jTable_Factura.getCellEditor().cancelCellEditing();
+            model.removeRow(row);
+            jTable_Factura.revalidate();
+            jTable_Factura.repaint();
+            jTable_Factura.requestFocus();
+            return;
+        }
+        String subTotal = model.getValueAt(row, 4).toString();
+        if (subTotal != "") {
+            //Elimina un producto ya ingresado y actualiza el total
+            int subtotal = Integer.parseInt(subTotal);
+            model.removeRow(row);
+            int total = Integer.parseInt(this.jTextField_Total.getText());
+            this.jTextField_Total.setText(Integer.toString(total - subtotal));
+            jTable_Factura.revalidate();
+            jTable_Factura.repaint();
+            jTable_Factura.requestFocus();
+        } else { //Si es vacio elimina la fila normalmente
+            model.removeRow(row);
+            jTable_Factura.revalidate();
+            jTable_Factura.repaint();
+            jTable_Factura.requestFocus();
+
+        }
     }//GEN-LAST:event_jButton_EliminaFilaActionPerformed
 
     private void jButton_DescuentoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_DescuentoActionPerformed
@@ -448,6 +555,34 @@ public class VentanaDeInicio extends javax.swing.JFrame {
     private void jButton_EliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_EliminarActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton_EliminarActionPerformed
+
+    private void jButton_CreaProductoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_CreaProductoActionPerformed
+        this.jDialog_CrearProducto.setSize(500,300);
+        this.jDialog_CrearProducto.setVisible(true);
+    }//GEN-LAST:event_jButton_CreaProductoActionPerformed
+
+    private void jButton_CrearProductoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_CrearProductoActionPerformed
+        DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd");
+        Date date = new Date();
+        String codigo=this.jTextField_codigo.getText();
+        this.AdministradorBD.crearProducto(codigo,this
+                .jTextField_nombre.getText(),Integer.parseInt
+        (this.jTextField_Precio.getText()),0,dateFormat.format(date),"A",null,1);
+        this.AdministradorBD.insertarEnInventario(this.jTextField_codigo.getText
+        (),1,Integer.parseInt(this.jTextField_Cantidad.getText()));
+        this.jTextField_Cantidad.setText("");
+        this.jTextField_Precio.setText("");
+        this.jTextField_codigo.setText("");
+        this.jTextField_nombre.setText("");
+        this.jDialog_CrearProducto.dispose();
+        MyTableModel_FACT model = (MyTableModel_FACT) jTable_Factura.getModel();
+        model.setValueAt(codigo,jTable_Factura.getSelectedRow(),0);
+        jTable_Factura.revalidate();
+        jTable_Factura.repaint();
+        jTable_Factura.changeSelection( jTable_Factura.getSelectedRow()+1, jTable_Factura.getSelectedColumn(), false, false );  
+        jTable_Factura.requestFocus();
+        
+    }//GEN-LAST:event_jButton_CrearProductoActionPerformed
 
     /**
      * @param args the command line arguments
@@ -491,6 +626,7 @@ public class VentanaDeInicio extends javax.swing.JFrame {
     private javax.swing.JButton jButton_CierreCaja;
     private javax.swing.JButton jButton_CreaProducto;
     private javax.swing.JButton jButton_Crear;
+    private javax.swing.JButton jButton_CrearProducto;
     private javax.swing.JButton jButton_Descuento;
     private javax.swing.JButton jButton_EliminaFila;
     private javax.swing.JButton jButton_Eliminar;
@@ -501,7 +637,13 @@ public class VentanaDeInicio extends javax.swing.JFrame {
     private javax.swing.JButton jButton_RegresarFact;
     private javax.swing.JButton jButton_Ver;
     private javax.swing.JButton jButton_VerProducto;
+    private javax.swing.JDialog jDialog_CrearProducto;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel_CrearFactura;
     private javax.swing.JPanel jPanel_Facturacion;
     private javax.swing.JPanel jPanel_Facturas;
@@ -511,7 +653,11 @@ public class VentanaDeInicio extends javax.swing.JFrame {
     private javax.swing.JTabbedPane jTabbedPane1;
     private javax.swing.JTable jTable_Factura;
     private javax.swing.JTable jTable_Facturacion;
+    private javax.swing.JTextField jTextField_Cantidad;
+    private javax.swing.JTextField jTextField_Precio;
     private javax.swing.JTextField jTextField_Total;
+    private javax.swing.JTextField jTextField_codigo;
+    private javax.swing.JTextField jTextField_nombre;
     // End of variables declaration//GEN-END:variables
 
      /**

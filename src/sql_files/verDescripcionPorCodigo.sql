@@ -1,3 +1,3 @@
-SELECT Descripcion
+SELECT Nombre
 FROM producto
 WHERE idProducto=?;

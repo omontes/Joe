@@ -1186,7 +1186,7 @@ VALUES (?, ?, ?, ?, ?, ?);
             ResultSet rs = stm.executeQuery();
             String descripcion="";
             while (rs.next()) {
-                descripcion = rs.getString("Descripcion");
+                descripcion = rs.getString("Nombre");
             }
             return descripcion;
         } catch (Exception e) {

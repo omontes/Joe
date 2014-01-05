@@ -90,8 +90,6 @@ public class MyTableModelListener_FACT implements TableModelListener {
           
           
               String codigo = data.toString();
-              System.out.println("soy el codigo incompleto");
-              System.out.println(codigo);
               int precio = this.BDmanagment.verPrecio(codigo);
               if (precio == 0 & !info.equals("")) {
                   JOptionPane.showMessageDialog(
@@ -127,6 +125,7 @@ public class MyTableModelListener_FACT implements TableModelListener {
             //EN CASO DE NO DIGITAR NADA
             if (info.equals("")) {
                 return;
+                
           }
           int cantidad = Integer.parseInt(data.toString());
           int precio = Integer.parseInt(model.getValueAt(row, column + 1).toString());

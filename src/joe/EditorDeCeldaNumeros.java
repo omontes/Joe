@@ -11,6 +11,7 @@ import java.awt.event.KeyEvent;
 import java.util.EventObject;
 import javax.swing.DefaultCellEditor;
 import javax.swing.JComponent;
+import javax.swing.JOptionPane;
 import javax.swing.JTable;
 import javax.swing.JTextField;
 import javax.swing.KeyStroke;
@@ -55,10 +56,17 @@ public class EditorDeCeldaNumeros extends DefaultCellEditor {
     }
     @Override
     public boolean stopCellEditing() {
+        if(super.getCellEditorValue().toString().equals("")){
+            JOptionPane.showMessageDialog(
+                          null,
+                          "Porfavor ingrese un numero",
+                          "Alert!", JOptionPane.ERROR_MESSAGE);
+            return false;
+        }
               
         return super.stopCellEditing();
     }
-     @Override
+    @Override
     public boolean isCellEditable(EventObject e) {
         if (e instanceof KeyEvent) {
             return startKeyEvent((KeyEvent) e);

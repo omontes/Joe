@@ -116,13 +116,140 @@ public class JPanel_Inventario extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jDialog_CrearProducto = new javax.swing.JDialog();
+        jPanel2 = new javax.swing.JPanel();
+        jTextField_codigo = new javax.swing.JTextField();
+        jLabel1 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
+        jTextField_nombre = new javax.swing.JTextField();
+        jLabel3 = new javax.swing.JLabel();
+        jTextField_Precio = new javax.swing.JTextField();
+        jLabel4 = new javax.swing.JLabel();
+        jTextField_Cantidad = new javax.swing.JTextField();
+        jButton_CrearProducto = new javax.swing.JButton();
+        jDialog_EliminarProducto = new javax.swing.JDialog();
+        jButton_EliminarProducto = new javax.swing.JButton();
+        jTextField_IdProducto = new javax.swing.JTextField();
         jButtonRegresarInventario = new javax.swing.JButton();
-        jButton6 = new javax.swing.JButton();
+        jButton_CrearProductoInventario = new javax.swing.JButton();
         jScrollPane3 = new javax.swing.JScrollPane();
         jTable_Inventario = new javax.swing.JTable();
-        jButton7 = new javax.swing.JButton();
+        jButton_EliminarProductoInventario = new javax.swing.JButton();
         jButton8 = new javax.swing.JButton();
         jTextField1 = new javax.swing.JTextField();
+
+        jPanel2.setBackground(new java.awt.Color(153, 153, 153));
+
+        jLabel1.setText("Codigo del Producto");
+
+        jLabel2.setText("Nombre del Producto");
+
+        jLabel3.setText("Precio del Producto");
+
+        jLabel4.setText("Cantidad del Producto");
+
+        jButton_CrearProducto.setText("Aceptar");
+        jButton_CrearProducto.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton_CrearProductoActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
+        jPanel2.setLayout(jPanel2Layout);
+        jPanel2Layout.setHorizontalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addGap(100, 100, 100)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jLabel1)
+                    .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(18, 18, 18)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jTextField_Precio)
+                    .addComponent(jTextField_Cantidad, javax.swing.GroupLayout.DEFAULT_SIZE, 175, Short.MAX_VALUE)
+                    .addComponent(jTextField_codigo)
+                    .addComponent(jTextField_nombre))
+                .addGap(75, 75, 75))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jButton_CrearProducto)
+                .addGap(27, 27, 27))
+        );
+        jPanel2Layout.setVerticalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addGap(27, 27, 27)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jTextField_codigo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel1))
+                .addGap(18, 18, 18)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel2)
+                    .addComponent(jTextField_nombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel3)
+                    .addComponent(jTextField_Precio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel4)
+                    .addComponent(jTextField_Cantidad, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addComponent(jButton_CrearProducto)
+                .addContainerGap(47, Short.MAX_VALUE))
+        );
+
+        javax.swing.GroupLayout jDialog_CrearProductoLayout = new javax.swing.GroupLayout(jDialog_CrearProducto.getContentPane());
+        jDialog_CrearProducto.getContentPane().setLayout(jDialog_CrearProductoLayout);
+        jDialog_CrearProductoLayout.setHorizontalGroup(
+            jDialog_CrearProductoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+        );
+        jDialog_CrearProductoLayout.setVerticalGroup(
+            jDialog_CrearProductoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+        );
+
+        jButton_EliminarProducto.setText("Eliminar");
+        jButton_EliminarProducto.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton_EliminarProductoActionPerformed(evt);
+            }
+        });
+
+        jTextField_IdProducto.setText("idProducto");
+        jTextField_IdProducto.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTextField_IdProductoActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jDialog_EliminarProductoLayout = new javax.swing.GroupLayout(jDialog_EliminarProducto.getContentPane());
+        jDialog_EliminarProducto.getContentPane().setLayout(jDialog_EliminarProductoLayout);
+        jDialog_EliminarProductoLayout.setHorizontalGroup(
+            jDialog_EliminarProductoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jDialog_EliminarProductoLayout.createSequentialGroup()
+                .addContainerGap(97, Short.MAX_VALUE)
+                .addGroup(jDialog_EliminarProductoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jDialog_EliminarProductoLayout.createSequentialGroup()
+                        .addComponent(jButton_EliminarProducto)
+                        .addContainerGap())
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jDialog_EliminarProductoLayout.createSequentialGroup()
+                        .addComponent(jTextField_IdProducto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(91, 91, 91))))
+        );
+        jDialog_EliminarProductoLayout.setVerticalGroup(
+            jDialog_EliminarProductoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jDialog_EliminarProductoLayout.createSequentialGroup()
+                .addContainerGap(81, Short.MAX_VALUE)
+                .addComponent(jTextField_IdProducto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(47, 47, 47)
+                .addComponent(jButton_EliminarProducto)
+                .addGap(23, 23, 23))
+        );
 
         jButtonRegresarInventario.setText("Regresar");
         jButtonRegresarInventario.addActionListener(new java.awt.event.ActionListener() {
@@ -131,7 +258,12 @@ public class JPanel_Inventario extends javax.swing.JPanel {
             }
         });
 
-        jButton6.setText("jButton6");
+        jButton_CrearProductoInventario.setText("Crear Producto");
+        jButton_CrearProductoInventario.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton_CrearProductoInventarioActionPerformed(evt);
+            }
+        });
 
         jTable_Inventario.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -146,7 +278,12 @@ public class JPanel_Inventario extends javax.swing.JPanel {
         ));
         jScrollPane3.setViewportView(jTable_Inventario);
 
-        jButton7.setText("jButton7");
+        jButton_EliminarProductoInventario.setText("Eliminar");
+        jButton_EliminarProductoInventario.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton_EliminarProductoInventarioActionPerformed(evt);
+            }
+        });
 
         jButton8.setText("jButton8");
 
@@ -161,9 +298,9 @@ public class JPanel_Inventario extends javax.swing.JPanel {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jButton6)
+                        .addComponent(jButton_CrearProductoInventario)
                         .addGap(31, 31, 31)
-                        .addComponent(jButton7)
+                        .addComponent(jButton_EliminarProductoInventario)
                         .addGap(43, 43, 43)
                         .addComponent(jButton8)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
@@ -181,8 +318,8 @@ public class JPanel_Inventario extends javax.swing.JPanel {
                 .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 162, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton6)
-                    .addComponent(jButton7)
+                    .addComponent(jButton_CrearProductoInventario)
+                    .addComponent(jButton_EliminarProductoInventario)
                     .addComponent(jButton8))
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
@@ -196,26 +333,96 @@ public class JPanel_Inventario extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButtonRegresarInventarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonRegresarInventarioActionPerformed
-       // this.setVisible(false);
-      //  this.add(jPanel_VentanaPrincipal);
-       // this.revalidate();
-      //  this.repaint();
-        //this.setTitle("Pagina Principal");
-        //jPanel_VentanaPrincipal.setVisible(true);
+        VentanaDeInicio mVentana= VentanaDeInicio.getInstance();
+        mVentana.remove(this);
+        mVentana.revalidate();
+        mVentana.repaint();
+        mVentana.setTitle("Joe");
+        mVentana.add(mVentana.jPanel_VentanaPrincipal);
+        mVentana.jPanel_VentanaPrincipal.setVisible(true);
+        mVentana.jPanel_VentanaPrincipal.setSize(this.getSize());
+        mVentana.jPanel_VentanaPrincipal.setLocation(this.getLocation());
+        
+        
      
-        
-       
-        
     }//GEN-LAST:event_jButtonRegresarInventarioActionPerformed
+
+    private void jButton_CrearProductoInventarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_CrearProductoInventarioActionPerformed
+      this.jDialog_CrearProducto.setSize(500,300);
+        this.jDialog_CrearProducto.setVisible(true);  
+        
+    }//GEN-LAST:event_jButton_CrearProductoInventarioActionPerformed
+
+    private void jButton_CrearProductoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_CrearProductoActionPerformed
+        VentanaDeInicio miVentana= VentanaDeInicio.getInstance();
+        Direct_Control_BD AdminBD = Direct_Control_BD.getInstance();
+        DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd");
+        Date date = new Date();
+        String codigo=this.jTextField_codigo.getText();
+        AdminBD.crearProducto(codigo,this
+            .jTextField_nombre.getText(),Integer.parseInt
+            (this.jTextField_Precio.getText()),0,dateFormat.format(date),"A",null,1);
+        AdminBD.insertarEnInventario(this.jTextField_codigo.getText
+            (),1,Integer.parseInt(this.jTextField_Cantidad.getText()));
+        this.jTextField_Cantidad.setText("");
+        this.jTextField_Precio.setText("");
+        this.jTextField_codigo.setText("");
+        this.jTextField_nombre.setText("");
+        this.jDialog_CrearProducto.dispose();
+         colocarInventario();
+        /*
+        MyTableModel_FACT model = (MyTableModel_FACT) jTable_Inventario.getModel();
+        model.setValueAt(codigo,jTable_Inventario.getSelectedRow(),0);
+        jTable_Inventario.revalidate();
+        jTable_Inventario.repaint();
+        jTable_Inventario.changeSelection( jTable_Inventario.getSelectedRow()+1, jTable_Inventario.getSelectedColumn(), false, false );
+        jTable_Inventario.requestFocus();*/
+    }//GEN-LAST:event_jButton_CrearProductoActionPerformed
+
+    private void jButton_EliminarProductoInventarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_EliminarProductoInventarioActionPerformed
+      this.jDialog_EliminarProducto.setSize(200,200);
+       JPanel_Inventario mPanel= JPanel_Inventario.getInstance();
+       this.jDialog_EliminarProducto.setLocation(mPanel.getLocation());
+       this.jDialog_EliminarProducto.setVisible(true); 
+       
+    }//GEN-LAST:event_jButton_EliminarProductoInventarioActionPerformed
+
+    private void jButton_EliminarProductoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_EliminarProductoActionPerformed
+       Direct_Control_BD mBD= Direct_Control_BD.getInstance();
+       mBD.eliminarProducto(this.jTextField_IdProducto.getText());
+       this.jTextField_IdProducto.setText("          ");
+       this.jDialog_EliminarProducto.dispose();
+     
+       
+       
+    }//GEN-LAST:event_jButton_EliminarProductoActionPerformed
+
+    private void jTextField_IdProductoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField_IdProductoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextField_IdProductoActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton6;
-    private javax.swing.JButton jButton7;
     private javax.swing.JButton jButton8;
     private javax.swing.JButton jButtonRegresarInventario;
+    private javax.swing.JButton jButton_CrearProducto;
+    private javax.swing.JButton jButton_CrearProductoInventario;
+    private javax.swing.JButton jButton_EliminarProducto;
+    private javax.swing.JButton jButton_EliminarProductoInventario;
+    private javax.swing.JDialog jDialog_CrearProducto;
+    private javax.swing.JDialog jDialog_EliminarProducto;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JTable jTable_Inventario;
     private javax.swing.JTextField jTextField1;
+    private javax.swing.JTextField jTextField_Cantidad;
+    private javax.swing.JTextField jTextField_IdProducto;
+    private javax.swing.JTextField jTextField_Precio;
+    private javax.swing.JTextField jTextField_codigo;
+    private javax.swing.JTextField jTextField_nombre;
     // End of variables declaration//GEN-END:variables
 }

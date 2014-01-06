@@ -41,7 +41,7 @@ public class Listener_Inventario implements TableModelListener {
    */
   
   public void tableChanged(TableModelEvent e) {
-      /*
+      
       Direct_Control_BD BDmanagment= Direct_Control_BD.getInstance();
       
       int row = e.getFirstRow();//row
@@ -145,7 +145,7 @@ public class Listener_Inventario implements TableModelListener {
             }
             int precio = Integer.parseInt(model.getValueAt(row,3).toString());
             model.setValueAt(precio, row, 4);}
-     */     
+       
         
   }
 

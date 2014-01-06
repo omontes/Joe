@@ -980,6 +980,22 @@ VALUES (?, ?, ?, ?, ?, ?);
         }
     }
     
+    public void eliminarProducto(String idProducto)
+    {
+        try
+        {
+            String eliminar= this.readSql("../Joe/src/sql_files/"
+                    + "EliminarProducto.sql");
+            PreparedStatement stm = this.conection.prepareStatement(eliminar);
+            stm.setString(1, idProducto);
+            stm.executeUpdate();
+        }
+        catch(Exception e)
+        {
+            System.out.println("Error al eliminar producto");
+        }
+    }
+    
     public void crearCierreDeCaja(String FechaInicio, String FechaFinal,int Cajero,String NombreCaja
     , String Observaciones, int ReporteInicial)
     {

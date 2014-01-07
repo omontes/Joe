@@ -3,7 +3,6 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package joe;
 
 import db_managment.Direct_Control_BD;
@@ -27,20 +26,21 @@ public class VentanaDeInicio extends javax.swing.JFrame {
      */
     Direct_Control_BD AdministradorBD;
     private static VentanaDeInicio mVentana;
-    
+
     private VentanaDeInicio() {
         initComponents();
         this.setVisible(true);
         this.setTitle("Joe");
-        
+
     }
 
-    public static VentanaDeInicio getInstance(){
+    public static VentanaDeInicio getInstance() {
         if (mVentana == null) {
             mVentana = new VentanaDeInicio();
         }
         return mVentana;
     }
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -75,6 +75,11 @@ public class VentanaDeInicio extends javax.swing.JFrame {
         });
 
         jButton1.setText("Reportes");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
 
         jButton2.setText("Vendedores");
 
@@ -132,7 +137,7 @@ public class VentanaDeInicio extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton_FacturacionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_FacturacionActionPerformed
-        JPanel_Facturacion panelFacturacion= new JPanel_Facturacion();
+        JPanel_Facturacion panelFacturacion = new JPanel_Facturacion();
         mVentana.add(panelFacturacion);
         panelFacturacion.setSize(this.jPanel_VentanaPrincipal.getSize());
         panelFacturacion.setLocation(this.jPanel_VentanaPrincipal.getLocation());
@@ -142,21 +147,29 @@ public class VentanaDeInicio extends javax.swing.JFrame {
         mVentana.repaint();
         mVentana.setTitle("Facturacion");
         panelFacturacion.completarTablaFacturacion();
-        
-          
-              
+
+
     }//GEN-LAST:event_jButton_FacturacionActionPerformed
 
     private void jButton_InventarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_InventarioActionPerformed
-        JPanel_Inventario panelInventario= JPanel_Inventario.getInstance();
+        JPanel_Inventario panelInventario = JPanel_Inventario.getInstance();
         this.add(panelInventario);
         panelInventario.setSize(jPanel_VentanaPrincipal.getSize());
         panelInventario.setLocation(jPanel_VentanaPrincipal.getLocation());
         this.jPanel_VentanaPrincipal.setVisible(false);
         panelInventario.setVisible(true);
     }//GEN-LAST:event_jButton_InventarioActionPerformed
-   
-   
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        JPanel_Reportes panelReportes = JPanel_Reportes.getInstance();
+        add(panelReportes);
+        panelReportes.setSize(jPanel_VentanaPrincipal.getSize());
+//        panelReportes.setLocation(jPanel_VentanaPrincipal.getLocation());
+        jPanel_VentanaPrincipal.setVisible(false);
+        panelReportes.setVisible(true);
+    }//GEN-LAST:event_jButton1ActionPerformed
+
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
@@ -165,9 +178,4 @@ public class VentanaDeInicio extends javax.swing.JFrame {
     public javax.swing.JPanel jPanel_VentanaPrincipal;
     // End of variables declaration//GEN-END:variables
 
-    
-
-   
-    
 }
-

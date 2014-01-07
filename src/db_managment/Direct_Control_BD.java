@@ -1226,7 +1226,7 @@ VALUES (?, ?, ?, ?, ?, ?);
      * Obtiene el precio de un producto segun el codigo
      */
     public BigDecimal verPrecio(String codigo){
-        BigDecimal precio = new BigDecimal("0.0");
+        BigDecimal precio = new BigDecimal("0");
         
         try {
             String verDescripcion = this.readSql("../Joe"

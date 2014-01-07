@@ -52,21 +52,21 @@ public class MyTableModelListener_FACT implements TableModelListener {
       String info = data.toString();
       String oldValue=this.getOldValue();
           
-      double totalFact = Double.parseDouble(this.total.getText());
+      int totalFact = Integer.parseInt(this.total.getText());
       System.out.println(totalFact);
       if (columnName.equals("Sub-Total") & totalFact == 0) {
-          double subtotal = Double.parseDouble(info);
-          //this.total.setText(Double.toString(subtotal));
+          int subtotal = Integer.parseInt(info);
+          this.total.setText(Integer.toString(subtotal));
           
       }
       if (columnName.equals("Sub-Total") & totalFact != 0) {
-          double subtotal = Double.parseDouble(info);
-          double subtotal_old=0.0;
+          int subtotal = Integer.parseInt(info);
+          int subtotal_old=0;
           if(! oldValue.equals("")){
-              subtotal_old=Double.parseDouble(oldValue);
+              subtotal_old=Integer.parseInt(oldValue);
           }
-          //this.total.setText(Double.toString((subtotal-subtotal_old) +
-              //    totalFact));
+          this.total.setText(Integer.toString((subtotal-subtotal_old) +
+                  totalFact));
           
       }
       //Esta condicion es para hacer que no se inserte un precio sin haber un codigo
@@ -81,8 +81,8 @@ public class MyTableModelListener_FACT implements TableModelListener {
       }
       //Esta condicion es para cuando se modifica un precio
       if (columnName.equals("Precio.Unit") & !this.getOldValue().equals("") ) {
-          double cantidad = Double.parseDouble(model.getValueAt(row,2).toString());
-          model.setValueAt(Double.parseDouble(info)*cantidad, row, column + 1);
+          int cantidad = Integer.parseInt(model.getValueAt(row,2).toString());
+          model.setValueAt(Integer.parseInt(info)*cantidad, row, column + 1);
           
       } 
            
@@ -91,7 +91,7 @@ public class MyTableModelListener_FACT implements TableModelListener {
           
           
               String codigo = data.toString();
-              double precio = this.BDmanagment.verPrecio(codigo).doubleValue();
+              int precio = this.BDmanagment.verPrecio(codigo).intValue();
               System.out.println(precio);
               if (precio == 0 & !info.equals("")) {
                   JOptionPane.showMessageDialog(
@@ -108,7 +108,7 @@ public class MyTableModelListener_FACT implements TableModelListener {
                   String descripcion = this.BDmanagment.verNombreProductoPorCodigo(codigo);
                   System.out.println(descripcion);
                   model.setValueAt(precio, row, column + 3);///IMPORTANTE ESTE ORDEN
-                  model.setValueAt(1.0, row, column + 2);
+                  model.setValueAt(1, row, column + 2);
                   model.setValueAt(descripcion, row, column + 1);
               }
           
@@ -130,8 +130,8 @@ public class MyTableModelListener_FACT implements TableModelListener {
                 return;
                 
           }
-          double cantidad = Double.parseDouble(data.toString());
-          double precio = Double.parseDouble(model.getValueAt(row, column + 1).toString());
+          int cantidad = Integer.parseInt(data.toString());
+          int precio = Integer.parseInt(model.getValueAt(row, column + 1).toString());
           model.setValueAt(precio * cantidad, row, column + 2);
       }
 
@@ -142,7 +142,7 @@ public class MyTableModelListener_FACT implements TableModelListener {
                 model.setValueAt(null, row,column);
                 return;
             }
-            double precio = Double.parseDouble(model.getValueAt(row,3).toString());
+            int precio = Integer.parseInt(model.getValueAt(row,3).toString());
             model.setValueAt(precio, row, 4);}
           
         

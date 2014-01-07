@@ -7,6 +7,7 @@ package db_managment;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
+import java.math.BigDecimal;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -346,7 +347,7 @@ public class Direct_Control_BD {
         String idProducto = Producto[0];
         String nombre = Producto[1];
         int Cantidad = Integer.parseInt(Producto[2]);
-        int Precio = Integer.parseInt(Producto[3]);
+        BigDecimal Precio = new BigDecimal(Producto[3]);
         int Costo = Integer.parseInt(Producto[4]);
         DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd");
         Date date = new Date();
@@ -371,7 +372,7 @@ public class Direct_Control_BD {
      * @param Descripcion
      * @param idCategoria
      */
-    public void crearProducto(String idProducto, String nombre, int precio,
+    public void crearProducto(String idProducto, String nombre, BigDecimal precio,
             int costo, String fechaCreacion, String estado, String Descripcion,
             int idCategoria) {//revisado +
         try {
@@ -380,7 +381,8 @@ public class Direct_Control_BD {
             PreparedStatement stm = conection.prepareStatement(CrearProducto);
             stm.setString(1, idProducto);
             stm.setString(2, nombre);
-            stm.setInt(3, precio);
+            System.out.println(precio.doubleValue());
+            stm.setDouble(3, precio.doubleValue());
             stm.setInt(4, costo);
             stm.setString(5, fechaCreacion);
             stm.setString(6, estado);
@@ -1198,9 +1200,10 @@ VALUES (?, ?, ?, ?, ?, ?);
         return lista_datos;
     }
      /**
-     * Obtiene la descripcion de un producto segun el codigo
+     * Obtiene el nombre de un producto segun el codigo y solo permite obtener
+     * el nombre de productos con estado A
      */
-    public String verDescripcion(String codigo){
+    public String verNombreProductoPorCodigo(String codigo){
         try {
             String verDescripcion = this.readSql("../Joe"
                     + "/src/sql_files/verDescripcionPorCodigo.sql");
@@ -1222,8 +1225,9 @@ VALUES (?, ?, ?, ?, ?, ?);
      /**
      * Obtiene el precio de un producto segun el codigo
      */
-    public int verPrecio(String codigo){
-        int precio = 0;
+    public BigDecimal verPrecio(String codigo){
+        BigDecimal precio = new BigDecimal("0.0");
+        
         try {
             String verDescripcion = this.readSql("../Joe"
                     + "/src/sql_files/verPrecioPorCodigo.sql");
@@ -1232,13 +1236,13 @@ VALUES (?, ?, ?, ?, ?, ?);
             stm.setString(1, codigo);
             ResultSet rs = stm.executeQuery();
             while (rs.next()) {
-                precio = rs.getInt("Precio");
+                precio = rs.getBigDecimal("Precio");
             }
             return precio;
         } catch (Exception e) {
             System.out.println(codigo);
             System.out.println("Error al obtener el precio");
-            return 0;
+            return null ;
         }
     }
     /**
@@ -1284,9 +1288,9 @@ VALUES (?, ?, ?, ?, ?, ?);
     }
     
      /**
-     * Obtiene el nombre de un producto segun el codigo
+     * Obtiene el detalle(Descripcion) de un producto segun el codigo
      */
-    public String verNombre(String codigo) {
+    public String verDetalle(String codigo) {
         try {
             String verNombre = this.readSql("../Joe"
                     + "/src/sql_files/verNombrePorCodigo.sql");
@@ -1296,13 +1300,50 @@ VALUES (?, ?, ?, ?, ?, ?);
             ResultSet rs = stm.executeQuery();
             String descripcion = "";
             while (rs.next()) {
-                descripcion = rs.getString("Nombre");
+                descripcion = rs.getString("Descripcion");
             }
             return descripcion;
         } catch (Exception e) {
             System.out.println(codigo);
-            System.out.println("Error al obtener el nombre");
+            System.out.println("Error al obtener el detalle(Descripcion)");
             return "";
+        }
+    }
+    /**
+     * Esta consulta da la cantidad del invetario(General) de un producto seleccionado
+     * @param idProducto
+     * @return 
+     */
+    public int verCantidad(String idProducto) {
+        int cantidad = 0;
+        try {
+            String verCantidad = this.readSql("../Joe"
+                    + "/src/sql_files/verCantidadPorCodigo.sql");
+            PreparedStatement stm = this.conection.prepareStatement(verCantidad);
+            stm.setString(1, idProducto);
+            ResultSet rs = stm.executeQuery();
+            while (rs.next()) {
+                cantidad = rs.getInt("Cantidad");
+            }
+            return cantidad;
+        } catch (Exception e) {
+            System.out.println(cantidad);
+            System.out.println("Error al obtener la cantidad del producto");
+            return 0;
+        }
+    }
+
+    public boolean verSiExisteCod(String idProducto) {
+         try {
+            String verCantidad = this.readSql("../Joe"
+                    + "/src/sql_files/verSiExisteCod.sql");
+            PreparedStatement stm = this.conection.prepareStatement(verCantidad);
+            stm.setString(1, idProducto);
+            ResultSet rs = stm.executeQuery();
+            return rs.next();
+        } catch (Exception e) {
+            System.out.println("No existe ese codigo");
+            return false;
         }
     }
 

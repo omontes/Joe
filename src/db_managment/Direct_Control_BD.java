@@ -1070,6 +1070,30 @@ VALUES (?, ?, ?, ?, ?, ?);
     
     
     
+    public String consultarNombreCategoriaXid(int idCategoria)
+    {
+    try {
+
+            String BuscarCategoriaPorDescripcion = this.readSql("../Joe"
+                    + "/src/sql_files/consultarNombreCategoriaXId.sql");
+            PreparedStatement stm
+                    = this.conection.prepareStatement(BuscarCategoriaPorDescripcion);
+            stm.setInt(1, idCategoria);
+            ResultSet rs = stm.executeQuery();
+            String Nombre="";
+            rs.next();
+            Nombre=rs.getString("Descripcion");
+           
+            
+            return Nombre;
+        } catch (Exception e) {
+            System.out.println("Error al consultar categoria por idCategoria");
+            return "";
+        }
+        
+        
+    }        
+            
     public int consultarIdCategoriaXNombre(String Nombre)
     {
     try {

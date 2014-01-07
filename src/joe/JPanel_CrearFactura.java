@@ -572,12 +572,12 @@ public class JPanel_CrearFactura extends javax.swing.JPanel {
     private void verProducto(String idProducto){
             Direct_Control_BD AdminBD = Direct_Control_BD.getInstance();
             String articulo = AdminBD.verNombreProductoPorCodigo(idProducto);
-            int PrecioUnitario = AdminBD.verPrecio(idProducto).intValueExact();
+            BigDecimal PrecioUnitario = AdminBD.verPrecio(idProducto);
             int cantidad= AdminBD.verCantidad(idProducto);
             jLabel_datoCant.setText(Integer.toString(cantidad));
             jLabel_datoFact.setText(jLabel_Fact.getText());
             jLabel_datoNomb.setText(articulo);
-            jLabel_datoPrecio.setText(Integer.toString(PrecioUnitario));
+            jLabel_datoPrecio.setText(PrecioUnitario.toString());
             String detalle= AdminBD.verDetalle(idProducto);
             if (detalle==null) {
                 jLabel_Descripcion.setText("Descripcion  " + "Este producto no tiene ningun detalle");

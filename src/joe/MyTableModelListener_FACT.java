@@ -90,7 +90,7 @@ public class MyTableModelListener_FACT implements TableModelListener {
           
           
               String codigo = data.toString();
-              int precio = this.BDmanagment.verPrecio(codigo);
+              int precio = (int)this.BDmanagment.verPrecio(codigo).doubleValue();
               if (precio == 0 & !info.equals("")) {
                   JOptionPane.showMessageDialog(
                           null,
@@ -103,7 +103,7 @@ public class MyTableModelListener_FACT implements TableModelListener {
               }
               //En caso de que no escriba nada el usuario
               if (!info.equals("")) {
-                  String descripcion = this.BDmanagment.verDescripcion(codigo);
+                  String descripcion = this.BDmanagment.verNombreProductoPorCodigo(codigo);
                   model.setValueAt(precio, row, column + 3);///IMPORTANTE ESTE ORDEN
                   model.setValueAt(1, row, column + 2);
                   model.setValueAt(descripcion, row, column + 1);

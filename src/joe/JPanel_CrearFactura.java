@@ -7,11 +7,15 @@
 package joe;
 
 import db_managment.Direct_Control_BD;
+import java.awt.Toolkit;
+import java.awt.event.KeyEvent;
+import java.math.BigDecimal;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -41,10 +45,11 @@ public class JPanel_CrearFactura extends javax.swing.JPanel {
         jLabel2 = new javax.swing.JLabel();
         jTextField_nombre = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
-        jTextField_Precio = new javax.swing.JTextField();
         jLabel4 = new javax.swing.JLabel();
-        jTextField_Cantidad = new javax.swing.JTextField();
         jButton_CrearProducto = new javax.swing.JButton();
+        jButton_CancelarCrearProducto = new javax.swing.JButton();
+        jFormattedTextField_precioProducto = new javax.swing.JFormattedTextField();
+        jFormattedTextField_cantidadProducto = new javax.swing.JFormattedTextField();
         jDialog_VerProducto = new javax.swing.JDialog();
         jLayeredPane_VerProducto = new javax.swing.JLayeredPane();
         jLabel_Producto = new javax.swing.JLabel();
@@ -57,6 +62,13 @@ public class JPanel_CrearFactura extends javax.swing.JPanel {
         jLabel_datoPrecio = new javax.swing.JLabel();
         jButton2 = new javax.swing.JButton();
         jLabel_Descripcion = new javax.swing.JLabel();
+        jDialog_BuscarProductoPorCod = new javax.swing.JDialog();
+        jPanel1 = new javax.swing.JPanel();
+        jButton_BusqueProducto = new javax.swing.JButton();
+        jButton_CancelaBusquedaProducto = new javax.swing.JButton();
+        jLabel5 = new javax.swing.JLabel();
+        jTextField_busqueProducto = new javax.swing.JTextField();
+        jLabel_CodNoEncontrado = new javax.swing.JLabel();
         jButton_CreaProducto = new javax.swing.JButton();
         jButton_VerProducto = new javax.swing.JButton();
         jButton_EliminaFila = new javax.swing.JButton();
@@ -69,9 +81,21 @@ public class JPanel_CrearFactura extends javax.swing.JPanel {
 
         jPanel2.setBackground(new java.awt.Color(153, 153, 153));
 
+        jTextField_codigo.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                jTextField_codigoKeyPressed(evt);
+            }
+        });
+
         jLabel1.setText("Codigo del Producto");
 
         jLabel2.setText("Nombre del Producto");
+
+        jTextField_nombre.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                jTextField_nombreKeyPressed(evt);
+            }
+        });
 
         jLabel3.setText("Precio del Producto");
 
@@ -83,11 +107,60 @@ public class JPanel_CrearFactura extends javax.swing.JPanel {
                 jButton_CrearProductoActionPerformed(evt);
             }
         });
+        jButton_CrearProducto.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                jButton_CrearProductoKeyPressed(evt);
+            }
+        });
+
+        jButton_CancelarCrearProducto.setText("Cancelar");
+        jButton_CancelarCrearProducto.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton_CancelarCrearProductoActionPerformed(evt);
+            }
+        });
+
+        jFormattedTextField_precioProducto.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(new java.text.DecimalFormat("#,##0.##"))));
+        jFormattedTextField_precioProducto.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                jFormattedTextField_precioProductoFocusGained(evt);
+            }
+        });
+        jFormattedTextField_precioProducto.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                jFormattedTextField_precioProductoKeyPressed(evt);
+            }
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                jFormattedTextField_precioProductoKeyTyped(evt);
+            }
+        });
+
+        jFormattedTextField_cantidadProducto.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(new java.text.DecimalFormat("#0"))));
+        jFormattedTextField_cantidadProducto.setText("0");
+        jFormattedTextField_cantidadProducto.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                jFormattedTextField_cantidadProductoFocusGained(evt);
+            }
+        });
+        jFormattedTextField_cantidadProducto.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                jFormattedTextField_cantidadProductoKeyPressed(evt);
+            }
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                jFormattedTextField_cantidadProductoKeyTyped(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jButton_CrearProducto)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jButton_CancelarCrearProducto)
+                .addGap(27, 27, 27))
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addGap(100, 100, 100)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
@@ -96,16 +169,12 @@ public class JPanel_CrearFactura extends javax.swing.JPanel {
                     .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(18, 18, 18)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jTextField_Precio)
-                    .addComponent(jTextField_Cantidad, javax.swing.GroupLayout.DEFAULT_SIZE, 175, Short.MAX_VALUE)
-                    .addComponent(jTextField_codigo)
-                    .addComponent(jTextField_nombre))
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jFormattedTextField_precioProducto, javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jTextField_codigo, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 175, Short.MAX_VALUE)
+                    .addComponent(jTextField_nombre, javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jFormattedTextField_cantidadProducto))
                 .addGap(75, 75, 75))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jButton_CrearProducto)
-                .addGap(27, 27, 27))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -121,13 +190,15 @@ public class JPanel_CrearFactura extends javax.swing.JPanel {
                 .addGap(18, 18, 18)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
-                    .addComponent(jTextField_Precio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jFormattedTextField_precioProducto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel4)
-                    .addComponent(jTextField_Cantidad, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addComponent(jButton_CrearProducto)
+                    .addComponent(jFormattedTextField_cantidadProducto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(48, 48, 48)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jButton_CrearProducto)
+                    .addComponent(jButton_CancelarCrearProducto))
                 .addContainerGap(47, Short.MAX_VALUE))
         );
 
@@ -183,6 +254,11 @@ public class JPanel_CrearFactura extends javax.swing.JPanel {
         jButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton2ActionPerformed(evt);
+            }
+        });
+        jButton2.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                jButton2KeyPressed(evt);
             }
         });
 
@@ -278,6 +354,86 @@ public class JPanel_CrearFactura extends javax.swing.JPanel {
         jDialog_VerProductoLayout.setVerticalGroup(
             jDialog_VerProductoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jLayeredPane_VerProducto, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        );
+
+        jPanel1.setBackground(new java.awt.Color(204, 204, 204));
+
+        jButton_BusqueProducto.setText("Aceptar");
+        jButton_BusqueProducto.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton_BusqueProductoActionPerformed(evt);
+            }
+        });
+        jButton_BusqueProducto.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                jButton_BusqueProductoKeyPressed(evt);
+            }
+        });
+
+        jButton_CancelaBusquedaProducto.setText("Cancelar");
+        jButton_CancelaBusquedaProducto.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton_CancelaBusquedaProductoActionPerformed(evt);
+            }
+        });
+
+        jLabel5.setText("Ingrese el Cod");
+
+        jTextField_busqueProducto.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTextField_busqueProductoActionPerformed(evt);
+            }
+        });
+        jTextField_busqueProducto.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                jTextField_busqueProductoKeyPressed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(54, 54, 54)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(jButton_BusqueProducto)
+                        .addGap(42, 42, 42)
+                        .addComponent(jButton_CancelaBusquedaProducto))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(jLabel5)
+                        .addGap(18, 18, 18)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(jLabel_CodNoEncontrado, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jTextField_busqueProducto, javax.swing.GroupLayout.DEFAULT_SIZE, 81, Short.MAX_VALUE))))
+                .addContainerGap(53, Short.MAX_VALUE))
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addContainerGap(81, Short.MAX_VALUE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel5)
+                    .addComponent(jTextField_busqueProducto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jLabel_CodNoEncontrado, javax.swing.GroupLayout.PREFERRED_SIZE, 13, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(29, 29, 29)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jButton_BusqueProducto)
+                    .addComponent(jButton_CancelaBusquedaProducto))
+                .addGap(52, 52, 52))
+        );
+
+        javax.swing.GroupLayout jDialog_BuscarProductoPorCodLayout = new javax.swing.GroupLayout(jDialog_BuscarProductoPorCod.getContentPane());
+        jDialog_BuscarProductoPorCod.getContentPane().setLayout(jDialog_BuscarProductoPorCodLayout);
+        jDialog_BuscarProductoPorCodLayout.setHorizontalGroup(
+            jDialog_BuscarProductoPorCodLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+        );
+        jDialog_BuscarProductoPorCodLayout.setVerticalGroup(
+            jDialog_BuscarProductoPorCodLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
 
         jButton_CreaProducto.setText("Crear Producto");
@@ -402,28 +558,49 @@ public class JPanel_CrearFactura extends javax.swing.JPanel {
     }//GEN-END:initComponents
 
     private void jButton_CreaProductoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_CreaProductoActionPerformed
+        //En caso de que quiera crear un producto mientras se este editando
+        if (jTable_Factura.isEditing()) {
+            jTable_Factura.getCellEditor().cancelCellEditing();
+            this.jDialog_CrearProducto.setSize(500,300);
+            this.jDialog_CrearProducto.setVisible(true);
+            return;
+        }
+        //Llama a la ventana para crear el producto
         this.jDialog_CrearProducto.setSize(500,300);
         this.jDialog_CrearProducto.setVisible(true);
     }//GEN-LAST:event_jButton_CreaProductoActionPerformed
-
-    private void jButton_VerProductoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_VerProductoActionPerformed
-        MyTableModel_FACT model = (MyTableModel_FACT) jTable_Factura.getModel();
-        int row = jTable_Factura.getSelectedRow();
-        Direct_Control_BD AdminBD = Direct_Control_BD.getInstance();
-
-        String idProducto = model.getValueAt(row, 0).toString();//obtiene el id del 
-        //producto seleccionado para VerProducto
-        if (!"".equals(idProducto)) {//verifica que el id no sea vacio
-            String articulo = model.getValueAt(row, 1).toString();
-            String cantidad = model.getValueAt(row, 2).toString();
-            int PrecioUnitario = AdminBD.verPrecio(idProducto);
-            String Nombre = AdminBD.verNombre(idProducto);
-            jLabel_datoCant.setText(cantidad);
+    private void verProducto(String idProducto){
+            Direct_Control_BD AdminBD = Direct_Control_BD.getInstance();
+            String articulo = AdminBD.verNombreProductoPorCodigo(idProducto);
+            int PrecioUnitario = AdminBD.verPrecio(idProducto).intValueExact();
+            int cantidad= AdminBD.verCantidad(idProducto);
+            jLabel_datoCant.setText(Integer.toString(cantidad));
             jLabel_datoFact.setText(jLabel_Fact.getText());
             jLabel_datoNomb.setText(articulo);
             jLabel_datoPrecio.setText(Integer.toString(PrecioUnitario));
-            jLabel_Descripcion.setText("Descripcion  " + AdminBD.verDescripcion(idProducto));
+            String detalle= AdminBD.verDetalle(idProducto);
+            if (detalle==null) {
+                jLabel_Descripcion.setText("Descripcion  " + "Este producto no tiene ningun detalle");
+                jDialog_VerProducto.setVisible(true);
+                return;
+            }
+            jLabel_Descripcion.setText("Descripcion  " + detalle);
             jDialog_VerProducto.setVisible(true);
+       
+        }
+    
+    
+    private void jButton_VerProductoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_VerProductoActionPerformed
+        MyTableModel_FACT model = (MyTableModel_FACT) jTable_Factura.getModel();
+        int row = jTable_Factura.getSelectedRow();
+        String idProducto = model.getValueAt(row, 0).toString();//obtiene el id del 
+        //producto seleccionado para VerProducto
+        if (!"".equals(idProducto)) {//verifica que se quiere ver un producto
+            this.verProducto(idProducto);
+        }
+        else{
+            jDialog_BuscarProductoPorCod.setSize(295,243);
+            jDialog_BuscarProductoPorCod.setVisible(true);
         }
     }//GEN-LAST:event_jButton_VerProductoActionPerformed
 
@@ -487,35 +664,189 @@ public class JPanel_CrearFactura extends javax.swing.JPanel {
         miVentana.repaint();
 
     }//GEN-LAST:event_jButton_RegresarFactActionPerformed
-
-    private void jButton_CrearProductoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_CrearProductoActionPerformed
-        VentanaDeInicio miVentana= VentanaDeInicio.getInstance();
+    private void CrearProducto(){
         Direct_Control_BD AdminBD = Direct_Control_BD.getInstance();
         DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd");
         Date date = new Date();
-        String codigo=this.jTextField_codigo.getText();
-        AdminBD.crearProducto(codigo,this
-            .jTextField_nombre.getText(),Integer.parseInt
-            (this.jTextField_Precio.getText()),0,dateFormat.format(date),"A",null,1);
-        AdminBD.insertarEnInventario(this.jTextField_codigo.getText
-            (),1,Integer.parseInt(this.jTextField_Cantidad.getText()));
-        this.jTextField_Cantidad.setText("");
-        this.jTextField_Precio.setText("");
-        this.jTextField_codigo.setText("");
-        this.jTextField_nombre.setText("");
-        this.jDialog_CrearProducto.dispose();
-        MyTableModel_FACT model = (MyTableModel_FACT) jTable_Factura.getModel();
-        model.setValueAt(codigo,jTable_Factura.getSelectedRow(),0);
-        jTable_Factura.revalidate();
-        jTable_Factura.repaint();
-        jTable_Factura.changeSelection( jTable_Factura.getSelectedRow()+1, jTable_Factura.getSelectedColumn(), false, false );
-        jTable_Factura.requestFocus();
+        String codigo = this.jTextField_codigo.getText();
+        boolean existeProducto = AdminBD.verSiExisteCod(codigo);
+        if (!existeProducto) {
+            BigDecimal bd = new BigDecimal(this.jFormattedTextField_precioProducto.getValue().toString());
+            System.out.println(bd.toString());
+            AdminBD.crearProducto(codigo, this.jTextField_nombre.getText(),bd,0, dateFormat.format(date), "A", null, 1);
+            AdminBD.insertarEnInventario(this.jTextField_codigo.getText(), 1, Integer.parseInt(this.jFormattedTextField_cantidadProducto.getValue().toString()));
+            this.jFormattedTextField_cantidadProducto.setText("");
+            this.jFormattedTextField_precioProducto.setText("");
+            this.jTextField_codigo.setText("");
+            this.jTextField_nombre.setText("");
+            this.jDialog_CrearProducto.dispose();
+            MyTableModel_FACT model = (MyTableModel_FACT) jTable_Factura.getModel();
+            model.setValueAt(codigo, jTable_Factura.getSelectedRow(), 0);
+            jTable_Factura.revalidate();
+            jTable_Factura.repaint();
+            jTable_Factura.changeSelection(jTable_Factura.getSelectedRow() + 1, jTable_Factura.getSelectedColumn(), false, false);
+            jTable_Factura.requestFocus();
+        }
+
+        else {
+            JOptionPane.showMessageDialog(
+                          null,
+                          "ESTE Cod ya existe en el inventario",
+                          "Alert!", JOptionPane.ERROR_MESSAGE);
+            this.jTextField_codigo.setText("");
+            this.jButton_CrearProducto.transferFocus();
+            this.jButton_CancelarCrearProducto.transferFocus();
+        }
+    }
+
+    private void jButton_CrearProductoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_CrearProductoActionPerformed
+       this.CrearProducto();
 
     }//GEN-LAST:event_jButton_CrearProductoActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        jTable_Factura.changeSelection( jTable_Factura.getSelectedRow(), jTable_Factura.getSelectedColumn(), false, false );
+        jTable_Factura.requestFocus();
         this.jDialog_VerProducto.dispose();
     }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void jButton_CancelarCrearProductoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_CancelarCrearProductoActionPerformed
+        this.jDialog_CrearProducto.dispose();
+        this.jFormattedTextField_precioProducto.setText("0.00");
+        //Para que el usuario se mantenga en la tabla
+        jTable_Factura.changeSelection( jTable_Factura.getSelectedRow(), jTable_Factura.getSelectedColumn(), false, false );
+        jTable_Factura.requestFocus();
+    }//GEN-LAST:event_jButton_CancelarCrearProductoActionPerformed
+
+    private void jTextField_codigoKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField_codigoKeyPressed
+        //Se presiono enter en el textfield de codigo por lo tanto tiene que
+        // hacer que se haga focus el que sigue
+        if(evt.getKeyCode()==10){
+            this.jTextField_codigo.transferFocus();
+            
+        
+        }
+    }//GEN-LAST:event_jTextField_codigoKeyPressed
+
+    private void jTextField_nombreKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField_nombreKeyPressed
+        if(evt.getKeyCode()==10){
+            this.jTextField_nombre.transferFocus();
+        }
+    }//GEN-LAST:event_jTextField_nombreKeyPressed
+
+    private void jButton_CrearProductoKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jButton_CrearProductoKeyPressed
+        if(evt.getKeyCode()==10){
+            this.CrearProducto();
+        }
+    }//GEN-LAST:event_jButton_CrearProductoKeyPressed
+    private void buscarProducto(){
+        Direct_Control_BD AdminBD = Direct_Control_BD.getInstance();
+        String idProducto = this.jTextField_busqueProducto.getText();
+        boolean existeProducto=AdminBD.verSiExisteCod(idProducto);
+        
+        if(existeProducto){
+            this.jDialog_BuscarProductoPorCod.dispose();
+            this.verProducto(idProducto);
+            this.jTextField_busqueProducto.setText("");
+            this.jLabel_CodNoEncontrado.setText("");
+            return;
+        
+        }
+        this.jLabel_CodNoEncontrado.setText("Cod. No Existe");
+        this.jTextField_busqueProducto.setText("");
+        this.jButton_BusqueProducto.transferFocus();
+        this.jButton_CancelaBusquedaProducto.transferFocus();
+        
+        
+    }                          
+    
+    private void jButton_BusqueProductoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_BusqueProductoActionPerformed
+        this.buscarProducto();
+    }//GEN-LAST:event_jButton_BusqueProductoActionPerformed
+
+    private void jButton_CancelaBusquedaProductoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_CancelaBusquedaProductoActionPerformed
+        this.jDialog_BuscarProductoPorCod.dispose();
+        this.jLabel_CodNoEncontrado.setText("");
+        jTable_Factura.changeSelection( jTable_Factura.getSelectedRow(), jTable_Factura.getSelectedColumn(), false, false );
+        jTable_Factura.requestFocus();
+        
+    }//GEN-LAST:event_jButton_CancelaBusquedaProductoActionPerformed
+
+    private void jTextField_busqueProductoKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField_busqueProductoKeyPressed
+        if(evt.getKeyCode()==10){
+            this.jTextField_busqueProducto.transferFocus();
+            
+        
+        }
+    }//GEN-LAST:event_jTextField_busqueProductoKeyPressed
+
+    private void jTextField_busqueProductoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField_busqueProductoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextField_busqueProductoActionPerformed
+
+    private void jButton_BusqueProductoKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jButton_BusqueProductoKeyPressed
+        if(evt.getKeyCode()==10){
+            this.buscarProducto();
+        }
+    }//GEN-LAST:event_jButton_BusqueProductoKeyPressed
+
+    private void jButton2KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jButton2KeyPressed
+         if(evt.getKeyCode()==10){
+             jTable_Factura.changeSelection( jTable_Factura.getSelectedRow(), jTable_Factura.getSelectedColumn(), false, false );
+             jTable_Factura.requestFocus();
+             this.jDialog_VerProducto.dispose();
+        }
+       
+    }//GEN-LAST:event_jButton2KeyPressed
+
+    private void jFormattedTextField_precioProductoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jFormattedTextField_precioProductoKeyTyped
+        int tecla= evt.getKeyChar();
+        if(tecla==KeyEvent.VK_COMMA){
+            return;
+        }
+        if(tecla==KeyEvent.VK_PERIOD){
+            return;
+        }
+        if (!Character.isDigit(tecla) & !Character.isISOControl(evt.getKeyChar())) {
+            Toolkit.getDefaultToolkit().beep();
+            evt.consume();
+
+        }
+    
+    }//GEN-LAST:event_jFormattedTextField_precioProductoKeyTyped
+
+    private void jFormattedTextField_precioProductoKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jFormattedTextField_precioProductoKeyPressed
+         if(evt.getKeyCode()==10){
+            this.jFormattedTextField_precioProducto.transferFocus();
+            
+        
+        }
+    }//GEN-LAST:event_jFormattedTextField_precioProductoKeyPressed
+
+    private void jFormattedTextField_precioProductoFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jFormattedTextField_precioProductoFocusGained
+        this.jFormattedTextField_precioProducto.selectAll();
+    }//GEN-LAST:event_jFormattedTextField_precioProductoFocusGained
+
+    private void jFormattedTextField_cantidadProductoFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jFormattedTextField_cantidadProductoFocusGained
+        this.jFormattedTextField_cantidadProducto.selectAll();
+    }//GEN-LAST:event_jFormattedTextField_cantidadProductoFocusGained
+
+    private void jFormattedTextField_cantidadProductoKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jFormattedTextField_cantidadProductoKeyPressed
+        if(evt.getKeyCode()==10){
+            this.jFormattedTextField_cantidadProducto.transferFocus();
+            
+        
+        }
+    }//GEN-LAST:event_jFormattedTextField_cantidadProductoKeyPressed
+
+    private void jFormattedTextField_cantidadProductoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jFormattedTextField_cantidadProductoKeyTyped
+       int tecla= evt.getKeyChar();
+       if (!Character.isDigit(tecla) & !Character.isISOControl(evt.getKeyChar())) {
+            Toolkit.getDefaultToolkit().beep();
+            evt.consume();
+
+        }
+    }//GEN-LAST:event_jFormattedTextField_cantidadProductoKeyTyped
 public void personalizarTablaFactura() {
         /**DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd");
         Date date = new Date();
@@ -590,19 +921,27 @@ public void personalizarTablaFactura() {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     javax.swing.JButton jButton2;
+    javax.swing.JButton jButton_BusqueProducto;
+    javax.swing.JButton jButton_CancelaBusquedaProducto;
+    javax.swing.JButton jButton_CancelarCrearProducto;
     javax.swing.JButton jButton_CreaProducto;
     javax.swing.JButton jButton_CrearProducto;
     javax.swing.JButton jButton_Descuento;
     javax.swing.JButton jButton_EliminaFila;
     javax.swing.JButton jButton_RegresarFact;
     javax.swing.JButton jButton_VerProducto;
+    javax.swing.JDialog jDialog_BuscarProductoPorCod;
     javax.swing.JDialog jDialog_CrearProducto;
     javax.swing.JDialog jDialog_VerProducto;
+    javax.swing.JFormattedTextField jFormattedTextField_cantidadProducto;
+    javax.swing.JFormattedTextField jFormattedTextField_precioProducto;
     javax.swing.JLabel jLabel1;
     javax.swing.JLabel jLabel2;
     javax.swing.JLabel jLabel3;
     javax.swing.JLabel jLabel4;
+    javax.swing.JLabel jLabel5;
     javax.swing.JLabel jLabel_Cantidad;
+    javax.swing.JLabel jLabel_CodNoEncontrado;
     javax.swing.JLabel jLabel_Descripcion;
     javax.swing.JLabel jLabel_Fact;
     javax.swing.JLabel jLabel_Nombre;
@@ -613,12 +952,12 @@ public void personalizarTablaFactura() {
     javax.swing.JLabel jLabel_datoNomb;
     javax.swing.JLabel jLabel_datoPrecio;
     javax.swing.JLayeredPane jLayeredPane_VerProducto;
+    javax.swing.JPanel jPanel1;
     javax.swing.JPanel jPanel2;
     javax.swing.JScrollPane jScrollPane2;
     javax.swing.JTable jTable_Factura;
-    javax.swing.JTextField jTextField_Cantidad;
-    javax.swing.JTextField jTextField_Precio;
     javax.swing.JTextField jTextField_Total;
+    javax.swing.JTextField jTextField_busqueProducto;
     javax.swing.JTextField jTextField_codigo;
     javax.swing.JTextField jTextField_nombre;
     // End of variables declaration//GEN-END:variables

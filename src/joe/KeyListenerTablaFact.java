@@ -13,7 +13,6 @@ import java.awt.event.KeyListener;
  * @author Oscar Montes
  */
 public class KeyListenerTablaFact implements KeyListener {
-    boolean bandera;
     @Override
     public void keyPressed(KeyEvent e) {
     }
@@ -29,7 +28,6 @@ public class KeyListenerTablaFact implements KeyListener {
             return;
         }
         if(tecla==KeyEvent.VK_PERIOD){
-            bandera=false;
             return;
             
         }

@@ -121,6 +121,7 @@ public class JPanel_CrearFactura extends javax.swing.JPanel {
         });
 
         jFormattedTextField_precioProducto.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(new java.text.DecimalFormat("#,##0.##"))));
+        jFormattedTextField_precioProducto.setText("0.00");
         jFormattedTextField_precioProducto.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusGained(java.awt.event.FocusEvent evt) {
                 jFormattedTextField_precioProductoFocusGained(evt);
@@ -712,6 +713,7 @@ public class JPanel_CrearFactura extends javax.swing.JPanel {
 
     private void jButton_CancelarCrearProductoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_CancelarCrearProductoActionPerformed
         this.jDialog_CrearProducto.dispose();
+        this.jFormattedTextField_cantidadProducto.setText("0");
         this.jFormattedTextField_precioProducto.setText("0.00");
         //Para que el usuario se mantenga en la tabla
         jTable_Factura.changeSelection( jTable_Factura.getSelectedRow(), jTable_Factura.getSelectedColumn(), false, false );

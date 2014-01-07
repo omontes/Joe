@@ -13,7 +13,7 @@ import java.awt.event.KeyListener;
  * @author Oscar Montes
  */
 public class KeyListenerTablaFact implements KeyListener {
-
+    boolean bandera;
     @Override
     public void keyPressed(KeyEvent e) {
     }
@@ -24,10 +24,17 @@ public class KeyListenerTablaFact implements KeyListener {
 
     @Override
     public void keyTyped(KeyEvent e) {
-        if (e.getKeyChar() == 8) {
+        char tecla= e.getKeyChar();
+        if (tecla== 8) {
             return;
         }
-        if (!Character.isDigit(e.getKeyChar())) {
+        if(tecla==KeyEvent.VK_PERIOD){
+            bandera=false;
+            return;
+            
+        }
+        
+        if (!Character.isDigit(tecla)) {
             Toolkit.getDefaultToolkit().beep();
             e.consume();
         }

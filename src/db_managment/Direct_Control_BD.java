@@ -595,6 +595,22 @@ public class Direct_Control_BD {
         }
 
     }
+    
+    public void consultarCategorias(){
+        try
+        {
+            String categorias = this.readSql("../Joe/src/"
+                    + "sql_files/consultarCategorias.sql");
+            PreparedStatement stm = this.conection.prepareStatement(categorias);
+             ResultSet resultset = stm.executeQuery();
+            this.setColumnNames(this.Get_Columnas(resultset));
+            this.setData(this.ResultSet_Array(resultset));
+        }
+        catch (Exception e)
+        {
+            System.out.println("Error al obtener el categoria");
+        }
+    }
 
     public void consultarProducto(String idProducto) {//esta bien
         try {
@@ -603,13 +619,9 @@ public class Direct_Control_BD {
             PreparedStatement stm = this.conection.prepareStatement(valorInventario);
             stm.setString(1, idProducto);
             ResultSet resultset = stm.executeQuery();
-
-            while (resultset.next()) {
-                System.out.println(resultset.getString(1)
-                        + "||" + resultset.getInt(2) + "||" + resultset.
-                        getInt(3)
-                        + "||" + resultset.getString(4));
-            }
+            this.setColumnNames(this.Get_Columnas(resultset));
+            this.setData(this.ResultSet_Array(resultset));
+        
 
         } catch (Exception e) {
             System.out.println("Error al obtener el producto");
@@ -846,6 +858,28 @@ public class Direct_Control_BD {
             System.out.println("Error al Modificar Producto");
         }
     }
+    
+    
+    public void modificarProducto( String idProducto, String nombre,
+            int precio, int idCategoria, int costo, String Descripcion) {//esta bien
+        try {
+            String ModificarProducto = this.readSql("../Joe"
+                    + "/src/sql_files/ModificarProducto2.sql");
+            PreparedStatement stm
+                    = this.conection.prepareStatement(ModificarProducto);
+            stm.setString(1, nombre);
+            stm.setInt(2, precio);
+            stm.setInt(3, idCategoria);
+            stm.setInt(4, costo);
+            stm.setString(5, Descripcion);
+            stm.setString(6, idProducto);
+
+            stm.executeUpdate();
+
+        } catch (Exception e) {
+            System.out.println("Error al Modificar Producto");
+        }
+    }
 
     public void BuscarCategoriaPorDescripcion(String descripcionDeCategoria) {
         try {
@@ -1034,6 +1068,31 @@ VALUES (?, ?, ?, ?, ?, ?);
         
     }
     
+    
+    
+    public int consultarIdCategoriaXNombre(String Nombre)
+    {
+    try {
+
+            String BuscarCategoriaPorDescripcion = this.readSql("../Joe"
+                    + "/src/sql_files/consultarIdCategoriaXNombre.sql");
+            PreparedStatement stm
+                    = this.conection.prepareStatement(BuscarCategoriaPorDescripcion);
+            stm.setString(1, Nombre);
+            ResultSet rs = stm.executeQuery();
+            int idCategoria=0;
+            rs.next();
+            idCategoria=rs.getInt("idCategoria");
+           
+            
+            return idCategoria;
+        } catch (Exception e) {
+            System.out.println("Error al consultar categoria por nombre");
+            return -1;
+        }
+        
+        
+    }
     public int consultarVentasXTipoPagoYFecha(String FechaInicio, String FechaFinal
     ,String TipoPago) {
         try {
@@ -1319,6 +1378,20 @@ VALUES (?, ?, ?, ?, ?, ?);
             System.out.println(codigo);
             System.out.println("Error al obtener el nombre");
             return "";
+        }
+    }
+    
+    public void insertarCategoria(String Nombre) {
+        try {
+            String categoria = this.readSql("../Joe/src/sql_files/"
+                    + "crearCategoria.sql");
+            PreparedStatement stm = this.conection.prepareStatement(categoria);
+            stm.setString(1, Nombre);
+            
+            stm.executeUpdate();
+
+        } catch (Exception e) {
+            System.out.println("Error al crear categoria");
         }
     }
 

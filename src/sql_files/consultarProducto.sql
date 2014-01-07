@@ -1,3 +1,3 @@
-SELECT Nombre,Precio,Costo
+SELECT Nombre,Precio,Costo,idCategoriaProd,Descripcion,idProducto
 FROM producto
-WHERE idProducto=?;
+WHERE idProducto=? and Estado='A';

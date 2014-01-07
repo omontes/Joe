@@ -76,9 +76,11 @@ public class EditorDeCeldaNumeros extends DefaultCellEditor {
 
     private boolean startKeyEvent(KeyEvent e) {
         //Nos dice si el digito entrado es un caracter
+  
         if (!Character.isDigit(e.getKeyChar())) {
+            System.out.println("dasfasdf");
             Toolkit.getDefaultToolkit().beep();
-            return false;
+            return true;
             
         }
         return true;

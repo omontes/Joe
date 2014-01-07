@@ -5,6 +5,7 @@
 package joe;
 
 import db_managment.Direct_Control_BD;
+import java.math.BigDecimal;
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
 import javax.swing.JTextField;
@@ -52,21 +53,19 @@ public class MyTableModelListener_FACT implements TableModelListener {
       String info = data.toString();
       String oldValue=this.getOldValue();
           
-      int totalFact = Integer.parseInt(this.total.getText());
-      System.out.println(totalFact);
-      if (columnName.equals("Sub-Total") & totalFact == 0) {
-          int subtotal = Integer.parseInt(info);
-          this.total.setText(Integer.toString(subtotal));
+      BigDecimal totalFact = new BigDecimal(this.total.getText());
+      if (columnName.equals("Sub-Total") & totalFact.toString().equals("0.0")) {
+          BigDecimal subtotal = new BigDecimal(info);
+          this.total.setText(subtotal.toString());
           
       }
-      if (columnName.equals("Sub-Total") & totalFact != 0) {
-          int subtotal = Integer.parseInt(info);
-          int subtotal_old=0;
+      if (columnName.equals("Sub-Total") &  !totalFact.toString().equals("0.0")) {
+          BigDecimal subtotal = new BigDecimal(info);
+          BigDecimal subtotal_old= new BigDecimal("0.0");
           if(! oldValue.equals("")){
-              subtotal_old=Integer.parseInt(oldValue);
+              subtotal_old=new BigDecimal(oldValue);
           }
-          this.total.setText(Integer.toString((subtotal-subtotal_old) +
-                  totalFact));
+          this.total.setText((subtotal.subtract(subtotal_old)).add(totalFact).toString());
           
       }
       //Esta condicion es para hacer que no se inserte un precio sin haber un codigo
@@ -81,8 +80,8 @@ public class MyTableModelListener_FACT implements TableModelListener {
       }
       //Esta condicion es para cuando se modifica un precio
       if (columnName.equals("Precio.Unit") & !this.getOldValue().equals("") ) {
-          int cantidad = Integer.parseInt(model.getValueAt(row,2).toString());
-          model.setValueAt(Integer.parseInt(info)*cantidad, row, column + 1);
+          BigDecimal cantidad = new BigDecimal (model.getValueAt(row,2).toString());
+          model.setValueAt(new BigDecimal(info).multiply(cantidad), row, column + 1);
           
       } 
            
@@ -91,9 +90,9 @@ public class MyTableModelListener_FACT implements TableModelListener {
           
           
               String codigo = data.toString();
-              int precio = this.BDmanagment.verPrecio(codigo).intValue();
-              System.out.println(precio);
-              if (precio == 0 & !info.equals("")) {
+              BigDecimal precio = this.BDmanagment.verPrecio(codigo);
+              
+              if (precio.toString().equals("0.0") & !info.equals("")) {
                   JOptionPane.showMessageDialog(
                           null,
                           "ESTE PRODUCTO NO ESTA EN EL INVENTARIO",
@@ -130,9 +129,9 @@ public class MyTableModelListener_FACT implements TableModelListener {
                 return;
                 
           }
-          int cantidad = Integer.parseInt(data.toString());
-          int precio = Integer.parseInt(model.getValueAt(row, column + 1).toString());
-          model.setValueAt(precio * cantidad, row, column + 2);
+          BigDecimal cantidad = new BigDecimal(data.toString());
+          BigDecimal precio = new BigDecimal(model.getValueAt(row, column + 1).toString());
+          model.setValueAt(precio.multiply(cantidad), row, column + 2);
       }
 
         if (columnName.equals("Cantidad") & info.equals("1")) {
@@ -142,7 +141,7 @@ public class MyTableModelListener_FACT implements TableModelListener {
                 model.setValueAt(null, row,column);
                 return;
             }
-            int precio = Integer.parseInt(model.getValueAt(row,3).toString());
+            BigDecimal precio = new BigDecimal(model.getValueAt(row,3).toString());
             model.setValueAt(precio, row, 4);}
           
         

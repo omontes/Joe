@@ -5,6 +5,12 @@
  */
 package joe;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
+import jxl.write.Label;
+
 /**
  *
  * @author Jason
@@ -38,98 +44,227 @@ public class JPanel_Reportes extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jDialog1 = new javax.swing.JDialog();
+        jDialog_Reportes = new javax.swing.JDialog();
         jPanel_VerVentasPorFech = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
-        jButton_VerVentasPorFech = new javax.swing.JButton();
+        jButton_AceptarVerVentasPorFech = new javax.swing.JButton();
+        jLabel3 = new javax.swing.JLabel();
+        jButton_CancelarVerFactPorFech = new javax.swing.JButton();
+        jLabel4 = new javax.swing.JLabel();
+        jTextField_FechIni = new javax.swing.JTextField();
+        jLabel5 = new javax.swing.JLabel();
+        jTextField_FechaFin = new javax.swing.JTextField();
         jPanel_VentasPorCliente = new javax.swing.JPanel();
-        jButton_VerVentasPorCliente = new javax.swing.JButton();
+        jButton_AceptaVerVentasPorCliente = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
+        jButton_CancelarVerFactClient = new javax.swing.JButton();
+        jLabel6 = new javax.swing.JLabel();
+        jTextField_FechIni1 = new javax.swing.JTextField();
+        jTextField_FechaFin1 = new javax.swing.JTextField();
+        jLabel7 = new javax.swing.JLabel();
+        jLabel8 = new javax.swing.JLabel();
         jLabel_tituloReportes = new javax.swing.JLabel();
         jButton_VentasPorFecha = new javax.swing.JButton();
         jButton_VentasPorCliente = new javax.swing.JButton();
 
-        jDialog1.setMinimumSize(new java.awt.Dimension(453, 336));
-        jDialog1.setModal(true);
+        jDialog_Reportes.setIconImage(null);
+        jDialog_Reportes.setMinimumSize(new java.awt.Dimension(453, 336));
+        jDialog_Reportes.setModal(true);
+        jDialog_Reportes.addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowClosing(java.awt.event.WindowEvent evt) {
+                jDialog_ReportesWindowClosing(evt);
+            }
+        });
 
-        javax.swing.GroupLayout jDialog1Layout = new javax.swing.GroupLayout(jDialog1.getContentPane());
-        jDialog1.getContentPane().setLayout(jDialog1Layout);
-        jDialog1Layout.setHorizontalGroup(
-            jDialog1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        javax.swing.GroupLayout jDialog_ReportesLayout = new javax.swing.GroupLayout(jDialog_Reportes.getContentPane());
+        jDialog_Reportes.getContentPane().setLayout(jDialog_ReportesLayout);
+        jDialog_ReportesLayout.setHorizontalGroup(
+            jDialog_ReportesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGap(0, 453, Short.MAX_VALUE)
         );
-        jDialog1Layout.setVerticalGroup(
-            jDialog1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        jDialog_ReportesLayout.setVerticalGroup(
+            jDialog_ReportesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGap(0, 336, Short.MAX_VALUE)
         );
 
         jPanel_VerVentasPorFech.setMinimumSize(new java.awt.Dimension(453, 336));
+        jPanel_VerVentasPorFech.addContainerListener(new java.awt.event.ContainerAdapter() {
+            public void componentAdded(java.awt.event.ContainerEvent evt) {
+                jPanel_VerVentasPorFechComponentAdded(evt);
+            }
+        });
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(0, 51, 51));
         jLabel1.setText("Ralación De Facturas Emitidas Por Fecha");
 
-        jButton_VerVentasPorFech.setText("Aceptar");
-        jButton_VerVentasPorFech.addActionListener(new java.awt.event.ActionListener() {
+        jButton_AceptarVerVentasPorFech.setForeground(new java.awt.Color(0, 51, 51));
+        jButton_AceptarVerVentasPorFech.setText("Aceptar");
+        jButton_AceptarVerVentasPorFech.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton_VerVentasPorFechActionPerformed(evt);
+                jButton_AceptarVerVentasPorFechActionPerformed(evt);
             }
         });
+
+        jLabel3.setFont(new java.awt.Font("Tahoma", 0, 10)); // NOI18N
+        jLabel3.setForeground(new java.awt.Color(0, 51, 51));
+        jLabel3.setText("Período:");
+
+        jButton_CancelarVerFactPorFech.setText("Cancelar");
+        jButton_CancelarVerFactPorFech.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton_CancelarVerFactPorFechActionPerformed(evt);
+            }
+        });
+
+        jLabel4.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        jLabel4.setForeground(new java.awt.Color(0, 51, 51));
+        jLabel4.setText("Desde:");
+
+        jTextField_FechIni.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        jTextField_FechIni.setForeground(new java.awt.Color(0, 51, 51));
+        jTextField_FechIni.setText("FechaIni");
+
+        jLabel5.setText("Hasta:");
+
+        jTextField_FechaFin.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        jTextField_FechaFin.setForeground(new java.awt.Color(0, 51, 51));
+        jTextField_FechaFin.setText("FechaFin");
 
         javax.swing.GroupLayout jPanel_VerVentasPorFechLayout = new javax.swing.GroupLayout(jPanel_VerVentasPorFech);
         jPanel_VerVentasPorFech.setLayout(jPanel_VerVentasPorFechLayout);
         jPanel_VerVentasPorFechLayout.setHorizontalGroup(
             jPanel_VerVentasPorFechLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel_VerVentasPorFechLayout.createSequentialGroup()
-                .addGap(23, 23, 23)
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 226, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(204, Short.MAX_VALUE))
+                .addGroup(jPanel_VerVentasPorFechLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel_VerVentasPorFechLayout.createSequentialGroup()
+                        .addGap(23, 23, 23)
+                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 226, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel_VerVentasPorFechLayout.createSequentialGroup()
+                        .addGap(44, 44, 44)
+                        .addGroup(jPanel_VerVentasPorFechLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGap(2, 2, 2)
+                        .addComponent(jTextField_FechIni, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(9, 9, 9)
+                        .addComponent(jLabel5)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jTextField_FechaFin, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(155, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel_VerVentasPorFechLayout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jButton_VerVentasPorFech)
-                .addGap(45, 45, 45))
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(jButton_AceptarVerVentasPorFech, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(26, 26, 26)
+                .addComponent(jButton_CancelarVerFactPorFech)
+                .addGap(63, 63, 63))
         );
         jPanel_VerVentasPorFechLayout.setVerticalGroup(
             jPanel_VerVentasPorFechLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel_VerVentasPorFechLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLabel1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 243, Short.MAX_VALUE)
-                .addComponent(jButton_VerVentasPorFech)
+                .addGap(30, 30, 30)
+                .addComponent(jLabel3)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel_VerVentasPorFechLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jTextField_FechIni, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel5)
+                    .addComponent(jTextField_FechaFin, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 171, Short.MAX_VALUE)
+                .addGroup(jPanel_VerVentasPorFechLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jButton_AceptarVerVentasPorFech)
+                    .addComponent(jButton_CancelarVerFactPorFech))
                 .addGap(44, 44, 44))
         );
 
         jPanel_VentasPorCliente.setMinimumSize(new java.awt.Dimension(453, 336));
+        jPanel_VentasPorCliente.addContainerListener(new java.awt.event.ContainerAdapter() {
+            public void componentAdded(java.awt.event.ContainerEvent evt) {
+                jPanel_VentasPorClienteComponentAdded(evt);
+            }
+        });
 
-        jButton_VerVentasPorCliente.setText("Aceptar");
-        jButton_VerVentasPorCliente.addActionListener(new java.awt.event.ActionListener() {
+        jButton_AceptaVerVentasPorCliente.setText("Aceptar");
+        jButton_AceptaVerVentasPorCliente.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton_VerVentasPorClienteActionPerformed(evt);
+                jButton_AceptaVerVentasPorClienteActionPerformed(evt);
             }
         });
 
         jLabel2.setText("Ralación De Facturas Emitidas Por Cliente");
 
+        jButton_CancelarVerFactClient.setText("Cancelar");
+        jButton_CancelarVerFactClient.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton_CancelarVerFactClientActionPerformed(evt);
+            }
+        });
+
+        jLabel6.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        jLabel6.setForeground(new java.awt.Color(0, 51, 51));
+        jLabel6.setText("Desde:");
+
+        jTextField_FechIni1.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        jTextField_FechIni1.setForeground(new java.awt.Color(0, 51, 51));
+        jTextField_FechIni1.setText("FechaIni");
+
+        jTextField_FechaFin1.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        jTextField_FechaFin1.setForeground(new java.awt.Color(0, 51, 51));
+        jTextField_FechaFin1.setText("FechaFin");
+
+        jLabel7.setText("Hasta:");
+
+        jLabel8.setFont(new java.awt.Font("Tahoma", 0, 10)); // NOI18N
+        jLabel8.setForeground(new java.awt.Color(0, 51, 51));
+        jLabel8.setText("Período:");
+
         javax.swing.GroupLayout jPanel_VentasPorClienteLayout = new javax.swing.GroupLayout(jPanel_VentasPorCliente);
         jPanel_VentasPorCliente.setLayout(jPanel_VentasPorClienteLayout);
         jPanel_VentasPorClienteLayout.setHorizontalGroup(
             jPanel_VentasPorClienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel_VentasPorClienteLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jLabel2)
-                .addContainerGap(245, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel_VentasPorClienteLayout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jButton_VerVentasPorCliente)
-                .addGap(45, 45, 45))
+                .addContainerGap(214, Short.MAX_VALUE)
+                .addComponent(jButton_AceptaVerVentasPorCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(26, 26, 26)
+                .addComponent(jButton_CancelarVerFactClient)
+                .addGap(63, 63, 63))
+            .addGroup(jPanel_VentasPorClienteLayout.createSequentialGroup()
+                .addGroup(jPanel_VentasPorClienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel_VentasPorClienteLayout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jLabel2))
+                    .addGroup(jPanel_VentasPorClienteLayout.createSequentialGroup()
+                        .addGap(44, 44, 44)
+                        .addGroup(jPanel_VentasPorClienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(jLabel8, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(2, 2, 2)
+                        .addComponent(jTextField_FechIni1, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(9, 9, 9)
+                        .addComponent(jLabel7)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jTextField_FechaFin1, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel_VentasPorClienteLayout.setVerticalGroup(
             jPanel_VentasPorClienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel_VentasPorClienteLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLabel2)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 244, Short.MAX_VALUE)
-                .addComponent(jButton_VerVentasPorCliente)
+                .addGap(30, 30, 30)
+                .addComponent(jLabel8)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel_VentasPorClienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jTextField_FechIni1, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel7)
+                    .addComponent(jTextField_FechaFin1, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 172, Short.MAX_VALUE)
+                .addGroup(jPanel_VentasPorClienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jButton_AceptaVerVentasPorCliente)
+                    .addComponent(jButton_CancelarVerFactClient))
                 .addGap(44, 44, 44))
         );
 
@@ -185,48 +320,94 @@ public class JPanel_Reportes extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton_VentasPorFechaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_VentasPorFechaActionPerformed
-        jDialog1.remove(jDialog1.getComponentAt(1, 1));
-        jPanel_VerVentasPorFech.setLocation(jDialog1.getLocation());
-        jPanel_VerVentasPorFech.setSize(jDialog1.getSize());
-        jDialog1.add(jPanel_VerVentasPorFech);
-        jDialog1.setVisible(true);
+        DateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
+        Date date = new Date();
+        dateFormat.format(date);
+
+        jPanel_VerVentasPorFech.setVisible(true);
+        jPanel_VerVentasPorFech.setLocation(jDialog_Reportes.getLocation());
+        jPanel_VerVentasPorFech.setSize(jDialog_Reportes.getSize());
+        jDialog_Reportes.add(jPanel_VerVentasPorFech);
+        jDialog_Reportes.setVisible(true);
 
     }//GEN-LAST:event_jButton_VentasPorFechaActionPerformed
 
     private void jButton_VentasPorClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_VentasPorClienteActionPerformed
-       
-        jPanel_VentasPorCliente.setLocation(jDialog1.getLocation());
-        jPanel_VentasPorCliente.setSize(jDialog1.getSize());
-        jDialog1.add(jPanel_VentasPorCliente);
-        jDialog1.setVisible(true);
+        jPanel_VentasPorCliente.setVisible(false);
+        jPanel_VentasPorCliente.setVisible(true);
+        jPanel_VentasPorCliente.setLocation(jDialog_Reportes.getLocation());
+        jPanel_VentasPorCliente.setSize(jDialog_Reportes.getSize());
+        jDialog_Reportes.add(jPanel_VentasPorCliente);
+        jDialog_Reportes.setVisible(true);
     }//GEN-LAST:event_jButton_VentasPorClienteActionPerformed
 
-    private void jButton_VerVentasPorClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_VerVentasPorClienteActionPerformed
-       jDialog1.remove(jPanel_VentasPorCliente);
-        jDialog1.revalidate();
-        jDialog1.repaint();
-        jDialog1.setVisible(false);
-    }//GEN-LAST:event_jButton_VerVentasPorClienteActionPerformed
+    private void jButton_AceptaVerVentasPorClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_AceptaVerVentasPorClienteActionPerformed
 
-    private void jButton_VerVentasPorFechActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_VerVentasPorFechActionPerformed
-        //jDialog1.remove(jDialog1.getComponentAt(1, 1));
-        jDialog1.remove(jPanel_VerVentasPorFech);
-        jDialog1.revalidate();
-        jDialog1.repaint();
-        jDialog1.setVisible(false);
-    }//GEN-LAST:event_jButton_VerVentasPorFechActionPerformed
+    }//GEN-LAST:event_jButton_AceptaVerVentasPorClienteActionPerformed
+
+    private void jButton_AceptarVerVentasPorFechActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_AceptarVerVentasPorFechActionPerformed
+
+    }//GEN-LAST:event_jButton_AceptarVerVentasPorFechActionPerformed
+
+    private void jDialog_ReportesWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_jDialog_ReportesWindowClosing
+        jPanel_VentasPorCliente.setVisible(false);
+        jPanel_VerVentasPorFech.setVisible(false);
+    }//GEN-LAST:event_jDialog_ReportesWindowClosing
+
+    private void jButton_CancelarVerFactPorFechActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_CancelarVerFactPorFechActionPerformed
+        jDialog_Reportes.remove(jPanel_VerVentasPorFech);
+//        jDialog_Reportes.revalidate();
+//        jDialog_Reportes.repaint();
+        jDialog_Reportes.setVisible(false);
+    }//GEN-LAST:event_jButton_CancelarVerFactPorFechActionPerformed
+
+    private void jButton_CancelarVerFactClientActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_CancelarVerFactClientActionPerformed
+        jDialog_Reportes.remove(jPanel_VentasPorCliente);
+//        jDialog_Reportes.revalidate();
+//        jDialog_Reportes.repaint();
+        jDialog_Reportes.setVisible(false);
+    }//GEN-LAST:event_jButton_CancelarVerFactClientActionPerformed
+
+    private void jPanel_VerVentasPorFechComponentAdded(java.awt.event.ContainerEvent evt) {//GEN-FIRST:event_jPanel_VerVentasPorFechComponentAdded
+        DateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
+        Date date = new Date();
+//        Calendar c = Calendar.getInstance();
+////        c.add(Calendar.DAY_OF_YEAR, 5);
+//        jTextField_FechaFin.setText(c.toString());
+        jTextField_FechaFin.setText(dateFormat.format(date));
+        jTextField_FechIni.setText(dateFormat.format(date));
+    }//GEN-LAST:event_jPanel_VerVentasPorFechComponentAdded
+
+    private void jPanel_VentasPorClienteComponentAdded(java.awt.event.ContainerEvent evt) {//GEN-FIRST:event_jPanel_VentasPorClienteComponentAdded
+        DateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
+        Date date = new Date();
+        jTextField_FechaFin1.setText(dateFormat.format(date));
+        jTextField_FechIni1.setText(dateFormat.format(date));
+    }//GEN-LAST:event_jPanel_VentasPorClienteComponentAdded
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton jButton_AceptaVerVentasPorCliente;
+    private javax.swing.JButton jButton_AceptarVerVentasPorFech;
+    private javax.swing.JButton jButton_CancelarVerFactClient;
+    private javax.swing.JButton jButton_CancelarVerFactPorFech;
     private javax.swing.JButton jButton_VentasPorCliente;
     private javax.swing.JButton jButton_VentasPorFecha;
-    private javax.swing.JButton jButton_VerVentasPorCliente;
-    private javax.swing.JButton jButton_VerVentasPorFech;
-    private javax.swing.JDialog jDialog1;
+    private javax.swing.JDialog jDialog_Reportes;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel_tituloReportes;
     private javax.swing.JPanel jPanel_VentasPorCliente;
     private javax.swing.JPanel jPanel_VerVentasPorFech;
+    public javax.swing.JTextField jTextField_FechIni;
+    private javax.swing.JTextField jTextField_FechIni1;
+    private javax.swing.JTextField jTextField_FechaFin;
+    private javax.swing.JTextField jTextField_FechaFin1;
     // End of variables declaration//GEN-END:variables
 }

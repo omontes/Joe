@@ -25,7 +25,7 @@ public class VentanaDeInicio extends javax.swing.JFrame {
     /**
      * Creates new form NewJFrame
      */
-    Direct_Control_BD AdministradorBD;
+    
     private static VentanaDeInicio mVentana;
     
     private VentanaDeInicio() {

@@ -807,6 +807,23 @@ public class Direct_Control_BD {
 
     }
 
+    public void verMovimientos() {//esta bien
+        try {
+
+            String verMovProductoOrdenadoPorTipo = this.readSql("../Joe/"
+                    + "src/sql_files/verMovimientos.sql");
+            PreparedStatement stm
+                    = this.conection.prepareStatement(verMovProductoOrdenadoPorTipo);
+           
+            ResultSet rs = stm.executeQuery();
+             this.setColumnNames(this.Get_Columnas(rs));
+             this.setData(this.ResultSet_Array(rs));
+        } catch (Exception e) {
+            System.out.println("Error al obtener el movimiento");
+
+        }
+
+    }
     /**
      * Esta consulta devuelve el movimiento de un producto en especifico
      *
@@ -815,6 +832,7 @@ public class Direct_Control_BD {
      * @param fechaInicio
      * @param fechaFinal
      */
+    
     public void verMovProductoOrdenadoPorTipo(String idProducto,
             String lugarDeUnInv, String fechaInicio, String fechaFinal) {//esta bien
         try {
@@ -840,6 +858,23 @@ public class Direct_Control_BD {
 
     }
 
+    public void actualizarCantidadProductoInventario(int CantidadNueva,String idProducto,int idLugarMovimiento) {//esta bien
+        try {
+            String ModificarProducto = this.readSql("../Joe"
+                    + "/src/sql_files/actualizarCantidadProductoInventario.sql");
+            PreparedStatement stm
+                    = this.conection.prepareStatement(ModificarProducto);
+            stm.setInt(1, CantidadNueva);
+            stm.setString(2, idProducto);
+            stm.setInt(3, idLugarMovimiento);
+            
+            stm.executeUpdate();
+
+        } catch (Exception e) {
+            System.out.println("Actualizar la cantidad de un producto en el inventario");
+        }
+    }
+    
     public void modificarProducto(String idProducto, String nombre,
             int precio, int idCategoria) {//esta bien
         try {
@@ -1068,7 +1103,7 @@ VALUES (?, ?, ?, ?, ?, ?);
         
     }
     
-    
+   
     
     public String consultarNombreCategoriaXid(int idCategoria)
     {
@@ -1117,6 +1152,53 @@ VALUES (?, ?, ?, ?, ?, ?);
         
         
     }
+    
+     
+             
+ public int consultarCantidadDeunProducto(String idProducto) {
+        try {
+
+            String BuscarCategoriaPorDescripcion = this.readSql("../Joe"
+                    + "/src/sql_files/consultarCantidadDeunProducto.sql");
+            PreparedStatement stm
+                    = this.conection.prepareStatement(BuscarCategoriaPorDescripcion);
+            stm.setString(1, idProducto);
+            ResultSet rs = stm.executeQuery();
+            int ventas=0;
+            rs.next();
+            ventas=rs.getInt("Cantidad");
+           
+            
+            return ventas;
+        } catch (Exception e) {
+            System.out.println("Error al obtener cantidad de un producto");
+            return 0;
+        }
+
+    }
+ 
+  public int consultarIdLugarXNombre(String nombreLugar) {
+        try {
+
+            String BuscarCategoriaPorDescripcion = this.readSql("../Joe"
+                    + "/src/sql_files/consultarIdLugarXNombre.sql");
+            PreparedStatement stm
+                    = this.conection.prepareStatement(BuscarCategoriaPorDescripcion);
+            stm.setString(1, nombreLugar);
+            ResultSet rs = stm.executeQuery();
+            int ventas=0;
+            rs.next();
+            ventas=rs.getInt("idUbicacionProducto");
+            return ventas;
+        } catch (Exception e) {
+            System.out.println("error consultar idLugar x nombre");
+            return 0;
+        }
+
+    }
+ 
+ 
+ 
     public int consultarVentasXTipoPagoYFecha(String FechaInicio, String FechaFinal
     ,String TipoPago) {
         try {
@@ -1353,6 +1435,22 @@ VALUES (?, ?, ?, ?, ?, ?);
         }
         catch (Exception e) {
             System.out.println("Error al obtener todos los codigos");
+        }
+
+
+    
+    }
+    
+    public void verLugares(){
+        try{
+             String verCodigos = this.readSql("../Joe"
+                    + "/src/sql_files/consultarLugares.sql");
+            ResultSet rs = statement.executeQuery(verCodigos);
+            this.setColumnNames(this.Get_Columnas(rs));
+            this.setData(this.ResultSet_Array(rs));
+        }
+        catch (Exception e) {
+            System.out.println("Error al obtener todos los lugares");
         }
 
 

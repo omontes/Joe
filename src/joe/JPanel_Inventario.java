@@ -6,6 +6,7 @@
 
 package joe;
 
+import static com.sun.org.apache.xalan.internal.lib.ExsltDatetime.date;
 import db_managment.Direct_Control_BD;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
@@ -93,6 +94,21 @@ public class JPanel_Inventario extends javax.swing.JPanel {
         */
     }
 
+    public void colocarMovimientos()
+    {
+        Direct_Control_BD AdministradorBD= Direct_Control_BD.getInstance();
+        AdministradorBD.verMovimientos();
+        String[] columnNames = AdministradorBD.getColumnNames();
+        Object[][] data = AdministradorBD.getData();
+       
+        this.jTable_Movimientos.setModel(new Modelo_Movimientos(columnNames,data));
+         DefaultTableCellRenderer centerRenderer = new DefaultTableCellRenderer
+                ();
+         centerRenderer.setHorizontalAlignment(JLabel.CENTER );
+        this.jTable_Movimientos.getColumnModel().getColumn(0).setCellRenderer
+                (centerRenderer);
+    }
+    
     public void colocarInventario(){
       Direct_Control_BD AdministradorBD= Direct_Control_BD.getInstance();
         AdministradorBD.verInventario();
@@ -183,6 +199,35 @@ public class JPanel_Inventario extends javax.swing.JPanel {
         jDialog_ConfirmacionVerProducto = new javax.swing.JDialog();
         jTextField_IdProductoModificar1 = new javax.swing.JTextField();
         jButton3 = new javax.swing.JButton();
+        jPanel_Movimientos = new javax.swing.JPanel();
+        jScrollPane4 = new javax.swing.JScrollPane();
+        jTable_Movimientos = new javax.swing.JTable();
+        jButton_RecibirMovimientos = new javax.swing.JButton();
+        jButton_RetirarMovimientos = new javax.swing.JButton();
+        jButton_ModificarMovimientos = new javax.swing.JButton();
+        jButton_RegresarMovimientos = new javax.swing.JButton();
+        jDialog_RecibirProductoMovimientos = new javax.swing.JDialog();
+        jLabel13 = new javax.swing.JLabel();
+        jTextField_CodigoProductoMovimiento = new javax.swing.JTextField();
+        jTextField_CantidadMovimientos = new javax.swing.JTextField();
+        jLabel18 = new javax.swing.JLabel();
+        jLabel19 = new javax.swing.JLabel();
+        jTextField_DetalleMovimientos = new javax.swing.JTextField();
+        jLabel20 = new javax.swing.JLabel();
+        jComboBox_LugarMovimientos = new javax.swing.JComboBox();
+        jButton_CrearMovimiento = new javax.swing.JButton();
+        jButton4 = new javax.swing.JButton();
+        jDialog_RetirarProductoMovimientos = new javax.swing.JDialog();
+        jLabel21 = new javax.swing.JLabel();
+        jTextField_CodigoProductoMovimiento1 = new javax.swing.JTextField();
+        jTextField_CantidadMovimientos1 = new javax.swing.JTextField();
+        jLabel22 = new javax.swing.JLabel();
+        jLabel23 = new javax.swing.JLabel();
+        jTextField_DetalleMovimientos1 = new javax.swing.JTextField();
+        jLabel24 = new javax.swing.JLabel();
+        jComboBox_LugarMovimientos1 = new javax.swing.JComboBox();
+        jButton_CrearMovimiento1 = new javax.swing.JButton();
+        jButton5 = new javax.swing.JButton();
         jButtonRegresarInventario = new javax.swing.JButton();
         jButton_CrearProductoInventario = new javax.swing.JButton();
         jScrollPane3 = new javax.swing.JScrollPane();
@@ -190,7 +235,7 @@ public class JPanel_Inventario extends javax.swing.JPanel {
         jButton_EliminarProductoInventario = new javax.swing.JButton();
         jButton_ModificarProducto = new javax.swing.JButton();
         jToggleButton1 = new javax.swing.JToggleButton();
-        jButton4 = new javax.swing.JButton();
+        jButtonEntrarMovimientos = new javax.swing.JButton();
 
         jPanel2.setBackground(new java.awt.Color(153, 153, 153));
 
@@ -694,6 +739,219 @@ public class JPanel_Inventario extends javax.swing.JPanel {
                 .addContainerGap(24, Short.MAX_VALUE))
         );
 
+        jTable_Movimientos.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Title 1", "Title 2", "Title 3", "Title 4"
+            }
+        ));
+        jScrollPane4.setViewportView(jTable_Movimientos);
+
+        jButton_RecibirMovimientos.setText("Recibir");
+        jButton_RecibirMovimientos.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton_RecibirMovimientosActionPerformed(evt);
+            }
+        });
+
+        jButton_RetirarMovimientos.setText("Retirar");
+        jButton_RetirarMovimientos.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton_RetirarMovimientosActionPerformed(evt);
+            }
+        });
+
+        jButton_ModificarMovimientos.setText("Modificar");
+
+        jButton_RegresarMovimientos.setText("Regresar");
+        jButton_RegresarMovimientos.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton_RegresarMovimientosActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jPanel_MovimientosLayout = new javax.swing.GroupLayout(jPanel_Movimientos);
+        jPanel_Movimientos.setLayout(jPanel_MovimientosLayout);
+        jPanel_MovimientosLayout.setHorizontalGroup(
+            jPanel_MovimientosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel_MovimientosLayout.createSequentialGroup()
+                .addGap(58, 58, 58)
+                .addGroup(jPanel_MovimientosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel_MovimientosLayout.createSequentialGroup()
+                        .addComponent(jButton_RecibirMovimientos)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jButton_RetirarMovimientos)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jButton_ModificarMovimientos))
+                    .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 401, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(151, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel_MovimientosLayout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jButton_RegresarMovimientos)
+                .addGap(22, 22, 22))
+        );
+        jPanel_MovimientosLayout.setVerticalGroup(
+            jPanel_MovimientosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel_MovimientosLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 209, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addGroup(jPanel_MovimientosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jButton_RecibirMovimientos)
+                    .addComponent(jButton_RetirarMovimientos)
+                    .addComponent(jButton_ModificarMovimientos))
+                .addGap(18, 18, 18)
+                .addComponent(jButton_RegresarMovimientos)
+                .addContainerGap(17, Short.MAX_VALUE))
+        );
+
+        jLabel13.setText("Codigo");
+
+        jLabel18.setText("Cantidad");
+
+        jLabel19.setText("Detalle");
+
+        jLabel20.setText("Lugar");
+
+        jComboBox_LugarMovimientos.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+
+        jButton_CrearMovimiento.setText("Crear");
+        jButton_CrearMovimiento.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton_CrearMovimientoActionPerformed(evt);
+            }
+        });
+
+        jButton4.setText("Buscar");
+
+        javax.swing.GroupLayout jDialog_RecibirProductoMovimientosLayout = new javax.swing.GroupLayout(jDialog_RecibirProductoMovimientos.getContentPane());
+        jDialog_RecibirProductoMovimientos.getContentPane().setLayout(jDialog_RecibirProductoMovimientosLayout);
+        jDialog_RecibirProductoMovimientosLayout.setHorizontalGroup(
+            jDialog_RecibirProductoMovimientosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jDialog_RecibirProductoMovimientosLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jDialog_RecibirProductoMovimientosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jLabel13)
+                    .addComponent(jLabel18)
+                    .addGroup(jDialog_RecibirProductoMovimientosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(jLabel20)
+                        .addComponent(jLabel19)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jDialog_RecibirProductoMovimientosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jDialog_RecibirProductoMovimientosLayout.createSequentialGroup()
+                        .addGroup(jDialog_RecibirProductoMovimientosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(jDialog_RecibirProductoMovimientosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addComponent(jTextField_CantidadMovimientos, javax.swing.GroupLayout.DEFAULT_SIZE, 90, Short.MAX_VALUE)
+                                .addComponent(jTextField_CodigoProductoMovimiento))
+                            .addGroup(jDialog_RecibirProductoMovimientosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(jButton_CrearMovimiento)
+                                .addComponent(jComboBox_LugarMovimientos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jButton4))
+                    .addComponent(jTextField_DetalleMovimientos, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(20, Short.MAX_VALUE))
+        );
+        jDialog_RecibirProductoMovimientosLayout.setVerticalGroup(
+            jDialog_RecibirProductoMovimientosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jDialog_RecibirProductoMovimientosLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jDialog_RecibirProductoMovimientosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel13)
+                    .addComponent(jTextField_CodigoProductoMovimiento, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButton4))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(jDialog_RecibirProductoMovimientosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jTextField_CantidadMovimientos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel18))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(jDialog_RecibirProductoMovimientosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel19)
+                    .addComponent(jTextField_DetalleMovimientos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(jDialog_RecibirProductoMovimientosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel20)
+                    .addComponent(jComboBox_LugarMovimientos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addComponent(jButton_CrearMovimiento)
+                .addContainerGap(22, Short.MAX_VALUE))
+        );
+
+        jLabel21.setText("Codigo");
+
+        jLabel22.setText("Cantidad");
+
+        jLabel23.setText("Detalle");
+
+        jLabel24.setText("Lugar");
+
+        jComboBox_LugarMovimientos1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+
+        jButton_CrearMovimiento1.setText("Crear");
+        jButton_CrearMovimiento1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton_CrearMovimiento1ActionPerformed(evt);
+            }
+        });
+
+        jButton5.setText("Buscar");
+
+        javax.swing.GroupLayout jDialog_RetirarProductoMovimientosLayout = new javax.swing.GroupLayout(jDialog_RetirarProductoMovimientos.getContentPane());
+        jDialog_RetirarProductoMovimientos.getContentPane().setLayout(jDialog_RetirarProductoMovimientosLayout);
+        jDialog_RetirarProductoMovimientosLayout.setHorizontalGroup(
+            jDialog_RetirarProductoMovimientosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jDialog_RetirarProductoMovimientosLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jDialog_RetirarProductoMovimientosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jLabel21)
+                    .addComponent(jLabel22)
+                    .addGroup(jDialog_RetirarProductoMovimientosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(jLabel24)
+                        .addComponent(jLabel23)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jDialog_RetirarProductoMovimientosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jDialog_RetirarProductoMovimientosLayout.createSequentialGroup()
+                        .addGroup(jDialog_RetirarProductoMovimientosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(jDialog_RetirarProductoMovimientosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addComponent(jTextField_CantidadMovimientos1, javax.swing.GroupLayout.DEFAULT_SIZE, 90, Short.MAX_VALUE)
+                                .addComponent(jTextField_CodigoProductoMovimiento1))
+                            .addGroup(jDialog_RetirarProductoMovimientosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(jButton_CrearMovimiento1)
+                                .addComponent(jComboBox_LugarMovimientos1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jButton5))
+                    .addComponent(jTextField_DetalleMovimientos1, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(20, Short.MAX_VALUE))
+        );
+        jDialog_RetirarProductoMovimientosLayout.setVerticalGroup(
+            jDialog_RetirarProductoMovimientosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jDialog_RetirarProductoMovimientosLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jDialog_RetirarProductoMovimientosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel21)
+                    .addComponent(jTextField_CodigoProductoMovimiento1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButton5))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(jDialog_RetirarProductoMovimientosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jTextField_CantidadMovimientos1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel22))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(jDialog_RetirarProductoMovimientosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel23)
+                    .addComponent(jTextField_DetalleMovimientos1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(jDialog_RetirarProductoMovimientosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel24)
+                    .addComponent(jComboBox_LugarMovimientos1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addComponent(jButton_CrearMovimiento1)
+                .addContainerGap(22, Short.MAX_VALUE))
+        );
+
         jButtonRegresarInventario.setText("Regresar");
         jButtonRegresarInventario.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -742,7 +1000,12 @@ public class JPanel_Inventario extends javax.swing.JPanel {
             }
         });
 
-        jButton4.setText("Movimientos");
+        jButtonEntrarMovimientos.setText("Movimientos");
+        jButtonEntrarMovimientos.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonEntrarMovimientosActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -756,7 +1019,7 @@ public class JPanel_Inventario extends javax.swing.JPanel {
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 20, Short.MAX_VALUE)
-                                .addComponent(jButton4))
+                                .addComponent(jButtonEntrarMovimientos))
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(jButton_CrearProductoInventario)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -780,7 +1043,7 @@ public class JPanel_Inventario extends javax.swing.JPanel {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(33, 33, 33)
-                        .addComponent(jButton4)
+                        .addComponent(jButtonEntrarMovimientos)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton_CrearProductoInventario)
@@ -986,8 +1249,7 @@ public class JPanel_Inventario extends javax.swing.JPanel {
        String[] columnNames = mBD.getColumnNames();
        Object[][] data = mBD.getData();
        
-       columnNames = mBD.getColumnNames();
-       data = mBD.getData();
+      
        
        this.jComboBox_Categorias.removeAllItems();
        for(int i=0; i<data.length; i++){
@@ -1052,38 +1314,199 @@ public class JPanel_Inventario extends javax.swing.JPanel {
        }
     }//GEN-LAST:event_jButton3ActionPerformed
 
+    private void jButtonEntrarMovimientosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonEntrarMovimientosActionPerformed
+        
+        VentanaDeInicio mVentana= VentanaDeInicio.getInstance();
+        
+        mVentana.setTitle("Movimientos");
+        mVentana.add(this.jPanel_Movimientos);
+        this.jPanel_Movimientos.setVisible(true);
+        this.jPanel_Movimientos.setSize(this.getSize());
+        this.jPanel_Movimientos.setLocation(this.getLocation());
+        mVentana.remove(this);
+        mVentana.revalidate();
+        mVentana.repaint();
+        colocarMovimientos();
+        
+    }//GEN-LAST:event_jButtonEntrarMovimientosActionPerformed
+
+    private void jButton_RegresarMovimientosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_RegresarMovimientosActionPerformed
+      
+        
+    }//GEN-LAST:event_jButton_RegresarMovimientosActionPerformed
+
+    private void jButton_RecibirMovimientosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_RecibirMovimientosActionPerformed
+
+       this.jDialog_RecibirProductoMovimientos.setVisible(true);
+       this.jDialog_RecibirProductoMovimientos.setSize(265,230);
+       this.jDialog_RecibirProductoMovimientos.setLocation(this.getLocation());
+       Direct_Control_BD mBD= Direct_Control_BD.getInstance();
+       mBD.verLugares();
+       
+       String[] columnNames = mBD.getColumnNames();
+       Object[][] data = mBD.getData();
+       
+       if(data.length==0)
+       {
+           
+       }
+       else{
+       this.jComboBox_LugarMovimientos.removeAllItems();
+       for(int i=0; i<data.length; i++)
+       {
+             this.jComboBox_LugarMovimientos.addItem(data[i][0]);
+       }
+       
+       }
+    }//GEN-LAST:event_jButton_RecibirMovimientosActionPerformed
+
+    private void jButton_CrearMovimientoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_CrearMovimientoActionPerformed
+        Direct_Control_BD mBD= Direct_Control_BD.getInstance();
+       
+        String CodigoProducto=this.jTextField_CodigoProductoMovimiento.getText();
+        int Cantidad=Integer.parseInt(this.jTextField_CantidadMovimientos.getText());
+        String Detalle= this.jTextField_DetalleMovimientos.getText();
+        String Lugar= this.jComboBox_LugarMovimientos.getSelectedItem().toString();
+        Date mDate= new Date();
+        DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd");
+        mBD.consultarProducto(CodigoProducto);
+        
+        Object[][] data = mBD.getData();
+         
+         if(data.length==0)
+         {
+             JOptionPane.showOptionDialog(this, "El producto no existe", "Error Producto", 
+           JOptionPane.ERROR_MESSAGE, JOptionPane.ERROR_MESSAGE, null, new Object[]{" Cancelar "},"Cancelar"); 
+         }
+         else
+         {
+        int CantidadEnInventario = mBD.consultarCantidadDeunProducto(CodigoProducto);
+        int idLugarMovimiento= mBD.consultarIdLugarXNombre(Lugar);
+        //(String Fecha, String Detalle, int idTipoMovimiento,
+        //int CantidadMovida, int Balance, 
+        //String idProductoMovimiento,int idLugarMovimiento)
+        
+        mBD.insertarmovimiento(dateFormat.format(mDate), Detalle,
+                2, Cantidad,Cantidad+CantidadEnInventario , 
+               CodigoProducto,idLugarMovimiento );
+        mBD.actualizarCantidadProductoInventario(Cantidad+CantidadEnInventario, CodigoProducto, idLugarMovimiento);
+        
+        this.jDialog_RecibirProductoMovimientos.dispose();
+        colocarMovimientos();
+         }
+    }//GEN-LAST:event_jButton_CrearMovimientoActionPerformed
+
+    private void jButton_CrearMovimiento1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_CrearMovimiento1ActionPerformed
+        Direct_Control_BD mBD= Direct_Control_BD.getInstance();
+       
+        String CodigoProducto=this.jTextField_CodigoProductoMovimiento1.getText();
+        int Cantidad=Integer.parseInt(this.jTextField_CantidadMovimientos1.getText());
+        String Detalle= this.jTextField_DetalleMovimientos1.getText();
+        String Lugar= this.jComboBox_LugarMovimientos1.getSelectedItem().toString();
+        Date mDate= new Date();
+        DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd");
+        mBD.consultarProducto(CodigoProducto);
+        
+        Object[][] data = mBD.getData();
+         
+         if(data.length==0)
+         {
+             JOptionPane.showOptionDialog(this, "El producto no existe", "Error Producto", 
+           JOptionPane.ERROR_MESSAGE, JOptionPane.ERROR_MESSAGE, null, new Object[]{" Cancelar "},"Cancelar"); 
+         }
+         else
+         {
+        int CantidadEnInventario = mBD.consultarCantidadDeunProducto(CodigoProducto);
+        int idLugarMovimiento= mBD.consultarIdLugarXNombre(Lugar);
+        //(String Fecha, String Detalle, int idTipoMovimiento,
+        //int CantidadMovida, int Balance, 
+        //String idProductoMovimiento,int idLugarMovimiento)
+        
+        mBD.insertarmovimiento(dateFormat.format(mDate), Detalle,
+                1, Cantidad,CantidadEnInventario-Cantidad , 
+               CodigoProducto,idLugarMovimiento );
+        mBD.actualizarCantidadProductoInventario(CantidadEnInventario-Cantidad, CodigoProducto, idLugarMovimiento);
+        this.jDialog_RetirarProductoMovimientos.dispose();
+        colocarMovimientos();
+         }
+    }//GEN-LAST:event_jButton_CrearMovimiento1ActionPerformed
+
+    private void jButton_RetirarMovimientosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_RetirarMovimientosActionPerformed
+       this.jDialog_RetirarProductoMovimientos.setVisible(true);
+       this.jDialog_RetirarProductoMovimientos.setSize(265,230);
+       this.jDialog_RetirarProductoMovimientos.setLocation(this.getLocation());
+       Direct_Control_BD mBD= Direct_Control_BD.getInstance();
+       mBD.verLugares();
+       
+       String[] columnNames = mBD.getColumnNames();
+       Object[][] data = mBD.getData();
+       
+       if(data.length==0)
+       {
+           
+       }
+       else{
+       this.jComboBox_LugarMovimientos1.removeAllItems();
+       for(int i=0; i<data.length; i++)
+       {
+             this.jComboBox_LugarMovimientos1.addItem(data[i][0]);
+       }
+       
+       }
+    }//GEN-LAST:event_jButton_RetirarMovimientosActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
+    private javax.swing.JButton jButton5;
+    private javax.swing.JButton jButtonEntrarMovimientos;
     private javax.swing.JButton jButtonRegresarInventario;
     private javax.swing.JButton jButton_CrearCategoria;
+    private javax.swing.JButton jButton_CrearMovimiento;
+    private javax.swing.JButton jButton_CrearMovimiento1;
     private javax.swing.JButton jButton_CrearProducto;
     private javax.swing.JButton jButton_CrearProducto1;
     private javax.swing.JButton jButton_CrearProductoInventario;
     private javax.swing.JButton jButton_EliminarProducto;
     private javax.swing.JButton jButton_EliminarProductoInventario;
+    private javax.swing.JButton jButton_ModificarMovimientos;
     private javax.swing.JButton jButton_ModificarProducto;
+    private javax.swing.JButton jButton_RecibirMovimientos;
+    private javax.swing.JButton jButton_RegresarMovimientos;
+    private javax.swing.JButton jButton_RetirarMovimientos;
     private javax.swing.JComboBox jComboBox_CategoriaCrearProducto;
     private javax.swing.JComboBox jComboBox_Categorias;
+    private javax.swing.JComboBox jComboBox_LugarMovimientos;
+    private javax.swing.JComboBox jComboBox_LugarMovimientos1;
     private javax.swing.JDialog jDialog_ConfirmacionModificacionProducto;
     private javax.swing.JDialog jDialog_ConfirmacionVerProducto;
     private javax.swing.JDialog jDialog_CrearCategoria;
     private javax.swing.JDialog jDialog_CrearProducto;
     private javax.swing.JDialog jDialog_EliminarProducto;
     private javax.swing.JDialog jDialog_ModificarProducto;
+    private javax.swing.JDialog jDialog_RecibirProductoMovimientos;
+    private javax.swing.JDialog jDialog_RetirarProductoMovimientos;
     private javax.swing.JDialog jDialog_VerProducto;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
+    private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel14;
     private javax.swing.JLabel jLabel15;
     private javax.swing.JLabel jLabel16;
     private javax.swing.JLabel jLabel17;
+    private javax.swing.JLabel jLabel18;
+    private javax.swing.JLabel jLabel19;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel20;
+    private javax.swing.JLabel jLabel21;
+    private javax.swing.JLabel jLabel22;
+    private javax.swing.JLabel jLabel23;
+    private javax.swing.JLabel jLabel24;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
@@ -1102,20 +1525,29 @@ public class JPanel_Inventario extends javax.swing.JPanel {
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel5;
+    private javax.swing.JPanel jPanel_Movimientos;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
+    private javax.swing.JScrollPane jScrollPane4;
     private javax.swing.JTable jTable_Inventario;
+    private javax.swing.JTable jTable_Movimientos;
     private javax.swing.JTextArea jTextArea_DescripcionCrearProducto;
     private javax.swing.JTextField jTextField_Cantidad;
+    private javax.swing.JTextField jTextField_CantidadMovimientos;
+    private javax.swing.JTextField jTextField_CantidadMovimientos1;
     private javax.swing.JTextField jTextField_CategoriaVerProducto;
     private javax.swing.JTextField jTextField_CodigoProducto;
+    private javax.swing.JTextField jTextField_CodigoProductoMovimiento;
+    private javax.swing.JTextField jTextField_CodigoProductoMovimiento1;
     private javax.swing.JTextField jTextField_CodigoVerProducto;
     private javax.swing.JTextField jTextField_Costo;
     private javax.swing.JTextField jTextField_CostoCrearProducto;
     private javax.swing.JTextField jTextField_CostoVerProducto;
     private javax.swing.JTextArea jTextField_Descripcion;
     private javax.swing.JTextField jTextField_DescripcionVerProducto;
+    private javax.swing.JTextField jTextField_DetalleMovimientos;
+    private javax.swing.JTextField jTextField_DetalleMovimientos1;
     private javax.swing.JTextField jTextField_IdProducto;
     private javax.swing.JTextField jTextField_IdProductoModificar;
     private javax.swing.JTextField jTextField_IdProductoModificar1;

@@ -105,6 +105,7 @@ public class MyTableModelListener_FACT implements TableModelListener {
               //En caso de que no escriba nada el usuario
               if (!info.equals("")) {
                   String descripcion = this.BDmanagment.verNombreProductoPorCodigo(codigo);
+                  System.out.println(descripcion);
                   model.setValueAt(precio, row, column + 3);///IMPORTANTE ESTE ORDEN
                   model.setValueAt(1, row, column + 2);
                   model.setValueAt(descripcion, row, column + 1);

@@ -8,7 +8,6 @@ package joe;
 import db_managment.Direct_Control_BD;
 import java.io.IOException;
 import jxl.write.WriteException;
-
 /**
  *
  * @author Joe

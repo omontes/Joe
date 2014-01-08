@@ -9,9 +9,6 @@ import java.awt.Component;
 import java.awt.Toolkit;
 import java.awt.event.KeyEvent;
 import java.text.DecimalFormat;
-import java.text.NumberFormat;
-import java.text.ParseException;
-import java.text.ParsePosition;
 import java.util.EventObject;
 import javax.swing.DefaultCellEditor;
 import javax.swing.JComponent;
@@ -29,14 +26,16 @@ import javax.swing.border.LineBorder;
  */
 public class EditorDeCeldaNumeros extends DefaultCellEditor {
 
-    private final JTextField tf;
+    private final JFormattedTextField tf;
 
     public EditorDeCeldaNumeros() {
         super(new JFormattedTextField());
         tf = (JFormattedTextField) getComponent();
         //Para cuando esta editando para que no acepte letras
+        KeyListenerTablaFact listener =new KeyListenerTablaFact();
+        listener.KeyListeberTablaFact(tf);
+        tf.addKeyListener(listener);
         
-        tf.addKeyListener(new KeyListenerTablaFact());
         setClickCountToStart(1);
         tf.setBorder(null);
         
@@ -123,13 +122,8 @@ public class EditorDeCeldaNumeros extends DefaultCellEditor {
         //Nos dice si el primer digito entrado es un caracter
         
         if (!Character.isDigit(e.getKeyChar())) {
-            try{e.consume();
             Toolkit.getDefaultToolkit().beep();
-            return false;}
-            catch(Exception evt){
-                
-            
-            }
+            return false;
             
         }
         return true;

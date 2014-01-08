@@ -8,13 +8,16 @@ import java.awt.Color;
 import java.awt.Component;
 import java.awt.Toolkit;
 import java.awt.event.KeyEvent;
+import java.text.DecimalFormat;
 import java.util.EventObject;
 import javax.swing.DefaultCellEditor;
 import javax.swing.JComponent;
+import javax.swing.JFormattedTextField;
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
 import javax.swing.JTextField;
 import javax.swing.KeyStroke;
+import javax.swing.SwingConstants;
 import javax.swing.border.LineBorder;
 
 /**
@@ -23,13 +26,16 @@ import javax.swing.border.LineBorder;
  */
 public class EditorDeCeldaNumeros extends DefaultCellEditor {
 
-    private final JTextField tf;
+    private final JFormattedTextField tf;
 
     public EditorDeCeldaNumeros() {
-        super(new JTextField());
-        tf = (JTextField) getComponent();
+        super(new JFormattedTextField());
+        tf = (JFormattedTextField) getComponent();
         //Para cuando esta editando para que no acepte letras
-        tf.addKeyListener(new KeyListenerTablaFact());
+        KeyListenerTablaFact listener =new KeyListenerTablaFact();
+        listener.KeyListeberTablaFact(tf);
+        tf.addKeyListener(listener);
+        
         setClickCountToStart(1);
         tf.setBorder(null);
     }
@@ -78,9 +84,8 @@ public class EditorDeCeldaNumeros extends DefaultCellEditor {
         //Nos dice si el digito entrado es un caracter
   
         if (!Character.isDigit(e.getKeyChar())) {
-            System.out.println("dasfasdf");
             Toolkit.getDefaultToolkit().beep();
-            return true;
+            return false;
             
         }
         return true;

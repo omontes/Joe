@@ -164,7 +164,7 @@ public class VentanaDeInicio extends javax.swing.JFrame {
         JPanel_Reportes panelReportes = JPanel_Reportes.getInstance();
         add(panelReportes);
         panelReportes.setSize(jPanel_VentanaPrincipal.getSize());
-//        panelReportes.setLocation(jPanel_VentanaPrincipal.getLocation());
+        panelReportes.setLocation(jPanel_VentanaPrincipal.getLocation());
         jPanel_VentanaPrincipal.setVisible(false);
         panelReportes.setVisible(true);
     }//GEN-LAST:event_jButton1ActionPerformed

@@ -8,6 +8,7 @@ package joe;
 
 import static com.sun.org.apache.xalan.internal.lib.ExsltDatetime.date;
 import db_managment.Direct_Control_BD;
+import java.math.BigDecimal;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -1101,9 +1102,9 @@ public class JPanel_Inventario extends javax.swing.JPanel {
         Date date = new Date();
         String codigo=this.jTextField_codigo.getText();
         int idCategoria = AdminBD.consultarIdCategoriaXNombre(this.jComboBox_CategoriaCrearProducto.getSelectedItem().toString());
+      BigDecimal bd = new BigDecimal(this.jTextField_Precio.getText().toString());
         AdminBD.crearProducto(codigo,this
-            .jTextField_nombre.getText(),Integer.parseInt
-            (this.jTextField_Precio.getText()),Integer.parseInt(this.jTextField_CostoCrearProducto.getText())
+            .jTextField_nombre.getText(),bd,Integer.parseInt(this.jTextField_CostoCrearProducto.getText())
                 ,dateFormat.format(date),"A",this.jTextArea_DescripcionCrearProducto.getText()
                 ,idCategoria);
         AdminBD.insertarEnInventario(this.jTextField_codigo.getText
@@ -1164,10 +1165,11 @@ public class JPanel_Inventario extends javax.swing.JPanel {
         
        //Nombre=?,Precio=?, idCategoriaProd=?, Costo=?, Descripcion=?
        Direct_Control_BD mBD= Direct_Control_BD.getInstance();
+       BigDecimal Precio= new BigDecimal( this.jTextField_Precio1.getText());
         int IdCategoria = mBD.consultarIdCategoriaXNombre(this.jComboBox_Categorias.getSelectedItem().toString());
          mBD.modificarProducto(this.jTextField_CodigoProducto.getText(),
-                 this.jTextField_nombre1.getText(),
-                 Integer.parseInt(this.jTextField_Precio1.getText()),
+                 this.jTextField_nombre1.getText(),Precio
+                ,
                IdCategoria
                ,Integer.parseInt(this.jTextField_Costo.getText()),
                this.jTextField_Descripcion.getText());

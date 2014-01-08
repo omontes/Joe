@@ -1,2 +1,2 @@
 SELECT MAX(idFactura)
-FROM Factura;
+FROM factura;

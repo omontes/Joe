@@ -1,3 +1,3 @@
 SELECT idProducto
-FROM Producto
+FROM producto
 WHERE Estado='A';

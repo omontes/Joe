@@ -1,3 +1,3 @@
 SELECT Nombre
 FROM producto
-WHERE idProducto=?;
+WHERE idProducto=? AND Estado='A';

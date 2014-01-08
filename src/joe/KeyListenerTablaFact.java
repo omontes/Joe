@@ -23,6 +23,8 @@ public class KeyListenerTablaFact implements KeyListener {
 
     @Override
     public void keyTyped(KeyEvent e) {
+       
+
         char tecla= e.getKeyChar();
         if (tecla== 8) {
             return;

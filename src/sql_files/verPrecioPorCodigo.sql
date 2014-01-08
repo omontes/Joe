@@ -1,3 +1,3 @@
 SELECT Precio
-FROM Producto
+FROM producto
 WHERE idProducto=? AND Estado='A';

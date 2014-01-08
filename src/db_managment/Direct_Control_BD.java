@@ -342,7 +342,7 @@ public class Direct_Control_BD {
      *
      * @param Producto
      */
-    public void insertProductoPorCategoria(String[] Producto,
+     public void insertProductoPorCategoria(String[] Producto,
             int idUbicacionProducto, int idCategoria) {
         String idProducto = Producto[0];
         String nombre = Producto[1];
@@ -372,7 +372,8 @@ public class Direct_Control_BD {
      * @param Descripcion
      * @param idCategoria
      */
-    public void crearProducto(String idProducto, String nombre, BigDecimal precio,
+    
+   public void crearProducto(String idProducto, String nombre, BigDecimal precio,
             int costo, String fechaCreacion, String estado, String Descripcion,
             int idCategoria) {//revisado +
         try {
@@ -394,6 +395,8 @@ public class Direct_Control_BD {
 
         }
     }
+
+
 
     /**
      * Insertar productos en el inventario
@@ -597,6 +600,22 @@ public class Direct_Control_BD {
         }
 
     }
+    
+    public void consultarCategorias(){
+        try
+        {
+            String categorias = this.readSql("../Joe/src/"
+                    + "sql_files/consultarCategorias.sql");
+            PreparedStatement stm = this.conection.prepareStatement(categorias);
+             ResultSet resultset = stm.executeQuery();
+            this.setColumnNames(this.Get_Columnas(resultset));
+            this.setData(this.ResultSet_Array(resultset));
+        }
+        catch (Exception e)
+        {
+            System.out.println("Error al obtener el categoria");
+        }
+    }
 
     public void consultarProducto(String idProducto) {//esta bien
         try {
@@ -605,13 +624,9 @@ public class Direct_Control_BD {
             PreparedStatement stm = this.conection.prepareStatement(valorInventario);
             stm.setString(1, idProducto);
             ResultSet resultset = stm.executeQuery();
-
-            while (resultset.next()) {
-                System.out.println(resultset.getString(1)
-                        + "||" + resultset.getInt(2) + "||" + resultset.
-                        getInt(3)
-                        + "||" + resultset.getString(4));
-            }
+            this.setColumnNames(this.Get_Columnas(resultset));
+            this.setData(this.ResultSet_Array(resultset));
+        
 
         } catch (Exception e) {
             System.out.println("Error al obtener el producto");
@@ -797,6 +812,23 @@ public class Direct_Control_BD {
 
     }
 
+    public void verMovimientos() {//esta bien
+        try {
+
+            String verMovProductoOrdenadoPorTipo = this.readSql("../Joe/"
+                    + "src/sql_files/verMovimientos.sql");
+            PreparedStatement stm
+                    = this.conection.prepareStatement(verMovProductoOrdenadoPorTipo);
+           
+            ResultSet rs = stm.executeQuery();
+             this.setColumnNames(this.Get_Columnas(rs));
+             this.setData(this.ResultSet_Array(rs));
+        } catch (Exception e) {
+            System.out.println("Error al obtener el movimiento");
+
+        }
+
+    }
     /**
      * Esta consulta devuelve el movimiento de un producto en especifico
      *
@@ -805,6 +837,7 @@ public class Direct_Control_BD {
      * @param fechaInicio
      * @param fechaFinal
      */
+    
     public void verMovProductoOrdenadoPorTipo(String idProducto,
             String lugarDeUnInv, String fechaInicio, String fechaFinal) {//esta bien
         try {
@@ -830,6 +863,23 @@ public class Direct_Control_BD {
 
     }
 
+    public void actualizarCantidadProductoInventario(int CantidadNueva,String idProducto,int idLugarMovimiento) {//esta bien
+        try {
+            String ModificarProducto = this.readSql("../Joe"
+                    + "/src/sql_files/actualizarCantidadProductoInventario.sql");
+            PreparedStatement stm
+                    = this.conection.prepareStatement(ModificarProducto);
+            stm.setInt(1, CantidadNueva);
+            stm.setString(2, idProducto);
+            stm.setInt(3, idLugarMovimiento);
+            
+            stm.executeUpdate();
+
+        } catch (Exception e) {
+            System.out.println("Actualizar la cantidad de un producto en el inventario");
+        }
+    }
+    
     public void modificarProducto(String idProducto, String nombre,
             int precio, int idCategoria) {//esta bien
         try {
@@ -841,6 +891,28 @@ public class Direct_Control_BD {
             stm.setInt(2, precio);
             stm.setInt(3, idCategoria);
             stm.setString(4, idProducto);
+
+            stm.executeUpdate();
+
+        } catch (Exception e) {
+            System.out.println("Error al Modificar Producto");
+        }
+    }
+    
+    
+    public void modificarProducto( String idProducto, String nombre,
+            BigDecimal precio, int idCategoria, int costo, String Descripcion) {//esta bien
+        try {
+            String ModificarProducto = this.readSql("../Joe"
+                    + "/src/sql_files/ModificarProducto2.sql");
+            PreparedStatement stm
+                    = this.conection.prepareStatement(ModificarProducto);
+            stm.setString(1, nombre);
+            stm.setBigDecimal(2, precio);
+            stm.setInt(3, idCategoria);
+            stm.setInt(4, costo);
+            stm.setString(5, Descripcion);
+            stm.setString(6, idProducto);
 
             stm.executeUpdate();
 
@@ -982,6 +1054,22 @@ VALUES (?, ?, ?, ?, ?, ?);
         }
     }
     
+    public void eliminarProducto(String idProducto)
+    {
+        try
+        {
+            String eliminar= this.readSql("../Joe/src/sql_files/"
+                    + "EliminarProducto.sql");
+            PreparedStatement stm = this.conection.prepareStatement(eliminar);
+            stm.setString(1, idProducto);
+            stm.executeUpdate();
+        }
+        catch(Exception e)
+        {
+            System.out.println("Error al eliminar producto");
+        }
+    }
+    
     public void crearCierreDeCaja(String FechaInicio, String FechaFinal,int Cajero,String NombreCaja
     , String Observaciones, int ReporteInicial)
     {
@@ -1020,6 +1108,102 @@ VALUES (?, ?, ?, ?, ?, ?);
         
     }
     
+   
+    
+    public String consultarNombreCategoriaXid(int idCategoria)
+    {
+    try {
+
+            String BuscarCategoriaPorDescripcion = this.readSql("../Joe"
+                    + "/src/sql_files/consultarNombreCategoriaXId.sql");
+            PreparedStatement stm
+                    = this.conection.prepareStatement(BuscarCategoriaPorDescripcion);
+            stm.setInt(1, idCategoria);
+            ResultSet rs = stm.executeQuery();
+            String Nombre="";
+            rs.next();
+            Nombre=rs.getString("Descripcion");
+           
+            
+            return Nombre;
+        } catch (Exception e) {
+            System.out.println("Error al consultar categoria por idCategoria");
+            return "";
+        }
+        
+        
+    }        
+            
+    public int consultarIdCategoriaXNombre(String Nombre)
+    {
+    try {
+
+            String BuscarCategoriaPorDescripcion = this.readSql("../Joe"
+                    + "/src/sql_files/consultarIdCategoriaXNombre.sql");
+            PreparedStatement stm
+                    = this.conection.prepareStatement(BuscarCategoriaPorDescripcion);
+            stm.setString(1, Nombre);
+            ResultSet rs = stm.executeQuery();
+            int idCategoria=0;
+            rs.next();
+            idCategoria=rs.getInt("idCategoria");
+           
+            
+            return idCategoria;
+        } catch (Exception e) {
+            System.out.println("Error al consultar categoria por nombre");
+            return -1;
+        }
+        
+        
+    }
+    
+     
+             
+ public int consultarCantidadDeunProducto(String idProducto) {
+        try {
+
+            String BuscarCategoriaPorDescripcion = this.readSql("../Joe"
+                    + "/src/sql_files/consultarCantidadDeunProducto.sql");
+            PreparedStatement stm
+                    = this.conection.prepareStatement(BuscarCategoriaPorDescripcion);
+            stm.setString(1, idProducto);
+            ResultSet rs = stm.executeQuery();
+            int ventas=0;
+            rs.next();
+            ventas=rs.getInt("Cantidad");
+           
+            
+            return ventas;
+        } catch (Exception e) {
+            System.out.println("Error al obtener cantidad de un producto");
+            return 0;
+        }
+
+    }
+ 
+  public int consultarIdLugarXNombre(String nombreLugar) {
+        try {
+
+            String BuscarCategoriaPorDescripcion = this.readSql("../Joe"
+                    + "/src/sql_files/consultarIdLugarXNombre.sql");
+            PreparedStatement stm
+                    = this.conection.prepareStatement(BuscarCategoriaPorDescripcion);
+            stm.setString(1, nombreLugar);
+            ResultSet rs = stm.executeQuery();
+            int ventas=0;
+            rs.next();
+            ventas=rs.getInt("idUbicacionProducto");
+            return ventas;
+        } catch (Exception e) {
+            System.out.println("error consultar idLugar x nombre");
+            return 0;
+        }
+
+    }
+ 
+ 
+ 
     public int consultarVentasXTipoPagoYFecha(String FechaInicio, String FechaFinal
     ,String TipoPago) {
         try {
@@ -1200,10 +1384,9 @@ VALUES (?, ?, ?, ?, ?, ?);
         return lista_datos;
     }
      /**
-     * Obtiene el nombre de un producto segun el codigo y solo permite obtener
-     * el nombre de productos con estado A
+     * Obtiene la descripcion de un producto segun el codigo
      */
-    public String verNombreProductoPorCodigo(String codigo){
+    public String verDescripcion(String codigo){
         try {
             String verDescripcion = this.readSql("../Joe"
                     + "/src/sql_files/verDescripcionPorCodigo.sql");
@@ -1225,7 +1408,7 @@ VALUES (?, ?, ?, ?, ?, ?);
      /**
      * Obtiene el precio de un producto segun el codigo
      */
-    public BigDecimal verPrecio(String codigo){
+     public BigDecimal verPrecio(String codigo){
         BigDecimal precio = new BigDecimal("0");
         
         try {
@@ -1263,6 +1446,22 @@ VALUES (?, ?, ?, ?, ?, ?);
 
     
     }
+    
+    public void verLugares(){
+        try{
+             String verCodigos = this.readSql("../Joe"
+                    + "/src/sql_files/consultarLugares.sql");
+            ResultSet rs = statement.executeQuery(verCodigos);
+            this.setColumnNames(this.Get_Columnas(rs));
+            this.setData(this.ResultSet_Array(rs));
+        }
+        catch (Exception e) {
+            System.out.println("Error al obtener todos los lugares");
+        }
+
+
+    
+    }
     /**
      * Obtiene la ultima factura realizada
      * @return 
@@ -1288,8 +1487,42 @@ VALUES (?, ?, ?, ?, ?, ?);
     }
     
      /**
-     * Obtiene el detalle(Descripcion) de un producto segun el codigo
+     * Obtiene el nombre de un producto segun el codigo
      */
+    public String verNombre(String codigo) {
+        try {
+            String verNombre = this.readSql("../Joe"
+                    + "/src/sql_files/verNombrePorCodigo.sql");
+            PreparedStatement stm
+                    = this.conection.prepareStatement(verNombre);
+            stm.setString(1, codigo);
+            ResultSet rs = stm.executeQuery();
+            String descripcion = "";
+            while (rs.next()) {
+                descripcion = rs.getString("Nombre");
+            }
+            return descripcion;
+        } catch (Exception e) {
+            System.out.println(codigo);
+            System.out.println("Error al obtener el nombre");
+            return "";
+        }
+    }
+    
+    public void insertarCategoria(String Nombre) {
+        try {
+            String categoria = this.readSql("../Joe/src/sql_files/"
+                    + "crearCategoria.sql");
+            PreparedStatement stm = this.conection.prepareStatement(categoria);
+            stm.setString(1, Nombre);
+            
+            stm.executeUpdate();
+
+        } catch (Exception e) {
+            System.out.println("Error al crear categoria");
+        }
+    }
+    
     public String verDetalle(String codigo) {
         try {
             String verNombre = this.readSql("../Joe"
@@ -1310,10 +1543,10 @@ VALUES (?, ?, ?, ?, ?, ?);
         }
     }
     /**
-     * Esta consulta da la cantidad del invetario(General) de un producto seleccionado
-     * @param idProducto
-     * @return 
-     */
+* Esta consulta da la cantidad del invetario(General) de un producto seleccionado
+* @param idProducto
+* @return
+*/
     public int verCantidad(String idProducto) {
         int cantidad = 0;
         try {
@@ -1344,6 +1577,30 @@ VALUES (?, ?, ?, ?, ?, ?);
         } catch (Exception e) {
             System.out.println("No existe ese codigo");
             return false;
+        }
+    }
+    
+    /**
+* Obtiene el nombre de un producto segun el codigo y solo permite obtener
+* el nombre de productos con estado A
+*/
+    public String verNombreProductoPorCodigo(String codigo){
+        try {
+            String verDescripcion = this.readSql("../Joe"
+                    + "/src/sql_files/verDescripcionPorCodigo.sql");
+            PreparedStatement stm
+                    = this.conection.prepareStatement(verDescripcion);
+            stm.setString(1, codigo);
+            ResultSet rs = stm.executeQuery();
+            String descripcion="";
+            while (rs.next()) {
+                descripcion = rs.getString("Nombre");
+            }
+            return descripcion;
+        } catch (Exception e) {
+            System.out.println(codigo);
+            System.out.println("Error al obtener la descricpcion");
+            return "";
         }
     }
 

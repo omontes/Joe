@@ -1062,7 +1062,7 @@ public class JPanel_Inventario extends javax.swing.JPanel {
         mVentana.remove(this);
         mVentana.revalidate();
         mVentana.repaint();
-        mVentana.setTitle("Joe");
+        mVentana.setTitle("Joe ");
         mVentana.add(mVentana.jPanel_VentanaPrincipal);
         mVentana.jPanel_VentanaPrincipal.setVisible(true);
         mVentana.jPanel_VentanaPrincipal.setSize(this.getSize());

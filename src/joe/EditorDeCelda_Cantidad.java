@@ -28,11 +28,11 @@ import javax.swing.border.LineBorder;
  *
  * @author Oscar Montes
  */
-public class EditorDeCeldaNumeros extends DefaultCellEditor {
+public class EditorDeCelda_Cantidad extends DefaultCellEditor {
 
     private final JFormattedTextField tf;
 
-    public EditorDeCeldaNumeros() {
+    public EditorDeCelda_Cantidad() {
         super(new JFormattedTextField());
         tf = (JFormattedTextField) getComponent();
         //Para cuando esta editando para que no acepte letras
@@ -70,9 +70,9 @@ public class EditorDeCeldaNumeros extends DefaultCellEditor {
           
         Object value = Double.valueOf(this.tf.getText());
         if ((value != null)) {
-            Locale l = new Locale("es", "CR");
+           
             Number numberValue = (Number) value;
-            NumberFormat formatter = NumberFormat.getCurrencyInstance(l);
+            NumberFormat formatter = NumberFormat.getInstance();
             value = formatter.format(numberValue.doubleValue());
             return value;
        
@@ -105,7 +105,6 @@ public class EditorDeCeldaNumeros extends DefaultCellEditor {
 
     private boolean startKeyEvent(KeyEvent e) {
         //Nos dice si el primer digito entrado es un caracter
-        
         if (!Character.isDigit(e.getKeyChar())) {
             Toolkit.getDefaultToolkit().beep();
             return false;

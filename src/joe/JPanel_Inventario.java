@@ -8,6 +8,8 @@ package joe;
 
 import static com.sun.org.apache.xalan.internal.lib.ExsltDatetime.date;
 import db_managment.Direct_Control_BD;
+import java.awt.Toolkit;
+import java.awt.event.KeyEvent;
 import java.math.BigDecimal;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
@@ -29,10 +31,13 @@ public class JPanel_Inventario extends javax.swing.JPanel {
      */
     
     private static JPanel_Inventario mPanelInventario=null;
-    
+    boolean ctrlPressed = false;
+    boolean cPressed = false;
+        
     private JPanel_Inventario() {
         initComponents();
         colocarInventario();
+         
     }
     
     public static JPanel_Inventario getInstance(){
@@ -246,7 +251,25 @@ public class JPanel_Inventario extends javax.swing.JPanel {
 
         jLabel3.setText("Precio del Producto");
 
+        jTextField_Precio.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                jTextField_PrecioKeyPressed(evt);
+            }
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                jTextField_PrecioKeyTyped(evt);
+            }
+        });
+
         jLabel4.setText("Cantidad del Producto");
+
+        jTextField_Cantidad.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                jTextField_CantidadKeyPressed(evt);
+            }
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                jTextField_CantidadKeyTyped(evt);
+            }
+        });
 
         jButton_CrearProducto.setText("Aceptar");
         jButton_CrearProducto.addActionListener(new java.awt.event.ActionListener() {
@@ -266,6 +289,12 @@ public class JPanel_Inventario extends javax.swing.JPanel {
         jScrollPane2.setViewportView(jTextArea_DescripcionCrearProducto);
 
         jLabel12.setText("Costo");
+
+        jTextField_CostoCrearProducto.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                jTextField_CostoCrearProductoKeyTyped(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -1100,12 +1129,21 @@ public class JPanel_Inventario extends javax.swing.JPanel {
         Direct_Control_BD AdminBD = Direct_Control_BD.getInstance();
         DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd");
         Date date = new Date();
+        BigDecimal bd= new BigDecimal("0.0");
         String codigo=this.jTextField_codigo.getText();
-        int idCategoria = AdminBD.consultarIdCategoriaXNombre(this.jComboBox_CategoriaCrearProducto.getSelectedItem().toString());
-      BigDecimal bd = new BigDecimal(this.jTextField_Precio.getText().toString());
-        AdminBD.crearProducto(codigo,this
-            .jTextField_nombre.getText(),bd,Integer.parseInt(this.jTextField_CostoCrearProducto.getText())
-                ,dateFormat.format(date),"A",this.jTextArea_DescripcionCrearProducto.getText()
+         try {
+             bd = new BigDecimal(this.jTextField_Precio.getText().toString());  } 
+         catch (NumberFormatException exc) { 
+             JOptionPane.showOptionDialog(this, "El producto no existe", "Error Producto", 
+           JOptionPane.ERROR_MESSAGE, JOptionPane.ERROR_MESSAGE, null, new Object[]{" Cancelar "},"Cancelar");
+         }
+      int idCategoria = AdminBD.consultarIdCategoriaXNombre(this.jComboBox_CategoriaCrearProducto.getSelectedItem().toString());
+      
+      String Descripcion=this.jTextArea_DescripcionCrearProducto.getText();
+      String Nombre=this.jTextField_nombre.getText();
+      int Costo= Integer.parseInt(this.jTextField_CostoCrearProducto.getText());
+      AdminBD.crearProducto(codigo,Nombre,bd,Costo
+                ,dateFormat.format(date),"A",Descripcion
                 ,idCategoria);
         AdminBD.insertarEnInventario(this.jTextField_codigo.getText
             (),1,Integer.parseInt(this.jTextField_Cantidad.getText()));
@@ -1456,6 +1494,61 @@ public class JPanel_Inventario extends javax.swing.JPanel {
        
        }
     }//GEN-LAST:event_jButton_RetirarMovimientosActionPerformed
+
+    private void jTextField_PrecioKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField_PrecioKeyTyped
+        int tecla= evt.getKeyChar();
+        if(tecla==KeyEvent.VK_COMMA){
+            return;
+        }
+        if(tecla==KeyEvent.VK_PERIOD){
+            return;
+        }
+        if (!Character.isDigit(tecla) & !Character.isISOControl(evt.getKeyChar())) {
+            Toolkit.getDefaultToolkit().beep();
+            evt.consume();
+
+        }
+    }//GEN-LAST:event_jTextField_PrecioKeyTyped
+
+    private void jTextField_CostoCrearProductoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField_CostoCrearProductoKeyTyped
+        int tecla= evt.getKeyChar();
+        if(tecla==KeyEvent.VK_COMMA){
+            return;
+        }
+        if(tecla==KeyEvent.VK_PERIOD){
+            return;
+        }
+        if (!Character.isDigit(tecla) & !Character.isISOControl(evt.getKeyChar())) {
+            Toolkit.getDefaultToolkit().beep();
+            evt.consume();
+
+        }
+    }//GEN-LAST:event_jTextField_CostoCrearProductoKeyTyped
+
+    private void jTextField_CantidadKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField_CantidadKeyTyped
+        int tecla= evt.getKeyChar();
+        if(tecla==KeyEvent.VK_COMMA){
+            return;
+        }
+        if(tecla==KeyEvent.VK_PERIOD){
+            return;
+        }
+        if (!Character.isDigit(tecla) & !Character.isISOControl(evt.getKeyChar())) {
+            Toolkit.getDefaultToolkit().beep();
+            evt.consume();
+
+        }
+       
+        
+    }//GEN-LAST:event_jTextField_CantidadKeyTyped
+
+    private void jTextField_PrecioKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField_PrecioKeyPressed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextField_PrecioKeyPressed
+
+    private void jTextField_CantidadKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField_CantidadKeyPressed
+        
+    }//GEN-LAST:event_jTextField_CantidadKeyPressed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

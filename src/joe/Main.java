@@ -63,7 +63,7 @@ public class Main {
         /* Create and display the form */
         /* Create and display the form */
         Direct_Control_BD AdminBD = Direct_Control_BD.getInstance();
-
+       
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 //Centra Main_Window en la pantalla del monitor

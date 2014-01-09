@@ -7,6 +7,8 @@ package joe;
 import com.jidesoft.hints.ListDataIntelliHints;
 import java.awt.Color;
 import java.awt.Component;
+import java.awt.Toolkit;
+import java.awt.event.KeyEvent;
 import javax.swing.DefaultCellEditor;
 import javax.swing.JComponent;
 import javax.swing.JTable;
@@ -87,6 +89,7 @@ public class SeleccionadorEditor extends DefaultCellEditor {
         }
         return c;
     }
+          
 }
 
 

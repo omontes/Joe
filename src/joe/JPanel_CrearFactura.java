@@ -12,12 +12,17 @@ import java.awt.Toolkit;
 import java.awt.event.KeyEvent;
 import java.math.BigDecimal;
 import java.text.DateFormat;
+import java.text.DecimalFormat;
+import java.text.NumberFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import javax.swing.JFormattedTextField;
+import javax.swing.JLabel;
 import javax.swing.JOptionPane;
+import javax.swing.SwingConstants;
+import javax.swing.table.DefaultTableCellRenderer;
 
 /**
  *
@@ -559,18 +564,22 @@ public class JPanel_CrearFactura extends javax.swing.JPanel {
                 .addGap(28, 28, 28))
         );
     }//GEN-END:initComponents
-
-    private void jButton_CreaProductoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_CreaProductoActionPerformed
-        //En caso de que quiera crear un producto mientras se este editando
+    private void creacionProductoPanel(){
+         //En caso de que quiera crear un producto mientras se este editando
         if (jTable_Factura.isEditing()) {
             jTable_Factura.getCellEditor().cancelCellEditing();
             this.jDialog_CrearProducto.setSize(500,300);
             this.jDialog_CrearProducto.setVisible(true);
             return;
         }
+        
         //Llama a la ventana para crear el producto
         this.jDialog_CrearProducto.setSize(500,300);
         this.jDialog_CrearProducto.setVisible(true);
+    
+    }
+    private void jButton_CreaProductoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_CreaProductoActionPerformed
+       this.creacionProductoPanel();
     }//GEN-LAST:event_jButton_CreaProductoActionPerformed
     private void verProducto(String idProducto){
             Direct_Control_BD AdminBD = Direct_Control_BD.getInstance();
@@ -606,8 +615,7 @@ public class JPanel_CrearFactura extends javax.swing.JPanel {
             jDialog_BuscarProductoPorCod.setVisible(true);
         }
     }//GEN-LAST:event_jButton_VerProductoActionPerformed
-
-    private void jButton_EliminaFilaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_EliminaFilaActionPerformed
+    private void eliminarFila(){
         MyTableModel_FACT model = (MyTableModel_FACT) jTable_Factura.getModel();
         int row = jTable_Factura.getSelectedRow();
         ///Si se esta escribiendo en la celda para el editor y luego elimina la
@@ -623,10 +631,10 @@ public class JPanel_CrearFactura extends javax.swing.JPanel {
         String subTotal = model.getValueAt(row, 4).toString();
         if (subTotal != "") {
             //Elimina un producto ya ingresado y actualiza el total
-            int subtotal = Integer.parseInt(subTotal);
+            BigDecimal subtotal = new BigDecimal(subTotal);
             model.removeRow(row);
-            int total = Integer.parseInt(this.jTextField_Total.getText());
-            this.jTextField_Total.setText(Integer.toString(total - subtotal));
+            BigDecimal total = new BigDecimal(this.jTextField_Total.getText());
+            this.jTextField_Total.setText(total.subtract(subtotal).toString());
             jTable_Factura.revalidate();
             jTable_Factura.repaint();
             jTable_Factura.requestFocus();
@@ -637,6 +645,9 @@ public class JPanel_CrearFactura extends javax.swing.JPanel {
             jTable_Factura.requestFocus();
 
         }
+    }
+    private void jButton_EliminaFilaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_EliminaFilaActionPerformed
+        this.eliminarFila();
     }//GEN-LAST:event_jButton_EliminaFilaActionPerformed
 
     private void jButton_DescuentoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_DescuentoActionPerformed
@@ -644,9 +655,13 @@ public class JPanel_CrearFactura extends javax.swing.JPanel {
     }//GEN-LAST:event_jButton_DescuentoActionPerformed
 
     private void jTable_FacturaKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTable_FacturaKeyPressed
-        if(evt.getKeyCode()==120){
-            this.jButton_EliminaFila.doClick();
-        }
+        int tecla=evt.getKeyCode();
+        if(tecla==KeyEvent.VK_F9){
+            this.eliminarFila();
+            }
+     
+                      
+        
        
     }//GEN-LAST:event_jTable_FacturaKeyPressed
 
@@ -686,6 +701,11 @@ public class JPanel_CrearFactura extends javax.swing.JPanel {
             this.jDialog_CrearProducto.dispose();
             MyTableModel_FACT model = (MyTableModel_FACT) jTable_Factura.getModel();
             model.setValueAt(codigo, jTable_Factura.getSelectedRow(), 0);
+            // Vuelve a cargar la informacion para el editor de la primer columna
+            AdminBD.verCodigos();
+            String[] idproductos=this.obtenerFila(AdminBD.getData());
+            this.jTable_Factura.getColumnModel().getColumn(0).
+                setCellEditor(new SeleccionadorEditor(idproductos,jTable_Factura));
             jTable_Factura.revalidate();
             jTable_Factura.repaint();
             jTable_Factura.changeSelection(jTable_Factura.getSelectedRow() + 1, jTable_Factura.getSelectedColumn(), false, false);
@@ -890,8 +910,14 @@ public void personalizarTablaFactura() {
         this.jTable_Factura.getColumnModel().getColumn(1).
                 setCellEditor(new SeleccionadorEditor(desc_Productos,jTable_Factura));**/
         //Costumisando Precio y Cantidad (Solo van a permitir numeros)
+        DefaultTableCellRenderer rightRenderer = new DefaultTableCellRenderer();
+        rightRenderer.setHorizontalAlignment( JLabel.RIGHT );
+              
+        this.jTable_Factura.getColumnModel().getColumn(2).setCellRenderer(rightRenderer);
+        this.jTable_Factura.getColumnModel().getColumn(3).setCellRenderer(new CurrencyRender());
+        this.jTable_Factura.getColumnModel().getColumn(4).setCellRenderer(new CurrencyRender());
         this.jTable_Factura.getColumnModel().getColumn(2).
-                setCellEditor(new EditorDeCeldaNumeros());
+                setCellEditor(new EditorDeCelda_Cantidad());
         this.jTable_Factura.getColumnModel().getColumn(3).
                 setCellEditor(new EditorDeCeldaNumeros());
         //Demasiado importante ******Permite que se pueda editar apenas se 

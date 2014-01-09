@@ -6,6 +6,11 @@ package joe;
 
 import db_managment.Direct_Control_BD;
 import java.math.BigDecimal;
+import java.text.DecimalFormat;
+import java.text.NumberFormat;
+import java.text.ParseException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
 import javax.swing.JTextField;
@@ -80,8 +85,25 @@ public class MyTableModelListener_FACT implements TableModelListener {
       }
       //Esta condicion es para cuando se modifica un precio
       if (columnName.equals("Precio.Unit") & !this.getOldValue().equals("") ) {
-          BigDecimal cantidad = new BigDecimal (model.getValueAt(row,2).toString());
-          model.setValueAt(new BigDecimal(info).multiply(cantidad), row, column + 1);
+          String CantidadSinCorregir= model.getValueAt(row, 2).toString();
+          DecimalFormat decimalfC = (DecimalFormat) NumberFormat.getInstance();
+          decimalfC.setParseBigDecimal(true);
+          BigDecimal cantidad = null;
+          try {
+              cantidad = (BigDecimal) decimalfC.parseObject(CantidadSinCorregir);
+          } catch (ParseException ex) {
+              Logger.getLogger(MyTableModelListener_FACT.class.getName()).log(Level.SEVERE, null, ex);
+          }
+          String price = info.replace("C", "");
+          DecimalFormat decimalf = (DecimalFormat) NumberFormat.getInstance();
+          decimalf.setParseBigDecimal(true);
+          BigDecimal bd = null;
+          try {
+              bd = (BigDecimal) decimalf.parseObject(price);
+          } catch (ParseException ex) {
+              Logger.getLogger(MyTableModelListener_FACT.class.getName()).log(Level.SEVERE, null, ex);
+          }
+          model.setValueAt(bd.multiply(cantidad), row, column + 1);
           
       } 
            
@@ -92,23 +114,28 @@ public class MyTableModelListener_FACT implements TableModelListener {
               String codigo = data.toString();
               BigDecimal precio = this.BDmanagment.verPrecio(codigo);
               
-              if (precio.toString().equals("0.0") & !info.equals("")) {
+              if (precio.toString().equals("0") & !info.equals("")) {
                   JOptionPane.showMessageDialog(
                           null,
-                          "ESTE PRODUCTO NO ESTA EN EL INVENTARIO",
-                          "Alert!", JOptionPane.ERROR_MESSAGE);
-                  System.out.println("SOY ROW");
-                  System.out.println(row);
-                  ((MyTableModel_FACT)model).removeRow(row);
+                          "El producto con el cod  "+
+                          info+
+                          "  no esta disponible en el invetario\n"+
+                          "puede crearlo en las opciones de la izquierda",
+                          "El producto no existe", JOptionPane.ERROR_MESSAGE);
+                  model.removeRow(row);
+                  table.clearSelection();
+                  table.changeSelection(row, column,false,false);
+                  table.requestFocus();
                   return;
               }
               //En caso de que no escriba nada el usuario
               if (!info.equals("")) {
                   String descripcion = this.BDmanagment.verNombreProductoPorCodigo(codigo);
-                  System.out.println(descripcion);
                   model.setValueAt(precio, row, column + 3);///IMPORTANTE ESTE ORDEN
                   model.setValueAt(1, row, column + 2);
                   model.setValueAt(descripcion, row, column + 1);
+                  //table.revalidate();
+                  //table.repaint();
               }
           
           
@@ -129,9 +156,26 @@ public class MyTableModelListener_FACT implements TableModelListener {
                 return;
                 
           }
-          BigDecimal cantidad = new BigDecimal(data.toString());
-          BigDecimal precio = new BigDecimal(model.getValueAt(row, column + 1).toString());
-          model.setValueAt(precio.multiply(cantidad), row, column + 2);
+          String CantidadSinCorregir= data.toString();
+          DecimalFormat decimalfC = (DecimalFormat) NumberFormat.getInstance();
+          decimalfC.setParseBigDecimal(true);
+          BigDecimal cantidad = null;
+          try {
+              cantidad = (BigDecimal) decimalfC.parseObject(CantidadSinCorregir);
+          } catch (ParseException ex) {
+              Logger.getLogger(MyTableModelListener_FACT.class.getName()).log(Level.SEVERE, null, ex);
+          }
+          String PrecioConCurrency= model.getValueAt(row, column + 1).toString();
+          String PrecioCorregido = PrecioConCurrency.replace("C", "");
+          DecimalFormat decimalf = (DecimalFormat) NumberFormat.getInstance();
+          decimalf.setParseBigDecimal(true);
+          BigDecimal bd = null;
+          try {
+              bd = (BigDecimal) decimalf.parseObject(PrecioCorregido);
+          } catch (ParseException ex) {
+              Logger.getLogger(MyTableModelListener_FACT.class.getName()).log(Level.SEVERE, null, ex);
+          }
+          model.setValueAt(bd.multiply(cantidad), row, column + 2);
       }
 
         if (columnName.equals("Cantidad") & info.equals("1")) {
@@ -141,9 +185,20 @@ public class MyTableModelListener_FACT implements TableModelListener {
                 model.setValueAt(null, row,column);
                 return;
             }
-            BigDecimal precio = new BigDecimal(model.getValueAt(row,3).toString());
-            model.setValueAt(precio, row, 4);}
-          
+          String PrecioConCurrency = model.getValueAt(row, 3).toString();
+          String PrecioCorregido = PrecioConCurrency.replace("C", "");
+          DecimalFormat decimalf = (DecimalFormat) NumberFormat.getInstance();
+          decimalf.setParseBigDecimal(true);
+          BigDecimal bd = null;
+          try {
+              bd = (BigDecimal) decimalf.parseObject(PrecioCorregido);
+          } catch (ParseException ex) {
+              Logger.getLogger(MyTableModelListener_FACT.class.getName()).log(Level.SEVERE, null, ex);
+          }
+
+          model.setValueAt(bd, row, 4);
+      }
+
         
   }
 

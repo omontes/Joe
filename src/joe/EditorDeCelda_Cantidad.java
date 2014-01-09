@@ -14,8 +14,6 @@ import java.text.NumberFormat;
 import java.text.ParseException;
 import java.util.EventObject;
 import java.util.Locale;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.DefaultCellEditor;
 import javax.swing.JComponent;
 import javax.swing.JFormattedTextField;
@@ -30,11 +28,11 @@ import javax.swing.border.LineBorder;
  *
  * @author Oscar Montes
  */
-public class EditorDeCeldaNumeros extends DefaultCellEditor {
+public class EditorDeCelda_Cantidad extends DefaultCellEditor {
 
     private final JFormattedTextField tf;
 
-    public EditorDeCeldaNumeros() {
+    public EditorDeCelda_Cantidad() {
         super(new JFormattedTextField());
         tf = (JFormattedTextField) getComponent();
         //Para cuando esta editando para que no acepte letras
@@ -69,21 +67,12 @@ public class EditorDeCeldaNumeros extends DefaultCellEditor {
         
     @Override
     public Object getCellEditorValue() {
-          String TextoSinCorregir= this.tf.getText();
-          String textocorregido = TextoSinCorregir.replace("C", "");
-          DecimalFormat decimalfC = (DecimalFormat) NumberFormat.getInstance();
-          decimalfC.setParseBigDecimal(true);
-          BigDecimal valor = null;
-          try {
-              valor = (BigDecimal) decimalfC.parseObject(textocorregido);
-          } catch (ParseException ex) {
-              Logger.getLogger(MyTableModelListener_FACT.class.getName()).log(Level.SEVERE, null, ex);
-          }
-        Object value = Double.valueOf(valor.doubleValue());
+          
+        Object value = Double.valueOf(this.tf.getText());
         if ((value != null)) {
-            Locale l = new Locale("es", "CR");
+           
             Number numberValue = (Number) value;
-            NumberFormat formatter = NumberFormat.getCurrencyInstance(l);
+            NumberFormat formatter = NumberFormat.getInstance();
             value = formatter.format(numberValue.doubleValue());
             return value;
        
@@ -97,12 +86,8 @@ public class EditorDeCeldaNumeros extends DefaultCellEditor {
     @Override
     public boolean stopCellEditing() {
         if(super.getCellEditorValue().toString().equals("")){
-            /**JOptionPane.showMessageDialog(
-                          null,
-                          "Porfavor ingrese un numero",
-                          "Alert!", JOptionPane.ERROR_MESSAGE);**/
-            tf.setText("0.0");
-            
+           tf.setText("1");
+           
         }
               
         return super.stopCellEditing();
@@ -117,7 +102,6 @@ public class EditorDeCeldaNumeros extends DefaultCellEditor {
 
     private boolean startKeyEvent(KeyEvent e) {
         //Nos dice si el primer digito entrado es un caracter
-        
         if (!Character.isDigit(e.getKeyChar())) {
             Toolkit.getDefaultToolkit().beep();
             return false;

@@ -21,6 +21,17 @@ public class KeyListenerTablaFact implements KeyListener {
     }
     @Override
     public void keyPressed(KeyEvent e) {
+        if(e.isControlDown()){System.out.println("presiono control");
+        e.consume();}
+        
+        /**if (e.isControlDown() && e.getKeyChar() == KeyEvent.VK_C) {
+             System.out.println("entro");
+               e.consume();
+        } else if (e.isControlDown() && e.getKeyChar() == KeyEvent.VK_X) {
+               e.consume();
+        } else if (e.isControlDown() && e.getKeyChar() == KeyEvent.VK_V) {
+               e.consume();
+        }**/
     }
 
     @Override
@@ -32,7 +43,7 @@ public class KeyListenerTablaFact implements KeyListener {
        
 
         char tecla= e.getKeyChar();
-        
+         
         //System.out.println(tecla);
         if (tecla== 8) {
             return;
@@ -41,10 +52,8 @@ public class KeyListenerTablaFact implements KeyListener {
          
         String unitCost = texto.getText().trim();
         int dot = unitCost.indexOf('.');
-        System.out.println(dot);
         if (dot > 0) {
             if(tecla==KeyEvent.VK_PERIOD){
-                System.out.println("no mas puntos");
                 e.consume();
             };
 
@@ -57,7 +66,7 @@ public class KeyListenerTablaFact implements KeyListener {
             
         }
 
-        if (!Character.isDigit(tecla)) {
+        if (!Character.isDigit(tecla) & !Character.isISOControl(e.getKeyChar())) {
             Toolkit.getDefaultToolkit().beep();
             e.consume();
         }

@@ -68,7 +68,10 @@ public class MyTableModel_FACT extends AbstractTableModel {
      * Les agrega el tipo de clase a cada columna
      */
     public Class getColumnClass(int c) {
-                   
+                
+            /**if(c==3){
+              return Double.class;
+            }**/
             //System.out.println(getValueAt(0, c).getClass());
             return getValueAt(0, c).getClass();
         }

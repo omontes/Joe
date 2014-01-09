@@ -86,11 +86,8 @@ public class EditorDeCelda_Cantidad extends DefaultCellEditor {
     @Override
     public boolean stopCellEditing() {
         if(super.getCellEditorValue().toString().equals("")){
-            JOptionPane.showMessageDialog(
-                          null,
-                          "Porfavor ingrese un numero",
-                          "Alert!", JOptionPane.ERROR_MESSAGE);
-            return false;
+           tf.setText("1");
+           
         }
               
         return super.stopCellEditing();

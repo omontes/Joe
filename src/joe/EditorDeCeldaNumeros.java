@@ -14,6 +14,8 @@ import java.text.NumberFormat;
 import java.text.ParseException;
 import java.util.EventObject;
 import java.util.Locale;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.DefaultCellEditor;
 import javax.swing.JComponent;
 import javax.swing.JFormattedTextField;
@@ -67,8 +69,17 @@ public class EditorDeCeldaNumeros extends DefaultCellEditor {
         
     @Override
     public Object getCellEditorValue() {
-          
-        Object value = Double.valueOf(this.tf.getText());
+          String TextoSinCorregir= this.tf.getText();
+          String textocorregido = TextoSinCorregir.replace("C", "");
+          DecimalFormat decimalfC = (DecimalFormat) NumberFormat.getInstance();
+          decimalfC.setParseBigDecimal(true);
+          BigDecimal valor = null;
+          try {
+              valor = (BigDecimal) decimalfC.parseObject(textocorregido);
+          } catch (ParseException ex) {
+              Logger.getLogger(MyTableModelListener_FACT.class.getName()).log(Level.SEVERE, null, ex);
+          }
+        Object value = Double.valueOf(valor.doubleValue());
         if ((value != null)) {
             Locale l = new Locale("es", "CR");
             Number numberValue = (Number) value;
@@ -86,11 +97,12 @@ public class EditorDeCeldaNumeros extends DefaultCellEditor {
     @Override
     public boolean stopCellEditing() {
         if(super.getCellEditorValue().toString().equals("")){
-            JOptionPane.showMessageDialog(
+            /**JOptionPane.showMessageDialog(
                           null,
                           "Porfavor ingrese un numero",
-                          "Alert!", JOptionPane.ERROR_MESSAGE);
-            return false;
+                          "Alert!", JOptionPane.ERROR_MESSAGE);**/
+            tf.setText("0.0");
+            
         }
               
         return super.stopCellEditing();

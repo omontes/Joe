@@ -119,8 +119,8 @@ public class MyTableModelListener_FACT implements TableModelListener {
                           null,
                           "El producto con el cod  "+
                           info+
-                          "  no esta disponible en el invetario"+
-                          "  puede crearlo si presiona la tecla F5",
+                          "  no esta disponible en el invetario\n"+
+                          "puede crearlo en las opciones de la izquierda",
                           "El producto no existe", JOptionPane.ERROR_MESSAGE);
                   model.removeRow(row);
                   table.clearSelection();

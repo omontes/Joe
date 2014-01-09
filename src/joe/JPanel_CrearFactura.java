@@ -564,18 +564,22 @@ public class JPanel_CrearFactura extends javax.swing.JPanel {
                 .addGap(28, 28, 28))
         );
     }//GEN-END:initComponents
-
-    private void jButton_CreaProductoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_CreaProductoActionPerformed
-        //En caso de que quiera crear un producto mientras se este editando
+    private void creacionProductoPanel(){
+         //En caso de que quiera crear un producto mientras se este editando
         if (jTable_Factura.isEditing()) {
             jTable_Factura.getCellEditor().cancelCellEditing();
             this.jDialog_CrearProducto.setSize(500,300);
             this.jDialog_CrearProducto.setVisible(true);
             return;
         }
+        
         //Llama a la ventana para crear el producto
         this.jDialog_CrearProducto.setSize(500,300);
         this.jDialog_CrearProducto.setVisible(true);
+    
+    }
+    private void jButton_CreaProductoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_CreaProductoActionPerformed
+       this.creacionProductoPanel();
     }//GEN-LAST:event_jButton_CreaProductoActionPerformed
     private void verProducto(String idProducto){
             Direct_Control_BD AdminBD = Direct_Control_BD.getInstance();
@@ -651,9 +655,11 @@ public class JPanel_CrearFactura extends javax.swing.JPanel {
     }//GEN-LAST:event_jButton_DescuentoActionPerformed
 
     private void jTable_FacturaKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTable_FacturaKeyPressed
-        if(evt.getKeyCode()==120){
+        int tecla=evt.getKeyCode();
+        if(tecla==KeyEvent.VK_F9){
             this.eliminarFila();
             }
+     
                       
         
        

@@ -20,6 +20,7 @@ public class Main {
      * @throws jxl.write.WriteException
      */
     public static void main(String args[]) throws IOException, WriteException {
+       
         ///****///pruebas sobre excel borrar///////********///////////////////////////////
 //        String[] infoEmpresa = {"Joe S.A ", "Oriente pa dentro", "Cartago,"
 //            + " CA 20320", "Telefono:2650-11-36, fax:2655-0203"};
@@ -36,6 +37,22 @@ public class Main {
 //        archivoExcel.escribir(infoEmpresa, datosFact, NombreColumnas, "01/01/2012", "02/01/2012",
 //                "Ventas Por Fechas");
         ///*****///Fin de pruebas sobre excel borrar//////////**********////////////////////////////
+        /****///pruebas sobre excel borrar///////********///////////////////////////////
+//        String[] infoEmpresa = {"Joe S.A ", "Oriente pa dentro", "Cartago,"
+//            + " CA 20320", "Telefono:2650-11-36, fax:2655-0203"};
+//        Object[][] datosFact = {{"01/01/2012", "Jason", "1", "5", "10500", "75", "5000", "10075"},
+//        {"02/01/2012", "Oscar", "2", "7", "25300", "35", "300", "25035"},
+//        {"01/01/2012", "Jason", "3", "5", "10500", "75", "5000", "10075"},
+//        {"02/01/2012", "Oscar", "4", "7", "25300", "35", "300", "25035"},
+//        {"", "", "Total de Fact", "24", "253045", "", "", "2522035"}};
+//        String[] NombreColumnas = {"Fecha", "Cliente", "Num.Factura",
+//            " Total Item", "SubTotal ", "Impuesto",
+//            "Descuento", "Total Factura"};
+//        EscribirExcel archivoExcel = new EscribirExcel();
+//        archivoExcel.setNombreArchivoExcel("ExcelPrueba.xls");
+//        archivoExcel.escribir(infoEmpresa, datosFact, NombreColumnas, "01/01/2012", "02/01/2012",
+//                "Ventas Por Fechas");
+        /*****///Fin de pruebas sobre excel borrar//////////**********////////////////////////////
 
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
@@ -63,6 +80,7 @@ public class Main {
         /* Create and display the form */
         /* Create and display the form */
         Direct_Control_BD AdminBD = Direct_Control_BD.getInstance();
+        
 
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {

@@ -36,6 +36,7 @@ public class EscribirExcel {
     private WritableCellFormat times11; // formato de la celda
     private WritableCellFormat times12; // formato de la celda(esta encapsula)
     private String nombreArchivoExcel;//nombre del archivo excel
+    private static EscribirExcel escribir;
 
     /**
      * asigna el el nombre del archivoExcel
@@ -44,6 +45,13 @@ public class EscribirExcel {
      */
     public void setNombreArchivoExcel(String nombreArchivoExcel) {
         this.nombreArchivoExcel = nombreArchivoExcel;
+    }
+
+    public static EscribirExcel getInstance() {
+        if (escribir == null) {
+            EscribirExcel escribir = new EscribirExcel();
+        }
+        return escribir;
     }
 
     /**
@@ -74,7 +82,7 @@ public class EscribirExcel {
      * @throws IOException
      * @throws WriteException
      */
-    public void escribir(String[] infoEmpresa, String[][] datosFact,
+    public void escribir(String[] infoEmpresa, Object[][] datosFact,
             String[] nombresColum, String fechaIni, String fechaFin,
             String tipoDeReporte) throws IOException, WriteException {
         //crear un nuevo excel un el nombreArchivoExcel
@@ -131,13 +139,24 @@ public class EscribirExcel {
 
         //Colocar Nombres de las columnas
         establecerNombresDecolumnas(nombresColum, hojaExcel);
-        //cargar datos de las facturas
-        cargarDatos(datosFact, hojaExcel);
 
+        //cargar datos de las facturas
+        if (datosFact.length != 0) {//verifica que contenga datos
+            cargarDatos(datosFact, hojaExcel);
+        }
         //Escribe los datos contenidos en este libro en formato Excel
         workbook.write();
         //cerrar libro liberando memoria
         workbook.close();
+
+        //mostrar el Excel
+        try {
+            Runtime.getRuntime().exec("rundll32 url.dll,FileProtocolHandler "
+                    + nombreArchivoExcel);
+        } catch (Exception e) {
+            System.out.println("Error al abrir el archivo " + 
+                    nombreArchivoExcel + "\n" + e.getMessage());
+        }
     }
 
     /////**************borrar  a addCaption////////////////////////*****
@@ -166,17 +185,17 @@ public class EscribirExcel {
      * @param datosFact
      * @param hojaExcel
      */
-    private void cargarDatos(String[][] datosFact, WritableSheet hojaExcel)
+    private void cargarDatos(Object[][] datosFact, WritableSheet hojaExcel)
             throws WriteException {
         int fil = 10;//fil en la que se empieza a colocar los datos
         for (int fila = 0; fila < datosFact.length - 1; fila++, fil++) {
             for (int col = 0; col < datosFact[0].length; col++) {
                 try {//escribir segun tipo(int o string)
                     hojaExcel.addCell(new Number(col, fil,
-                            Integer.parseInt(datosFact[fila][col]), times10));
+                            Integer.parseInt(datosFact[fila][col].toString()), times10));
                 } catch (NumberFormatException | WriteException e) {
                     hojaExcel.addCell(new Label(col, fil,
-                            datosFact[fila][col], times10));
+                            datosFact[fila][col].toString(), times10));
                 }
             }
         }
@@ -184,10 +203,10 @@ public class EscribirExcel {
         for (int col = 0; col < datosFact[0].length; col++) {
             try {
                 hojaExcel.addCell(new Number(col, fil, Integer.parseInt(
-                        datosFact[datosFact.length - 1][col]), times14));
+                        datosFact[datosFact.length - 1][col].toString()), times14));
             } catch (NumberFormatException | WriteException e) {
                 hojaExcel.addCell(new Label(col, fil,
-                        datosFact[datosFact.length - 1][col], times14));
+                        datosFact[datosFact.length - 1][col].toString(), times14));
             }
         }
     }

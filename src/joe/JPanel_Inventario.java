@@ -926,6 +926,12 @@ public class JPanel_Inventario extends javax.swing.JPanel {
 
         jLabel13.setText("Codigo");
 
+        jTextField_CodigoProductoMovimiento.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                jTextField_CodigoProductoMovimientoKeyTyped(evt);
+            }
+        });
+
         jTextField_CantidadMovimientos.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 jTextField_CantidadMovimientosKeyPressed(evt);
@@ -939,9 +945,20 @@ public class JPanel_Inventario extends javax.swing.JPanel {
 
         jLabel19.setText("Detalle");
 
+        jTextField_DetalleMovimientos.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                jTextField_DetalleMovimientosKeyTyped(evt);
+            }
+        });
+
         jLabel20.setText("Lugar");
 
         jComboBox_LugarMovimientos.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jComboBox_LugarMovimientos.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                jComboBox_LugarMovimientosKeyTyped(evt);
+            }
+        });
 
         jButton_CrearMovimiento.setText("Crear");
         jButton_CrearMovimiento.addActionListener(new java.awt.event.ActionListener() {
@@ -951,6 +968,11 @@ public class JPanel_Inventario extends javax.swing.JPanel {
         });
 
         jButton4.setText("Buscar");
+        jButton4.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                jButton4FocusGained(evt);
+            }
+        });
 
         javax.swing.GroupLayout jDialog_RecibirProductoMovimientosLayout = new javax.swing.GroupLayout(jDialog_RecibirProductoMovimientos.getContentPane());
         jDialog_RecibirProductoMovimientos.getContentPane().setLayout(jDialog_RecibirProductoMovimientosLayout);
@@ -1006,6 +1028,12 @@ public class JPanel_Inventario extends javax.swing.JPanel {
 
         jLabel21.setText("Codigo");
 
+        jTextField_CodigoProductoMovimiento1.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                jTextField_CodigoProductoMovimiento1KeyTyped(evt);
+            }
+        });
+
         jTextField_CantidadMovimientos1.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 jTextField_CantidadMovimientos1KeyPressed(evt);
@@ -1019,9 +1047,20 @@ public class JPanel_Inventario extends javax.swing.JPanel {
 
         jLabel23.setText("Detalle");
 
+        jTextField_DetalleMovimientos1.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                jTextField_DetalleMovimientos1KeyTyped(evt);
+            }
+        });
+
         jLabel24.setText("Lugar");
 
         jComboBox_LugarMovimientos1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jComboBox_LugarMovimientos1.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                jComboBox_LugarMovimientos1KeyTyped(evt);
+            }
+        });
 
         jButton_CrearMovimiento1.setText("Crear");
         jButton_CrearMovimiento1.addActionListener(new java.awt.event.ActionListener() {
@@ -1031,6 +1070,11 @@ public class JPanel_Inventario extends javax.swing.JPanel {
         });
 
         jButton5.setText("Buscar");
+        jButton5.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                jButton5FocusGained(evt);
+            }
+        });
 
         javax.swing.GroupLayout jDialog_RetirarProductoMovimientosLayout = new javax.swing.GroupLayout(jDialog_RetirarProductoMovimientos.getContentPane());
         jDialog_RetirarProductoMovimientos.getContentPane().setLayout(jDialog_RetirarProductoMovimientosLayout);
@@ -1524,7 +1568,7 @@ public class JPanel_Inventario extends javax.swing.JPanel {
 
     private void jButton_CrearMovimientoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_CrearMovimientoActionPerformed
         Direct_Control_BD mBD= Direct_Control_BD.getInstance();
-       
+       try{
         String CodigoProducto=this.jTextField_CodigoProductoMovimiento.getText();
         int Cantidad=Integer.parseInt(this.jTextField_CantidadMovimientos.getText());
         String Detalle= this.jTextField_DetalleMovimientos.getText();
@@ -1556,11 +1600,17 @@ public class JPanel_Inventario extends javax.swing.JPanel {
         this.jDialog_RecibirProductoMovimientos.dispose();
         colocarMovimientos();
          }
+       }
+       catch (NumberFormatException exc) 
+         { 
+             JOptionPane.showOptionDialog(this, "Verificar datos", "Error Movimiento", 
+           JOptionPane.ERROR_MESSAGE, JOptionPane.ERROR_MESSAGE, null, new Object[]{" Cancelar "},"Cancelar");
+         }
     }//GEN-LAST:event_jButton_CrearMovimientoActionPerformed
 
     private void jButton_CrearMovimiento1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_CrearMovimiento1ActionPerformed
         Direct_Control_BD mBD= Direct_Control_BD.getInstance();
-       
+       try{
         String CodigoProducto=this.jTextField_CodigoProductoMovimiento1.getText();
         int Cantidad=Integer.parseInt(this.jTextField_CantidadMovimientos1.getText());
         String Detalle= this.jTextField_DetalleMovimientos1.getText();
@@ -1590,6 +1640,12 @@ public class JPanel_Inventario extends javax.swing.JPanel {
         mBD.actualizarCantidadProductoInventario(CantidadEnInventario-Cantidad, CodigoProducto, idLugarMovimiento);
         this.jDialog_RetirarProductoMovimientos.dispose();
         colocarMovimientos();
+         }
+       }
+       catch (NumberFormatException exc) 
+         { 
+             JOptionPane.showOptionDialog(this, "Verificar datos", "Error Movimiento", 
+           JOptionPane.ERROR_MESSAGE, JOptionPane.ERROR_MESSAGE, null, new Object[]{" Cancelar "},"Cancelar");
          }
     }//GEN-LAST:event_jButton_CrearMovimiento1ActionPerformed
 
@@ -1782,6 +1838,14 @@ public class JPanel_Inventario extends javax.swing.JPanel {
             evt.consume();
 
         }
+        
+        if(KeyEvent.VK_ENTER==evt.getKeyChar()){
+            this.jTextField_CantidadMovimientos1.transferFocus();
+            
+        
+        }
+        
+        
     }//GEN-LAST:event_jTextField_CantidadMovimientos1KeyTyped
 
     private void jTextField_CantidadMovimientosKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField_CantidadMovimientosKeyPressed
@@ -1796,6 +1860,11 @@ public class JPanel_Inventario extends javax.swing.JPanel {
             Toolkit.getDefaultToolkit().beep();
             evt.consume();
 
+        }
+        if(KeyEvent.VK_ENTER==evt.getKeyChar()){
+            this.jTextField_CantidadMovimientos.transferFocus();
+            
+        
         }
     }//GEN-LAST:event_jTextField_CantidadMovimientosKeyTyped
 
@@ -1924,6 +1993,84 @@ public class JPanel_Inventario extends javax.swing.JPanel {
         
         
     }//GEN-LAST:event_jButton_CrearCategoriaFocusGained
+
+    private void jTextField_CodigoProductoMovimiento1KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField_CodigoProductoMovimiento1KeyTyped
+        if(KeyEvent.VK_ENTER==evt.getKeyChar())
+        {
+            this.jTextField_CodigoProductoMovimiento1.transferFocus();
+        }
+      int limite=30;
+      if (jTextField_CodigoProductoMovimiento1.getText().length()>= limite)
+           {
+     evt.consume();
+     Toolkit.getDefaultToolkit().beep();
+           }
+    }//GEN-LAST:event_jTextField_CodigoProductoMovimiento1KeyTyped
+
+    private void jButton5FocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jButton5FocusGained
+     
+            this.jButton5.transferFocus();
+            
+        
+        
+    }//GEN-LAST:event_jButton5FocusGained
+
+    private void jTextField_DetalleMovimientos1KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField_DetalleMovimientos1KeyTyped
+       if(KeyEvent.VK_ENTER==evt.getKeyChar())
+       {
+            this.jTextField_DetalleMovimientos1.transferFocus();
+        }
+       int limite=30;
+      if (jTextField_DetalleMovimientos1.getText().length()>= limite)
+           {
+     evt.consume();
+     Toolkit.getDefaultToolkit().beep();
+           }
+    }//GEN-LAST:event_jTextField_DetalleMovimientos1KeyTyped
+
+    private void jComboBox_LugarMovimientos1KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jComboBox_LugarMovimientos1KeyTyped
+        if(KeyEvent.VK_ENTER==evt.getKeyChar())
+       {
+            this.jComboBox_LugarMovimientos1.transferFocus();
+        }
+    }//GEN-LAST:event_jComboBox_LugarMovimientos1KeyTyped
+
+    private void jTextField_CodigoProductoMovimientoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField_CodigoProductoMovimientoKeyTyped
+        if(KeyEvent.VK_ENTER==evt.getKeyChar())
+        {
+            this.jTextField_CodigoProductoMovimiento.transferFocus();
+        }
+      int limite=30;
+      if (jTextField_CodigoProductoMovimiento.getText().length()>= limite)
+           {
+     evt.consume();
+     Toolkit.getDefaultToolkit().beep();
+           }
+    }//GEN-LAST:event_jTextField_CodigoProductoMovimientoKeyTyped
+
+    private void jButton4FocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jButton4FocusGained
+       this.jButton4.transferFocus();
+    }//GEN-LAST:event_jButton4FocusGained
+
+    private void jTextField_DetalleMovimientosKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField_DetalleMovimientosKeyTyped
+      if(KeyEvent.VK_ENTER==evt.getKeyChar())
+       {
+            this.jTextField_DetalleMovimientos.transferFocus();
+        }
+       int limite=30;
+      if (jTextField_DetalleMovimientos.getText().length()>= limite)
+           {
+     evt.consume();
+     Toolkit.getDefaultToolkit().beep();
+           }
+    }//GEN-LAST:event_jTextField_DetalleMovimientosKeyTyped
+
+    private void jComboBox_LugarMovimientosKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jComboBox_LugarMovimientosKeyTyped
+        if(KeyEvent.VK_ENTER==evt.getKeyChar())
+       {
+            this.jComboBox_LugarMovimientos.transferFocus();
+        }
+    }//GEN-LAST:event_jComboBox_LugarMovimientosKeyTyped
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

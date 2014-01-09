@@ -1030,6 +1030,9 @@
           </Properties>
         </Component>
         <Component class="javax.swing.JTextField" name="jTextField_CodigoProductoMovimiento">
+          <Events>
+            <EventHandler event="keyTyped" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="jTextField_CodigoProductoMovimientoKeyTyped"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JTextField" name="jTextField_CantidadMovimientos">
           <Events>
@@ -1048,6 +1051,9 @@
           </Properties>
         </Component>
         <Component class="javax.swing.JTextField" name="jTextField_DetalleMovimientos">
+          <Events>
+            <EventHandler event="keyTyped" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="jTextField_DetalleMovimientosKeyTyped"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JLabel" name="jLabel20">
           <Properties>
@@ -1065,6 +1071,9 @@
               </StringArray>
             </Property>
           </Properties>
+          <Events>
+            <EventHandler event="keyTyped" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="jComboBox_LugarMovimientosKeyTyped"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JButton" name="jButton_CrearMovimiento">
           <Properties>
@@ -1078,6 +1087,9 @@
           <Properties>
             <Property name="text" type="java.lang.String" value="Buscar"/>
           </Properties>
+          <Events>
+            <EventHandler event="focusGained" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="jButton4FocusGained"/>
+          </Events>
         </Component>
       </SubComponents>
     </Container>
@@ -1156,6 +1168,9 @@
           </Properties>
         </Component>
         <Component class="javax.swing.JTextField" name="jTextField_CodigoProductoMovimiento1">
+          <Events>
+            <EventHandler event="keyTyped" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="jTextField_CodigoProductoMovimiento1KeyTyped"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JTextField" name="jTextField_CantidadMovimientos1">
           <Events>
@@ -1174,6 +1189,9 @@
           </Properties>
         </Component>
         <Component class="javax.swing.JTextField" name="jTextField_DetalleMovimientos1">
+          <Events>
+            <EventHandler event="keyTyped" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="jTextField_DetalleMovimientos1KeyTyped"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JLabel" name="jLabel24">
           <Properties>
@@ -1191,6 +1209,9 @@
               </StringArray>
             </Property>
           </Properties>
+          <Events>
+            <EventHandler event="keyTyped" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="jComboBox_LugarMovimientos1KeyTyped"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JButton" name="jButton_CrearMovimiento1">
           <Properties>
@@ -1204,6 +1225,9 @@
           <Properties>
             <Property name="text" type="java.lang.String" value="Buscar"/>
           </Properties>
+          <Events>
+            <EventHandler event="focusGained" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="jButton5FocusGained"/>
+          </Events>
         </Component>
       </SubComponents>
     </Container>

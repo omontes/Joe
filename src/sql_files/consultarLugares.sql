@@ -1,0 +1,1 @@
+select Lugar from ubicacionproducto;

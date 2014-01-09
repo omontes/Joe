@@ -1,7 +1,3 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 package db_managment;
 
 import java.io.BufferedReader;
@@ -20,8 +16,6 @@ import java.util.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-
-
 /**
  *
  * @author Monicaticooo
@@ -30,20 +24,22 @@ public class Direct_Control_BD {
 
     private Connection conection;
     private Statement statement;
+    public Object[][] infoFact;
     private String[] NombresColumnas;
     private Object[][] Informacion;
     private static Direct_Control_BD AdminBD;
-    
+
     public Direct_Control_BD(Connection conection, Statement statement) {
         this.conection = conection;
         this.statement = statement;
 
     }
-     public static Direct_Control_BD getInstance(){
-         if (AdminBD == null) {
-             Setting_Up_BD setting = new Setting_Up_BD();
-             AdminBD = new Direct_Control_BD(setting.getConection(), setting.getStatement());
-         }
+
+    public static Direct_Control_BD getInstance() {
+        if (AdminBD == null) {
+            Setting_Up_BD setting = new Setting_Up_BD();
+            AdminBD = new Direct_Control_BD(setting.getConection(), setting.getStatement());
+        }
         return AdminBD;
     }
 
@@ -56,7 +52,7 @@ public class Direct_Control_BD {
      */
     public void valorInventario(String UbicacionInv) {// esta bien
         try {
-            
+
             String valorInventario = this.readSql("../Joe/"
                     + "src/sql_files/ValorInventario.sql");
             PreparedStatement stm = this.conection.prepareStatement(valorInventario);
@@ -302,7 +298,7 @@ public class Direct_Control_BD {
 
     public int cierreDeVentasXFecha(String FechaInicio, String FechaFinal) {
         try {
-           
+
             String dato = this.readSql("../Joe/src/"
                     + "sql_files/"
                     + "CierreDeVentasxFecha.sql");
@@ -310,28 +306,26 @@ public class Direct_Control_BD {
             stm.setString(1, FechaInicio);
             stm.setString(2, FechaFinal);
             stm.setString(3, FechaInicio);
-             stm.setString(4, FechaFinal);
+            stm.setString(4, FechaFinal);
 
             ResultSet resultset = stm.executeQuery();
             //Imprime el resultado obtenido de ver productos agotados
-            int totalVendido=0;
+            int totalVendido = 0;
             while (resultset.next()) {
-                totalVendido+=resultset.getInt(3);
-             // resultset.getInt(3);
-               // System.out.println(resultset.getString(1)
-                 //       + "||" + resultset.getString(2) + "||"
-                  //      + resultset.getInt(3));
-               // System.out.println(totalVendido);
+                totalVendido += resultset.getInt(3);
+                // resultset.getInt(3);
+                // System.out.println(resultset.getString(1)
+                //       + "||" + resultset.getString(2) + "||"
+                //      + resultset.getInt(3));
+                // System.out.println(totalVendido);
             }
-            
-          return totalVendido;
+
+            return totalVendido;
 
         } catch (Exception e) {
             System.out.println("Error al obtener las ventas x fechha");
             return 0;
         }
-        
-        
 
     }
 
@@ -342,7 +336,7 @@ public class Direct_Control_BD {
      *
      * @param Producto
      */
-     public void insertProductoPorCategoria(String[] Producto,
+    public void insertProductoPorCategoria(String[] Producto,
             int idUbicacionProducto, int idCategoria) {
         String idProducto = Producto[0];
         String nombre = Producto[1];
@@ -372,8 +366,7 @@ public class Direct_Control_BD {
      * @param Descripcion
      * @param idCategoria
      */
-    
-   public void crearProducto(String idProducto, String nombre, BigDecimal precio,
+    public void crearProducto(String idProducto, String nombre, BigDecimal precio,
             int costo, String fechaCreacion, String estado, String Descripcion,
             int idCategoria) {//revisado +
         try {
@@ -395,8 +388,6 @@ public class Direct_Control_BD {
 
         }
     }
-
-
 
     /**
      * Insertar productos en el inventario
@@ -577,9 +568,8 @@ public class Direct_Control_BD {
         try {
             String CrearFactura = this.readSql("../Joe/src/"
                     + "sql_files/CrearFactura.sql");
-            PreparedStatement stm = conection.prepareStatement
-        (CrearFactura,statement.RETURN_GENERATED_KEYS);
-           
+            PreparedStatement stm = conection.prepareStatement(CrearFactura, statement.RETURN_GENERATED_KEYS);
+
             stm.setInt(1, descuento);
             stm.setString(2, tipoPago);
             stm.setInt(3, idCliente);
@@ -590,7 +580,7 @@ public class Direct_Control_BD {
             stm.setInt(8, TotalFacturado);
             stm.executeUpdate();
             ResultSet rs = stm.getGeneratedKeys();
-            while(rs.next()){
+            while (rs.next()) {
                 System.out.println(rs.getInt(1));
             }
 
@@ -600,19 +590,16 @@ public class Direct_Control_BD {
         }
 
     }
-    
-    public void consultarCategorias(){
-        try
-        {
+
+    public void consultarCategorias() {
+        try {
             String categorias = this.readSql("../Joe/src/"
                     + "sql_files/consultarCategorias.sql");
             PreparedStatement stm = this.conection.prepareStatement(categorias);
-             ResultSet resultset = stm.executeQuery();
+            ResultSet resultset = stm.executeQuery();
             this.setColumnNames(this.Get_Columnas(resultset));
             this.setData(this.ResultSet_Array(resultset));
-        }
-        catch (Exception e)
-        {
+        } catch (Exception e) {
             System.out.println("Error al obtener el categoria");
         }
     }
@@ -626,7 +613,6 @@ public class Direct_Control_BD {
             ResultSet resultset = stm.executeQuery();
             this.setColumnNames(this.Get_Columnas(resultset));
             this.setData(this.ResultSet_Array(resultset));
-        
 
         } catch (Exception e) {
             System.out.println("Error al obtener el producto");
@@ -819,16 +805,17 @@ public class Direct_Control_BD {
                     + "src/sql_files/verMovimientos.sql");
             PreparedStatement stm
                     = this.conection.prepareStatement(verMovProductoOrdenadoPorTipo);
-           
+
             ResultSet rs = stm.executeQuery();
-             this.setColumnNames(this.Get_Columnas(rs));
-             this.setData(this.ResultSet_Array(rs));
+            this.setColumnNames(this.Get_Columnas(rs));
+            this.setData(this.ResultSet_Array(rs));
         } catch (Exception e) {
             System.out.println("Error al obtener el movimiento");
 
         }
 
     }
+
     /**
      * Esta consulta devuelve el movimiento de un producto en especifico
      *
@@ -837,7 +824,6 @@ public class Direct_Control_BD {
      * @param fechaInicio
      * @param fechaFinal
      */
-    
     public void verMovProductoOrdenadoPorTipo(String idProducto,
             String lugarDeUnInv, String fechaInicio, String fechaFinal) {//esta bien
         try {
@@ -863,7 +849,7 @@ public class Direct_Control_BD {
 
     }
 
-    public void actualizarCantidadProductoInventario(int CantidadNueva,String idProducto,int idLugarMovimiento) {//esta bien
+    public void actualizarCantidadProductoInventario(int CantidadNueva, String idProducto, int idLugarMovimiento) {//esta bien
         try {
             String ModificarProducto = this.readSql("../Joe"
                     + "/src/sql_files/actualizarCantidadProductoInventario.sql");
@@ -872,14 +858,14 @@ public class Direct_Control_BD {
             stm.setInt(1, CantidadNueva);
             stm.setString(2, idProducto);
             stm.setInt(3, idLugarMovimiento);
-            
+
             stm.executeUpdate();
 
         } catch (Exception e) {
             System.out.println("Actualizar la cantidad de un producto en el inventario");
         }
     }
-    
+
     public void modificarProducto(String idProducto, String nombre,
             int precio, int idCategoria) {//esta bien
         try {
@@ -898,9 +884,8 @@ public class Direct_Control_BD {
             System.out.println("Error al Modificar Producto");
         }
     }
-    
-    
-    public void modificarProducto( String idProducto, String nombre,
+
+    public void modificarProducto(String idProducto, String nombre,
             BigDecimal precio, int idCategoria, int costo, String Descripcion) {//esta bien
         try {
             String ModificarProducto = this.readSql("../Joe"
@@ -964,21 +949,20 @@ public class Direct_Control_BD {
         }
 
     }
-   /**
-    * 
-    * @param Fecha
-    * @param TipoPago
-    * @param TotalFacturado
-    * @param idCliente
-    * @param idVendedor
-    * @param Nota 
-    * 
-    * INSERT INTO devolucion (Fecha, TipoPago, 
-TotalFacturado, idClienteDev, idVendedorDev, Nota) 
-VALUES (?, ?, ?, ?, ?, ?);
-    */
-    public int insertarDevoluciones(String Fecha, String TipoPago, int TotalFacturado,int idCliente
-    ,int idVendedor, String Nota) {
+
+    /**
+     *
+     * @param Fecha
+     * @param TipoPago
+     * @param TotalFacturado
+     * @param idCliente
+     * @param idVendedor
+     * @param Nota
+     *
+     * INSERT INTO devolucion (Fecha, TipoPago, TotalFacturado, idClienteDev,
+     * idVendedorDev, Nota) VALUES (?, ?, ?, ?, ?, ?);
+     */
+    public int insertarDevoluciones(String Fecha, String TipoPago, int TotalFacturado, int idCliente, int idVendedor, String Nota) {
         try {
             String devolucion = this.readSql("../Joe/src/sql_files/"
                     + "insertarDevolucion.sql");
@@ -990,7 +974,7 @@ VALUES (?, ?, ?, ?, ?, ?);
             stm.setInt(5, idVendedor);
             stm.setString(6, Nota);
             stm.executeUpdate();
-            
+
             ResultSet rs = stm.getGeneratedKeys();
 
             rs.next();
@@ -1003,18 +987,18 @@ VALUES (?, ?, ?, ?, ?, ?);
             return 0;
         }
     }
+
     /**
-     * 
+     *
      * @param idProductoDev
      * @param Cantidad
      * @param idDevolucion
      * @param idCliente
-     * @param PrecioDev 
-     * 
+     * @param PrecioDev
+     *
      * idProductoDev, Cantidad, idDevolucion, idVersionDev, PrecioDev
      */
-    public void insertarproductocantidaddev(String idProductoDev, int Cantidad, int idDevolucion,int idCliente
-    ,int PrecioDev) {
+    public void insertarproductocantidaddev(String idProductoDev, int Cantidad, int idDevolucion, int idCliente, int PrecioDev) {
         try {
             String devolucion = this.readSql("../Joe/src/sql_files/"
                     + "insertarProductoCantidadDev.sql");
@@ -1030,12 +1014,11 @@ VALUES (?, ?, ?, ?, ?, ?);
             System.out.println("Error al insertar producto cantidad dev");
         }
     }
-    
+
     //Fecha, Detalle, idTipoMovimiento, CantidadMovida, Balance, idProductoMovimiento,
     //idLugarMovimiento
-    
     public void insertarmovimiento(String Fecha, String Detalle, int idTipoMovimiento,
-    int CantidadMovida, int Balance, String idProductoMovimiento,int idLugarMovimiento) {
+            int CantidadMovida, int Balance, String idProductoMovimiento, int idLugarMovimiento) {
         try {
             String devolucion = this.readSql("../Joe/src/sql_files/"
                     + "insertarMovimiento.sql");
@@ -1053,66 +1036,53 @@ VALUES (?, ?, ?, ?, ?, ?);
             System.out.println("Error al insertar Devoluciones");
         }
     }
-    
-    public void eliminarProducto(String idProducto)
-    {
-        try
-        {
-            String eliminar= this.readSql("../Joe/src/sql_files/"
+
+    public void eliminarProducto(String idProducto) {
+        try {
+            String eliminar = this.readSql("../Joe/src/sql_files/"
                     + "EliminarProducto.sql");
             PreparedStatement stm = this.conection.prepareStatement(eliminar);
             stm.setString(1, idProducto);
             stm.executeUpdate();
-        }
-        catch(Exception e)
-        {
+        } catch (Exception e) {
             System.out.println("Error al eliminar producto");
         }
     }
-    
-    public void crearCierreDeCaja(String FechaInicio, String FechaFinal,int Cajero,String NombreCaja
-    , String Observaciones, int ReporteInicial)
-    {
-       int totalVendido = cierreDeVentasXFecha(FechaInicio,FechaFinal);
-        try {  
+
+    public void crearCierreDeCaja(String FechaInicio, String FechaFinal, int Cajero, String NombreCaja, String Observaciones, int ReporteInicial) {
+        int totalVendido = cierreDeVentasXFecha(FechaInicio, FechaFinal);
+        try {
             String devolucion;
             try {
                 devolucion = this.readSql("../Joe/src/sql_files/"
                         + "crearCierreDeVentas.sql");
-                 PreparedStatement stm = this.conection.prepareStatement(devolucion);
-                int consultarVentasXTipoPagoYFecha = consultarVentasXTipoPagoYFecha(FechaInicio,FechaFinal, "Contado");
-                int consultarVentasXTipoPagoYFecha1 = consultarVentasXTipoPagoYFecha(FechaInicio,FechaFinal, "Tarjeta");
-            stm.setString(1, FechaInicio);
-            stm.setString(2, FechaFinal);
-            stm.setInt(3, totalVendido);
-            stm.setInt(4, Cajero);
-            stm.setString(5, NombreCaja);
-            stm.setString(6, Observaciones);
-            stm.setInt(7, ReporteInicial);
-            stm.setInt(8, ReporteInicial+totalVendido);
-            stm.setInt(9, consultarVentasXTipoPagoYFecha);
-            stm.setInt(10, consultarVentasXTipoPagoYFecha1);
-            stm.executeUpdate();
-            
+                PreparedStatement stm = this.conection.prepareStatement(devolucion);
+                int consultarVentasXTipoPagoYFecha = consultarVentasXTipoPagoYFecha(FechaInicio, FechaFinal, "Contado");
+                int consultarVentasXTipoPagoYFecha1 = consultarVentasXTipoPagoYFecha(FechaInicio, FechaFinal, "Tarjeta");
+                stm.setString(1, FechaInicio);
+                stm.setString(2, FechaFinal);
+                stm.setInt(3, totalVendido);
+                stm.setInt(4, Cajero);
+                stm.setString(5, NombreCaja);
+                stm.setString(6, Observaciones);
+                stm.setInt(7, ReporteInicial);
+                stm.setInt(8, ReporteInicial + totalVendido);
+                stm.setInt(9, consultarVentasXTipoPagoYFecha);
+                stm.setInt(10, consultarVentasXTipoPagoYFecha1);
+                stm.executeUpdate();
+
             } catch (IOException ex) {
                 Logger.getLogger(Direct_Control_BD.class.getName()).log(Level.SEVERE, null, ex);
             }
-           
-            
-            
-            
-        
+
         } catch (SQLException ex) {
             System.out.println("Error al recorrer los cierre de ventas");
         }
-        
+
     }
-    
-   
-    
-    public String consultarNombreCategoriaXid(int idCategoria)
-    {
-    try {
+
+    public String consultarNombreCategoriaXid(int idCategoria) {
+        try {
 
             String BuscarCategoriaPorDescripcion = this.readSql("../Joe"
                     + "/src/sql_files/consultarNombreCategoriaXId.sql");
@@ -1120,23 +1090,20 @@ VALUES (?, ?, ?, ?, ?, ?);
                     = this.conection.prepareStatement(BuscarCategoriaPorDescripcion);
             stm.setInt(1, idCategoria);
             ResultSet rs = stm.executeQuery();
-            String Nombre="";
+            String Nombre = "";
             rs.next();
-            Nombre=rs.getString("Descripcion");
-           
-            
+            Nombre = rs.getString("Descripcion");
+
             return Nombre;
         } catch (Exception e) {
             System.out.println("Error al consultar categoria por idCategoria");
             return "";
         }
-        
-        
-    }        
-            
-    public int consultarIdCategoriaXNombre(String Nombre)
-    {
-    try {
+
+    }
+
+    public int consultarIdCategoriaXNombre(String Nombre) {
+        try {
 
             String BuscarCategoriaPorDescripcion = this.readSql("../Joe"
                     + "/src/sql_files/consultarIdCategoriaXNombre.sql");
@@ -1144,23 +1111,19 @@ VALUES (?, ?, ?, ?, ?, ?);
                     = this.conection.prepareStatement(BuscarCategoriaPorDescripcion);
             stm.setString(1, Nombre);
             ResultSet rs = stm.executeQuery();
-            int idCategoria=0;
+            int idCategoria = 0;
             rs.next();
-            idCategoria=rs.getInt("idCategoria");
-           
-            
+            idCategoria = rs.getInt("idCategoria");
+
             return idCategoria;
         } catch (Exception e) {
             System.out.println("Error al consultar categoria por nombre");
             return -1;
         }
-        
-        
+
     }
-    
-     
-             
- public int consultarCantidadDeunProducto(String idProducto) {
+
+    public int consultarCantidadDeunProducto(String idProducto) {
         try {
 
             String BuscarCategoriaPorDescripcion = this.readSql("../Joe"
@@ -1169,11 +1132,10 @@ VALUES (?, ?, ?, ?, ?, ?);
                     = this.conection.prepareStatement(BuscarCategoriaPorDescripcion);
             stm.setString(1, idProducto);
             ResultSet rs = stm.executeQuery();
-            int ventas=0;
+            int ventas = 0;
             rs.next();
-            ventas=rs.getInt("Cantidad");
-           
-            
+            ventas = rs.getInt("Cantidad");
+
             return ventas;
         } catch (Exception e) {
             System.out.println("Error al obtener cantidad de un producto");
@@ -1181,8 +1143,8 @@ VALUES (?, ?, ?, ?, ?, ?);
         }
 
     }
- 
-  public int consultarIdLugarXNombre(String nombreLugar) {
+
+    public int consultarIdLugarXNombre(String nombreLugar) {
         try {
 
             String BuscarCategoriaPorDescripcion = this.readSql("../Joe"
@@ -1191,9 +1153,9 @@ VALUES (?, ?, ?, ?, ?, ?);
                     = this.conection.prepareStatement(BuscarCategoriaPorDescripcion);
             stm.setString(1, nombreLugar);
             ResultSet rs = stm.executeQuery();
-            int ventas=0;
+            int ventas = 0;
             rs.next();
-            ventas=rs.getInt("idUbicacionProducto");
+            ventas = rs.getInt("idUbicacionProducto");
             return ventas;
         } catch (Exception e) {
             System.out.println("error consultar idLugar x nombre");
@@ -1201,11 +1163,8 @@ VALUES (?, ?, ?, ?, ?, ?);
         }
 
     }
- 
- 
- 
-    public int consultarVentasXTipoPagoYFecha(String FechaInicio, String FechaFinal
-    ,String TipoPago) {
+
+    public int consultarVentasXTipoPagoYFecha(String FechaInicio, String FechaFinal, String TipoPago) {
         try {
 
             String BuscarCategoriaPorDescripcion = this.readSql("../Joe"
@@ -1216,11 +1175,10 @@ VALUES (?, ?, ?, ?, ?, ?);
             stm.setString(2, FechaInicio);
             stm.setString(3, FechaFinal);
             ResultSet rs = stm.executeQuery();
-            int ventas=0;
+            int ventas = 0;
             rs.next();
-            ventas=rs.getInt("Precio");
-           
-            
+            ventas = rs.getInt("Precio");
+
             return ventas;
         } catch (Exception e) {
             System.out.println("Error al obtener precio categoria x tipo de fecha y pago");
@@ -1228,14 +1186,15 @@ VALUES (?, ?, ?, ?, ?, ?);
         }
 
     }
-    
+
     /**
      * Permite insertar una factura pendiente.
+     *
      * @param idFactura
      * @param saldo
-     * @param fechaVencimiento 
+     * @param fechaVencimiento
      */
-    public void insertarFacturasPendientes(int idFactura,int saldo, String fechaVencimiento) {
+    public void insertarFacturasPendientes(int idFactura, int saldo, String fechaVencimiento) {
         try {
             String insertarFacturasPendientes = this.readSql("../Joe/src/sql_files/"
                     + "insertarFacturasPendientes.sql");
@@ -1244,20 +1203,21 @@ VALUES (?, ?, ?, ?, ?, ?);
             stm.setInt(2, saldo);
             stm.setString(3, fechaVencimiento);
             stm.executeUpdate();
-            
 
         } catch (Exception e) {
             System.out.println("Error al insertar una Factura Pendiente");
-            
+
         }
     }
+
     /**
      * Permite insertar un pago en una factura pendiente.
+     *
      * @param fecha
      * @param idFacturaPendiente
-     * @param montoDePago 
+     * @param montoDePago
      */
-    public void insertarPago(String fecha,int montoDePago,int idFacturaPendiente) {
+    public void insertarPago(String fecha, int montoDePago, int idFacturaPendiente) {
         try {
             String insertarPago = this.readSql("../Joe/src/sql_files/"
                     + "insertarPago.sql");
@@ -1266,40 +1226,37 @@ VALUES (?, ?, ?, ?, ?, ?);
             stm.setInt(2, montoDePago);
             stm.setInt(3, idFacturaPendiente);
             stm.executeUpdate();
-            
 
         } catch (Exception e) {
             System.out.println("Error al insertar un Pago a una Factura Pendiente");
-            
+
         }
     }
-     /**
+
+    /**
      * Obtiene la informacion de las ultimas 100 facturas.
      */
     public void verFacturas() {
-         try{
+        try {
             String verFacts = this.readSql("../Joe/src/sql_files/"
                     + "VerFacturas.sql");
             ResultSet rs = statement.executeQuery(verFacts);
             this.setColumnNames(this.Get_Columnas(rs));
             this.setData(this.ResultSet_Array(rs));
-        }
-        catch (Exception e) {
+        } catch (Exception e) {
             System.out.println("Error al obtener las facturas");
         }
 
     }
-    
-    public void verInventario()
-    {
-        try{
-            String verInventario= this.readSql("../Joe/src/sql_files/"
+
+    public void verInventario() {
+        try {
+            String verInventario = this.readSql("../Joe/src/sql_files/"
                     + "consultarInventarioxSucursal.sql");
             ResultSet rs = statement.executeQuery(verInventario);
             this.setColumnNames(this.Get_Columnas(rs));
             this.setData(this.ResultSet_Array(rs));
-        }
-        catch (Exception e) {
+        } catch (Exception e) {
             System.out.println("Error al obtener el inventario");
         }
     }
@@ -1331,13 +1288,14 @@ VALUES (?, ?, ?, ?, ?, ?);
     public void setData(Object[][] data) {
         this.Informacion = data;
     }
-    
+
     /**
      * Obtiene las columnas de la consulta
+     *
      * @param rs
-     * @return 
+     * @return
      */
-    private String[] Get_Columnas(ResultSet rs){
+    private String[] Get_Columnas(ResultSet rs) {
         String[] etiquetas = null;
         try {
             ResultSetMetaData metaDatos = rs.getMetaData();
@@ -1352,41 +1310,41 @@ VALUES (?, ?, ?, ?, ?, ?);
         }
         return etiquetas;
     }
+
     /**
      * Convierte en un arreglo la tabla consultada
+     *
      * @param rs
-     * @return 
+     * @return
      */
-    private Object[][] ResultSet_Array(ResultSet rs){
-        Object[][] lista_datos=null;
-        try{
+    private Object[][] ResultSet_Array(ResultSet rs) {
+        Object[][] lista_datos = null;
+        try {
             rs.last();
-            ResultSetMetaData rsmd=rs.getMetaData();
-            int numCols= rsmd.getColumnCount();
-            int numFils=rs.getRow();
-            lista_datos=new Object[numFils][numCols];
-            int j=0;
+            ResultSetMetaData rsmd = rs.getMetaData();
+            int numCols = rsmd.getColumnCount();
+            int numFils = rs.getRow();
+            lista_datos = new Object[numFils][numCols];
+            int j = 0;
             rs.beforeFirst();
-            while(rs.next()){
+            while (rs.next()) {
                 for (int i = 0; i < numCols; i++) {
-                    lista_datos[j][i]=rs.getObject(i+1);
+                    lista_datos[j][i] = rs.getObject(i + 1);
                 }
                 j++;
-                    
-                }
-            }       
-            
-        
-        catch(Exception e){
+
+            }
+        } catch (Exception e) {
             System.out.println("No se pudo convertir en arreglo");
-            
+
         }
         return lista_datos;
     }
-     /**
+
+    /**
      * Obtiene la descripcion de un producto segun el codigo
      */
-    public String verDescripcion(String codigo){
+    public String verDescripcion(String codigo) {
         try {
             String verDescripcion = this.readSql("../Joe"
                     + "/src/sql_files/verDescripcionPorCodigo.sql");
@@ -1394,7 +1352,7 @@ VALUES (?, ?, ?, ?, ?, ?);
                     = this.conection.prepareStatement(verDescripcion);
             stm.setString(1, codigo);
             ResultSet rs = stm.executeQuery();
-            String descripcion="";
+            String descripcion = "";
             while (rs.next()) {
                 descripcion = rs.getString("Nombre");
             }
@@ -1405,12 +1363,13 @@ VALUES (?, ?, ?, ?, ?, ?);
             return "";
         }
     }
-     /**
+
+    /**
      * Obtiene el precio de un producto segun el codigo
      */
-     public BigDecimal verPrecio(String codigo){
+    public BigDecimal verPrecio(String codigo) {
         BigDecimal precio = new BigDecimal("0");
-        
+
         try {
             String verDescripcion = this.readSql("../Joe"
                     + "/src/sql_files/verPrecioPorCodigo.sql");
@@ -1425,46 +1384,43 @@ VALUES (?, ?, ?, ?, ?, ?);
         } catch (Exception e) {
             System.out.println(codigo);
             System.out.println("Error al obtener el precio");
-            return null ;
+            return null;
         }
     }
+
     /**
      * Obtiene los codigos de los productos
      */
-    public void verCodigos(){
-        try{
-             String verCodigos = this.readSql("../Joe"
+    public void verCodigos() {
+        try {
+            String verCodigos = this.readSql("../Joe"
                     + "/src/sql_files/verCodigos.sql");
             ResultSet rs = statement.executeQuery(verCodigos);
             this.setColumnNames(this.Get_Columnas(rs));
             this.setData(this.ResultSet_Array(rs));
-        }
-        catch (Exception e) {
+        } catch (Exception e) {
             System.out.println("Error al obtener todos los codigos");
         }
 
-
-    
     }
-    
-    public void verLugares(){
-        try{
-             String verCodigos = this.readSql("../Joe"
+
+    public void verLugares() {
+        try {
+            String verCodigos = this.readSql("../Joe"
                     + "/src/sql_files/consultarLugares.sql");
             ResultSet rs = statement.executeQuery(verCodigos);
             this.setColumnNames(this.Get_Columnas(rs));
             this.setData(this.ResultSet_Array(rs));
-        }
-        catch (Exception e) {
+        } catch (Exception e) {
             System.out.println("Error al obtener todos los lugares");
         }
 
-
-    
     }
+
     /**
      * Obtiene la ultima factura realizada
-     * @return 
+     *
+     * @return
      */
     public int ObtenerUltimoidFact() {
         int result = 0;
@@ -1485,8 +1441,8 @@ VALUES (?, ?, ?, ?, ?, ?);
         return result;
 
     }
-    
-     /**
+
+    /**
      * Obtiene el nombre de un producto segun el codigo
      */
     public String verNombre(String codigo) {
@@ -1508,21 +1464,21 @@ VALUES (?, ?, ?, ?, ?, ?);
             return "";
         }
     }
-    
+
     public void insertarCategoria(String Nombre) {
         try {
             String categoria = this.readSql("../Joe/src/sql_files/"
                     + "crearCategoria.sql");
             PreparedStatement stm = this.conection.prepareStatement(categoria);
             stm.setString(1, Nombre);
-            
+
             stm.executeUpdate();
 
         } catch (Exception e) {
             System.out.println("Error al crear categoria");
         }
     }
-    
+
     public String verDetalle(String codigo) {
         try {
             String verNombre = this.readSql("../Joe"
@@ -1542,11 +1498,14 @@ VALUES (?, ?, ?, ?, ?, ?);
             return "";
         }
     }
+
     /**
-* Esta consulta da la cantidad del invetario(General) de un producto seleccionado
-* @param idProducto
-* @return
-*/
+     * Esta consulta da la cantidad del invetario(General) de un producto
+     * seleccionado
+     *
+     * @param idProducto
+     * @return
+     */
     public int verCantidad(String idProducto) {
         int cantidad = 0;
         try {
@@ -1567,7 +1526,7 @@ VALUES (?, ?, ?, ?, ?, ?);
     }
 
     public boolean verSiExisteCod(String idProducto) {
-         try {
+        try {
             String verCantidad = this.readSql("../Joe"
                     + "/src/sql_files/verSiExisteCod.sql");
             PreparedStatement stm = this.conection.prepareStatement(verCantidad);
@@ -1579,12 +1538,12 @@ VALUES (?, ?, ?, ?, ?, ?);
             return false;
         }
     }
-    
+
     /**
-* Obtiene el nombre de un producto segun el codigo y solo permite obtener
-* el nombre de productos con estado A
-*/
-    public String verNombreProductoPorCodigo(String codigo){
+     * Obtiene el nombre de un producto segun el codigo y solo permite obtener
+     * el nombre de productos con estado A
+     */
+    public String verNombreProductoPorCodigo(String codigo) {
         try {
             String verDescripcion = this.readSql("../Joe"
                     + "/src/sql_files/verDescripcionPorCodigo.sql");
@@ -1592,7 +1551,7 @@ VALUES (?, ?, ?, ?, ?, ?);
                     = this.conection.prepareStatement(verDescripcion);
             stm.setString(1, codigo);
             ResultSet rs = stm.executeQuery();
-            String descripcion="";
+            String descripcion = "";
             while (rs.next()) {
                 descripcion = rs.getString("Nombre");
             }
@@ -1604,5 +1563,33 @@ VALUES (?, ?, ?, ?, ?, ?);
         }
     }
 
+    public Object[][] getInfoFact() {
+        return infoFact;
+    }
+
+    public String[] getNombresColumnas() {
+        return NombresColumnas;
+    }
+
+    public void setData2(Object[][] data) {
+        infoFact = data;
+    }
+
+    public void VerFacturasPorRangoDeFecha(String FechaIni, String FechaFin) {
+        try {
+            String Fact = this.readSql("../Joe"
+                    + "/src/sql_files/VerFacturasPorRangoDeFecha.sql");
+            PreparedStatement stm = this.conection.prepareStatement(Fact);
+            stm.setString(1, FechaIni);
+            stm.setString(2, FechaFin);
+            ResultSet rs = stm.executeQuery();
+            setColumnNames(Get_Columnas(rs));
+            setData2(ResultSet_Array(rs));
+        } catch (Exception e) {
+
+            System.out.println("Error al Ver Facturas Por Rango De Fecha");
+
+        }
+    }
+
 }
-   

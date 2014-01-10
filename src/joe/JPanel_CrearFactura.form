@@ -560,12 +560,13 @@
                       </Group>
                   </Group>
                   <Group type="102" alignment="0" attributes="0">
-                      <EmptySpace min="-2" max="-2" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Component id="jButton_CreaProducto" min="-2" max="-2" attributes="0"/>
                           <Component id="jButton_VerProducto" alignment="0" min="-2" pref="105" max="-2" attributes="0"/>
                           <Component id="jButton_EliminaFila" alignment="0" min="-2" pref="105" max="-2" attributes="0"/>
                           <Component id="jButton_Descuento" alignment="0" min="-2" pref="105" max="-2" attributes="0"/>
+                          <Component id="jButton_BuscarProducto" alignment="0" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Group type="102" attributes="0">
@@ -581,7 +582,7 @@
                           <Group type="102" alignment="0" attributes="0">
                               <EmptySpace type="unrelated" min="-2" max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="0" attributes="0">
-                                  <Component id="jScrollPane2" pref="726" max="32767" attributes="0"/>
+                                  <Component id="jScrollPane2" pref="720" max="32767" attributes="0"/>
                                   <Group type="102" attributes="0">
                                       <Group type="103" groupAlignment="0" attributes="0">
                                           <Component id="jLabel11" alignment="0" min="-2" max="-2" attributes="0"/>
@@ -622,6 +623,9 @@
                       <Component id="jButton_EliminaFila" min="-2" max="-2" attributes="0"/>
                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
                       <Component id="jButton_Descuento" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Component id="jButton_BuscarProducto" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                   </Group>
                   <Component id="jScrollPane2" alignment="0" pref="262" max="32767" attributes="0"/>
               </Group>
@@ -852,6 +856,14 @@
         <Property name="horizontalAlignment" type="int" value="0"/>
         <Property name="text" type="java.lang.String" value="0.00"/>
       </Properties>
+    </Component>
+    <Component class="javax.swing.JButton" name="jButton_BuscarProducto">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Buscar Producto"/>
+      </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton_BuscarProductoActionPerformed"/>
+      </Events>
     </Component>
   </SubComponents>
 </Form>

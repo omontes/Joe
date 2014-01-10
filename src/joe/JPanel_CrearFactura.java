@@ -104,6 +104,7 @@ public class JPanel_CrearFactura extends javax.swing.JPanel {
         jLabel12 = new javax.swing.JLabel();
         jFormattedTextField_DescuentoTotal = new javax.swing.JFormattedTextField();
         jFormattedTextField_Total = new javax.swing.JFormattedTextField();
+        jButton_BuscarProducto = new javax.swing.JButton();
 
         jPanel2.setBackground(new java.awt.Color(153, 153, 153));
 
@@ -589,6 +590,13 @@ public class JPanel_CrearFactura extends javax.swing.JPanel {
         jFormattedTextField_Total.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         jFormattedTextField_Total.setText("0.00");
 
+        jButton_BuscarProducto.setText("Buscar Producto");
+        jButton_BuscarProducto.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton_BuscarProductoActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
@@ -630,7 +638,8 @@ public class JPanel_CrearFactura extends javax.swing.JPanel {
                             .addComponent(jButton_CreaProducto)
                             .addComponent(jButton_VerProducto, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jButton_EliminaFila, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jButton_Descuento, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jButton_Descuento, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jButton_BuscarProducto))
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
                                 .addGap(69, 69, 69)
@@ -644,7 +653,7 @@ public class JPanel_CrearFactura extends javax.swing.JPanel {
                             .addGroup(layout.createSequentialGroup()
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 726, Short.MAX_VALUE)
+                                    .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 720, Short.MAX_VALUE)
                                     .addGroup(layout.createSequentialGroup()
                                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                             .addComponent(jLabel11)
@@ -674,7 +683,10 @@ public class JPanel_CrearFactura extends javax.swing.JPanel {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jButton_EliminaFila)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jButton_Descuento))
+                        .addComponent(jButton_Descuento)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jButton_BuscarProducto)
+                        .addGap(0, 0, Short.MAX_VALUE))
                     .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 262, Short.MAX_VALUE))
                 .addGap(12, 12, 12)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -1154,6 +1166,19 @@ public class JPanel_CrearFactura extends javax.swing.JPanel {
         }
 
     }//GEN-LAST:event_jFormattedTextField_descKeyTyped
+
+    private void jButton_BuscarProductoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_BuscarProductoActionPerformed
+        NewJDialog_Buscador buscador= new NewJDialog_Buscador();
+        buscador.actualizaTablaParaInventario();
+        String id= buscador.getIdProducto();
+        MyTableModel_FACT model = (MyTableModel_FACT) jTable_Factura.getModel();
+        int row=this.jTable_Factura.getSelectedRow();
+        model.setValueAt(id,row,0);
+        jTable_Factura.changeSelection( row+1, jTable_Factura.getSelectedColumn(), false, false );
+             jTable_Factura.requestFocus();
+        
+                
+    }//GEN-LAST:event_jButton_BuscarProductoActionPerformed
     private String[][] obtenerInfoTablaFact() {
         MyTableModel_FACT model = (MyTableModel_FACT) jTable_Factura.getModel();
         int filas = model.getRowCount();
@@ -1254,6 +1279,7 @@ public class JPanel_CrearFactura extends javax.swing.JPanel {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     javax.swing.JButton jButton2;
+    javax.swing.JButton jButton_BuscarProducto;
     javax.swing.JButton jButton_BusqueProducto;
     javax.swing.JButton jButton_CancelaBusquedaProducto;
     javax.swing.JButton jButton_CancelarCrearProducto;

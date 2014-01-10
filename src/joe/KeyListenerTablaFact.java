@@ -23,15 +23,7 @@ public class KeyListenerTablaFact implements KeyListener {
     public void keyPressed(KeyEvent e) {
         if(e.isControlDown()){System.out.println("presiono control");
         e.consume();}
-        
-        /**if (e.isControlDown() && e.getKeyChar() == KeyEvent.VK_C) {
-             System.out.println("entro");
-               e.consume();
-        } else if (e.isControlDown() && e.getKeyChar() == KeyEvent.VK_X) {
-               e.consume();
-        } else if (e.isControlDown() && e.getKeyChar() == KeyEvent.VK_V) {
-               e.consume();
-        }**/
+       
     }
 
     @Override

@@ -557,8 +557,8 @@ public class Direct_Control_BD {
      * @param estado
      * @param nota
      */
-    public void crearFactura(int idFactura, int descuento, String tipoPago, int idCliente,
-            int idVendedor, String estado, String nota, BigDecimal TotalFacturado) {//Revisado+
+    public void crearFactura(int idFactura,BigDecimal descuento, String tipoPago, int idCliente,
+            int idVendedor, String estado, String nota,BigDecimal TotalFacturado) {//Revisado+
         DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd");
         Date date = new Date();
         String fecha = dateFormat.format(date);
@@ -569,7 +569,7 @@ public class Direct_Control_BD {
             PreparedStatement stm = conection.prepareStatement(CrearFactura, statement.RETURN_GENERATED_KEYS);
 
             stm.setInt(1, idFactura);
-            stm.setInt(2, descuento);
+            stm.setDouble(2, descuento.doubleValue());
             stm.setString(3, tipoPago);
             stm.setInt(4, idCliente);
             stm.setInt(5, idVendedor);

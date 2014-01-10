@@ -375,7 +375,6 @@ public class Direct_Control_BD {
             PreparedStatement stm = conection.prepareStatement(CrearProducto);
             stm.setString(1, idProducto);
             stm.setString(2, nombre);
-            System.out.println(precio.doubleValue());
             stm.setDouble(3, precio.doubleValue());
             stm.setInt(4, costo);
             stm.setString(5, fechaCreacion);
@@ -558,9 +557,8 @@ public class Direct_Control_BD {
      * @param estado
      * @param nota
      */
-    public void crearFactura(int descuento, String tipoPago, int idCliente,
-            int idVendedor, String estado, String nota,
-            int TotalFacturado) {//Revisado+
+    public void crearFactura(int idFactura,int descuento, String tipoPago, int idCliente,
+            int idVendedor, String estado, String nota,BigDecimal TotalFacturado) {//Revisado+
         DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd");
         Date date = new Date();
         String fecha = dateFormat.format(date);
@@ -570,14 +568,15 @@ public class Direct_Control_BD {
                     + "sql_files/CrearFactura.sql");
             PreparedStatement stm = conection.prepareStatement(CrearFactura, statement.RETURN_GENERATED_KEYS);
 
-            stm.setInt(1, descuento);
-            stm.setString(2, tipoPago);
-            stm.setInt(3, idCliente);
-            stm.setInt(4, idVendedor);
-            stm.setString(5, estado);
-            stm.setString(6, nota);
-            stm.setString(7, fecha);
-            stm.setInt(8, TotalFacturado);
+            stm.setInt(1, idFactura);
+            stm.setInt(2, descuento);
+            stm.setString(3, tipoPago);
+            stm.setInt(4, idCliente);
+            stm.setInt(5, idVendedor);
+            stm.setString(6, estado);
+            stm.setString(7, nota);
+            stm.setString(8, fecha);
+            stm.setDouble(9, TotalFacturado.doubleValue());
             stm.executeUpdate();
             ResultSet rs = stm.getGeneratedKeys();
             while (rs.next()) {
@@ -1562,6 +1561,29 @@ public class Direct_Control_BD {
             return "";
         }
     }
+     /**
+     * Obtiene el numero de version de un producto segun el codigo y solo permite obtener
+     * la version con estado A
+     */
+    public int veridVersionActivaProductoPorCodigo(String codigo) {
+        try {
+            String verVersion = this.readSql("../Joe"
+                    + "/src/sql_files/verVersionPorCodigo.sql");
+            PreparedStatement stm
+                    = this.conection.prepareStatement(verVersion);
+            stm.setString(1, codigo);
+            ResultSet rs = stm.executeQuery();
+            int version = 0;
+            while (rs.next()) {
+                version = rs.getInt("idVersion");
+            }
+            return version;
+        } catch (Exception e) {
+            System.out.println(codigo);
+            System.out.println("Error al obtener la version");
+            return 0;
+        }
+    }
 
     public Object[][] getInfoFact() {
         return infoFact;
@@ -1589,6 +1611,32 @@ public class Direct_Control_BD {
 
             System.out.println("Error al Ver Facturas Por Rango De Fecha");
 
+        }
+    }
+    
+ 
+    /**
+     * Permite la insercion de un producto en la factura.
+     * @param idProducto
+     * @param idVersion
+     * @param Cantidad
+     * @param idFactura
+     * @param PrecioVenta 
+     */
+    public void insertarProductoCantidadFact(String idProducto, int idVersion, int Cantidad, int idFactura, BigDecimal PrecioVenta ) {
+        try {
+            String insertarProductoCantFact = this.readSql("../Joe/src/sql_files/"
+                    + "insertarProductoCantidadFact.sql");
+            PreparedStatement stm = this.conection.prepareStatement(insertarProductoCantFact);
+            stm.setString(1, idProducto);
+            stm.setInt(2, idVersion);
+            stm.setInt(3, Cantidad);
+            stm.setInt(4, idFactura);
+            stm.setDouble(5, PrecioVenta.doubleValue());
+            stm.executeUpdate();
+
+        } catch (Exception e) {
+            System.out.println("Error al insertar producto cantidad fact");
         }
     }
 

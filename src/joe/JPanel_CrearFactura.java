@@ -14,10 +14,14 @@ import java.math.BigDecimal;
 import java.text.DateFormat;
 import java.text.DecimalFormat;
 import java.text.NumberFormat;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.Locale;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JFormattedTextField;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
@@ -82,9 +86,24 @@ public class JPanel_CrearFactura extends javax.swing.JPanel {
         jButton_Descuento = new javax.swing.JButton();
         jScrollPane2 = new javax.swing.JScrollPane();
         jTable_Factura = new javax.swing.JTable();
-        jTextField_Total = new javax.swing.JTextField();
         jButton_RegresarFact = new javax.swing.JButton();
-        jLabel_Fact = new javax.swing.JLabel();
+        jLabel_NumerodeFact = new javax.swing.JLabel();
+        jButton_aceptarFactura = new javax.swing.JButton();
+        jLabel_NumFacTitle = new javax.swing.JLabel();
+        jLabel_FechaFact = new javax.swing.JLabel();
+        jFormattedTextField_SubTotal = new javax.swing.JFormattedTextField();
+        jLabel_Fecha = new javax.swing.JLabel();
+        jLabel6 = new javax.swing.JLabel();
+        jLabel7 = new javax.swing.JLabel();
+        jFormattedTextField_desc = new javax.swing.JFormattedTextField();
+        jLabel8 = new javax.swing.JLabel();
+        jComboBox_CategoriaTipoPago = new javax.swing.JComboBox();
+        jLabel10 = new javax.swing.JLabel();
+        jTextField_Detalle = new javax.swing.JTextField();
+        jLabel11 = new javax.swing.JLabel();
+        jLabel12 = new javax.swing.JLabel();
+        jFormattedTextField_DescuentoTotal = new javax.swing.JFormattedTextField();
+        jFormattedTextField_Total = new javax.swing.JFormattedTextField();
 
         jPanel2.setBackground(new java.awt.Color(153, 153, 153));
 
@@ -492,16 +511,6 @@ public class JPanel_CrearFactura extends javax.swing.JPanel {
         });
         jScrollPane2.setViewportView(jTable_Factura);
 
-        jTextField_Total.setForeground(new java.awt.Color(204, 0, 51));
-        jTextField_Total.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        jTextField_Total.setText("0.0");
-        jTextField_Total.setToolTipText("");
-        jTextField_Total.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField_TotalActionPerformed(evt);
-            }
-        });
-
         jButton_RegresarFact.setText("Regresar");
         jButton_RegresarFact.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -509,8 +518,64 @@ public class JPanel_CrearFactura extends javax.swing.JPanel {
             }
         });
 
-        jLabel_Fact.setFont(new java.awt.Font("Arial", 0, 16)); // NOI18N
-        jLabel_Fact.setForeground(new java.awt.Color(0, 51, 51));
+        jLabel_NumerodeFact.setFont(new java.awt.Font("Arial", 0, 16)); // NOI18N
+        jLabel_NumerodeFact.setForeground(new java.awt.Color(0, 51, 51));
+        jLabel_NumerodeFact.setText("Num");
+
+        jButton_aceptarFactura.setText("Guardar");
+        jButton_aceptarFactura.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton_aceptarFacturaActionPerformed(evt);
+            }
+        });
+
+        jLabel_NumFacTitle.setText("Numero Fact");
+
+        jLabel_FechaFact.setText("Fecha");
+
+        jFormattedTextField_SubTotal.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(new java.text.DecimalFormat("C#,##0.00;(C#,##0.00)"))));
+        jFormattedTextField_SubTotal.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        jFormattedTextField_SubTotal.setText("0.00");
+        jFormattedTextField_SubTotal.addPropertyChangeListener(new java.beans.PropertyChangeListener() {
+            public void propertyChange(java.beans.PropertyChangeEvent evt) {
+                jFormattedTextField_SubTotalPropertyChange(evt);
+            }
+        });
+
+        jLabel_Fecha.setText("Aqui va la fecha");
+
+        jLabel6.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel6.setText("SubTotal");
+
+        jLabel7.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel7.setText("Desc.");
+
+        jFormattedTextField_desc.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(new java.text.DecimalFormat("#0.00"))));
+        jFormattedTextField_desc.setText("0");
+        jFormattedTextField_desc.addPropertyChangeListener(new java.beans.PropertyChangeListener() {
+            public void propertyChange(java.beans.PropertyChangeEvent evt) {
+                jFormattedTextField_descPropertyChange(evt);
+            }
+        });
+
+        jLabel8.setText("%");
+
+        jComboBox_CategoriaTipoPago.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Efectivo", "Tarjeta" }));
+
+        jLabel10.setText("Tipo de Pago");
+
+        jLabel11.setText("Detalle de Factura:");
+
+        jLabel12.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel12.setText("Total");
+
+        jFormattedTextField_DescuentoTotal.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(new java.text.DecimalFormat("C#,##0.00;(C#,##0.00)"))));
+        jFormattedTextField_DescuentoTotal.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        jFormattedTextField_DescuentoTotal.setText("0.00");
+
+        jFormattedTextField_Total.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(new java.text.DecimalFormat("C#,##0.00;(C#,##0.00)"))));
+        jFormattedTextField_Total.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        jFormattedTextField_Total.setText("0.00");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -519,49 +584,112 @@ public class JPanel_CrearFactura extends javax.swing.JPanel {
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(42, 42, 42)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jButton_CreaProducto, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jButton_VerProducto, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jButton_EliminaFila, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jButton_Descuento, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addGap(23, 23, 23)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel_NumFacTitle)
+                            .addComponent(jLabel_NumerodeFact, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(244, 244, 244)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jButton_aceptarFactura, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jButton_RegresarFact))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(189, 189, 189)
+                                .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addGap(10, 10, 10)
+                                        .addComponent(jLabel12, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(jFormattedTextField_desc, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(jLabel8)))
+                                .addGap(3, 3, 3)))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jFormattedTextField_SubTotal, javax.swing.GroupLayout.DEFAULT_SIZE, 184, Short.MAX_VALUE)
+                            .addComponent(jFormattedTextField_DescuentoTotal)))
+                    .addGroup(layout.createSequentialGroup()
                         .addContainerGap()
-                        .addComponent(jLabel_Fact, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jTextField_Total, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(72, 72, 72)
-                        .addComponent(jButton_RegresarFact))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(6, 6, 6)
-                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 694, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, Short.MAX_VALUE))))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jButton_CreaProducto)
+                            .addComponent(jButton_VerProducto, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jButton_EliminaFila, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jButton_Descuento, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(69, 69, 69)
+                                .addComponent(jLabel10)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(jComboBox_CategoriaTipoPago, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(370, 370, 370)
+                                .addComponent(jLabel_FechaFact, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(jLabel_Fecha, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 726, Short.MAX_VALUE)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(jLabel11)
+                                            .addComponent(jTextField_Detalle, javax.swing.GroupLayout.PREFERRED_SIZE, 164, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                        .addGap(378, 378, 378)
+                                        .addComponent(jFormattedTextField_Total)))))))
+                .addGap(57, 57, 57))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                .addContainerGap()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel10)
+                    .addComponent(jComboBox_CategoriaTipoPago, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel_FechaFact, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel_Fecha, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel_NumFacTitle, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 348, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(10, 10, 10)
-                        .addComponent(jTextField_Total, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                        .addGap(31, 31, 31)
-                        .addComponent(jLabel_Fact, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(40, 40, 40)
+                        .addComponent(jLabel_NumerodeFact, javax.swing.GroupLayout.PREFERRED_SIZE, 19, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(jButton_CreaProducto)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jButton_VerProducto)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jButton_EliminaFila)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jButton_Descuento)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jButton_Descuento))
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 262, Short.MAX_VALUE))
+                .addGap(12, 12, 12)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(1, 1, 1)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jFormattedTextField_SubTotal, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jFormattedTextField_DescuentoTotal, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jFormattedTextField_desc, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel8)
+                            .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel12, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jFormattedTextField_Total, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jLabel11)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jTextField_Detalle, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jButton_aceptarFactura)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jButton_RegresarFact)))
-                .addGap(28, 28, 28))
+                .addGap(37, 37, 37))
         );
     }//GEN-END:initComponents
     private void creacionProductoPanel(){
@@ -587,7 +715,7 @@ public class JPanel_CrearFactura extends javax.swing.JPanel {
             BigDecimal PrecioUnitario = AdminBD.verPrecio(idProducto);
             int cantidad= AdminBD.verCantidad(idProducto);
             jLabel_datoCant.setText(Integer.toString(cantidad));
-            jLabel_datoFact.setText(jLabel_Fact.getText());
+            jLabel_datoFact.setText(jLabel_NumerodeFact.getText());
             jLabel_datoNomb.setText(articulo);
             jLabel_datoPrecio.setText(PrecioUnitario.toString());
             String detalle= AdminBD.verDetalle(idProducto);
@@ -633,8 +761,17 @@ public class JPanel_CrearFactura extends javax.swing.JPanel {
             //Elimina un producto ya ingresado y actualiza el total
             BigDecimal subtotal = new BigDecimal(subTotal);
             model.removeRow(row);
-            BigDecimal total = new BigDecimal(this.jTextField_Total.getText());
-            this.jTextField_Total.setText(total.subtract(subtotal).toString());
+            String totalFacturaSinCorregir = this.jFormattedTextField_SubTotal.getText();
+            String totalf = totalFacturaSinCorregir.replace("C", "");
+            DecimalFormat decimalformat = (DecimalFormat) NumberFormat.getInstance();
+            decimalformat.setParseBigDecimal(true);
+            BigDecimal totalFact = null;
+            try {
+                totalFact = (BigDecimal) decimalformat.parseObject(totalf);
+            } catch (ParseException ex) {
+                Logger.getLogger(MyTableModelListener_FACT.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            this.jFormattedTextField_SubTotal.setValue(totalFact.subtract(subtotal));
             jTable_Factura.revalidate();
             jTable_Factura.repaint();
             jTable_Factura.requestFocus();
@@ -664,10 +801,6 @@ public class JPanel_CrearFactura extends javax.swing.JPanel {
         
        
     }//GEN-LAST:event_jTable_FacturaKeyPressed
-
-    private void jTextField_TotalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField_TotalActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField_TotalActionPerformed
 
     private void jButton_RegresarFactActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_RegresarFactActionPerformed
         VentanaDeInicio miVentana= VentanaDeInicio.getInstance();
@@ -872,10 +1005,130 @@ public class JPanel_CrearFactura extends javax.swing.JPanel {
 
         }
     }//GEN-LAST:event_jFormattedTextField_cantidadProductoKeyTyped
-public void personalizarTablaFactura() {
-        /**DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd");
+    private void guardarProductosFactura() {
+        Direct_Control_BD AdminBD = Direct_Control_BD.getInstance();
+        MyTableModel_FACT model = (MyTableModel_FACT) jTable_Factura.getModel();
+        String[][] infoTablaFact = this.obtenerInfoTablaFact();
+        int rows = infoTablaFact.length;
+        int idFactura = Integer.parseInt(this.jLabel_NumerodeFact.getText());
+        //Recorre la informacion de la tabla para obtener los datos para 
+        //insertar los productos en la factura
+        for (int i = 0; i < rows; i++) {
+            //Si la fila esta vacia
+            if (model.getValueAt(i, 0) != "") {
+                String idProducto = infoTablaFact[i][0];
+                int idVersion = AdminBD.veridVersionActivaProductoPorCodigo(idProducto);
+                String CantidadSinCorregir = infoTablaFact[i][2].toString();
+                DecimalFormat decimalfC = (DecimalFormat) NumberFormat.getInstance();
+                decimalfC.setParseBigDecimal(true);
+                BigDecimal cantidadB = null;
+                try {
+                    cantidadB = (BigDecimal) decimalfC.parseObject(CantidadSinCorregir);
+                } catch (ParseException ex) {
+                    Logger.getLogger(MyTableModelListener_FACT.class.getName()).log(Level.SEVERE, null, ex);
+                }
+                int cantidad = cantidadB.intValue();
+                String precioSinCorregir = infoTablaFact[i][3];
+                String price = precioSinCorregir.replace("C", "");
+                DecimalFormat decimalf = (DecimalFormat) NumberFormat.getInstance();
+                decimalf.setParseBigDecimal(true);
+                BigDecimal PrecioVenta = null;
+                try {
+                    PrecioVenta = (BigDecimal) decimalf.parseObject(price);
+                } catch (ParseException ex) {
+                    Logger.getLogger(MyTableModelListener_FACT.class.getName()).log(Level.SEVERE, null, ex);
+                }
+                AdminBD.insertarProductoCantidadFact(idProducto, idVersion, cantidad, idFactura, PrecioVenta);
+
+            }
+        }
+    }
+    private void jButton_aceptarFacturaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_aceptarFacturaActionPerformed
+        this.crearFactura();   
+        this.guardarProductosFactura();
+        this.clearAll();
+       
+        
+        
+    }//GEN-LAST:event_jButton_aceptarFacturaActionPerformed
+
+    private void jFormattedTextField_SubTotalPropertyChange(java.beans.PropertyChangeEvent evt) {//GEN-FIRST:event_jFormattedTextField_SubTotalPropertyChange
+        if(evt.getPropertyName().equals("value")){
+        String text = evt.getNewValue().toString();
+        DecimalFormat decimalf = (DecimalFormat) NumberFormat.getInstance();
+        decimalf.setParseBigDecimal(true);
+        BigDecimal subTotal = null;
+                try {
+                    subTotal = (BigDecimal) decimalf.parseObject(text);
+                } catch (ParseException ex) {
+                    Logger.getLogger(MyTableModelListener_FACT.class.getName()).log(Level.SEVERE, null, ex);
+                }
+                this.jFormattedTextField_Total.setValue(subTotal);
+                double descuentoAaplicar= Double.parseDouble(this.jFormattedTextField_desc.getText());
+                if(descuentoAaplicar<=100){
+                    double desc= descuentoAaplicar/100;
+                    System.out.println(desc);
+                    BigDecimal descuento = BigDecimal.valueOf(desc);
+                    BigDecimal nuevoSubTotal;
+                    nuevoSubTotal = subTotal.subtract(subTotal.multiply(descuento));
+                    this.jFormattedTextField_DescuentoTotal.setValue(nuevoSubTotal);
+                }
+                else{
+                System.out.println("No puede aplicar ese descuento");}
+        }
+    }//GEN-LAST:event_jFormattedTextField_SubTotalPropertyChange
+
+    private void jFormattedTextField_descPropertyChange(java.beans.PropertyChangeEvent evt) {//GEN-FIRST:event_jFormattedTextField_descPropertyChange
+        if (evt.getPropertyName().equals("value")) {
+            String text = this.jFormattedTextField_SubTotal.getText();
+              String textaCorregir = text.replace("C", "");
+            DecimalFormat decimalf = (DecimalFormat) NumberFormat.getInstance();
+            decimalf.setParseBigDecimal(true);
+            BigDecimal subTotal = null;
+            try {
+                subTotal = (BigDecimal) decimalf.parseObject(textaCorregir);
+            } catch (ParseException ex) {
+                Logger.getLogger(MyTableModelListener_FACT.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            this.jFormattedTextField_Total.setValue(subTotal);
+            double descuentoAaplicar = Double.parseDouble(evt.getNewValue().toString());
+            if (descuentoAaplicar <= 100) {
+                double desc = descuentoAaplicar / 100;
+                System.out.println(desc);
+                BigDecimal descuento = BigDecimal.valueOf(desc);
+                BigDecimal nuevoSubTotal;
+                nuevoSubTotal = subTotal.subtract(subTotal.multiply(descuento));
+                this.jFormattedTextField_DescuentoTotal.setValue(nuevoSubTotal);
+            }
+            else{
+            System.out.println(descuentoAaplicar);
+            System.out.println("No puede aplicar un descuento mayor a 100%");}
+        }
+    }//GEN-LAST:event_jFormattedTextField_descPropertyChange
+    private String[][] obtenerInfoTablaFact() {
+        MyTableModel_FACT model = (MyTableModel_FACT) jTable_Factura.getModel();
+        int filas = model.getRowCount();
+        String[][] infoTablaFactura = new String[filas][5];
+        for (int i = 0; i < filas; i++) {
+            for (int j = 0; j < 5; j++) {
+                
+                
+                if (model.getValueAt(i, j) != null) {
+                    String om = model.getValueAt(i, j).toString();
+
+                    if (om.trim().length() != 0) {
+                        infoTablaFactura[i][j] = om;
+                        //System.out.println("" + i + ",j " + j + ": " + infoTablaFactura[i][j]);
+                    }
+                }
+            }
+        }
+        return infoTablaFactura;
+    }
+    public void personalizarTablaFactura() {
+        DateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
         Date date = new Date();
-        this.jTextField_Date.setText(dateFormat.format(date));**/
+        this.jLabel_Fecha.setText(dateFormat.format(date));
        Direct_Control_BD AdminBD = Direct_Control_BD.getInstance();
         String[] columnNames = {"Cod. Articulo","Articulo","Cantidad","Precio.Unit",
             "Sub-Total"};
@@ -886,7 +1139,7 @@ public void personalizarTablaFactura() {
         //Agrega el modelo a la factura
         MyTableModel_FACT model=new MyTableModel_FACT(columnNames,data);
         //Agrega 5 filas
-        model.addRow(11);
+        model.addRow(20);
         this.jTable_Factura.setModel(model);
         //Gana la atencion en el panel
         jTable_Factura.requestFocus();
@@ -894,9 +1147,9 @@ public void personalizarTablaFactura() {
         //AGREGA EL LISTENER QUE PERMITE HACER TODOS LOS EVENTOS DENTRO DE LA 
         //TABLA DE FACTURA //IMPORTANTE ESTOS EVENTOS ESTAN EN LA CLASE DE
         //MY TABLE MODEL LISTENER EN el metodo: tableChanged(TableModelEvent e)
-         this.jTable_Factura.getModel().addTableModelListener(
+        this.jTable_Factura.getModel().addTableModelListener(
                 new MyTableModelListener_FACT(this.jTable_Factura,"",
-                this.jTextField_Total,AdminBD));
+                this.jFormattedTextField_SubTotal,AdminBD));
         //Permite que la primera columna de Codigos se desplace segun lo que
         // haya en la base de datos
         AdminBD.verCodigos();
@@ -961,21 +1214,36 @@ public void personalizarTablaFactura() {
     javax.swing.JButton jButton_EliminaFila;
     javax.swing.JButton jButton_RegresarFact;
     javax.swing.JButton jButton_VerProducto;
+    javax.swing.JButton jButton_aceptarFactura;
+    javax.swing.JComboBox jComboBox_CategoriaTipoPago;
     javax.swing.JDialog jDialog_BuscarProductoPorCod;
     javax.swing.JDialog jDialog_CrearProducto;
     javax.swing.JDialog jDialog_VerProducto;
+    javax.swing.JFormattedTextField jFormattedTextField_DescuentoTotal;
+    javax.swing.JFormattedTextField jFormattedTextField_SubTotal;
+    javax.swing.JFormattedTextField jFormattedTextField_Total;
     javax.swing.JFormattedTextField jFormattedTextField_cantidadProducto;
+    javax.swing.JFormattedTextField jFormattedTextField_desc;
     javax.swing.JFormattedTextField jFormattedTextField_precioProducto;
     javax.swing.JLabel jLabel1;
+    javax.swing.JLabel jLabel10;
+    javax.swing.JLabel jLabel11;
+    javax.swing.JLabel jLabel12;
     javax.swing.JLabel jLabel2;
     javax.swing.JLabel jLabel3;
     javax.swing.JLabel jLabel4;
     javax.swing.JLabel jLabel5;
+    javax.swing.JLabel jLabel6;
+    javax.swing.JLabel jLabel7;
+    javax.swing.JLabel jLabel8;
     javax.swing.JLabel jLabel_Cantidad;
     javax.swing.JLabel jLabel_CodNoEncontrado;
     javax.swing.JLabel jLabel_Descripcion;
-    javax.swing.JLabel jLabel_Fact;
+    javax.swing.JLabel jLabel_Fecha;
+    javax.swing.JLabel jLabel_FechaFact;
     javax.swing.JLabel jLabel_Nombre;
+    javax.swing.JLabel jLabel_NumFacTitle;
+    javax.swing.JLabel jLabel_NumerodeFact;
     javax.swing.JLabel jLabel_PrecioUnitario;
     javax.swing.JLabel jLabel_Producto;
     javax.swing.JLabel jLabel_datoCant;
@@ -987,9 +1255,44 @@ public void personalizarTablaFactura() {
     javax.swing.JPanel jPanel2;
     javax.swing.JScrollPane jScrollPane2;
     javax.swing.JTable jTable_Factura;
-    javax.swing.JTextField jTextField_Total;
+    javax.swing.JTextField jTextField_Detalle;
     javax.swing.JTextField jTextField_busqueProducto;
     javax.swing.JTextField jTextField_codigo;
     javax.swing.JTextField jTextField_nombre;
     // End of variables declaration//GEN-END:variables
+
+    private void crearFactura() {
+        Direct_Control_BD AdminBD = Direct_Control_BD.getInstance();
+        int idFactura = Integer.parseInt(this.jLabel_NumerodeFact.getText());
+        String tipoPago = this.jComboBox_CategoriaTipoPago.getSelectedItem().toString();
+        String detalle= this.jTextField_Detalle.getText();
+        String totalFacturaSinCorregir = this.jFormattedTextField_SubTotal.getText();
+        String price = totalFacturaSinCorregir.replace("C", "");
+        DecimalFormat decimalf = (DecimalFormat) NumberFormat.getInstance();
+        decimalf.setParseBigDecimal(true);
+        BigDecimal totalFact = null;
+        try {
+            totalFact = (BigDecimal) decimalf.parseObject(price);
+        } catch (ParseException ex) {
+            Logger.getLogger(MyTableModelListener_FACT.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        AdminBD.crearFactura(idFactura,0,tipoPago,1,2,"Cerrada",detalle,totalFact);
+        }
+
+    private void clearAll() {
+        VentanaDeInicio mVentana= VentanaDeInicio.getInstance();
+        JPanel_CrearFactura panelCreaFact= new JPanel_CrearFactura();
+        mVentana.add(panelCreaFact);
+        panelCreaFact.setSize(this.getSize());
+        panelCreaFact.setLocation(this.getLocation());
+        mVentana.remove(this);
+        panelCreaFact.setVisible(true);
+        mVentana.revalidate();
+        mVentana.repaint();
+        mVentana.setTitle("Factura");
+        Direct_Control_BD AdminBD = Direct_Control_BD.getInstance();
+        String factura = Integer.toString(AdminBD.ObtenerUltimoidFact() + 1);
+        panelCreaFact.jLabel_NumerodeFact.setText(factura);
+        panelCreaFact.personalizarTablaFactura();
+    }
 }

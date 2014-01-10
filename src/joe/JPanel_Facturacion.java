@@ -184,8 +184,8 @@ public class JPanel_Facturacion extends javax.swing.JPanel {
         mVentana.repaint();
         mVentana.setTitle("Factura");
         Direct_Control_BD AdminBD = Direct_Control_BD.getInstance();
-        String factura = " Factura " + Integer.toString(AdminBD.ObtenerUltimoidFact() + 1);
-        panelCreaFact.jLabel_Fact.setText(factura);
+        String factura = Integer.toString(AdminBD.ObtenerUltimoidFact() + 1);
+        panelCreaFact.jLabel_NumerodeFact.setText(factura);
         panelCreaFact.personalizarTablaFactura();
        
         

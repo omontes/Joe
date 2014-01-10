@@ -557,8 +557,8 @@ public class Direct_Control_BD {
      * @param estado
      * @param nota
      */
-    public void crearFactura(int idFactura,int descuento, String tipoPago, int idCliente,
-            int idVendedor, String estado, String nota,BigDecimal TotalFacturado) {//Revisado+
+    public void crearFactura(int idFactura, int descuento, String tipoPago, int idCliente,
+            int idVendedor, String estado, String nota, BigDecimal TotalFacturado) {//Revisado+
         DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd");
         Date date = new Date();
         String fecha = dateFormat.format(date);
@@ -1561,9 +1561,10 @@ public class Direct_Control_BD {
             return "";
         }
     }
-     /**
-     * Obtiene el numero de version de un producto segun el codigo y solo permite obtener
-     * la version con estado A
+
+    /**
+     * Obtiene el numero de version de un producto segun el codigo y solo
+     * permite obtener la version con estado A
      */
     public int veridVersionActivaProductoPorCodigo(String codigo) {
         try {
@@ -1613,17 +1614,17 @@ public class Direct_Control_BD {
 
         }
     }
-    
- 
+
     /**
      * Permite la insercion de un producto en la factura.
+     *
      * @param idProducto
      * @param idVersion
      * @param Cantidad
      * @param idFactura
-     * @param PrecioVenta 
+     * @param PrecioVenta
      */
-    public void insertarProductoCantidadFact(String idProducto, int idVersion, int Cantidad, int idFactura, BigDecimal PrecioVenta ) {
+    public void insertarProductoCantidadFact(String idProducto, int idVersion, int Cantidad, int idFactura, BigDecimal PrecioVenta) {
         try {
             String insertarProductoCantFact = this.readSql("../Joe/src/sql_files/"
                     + "insertarProductoCantidadFact.sql");
@@ -1645,15 +1646,33 @@ public class Direct_Control_BD {
             String Fact = this.readSql("../Joe"
                     + "/src/sql_files/VentasPorRangoFechYidProd.sql");// hacer consulta por prod
             PreparedStatement stm = this.conection.prepareStatement(Fact);
-//            stm.setString(1, idProducto);
-//            stm.setString(2, FechaIni);
-//            stm.setString(3, FechaFin);
+            stm.setString(1, idProducto);
+            stm.setString(2, FechaIni);
+            stm.setString(3, FechaFin);
             ResultSet rs = stm.executeQuery();
             setColumnNames(Get_Columnas(rs));
             setData2(ResultSet_Array(rs));
         } catch (Exception e) {
 
             System.out.println("Error al Ver Facturas Por idProducto");
+
+        }
+    }
+
+    public void FacturasPorCategoriaDeProd(String FechaIni, String FechaFin, String categoria) {
+        try {
+            String Fact = readSql("../Joe"
+                    + "/src/sql_files/FacturasPorCategoriaDeProd.sql");// hacer consulta por prod
+            PreparedStatement stm = this.conection.prepareStatement(Fact);
+            stm.setString(1, categoria);
+            stm.setString(2, FechaIni);
+            stm.setString(3, FechaFin);
+            ResultSet rs = stm.executeQuery();
+            setColumnNames(Get_Columnas(rs));
+            setData2(ResultSet_Array(rs));
+        } catch (Exception e) {
+
+            System.out.println("Error al Ver Facturas FacturasPorCategoriaDeProd");
 
         }
     }

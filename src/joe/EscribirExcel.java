@@ -119,8 +119,7 @@ public class EscribirExcel {
         timesLines = new WritableCellFormat(timesLinespt);
         timesLines.setBorder(Border.TOP, BorderLineStyle.SLANTED_DASH_DOT, Colour.BLUE_GREY);
         timesLines.setAlignment(Alignment.CENTRE);
-        
-        
+
         //asignar el tipo de letra times12pt al formato times12
         times12 = new WritableCellFormat(times12pt);
         //asignar el tipo de letra times10pt al formato times10
@@ -160,14 +159,12 @@ public class EscribirExcel {
 
             //Escribir el total dependiendo el tipo de reporte
             escribirResultado(tipoDeReporte, hojaExcel, ultimaFila);
-        }
-        else{// si no hay datos escribe total cero
-            
-        hojaExcel.addCell(new Label(2, 11, "Total  0",
-                timesLines));
+        } else {// si no hay datos escribe total cero
+
+            hojaExcel.addCell(new Label(2, 11, "Total  0",
+                    timesLines));
         }
 
-       
         //Escribe los datos contenidos en este libro en formato Excel
         workbook.write();
 
@@ -232,12 +229,18 @@ public class EscribirExcel {
                         "SUM(G11:G" + ultimaFila + ")", timesLines));
                 break;
             case "Ventas Por Cliente":
-                //hacer algo
                 break;
-            case "Ventas Por Producto":
-                //hacer algo
+            default:
+                // En caso de Ventas Por Producto o por categoria de Producto
+                hojaExc.addCell(new Label(0, ultimaFila + 1, "       Total Facturas:",
+                        timesLines));
+                hojaExc.addCell(new jxl.write.Formula(1, ultimaFila + 1, //total de fact
+                        "COUNT(B11:B" + ultimaFila + ")", timesLines));
+                hojaExc.addCell(new jxl.write.Formula(5, ultimaFila + 1,
+                        "SUM(F11:F" + ultimaFila + ")", timesLines));
+                hojaExc.addCell(new jxl.write.Formula(7, ultimaFila + 1,
+                        "SUM(H11:H" + ultimaFila + ")", timesLines));
                 break;
         }
-
     }
 }

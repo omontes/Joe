@@ -87,7 +87,7 @@ public class JPanel_Reportes extends javax.swing.JPanel {
         jButton_Buscar = new javax.swing.JButton();
         jRadioButton_PorCategoria = new javax.swing.JRadioButton();
         jRadioButton_PorCodigo = new javax.swing.JRadioButton();
-        jLabel15 = new javax.swing.JLabel();
+        jLabel_CodOCateg = new javax.swing.JLabel();
         jLabel16 = new javax.swing.JLabel();
         buttonGroup2 = new javax.swing.ButtonGroup();
         buttonGroup3 = new javax.swing.ButtonGroup();
@@ -100,6 +100,7 @@ public class JPanel_Reportes extends javax.swing.JPanel {
         jButton4 = new javax.swing.JButton();
         jButton5 = new javax.swing.JButton();
         jButton6 = new javax.swing.JButton();
+        jButton1 = new javax.swing.JButton();
 
         jDialog_Reportes.setIconImage(null);
         jDialog_Reportes.setMinimumSize(new java.awt.Dimension(585, 360));
@@ -625,21 +626,36 @@ public void actionPerformed(java.awt.event.ActionEvent evt) {
 
     jButton_Buscar.setForeground(new java.awt.Color(0, 51, 51));
     jButton_Buscar.setText("Buscar");
+    jButton_Buscar.addActionListener(new java.awt.event.ActionListener() {
+        public void actionPerformed(java.awt.event.ActionEvent evt) {
+            jButton_BuscarActionPerformed(evt);
+        }
+    });
 
     buttonGroup2.add(jRadioButton_PorCategoria);
     jRadioButton_PorCategoria.setFont(new java.awt.Font("Tahoma", 0, 10)); // NOI18N
     jRadioButton_PorCategoria.setForeground(new java.awt.Color(0, 51, 51));
     jRadioButton_PorCategoria.setText("Por Categoria");
+    jRadioButton_PorCategoria.addActionListener(new java.awt.event.ActionListener() {
+        public void actionPerformed(java.awt.event.ActionEvent evt) {
+            jRadioButton_PorCategoriaActionPerformed(evt);
+        }
+    });
 
     buttonGroup2.add(jRadioButton_PorCodigo);
     jRadioButton_PorCodigo.setFont(new java.awt.Font("Tahoma", 0, 10)); // NOI18N
     jRadioButton_PorCodigo.setForeground(new java.awt.Color(0, 51, 51));
     jRadioButton_PorCodigo.setSelected(true);
     jRadioButton_PorCodigo.setText("Por Codigo");
+    jRadioButton_PorCodigo.addActionListener(new java.awt.event.ActionListener() {
+        public void actionPerformed(java.awt.event.ActionEvent evt) {
+            jRadioButton_PorCodigoActionPerformed(evt);
+        }
+    });
 
-    jLabel15.setFont(new java.awt.Font("Tahoma", 0, 10)); // NOI18N
-    jLabel15.setForeground(new java.awt.Color(0, 51, 51));
-    jLabel15.setText("Codigo del Producto");
+    jLabel_CodOCateg.setFont(new java.awt.Font("Tahoma", 0, 10)); // NOI18N
+    jLabel_CodOCateg.setForeground(new java.awt.Color(0, 51, 51));
+    jLabel_CodOCateg.setText("Codigo del Producto");
 
     jLabel16.setFont(new java.awt.Font("Tahoma", 0, 10)); // NOI18N
     jLabel16.setForeground(new java.awt.Color(0, 51, 51));
@@ -684,7 +700,7 @@ public void actionPerformed(java.awt.event.ActionEvent evt) {
                     .addComponent(dateChooserCombo_IniProd, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGroup(jPanel_VerVentasPorProdLayout.createSequentialGroup()
                     .addGroup(jPanel_VerVentasPorProdLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                        .addComponent(jLabel15, javax.swing.GroupLayout.DEFAULT_SIZE, 116, Short.MAX_VALUE)
+                        .addComponent(jLabel_CodOCateg, javax.swing.GroupLayout.DEFAULT_SIZE, 116, Short.MAX_VALUE)
                         .addComponent(jTextField_CodiOCateg))
                     .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                     .addComponent(jButton_Buscar)))
@@ -721,7 +737,7 @@ public void actionPerformed(java.awt.event.ActionEvent evt) {
                 .addComponent(jRadioButton_PorCategoria)
                 .addComponent(jRadioButton_PorCodigo))
             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-            .addComponent(jLabel15)
+            .addComponent(jLabel_CodOCateg)
             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
             .addGroup(jPanel_VerVentasPorProdLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                 .addGroup(jPanel_VerVentasPorProdLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -784,6 +800,13 @@ public void actionPerformed(java.awt.event.ActionEvent evt) {
 
     jButton6.setText("jButton6");
 
+    jButton1.setText("Regresar");
+    jButton1.addActionListener(new java.awt.event.ActionListener() {
+        public void actionPerformed(java.awt.event.ActionEvent evt) {
+            jButton1ActionPerformed(evt);
+        }
+    });
+
     javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
     this.setLayout(layout);
     layout.setHorizontalGroup(
@@ -813,6 +836,10 @@ public void actionPerformed(java.awt.event.ActionEvent evt) {
                         .addComponent(jButton6, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(jButton2))))
             .addContainerGap(109, Short.MAX_VALUE))
+        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+            .addGap(0, 0, Short.MAX_VALUE)
+            .addComponent(jButton1)
+            .addGap(100, 100, 100))
     );
 
     layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {jButton2, jButton3, jButton4, jButton5, jButton6, jButton_VentasPorCliente, jButton_VentasPorFecha, jButton_VentasPorProd});
@@ -834,7 +861,9 @@ public void actionPerformed(java.awt.event.ActionEvent evt) {
                 .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addComponent(jButton6, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addComponent(jButton5, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE))
-            .addContainerGap(189, Short.MAX_VALUE))
+            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 131, Short.MAX_VALUE)
+            .addComponent(jButton1)
+            .addGap(35, 35, 35))
     );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -918,15 +947,19 @@ public void actionPerformed(java.awt.event.ActionEvent evt) {
         DateFormat dateF = new SimpleDateFormat("yyyy/MM/dd");//formato para consultar
         DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd-HH-mm-ss-SSS0");//formato fecha act
         if (jRadioButton_ExcelProd.isSelected()) {//para mostrar en Excel
+            String concepto = "Ventas Por Producto";
             Direct_Control_BD AdminBD = Direct_Control_BD.getInstance();
             if (jRadioButton_PorCodigo.isSelected()) {
-                AdminBD.VerFacturasPoridProducto(dateF.format(//Consluta de Fact Por Prod
+                concepto = "Ventas Por Producto";
+                AdminBD.VerFacturasPoridProducto(dateF.format(//Consulta de Fact Por Prod
                         dateChooserCombo_IniProd.getSelectedDate().getTime()),
-                        dateF.format(dateChooserCombo_FinProd.getSelectedDate().getTime()),jTextField_CodiOCateg.toString());
+                        dateF.format(dateChooserCombo_FinProd.getSelectedDate().getTime()), jTextField_CodiOCateg.getText());
             } else if (jRadioButton_PorCategoria.isSelected()) {
-                AdminBD.VerFacturasPoridProducto(dateF.format(//Consluta de Fact Por Categ 
+                concepto = "Ventas de Productos Para la Categoria " + jTextField_CodiOCateg.getText();
+
+                AdminBD.FacturasPorCategoriaDeProd(dateF.format(//Consluta de Fact Por Categ 
                         dateChooserCombo_IniProd.getSelectedDate().getTime()),
-                        dateF.format(dateChooserCombo_FinProd.getSelectedDate().getTime()),jTextField_CodiOCateg.toString());
+                        dateF.format(dateChooserCombo_FinProd.getSelectedDate().getTime()), jTextField_CodiOCateg.getText());
             }
             String[] infoEmpresa = {"Joe S.A ", "Oriente pa dentro", "Cartago,"
                 + " CA 20320", "Telefono:2650-11-36, fax:2655-0203"};
@@ -941,7 +974,7 @@ public void actionPerformed(java.awt.event.ActionEvent evt) {
                         AdminBD.getNombresColumnas(),
                         dateF1.format(dateChooserCombo_IniProd.getSelectedDate().getTime()),
                         dateF1.format(dateChooserCombo_FinProd.getSelectedDate().getTime()),
-                        "Ventas Por Producto");
+                        concepto);
             } catch (IOException ex) {
                 Logger.getLogger(JPanel_Reportes.class.getName()).log(Level.SEVERE, null, ex);
             } catch (WriteException ex) {
@@ -971,6 +1004,31 @@ public void actionPerformed(java.awt.event.ActionEvent evt) {
         // TODO add your handling code here:
     }//GEN-LAST:event_jRadioButton_PantallaProdActionPerformed
 
+    private void jRadioButton_PorCodigoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButton_PorCodigoActionPerformed
+        jTextField_CodiOCateg.setText("");
+        jLabel_CodOCateg.setText("Codigo del Producto");
+    }//GEN-LAST:event_jRadioButton_PorCodigoActionPerformed
+
+    private void jRadioButton_PorCategoriaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButton_PorCategoriaActionPerformed
+        jTextField_CodiOCateg.setText("");
+        jLabel_CodOCateg.setText("Categoria del Producto");
+    }//GEN-LAST:event_jRadioButton_PorCategoriaActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        VentanaDeInicio panelReportes = VentanaDeInicio.getInstance();
+        setVisible(false);
+        panelReportes.jPanel_VentanaPrincipal.setVisible(true);
+
+
+    }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jButton_BuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_BuscarActionPerformed
+        if (jRadioButton_PorCodigo.isSelected()) {
+        } else if (jRadioButton_PorCategoria.isSelected()) {
+
+        }
+    }//GEN-LAST:event_jButton_BuscarActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.ButtonGroup buttonGroup1;
@@ -982,6 +1040,7 @@ public void actionPerformed(java.awt.event.ActionEvent evt) {
     private datechooser.beans.DateChooserCombo dateChooserCombo_IniClie;
     private datechooser.beans.DateChooserCombo dateChooserCombo_IniProd;
     private datechooser.beans.DateChooserCombo dateChooserCombo_IniVent;
+    private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
@@ -1004,7 +1063,6 @@ public void actionPerformed(java.awt.event.ActionEvent evt) {
     private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel14;
-    private javax.swing.JLabel jLabel15;
     private javax.swing.JLabel jLabel16;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -1014,6 +1072,7 @@ public void actionPerformed(java.awt.event.ActionEvent evt) {
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
+    private javax.swing.JLabel jLabel_CodOCateg;
     private javax.swing.JLabel jLabel_tituloReportes;
     private javax.swing.JPanel jPanel_VentasPorCliente;
     private javax.swing.JPanel jPanel_VerVentasPorFech;

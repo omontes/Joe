@@ -80,6 +80,18 @@ public class JPanel_CrearFactura extends javax.swing.JPanel {
         jLabel5 = new javax.swing.JLabel();
         jTextField_busqueProducto = new javax.swing.JTextField();
         jLabel_CodNoEncontrado = new javax.swing.JLabel();
+        jDialog_DescuentoUnitario = new javax.swing.JDialog();
+        jPanel3 = new javax.swing.JPanel();
+        jLabel_DescripcionDescUnitario = new javax.swing.JLabel();
+        jLabel13 = new javax.swing.JLabel();
+        jLabel14 = new javax.swing.JLabel();
+        jButton_IngresarDescuento = new javax.swing.JButton();
+        jButton_CancelarDescuentoUnitario = new javax.swing.JButton();
+        jLabel15 = new javax.swing.JLabel();
+        jFormattedTextField_PrecioRegular = new javax.swing.JFormattedTextField();
+        jFormattedTextField_descUnitario = new javax.swing.JFormattedTextField();
+        jFormattedTextField_RebajaDelDesc = new javax.swing.JFormattedTextField();
+        jFormattedTextField_PrecioConDesc = new javax.swing.JFormattedTextField();
         jButton_CreaProducto = new javax.swing.JButton();
         jButton_VerProducto = new javax.swing.JButton();
         jButton_EliminaFila = new javax.swing.JButton();
@@ -146,8 +158,13 @@ public class JPanel_CrearFactura extends javax.swing.JPanel {
                 jButton_CancelarCrearProductoActionPerformed(evt);
             }
         });
+        jButton_CancelarCrearProducto.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                jButton_CancelarCrearProductoKeyPressed(evt);
+            }
+        });
 
-        jFormattedTextField_precioProducto.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(new java.text.DecimalFormat("#,##0.##"))));
+        jFormattedTextField_precioProducto.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(new java.text.DecimalFormat("#,##0.00"))));
         jFormattedTextField_precioProducto.setText("0.00");
         jFormattedTextField_precioProducto.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusGained(java.awt.event.FocusEvent evt) {
@@ -464,6 +481,144 @@ public class JPanel_CrearFactura extends javax.swing.JPanel {
             .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
 
+        jDialog_DescuentoUnitario.setMinimumSize(new java.awt.Dimension(440, 235));
+
+        jPanel3.setBackground(new java.awt.Color(153, 153, 153));
+        jPanel3.setPreferredSize(new java.awt.Dimension(429, 201));
+
+        jLabel_DescripcionDescUnitario.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel_DescripcionDescUnitario.setText("Descripcion");
+
+        jLabel13.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel13.setText("Precio Regular");
+
+        jLabel14.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel14.setText("Desc en %");
+
+        jButton_IngresarDescuento.setText("Aceptar");
+        jButton_IngresarDescuento.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton_IngresarDescuentoActionPerformed(evt);
+            }
+        });
+
+        jButton_CancelarDescuentoUnitario.setText("Cancelar");
+        jButton_CancelarDescuentoUnitario.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton_CancelarDescuentoUnitarioActionPerformed(evt);
+            }
+        });
+
+        jLabel15.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel15.setText("Precio con Desc");
+
+        jFormattedTextField_PrecioRegular.setEditable(false);
+        jFormattedTextField_PrecioRegular.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(new java.text.DecimalFormat("C#,##0.00;(C#,##0.00)"))));
+        jFormattedTextField_PrecioRegular.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        jFormattedTextField_PrecioRegular.setText("0.00");
+        jFormattedTextField_PrecioRegular.addPropertyChangeListener(new java.beans.PropertyChangeListener() {
+            public void propertyChange(java.beans.PropertyChangeEvent evt) {
+                jFormattedTextField_PrecioRegularPropertyChange(evt);
+            }
+        });
+
+        jFormattedTextField_descUnitario.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(new java.text.DecimalFormat("#0.00"))));
+        jFormattedTextField_descUnitario.setText("0.00");
+        jFormattedTextField_descUnitario.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jFormattedTextField_descUnitarioMouseClicked(evt);
+            }
+        });
+        jFormattedTextField_descUnitario.addPropertyChangeListener(new java.beans.PropertyChangeListener() {
+            public void propertyChange(java.beans.PropertyChangeEvent evt) {
+                jFormattedTextField_descUnitarioPropertyChange(evt);
+            }
+        });
+        jFormattedTextField_descUnitario.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                jFormattedTextField_descUnitarioKeyPressed(evt);
+            }
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                jFormattedTextField_descUnitarioKeyTyped(evt);
+            }
+        });
+
+        jFormattedTextField_RebajaDelDesc.setEditable(false);
+        jFormattedTextField_RebajaDelDesc.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(new java.text.DecimalFormat("C#,##0.00;(C#,##0.00)"))));
+        jFormattedTextField_RebajaDelDesc.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        jFormattedTextField_RebajaDelDesc.setText("0.00");
+
+        jFormattedTextField_PrecioConDesc.setEditable(false);
+        jFormattedTextField_PrecioConDesc.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(new java.text.DecimalFormat("C#,##0.00;(C#,##0.00)"))));
+        jFormattedTextField_PrecioConDesc.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        jFormattedTextField_PrecioConDesc.setText("0.00");
+
+        javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
+        jPanel3.setLayout(jPanel3Layout);
+        jPanel3Layout.setHorizontalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel3Layout.createSequentialGroup()
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel3Layout.createSequentialGroup()
+                        .addGap(80, 80, 80)
+                        .addComponent(jButton_IngresarDescuento))
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel3Layout.createSequentialGroup()
+                        .addGap(29, 29, 29)
+                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
+                                .addComponent(jLabel14, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addGap(18, 18, 18)
+                                .addComponent(jFormattedTextField_descUnitario, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(jPanel3Layout.createSequentialGroup()
+                                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel_DescripcionDescUnitario, javax.swing.GroupLayout.PREFERRED_SIZE, 144, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jLabel13, javax.swing.GroupLayout.PREFERRED_SIZE, 129, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jLabel15, javax.swing.GroupLayout.PREFERRED_SIZE, 132, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(0, 5, Short.MAX_VALUE)))))
+                .addGap(18, 18, 18)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jFormattedTextField_PrecioRegular)
+                    .addComponent(jButton_CancelarDescuentoUnitario)
+                    .addComponent(jFormattedTextField_RebajaDelDesc, javax.swing.GroupLayout.DEFAULT_SIZE, 219, Short.MAX_VALUE)
+                    .addComponent(jFormattedTextField_PrecioConDesc))
+                .addContainerGap(14, Short.MAX_VALUE))
+        );
+        jPanel3Layout.setVerticalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel3Layout.createSequentialGroup()
+                .addGap(19, 19, 19)
+                .addComponent(jLabel_DescripcionDescUnitario, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel13, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jFormattedTextField_PrecioRegular, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel14, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jFormattedTextField_descUnitario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jFormattedTextField_RebajaDelDesc, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel15, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jFormattedTextField_PrecioConDesc, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jButton_IngresarDescuento)
+                    .addComponent(jButton_CancelarDescuentoUnitario))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+
+        javax.swing.GroupLayout jDialog_DescuentoUnitarioLayout = new javax.swing.GroupLayout(jDialog_DescuentoUnitario.getContentPane());
+        jDialog_DescuentoUnitario.getContentPane().setLayout(jDialog_DescuentoUnitarioLayout);
+        jDialog_DescuentoUnitarioLayout.setHorizontalGroup(
+            jDialog_DescuentoUnitarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+        );
+        jDialog_DescuentoUnitarioLayout.setVerticalGroup(
+            jDialog_DescuentoUnitarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+        );
+
         jButton_CreaProducto.setText("Crear Producto");
         jButton_CreaProducto.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -581,7 +736,7 @@ public class JPanel_CrearFactura extends javax.swing.JPanel {
         jLabel12.setText("Total");
 
         jFormattedTextField_DescuentoTotal.setEditable(false);
-        jFormattedTextField_DescuentoTotal.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(new java.text.DecimalFormat("C#,##0.00;(C#,##0.00)"))));
+        jFormattedTextField_DescuentoTotal.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(new java.text.DecimalFormat(""))));
         jFormattedTextField_DescuentoTotal.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         jFormattedTextField_DescuentoTotal.setText("0.00");
 
@@ -647,8 +802,8 @@ public class JPanel_CrearFactura extends javax.swing.JPanel {
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addComponent(jComboBox_CategoriaTipoPago, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(370, 370, 370)
-                                .addComponent(jLabel_FechaFact, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18)
+                                .addComponent(jLabel_FechaFact, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addComponent(jLabel_Fecha, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(layout.createSequentialGroup()
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -811,7 +966,25 @@ public class JPanel_CrearFactura extends javax.swing.JPanel {
     }//GEN-LAST:event_jButton_EliminaFilaActionPerformed
 
     private void jButton_DescuentoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_DescuentoActionPerformed
-        // TODO add your handling code here:
+        MyTableModel_FACT model = (MyTableModel_FACT) jTable_Factura.getModel();
+        int row = jTable_Factura.getSelectedRow();
+        String idProducto = model.getValueAt(row, 0).toString();//obtiene el id del 
+        String precioSinCorregir = model.getValueAt(row, 3).toString();
+        //producto seleccionado para VerProducto
+        if (!"".equals(idProducto)) {//verifica que se quiere ver un producto
+            String price = precioSinCorregir.replace("C", "");
+            DecimalFormat decimalf = (DecimalFormat) NumberFormat.getInstance();
+            decimalf.setParseBigDecimal(true);
+            BigDecimal PrecioCorregido = null;
+            try {
+                PrecioCorregido = (BigDecimal) decimalf.parseObject(price);
+            } catch (ParseException ex) {
+                Logger.getLogger(MyTableModelListener_FACT.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            this.aplicarDescAlProducto(idProducto, PrecioCorregido);
+        } else {
+            System.out.println("Porfavor Seleccione un producto");
+        }
     }//GEN-LAST:event_jButton_DescuentoActionPerformed
 
     private void jTable_FacturaKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTable_FacturaKeyPressed
@@ -847,13 +1020,9 @@ public class JPanel_CrearFactura extends javax.swing.JPanel {
         boolean existeProducto = AdminBD.verSiExisteCod(codigo);
         if (!existeProducto) {
             BigDecimal bd = new BigDecimal(this.jFormattedTextField_precioProducto.getValue().toString());
-            System.out.println(bd.toString());
             AdminBD.crearProducto(codigo, this.jTextField_nombre.getText(),bd,0, dateFormat.format(date), "A", null, 1);
             AdminBD.insertarEnInventario(this.jTextField_codigo.getText(), 1, Integer.parseInt(this.jFormattedTextField_cantidadProducto.getValue().toString()));
-            this.jFormattedTextField_cantidadProducto.setText("");
-            this.jFormattedTextField_precioProducto.setText("");
-            this.jTextField_codigo.setText("");
-            this.jTextField_nombre.setText("");
+            this.clearCrearProducto();
             this.jDialog_CrearProducto.dispose();
             MyTableModel_FACT model = (MyTableModel_FACT) jTable_Factura.getModel();
             model.setValueAt(codigo, jTable_Factura.getSelectedRow(), 0);
@@ -881,6 +1050,7 @@ public class JPanel_CrearFactura extends javax.swing.JPanel {
 
     private void jButton_CrearProductoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_CrearProductoActionPerformed
        this.CrearProducto();
+       this.clearCrearProducto();
 
     }//GEN-LAST:event_jButton_CrearProductoActionPerformed
 
@@ -889,11 +1059,18 @@ public class JPanel_CrearFactura extends javax.swing.JPanel {
         jTable_Factura.requestFocus();
         this.jDialog_VerProducto.dispose();
     }//GEN-LAST:event_jButton2ActionPerformed
-
-    private void jButton_CancelarCrearProductoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_CancelarCrearProductoActionPerformed
-        this.jDialog_CrearProducto.dispose();
+    private void clearCrearProducto(){
+        this.jTextField_codigo.setText("");
+        this.jTextField_nombre.setText("");
         this.jFormattedTextField_cantidadProducto.setText("0");
         this.jFormattedTextField_precioProducto.setText("0.00");
+        
+        
+    
+    }
+    private void jButton_CancelarCrearProductoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_CancelarCrearProductoActionPerformed
+        this.clearCrearProducto();
+        this.jDialog_CrearProducto.dispose();
         //Para que el usuario se mantenga en la tabla
         jTable_Factura.changeSelection( jTable_Factura.getSelectedRow(), jTable_Factura.getSelectedColumn(), false, false );
         jTable_Factura.requestFocus();
@@ -999,8 +1176,10 @@ public class JPanel_CrearFactura extends javax.swing.JPanel {
     private void jFormattedTextField_precioProductoKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jFormattedTextField_precioProductoKeyPressed
          if(evt.getKeyCode()==10){
             this.jFormattedTextField_precioProducto.transferFocus();
-            
-        
+              
+        }
+         if (evt.isControlDown()) {
+            evt.consume();
         }
     }//GEN-LAST:event_jFormattedTextField_precioProductoKeyPressed
 
@@ -1016,7 +1195,9 @@ public class JPanel_CrearFactura extends javax.swing.JPanel {
         if(evt.getKeyCode()==10){
             this.jFormattedTextField_cantidadProducto.transferFocus();
             
-        
+        }
+        if (evt.isControlDown()) {
+            evt.consume();
         }
     }//GEN-LAST:event_jFormattedTextField_cantidadProductoKeyPressed
 
@@ -1179,6 +1360,130 @@ public class JPanel_CrearFactura extends javax.swing.JPanel {
         
                 
     }//GEN-LAST:event_jButton_BuscarProductoActionPerformed
+
+    private void jButton_CancelarCrearProductoKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jButton_CancelarCrearProductoKeyPressed
+         if(evt.getKeyCode()==10){
+            this.jButton_CancelarCrearProducto.doClick();
+        }
+    }//GEN-LAST:event_jButton_CancelarCrearProductoKeyPressed
+
+    private void jFormattedTextField_PrecioRegularPropertyChange(java.beans.PropertyChangeEvent evt) {//GEN-FIRST:event_jFormattedTextField_PrecioRegularPropertyChange
+        if(evt.getPropertyName().equals("value")){
+        String text = evt.getNewValue().toString();
+        DecimalFormat decimalf = (DecimalFormat) NumberFormat.getInstance();
+        decimalf.setParseBigDecimal(true);
+        BigDecimal PrecioRegular = null;
+                try {
+                    PrecioRegular = (BigDecimal) decimalf.parseObject(text);
+                } catch (ParseException ex) {
+                    Logger.getLogger(MyTableModelListener_FACT.class.getName()).log(Level.SEVERE, null, ex);
+                }
+                this.jFormattedTextField_PrecioConDesc.setValue(PrecioRegular);
+                double descuentoAaplicar= Double.parseDouble(this.jFormattedTextField_descUnitario.getText());
+                if(descuentoAaplicar<=100 & descuentoAaplicar>0){
+                    double desc= descuentoAaplicar/100;
+                    BigDecimal descuento = BigDecimal.valueOf(desc);
+                    BigDecimal PrecioNuevo;
+                    BigDecimal rebaja=PrecioRegular.multiply(descuento);
+                    PrecioNuevo = PrecioRegular.subtract(rebaja);
+                    this.jFormattedTextField_RebajaDelDesc.setValue(rebaja);
+                    this.jFormattedTextField_PrecioConDesc.setValue(PrecioNuevo);
+                }
+                else{
+                    return;
+                
+                }
+                
+        }
+            
+    }//GEN-LAST:event_jFormattedTextField_PrecioRegularPropertyChange
+
+    private void jFormattedTextField_descUnitarioPropertyChange(java.beans.PropertyChangeEvent evt) {//GEN-FIRST:event_jFormattedTextField_descUnitarioPropertyChange
+        if (evt.getPropertyName().equals("value")) {
+            String text = this.jFormattedTextField_PrecioRegular.getText();
+            String textaCorregir = text.replace("C", "");
+            DecimalFormat decimalf = (DecimalFormat) NumberFormat.getInstance();
+            decimalf.setParseBigDecimal(true);
+            BigDecimal PrecioSinDesc = null;
+            try {
+                PrecioSinDesc = (BigDecimal) decimalf.parseObject(textaCorregir);
+            } catch (ParseException ex) {
+                Logger.getLogger(MyTableModelListener_FACT.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            this.jFormattedTextField_PrecioConDesc.setValue(PrecioSinDesc);
+            double descuentoAaplicar = Double.parseDouble(evt.getNewValue().toString());
+            if (descuentoAaplicar <= 100 & descuentoAaplicar > 0) {
+                double desc = descuentoAaplicar / 100;
+                BigDecimal descuento = BigDecimal.valueOf(desc);
+                BigDecimal PrecioNuevo;
+                BigDecimal rebaja = PrecioSinDesc.multiply(descuento);
+                PrecioNuevo = PrecioSinDesc.subtract(rebaja);
+                this.jFormattedTextField_RebajaDelDesc.setValue(rebaja);
+                this.jFormattedTextField_PrecioConDesc.setValue(PrecioNuevo);
+            } else if (descuentoAaplicar == 0.0) {
+                this.jFormattedTextField_RebajaDelDesc.setValue(descuentoAaplicar);
+            } else {
+                this.jFormattedTextField_descUnitario.setValue(0.00);
+                JOptionPane.showMessageDialog(
+                          null,
+                          "No se puede aplicar un descuento de "+descuentoAaplicar,
+                          "Alert!", JOptionPane.ERROR_MESSAGE);
+            }
+        }
+    }//GEN-LAST:event_jFormattedTextField_descUnitarioPropertyChange
+
+    private void jFormattedTextField_descUnitarioKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jFormattedTextField_descUnitarioKeyPressed
+        if(evt.getKeyCode()==10){
+             this.jFormattedTextField_descUnitario.transferFocus();
+             
+            
+        
+        }
+        if (evt.isControlDown()) {
+            evt.consume();
+        }
+    }//GEN-LAST:event_jFormattedTextField_descUnitarioKeyPressed
+
+    private void jFormattedTextField_descUnitarioKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jFormattedTextField_descUnitarioKeyTyped
+        int tecla= evt.getKeyChar();
+        if(tecla==KeyEvent.VK_COMMA){
+            evt.consume();
+        }
+        if(tecla==KeyEvent.VK_PERIOD){
+            return;
+        };
+        if (!Character.isDigit(tecla) & !Character.isISOControl(evt.getKeyChar())) {
+            Toolkit.getDefaultToolkit().beep();
+            evt.consume();
+        }
+    }//GEN-LAST:event_jFormattedTextField_descUnitarioKeyTyped
+    private void clearDescuentoUnitario() {
+        this.jFormattedTextField_descUnitario.setText("0.00");
+        this.jFormattedTextField_RebajaDelDesc.setText("0.00");
+        this.jFormattedTextField_PrecioConDesc.setText("0.00");
+    }
+    private void jButton_IngresarDescuentoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_IngresarDescuentoActionPerformed
+        this.clearDescuentoUnitario();
+        MyTableModel_FACT model = (MyTableModel_FACT) jTable_Factura.getModel();
+        int row =jTable_Factura.getSelectedRow();
+        model.setValueAt(this.jFormattedTextField_PrecioConDesc.getValue(),row,3);
+        jTable_Factura.changeSelection( row+1, jTable_Factura.getSelectedColumn(), false, false );
+        jTable_Factura.requestFocus();
+        this.jDialog_DescuentoUnitario.dispose();
+        
+    }//GEN-LAST:event_jButton_IngresarDescuentoActionPerformed
+
+    private void jButton_CancelarDescuentoUnitarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_CancelarDescuentoUnitarioActionPerformed
+        this.clearDescuentoUnitario();
+        int row =jTable_Factura.getSelectedRow();
+        jTable_Factura.changeSelection(row+1, jTable_Factura.getSelectedColumn(), false, false );
+        jTable_Factura.requestFocus();
+        this.jDialog_DescuentoUnitario.dispose();
+    }//GEN-LAST:event_jButton_CancelarDescuentoUnitarioActionPerformed
+
+    private void jFormattedTextField_descUnitarioMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jFormattedTextField_descUnitarioMouseClicked
+       this.jFormattedTextField_descUnitario.selectAll();
+    }//GEN-LAST:event_jFormattedTextField_descUnitarioMouseClicked
     private String[][] obtenerInfoTablaFact() {
         MyTableModel_FACT model = (MyTableModel_FACT) jTable_Factura.getModel();
         int filas = model.getRowCount();
@@ -1283,27 +1588,37 @@ public class JPanel_CrearFactura extends javax.swing.JPanel {
     javax.swing.JButton jButton_BusqueProducto;
     javax.swing.JButton jButton_CancelaBusquedaProducto;
     javax.swing.JButton jButton_CancelarCrearProducto;
+    javax.swing.JButton jButton_CancelarDescuentoUnitario;
     javax.swing.JButton jButton_CreaProducto;
     javax.swing.JButton jButton_CrearProducto;
     javax.swing.JButton jButton_Descuento;
     javax.swing.JButton jButton_EliminaFila;
+    javax.swing.JButton jButton_IngresarDescuento;
     javax.swing.JButton jButton_RegresarFact;
     javax.swing.JButton jButton_VerProducto;
     javax.swing.JButton jButton_aceptarFactura;
     javax.swing.JComboBox jComboBox_CategoriaTipoPago;
     javax.swing.JDialog jDialog_BuscarProductoPorCod;
     javax.swing.JDialog jDialog_CrearProducto;
+    javax.swing.JDialog jDialog_DescuentoUnitario;
     javax.swing.JDialog jDialog_VerProducto;
     javax.swing.JFormattedTextField jFormattedTextField_DescuentoTotal;
+    javax.swing.JFormattedTextField jFormattedTextField_PrecioConDesc;
+    javax.swing.JFormattedTextField jFormattedTextField_PrecioRegular;
+    javax.swing.JFormattedTextField jFormattedTextField_RebajaDelDesc;
     javax.swing.JFormattedTextField jFormattedTextField_SubTotal;
     javax.swing.JFormattedTextField jFormattedTextField_Total;
     javax.swing.JFormattedTextField jFormattedTextField_cantidadProducto;
     javax.swing.JFormattedTextField jFormattedTextField_desc;
+    javax.swing.JFormattedTextField jFormattedTextField_descUnitario;
     javax.swing.JFormattedTextField jFormattedTextField_precioProducto;
     javax.swing.JLabel jLabel1;
     javax.swing.JLabel jLabel10;
     javax.swing.JLabel jLabel11;
     javax.swing.JLabel jLabel12;
+    javax.swing.JLabel jLabel13;
+    javax.swing.JLabel jLabel14;
+    javax.swing.JLabel jLabel15;
     javax.swing.JLabel jLabel2;
     javax.swing.JLabel jLabel3;
     javax.swing.JLabel jLabel4;
@@ -1314,6 +1629,7 @@ public class JPanel_CrearFactura extends javax.swing.JPanel {
     javax.swing.JLabel jLabel_Cantidad;
     javax.swing.JLabel jLabel_CodNoEncontrado;
     javax.swing.JLabel jLabel_Descripcion;
+    javax.swing.JLabel jLabel_DescripcionDescUnitario;
     javax.swing.JLabel jLabel_Fecha;
     javax.swing.JLabel jLabel_FechaFact;
     javax.swing.JLabel jLabel_Nombre;
@@ -1328,6 +1644,7 @@ public class JPanel_CrearFactura extends javax.swing.JPanel {
     javax.swing.JLayeredPane jLayeredPane_VerProducto;
     javax.swing.JPanel jPanel1;
     javax.swing.JPanel jPanel2;
+    javax.swing.JPanel jPanel3;
     javax.swing.JScrollPane jScrollPane2;
     javax.swing.JTable jTable_Factura;
     javax.swing.JTextField jTextField_Detalle;
@@ -1378,5 +1695,14 @@ public class JPanel_CrearFactura extends javax.swing.JPanel {
         String factura = Integer.toString(AdminBD.ObtenerUltimoidFact() + 1);
         panelCreaFact.jLabel_NumerodeFact.setText(factura);
         panelCreaFact.personalizarTablaFactura();
+    }
+
+    private void aplicarDescAlProducto(String idProducto, BigDecimal precio) {
+        this.jDialog_DescuentoUnitario.setVisible(true);
+        this.jLabel_DescripcionDescUnitario.setText(idProducto);
+        this.jFormattedTextField_PrecioRegular.setValue(precio);
+        
+        
+        
     }
 }

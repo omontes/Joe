@@ -11,6 +11,7 @@ import java.text.NumberFormat;
 import java.text.ParseException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JFormattedTextField;
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
 import javax.swing.JTextField;
@@ -29,9 +30,9 @@ public class MyTableModelListener_FACT implements TableModelListener {
     private String oldValue; 
     private Direct_Control_BD BDmanagment;
     //Es el TextField que va a guardar los datos segun lo que pase en la tabla
-    private JTextField total;
+    private JFormattedTextField total;
 
-  MyTableModelListener_FACT(JTable table,String oldValue,JTextField total,
+  MyTableModelListener_FACT(JTable table,String oldValue,JFormattedTextField total,
           Direct_Control_BD BDmanagment) {
     this.table = table;
     this.oldValue=oldValue;
@@ -57,11 +58,21 @@ public class MyTableModelListener_FACT implements TableModelListener {
       }
       String info = data.toString();
       String oldValue=this.getOldValue();
-          
-      BigDecimal totalFact = new BigDecimal(this.total.getText());
+ 
+      String totalFacturaSinCorregir = this.total.getText();
+      String totalf = totalFacturaSinCorregir.replace("C", "");
+      DecimalFormat decimalformat = (DecimalFormat) NumberFormat.getInstance();
+      decimalformat.setParseBigDecimal(true);
+      BigDecimal totalFact = null;
+      try {
+          totalFact = (BigDecimal) decimalformat.parseObject(totalf);
+      } catch (ParseException ex) {
+          Logger.getLogger(MyTableModelListener_FACT.class.getName()).log(Level.SEVERE, null, ex);
+      }
+        
       if (columnName.equals("Sub-Total") & totalFact.toString().equals("0.0")) {
           BigDecimal subtotal = new BigDecimal(info);
-          this.total.setText(subtotal.toString());
+          this.total.setValue(subtotal);
           
       }
       if (columnName.equals("Sub-Total") &  !totalFact.toString().equals("0.0")) {
@@ -70,7 +81,7 @@ public class MyTableModelListener_FACT implements TableModelListener {
           if(! oldValue.equals("")){
               subtotal_old=new BigDecimal(oldValue);
           }
-          this.total.setText((subtotal.subtract(subtotal_old)).add(totalFact).toString());
+          this.total.setValue((subtotal.subtract(subtotal_old)).add(totalFact));
           
       }
       //Esta condicion es para hacer que no se inserte un precio sin haber un codigo

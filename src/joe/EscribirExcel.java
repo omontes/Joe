@@ -14,7 +14,12 @@ import java.util.Locale;
 
 import jxl.Workbook;
 import jxl.WorkbookSettings;
+import jxl.format.Alignment;
+import jxl.format.Border;
+import jxl.format.BorderLineStyle;
+import jxl.format.CellFormat;
 import jxl.format.Colour;
+import jxl.format.ScriptStyle;
 import jxl.write.Label;
 import jxl.write.Number;
 import jxl.write.WritableCellFormat;
@@ -37,6 +42,7 @@ public class EscribirExcel {
     private WritableCellFormat times12; // formato de la celda(esta encapsula)
     private String nombreArchivoExcel;//nombre del archivo excel
     private static EscribirExcel escribir;
+    private WritableCellFormat timesLines;
 
     /**
      * asigna el el nombre del archivoExcel
@@ -108,6 +114,13 @@ public class EscribirExcel {
         times14pt.setColour(Colour.BLUE_GREY);
         times11pt.setColour(Colour.BLUE_GREY);
 
+        // formato para escribir linea separadora
+        WritableFont timesLinespt = new WritableFont(WritableFont.TIMES, 14);
+        timesLines = new WritableCellFormat(timesLinespt);
+        timesLines.setBorder(Border.TOP, BorderLineStyle.SLANTED_DASH_DOT, Colour.BLUE_GREY);
+        timesLines.setAlignment(Alignment.CENTRE);
+        
+        
         //asignar el tipo de letra times12pt al formato times12
         times12 = new WritableCellFormat(times12pt);
         //asignar el tipo de letra times10pt al formato times10
@@ -141,11 +154,23 @@ public class EscribirExcel {
         establecerNombresDecolumnas(nombresColum, hojaExcel);
 
         //cargar datos de las facturas
+        int ultimaFila = 10;
         if (datosFact.length != 0) {//verifica que contenga datos
-            cargarDatos(datosFact, hojaExcel);
+            ultimaFila = cargarDatos(datosFact, hojaExcel);
+
+            //Escribir el total dependiendo el tipo de reporte
+            escribirResultado(tipoDeReporte, hojaExcel, ultimaFila);
         }
+        else{// si no hay datos escribe total cero
+            
+        hojaExcel.addCell(new Label(2, 11, "Total  0",
+                timesLines));
+        }
+
+       
         //Escribe los datos contenidos en este libro en formato Excel
         workbook.write();
+
         //cerrar libro liberando memoria
         workbook.close();
 
@@ -154,29 +179,11 @@ public class EscribirExcel {
             Runtime.getRuntime().exec("rundll32 url.dll,FileProtocolHandler "
                     + nombreArchivoExcel);
         } catch (Exception e) {
-            System.out.println("Error al abrir el archivo " + 
-                    nombreArchivoExcel + "\n" + e.getMessage());
+            System.out.println("Error al abrir el archivo "
+                    + nombreArchivoExcel + "\n" + e.getMessage());
         }
-    }
 
-    /////**************borrar  a addCaption////////////////////////*****
-    /**
-     * escribe en la celda
-     *
-     * @param sheet
-     * @param column
-     * @param row
-     * @param s
-     * @throws RowsExceededException
-     * @throws WriteException
-     */
-    private void addCaption(WritableSheet sheet, int column, int row, String s)
-            throws RowsExceededException, WriteException {
-        Label label;
-        label = new Label(column, row, s);
-        sheet.addCell(label);
     }
-    //////////////////////////////////////////////////////
 
     /**
      * cargar datos de las facturas Recortar que la ultima celda contine los
@@ -185,10 +192,10 @@ public class EscribirExcel {
      * @param datosFact
      * @param hojaExcel
      */
-    private void cargarDatos(Object[][] datosFact, WritableSheet hojaExcel)
+    private int cargarDatos(Object[][] datosFact, WritableSheet hojaExcel)
             throws WriteException {
         int fil = 10;//fil en la que se empieza a colocar los datos
-        for (int fila = 0; fila < datosFact.length - 1; fila++, fil++) {
+        for (int fila = 0; fila < datosFact.length; fila++, fil++) {
             for (int col = 0; col < datosFact[0].length; col++) {
                 try {//escribir segun tipo(int o string)
                     hojaExcel.addCell(new Number(col, fil,
@@ -199,15 +206,38 @@ public class EscribirExcel {
                 }
             }
         }
-        //escribir ultima fila(Totales)
+//        //escribir linea separadora
+//        WritableFont timesLinespt = new WritableFont(WritableFont.TIMES, 14);
+//        timesLines = new WritableCellFormat(timesLinespt);
+//        timesLines.setBorder(Border.TOP, BorderLineStyle.SLANTED_DASH_DOT, Colour.BLUE_GREY);
+//        timesLines.setAlignment(Alignment.CENTRE);
         for (int col = 0; col < datosFact[0].length; col++) {
-            try {
-                hojaExcel.addCell(new Number(col, fil, Integer.parseInt(
-                        datosFact[datosFact.length - 1][col].toString()), times14));
-            } catch (NumberFormatException | WriteException e) {
-                hojaExcel.addCell(new Label(col, fil,
-                        datosFact[datosFact.length - 1][col].toString(), times14));
-            }
+            hojaExcel.addCell(new Label(col, fil + 1, "", timesLines));
         }
+        return fil;
+
+    }
+
+    private void escribirResultado(String tipoDeReporte, WritableSheet hojaExc,
+            int ultimaFila) throws WriteException {
+        switch (tipoDeReporte) {
+            case "Ventas Por Fechas":
+                hojaExc.addCell(new Label(1, ultimaFila + 1, "       Total Facturas",
+                        timesLines));
+                hojaExc.addCell(new jxl.write.Formula(2, ultimaFila + 1, //total de fact
+                        "COUNT(C11:C" + ultimaFila + ")", timesLines));
+                hojaExc.addCell(new jxl.write.Formula(3, ultimaFila + 1,
+                        "SUM(D11:D" + ultimaFila + ")", timesLines));
+                hojaExc.addCell(new jxl.write.Formula(6, ultimaFila + 1,
+                        "SUM(G11:G" + ultimaFila + ")", timesLines));
+                break;
+            case "Ventas Por Cliente":
+                //hacer algo
+                break;
+            case "Ventas Por Producto":
+                //hacer algo
+                break;
+        }
+
     }
 }

@@ -1592,4 +1592,22 @@ public class Direct_Control_BD {
         }
     }
 
+    public void VerFacturasPoridProducto(String FechaIni, String FechaFin, String idProducto) {
+        try {
+            String Fact = this.readSql("../Joe"
+                    + "/src/sql_files/VentasPorRangoFechYidProd.sql");// hacer consulta por prod
+            PreparedStatement stm = this.conection.prepareStatement(Fact);
+//            stm.setString(1, idProducto);
+//            stm.setString(2, FechaIni);
+//            stm.setString(3, FechaFin);
+            ResultSet rs = stm.executeQuery();
+            setColumnNames(Get_Columnas(rs));
+            setData2(ResultSet_Array(rs));
+        } catch (Exception e) {
+
+            System.out.println("Error al Ver Facturas Por idProducto");
+
+        }
+    }
+
 }

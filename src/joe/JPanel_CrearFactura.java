@@ -163,6 +163,7 @@ public class JPanel_CrearFactura extends javax.swing.JPanel {
         });
 
         jFormattedTextField_cantidadProducto.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(new java.text.DecimalFormat("#0"))));
+        jFormattedTextField_cantidadProducto.setText("0");
         jFormattedTextField_cantidadProducto.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusGained(java.awt.event.FocusEvent evt) {
                 jFormattedTextField_cantidadProductoFocusGained(evt);
@@ -533,6 +534,7 @@ public class JPanel_CrearFactura extends javax.swing.JPanel {
 
         jLabel_FechaFact.setText("Fecha");
 
+        jFormattedTextField_SubTotal.setEditable(false);
         jFormattedTextField_SubTotal.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(new java.text.DecimalFormat("C#,##0.00;(C#,##0.00)"))));
         jFormattedTextField_SubTotal.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         jFormattedTextField_SubTotal.setText("0.00");
@@ -551,10 +553,18 @@ public class JPanel_CrearFactura extends javax.swing.JPanel {
         jLabel7.setText("Desc.");
 
         jFormattedTextField_desc.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(new java.text.DecimalFormat("#0.00"))));
-        jFormattedTextField_desc.setText("0");
+        jFormattedTextField_desc.setText("0.00");
         jFormattedTextField_desc.addPropertyChangeListener(new java.beans.PropertyChangeListener() {
             public void propertyChange(java.beans.PropertyChangeEvent evt) {
                 jFormattedTextField_descPropertyChange(evt);
+            }
+        });
+        jFormattedTextField_desc.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                jFormattedTextField_descKeyPressed(evt);
+            }
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                jFormattedTextField_descKeyTyped(evt);
             }
         });
 
@@ -569,10 +579,12 @@ public class JPanel_CrearFactura extends javax.swing.JPanel {
         jLabel12.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel12.setText("Total");
 
+        jFormattedTextField_DescuentoTotal.setEditable(false);
         jFormattedTextField_DescuentoTotal.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(new java.text.DecimalFormat("C#,##0.00;(C#,##0.00)"))));
         jFormattedTextField_DescuentoTotal.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         jFormattedTextField_DescuentoTotal.setText("0.00");
 
+        jFormattedTextField_Total.setEditable(false);
         jFormattedTextField_Total.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(new java.text.DecimalFormat("C#,##0.00;(C#,##0.00)"))));
         jFormattedTextField_Total.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         jFormattedTextField_Total.setText("0.00");
@@ -597,15 +609,15 @@ public class JPanel_CrearFactura extends javax.swing.JPanel {
                                 .addGap(189, 189, 189)
                                 .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addGroup(layout.createSequentialGroup()
-                                        .addGap(10, 10, 10)
+                                        .addGap(175, 175, 175)
                                         .addComponent(jLabel12, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE))
                                     .addGroup(layout.createSequentialGroup()
+                                        .addGap(143, 143, 143)
                                         .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(jFormattedTextField_desc, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                        .addComponent(jFormattedTextField_desc, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                         .addComponent(jLabel8)))
                                 .addGap(3, 3, 3)))
@@ -750,11 +762,10 @@ public class JPanel_CrearFactura extends javax.swing.JPanel {
         // fila
         if (jTable_Factura.isEditing()) {
             jTable_Factura.getCellEditor().cancelCellEditing();
-            model.removeRow(row);
             jTable_Factura.revalidate();
             jTable_Factura.repaint();
             jTable_Factura.requestFocus();
-            return;
+            
         }
         String subTotal = model.getValueAt(row, 4).toString();
         if (subTotal != "") {
@@ -1065,23 +1076,27 @@ public class JPanel_CrearFactura extends javax.swing.JPanel {
                 }
                 this.jFormattedTextField_Total.setValue(subTotal);
                 double descuentoAaplicar= Double.parseDouble(this.jFormattedTextField_desc.getText());
-                if(descuentoAaplicar<=100){
+                if(descuentoAaplicar<=100 & descuentoAaplicar>0){
                     double desc= descuentoAaplicar/100;
-                    System.out.println(desc);
                     BigDecimal descuento = BigDecimal.valueOf(desc);
                     BigDecimal nuevoSubTotal;
-                    nuevoSubTotal = subTotal.subtract(subTotal.multiply(descuento));
-                    this.jFormattedTextField_DescuentoTotal.setValue(nuevoSubTotal);
+                    BigDecimal rebaja=subTotal.multiply(descuento);
+                    nuevoSubTotal = subTotal.subtract(rebaja);
+                    this.jFormattedTextField_DescuentoTotal.setValue(rebaja);
+                    this.jFormattedTextField_Total.setValue(nuevoSubTotal);
                 }
                 else{
-                System.out.println("No puede aplicar ese descuento");}
+                    return;
+                
+                }
+                
         }
     }//GEN-LAST:event_jFormattedTextField_SubTotalPropertyChange
 
     private void jFormattedTextField_descPropertyChange(java.beans.PropertyChangeEvent evt) {//GEN-FIRST:event_jFormattedTextField_descPropertyChange
         if (evt.getPropertyName().equals("value")) {
             String text = this.jFormattedTextField_SubTotal.getText();
-              String textaCorregir = text.replace("C", "");
+            String textaCorregir = text.replace("C", "");
             DecimalFormat decimalf = (DecimalFormat) NumberFormat.getInstance();
             decimalf.setParseBigDecimal(true);
             BigDecimal subTotal = null;
@@ -1092,19 +1107,53 @@ public class JPanel_CrearFactura extends javax.swing.JPanel {
             }
             this.jFormattedTextField_Total.setValue(subTotal);
             double descuentoAaplicar = Double.parseDouble(evt.getNewValue().toString());
-            if (descuentoAaplicar <= 100) {
+            if (descuentoAaplicar <= 100 & descuentoAaplicar > 0) {
                 double desc = descuentoAaplicar / 100;
-                System.out.println(desc);
                 BigDecimal descuento = BigDecimal.valueOf(desc);
                 BigDecimal nuevoSubTotal;
-                nuevoSubTotal = subTotal.subtract(subTotal.multiply(descuento));
-                this.jFormattedTextField_DescuentoTotal.setValue(nuevoSubTotal);
+                BigDecimal rebaja = subTotal.multiply(descuento);
+                nuevoSubTotal = subTotal.subtract(rebaja);
+                this.jFormattedTextField_DescuentoTotal.setValue(rebaja);
+                this.jFormattedTextField_Total.setValue(nuevoSubTotal);
+            } else if (descuentoAaplicar == 0.0) {
+                this.jFormattedTextField_DescuentoTotal.setValue(descuentoAaplicar);
+            } else {
+                this.jFormattedTextField_desc.setValue(0.00);
+                JOptionPane.showMessageDialog(
+                          null,
+                          "No se puede aplicar un descuento de "+descuentoAaplicar,
+                          "Alert!", JOptionPane.ERROR_MESSAGE);
             }
-            else{
-            System.out.println(descuentoAaplicar);
-            System.out.println("No puede aplicar un descuento mayor a 100%");}
         }
     }//GEN-LAST:event_jFormattedTextField_descPropertyChange
+
+    private void jFormattedTextField_descKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jFormattedTextField_descKeyPressed
+        if(evt.getKeyCode()==10){
+             jTable_Factura.changeSelection( jTable_Factura.getSelectedRow(), jTable_Factura.getSelectedColumn(), false, false );
+             jTable_Factura.requestFocus();
+             
+            
+        
+        }
+        if (evt.isControlDown()) {
+            evt.consume();
+        }
+    }//GEN-LAST:event_jFormattedTextField_descKeyPressed
+
+    private void jFormattedTextField_descKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jFormattedTextField_descKeyTyped
+        int tecla= evt.getKeyChar();
+        if(tecla==KeyEvent.VK_COMMA){
+            evt.consume();
+        }
+        if(tecla==KeyEvent.VK_PERIOD){
+            return;
+        };
+        if (!Character.isDigit(tecla) & !Character.isISOControl(evt.getKeyChar())) {
+            Toolkit.getDefaultToolkit().beep();
+            evt.consume();
+        }
+
+    }//GEN-LAST:event_jFormattedTextField_descKeyTyped
     private String[][] obtenerInfoTablaFact() {
         MyTableModel_FACT model = (MyTableModel_FACT) jTable_Factura.getModel();
         int filas = model.getRowCount();
@@ -1266,7 +1315,7 @@ public class JPanel_CrearFactura extends javax.swing.JPanel {
         int idFactura = Integer.parseInt(this.jLabel_NumerodeFact.getText());
         String tipoPago = this.jComboBox_CategoriaTipoPago.getSelectedItem().toString();
         String detalle= this.jTextField_Detalle.getText();
-        String totalFacturaSinCorregir = this.jFormattedTextField_SubTotal.getText();
+        String totalFacturaSinCorregir = this.jFormattedTextField_Total.getText();
         String price = totalFacturaSinCorregir.replace("C", "");
         DecimalFormat decimalf = (DecimalFormat) NumberFormat.getInstance();
         decimalf.setParseBigDecimal(true);
@@ -1276,7 +1325,16 @@ public class JPanel_CrearFactura extends javax.swing.JPanel {
         } catch (ParseException ex) {
             Logger.getLogger(MyTableModelListener_FACT.class.getName()).log(Level.SEVERE, null, ex);
         }
-        AdminBD.crearFactura(idFactura,0,tipoPago,1,2,"Cerrada",detalle,totalFact);
+        String DescuentoSinCorregir = this.jFormattedTextField_desc.getText();
+        DecimalFormat decimaldesc = (DecimalFormat) NumberFormat.getInstance();
+        decimaldesc.setParseBigDecimal(true);
+        BigDecimal descuento = null;
+        try {
+            descuento = (BigDecimal) decimaldesc.parseObject(DescuentoSinCorregir);
+        } catch (ParseException ex) {
+            Logger.getLogger(MyTableModelListener_FACT.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        AdminBD.crearFactura(idFactura,descuento,tipoPago,1,2,"Cerrada",detalle,totalFact);
         }
 
     private void clearAll() {

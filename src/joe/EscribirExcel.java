@@ -161,7 +161,7 @@ public class EscribirExcel {
             escribirResultado(tipoDeReporte, hojaExcel, ultimaFila);
         } else {// si no hay datos escribe total cero
 
-            hojaExcel.addCell(new Label(2, 11, "Total  0",
+            hojaExcel.addCell(new Label(1, 11, "Total  0",
                     timesLines));
         }
 

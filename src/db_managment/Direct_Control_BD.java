@@ -1661,6 +1661,7 @@ public class Direct_Control_BD {
 
     public void FacturasPorCategoriaDeProd(String FechaIni, String FechaFin, String categoria) {
         try {
+            System.out.println(categoria);
             String Fact = readSql("../Joe"
                     + "/src/sql_files/FacturasPorCategoriaDeProd.sql");// hacer consulta por prod
             PreparedStatement stm = this.conection.prepareStatement(Fact);

@@ -22,7 +22,7 @@ import jxl.write.WriteException;
  * @author Jason
  */
 public class JPanel_Reportes extends javax.swing.JPanel {
-
+    
     private static JPanel_Reportes mPanelInventario = null;
 
     /**
@@ -31,14 +31,14 @@ public class JPanel_Reportes extends javax.swing.JPanel {
     public JPanel_Reportes() {
         initComponents();
     }
-
+    
     public static JPanel_Reportes getInstance() {
         if (mPanelInventario == null) {
             mPanelInventario = new JPanel_Reportes();
         }
-
+        
         return mPanelInventario;
-
+        
     }
 
     /**
@@ -887,12 +887,13 @@ public void actionPerformed(java.awt.event.ActionEvent evt) {
 //        dateFormat.format(date);
         buttonGroup1.add(jRadioButton_Excel);
         buttonGroup1.add(jRadioButton_Pantalla);
+        jRadioButton_Excel.setSelected(true);
         jPanel_VerVentasPorFech.setVisible(true);
         jDialog_Reportes.setLocation(getLocationOnScreen());
         jPanel_VerVentasPorFech.setSize(jDialog_Reportes.getSize());
         jDialog_Reportes.add(jPanel_VerVentasPorFech);
         jDialog_Reportes.setVisible(true);
-
+        
 
     }//GEN-LAST:event_jButton_VentasPorFechaActionPerformed
 
@@ -919,10 +920,10 @@ public void actionPerformed(java.awt.event.ActionEvent evt) {
                     dateF.format(dateChooserCombo_FinVent.getSelectedDate().getTime()));
             String[] infoEmpresa = {"Joe S.A ", "Oriente pa dentro", "Cartago,"
                 + " CA 20320", "Telefono:2650-11-36, fax:2655-0203"};
-
+            
             Date date = new Date();//hora Actual
             String fechaAct = dateFormat.format(date);
-
+            
             EscribirExcel archivoExcel = new EscribirExcel();
             System.out.println(fechaAct);
             archivoExcel.setNombreArchivoExcel("VentasPorFechas" + fechaAct + ".xls");
@@ -970,9 +971,9 @@ public void actionPerformed(java.awt.event.ActionEvent evt) {
                 AdminBD.VerFacturasPoridProducto(dateF.format(//Consulta de Fact Por Prod
                         dateChooserCombo_IniProd.getSelectedDate().getTime()),
                         dateF.format(dateChooserCombo_FinProd.getSelectedDate().getTime()), jTextField_CodiOCateg.getText());
-
+                
             } else if (jRadioButton_PorCategoria.isSelected()) {//Consulta por categoria
-                concepto = "Ventas de Productos Para la Categoria " + jTextField_CodiOCateg.getText();
+                concepto = "Ventas de Productos Para la Categoria " + jComboBox_CategoriaCrearProducto.getSelectedItem().toString();
                 AdminBD.FacturasPorCategoriaDeProd(dateF.format(//Consluta de Fact Por Categ 
                         dateChooserCombo_IniProd.getSelectedDate().getTime()),
                         dateF.format(dateChooserCombo_FinProd.getSelectedDate().getTime()), jComboBox_CategoriaCrearProducto.getSelectedItem().toString());
@@ -980,10 +981,10 @@ public void actionPerformed(java.awt.event.ActionEvent evt) {
             }
             String[] infoEmpresa = {"Joe S.A ", "Oriente pa dentro", "Cartago,"
                 + " CA 20320", "Telefono:2650-11-36, fax:2655-0203"};
-
+            
             Date date = new Date();//hora Actual
             String fechaAct = dateFormat.format(date);
-
+            
             EscribirExcel archivoExcel = new EscribirExcel();
             archivoExcel.setNombreArchivoExcel("VentasPorProducto" + fechaAct + ".xls");
             try {
@@ -1026,12 +1027,17 @@ public void actionPerformed(java.awt.event.ActionEvent evt) {
         jComboBox_CategoriaCrearProducto.setVisible(false);
         buttonGroup1.add(jRadioButton_ExcelProd);
         buttonGroup1.add(jRadioButton_PantallaProd);
+        jRadioButton_PorCodigo.setSelected(true);
+        jRadioButton_ExcelProd.setSelected(true);
+        jButton_Buscar.setVisible(true);
+        jTextField_CodiOCateg.setVisible(true);
+        jLabel_CodOCateg.setText("Codigo del Producto");
         jPanel_VerVentasPorProd.setVisible(true);
         jDialog_Reportes.setLocation(getLocationOnScreen());
         jPanel_VerVentasPorProd.setSize(jDialog_Reportes.getSize());
         jDialog_Reportes.add(jPanel_VerVentasPorProd);
         jDialog_Reportes.setVisible(true);
-
+        
 
     }//GEN-LAST:event_jButton_VentasPorProdActionPerformed
 
@@ -1061,7 +1067,7 @@ public void actionPerformed(java.awt.event.ActionEvent evt) {
         VentanaDeInicio panelReportes = VentanaDeInicio.getInstance();
         setVisible(false);//hacer cosulta
         panelReportes.jPanel_VentanaPrincipal.setVisible(true);
-
+        
 
     }//GEN-LAST:event_jButton1ActionPerformed
 
@@ -1073,14 +1079,14 @@ public void actionPerformed(java.awt.event.ActionEvent evt) {
             jTextField_CodiOCateg.setText(buscador.getIdProducto());
         } catch (Exception e) {
         }
-
+        
 
     }//GEN-LAST:event_jButton_BuscarActionPerformed
 
     private void jComboBox_CategoriaCrearProductoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jComboBox_CategoriaCrearProductoKeyTyped
         if (KeyEvent.VK_ENTER == evt.getKeyChar()) {
             this.jComboBox_CategoriaCrearProducto.transferFocus();
-
+            
         }
     }//GEN-LAST:event_jComboBox_CategoriaCrearProductoKeyTyped
 

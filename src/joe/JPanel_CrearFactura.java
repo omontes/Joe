@@ -113,6 +113,8 @@ public class JPanel_CrearFactura extends javax.swing.JPanel {
         jFormattedTextField_DescuentoTotal = new javax.swing.JFormattedTextField();
         jFormattedTextField_Total = new javax.swing.JFormattedTextField();
         jButton_BuscarProducto = new javax.swing.JButton();
+        jLabel9 = new javax.swing.JLabel();
+        jLabel16 = new javax.swing.JLabel();
 
         jPanel2.setBackground(new java.awt.Color(153, 153, 153));
 
@@ -701,6 +703,11 @@ public class JPanel_CrearFactura extends javax.swing.JPanel {
 
         jFormattedTextField_desc.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(new java.text.DecimalFormat("#0.00"))));
         jFormattedTextField_desc.setText("0.00");
+        jFormattedTextField_desc.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jFormattedTextField_descMouseClicked(evt);
+            }
+        });
         jFormattedTextField_desc.addPropertyChangeListener(new java.beans.PropertyChangeListener() {
             public void propertyChange(java.beans.PropertyChangeEvent evt) {
                 jFormattedTextField_descPropertyChange(evt);
@@ -742,6 +749,10 @@ public class JPanel_CrearFactura extends javax.swing.JPanel {
                 jButton_BuscarProductoActionPerformed(evt);
             }
         });
+
+        jLabel9.setText("Vendedor");
+
+        jLabel16.setText("Cliente");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -792,7 +803,11 @@ public class JPanel_CrearFactura extends javax.swing.JPanel {
                                 .addComponent(jLabel10)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addComponent(jComboBox_CategoriaTipoPago, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(370, 370, 370)
+                                .addGap(27, 27, 27)
+                                .addComponent(jLabel9)
+                                .addGap(116, 116, 116)
+                                .addComponent(jLabel16)
+                                .addGap(153, 153, 153)
                                 .addComponent(jLabel_FechaFact, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addComponent(jLabel_Fecha, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -817,7 +832,9 @@ public class JPanel_CrearFactura extends javax.swing.JPanel {
                     .addComponent(jComboBox_CategoriaTipoPago, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel_FechaFact, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel_Fecha, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel_NumFacTitle, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jLabel_NumFacTitle, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel9)
+                    .addComponent(jLabel16))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
@@ -1474,6 +1491,10 @@ public class JPanel_CrearFactura extends javax.swing.JPanel {
     private void jFormattedTextField_descUnitarioMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jFormattedTextField_descUnitarioMouseClicked
        this.jFormattedTextField_descUnitario.selectAll();
     }//GEN-LAST:event_jFormattedTextField_descUnitarioMouseClicked
+
+    private void jFormattedTextField_descMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jFormattedTextField_descMouseClicked
+         this.jFormattedTextField_desc.selectAll();
+    }//GEN-LAST:event_jFormattedTextField_descMouseClicked
     /**
      * Este metodo devuelve toda la informacion de la tabla de crear factura
      * @return 
@@ -1608,6 +1629,7 @@ public class JPanel_CrearFactura extends javax.swing.JPanel {
     javax.swing.JLabel jLabel13;
     javax.swing.JLabel jLabel14;
     javax.swing.JLabel jLabel15;
+    javax.swing.JLabel jLabel16;
     javax.swing.JLabel jLabel2;
     javax.swing.JLabel jLabel3;
     javax.swing.JLabel jLabel4;
@@ -1615,6 +1637,7 @@ public class JPanel_CrearFactura extends javax.swing.JPanel {
     javax.swing.JLabel jLabel6;
     javax.swing.JLabel jLabel7;
     javax.swing.JLabel jLabel8;
+    javax.swing.JLabel jLabel9;
     javax.swing.JLabel jLabel_Cantidad;
     javax.swing.JLabel jLabel_CodNoEncontrado;
     javax.swing.JLabel jLabel_Descripcion;

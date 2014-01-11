@@ -58,22 +58,11 @@ public class MyTableModelListener_FACT implements TableModelListener {
       }
       String info = data.toString();
       String oldValue=this.getOldValue();
- 
       String totalFacturaSinCorregir = this.total.getText();
-      String totalf = totalFacturaSinCorregir.replace("C", "");
-      DecimalFormat decimalformat = (DecimalFormat) NumberFormat.getInstance();
-      decimalformat.setParseBigDecimal(true);
-      BigDecimal totalFact = null;
-      try {
-          totalFact = (BigDecimal) decimalformat.parseObject(totalf);
-      } catch (ParseException ex) {
-          Logger.getLogger(MyTableModelListener_FACT.class.getName()).log(Level.SEVERE, null, ex);
-      }
-        
+      BigDecimal totalFact = this.corregirDato(totalFacturaSinCorregir);          
       if (columnName.equals("Sub-Total") & totalFact.toString().equals("0.0")) {
           BigDecimal subtotal = new BigDecimal(info);
-          this.total.setValue(subtotal);
-          
+          this.total.setValue(subtotal);          
       }
       if (columnName.equals("Sub-Total") &  !totalFact.toString().equals("0.0")) {
           BigDecimal subtotal = new BigDecimal(info);
@@ -81,8 +70,7 @@ public class MyTableModelListener_FACT implements TableModelListener {
           if(! oldValue.equals("")){
               subtotal_old=new BigDecimal(oldValue);
           }
-          this.total.setValue((subtotal.subtract(subtotal_old)).add(totalFact));
-          
+          this.total.setValue((subtotal.subtract(subtotal_old)).add(totalFact));          
       }
       //Esta condicion es para hacer que no se inserte un precio sin haber un codigo
       if (columnName.equals("Precio.Unit") & this.getOldValue().equals("") ) {
@@ -91,8 +79,7 @@ public class MyTableModelListener_FACT implements TableModelListener {
             if (codigo.equals("")) {
                 model.setValueAt(null, row,column);
                 return;
-            }
-          
+            }          
       }
       //Esta condicion es para cuando se modifica un precio
       if (columnName.equals("Precio.Unit") & !this.getOldValue().equals("") ) {
@@ -103,28 +90,16 @@ public class MyTableModelListener_FACT implements TableModelListener {
           try {
               cantidad = (BigDecimal) decimalfC.parseObject(CantidadSinCorregir);
           } catch (ParseException ex) {
-              Logger.getLogger(MyTableModelListener_FACT.class.getName()).log(Level.SEVERE, null, ex);
+              Logger.getLogger(MyTableModelListener_FACT.class.getName()).
+                      log(Level.SEVERE, null, ex);
           }
-          String price = info.replace("C", "");
-          DecimalFormat decimalf = (DecimalFormat) NumberFormat.getInstance();
-          decimalf.setParseBigDecimal(true);
-          BigDecimal bd = null;
-          try {
-              bd = (BigDecimal) decimalf.parseObject(price);
-          } catch (ParseException ex) {
-              Logger.getLogger(MyTableModelListener_FACT.class.getName()).log(Level.SEVERE, null, ex);
-          }
-          model.setValueAt(bd.multiply(cantidad), row, column + 1);
-          
-      } 
-           
-        
-      if (columnName.equals("Cod. Articulo")) {
-          
-          
+          BigDecimal bd = this.corregirDato(info);
+          model.setValueAt(bd.multiply(cantidad), row, column + 1);          
+      }          
+      
+      if (columnName.equals("Cod. Articulo")) {         
               String codigo = data.toString();
               BigDecimal precio = this.BDmanagment.verPrecio(codigo);
-              
               if (precio.toString().equals("0") & !info.equals("")) {
                   JOptionPane.showMessageDialog(
                           null,
@@ -145,14 +120,9 @@ public class MyTableModelListener_FACT implements TableModelListener {
                   model.setValueAt(precio, row, column + 3);///IMPORTANTE ESTE ORDEN
                   model.setValueAt(1, row, column + 2);
                   model.setValueAt(descripcion, row, column + 1);
-                  //table.revalidate();
-                  //table.repaint();
-              }
-          
-          
-         
-
-            
+              }        
+                 
+           
         }
         
         if (columnName.equals("Cantidad") & !info.equals("1")) {
@@ -174,18 +144,11 @@ public class MyTableModelListener_FACT implements TableModelListener {
           try {
               cantidad = (BigDecimal) decimalfC.parseObject(CantidadSinCorregir);
           } catch (ParseException ex) {
-              Logger.getLogger(MyTableModelListener_FACT.class.getName()).log(Level.SEVERE, null, ex);
+              Logger.getLogger(MyTableModelListener_FACT.class.getName()).
+                      log(Level.SEVERE, null, ex);
           }
           String PrecioConCurrency= model.getValueAt(row, column + 1).toString();
-          String PrecioCorregido = PrecioConCurrency.replace("C", "");
-          DecimalFormat decimalf = (DecimalFormat) NumberFormat.getInstance();
-          decimalf.setParseBigDecimal(true);
-          BigDecimal bd = null;
-          try {
-              bd = (BigDecimal) decimalf.parseObject(PrecioCorregido);
-          } catch (ParseException ex) {
-              Logger.getLogger(MyTableModelListener_FACT.class.getName()).log(Level.SEVERE, null, ex);
-          }
+          BigDecimal bd = this.corregirDato(PrecioConCurrency);
           model.setValueAt(bd.multiply(cantidad), row, column + 2);
       }
 
@@ -197,16 +160,7 @@ public class MyTableModelListener_FACT implements TableModelListener {
                 return;
             }
           String PrecioConCurrency = model.getValueAt(row, 3).toString();
-          String PrecioCorregido = PrecioConCurrency.replace("C", "");
-          DecimalFormat decimalf = (DecimalFormat) NumberFormat.getInstance();
-          decimalf.setParseBigDecimal(true);
-          BigDecimal bd = null;
-          try {
-              bd = (BigDecimal) decimalf.parseObject(PrecioCorregido);
-          } catch (ParseException ex) {
-              Logger.getLogger(MyTableModelListener_FACT.class.getName()).log(Level.SEVERE, null, ex);
-          }
-
+          BigDecimal bd = this.corregirDato(PrecioConCurrency);
           model.setValueAt(bd, row, 4);
       }
 
@@ -225,5 +179,25 @@ public class MyTableModelListener_FACT implements TableModelListener {
      */
     public void setOldValue(String oldValue) {
         this.oldValue = oldValue;
+    }
+    /**
+     * Este metodo permite corregir el dato que tiene el signo de C y ademas
+     * que puede tener comas ya que el tipo Decimal en la base solo
+     * puede tener puntos y no comas.
+     * @param Dato
+     * @return 
+     */
+     private BigDecimal corregirDato(String Dato){
+            String datoAcorregir = Dato.replace("C", "");
+            DecimalFormat decimalformat = (DecimalFormat) NumberFormat.getInstance();
+            decimalformat.setParseBigDecimal(true);
+            BigDecimal DatoCorregido = null;
+            try {
+                DatoCorregido = (BigDecimal) decimalformat.parseObject(datoAcorregir);
+            } catch (ParseException ex) {
+                Logger.getLogger(MyTableModelListener_FACT.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            return DatoCorregido;
+    
     }
 }

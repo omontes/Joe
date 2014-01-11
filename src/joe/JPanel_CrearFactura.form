@@ -493,7 +493,6 @@
             </Component>
             <Component class="javax.swing.JTextField" name="jTextField_busqueProducto">
               <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jTextField_busqueProductoActionPerformed"/>
                 <EventHandler event="keyPressed" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="jTextField_busqueProductoKeyPressed"/>
               </Events>
             </Component>

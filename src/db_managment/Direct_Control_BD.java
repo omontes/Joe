@@ -101,25 +101,19 @@ public class Direct_Control_BD {
     /**
      * @param idCLiente Este metodo da como resultados todas las ventas hechas a
      * un determinado cliente
-     *
-     * El resultado es el sig: Fecha, Descripcion , Monto
      */
-    public void consultarVentasXCliente(int idCliente) {
+    public void VerVentasPorCliente(String FechaIni,String FechaFin,String NombreCliente) {
         try {
-            String dato = this.readSql("../Joe/src/"
+            String VentasPorCliente = readSql("../Joe/src/"
                     + "sql_files/"
-                    + "consultarVentasXCliente.sql");
-            PreparedStatement stm = this.conection.prepareStatement(dato);
-            stm.setInt(1, idCliente);
-            stm.setInt(2, idCliente);
-
+                    + "VerVentasPorCliente.sql");
+            PreparedStatement stm = conection.prepareStatement(VentasPorCliente);
+            stm.setString(1, NombreCliente);
+            stm.setString(2, FechaIni);
+            stm.setString(3, FechaFin);
             ResultSet resultset = stm.executeQuery();
-            //Imprime el resultado obtenido de ver productos agotados
-            while (resultset.next()) {
-                System.out.println(resultset.getString(1)
-                        + "||" + resultset.getString(2) + "||"
-                        + resultset.getInt(3));
-            }
+            setColumnNames(Get_Columnas(resultset));
+            setData(ResultSet_Array(resultset));
 
         } catch (Exception e) {
             System.out.println("Error al obtener las ventas de un cliente");
@@ -557,8 +551,8 @@ public class Direct_Control_BD {
      * @param estado
      * @param nota
      */
-    public void crearFactura(int idFactura,BigDecimal descuento, String tipoPago, int idCliente,
-            int idVendedor, String estado, String nota,BigDecimal TotalFacturado) {//Revisado+
+    public void crearFactura(int idFactura, BigDecimal descuento, String tipoPago, int idCliente,
+            int idVendedor, String estado, String nota, BigDecimal TotalFacturado) {//Revisado+
         DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd");
         Date date = new Date();
         String fecha = dateFormat.format(date);
@@ -1661,7 +1655,7 @@ public class Direct_Control_BD {
 
     public void FacturasPorCategoriaDeProd(String FechaIni, String FechaFin, String categoria) {
         try {
-            
+
             String Fact = readSql("../Joe"
                     + "/src/sql_files/FacturasPorCategoriaDeProd.sql");// hacer consulta por prod
             PreparedStatement stm = this.conection.prepareStatement(Fact);
@@ -1675,6 +1669,19 @@ public class Direct_Control_BD {
 
             System.out.println("Error al Ver Facturas FacturasPorCategoriaDeProd");
 
+        }
+    }
+
+    public void consultarClientes() {
+        try {
+            String categorias = this.readSql("../Joe/src/"
+                    + "sql_files/consultarClientes.sql");
+            PreparedStatement stm = this.conection.prepareStatement(categorias);
+            ResultSet resultset = stm.executeQuery();
+            this.setColumnNames(this.Get_Columnas(resultset));
+            this.setData(this.ResultSet_Array(resultset));
+        } catch (Exception e) {
+            System.out.println("Error al obtener el categoria");
         }
     }
 

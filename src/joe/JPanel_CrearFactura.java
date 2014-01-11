@@ -88,6 +88,18 @@ public class JPanel_CrearFactura extends javax.swing.JPanel {
         jFormattedTextField_descUnitario = new javax.swing.JFormattedTextField();
         jFormattedTextField_RebajaDelDesc = new javax.swing.JFormattedTextField();
         jFormattedTextField_PrecioConDesc = new javax.swing.JFormattedTextField();
+        jDialog_CrearCliente = new javax.swing.JDialog();
+        jPanel4 = new javax.swing.JPanel();
+        jLabel_nombreCliente = new javax.swing.JLabel();
+        jLabel_telefonoCliente = new javax.swing.JLabel();
+        jLabel_direccionCliente = new javax.swing.JLabel();
+        jLabel_FechaCumpleanos = new javax.swing.JLabel();
+        jFormattedTextField_nombreCliente = new javax.swing.JFormattedTextField();
+        jFormattedTextField_telefono = new javax.swing.JFormattedTextField();
+        jFormattedTextField_direccionCliente = new javax.swing.JFormattedTextField();
+        jFormattedTextField_fechaCumple = new javax.swing.JFormattedTextField();
+        jButton_CrearCliente = new javax.swing.JButton();
+        jButton_CancelarCrearCliente = new javax.swing.JButton();
         jButton_CreaProducto = new javax.swing.JButton();
         jButton_VerProducto = new javax.swing.JButton();
         jButton_EliminaFila = new javax.swing.JButton();
@@ -95,7 +107,6 @@ public class JPanel_CrearFactura extends javax.swing.JPanel {
         jScrollPane2 = new javax.swing.JScrollPane();
         jTable_Factura = new javax.swing.JTable();
         jButton_RegresarFact = new javax.swing.JButton();
-        jLabel_NumerodeFact = new javax.swing.JLabel();
         jButton_aceptarFactura = new javax.swing.JButton();
         jLabel_NumFacTitle = new javax.swing.JLabel();
         jLabel_FechaFact = new javax.swing.JLabel();
@@ -116,8 +127,9 @@ public class JPanel_CrearFactura extends javax.swing.JPanel {
         jLabel9 = new javax.swing.JLabel();
         jLabel16 = new javax.swing.JLabel();
         jComboBox_Vendedores = new javax.swing.JComboBox();
-        jFormattedTextField1 = new javax.swing.JFormattedTextField();
+        jFormattedTextField_Cliente = new javax.swing.JFormattedTextField();
         jButton1 = new javax.swing.JButton();
+        jLabel_NumerodeFact = new javax.swing.JLabel();
 
         jPanel2.setBackground(new java.awt.Color(153, 153, 153));
 
@@ -615,6 +627,126 @@ public class JPanel_CrearFactura extends javax.swing.JPanel {
             .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
 
+        jDialog_CrearCliente.setMinimumSize(new java.awt.Dimension(480, 280));
+        jDialog_CrearCliente.setModal(true);
+        jDialog_CrearCliente.setPreferredSize(new java.awt.Dimension(500, 220));
+
+        jPanel4.setBackground(new java.awt.Color(153, 153, 153));
+
+        jLabel_nombreCliente.setText("Nombre del Cliente");
+
+        jLabel_telefonoCliente.setText("Telefono");
+
+        jLabel_direccionCliente.setText("Direccion");
+
+        jLabel_FechaCumpleanos.setText("Fecha de Cumpleanos");
+
+        jFormattedTextField_nombreCliente.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                jFormattedTextField_nombreClienteKeyPressed(evt);
+            }
+        });
+
+        jFormattedTextField_telefono.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.DateFormatter(java.text.DateFormat.getDateInstance(java.text.DateFormat.SHORT))));
+        jFormattedTextField_telefono.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                jFormattedTextField_telefonoKeyPressed(evt);
+            }
+        });
+
+        jFormattedTextField_direccionCliente.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                jFormattedTextField_direccionClienteKeyPressed(evt);
+            }
+        });
+
+        jFormattedTextField_fechaCumple.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                jFormattedTextField_fechaCumpleKeyPressed(evt);
+            }
+        });
+
+        jButton_CrearCliente.setText("Aceptar");
+        jButton_CrearCliente.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton_CrearClienteActionPerformed(evt);
+            }
+        });
+        jButton_CrearCliente.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                jButton_CrearClienteKeyPressed(evt);
+            }
+        });
+
+        jButton_CancelarCrearCliente.setText("Cancelar");
+        jButton_CancelarCrearCliente.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton_CancelarCrearClienteActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
+        jPanel4.setLayout(jPanel4Layout);
+        jPanel4Layout.setHorizontalGroup(
+            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel4Layout.createSequentialGroup()
+                .addGap(100, 100, 100)
+                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jLabel_telefonoCliente, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jLabel_nombreCliente)
+                    .addComponent(jLabel_direccionCliente, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jLabel_FechaCumpleanos, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(32, 32, 32)
+                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jFormattedTextField_nombreCliente, javax.swing.GroupLayout.DEFAULT_SIZE, 168, Short.MAX_VALUE)
+                    .addComponent(jFormattedTextField_telefono)
+                    .addComponent(jFormattedTextField_direccionCliente)
+                    .addComponent(jFormattedTextField_fechaCumple))
+                .addContainerGap(47, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jButton_CrearCliente)
+                .addGap(18, 18, 18)
+                .addComponent(jButton_CancelarCrearCliente)
+                .addGap(33, 33, 33))
+        );
+        jPanel4Layout.setVerticalGroup(
+            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel4Layout.createSequentialGroup()
+                .addGap(24, 24, 24)
+                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel_nombreCliente)
+                    .addComponent(jFormattedTextField_nombreCliente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel_telefonoCliente)
+                    .addComponent(jFormattedTextField_telefono, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(10, 10, 10)
+                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel_direccionCliente)
+                    .addComponent(jFormattedTextField_direccionCliente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel_FechaCumpleanos)
+                    .addComponent(jFormattedTextField_fechaCumple, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(26, 26, 26)
+                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jButton_CancelarCrearCliente)
+                    .addComponent(jButton_CrearCliente))
+                .addContainerGap(24, Short.MAX_VALUE))
+        );
+
+        javax.swing.GroupLayout jDialog_CrearClienteLayout = new javax.swing.GroupLayout(jDialog_CrearCliente.getContentPane());
+        jDialog_CrearCliente.getContentPane().setLayout(jDialog_CrearClienteLayout);
+        jDialog_CrearClienteLayout.setHorizontalGroup(
+            jDialog_CrearClienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+        );
+        jDialog_CrearClienteLayout.setVerticalGroup(
+            jDialog_CrearClienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+        );
+
         jButton_CreaProducto.setText("Crear Producto");
         jButton_CreaProducto.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -670,10 +802,6 @@ public class JPanel_CrearFactura extends javax.swing.JPanel {
                 jButton_RegresarFactActionPerformed(evt);
             }
         });
-
-        jLabel_NumerodeFact.setFont(new java.awt.Font("Arial", 0, 16)); // NOI18N
-        jLabel_NumerodeFact.setForeground(new java.awt.Color(0, 51, 51));
-        jLabel_NumerodeFact.setText("Num");
 
         jButton_aceptarFactura.setText("Guardar");
         jButton_aceptarFactura.addActionListener(new java.awt.event.ActionListener() {
@@ -764,9 +892,28 @@ public class JPanel_CrearFactura extends javax.swing.JPanel {
             }
         });
 
-        jFormattedTextField1.setText("Cliente Anonimo");
+        jFormattedTextField_Cliente.setText("Cliente Anonimo");
+        jFormattedTextField_Cliente.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jFormattedTextField_ClienteMouseClicked(evt);
+            }
+        });
+        jFormattedTextField_Cliente.addPropertyChangeListener(new java.beans.PropertyChangeListener() {
+            public void propertyChange(java.beans.PropertyChangeEvent evt) {
+                jFormattedTextField_ClientePropertyChange(evt);
+            }
+        });
+        jFormattedTextField_Cliente.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                jFormattedTextField_ClienteKeyPressed(evt);
+            }
+        });
 
         jButton1.setText("Buscar");
+
+        jLabel_NumerodeFact.setFont(new java.awt.Font("Arial", 0, 16)); // NOI18N
+        jLabel_NumerodeFact.setForeground(new java.awt.Color(0, 51, 51));
+        jLabel_NumerodeFact.setText("Num");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -774,92 +921,89 @@ public class JPanel_CrearFactura extends javax.swing.JPanel {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(23, 23, 23)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel_NumFacTitle)
-                            .addComponent(jLabel_NumerodeFact, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(244, 244, 244)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jButton_aceptarFactura, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jButton_RegresarFact))
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(189, 189, 189)
-                                .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addGap(175, 175, 175)
-                                        .addComponent(jLabel12, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addGap(143, 143, 143)
-                                        .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                        .addComponent(jFormattedTextField_desc, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(jLabel8)))
-                                .addGap(3, 3, 3)))
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jFormattedTextField_SubTotal)
-                            .addComponent(jFormattedTextField_DescuentoTotal)))
+                    .addComponent(jButton_VerProducto, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButton_CreaProducto)
+                    .addComponent(jButton_EliminaFila, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButton_Descuento, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButton_BuscarProducto)
                     .addGroup(layout.createSequentialGroup()
                         .addContainerGap()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jButton_CreaProducto)
-                            .addComponent(jButton_VerProducto, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jButton_EliminaFila, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jButton_Descuento, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jButton_BuscarProducto))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                            .addComponent(jLabel_NumFacTitle)
+                            .addComponent(jLabel_NumerodeFact))))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jTextField_Detalle, javax.swing.GroupLayout.PREFERRED_SIZE, 164, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(jButton_RegresarFact))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jLabel11)
+                                .addGap(102, 102, 102)
+                                .addComponent(jButton_aceptarFactura, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLabel10)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jComboBox_CategoriaTipoPago, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18)
-                                .addComponent(jLabel9)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jComboBox_Vendedores, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(26, 26, 26)
-                                .addComponent(jLabel16, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jFormattedTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jButton1)
-                                .addGap(53, 53, 53)
-                                .addComponent(jLabel_FechaFact, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jLabel_Fecha)
-                                .addGap(0, 0, Short.MAX_VALUE))
-                            .addComponent(jScrollPane2)
-                            .addGroup(layout.createSequentialGroup()
+                                .addGap(71, 71, 71)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel11)
-                                    .addComponent(jTextField_Detalle, javax.swing.GroupLayout.PREFERRED_SIZE, 164, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGap(378, 378, 378)
-                                .addComponent(jFormattedTextField_Total, javax.swing.GroupLayout.DEFAULT_SIZE, 181, Short.MAX_VALUE)))))
-                .addGap(57, 57, 57))
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addGap(10, 10, 10)
+                                        .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(jFormattedTextField_desc, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                        .addComponent(jLabel8))
+                                    .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(jFormattedTextField_Total, javax.swing.GroupLayout.DEFAULT_SIZE, 231, Short.MAX_VALUE)
+                                    .addComponent(jFormattedTextField_DescuentoTotal)
+                                    .addComponent(jFormattedTextField_SubTotal)))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(63, 63, 63)
+                                .addComponent(jLabel12, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jLabel10)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jComboBox_CategoriaTipoPago, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(16, 16, 16)
+                        .addComponent(jLabel9)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jComboBox_Vendedores, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(17, 17, 17)
+                        .addComponent(jLabel16, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jFormattedTextField_Cliente, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jButton1)
+                        .addGap(18, 18, 18)
+                        .addComponent(jLabel_FechaFact, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jLabel_Fecha, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 726, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(53, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel10)
-                    .addComponent(jComboBox_CategoriaTipoPago, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel_FechaFact, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel_Fecha, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel_NumFacTitle, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel9)
-                    .addComponent(jComboBox_Vendedores, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton1)
-                    .addComponent(jLabel16)
-                    .addComponent(jFormattedTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jLabel10)
+                        .addComponent(jComboBox_CategoriaTipoPago, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jLabel9)
+                        .addComponent(jComboBox_Vendedores, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jLabel16)
+                        .addComponent(jFormattedTextField_Cliente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jButton1)
+                        .addComponent(jLabel_FechaFact, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jLabel_Fecha, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabel_NumerodeFact, javax.swing.GroupLayout.PREFERRED_SIZE, 19, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jLabel_NumerodeFact)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(jButton_CreaProducto)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -871,32 +1015,27 @@ public class JPanel_CrearFactura extends javax.swing.JPanel {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jButton_BuscarProducto)
                         .addGap(0, 0, Short.MAX_VALUE))
-                    .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 262, Short.MAX_VALUE))
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 259, Short.MAX_VALUE))
                 .addGap(12, 12, 12)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jButton_aceptarFactura)
+                    .addComponent(jLabel11)
+                    .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jFormattedTextField_SubTotal, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jTextField_Detalle, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(1, 1, 1)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jFormattedTextField_SubTotal, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jFormattedTextField_DescuentoTotal, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jButton_RegresarFact)
+                            .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jFormattedTextField_desc, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel8)
-                            .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jFormattedTextField_DescuentoTotal, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel12, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jFormattedTextField_Total, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabel11)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jTextField_Detalle, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jButton_aceptarFactura)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jButton_RegresarFact)))
+                            .addComponent(jFormattedTextField_Total, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addGap(37, 37, 37))
         );
     }//GEN-END:initComponents
@@ -1524,6 +1663,84 @@ public class JPanel_CrearFactura extends javax.swing.JPanel {
         }
     }//GEN-LAST:event_jComboBox_VendedoresKeyTyped
     /**
+     *  Este metodo detecta si el usuario ingresa un cliente y verifica si este
+     *  existe o no para poder mostrarle la interfaz de crear un cliente.
+     * @param evt 
+     */
+    private void jFormattedTextField_ClientePropertyChange(java.beans.PropertyChangeEvent evt) {//GEN-FIRST:event_jFormattedTextField_ClientePropertyChange
+        if (evt.getPropertyName().equals("value")) {
+            String cliente = this.jFormattedTextField_Cliente.getText();
+            if (!cliente.equals("")) {
+                Direct_Control_BD AdminBD = Direct_Control_BD.getInstance();
+                boolean existeCliente = AdminBD.verSiExisteCliente(cliente);
+                if (existeCliente) {
+                    return;
+
+                } 
+                else {
+                    this.jFormattedTextField_nombreCliente.setText(cliente);
+                    this.jDialog_CrearCliente.setVisible(true);
+
+                }
+
+            }
+        }
+    }//GEN-LAST:event_jFormattedTextField_ClientePropertyChange
+
+    private void jFormattedTextField_ClienteKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jFormattedTextField_ClienteKeyPressed
+        if(evt.getKeyChar()==KeyEvent.VK_ENTER){
+            this.setFocusTablaFact(0);
+        }
+    }//GEN-LAST:event_jFormattedTextField_ClienteKeyPressed
+
+    private void jButton_CancelarCrearClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_CancelarCrearClienteActionPerformed
+        this.jFormattedTextField_Cliente.setValue("Cliente Anonimo");
+        this.jDialog_CrearCliente.dispose();
+        this.setFocusTablaFact(0);
+    }//GEN-LAST:event_jButton_CancelarCrearClienteActionPerformed
+
+    private void jFormattedTextField_ClienteMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jFormattedTextField_ClienteMouseClicked
+        this.jFormattedTextField_Cliente.selectAll();
+    }//GEN-LAST:event_jFormattedTextField_ClienteMouseClicked
+
+    private void jFormattedTextField_nombreClienteKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jFormattedTextField_nombreClienteKeyPressed
+        if(evt.getKeyChar()==KeyEvent.VK_ENTER){
+            this.jFormattedTextField_nombreCliente.transferFocus();
+        }
+    }//GEN-LAST:event_jFormattedTextField_nombreClienteKeyPressed
+
+    private void jButton_CrearClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_CrearClienteActionPerformed
+        this.crearCliente();
+    }//GEN-LAST:event_jButton_CrearClienteActionPerformed
+
+    private void jFormattedTextField_telefonoKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jFormattedTextField_telefonoKeyPressed
+         if(evt.getKeyChar()==KeyEvent.VK_ENTER){
+            this.jFormattedTextField_telefono.transferFocus();
+        }
+      
+    }//GEN-LAST:event_jFormattedTextField_telefonoKeyPressed
+
+    private void jFormattedTextField_direccionClienteKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jFormattedTextField_direccionClienteKeyPressed
+         if(evt.getKeyChar()==KeyEvent.VK_ENTER){
+            this.jFormattedTextField_direccionCliente.transferFocus();
+        }
+       
+    }//GEN-LAST:event_jFormattedTextField_direccionClienteKeyPressed
+
+    private void jFormattedTextField_fechaCumpleKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jFormattedTextField_fechaCumpleKeyPressed
+         if(evt.getKeyChar()==KeyEvent.VK_ENTER){
+            this.jFormattedTextField_fechaCumple.transferFocus();
+        
+    }   
+    }//GEN-LAST:event_jFormattedTextField_fechaCumpleKeyPressed
+
+    private void jButton_CrearClienteKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jButton_CrearClienteKeyPressed
+         if(evt.getKeyChar()==KeyEvent.VK_ENTER){
+            this.crearCliente();
+        }
+       
+    }//GEN-LAST:event_jButton_CrearClienteKeyPressed
+    /**
      * Este metodo devuelve toda la informacion de la tabla de crear factura
      * @return 
      */
@@ -1602,7 +1819,8 @@ public class JPanel_CrearFactura extends javax.swing.JPanel {
        for(int i=0; i<dataVendedores.length; i++){
              this.jComboBox_Vendedores.addItem(dataVendedores[i][0]);
        }
-       this.jComboBox_Vendedores.setSelectedItem("Sin Categoria");       
+       this.jComboBox_Vendedores.setSelectedItem("Sin Categoria");
+       this.jFormattedTextField_Cliente.setText("Cliente Anonimo");
         
     }
     /**
@@ -1635,9 +1853,11 @@ public class JPanel_CrearFactura extends javax.swing.JPanel {
     javax.swing.JButton jButton_BuscarProducto;
     javax.swing.JButton jButton_BusqueProducto;
     javax.swing.JButton jButton_CancelaBusquedaProducto;
+    javax.swing.JButton jButton_CancelarCrearCliente;
     javax.swing.JButton jButton_CancelarCrearProducto;
     javax.swing.JButton jButton_CancelarDescuentoUnitario;
     javax.swing.JButton jButton_CreaProducto;
+    javax.swing.JButton jButton_CrearCliente;
     javax.swing.JButton jButton_CrearProducto;
     javax.swing.JButton jButton_Descuento;
     javax.swing.JButton jButton_EliminaFila;
@@ -1648,10 +1868,11 @@ public class JPanel_CrearFactura extends javax.swing.JPanel {
     javax.swing.JComboBox jComboBox_CategoriaTipoPago;
     javax.swing.JComboBox jComboBox_Vendedores;
     javax.swing.JDialog jDialog_BuscarProductoPorCod;
+    javax.swing.JDialog jDialog_CrearCliente;
     javax.swing.JDialog jDialog_CrearProducto;
     javax.swing.JDialog jDialog_DescuentoUnitario;
     javax.swing.JDialog jDialog_VerProducto;
-    javax.swing.JFormattedTextField jFormattedTextField1;
+    javax.swing.JFormattedTextField jFormattedTextField_Cliente;
     javax.swing.JFormattedTextField jFormattedTextField_DescuentoTotal;
     javax.swing.JFormattedTextField jFormattedTextField_PrecioConDesc;
     javax.swing.JFormattedTextField jFormattedTextField_PrecioRegular;
@@ -1661,7 +1882,11 @@ public class JPanel_CrearFactura extends javax.swing.JPanel {
     javax.swing.JFormattedTextField jFormattedTextField_cantidadProducto;
     javax.swing.JFormattedTextField jFormattedTextField_desc;
     javax.swing.JFormattedTextField jFormattedTextField_descUnitario;
+    javax.swing.JFormattedTextField jFormattedTextField_direccionCliente;
+    javax.swing.JFormattedTextField jFormattedTextField_fechaCumple;
+    javax.swing.JFormattedTextField jFormattedTextField_nombreCliente;
     javax.swing.JFormattedTextField jFormattedTextField_precioProducto;
+    javax.swing.JFormattedTextField jFormattedTextField_telefono;
     javax.swing.JLabel jLabel1;
     javax.swing.JLabel jLabel10;
     javax.swing.JLabel jLabel11;
@@ -1683,6 +1908,7 @@ public class JPanel_CrearFactura extends javax.swing.JPanel {
     javax.swing.JLabel jLabel_Descripcion;
     javax.swing.JLabel jLabel_DescripcionDescUnitario;
     javax.swing.JLabel jLabel_Fecha;
+    javax.swing.JLabel jLabel_FechaCumpleanos;
     javax.swing.JLabel jLabel_FechaFact;
     javax.swing.JLabel jLabel_Nombre;
     javax.swing.JLabel jLabel_NumFacTitle;
@@ -1693,10 +1919,14 @@ public class JPanel_CrearFactura extends javax.swing.JPanel {
     javax.swing.JLabel jLabel_datoFact;
     javax.swing.JLabel jLabel_datoNomb;
     javax.swing.JLabel jLabel_datoPrecio;
+    javax.swing.JLabel jLabel_direccionCliente;
+    javax.swing.JLabel jLabel_nombreCliente;
+    javax.swing.JLabel jLabel_telefonoCliente;
     javax.swing.JLayeredPane jLayeredPane_VerProducto;
     javax.swing.JPanel jPanel1;
     javax.swing.JPanel jPanel2;
     javax.swing.JPanel jPanel3;
+    javax.swing.JPanel jPanel4;
     javax.swing.JScrollPane jScrollPane2;
     javax.swing.JTable jTable_Factura;
     javax.swing.JTextField jTextField_Detalle;
@@ -1709,6 +1939,8 @@ public class JPanel_CrearFactura extends javax.swing.JPanel {
      */
     private void crearFactura() {
         Direct_Control_BD AdminBD = Direct_Control_BD.getInstance();
+        String Cliente= this.jFormattedTextField_Cliente.getText();
+        int idCliente = AdminBD.veridCliente(Cliente);
         int idFactura = Integer.parseInt(this.jLabel_NumerodeFact.getText());
         String vendedor = this.jComboBox_Vendedores.getSelectedItem().toString();
         int idVendedor= AdminBD.veridVendedor(vendedor);
@@ -1726,7 +1958,7 @@ public class JPanel_CrearFactura extends javax.swing.JPanel {
             Logger.getLogger(MyTableModelListener_FACT.class.getName()).
                     log(Level.SEVERE, null, ex);
         }
-        AdminBD.crearFactura(idFactura,descuento,tipoPago,1,idVendedor,
+        AdminBD.crearFactura(idFactura,descuento,tipoPago,idCliente,idVendedor,
                 "Cerrada",detalle,totalFact);
         }
     /**
@@ -1775,5 +2007,19 @@ public class JPanel_CrearFactura extends javax.swing.JPanel {
             }
             return DatoCorregido;
     
+    }
+
+    private void crearCliente() {
+        Direct_Control_BD AdminBD = Direct_Control_BD.getInstance();
+        String nombre= this.jFormattedTextField_nombreCliente.getText();
+        String direccion= this.jFormattedTextField_direccionCliente.getText();
+        String telefono= this.jFormattedTextField_telefono.getText();
+        String fechaCumpleanos = this.jFormattedTextField_fechaCumple.getText();
+        if(fechaCumpleanos.equals("")){
+            fechaCumpleanos=null;
+        }
+        AdminBD.insertarCliente(nombre,direccion,1,telefono,fechaCumpleanos);
+        this.jFormattedTextField_Cliente.setValue(nombre);
+        this.jDialog_CrearCliente.dispose();
     }
 }

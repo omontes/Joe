@@ -1563,8 +1563,8 @@ public class Direct_Control_BD {
     }
 
     /**
-     * Obtiene el numero de idvendedor de un producto segun el codigo y solo
- permite obtener la idvendedor con estado A
+     * Obtiene el numero de idvcliente de un producto segun el codigo y solo
+ permite obtener la idvcliente con estado A
      */
     public int veridVersionActivaProductoPorCodigo(String codigo) {
         try {
@@ -1717,5 +1717,67 @@ public class Direct_Control_BD {
         }
 
     }
+     public boolean verSiExisteCliente(String nombre) {
+        try {
+            String verCliente = this.readSql("../Joe"
+                    + "/src/sql_files/verSiExisteCliente.sql");
+            PreparedStatement stm = this.conection.prepareStatement(verCliente);
+            stm.setString(1, nombre);
+            ResultSet rs = stm.executeQuery();
+            return rs.next();
+        } catch (Exception e) {
+            System.out.println("No existe ese cliente");
+            return false;
+        }
+    }
+    /**
+     * Permite crear un cliente en la base de datos.
+     *
+     * @param nombre
+     * @param direccion
+     * @param idTipoPersona
+     * @param telefono
+     * @param FechaCumpleanos
+     */
+    public void insertarCliente(String nombre, String direccion, int idTipoPersona, String telefono, String FechaCumpleanos) {
+        try {
+            String crearCliente = this.readSql("../Joe/src/sql_files/"
+                    + "crearCliente.sql");
+            PreparedStatement stm = this.conection.prepareStatement(crearCliente);
+            stm.setString(1, nombre);
+            stm.setString(2, direccion);
+            stm.setInt(3, idTipoPersona);
+            stm.setString(4, telefono);
+            stm.setString(5, FechaCumpleanos);
+            stm.executeUpdate();
 
+        } catch (Exception e) {
+            System.out.println("Error al crear cliente");
+        }
+    }
+     /**
+     * Devuelve el idCliente del nombre del cliente dado.
+     * @param vendedor
+     * @return 
+     */
+    public int veridCliente(String cliente) {
+        try {
+            String verIdCliente = this.readSql("../Joe"
+                    + "/src/sql_files/verIdCliente.sql");
+            PreparedStatement stm
+                    = this.conection.prepareStatement(verIdCliente);
+            stm.setString(1, cliente);
+            ResultSet rs = stm.executeQuery();
+            int idvcliente = 0;
+            while (rs.next()) {
+                idvcliente = rs.getInt("idPersona");
+            }
+            return idvcliente;
+        } catch (Exception e) {
+            System.out.println(cliente);
+            System.out.println("Error al obtener el cliente");
+            return 0;
+        }
+
+    }
 }

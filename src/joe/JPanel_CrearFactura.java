@@ -115,6 +115,9 @@ public class JPanel_CrearFactura extends javax.swing.JPanel {
         jButton_BuscarProducto = new javax.swing.JButton();
         jLabel9 = new javax.swing.JLabel();
         jLabel16 = new javax.swing.JLabel();
+        jComboBox_Vendedores = new javax.swing.JComboBox();
+        jFormattedTextField1 = new javax.swing.JFormattedTextField();
+        jButton1 = new javax.swing.JButton();
 
         jPanel2.setBackground(new java.awt.Color(153, 153, 153));
 
@@ -754,6 +757,17 @@ public class JPanel_CrearFactura extends javax.swing.JPanel {
 
         jLabel16.setText("Cliente");
 
+        jComboBox_Vendedores.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jComboBox_Vendedores.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                jComboBox_VendedoresKeyTyped(evt);
+            }
+        });
+
+        jFormattedTextField1.setText("Cliente Anonimo");
+
+        jButton1.setText("Buscar");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
@@ -787,7 +801,7 @@ public class JPanel_CrearFactura extends javax.swing.JPanel {
                                         .addComponent(jLabel8)))
                                 .addGap(3, 3, 3)))
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jFormattedTextField_SubTotal, javax.swing.GroupLayout.DEFAULT_SIZE, 184, Short.MAX_VALUE)
+                            .addComponent(jFormattedTextField_SubTotal)
                             .addComponent(jFormattedTextField_DescuentoTotal)))
                     .addGroup(layout.createSequentialGroup()
                         .addContainerGap()
@@ -797,30 +811,34 @@ public class JPanel_CrearFactura extends javax.swing.JPanel {
                             .addComponent(jButton_EliminaFila, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jButton_Descuento, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jButton_BuscarProducto))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
-                                .addGap(69, 69, 69)
                                 .addComponent(jLabel10)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(jComboBox_CategoriaTipoPago, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(27, 27, 27)
+                                .addGap(18, 18, 18)
                                 .addComponent(jLabel9)
-                                .addGap(116, 116, 116)
-                                .addComponent(jLabel16)
-                                .addGap(153, 153, 153)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jComboBox_Vendedores, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(26, 26, 26)
+                                .addComponent(jLabel16, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jFormattedTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jButton1)
+                                .addGap(53, 53, 53)
                                 .addComponent(jLabel_FechaFact, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(jLabel_Fecha, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jLabel_Fecha)
+                                .addGap(0, 0, Short.MAX_VALUE))
+                            .addComponent(jScrollPane2)
                             .addGroup(layout.createSequentialGroup()
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 720, Short.MAX_VALUE)
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(jLabel11)
-                                            .addComponent(jTextField_Detalle, javax.swing.GroupLayout.PREFERRED_SIZE, 164, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                        .addGap(378, 378, 378)
-                                        .addComponent(jFormattedTextField_Total)))))))
+                                    .addComponent(jLabel11)
+                                    .addComponent(jTextField_Detalle, javax.swing.GroupLayout.PREFERRED_SIZE, 164, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(378, 378, 378)
+                                .addComponent(jFormattedTextField_Total, javax.swing.GroupLayout.DEFAULT_SIZE, 181, Short.MAX_VALUE)))))
                 .addGap(57, 57, 57))
         );
         layout.setVerticalGroup(
@@ -834,7 +852,10 @@ public class JPanel_CrearFactura extends javax.swing.JPanel {
                     .addComponent(jLabel_Fecha, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel_NumFacTitle, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel9)
-                    .addComponent(jLabel16))
+                    .addComponent(jComboBox_Vendedores, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButton1)
+                    .addComponent(jLabel16)
+                    .addComponent(jFormattedTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
@@ -1495,6 +1516,13 @@ public class JPanel_CrearFactura extends javax.swing.JPanel {
     private void jFormattedTextField_descMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jFormattedTextField_descMouseClicked
          this.jFormattedTextField_desc.selectAll();
     }//GEN-LAST:event_jFormattedTextField_descMouseClicked
+
+    private void jComboBox_VendedoresKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jComboBox_VendedoresKeyTyped
+        if(KeyEvent.VK_ENTER==evt.getKeyChar()){
+            this.jComboBox_Vendedores.transferFocus();
+
+        }
+    }//GEN-LAST:event_jComboBox_VendedoresKeyTyped
     /**
      * Este metodo devuelve toda la informacion de la tabla de crear factura
      * @return 
@@ -1564,8 +1592,17 @@ public class JPanel_CrearFactura extends javax.swing.JPanel {
                 setCellEditor(new EditorDeCeldaNumeros());
         //Demasiado importante ******Permite que se pueda editar apenas se 
         //ingresan datos*****
-        this.jTable_Factura.setSurrendersFocusOnKeystroke(true);
-        
+        this.jTable_Factura.setSurrendersFocusOnKeystroke(true);        
+       /** Personalizando el jComboBox_Vendedores para que tenga los vendedores
+        * registrados en la base de datos
+        */
+       AdminBD.verVendedores();
+       Object[][] dataVendedores = AdminBD.getData();
+       this.jComboBox_Vendedores.removeAllItems();
+       for(int i=0; i<dataVendedores.length; i++){
+             this.jComboBox_Vendedores.addItem(dataVendedores[i][0]);
+       }
+       this.jComboBox_Vendedores.setSelectedItem("Sin Categoria");       
         
     }
     /**
@@ -1593,6 +1630,7 @@ public class JPanel_CrearFactura extends javax.swing.JPanel {
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    javax.swing.JButton jButton1;
     javax.swing.JButton jButton2;
     javax.swing.JButton jButton_BuscarProducto;
     javax.swing.JButton jButton_BusqueProducto;
@@ -1608,10 +1646,12 @@ public class JPanel_CrearFactura extends javax.swing.JPanel {
     javax.swing.JButton jButton_VerProducto;
     javax.swing.JButton jButton_aceptarFactura;
     javax.swing.JComboBox jComboBox_CategoriaTipoPago;
+    javax.swing.JComboBox jComboBox_Vendedores;
     javax.swing.JDialog jDialog_BuscarProductoPorCod;
     javax.swing.JDialog jDialog_CrearProducto;
     javax.swing.JDialog jDialog_DescuentoUnitario;
     javax.swing.JDialog jDialog_VerProducto;
+    javax.swing.JFormattedTextField jFormattedTextField1;
     javax.swing.JFormattedTextField jFormattedTextField_DescuentoTotal;
     javax.swing.JFormattedTextField jFormattedTextField_PrecioConDesc;
     javax.swing.JFormattedTextField jFormattedTextField_PrecioRegular;
@@ -1670,6 +1710,8 @@ public class JPanel_CrearFactura extends javax.swing.JPanel {
     private void crearFactura() {
         Direct_Control_BD AdminBD = Direct_Control_BD.getInstance();
         int idFactura = Integer.parseInt(this.jLabel_NumerodeFact.getText());
+        String vendedor = this.jComboBox_Vendedores.getSelectedItem().toString();
+        int idVendedor= AdminBD.veridVendedor(vendedor);
         String tipoPago = this.jComboBox_CategoriaTipoPago.getSelectedItem().toString();
         String detalle= this.jTextField_Detalle.getText();
         String totalFacturaSinCorregir = this.jFormattedTextField_Total.getText();
@@ -1684,7 +1726,7 @@ public class JPanel_CrearFactura extends javax.swing.JPanel {
             Logger.getLogger(MyTableModelListener_FACT.class.getName()).
                     log(Level.SEVERE, null, ex);
         }
-        AdminBD.crearFactura(idFactura,descuento,tipoPago,1,2,
+        AdminBD.crearFactura(idFactura,descuento,tipoPago,1,idVendedor,
                 "Cerrada",detalle,totalFact);
         }
     /**

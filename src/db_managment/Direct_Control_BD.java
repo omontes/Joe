@@ -1563,8 +1563,8 @@ public class Direct_Control_BD {
     }
 
     /**
-     * Obtiene el numero de version de un producto segun el codigo y solo
-     * permite obtener la version con estado A
+     * Obtiene el numero de idvendedor de un producto segun el codigo y solo
+ permite obtener la idvendedor con estado A
      */
     public int veridVersionActivaProductoPorCodigo(String codigo) {
         try {
@@ -1676,6 +1676,46 @@ public class Direct_Control_BD {
             System.out.println("Error al Ver Facturas FacturasPorCategoriaDeProd");
 
         }
+    }
+     /**
+     * Obtiene los nombres de los vendedores de la base de datos
+     */
+    public void verVendedores() {
+        try {
+            String consultarVendedores = this.readSql("../Joe"
+                    + "/src/sql_files/consultarVendedores.sql");
+            ResultSet rs = statement.executeQuery(consultarVendedores);
+            this.setColumnNames(this.Get_Columnas(rs));
+            this.setData(this.ResultSet_Array(rs));
+        } catch (Exception e) {
+            System.out.println("Error al obtener todos los vendedores");
+        }
+
+    }
+    /**
+     * Devuelve el idVendedor del nombre del vendedor dado.
+     * @param vendedor
+     * @return 
+     */
+    public int veridVendedor(String vendedor) {
+        try {
+            String verIdVendedor = this.readSql("../Joe"
+                    + "/src/sql_files/verIdVendedor.sql");
+            PreparedStatement stm
+                    = this.conection.prepareStatement(verIdVendedor);
+            stm.setString(1, vendedor);
+            ResultSet rs = stm.executeQuery();
+            int idvendedor = 0;
+            while (rs.next()) {
+                idvendedor = rs.getInt("idPersona");
+            }
+            return idvendedor;
+        } catch (Exception e) {
+            System.out.println(vendedor);
+            System.out.println("Error al obtener el vendedor");
+            return 0;
+        }
+
     }
 
 }

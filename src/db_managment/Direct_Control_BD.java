@@ -1792,5 +1792,23 @@ public class Direct_Control_BD {
         }
 
     }
+    /**
+     * Devuelve toda la informacion(Cliente,Vendedor,Total etc)
+     * del num de factura ingresado.
+     */
+    public void verInfoFactura(int NumFact) {
+        try {
+            String verInfoFactura = this.readSql("../Joe/src/"
+                    + "sql_files/cargarFactura.sql");
+            PreparedStatement stm = this.conection.prepareStatement(verInfoFactura);
+            stm.setInt(1,NumFact);
+            ResultSet resultset = stm.executeQuery();
+            this.setColumnNames(this.Get_Columnas(resultset));
+            this.setData(this.ResultSet_Array(resultset));
+        } catch (Exception e) {
+            System.out.println(NumFact);
+            System.out.println("Error al obtener la informacion de la factura");
+        }
+    }
 
 }

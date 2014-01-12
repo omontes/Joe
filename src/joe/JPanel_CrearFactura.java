@@ -1431,6 +1431,14 @@ public class JPanel_CrearFactura extends javax.swing.JPanel {
             jTable_Factura.getCellEditor().cancelCellEditing();
             
         }
+        if(jTable_Factura.getValueAt(0,0).equals("")){
+            JOptionPane.showMessageDialog(
+                          null,
+                          "No se puede guardar facturas"
+                                  + " si no tienen ningun producto",                           
+                          "Alert!", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
         this.crearFactura();   
         this.guardarProductosFactura();
         this.clearAll();

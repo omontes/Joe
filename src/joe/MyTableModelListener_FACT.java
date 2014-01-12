@@ -114,9 +114,6 @@ public class MyTableModelListener_FACT implements TableModelListener {
                   table.requestFocus();
                   return;
               }
-              /**if(info.equals(oldValue)){
-                  return;
-              }**/
               //si ingresa un codigo el usuario
               if (!info.equals("")) {
                   String descripcion = this.BDmanagment.verNombreProductoPorCodigo(codigo);
@@ -127,8 +124,8 @@ public class MyTableModelListener_FACT implements TableModelListener {
               // Por si el usuario no deja nada en la celda y ya tenia un cod
               // de un articulo entonces hace que se mantega el que ya estaba
               if(info.equals("") & !oldValue.equals("")){
-                  model.setValueAt(oldValue, row,column);
-                  return;
+                   model.setValueAt(oldValue, row,0);
+                   return;
                   
               }
                  

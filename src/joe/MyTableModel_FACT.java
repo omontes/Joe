@@ -1,20 +1,20 @@
 /*
- * To change this template, choose Tools | Templates
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package joe;
 
+package joe;
 
 import java.util.List;
 import javax.swing.event.TableModelListener;
 import javax.swing.table.AbstractTableModel;
 
-
 /**
  *
  * @author Oscar Montes
  */
-public class MyTableModel_FACT extends AbstractTableModel {
+class MyTableModel_FACT extends AbstractTableModel {
     private String[] columnNames;
     public List<Object[]> data;
     public MyTableModel_FACT(String[] columnNames,List<Object[]> data){
@@ -119,7 +119,3 @@ public class MyTableModel_FACT extends AbstractTableModel {
 }
     
 }
-   
-   
-
- 

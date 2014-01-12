@@ -1085,6 +1085,10 @@ public class JPanel_CrearFactura extends javax.swing.JPanel {
     
     
     private void jButton_VerProductoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_VerProductoActionPerformed
+        if (jTable_Factura.isEditing()) {
+            jTable_Factura.getCellEditor().cancelCellEditing();
+            
+        }
         MyTableModel_FACT model = (MyTableModel_FACT) jTable_Factura.getModel();
         int row = jTable_Factura.getSelectedRow();
         String idProducto = model.getValueAt(row, 0).toString();//obtiene el id
@@ -1143,6 +1147,10 @@ public class JPanel_CrearFactura extends javax.swing.JPanel {
      * @param evt 
      */
     private void jButton_DescuentoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_DescuentoActionPerformed
+        if (jTable_Factura.isEditing()) {
+            jTable_Factura.getCellEditor().cancelCellEditing();
+            
+        }
         MyTableModel_FACT model = (MyTableModel_FACT) jTable_Factura.getModel();
         int row = jTable_Factura.getSelectedRow();
         String idProducto = model.getValueAt(row, 0).toString();
@@ -1419,6 +1427,10 @@ public class JPanel_CrearFactura extends javax.swing.JPanel {
         }
     }
     private void jButton_aceptarFacturaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_aceptarFacturaActionPerformed
+        if (jTable_Factura.isEditing()) {
+            jTable_Factura.getCellEditor().cancelCellEditing();
+            
+        }
         this.crearFactura();   
         this.guardarProductosFactura();
         this.clearAll();
@@ -1818,7 +1830,7 @@ public class JPanel_CrearFactura extends javax.swing.JPanel {
        Object[][] dataVendedores = AdminBD.getData();
        this.jComboBox_Vendedores.removeAllItems();
        for(int i=0; i<dataVendedores.length; i++){
-             this.jComboBox_Vendedores.addItem(dataVendedores[i][0]);
+             this.jComboBox_Vendedores.addItem(dataVendedores[i][1]);
        }
        this.jComboBox_Vendedores.setSelectedItem("Sin Categoria");
        this.jFormattedTextField_Cliente.setText("Cliente Anonimo");

@@ -381,18 +381,34 @@ public class JPanel_VerFactura extends javax.swing.JPanel {
          String totalFact = datosInfoFactura[4].toString();
          String detalle = datosInfoFactura[5].toString();
          String descuento= datosInfoFactura[6].toString();
-         this.jFormattedTextField_Cliente.setText(cliente);
-         this.jLabel_Fecha.setText(fecha);
-         this.jTextField_Vendedor.setText(vendedor);
-         this.jTextField_tipopago.setText(tipopago);
-         this.jTextField_Detalle.setText(detalle);
-         this.jFormattedTextField_Total.setText(totalFact);
-         this.jFormattedTextField_desc.setText(descuento);
-         
-    }
+        this.jFormattedTextField_Cliente.setText(cliente);
+        this.jLabel_Fecha.setText(fecha);
+        this.jTextField_Vendedor.setText(vendedor);
+        this.jTextField_tipopago.setText(tipopago);
+        this.jTextField_Detalle.setText(detalle);
+        BigDecimal totalFacturado = this.StringtoBigDecimal(totalFact);
+        BigDecimal descuentoD = this.StringtoBigDecimal(descuento);
+        BigDecimal subtotal= totalFacturado.divide(new BigDecimal("1.00").subtract(descuentoD.divide(new BigDecimal("100.00"))));
+        this.jFormattedTextField_DescuentoTotal.setValue(totalFacturado.subtract(subtotal));
+        this.jFormattedTextField_SubTotal.setValue(subtotal);
+        this.jFormattedTextField_Total.setValue(totalFacturado);
+        this.jFormattedTextField_desc.setValue(descuentoD);
 
+    }
+    private BigDecimal StringtoBigDecimal(String numero){
+        DecimalFormat decimalfC = (DecimalFormat) NumberFormat.getInstance();
+        decimalfC.setParseBigDecimal(true);
+        BigDecimal numeroCorregido = null;
+        try {
+            numeroCorregido = (BigDecimal) decimalfC.parseObject(numero);
+        } catch (ParseException ex) {
+            Logger.getLogger(JPanel_VerFactura.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return numeroCorregido;
+    
+    }
     private void cargarProductosFact() {
-        
+        System.out.println("solo falta cargar los productos");
     }
 
  

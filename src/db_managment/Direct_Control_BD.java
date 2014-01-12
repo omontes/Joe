@@ -102,7 +102,7 @@ public class Direct_Control_BD {
      * @param idCLiente Este metodo da como resultados todas las ventas hechas a
      * un determinado cliente
      */
-    public void VerVentasPorCliente(String FechaIni,String FechaFin,String NombreCliente) {
+    public void VerVentasPorCliente(String FechaIni, String FechaFin, String NombreCliente) {
         try {
             String VentasPorCliente = readSql("../Joe/src/"
                     + "sql_files/"
@@ -1557,8 +1557,8 @@ public class Direct_Control_BD {
     }
 
     /**
-     * Obtiene el numero de version de un producto segun el codigo y solo
-     * permite obtener la version con estado A
+     * Obtiene el numero de idvcliente de un producto segun el codigo y solo
+     * permite obtener la idvcliente con estado A
      */
     public int veridVersionActivaProductoPorCodigo(String codigo) {
         try {
@@ -1672,6 +1672,21 @@ public class Direct_Control_BD {
         }
     }
 
+    /**
+     * Obtiene los nombres de los vendedores de la base de datos
+     */
+    public void verVendedores() {
+        try {
+            String consultarVendedores = this.readSql("../Joe"
+                    + "/src/sql_files/consultarVendedores.sql");
+            ResultSet rs = statement.executeQuery(consultarVendedores);
+            this.setColumnNames(this.Get_Columnas(rs));
+            this.setData(this.ResultSet_Array(rs));
+        } catch (Exception e) {
+            System.out.println("Error al obtener todos los vendedores");
+        }
+    }
+
     public void consultarClientes() {
         try {
             String categorias = this.readSql("../Joe/src/"
@@ -1683,6 +1698,100 @@ public class Direct_Control_BD {
         } catch (Exception e) {
             System.out.println("Error al obtener el categoria");
         }
+    }
+
+    /**
+     * Devuelve el idVendedor del nombre del vendedor dado.
+     *
+     * @param vendedor
+     * @return
+     */
+    public int veridVendedor(String vendedor) {
+        try {
+            String verIdVendedor = this.readSql("../Joe"
+                    + "/src/sql_files/verIdVendedor.sql");
+            PreparedStatement stm
+                    = this.conection.prepareStatement(verIdVendedor);
+            stm.setString(1, vendedor);
+            ResultSet rs = stm.executeQuery();
+            int idvendedor = 0;
+            while (rs.next()) {
+                idvendedor = rs.getInt("idPersona");
+            }
+            return idvendedor;
+        } catch (Exception e) {
+            System.out.println(vendedor);
+            System.out.println("Error al obtener el vendedor");
+            return 0;
+        }
+
+    }
+
+    public boolean verSiExisteCliente(String nombre) {
+        try {
+            String verCliente = this.readSql("../Joe"
+                    + "/src/sql_files/verSiExisteCliente.sql");
+            PreparedStatement stm = this.conection.prepareStatement(verCliente);
+            stm.setString(1, nombre);
+            ResultSet rs = stm.executeQuery();
+            return rs.next();
+        } catch (Exception e) {
+            System.out.println("No existe ese cliente");
+            return false;
+        }
+    }
+
+    /**
+     * Permite crear un cliente en la base de datos.
+     *
+     * @param nombre
+     * @param direccion
+     * @param idTipoPersona
+     * @param telefono
+     * @param FechaCumpleanos
+     */
+    public void insertarCliente(String nombre, String direccion, int idTipoPersona, String telefono, String FechaCumpleanos) {
+        try {
+            String crearCliente = this.readSql("../Joe/src/sql_files/"
+                    + "crearCliente.sql");
+            PreparedStatement stm = this.conection.prepareStatement(crearCliente);
+            stm.setString(1, nombre);
+            stm.setString(2, direccion);
+            stm.setInt(3, idTipoPersona);
+            stm.setString(4, telefono);
+            stm.setString(5, FechaCumpleanos);
+            stm.executeUpdate();
+
+        } catch (Exception e) {
+            System.out.println("Error al crear cliente");
+        }
+    }
+
+    /**
+     * Devuelve el idCliente del nombre del cliente dado.
+     *
+     * @param vendedor
+     * @return
+     */
+    public int veridCliente(String cliente) {
+        try {
+            String verIdCliente = this.readSql("../Joe"
+                    + "/src/sql_files/verIdCliente.sql");
+            PreparedStatement stm
+                    = this.conection.prepareStatement(verIdCliente);
+            stm.setString(1, cliente);
+            ResultSet rs = stm.executeQuery();
+            int idvcliente = 0;
+            while (rs.next()) {
+                idvcliente = rs.getInt("idPersona");
+            }
+            return idvcliente;
+        } catch (Exception e) {
+            System.out.println(cliente);
+            System.out.println("Error al obtener el cliente");
+            return 0;
+        }
+
     }
 
 }

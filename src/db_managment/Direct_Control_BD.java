@@ -1793,4 +1793,57 @@ public class Direct_Control_BD {
 
     }
 
+    /**
+     * Consultar Facturas Pendientes, en un rango de fechas
+     *
+     * @param FechaIni
+     * @param FechaFin
+     */
+    public void CosultarFacturasPendientes(String FechaIni, String FechaFin) {
+        try {
+            String cosultarFacturasPendientes = this.readSql("../Joe"
+                    + "/src/sql_files/CosultarFacturasPendientes.sql");
+            PreparedStatement stm
+                    = this.conection.prepareStatement(cosultarFacturasPendientes);
+            stm.setString(1, FechaIni);
+            stm.setString(2, FechaFin);
+            ResultSet rs = stm.executeQuery();
+
+        } catch (Exception e) {
+
+            System.out.println("Error al Cosultar Facturas Pendientes");
+
+        }
+    }
+
+    /**
+     * Retorna las ventas por hechas en un lapso, por tipo de pago, ya sea
+     * Efectivo o Tarjeta
+     *
+     * @param FechaIni
+     * @param FechaFin
+     * @param termino
+     */
+    public void FacturasPorTerminoPorFecha(String FechaIni, String FechaFin,
+            String termino) {
+        try {
+            String cosultarFacturasPorTermino = readSql("../Joe"
+                    + "/src/sql_files/FacturasPorTerminoPorFecha.sql");
+            PreparedStatement stm
+                    = conection.prepareStatement(cosultarFacturasPorTermino);
+            stm.setString(1, FechaIni);
+            stm.setString(2, FechaFin);
+            stm.setString(3, termino);
+            ResultSet rs = stm.executeQuery();
+            setColumnNames(Get_Columnas(rs));
+            setData2(ResultSet_Array(rs));
+
+        } catch (Exception e) {
+
+            System.out.println("Error al Cosultar Facturas Por "
+                    + "Termino Por Fecha");
+
+        }
+    }
+
 }

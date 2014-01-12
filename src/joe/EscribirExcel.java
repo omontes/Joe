@@ -215,10 +215,19 @@ public class EscribirExcel {
 
     }
 
+    /**
+     * Escribe el total de factura dependiendo del tipo de reporte
+     *
+     * @param tipoDeReporte
+     * @param hojaExc
+     * @param ultimaFila
+     * @throws WriteException
+     */
     private void escribirResultado(String tipoDeReporte, WritableSheet hojaExc,
             int ultimaFila) throws WriteException {
 
-        if (tipoDeReporte.startsWith("Ventas Por Fechas")) {
+        if (tipoDeReporte.startsWith("Ventas Por Fechas")
+                || tipoDeReporte.startsWith("Ventas Por Término:")) {
 
             hojaExc.addCell(new Label(1, ultimaFila + 1, "       Total Facturas",
                     timesLines));

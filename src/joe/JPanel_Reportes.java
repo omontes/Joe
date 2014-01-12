@@ -116,6 +116,21 @@ public class JPanel_Reportes extends javax.swing.JPanel {
         jRadioButton_ExcelVendedor = new javax.swing.JRadioButton();
         jLabel23 = new javax.swing.JLabel();
         buttonGroup4 = new javax.swing.ButtonGroup();
+        jPanel_VerVentasPorTermino = new javax.swing.JPanel();
+        jLabel24 = new javax.swing.JLabel();
+        jButton_AceptarVerVentasPorTermino = new javax.swing.JButton();
+        jLabel25 = new javax.swing.JLabel();
+        jButton_CancelarVerFactPorTermino = new javax.swing.JButton();
+        jLabel26 = new javax.swing.JLabel();
+        jLabel27 = new javax.swing.JLabel();
+        dateChooserCombo_IniTermino = new datechooser.beans.DateChooserCombo();
+        dateChooserCombo_FinTermino = new datechooser.beans.DateChooserCombo();
+        jRadioButton_ExcelTermino = new javax.swing.JRadioButton();
+        jRadioButton_PantallaTermino = new javax.swing.JRadioButton();
+        jLabel29 = new javax.swing.JLabel();
+        jLabel28 = new javax.swing.JLabel();
+        jRadioButton_Efectivo = new javax.swing.JRadioButton();
+        jRadioButton_Tarjeta = new javax.swing.JRadioButton();
         jButton1 = new javax.swing.JButton();
         jTabbedPane6 = new javax.swing.JTabbedPane();
         jPanel1 = new javax.swing.JPanel();
@@ -981,7 +996,6 @@ public void keyTyped(java.awt.event.KeyEvent evt) {
     jRadioButton_PantallaVendedor.setText("Pantalla");
 
     buttonGroup1.add(jRadioButton_ExcelVendedor);
-    jRadioButton_ExcelVendedor.setSelected(true);
     jRadioButton_ExcelVendedor.setText("Excel");
 
     jLabel23.setText("Ver en:");
@@ -1069,6 +1083,230 @@ public void keyTyped(java.awt.event.KeyEvent evt) {
             .addGap(61, 61, 61))
     );
 
+    jPanel_VerVentasPorTermino.setMinimumSize(new java.awt.Dimension(585, 360));
+
+    jLabel24.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+    jLabel24.setForeground(new java.awt.Color(0, 51, 51));
+    jLabel24.setText("Ralación De Facturas Emitidas Por Término");
+
+    jButton_AceptarVerVentasPorTermino.setForeground(new java.awt.Color(0, 51, 51));
+    jButton_AceptarVerVentasPorTermino.setText("Aceptar");
+    jButton_AceptarVerVentasPorTermino.addActionListener(new java.awt.event.ActionListener() {
+        public void actionPerformed(java.awt.event.ActionEvent evt) {
+            jButton_AceptarVerVentasPorTerminoActionPerformed(evt);
+        }
+    });
+
+    jLabel25.setFont(new java.awt.Font("Tahoma", 0, 10)); // NOI18N
+    jLabel25.setForeground(new java.awt.Color(0, 51, 51));
+    jLabel25.setText("Período:");
+
+    jButton_CancelarVerFactPorTermino.setText("Cancelar");
+    jButton_CancelarVerFactPorTermino.addActionListener(new java.awt.event.ActionListener() {
+        public void actionPerformed(java.awt.event.ActionEvent evt) {
+            jButton_CancelarVerFactPorTerminoActionPerformed(evt);
+        }
+    });
+
+    jLabel26.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+    jLabel26.setForeground(new java.awt.Color(0, 51, 51));
+    jLabel26.setText("Desde:");
+
+    jLabel27.setText("Hasta:");
+
+    dateChooserCombo_IniTermino.setCurrentView(new datechooser.view.appearance.AppearancesList("Grey",
+        new datechooser.view.appearance.ViewAppearance("custom",
+            new datechooser.view.appearance.swing.SwingCellAppearance(new java.awt.Font("Tahoma", java.awt.Font.PLAIN, 11),
+                new java.awt.Color(0, 0, 0),
+                new java.awt.Color(0, 0, 255),
+                false,
+                true,
+                new datechooser.view.appearance.swing.ButtonPainter()),
+            new datechooser.view.appearance.swing.SwingCellAppearance(new java.awt.Font("Tahoma", java.awt.Font.PLAIN, 11),
+                new java.awt.Color(0, 0, 0),
+                new java.awt.Color(0, 0, 255),
+                true,
+                true,
+                new datechooser.view.appearance.swing.ButtonPainter()),
+            new datechooser.view.appearance.swing.SwingCellAppearance(new java.awt.Font("Tahoma", java.awt.Font.PLAIN, 11),
+                new java.awt.Color(0, 0, 255),
+                new java.awt.Color(0, 0, 255),
+                false,
+                true,
+                new datechooser.view.appearance.swing.ButtonPainter()),
+            new datechooser.view.appearance.swing.SwingCellAppearance(new java.awt.Font("Tahoma", java.awt.Font.PLAIN, 11),
+                new java.awt.Color(128, 128, 128),
+                new java.awt.Color(0, 0, 255),
+                false,
+                true,
+                new datechooser.view.appearance.swing.LabelPainter()),
+            new datechooser.view.appearance.swing.SwingCellAppearance(new java.awt.Font("Tahoma", java.awt.Font.PLAIN, 11),
+                new java.awt.Color(0, 0, 0),
+                new java.awt.Color(0, 0, 255),
+                false,
+                true,
+                new datechooser.view.appearance.swing.LabelPainter()),
+            new datechooser.view.appearance.swing.SwingCellAppearance(new java.awt.Font("Tahoma", java.awt.Font.PLAIN, 11),
+                new java.awt.Color(0, 0, 0),
+                new java.awt.Color(255, 0, 0),
+                false,
+                false,
+                new datechooser.view.appearance.swing.ButtonPainter()),
+            (datechooser.view.BackRenderer)null,
+            false,
+            true)));
+dateChooserCombo_IniTermino.setCalendarBackground(new java.awt.Color(0, 51, 51));
+dateChooserCombo_IniTermino.setNothingAllowed(false);
+dateChooserCombo_IniTermino.setMaxDate(dateChooserCombo_FinVent.getSelectedDate());
+dateChooserCombo_IniTermino.setBehavior(datechooser.model.multiple.MultyModelBehavior.SELECT_SINGLE);
+
+dateChooserCombo_FinTermino.setCurrentView(new datechooser.view.appearance.AppearancesList("Grey",
+    new datechooser.view.appearance.ViewAppearance("custom",
+        new datechooser.view.appearance.swing.SwingCellAppearance(new java.awt.Font("Tahoma", java.awt.Font.PLAIN, 11),
+            new java.awt.Color(0, 0, 0),
+            new java.awt.Color(0, 0, 255),
+            false,
+            true,
+            new datechooser.view.appearance.swing.ButtonPainter()),
+        new datechooser.view.appearance.swing.SwingCellAppearance(new java.awt.Font("Tahoma", java.awt.Font.PLAIN, 11),
+            new java.awt.Color(0, 0, 0),
+            new java.awt.Color(0, 0, 255),
+            true,
+            true,
+            new datechooser.view.appearance.swing.ButtonPainter()),
+        new datechooser.view.appearance.swing.SwingCellAppearance(new java.awt.Font("Tahoma", java.awt.Font.PLAIN, 11),
+            new java.awt.Color(0, 0, 255),
+            new java.awt.Color(0, 0, 255),
+            false,
+            true,
+            new datechooser.view.appearance.swing.ButtonPainter()),
+        new datechooser.view.appearance.swing.SwingCellAppearance(new java.awt.Font("Tahoma", java.awt.Font.PLAIN, 11),
+            new java.awt.Color(128, 128, 128),
+            new java.awt.Color(0, 0, 255),
+            false,
+            true,
+            new datechooser.view.appearance.swing.LabelPainter()),
+        new datechooser.view.appearance.swing.SwingCellAppearance(new java.awt.Font("Tahoma", java.awt.Font.PLAIN, 11),
+            new java.awt.Color(0, 0, 0),
+            new java.awt.Color(0, 0, 255),
+            false,
+            true,
+            new datechooser.view.appearance.swing.LabelPainter()),
+        new datechooser.view.appearance.swing.SwingCellAppearance(new java.awt.Font("Tahoma", java.awt.Font.PLAIN, 11),
+            new java.awt.Color(0, 0, 0),
+            new java.awt.Color(255, 0, 0),
+            false,
+            false,
+            new datechooser.view.appearance.swing.ButtonPainter()),
+        (datechooser.view.BackRenderer)null,
+        false,
+        true)));
+dateChooserCombo_FinTermino.setNothingAllowed(false);
+dateChooserCombo_FinTermino.setMinDate(dateChooserCombo_IniVent.getSelectedDate());
+dateChooserCombo_FinTermino.setBehavior(datechooser.model.multiple.MultyModelBehavior.SELECT_SINGLE);
+
+buttonGroup1.add(jRadioButton_ExcelTermino);
+jRadioButton_ExcelTermino.setSelected(true);
+jRadioButton_ExcelTermino.setText("Excel");
+
+buttonGroup1.add(jRadioButton_PantallaTermino);
+jRadioButton_PantallaTermino.setText("Pantalla");
+
+jLabel29.setFont(new java.awt.Font("Tahoma", 0, 10)); // NOI18N
+jLabel29.setForeground(new java.awt.Color(0, 51, 51));
+jLabel29.setText("Ver en:");
+
+jLabel28.setFont(new java.awt.Font("Tahoma", 0, 10)); // NOI18N
+jLabel28.setForeground(new java.awt.Color(0, 51, 51));
+jLabel28.setText("Tipo De Venta:");
+
+jRadioButton_Efectivo.setSelected(true);
+jRadioButton_Efectivo.setText("Efectivo");
+
+jRadioButton_Tarjeta.setText("Tarjetas");
+
+javax.swing.GroupLayout jPanel_VerVentasPorTerminoLayout = new javax.swing.GroupLayout(jPanel_VerVentasPorTermino);
+jPanel_VerVentasPorTermino.setLayout(jPanel_VerVentasPorTerminoLayout);
+jPanel_VerVentasPorTerminoLayout.setHorizontalGroup(
+jPanel_VerVentasPorTerminoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+.addGroup(jPanel_VerVentasPorTerminoLayout.createSequentialGroup()
+    .addContainerGap()
+    .addGroup(jPanel_VerVentasPorTerminoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+        .addComponent(jLabel24, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 242, javax.swing.GroupLayout.PREFERRED_SIZE)
+        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel_VerVentasPorTerminoLayout.createSequentialGroup()
+            .addGap(13, 13, 13)
+            .addGroup(jPanel_VerVentasPorTerminoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jPanel_VerVentasPorTerminoLayout.createSequentialGroup()
+                    .addGap(10, 10, 10)
+                    .addComponent(jLabel26, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGap(5, 5, 5)
+                    .addGroup(jPanel_VerVentasPorTerminoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(jPanel_VerVentasPorTerminoLayout.createSequentialGroup()
+                            .addGroup(jPanel_VerVentasPorTerminoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(jRadioButton_ExcelTermino)
+                                .addGroup(jPanel_VerVentasPorTerminoLayout.createSequentialGroup()
+                                    .addComponent(dateChooserCombo_IniTermino, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGap(18, 18, 18)
+                                    .addComponent(jLabel27)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                    .addComponent(dateChooserCombo_FinTermino, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addGap(0, 93, Short.MAX_VALUE))
+                        .addGroup(jPanel_VerVentasPorTerminoLayout.createSequentialGroup()
+                            .addComponent(jRadioButton_PantallaTermino)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jButton_AceptarVerVentasPorTermino, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGap(26, 26, 26)
+                            .addComponent(jButton_CancelarVerFactPorTermino)
+                            .addGap(9, 9, 9))))
+                .addGroup(jPanel_VerVentasPorTerminoLayout.createSequentialGroup()
+                    .addGroup(jPanel_VerVentasPorTerminoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(jLabel29)
+                        .addComponent(jLabel25)
+                        .addComponent(jLabel28))
+                    .addGap(0, 0, Short.MAX_VALUE)))))
+    .addGap(51, 51, 51))
+    .addGroup(jPanel_VerVentasPorTerminoLayout.createSequentialGroup()
+        .addGap(94, 94, 94)
+        .addComponent(jRadioButton_Efectivo)
+        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+        .addComponent(jRadioButton_Tarjeta)
+        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+    );
+    jPanel_VerVentasPorTerminoLayout.setVerticalGroup(
+        jPanel_VerVentasPorTerminoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        .addGroup(jPanel_VerVentasPorTerminoLayout.createSequentialGroup()
+            .addContainerGap()
+            .addComponent(jLabel24)
+            .addGap(25, 25, 25)
+            .addComponent(jLabel25)
+            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+            .addGroup(jPanel_VerVentasPorTerminoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jPanel_VerVentasPorTerminoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(dateChooserCombo_FinTermino, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(dateChooserCombo_IniTermino, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jLabel27, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addComponent(jLabel26, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addGap(56, 56, 56)
+            .addComponent(jLabel28)
+            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 4, Short.MAX_VALUE)
+            .addGroup(jPanel_VerVentasPorTerminoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addComponent(jRadioButton_Efectivo)
+                .addComponent(jRadioButton_Tarjeta))
+            .addGap(29, 29, 29)
+            .addComponent(jLabel29)
+            .addGap(7, 7, 7)
+            .addGroup(jPanel_VerVentasPorTerminoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel_VerVentasPorTerminoLayout.createSequentialGroup()
+                    .addComponent(jRadioButton_ExcelTermino)
+                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                    .addComponent(jRadioButton_PantallaTermino)
+                    .addGap(10, 10, 10))
+                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel_VerVentasPorTerminoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jButton_AceptarVerVentasPorTermino)
+                    .addComponent(jButton_CancelarVerFactPorTermino)))
+            .addGap(61, 61, 61))
+    );
+
     setMaximumSize(new java.awt.Dimension(2147483647, 2147483647));
 
     jButton1.setText("Regresar");
@@ -1106,12 +1344,19 @@ public void keyTyped(java.awt.event.KeyEvent evt) {
         }
     });
 
+    jButton4.setForeground(new java.awt.Color(0, 51, 51));
     jButton4.setText("Vtas. Por Clte./ Prod.");
 
+    jButton6.setForeground(new java.awt.Color(0, 51, 51));
     jButton6.setText("Por Vend. y Términos");
 
     jButton_VentasPorTerminos.setForeground(new java.awt.Color(0, 51, 51));
     jButton_VentasPorTerminos.setText("Ventas Por Términos");
+    jButton_VentasPorTerminos.addActionListener(new java.awt.event.ActionListener() {
+        public void actionPerformed(java.awt.event.ActionEvent evt) {
+            jButton_VentasPorTerminosActionPerformed(evt);
+        }
+    });
 
     jButton_VentasPorVendedor.setForeground(new java.awt.Color(0, 51, 51));
     jButton_VentasPorVendedor.setText("Ventas Por Vendedor");
@@ -1121,6 +1366,7 @@ public void keyTyped(java.awt.event.KeyEvent evt) {
         }
     });
 
+    jButton5.setForeground(new java.awt.Color(0, 51, 51));
     jButton5.setText("Productos Por Vendedor");
 
     javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
@@ -1134,20 +1380,19 @@ public void keyTyped(java.awt.event.KeyEvent evt) {
                 .addComponent(jButton_VentasPorTerminos, javax.swing.GroupLayout.DEFAULT_SIZE, 161, Short.MAX_VALUE)
                 .addComponent(jButton_VentasPorFecha, javax.swing.GroupLayout.DEFAULT_SIZE, 161, Short.MAX_VALUE))
             .addGap(111, 111, 111)
-            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(jPanel1Layout.createSequentialGroup()
-                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                        .addComponent(jButton4, javax.swing.GroupLayout.DEFAULT_SIZE, 161, Short.MAX_VALUE)
-                        .addComponent(jButton_VentasPorCliente, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGap(113, 113, 113)
-                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(jButton_VentasPorProd, javax.swing.GroupLayout.PREFERRED_SIZE, 161, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(jButton6, javax.swing.GroupLayout.PREFERRED_SIZE, 161, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                    .addComponent(jButton5, javax.swing.GroupLayout.PREFERRED_SIZE, 161, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGap(80, 80, 80))))
+            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                .addComponent(jButton4, javax.swing.GroupLayout.DEFAULT_SIZE, 161, Short.MAX_VALUE)
+                .addComponent(jButton_VentasPorCliente, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGap(113, 113, 113)
+            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                .addComponent(jButton5, javax.swing.GroupLayout.DEFAULT_SIZE, 184, Short.MAX_VALUE)
+                .addComponent(jButton6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jButton_VentasPorProd, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addContainerGap(11, Short.MAX_VALUE))
     );
+
+    jPanel1Layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {jButton4, jButton5, jButton6, jButton_VentasPorCliente, jButton_VentasPorFecha, jButton_VentasPorTerminos, jButton_VentasPorVendedor});
+
     jPanel1Layout.setVerticalGroup(
         jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
         .addGroup(jPanel1Layout.createSequentialGroup()
@@ -1334,6 +1579,7 @@ public void keyTyped(java.awt.event.KeyEvent evt) {
         jPanel_VentasPorCliente.setVisible(false);
         jPanel_VerVentasPorFech.setVisible(false);
         jPanel_VentasPorVendedor.setVisible(false);
+        jPanel_VerVentasPorTermino.setVisible(false);
     }//GEN-LAST:event_jDialog_ReportesWindowClosing
 
     private void jButton_CancelarVerFactPorFechActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_CancelarVerFactPorFechActionPerformed
@@ -1565,6 +1811,85 @@ public void keyTyped(java.awt.event.KeyEvent evt) {
         jDialog_Reportes.setVisible(true);
     }//GEN-LAST:event_jButton_VentasPorVendedorActionPerformed
 
+    private void jButton_VentasPorTerminosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_VentasPorTerminosActionPerformed
+        buttonGroup1.add(jRadioButton_ExcelTermino);
+        buttonGroup1.add(jRadioButton_PantallaTermino);
+        buttonGroup2.add(jRadioButton_Efectivo);
+        buttonGroup2.add(jRadioButton_Tarjeta);
+        jRadioButton_Efectivo.setSelected(true);
+        jRadioButton_ExcelTermino.setSelected(true);
+        jPanel_VerVentasPorTermino.setVisible(true);
+        jDialog_Reportes.setLocation(getLocationOnScreen());
+        jPanel_VerVentasPorTermino.setSize(jDialog_Reportes.getSize());
+        jDialog_Reportes.add(jPanel_VerVentasPorTermino);
+        jDialog_Reportes.setVisible(true);
+
+    }//GEN-LAST:event_jButton_VentasPorTerminosActionPerformed
+
+    private void jButton_CancelarVerFactPorTerminoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_CancelarVerFactPorTerminoActionPerformed
+        jDialog_Reportes.remove(jPanel_VerVentasPorTermino);
+        jDialog_Reportes.setVisible(false);
+    }//GEN-LAST:event_jButton_CancelarVerFactPorTerminoActionPerformed
+
+    private void jButton_AceptarVerVentasPorTerminoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_AceptarVerVentasPorTerminoActionPerformed
+        //formato para mostrar
+        DateFormat dateF1 = new SimpleDateFormat("dd-MM-yyyy");
+        //formato para consultar
+        DateFormat dateF = new SimpleDateFormat("yyyy/MM/dd");
+        //formato fecha act
+        DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd-HH-mm-ss-SSS0");
+
+        //Verifica que el tipo de archivo en el que se va a mostrar
+        if (jRadioButton_ExcelTermino.isSelected()) {//para mostrar en Excel
+            String concepto = "";
+            Direct_Control_BD AdminBD = Direct_Control_BD.getInstance();
+            if (jRadioButton_Efectivo.isSelected()) {//ventas En efectivo
+                concepto = "Ventas Por Término: Efectivo";
+                //Consulta de Fact Por Efectivo
+                AdminBD.FacturasPorTerminoPorFecha(dateF.format(
+                        dateChooserCombo_IniTermino.getSelectedDate().getTime()),
+                        dateF.format(dateChooserCombo_FinTermino.
+                                getSelectedDate().getTime()), "Efectivo");
+
+            }//Consulta de Fact Por Tarjeta 
+            else if (jRadioButton_Tarjeta.isSelected()) {
+                concepto = "Ventas Por Término: Facturas Pendientes ";
+                AdminBD.FacturasPorTerminoPorFecha(dateF.format(
+                        dateChooserCombo_IniTermino.getSelectedDate().getTime()),
+                        dateF.format(dateChooserCombo_FinTermino.
+                                getSelectedDate().getTime()), "Tarjeta");
+
+            }
+            String[] infoEmpresa = {"Joe S.A ", "Oriente pa dentro", "Cartago,"
+                + " CA 20320", "Telefono:2650-11-36, fax:2655-0203"};
+
+            Date date = new Date();//hora Actual
+            String fechaAct = dateFormat.format(date);
+
+            EscribirExcel archivoExcel = new EscribirExcel();
+            archivoExcel.setNombreArchivoExcel("VentasPorTermino"
+                    + fechaAct + ".xls");
+            try {
+                //escribir Excel
+                archivoExcel.escribir(infoEmpresa, AdminBD.getInfoFact(),
+                        AdminBD.getNombresColumnas(),
+                        dateF1.format(dateChooserCombo_IniTermino.
+                                getSelectedDate().getTime()),
+                        dateF1.format(dateChooserCombo_FinTermino.
+                                getSelectedDate().getTime()),
+                        concepto);
+            } catch (IOException ex) {
+                Logger.getLogger(JPanel_Reportes.class.getName()).
+                        log(Level.SEVERE, null, ex);
+            } catch (WriteException ex) {
+                Logger.getLogger(JPanel_Reportes.class.getName()).
+                        log(Level.SEVERE, null, ex);
+            }
+        } else {
+
+        }
+    }//GEN-LAST:event_jButton_AceptarVerVentasPorTerminoActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.ButtonGroup buttonGroup1;
@@ -1573,10 +1898,12 @@ public void keyTyped(java.awt.event.KeyEvent evt) {
     private javax.swing.ButtonGroup buttonGroup4;
     private datechooser.beans.DateChooserCombo dateChooserCombo_FinClie;
     private datechooser.beans.DateChooserCombo dateChooserCombo_FinProd;
+    private datechooser.beans.DateChooserCombo dateChooserCombo_FinTermino;
     private datechooser.beans.DateChooserCombo dateChooserCombo_FinVendedor;
     private datechooser.beans.DateChooserCombo dateChooserCombo_FinVent;
     private datechooser.beans.DateChooserCombo dateChooserCombo_IniClie;
     private datechooser.beans.DateChooserCombo dateChooserCombo_IniProd;
+    private datechooser.beans.DateChooserCombo dateChooserCombo_IniTermino;
     private datechooser.beans.DateChooserCombo dateChooserCombo_IniVendedor;
     private datechooser.beans.DateChooserCombo dateChooserCombo_IniVent;
     private javax.swing.JButton jButton1;
@@ -1587,13 +1914,13 @@ public void keyTyped(java.awt.event.KeyEvent evt) {
     private javax.swing.JButton jButton_AceptaVerVentasPorVendedor;
     private javax.swing.JButton jButton_AceptarVerVentasPorFech;
     private javax.swing.JButton jButton_AceptarVerVentasPorProd;
+    private javax.swing.JButton jButton_AceptarVerVentasPorTermino;
     private javax.swing.JButton jButton_Buscar;
     private javax.swing.JButton jButton_CancelarVerFactClient;
     private javax.swing.JButton jButton_CancelarVerFactPorFech;
     private javax.swing.JButton jButton_CancelarVerFactPorProd;
+    private javax.swing.JButton jButton_CancelarVerFactPorTermino;
     private javax.swing.JButton jButton_CancelarVerFactVendedor;
-    private javax.swing.JButton jButton_Crear;
-    private javax.swing.JButton jButton_Crear1;
     private javax.swing.JButton jButton_VentasPorCliente;
     private javax.swing.JButton jButton_VentasPorFecha;
     private javax.swing.JButton jButton_VentasPorProd;
@@ -1619,6 +1946,12 @@ public void keyTyped(java.awt.event.KeyEvent evt) {
     private javax.swing.JLabel jLabel21;
     private javax.swing.JLabel jLabel22;
     private javax.swing.JLabel jLabel23;
+    private javax.swing.JLabel jLabel24;
+    private javax.swing.JLabel jLabel25;
+    private javax.swing.JLabel jLabel26;
+    private javax.swing.JLabel jLabel27;
+    private javax.swing.JLabel jLabel28;
+    private javax.swing.JLabel jLabel29;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
@@ -1632,24 +1965,25 @@ public void keyTyped(java.awt.event.KeyEvent evt) {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
-    private javax.swing.JPanel jPanel_Facturas;
-    private javax.swing.JPanel jPanel_Facturas1;
     private javax.swing.JPanel jPanel_VentasPorCliente;
     private javax.swing.JPanel jPanel_VentasPorVendedor;
     private javax.swing.JPanel jPanel_VerVentasPorFech;
     private javax.swing.JPanel jPanel_VerVentasPorProd;
+    private javax.swing.JPanel jPanel_VerVentasPorTermino;
+    private javax.swing.JRadioButton jRadioButton_Efectivo;
     private javax.swing.JRadioButton jRadioButton_Excel;
     private javax.swing.JRadioButton jRadioButton_ExcelClien;
     private javax.swing.JRadioButton jRadioButton_ExcelProd;
+    private javax.swing.JRadioButton jRadioButton_ExcelTermino;
     private javax.swing.JRadioButton jRadioButton_ExcelVendedor;
     private javax.swing.JRadioButton jRadioButton_Pantalla;
     private javax.swing.JRadioButton jRadioButton_PantallaCliente;
     private javax.swing.JRadioButton jRadioButton_PantallaProd;
+    private javax.swing.JRadioButton jRadioButton_PantallaTermino;
     private javax.swing.JRadioButton jRadioButton_PantallaVendedor;
     private javax.swing.JRadioButton jRadioButton_PorCategoria;
     private javax.swing.JRadioButton jRadioButton_PorCodigo;
-    private javax.swing.JTabbedPane jTabbedPane1;
-    private javax.swing.JTabbedPane jTabbedPane2;
+    private javax.swing.JRadioButton jRadioButton_Tarjeta;
     private javax.swing.JTabbedPane jTabbedPane6;
     private javax.swing.JTextField jTextField_CodiOCateg;
     // End of variables declaration//GEN-END:variables

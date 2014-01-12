@@ -1,4 +1,6 @@
-SELECT F.idFactura,F.Fecha,C.Nombre,F.Descuento,F.TotalFacturado
-FROM factura AS F,persona AS C
-WHERE F.idVendedor=? AND F.idCliente=C.idPersona; 
-
+SELECT F.Fecha,F.`idFactura` AS NumFactura, F.Nota AS Descripcion ,
+SUM(PCF.`Cantidad`) AS TotalItem,F.TotalFacturado 
+FROM factura AS F, productocantidadfact AS PCF, persona AS C
+WHERE F.`idVendedor`=C.`idPersona` AND PCF.`idFactura` = F.`idFactura` 
+AND C.`Nombre` =?  AND F.Fecha BETWEEN ? AND ?
+GROUP BY F.`idFactura`;

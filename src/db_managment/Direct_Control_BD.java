@@ -113,7 +113,7 @@ public class Direct_Control_BD {
             stm.setString(3, FechaFin);
             ResultSet resultset = stm.executeQuery();
             setColumnNames(Get_Columnas(resultset));
-            setData(ResultSet_Array(resultset));
+            setData2(ResultSet_Array(resultset));
 
         } catch (Exception e) {
             System.out.println("Error al obtener las ventas de un cliente");
@@ -922,20 +922,19 @@ public class Direct_Control_BD {
      * Dado un idVendedor muestra los detalles de las ventas realizadas por este
      * en rango de fechas
      */
-    public void ventasPorVendedor(int idVendedor) {//falta hacerla por fecha
+    public void ventasPorVendedor(String FechaIni, String FechaFin, String NombreVendedor) {//falta hacerla por fecha
         try {
 
             String ventasPorVend = this.readSql("../Joe"
                     + "/src/sql_files/VentasPorVendedor.sql");
             PreparedStatement stm
                     = this.conection.prepareStatement(ventasPorVend);
-            stm.setInt(1, idVendedor);
+            stm.setString(1, NombreVendedor);
+            stm.setString(2, FechaIni);
+            stm.setString(3, FechaFin);
             ResultSet rs = stm.executeQuery();
-            while (rs.next()) {
-                System.out.println(rs.getInt(1) + "||" + rs.getString(2) + "||"
-                        + rs.getString(3) + "||" + rs.getInt(4) + "||"
-                        + rs.getInt(5));
-            }
+            setColumnNames(Get_Columnas(rs));
+            setData2(ResultSet_Array(rs));
         } catch (Exception e) {
             System.out.println("Error al obtener ventas por vendedor");
 

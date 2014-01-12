@@ -1,3 +1,3 @@
-SELECT P.Nombre
-FROM persona AS P,tipopersona AS V
-WHERE P.idTipoPersona=V.idTipoPersona AND V.tipo='Vendedor';
+SELECT V.`idPersona`,V.Nombre
+FROM Persona As V
+WHERE V.`idTipoPersona`=2;

@@ -231,7 +231,7 @@ public class JPanel_Facturacion extends javax.swing.JPanel {
 
     private void jButton_VerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_VerActionPerformed
         int row= this.jTable_Facturacion.getSelectedRow();
-        if(row>0){
+        if(row>=0){
         VentanaDeInicio mVentana= VentanaDeInicio.getInstance();
         JPanel_VerFactura panelVerFact= new JPanel_VerFactura();
         mVentana.add(panelVerFact);

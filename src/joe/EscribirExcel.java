@@ -238,8 +238,7 @@ public class EscribirExcel {
             hojaExc.addCell(new jxl.write.Formula(6, ultimaFila + 1,
                     "SUM(G11:G" + ultimaFila + ")", timesLines));
 
-        } else if (tipoDeReporte.startsWith("Ventas Por Cliente:")
-                || tipoDeReporte.startsWith("Ventas Por Vendedor:")) {
+        } else if (tipoDeReporte.startsWith("Ventas Por Cliente:")) {
             hojaExc.addCell(new Label(0, ultimaFila + 1, "       Total Facturas:",
                     timesLines));
             hojaExc.addCell(new jxl.write.Formula(1, ultimaFila + 1, //total de fact
@@ -249,8 +248,38 @@ public class EscribirExcel {
             hojaExc.addCell(new jxl.write.Formula(4, ultimaFila + 1,
                     "SUM(E11:E" + ultimaFila + ")", timesLines));
 
-        } else if (tipoDeReporte.startsWith("kkkk")) {
-            System.out.println("kkkkk");
+        } else if (tipoDeReporte.startsWith("Ventas Por Vendedor:")) {
+            if(tipoDeReporte.endsWith("Credito")||tipoDeReporte.endsWith("Apartado")){
+                hojaExc.addCell(new Label(0, ultimaFila + 1, "       Total Facturas:",
+                    timesLines));
+            hojaExc.addCell(new jxl.write.Formula(1, ultimaFila + 1, //total de fact
+                    "COUNT(B11:B" + ultimaFila + ")", timesLines));
+            hojaExc.addCell(new jxl.write.Formula(3, ultimaFila + 1,
+                    "SUM(D11:D" + ultimaFila + ")", timesLines));
+            hojaExc.addCell(new jxl.write.Formula(4, ultimaFila + 1,
+                    "SUM(E11:E" + ultimaFila + ")", timesLines));
+            hojaExc.addCell(new jxl.write.Formula(5, ultimaFila + 1,
+                    "SUM(F11:F" + ultimaFila + ")", timesLines));
+            }
+            else{
+            hojaExc.addCell(new Label(0, ultimaFila + 1, "       Total Facturas:",
+                    timesLines));
+            hojaExc.addCell(new jxl.write.Formula(1, ultimaFila + 1, //total de fact
+                    "COUNT(B11:B" + ultimaFila + ")", timesLines));
+            hojaExc.addCell(new jxl.write.Formula(3, ultimaFila + 1,
+                    "SUM(D11:D" + ultimaFila + ")", timesLines));
+            hojaExc.addCell(new jxl.write.Formula(4, ultimaFila + 1,
+                    "SUM(E11:E" + ultimaFila + ")", timesLines));
+            }
+
+        } else if (tipoDeReporte.startsWith("Ventas De Productos Para el")) {
+            hojaExc.addCell(new Label(1, ultimaFila + 1, "        Total:",
+                    timesLines));
+            hojaExc.addCell(new jxl.write.Formula(2, ultimaFila + 1,
+                    "SUM(C11:C" + ultimaFila + ")", timesLines));
+            hojaExc.addCell(new jxl.write.Formula(3, ultimaFila + 1,
+                    "SUM(D11:D" + ultimaFila + ")", timesLines));
+
         } else {
             // En caso de Ventas Por Producto o por categoria de Producto
             hojaExc.addCell(new Label(0, ultimaFila + 1, "       Total Facturas:",

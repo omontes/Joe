@@ -919,14 +919,19 @@ public class Direct_Control_BD {
     }
 
     /**
-     * Dado un idVendedor muestra los detalles de las ventas realizadas por este
-     * en rango de fechas
+     * Dado un v muestra los detalles de las Facturas canceladas realizadas por
+     * este, en un rango de fechas
+     *
+     * @param FechaIni
+     * @param FechaFin
+     * @param NombreVendedor
      */
-    public void ventasPorVendedor(String FechaIni, String FechaFin, String NombreVendedor) {//falta hacerla por fecha
+    public void ventasPorVendedorCancelada(String FechaIni, String FechaFin,
+            String NombreVendedor) {
         try {
 
             String ventasPorVend = this.readSql("../Joe"
-                    + "/src/sql_files/VentasPorVendedor.sql");
+                    + "/src/sql_files/VentasPorVendedorCancelada.sql");
             PreparedStatement stm
                     = this.conection.prepareStatement(ventasPorVend);
             stm.setString(1, NombreVendedor);
@@ -936,7 +941,37 @@ public class Direct_Control_BD {
             setColumnNames(Get_Columnas(rs));
             setData2(ResultSet_Array(rs));
         } catch (Exception e) {
-            System.out.println("Error al obtener ventas por vendedor");
+            System.out.println("Error al obtener ventas por vendedor canceladas");
+
+        }
+
+    }
+
+    /**
+     * Dado un vendedor muestra los detalles de las Facturas por Apartados
+     * realizadas por este, en un rango de fechas
+     *
+     * @param FechaIni
+     * @param FechaFin
+     * @param NombreVendedor
+     */
+    public void ventasPorVendedorAparatadoOCredito(String FechaIni, String FechaFin,
+            String NombreVendedor, String tipoDeReporte) {
+        try {
+
+            String ventasPorVend = this.readSql("../Joe"
+                    + "/src/sql_files/VentasPorVendedorAparatadoOCredito.sql");
+            PreparedStatement stm
+                    = this.conection.prepareStatement(ventasPorVend);
+            stm.setString(1, NombreVendedor);
+            stm.setString(2, FechaIni);
+            stm.setString(3, FechaFin);
+            stm.setString(4, tipoDeReporte);
+            ResultSet rs = stm.executeQuery();
+            setColumnNames(Get_Columnas(rs));
+            setData2(ResultSet_Array(rs));
+        } catch (Exception e) {
+            System.out.println("Error al obtener ventas por vendedor canceladas");
 
         }
 
@@ -1792,16 +1827,17 @@ public class Direct_Control_BD {
         }
 
     }
+
     /**
-     * Devuelve toda la informacion(Cliente,Vendedor,Total etc)
-     * del num de factura ingresado.
+     * Devuelve toda la informacion(Cliente,Vendedor,Total etc) del num de
+     * factura ingresado.
      */
     public void verInfoFactura(int NumFact) {
         try {
             String verInfoFactura = this.readSql("../Joe/src/"
                     + "sql_files/cargarFactura.sql");
             PreparedStatement stm = this.conection.prepareStatement(verInfoFactura);
-            stm.setInt(1,NumFact);
+            stm.setInt(1, NumFact);
             ResultSet resultset = stm.executeQuery();
             this.setColumnNames(this.Get_Columnas(resultset));
             this.setData(this.ResultSet_Array(resultset));
@@ -1864,4 +1900,64 @@ public class Direct_Control_BD {
         }
     }
 
+    /**
+     * Detalla el las ventas que ha hecho un vendedor para cada producdo
+     *
+     * @param FechaIni
+     * @param FechaFin
+     * @param Vendedor
+     */
+    public void VentasDeProductosPorVendedor(String FechaIni, String FechaFin,
+            String Vendedor) {
+        try {
+            String ventasDeProductosPorVendedor = readSql("../Joe"
+                    + "/src/sql_files/VentasDeProductosPorVendedor.sql");
+            PreparedStatement stm
+                    = conection.prepareStatement(ventasDeProductosPorVendedor);
+            stm.setString(1, Vendedor);
+            stm.setString(2, FechaIni);
+            stm.setString(3, FechaFin);
+            ResultSet rs = stm.executeQuery();
+            setColumnNames(Get_Columnas(rs));
+            setData2(ResultSet_Array(rs));
+
+        } catch (Exception e) {
+
+            System.out.println("Error al Cosultar Ventas De Productos"
+                    + " Por Vendedor");
+
+        }
+    }
+
+    /**
+     * Detalla el las ventas de producto por cliente
+     *
+     * @param FechaIni
+     * @param FechaFin
+     * @param Cliente
+     */
+    public void VentasDeProductosPorCliente(String FechaIni, String FechaFin,
+            String Cliente) {
+        System.out.println(FechaIni);
+        System.out.println(FechaFin);
+        System.out.println(Cliente);
+        try {
+            String ventasDeProductosPorCliente = readSql("../Joe"
+                    + "/src/sql_files/VentasDeProductosPorCliente.sql");
+            PreparedStatement stm
+                    = conection.prepareStatement(ventasDeProductosPorCliente);
+            stm.setString(1, Cliente);
+            stm.setString(2, FechaIni);
+            stm.setString(3, FechaFin);
+            ResultSet rs = stm.executeQuery();
+            setColumnNames(Get_Columnas(rs));
+            setData2(ResultSet_Array(rs));
+
+        } catch (Exception e) {
+
+            System.out.println("Error al Cosultar Ventas De Productos"
+                    + " Por Cliente");
+
+        }
+    }
 }

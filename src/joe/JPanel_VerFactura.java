@@ -287,7 +287,7 @@ public class JPanel_VerFactura extends javax.swing.JPanel {
     
     }
       /**
-     * Este metodo permite personalizar la tabla de crear Factura
+     * Este metodo permite personalizar la tabla de ver Factura
      */
     public void personalizarTablaVerFactura() {
         Direct_Control_BD AdminBD = Direct_Control_BD.getInstance();
@@ -318,7 +318,7 @@ public class JPanel_VerFactura extends javax.swing.JPanel {
         
                
         this.cargarInfoFact();
-        //this.cargarProductosFact();
+        this.cargarProductosFact();
       
         
     }
@@ -368,32 +368,82 @@ public class JPanel_VerFactura extends javax.swing.JPanel {
     javax.swing.JTextField jTextField_Vendedor;
     javax.swing.JTextField jTextField_tipopago;
     // End of variables declaration//GEN-END:variables
-
+    /**
+     * Este metodo carga la informacion de la factura que se desea ver, esta
+     * informacion es: cliente,vendedor,totalfact,descuento,fecha,detalle,
+     * tipo de pago etc.
+     */
     private void cargarInfoFact() {
-         Direct_Control_BD AdminBD = Direct_Control_BD.getInstance();
-         AdminBD.verInfoFactura(Integer.parseInt(this.jLabel_NumerodeFact.getText()));
-         Object[][] dataInfoFactura = AdminBD.getData();
-         Object[] datosInfoFactura= dataInfoFactura[0];
-         String fecha= datosInfoFactura[0].toString();
-         String cliente= datosInfoFactura[1].toString();
-         String vendedor= datosInfoFactura[2].toString();
-         String tipopago= datosInfoFactura[3].toString();
-         String totalFact = datosInfoFactura[4].toString();
-         String detalle = datosInfoFactura[5].toString();
-         String descuento= datosInfoFactura[6].toString();
-         this.jFormattedTextField_Cliente.setText(cliente);
-         this.jLabel_Fecha.setText(fecha);
-         this.jTextField_Vendedor.setText(vendedor);
-         this.jTextField_tipopago.setText(tipopago);
-         this.jTextField_Detalle.setText(detalle);
-         this.jFormattedTextField_Total.setText(totalFact);
-         this.jFormattedTextField_desc.setText(descuento);
-         
-    }
+        Direct_Control_BD AdminBD = Direct_Control_BD.getInstance();
+        AdminBD.verInfoFactura(Integer.parseInt(this.jLabel_NumerodeFact.getText()));
+        Object[][] dataInfoFactura = AdminBD.getData();
+        Object[] datosInfoFactura = dataInfoFactura[0];
+        String fecha = datosInfoFactura[0].toString();
+        String cliente = datosInfoFactura[1].toString();
+        String vendedor = datosInfoFactura[2].toString();
+        String tipopago = datosInfoFactura[3].toString();
+        String totalFact = datosInfoFactura[4].toString();
+        String detalle = datosInfoFactura[5].toString();
+        String descuento = datosInfoFactura[6].toString();
+        this.jFormattedTextField_Cliente.setText(cliente);
+        this.jLabel_Fecha.setText(fecha);
+        this.jTextField_Vendedor.setText(vendedor);
+        this.jTextField_tipopago.setText(tipopago);
+        this.jTextField_Detalle.setText(detalle);
+        BigDecimal totalFacturado = this.StringtoBigDecimal(totalFact);
+        BigDecimal descuentoD = this.StringtoBigDecimal(descuento);
+        BigDecimal subtotal = totalFacturado.divide(new BigDecimal("1.00").subtract(descuentoD.divide(new BigDecimal("100.00"))));
+        this.jFormattedTextField_DescuentoTotal.setValue(totalFacturado.subtract(subtotal));
+        this.jFormattedTextField_SubTotal.setValue(subtotal);
+        this.jFormattedTextField_Total.setValue(totalFacturado);
+        this.jFormattedTextField_desc.setValue(descuentoD);
 
+    }
+    /**
+     * Este metodo convierte un string que es un decimal a bigdecimal
+     * @param numero
+     * @return 
+     */
+    private BigDecimal StringtoBigDecimal(String numero){
+        DecimalFormat decimalfC = (DecimalFormat) NumberFormat.getInstance();
+        decimalfC.setParseBigDecimal(true);
+        BigDecimal numeroCorregido = null;
+        try {
+            numeroCorregido = (BigDecimal) decimalfC.parseObject(numero);
+        } catch (ParseException ex) {
+            Logger.getLogger(JPanel_VerFactura.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return numeroCorregido;
+    
+    }
+    /**
+     * Este metodo permite cargas los productos de la factura en la tabla para
+     * ver la factura.
+     */
     private void cargarProductosFact() {
-        
+        Modelo_verFacturas model = (Modelo_verFacturas) jTable_Factura.getModel();
+        Direct_Control_BD AdminBD = Direct_Control_BD.getInstance();
+        AdminBD.verProductosPorFactura(Integer.parseInt(this.jLabel_NumerodeFact.getText()));
+        Object[][] ProductosdeFactura = AdminBD.getData();
+        int numFilas = ProductosdeFactura.length;
+        for (int row = 0; row < numFilas; row++) {
+            Object[] producto= ProductosdeFactura[row];
+            String codArticulo= producto[0].toString();
+            String nombre= producto[1].toString();
+            BigDecimal cantidad= this.StringtoBigDecimal(producto[2].toString());
+            BigDecimal precioVenta= this.StringtoBigDecimal(producto[3].toString());
+            model.setValueAt(codArticulo, row, 0);
+            model.setValueAt(nombre, row, 1);
+            model.setValueAt(cantidad, row, 2);
+            model.setValueAt(precioVenta, row, 3);
+            model.setValueAt(precioVenta.multiply(cantidad), row, 4);
+            
+            
+            }
     }
 
- 
+        
+       
+
+
 }

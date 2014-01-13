@@ -1899,6 +1899,39 @@ public class Direct_Control_BD {
 
         }
     }
+    
+     /**
+     * Devuelve todos los productos de una factura determinada.
+     */
+    public void verProductosPorFactura(int NumFact) {
+        try {
+            String verProductosPorFactura = this.readSql("../Joe/src/"
+                    + "sql_files/verProductosPorFactura.sql");
+            PreparedStatement stm = this.conection.prepareStatement(verProductosPorFactura);
+            stm.setInt(1,NumFact);
+            ResultSet resultset = stm.executeQuery();
+            this.setColumnNames(this.Get_Columnas(resultset));
+            this.setData(this.ResultSet_Array(resultset));
+        } catch (Exception e) {
+            System.out.println(NumFact);
+            System.out.println("Error al obtener los productos de la factura");
+        }
+    }
+    /**
+     * 'Elimina'(Cambia de estado a eliminada) el numero de factura seleccionado
+     * @param NumFact 
+     */
+     public void eliminarFactura(int NumFact) {
+        try {
+            String eliminar = this.readSql("../Joe/src/sql_files/"
+                    + "eliminarFactura.sql");
+            PreparedStatement stm = this.conection.prepareStatement(eliminar);
+            stm.setInt(1,NumFact);
+            stm.executeUpdate();
+        } catch (Exception e) {
+            System.out.println("Error al eliminar la factura");
+        }
+    }
 
     /**
      * Detalla el las ventas que ha hecho un vendedor para cada producdo

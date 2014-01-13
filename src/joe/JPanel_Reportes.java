@@ -328,7 +328,6 @@ dateChooserCombo_FinVent.setBehavior(datechooser.model.multiple.MultyModelBehavi
 jLabel9.setText("Ver en:");
 
 buttonGroup1.add(jRadioButton_Excel);
-jRadioButton_Excel.setSelected(true);
 jRadioButton_Excel.setText("Excel");
 
 buttonGroup1.add(jRadioButton_Pantalla);
@@ -1537,6 +1536,7 @@ public void keyTyped(java.awt.event.KeyEvent evt) {
     jRadioButton_PantallaProdVendedor.setText("Pantalla");
 
     buttonGroup1.add(jRadioButton_ExcelProdVendedor);
+    jRadioButton_ExcelProdVendedor.setSelected(true);
     jRadioButton_ExcelProdVendedor.setText("Excel");
 
     jLabel35.setText("Ver en:");

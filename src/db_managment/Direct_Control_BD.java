@@ -1881,5 +1881,20 @@ public class Direct_Control_BD {
             System.out.println("Error al obtener los productos de la factura");
         }
     }
+    /**
+     * 'Elimina'(Cambia de estado a eliminada) el numero de factura seleccionado
+     * @param NumFact 
+     */
+     public void eliminarFactura(int NumFact) {
+        try {
+            String eliminar = this.readSql("../Joe/src/sql_files/"
+                    + "eliminarFactura.sql");
+            PreparedStatement stm = this.conection.prepareStatement(eliminar);
+            stm.setInt(1,NumFact);
+            stm.executeUpdate();
+        } catch (Exception e) {
+            System.out.println("Error al eliminar la factura");
+        }
+    }
 
 }

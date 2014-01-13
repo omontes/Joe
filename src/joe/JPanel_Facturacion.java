@@ -10,6 +10,7 @@ import db_managment.Direct_Control_BD;
 import java.util.ArrayList;
 import java.util.List;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableCellRenderer;
 
 /**
@@ -199,7 +200,21 @@ public class JPanel_Facturacion extends javax.swing.JPanel {
     }//GEN-LAST:event_jButton_CrearActionPerformed
 
     private void jButton_EliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_EliminarActionPerformed
-        // TODO add your handling code here:
+        Modelo_Facturacion model = (Modelo_Facturacion) this.jTable_Facturacion.getModel();
+        int row= this.jTable_Facturacion.getSelectedRow();
+        if(row>0){
+        Direct_Control_BD AdminBD = Direct_Control_BD.getInstance();
+        AdminBD.eliminarFactura(Integer.parseInt(model.getValueAt(row,0).toString()));
+        this.completarTablaFacturacion();
+        }
+        else{
+            JOptionPane.showMessageDialog(
+                          null,
+                          "No se selecciono ninguna factura",                                 
+                          "Alert!", JOptionPane.ERROR_MESSAGE);
+        
+        }
+        
     }//GEN-LAST:event_jButton_EliminarActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
@@ -215,6 +230,8 @@ public class JPanel_Facturacion extends javax.swing.JPanel {
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton_VerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_VerActionPerformed
+        int row= this.jTable_Facturacion.getSelectedRow();
+        if(row>0){
         VentanaDeInicio mVentana= VentanaDeInicio.getInstance();
         JPanel_VerFactura panelVerFact= new JPanel_VerFactura();
         mVentana.add(panelVerFact);
@@ -226,10 +243,14 @@ public class JPanel_Facturacion extends javax.swing.JPanel {
         mVentana.repaint();
         mVentana.setTitle("Ver Factura");
         Modelo_Facturacion model = (Modelo_Facturacion) this.jTable_Facturacion.getModel();
-        
-        int row= this.jTable_Facturacion.getSelectedRow();
         panelVerFact.jLabel_NumerodeFact.setText(model.getValueAt(row, 0).toString());
-        panelVerFact.personalizarTablaVerFactura();
+        panelVerFact.personalizarTablaVerFactura();}
+        else{
+            JOptionPane.showMessageDialog(
+                          null,
+                          "No se selecciono ninguna factura",                                 
+                          "Alert!", JOptionPane.ERROR_MESSAGE);
+        }
     }//GEN-LAST:event_jButton_VerActionPerformed
   /**
      * Actualiza la tabla que se ve en facturacion (Obtiene el total vendido

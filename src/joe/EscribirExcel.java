@@ -5,12 +5,20 @@
  */
 package joe;
 
+//import com.jxcell.CellException;
+import java.awt.BorderLayout;
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.IOException;
+import java.io.InputStream;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Locale;
+import javax.swing.BorderFactory;
+import javax.swing.text.View;
+import com.jxcell.*;
+import java.io.FileNotFoundException;
 
 import jxl.Workbook;
 import jxl.WorkbookSettings;
@@ -43,6 +51,7 @@ public class EscribirExcel {
     private String nombreArchivoExcel;//nombre del archivo excel
     private static EscribirExcel escribir;
     private WritableCellFormat timesLines;
+    private com.jxcell.View book;
 
     /**
      * asigna el el nombre del archivoExcel
@@ -90,7 +99,7 @@ public class EscribirExcel {
      */
     public void escribir(String[] infoEmpresa, Object[][] datosFact,
             String[] nombresColum, String fechaIni, String fechaFin,
-            String tipoDeReporte) throws IOException, WriteException {
+            String tipoDeReporte, String formato) throws IOException, WriteException, CellException {
         //crear un nuevo excel un el nombreArchivoExcel
         File ArchivoExcel = new File(nombreArchivoExcel);
         //configuracion de el libro de trabajo
@@ -170,16 +179,32 @@ public class EscribirExcel {
 
         //cerrar libro liberando memoria
         workbook.close();
-
-        //mostrar el Excel
-        try {
-            Runtime.getRuntime().exec("rundll32 url.dll,FileProtocolHandler "
-                    + nombreArchivoExcel);
-        } catch (Exception e) {
-            System.out.println("Error al abrir el archivo "
-                    + nombreArchivoExcel + "\n" + e.getMessage());
+        if (formato.equals("Excel")) {
+            //mostrar el Excel
+            try {
+                Runtime.getRuntime().exec("rundll32 url.dll,FileProtocolHandler "
+                        + nombreArchivoExcel);
+            } catch (Exception e) {
+                System.out.println("Error al abrir el archivo "
+                        + nombreArchivoExcel + "\n" + e.getMessage());
+            }
+        } else if (formato.equals("Pant")) {//ver en pantalla
+//            try {
+//                NewDialog_Pantalla pantalla = new NewDialog_Pantalla(null, true);                
+//                book = new com.jxcell.View();
+//                book.setBorder(BorderFactory.createEmptyBorder());
+//
+//                InputStream in = new FileInputStream(nombreArchivoExcel);
+//                book.read(in);
+//
+//                pantalla.add(book, BorderLayout.CENTER);
+//                book.setSize(pantalla.getSize());
+//                pantalla.setVisible(true);
+//
+//            } catch (FileNotFoundException e) {
+//                System.out.println("error");
+//            }
         }
-
     }
 
     /**
@@ -249,27 +274,26 @@ public class EscribirExcel {
                     "SUM(E11:E" + ultimaFila + ")", timesLines));
 
         } else if (tipoDeReporte.startsWith("Ventas Por Vendedor:")) {
-            if(tipoDeReporte.endsWith("Credito")||tipoDeReporte.endsWith("Apartado")){
+            if (tipoDeReporte.endsWith("Credito") || tipoDeReporte.endsWith("Apartado")) {
                 hojaExc.addCell(new Label(0, ultimaFila + 1, "       Total Facturas:",
-                    timesLines));
-            hojaExc.addCell(new jxl.write.Formula(1, ultimaFila + 1, //total de fact
-                    "COUNT(B11:B" + ultimaFila + ")", timesLines));
-            hojaExc.addCell(new jxl.write.Formula(3, ultimaFila + 1,
-                    "SUM(D11:D" + ultimaFila + ")", timesLines));
-            hojaExc.addCell(new jxl.write.Formula(4, ultimaFila + 1,
-                    "SUM(E11:E" + ultimaFila + ")", timesLines));
-            hojaExc.addCell(new jxl.write.Formula(5, ultimaFila + 1,
-                    "SUM(F11:F" + ultimaFila + ")", timesLines));
-            }
-            else{
-            hojaExc.addCell(new Label(0, ultimaFila + 1, "       Total Facturas:",
-                    timesLines));
-            hojaExc.addCell(new jxl.write.Formula(1, ultimaFila + 1, //total de fact
-                    "COUNT(B11:B" + ultimaFila + ")", timesLines));
-            hojaExc.addCell(new jxl.write.Formula(3, ultimaFila + 1,
-                    "SUM(D11:D" + ultimaFila + ")", timesLines));
-            hojaExc.addCell(new jxl.write.Formula(4, ultimaFila + 1,
-                    "SUM(E11:E" + ultimaFila + ")", timesLines));
+                        timesLines));
+                hojaExc.addCell(new jxl.write.Formula(1, ultimaFila + 1, //total de fact
+                        "COUNT(B11:B" + ultimaFila + ")", timesLines));
+                hojaExc.addCell(new jxl.write.Formula(3, ultimaFila + 1,
+                        "SUM(D11:D" + ultimaFila + ")", timesLines));
+                hojaExc.addCell(new jxl.write.Formula(4, ultimaFila + 1,
+                        "SUM(E11:E" + ultimaFila + ")", timesLines));
+                hojaExc.addCell(new jxl.write.Formula(5, ultimaFila + 1,
+                        "SUM(F11:F" + ultimaFila + ")", timesLines));
+            } else {
+                hojaExc.addCell(new Label(0, ultimaFila + 1, "       Total Facturas:",
+                        timesLines));
+                hojaExc.addCell(new jxl.write.Formula(1, ultimaFila + 1, //total de fact
+                        "COUNT(B11:B" + ultimaFila + ")", timesLines));
+                hojaExc.addCell(new jxl.write.Formula(3, ultimaFila + 1,
+                        "SUM(D11:D" + ultimaFila + ")", timesLines));
+                hojaExc.addCell(new jxl.write.Formula(4, ultimaFila + 1,
+                        "SUM(E11:E" + ultimaFila + ")", timesLines));
             }
 
         } else if (tipoDeReporte.startsWith("Ventas De Productos Para el")) {

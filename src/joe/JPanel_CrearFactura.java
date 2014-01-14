@@ -1439,6 +1439,13 @@ public class JPanel_CrearFactura extends javax.swing.JPanel {
     }
     
     private void jButton_aceptarFacturaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_aceptarFacturaActionPerformed
+        VentanaDeInicio mVentana= VentanaDeInicio.getInstance();
+        if(mVentana.getTitle().equals("Modifica Factura")){
+            this.devolverProductos();
+            this.modificaFactura();
+            
+        
+        }
         this.guardarFactura();
         this.clearAll();
         
@@ -2282,6 +2289,28 @@ public class JPanel_CrearFactura extends javax.swing.JPanel {
         //cliente
         this.jComboBox_Vendedores.setSelectedItem("Sin Categoria");
         
+    }
+
+    private void modificaFactura() {
+        //Hace la factura vieja en estado inhabilitada
+        Direct_Control_BD AdminBD = Direct_Control_BD.getInstance();
+        AdminBD.eliminarFacturaPorModificacion(Integer.parseInt(this.jLabel_NumerodeFact.getText()));
+    }
+
+    private void devolverProductos() {
+        Direct_Control_BD AdminBD = Direct_Control_BD.getInstance();
+        AdminBD.verProductosPorFactura(Integer.parseInt(this.jLabel_NumerodeFact.getText()));
+        Object[][] ProductosdeFactura = AdminBD.getData();
+        int numFilas = ProductosdeFactura.length;
+        for (int row = 0; row < numFilas; row++) {
+            Object[] producto= ProductosdeFactura[row];
+            String codArticulo= producto[0].toString();
+            int cantidadTotal = AdminBD.verCantidad(codArticulo);
+            int cantidad= Integer.parseInt(producto[2].toString());
+            AdminBD.actualizarCantidadInventario(codArticulo,cantidadTotal+cantidad);
+            
+            
+            }
     }
     
 }

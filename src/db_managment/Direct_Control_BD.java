@@ -2021,4 +2021,38 @@ public class Direct_Control_BD {
             return 0;
         }
     }
+    /**
+     * Elimina la factura que se modifico(la vuelve inactiva para 
+     * poder luego ver
+     * cuales fueron las modificaciones que se le hicieron a la factura)
+     * @param NumFact 
+     */
+    public void eliminarFacturaPorModificacion(int NumFact) {
+        try {
+            String eliminarFacturaPorModf = this.readSql("../Joe/src/sql_files/"
+                    + "eliminarFacturaPorModf.sql");
+            PreparedStatement stm = this.conection.prepareStatement(eliminarFacturaPorModf);
+            stm.setInt(1,NumFact);
+            stm.executeUpdate();
+        } catch (Exception e) {
+            System.out.println("Error al eliminar la factura por modificacion");
+        }
+    }
+
+    public void actualizarCantidadInventario(String codArticulo, int cantidad) {
+         try {
+            String actualizarCantidadInv = this.readSql("../Joe"
+                    + "/src/sql_files/actualizarCantidadInventario.sql");
+            PreparedStatement stm
+                    = this.conection.prepareStatement(actualizarCantidadInv);
+            stm.setInt(1, cantidad);
+            stm.setString(2, codArticulo);
+            stm.executeUpdate();
+
+        } catch (Exception e) {
+            System.out.println("Error al Actualizar la cantidad de un producto"
+                    + " en el inventario por modificacion");
+        }
+    
+    }
 }

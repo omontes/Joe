@@ -272,7 +272,7 @@ public class JPanel_Facturacion extends javax.swing.JPanel {
         panelCreaFact.setVisible(true);
         mVentana.revalidate();
         mVentana.repaint();
-        mVentana.setTitle("Modificaion Factura");
+        mVentana.setTitle("Modifica Factura");
         panelCreaFact.personalizarTablaFactura();
         Modelo_Facturacion model = (Modelo_Facturacion) this.jTable_Facturacion.getModel();
         String factura = model.getValueAt(row, 0).toString();

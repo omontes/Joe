@@ -1429,6 +1429,7 @@ public class JPanel_CrearFactura extends javax.swing.JPanel {
                 int cantidad = cantidadB.intValue();
                 String precioSinCorregir = infoTablaFact[i][3];
                 BigDecimal PrecioVenta = this.corregirDato(precioSinCorregir);
+                System.out.println(idProducto+idVersion+cantidad+idFactura+PrecioVenta);
                 AdminBD.insertarProductoCantidadFact(idProducto, idVersion,
                         cantidad, idFactura, PrecioVenta);
 

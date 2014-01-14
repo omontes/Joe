@@ -408,7 +408,7 @@ public class Direct_Control_BD {
     /**
      * Muestra las Facturas pendientes(tanto credito como apartados)
      * Detalles:idFactura||Saldo||FechaVencimiento||TotalFacturado||Nombre
-     * ||Tipopago
+     * ||Tipopagoac
      */
     public void verFacturasPendientes() {//Bueno+
         try {
@@ -1626,13 +1626,15 @@ public class Direct_Control_BD {
         infoFact = data;
     }
 
-    public void VerFacturasPorRangoDeFecha(String FechaIni, String FechaFin) {
+    public void VerFacturasPorConeptoPorRangoDeFecha(String FechaIni, 
+            String FechaFin,String concepto) {
         try {
             String Fact = this.readSql("../Joe"
-                    + "/src/sql_files/VerFacturasPorRangoDeFecha.sql");
+                    + "/src/sql_files/VerFacturasPorConceptoPorRangoDeFecha.sql");
             PreparedStatement stm = this.conection.prepareStatement(Fact);
             stm.setString(1, FechaIni);
             stm.setString(2, FechaFin);
+            stm.setString(3, concepto);
             ResultSet rs = stm.executeQuery();
             setColumnNames(Get_Columnas(rs));
             setData2(ResultSet_Array(rs));

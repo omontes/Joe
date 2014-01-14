@@ -97,7 +97,7 @@ public class MyTableModelListener_FACT implements TableModelListener {
           model.setValueAt(bd.multiply(cantidad), row, column + 1);          
       }          
       
-      if (columnName.equals("Cod. Articulo")) {         
+      if (columnName.equals("Cod. Articulo")) {
               String codigo = data.toString();
               BigDecimal precio = this.BDmanagment.verPrecio(codigo);
               if (precio.toString().equals("0") & !info.equals("")) {

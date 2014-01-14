@@ -62,6 +62,11 @@ public class JPanel_Facturacion extends javax.swing.JPanel {
         });
 
         jButton_Modificar.setText("Modificar");
+        jButton_Modificar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton_ModificarActionPerformed(evt);
+            }
+        });
 
         jButton_Eliminar.setText("Eliminar");
         jButton_Eliminar.addActionListener(new java.awt.event.ActionListener() {
@@ -192,6 +197,8 @@ public class JPanel_Facturacion extends javax.swing.JPanel {
         String factura = Integer.toString(AdminBD.ObtenerUltimoidFact() + 1);
         panelCreaFact.jLabel_NumerodeFact.setText(factura);
         panelCreaFact.personalizarTablaFactura();
+        panelCreaFact.agregarListenerRenders();
+        panelCreaFact.jFormattedTextField_Cliente.setText("Cliente Anonimo");
        
         
         
@@ -252,6 +259,36 @@ public class JPanel_Facturacion extends javax.swing.JPanel {
                           "Alert!", JOptionPane.ERROR_MESSAGE);
         }
     }//GEN-LAST:event_jButton_VerActionPerformed
+
+    private void jButton_ModificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_ModificarActionPerformed
+        int row= this.jTable_Facturacion.getSelectedRow();
+        if(row>=0){
+        VentanaDeInicio mVentana= VentanaDeInicio.getInstance();
+        JPanel_CrearFactura panelCreaFact= new JPanel_CrearFactura();
+        mVentana.add(panelCreaFact);
+        panelCreaFact.setSize(this.getSize());
+        panelCreaFact.setLocation(this.getLocation());
+        mVentana.remove(this);
+        panelCreaFact.setVisible(true);
+        mVentana.revalidate();
+        mVentana.repaint();
+        mVentana.setTitle("Modificaion Factura");
+        panelCreaFact.personalizarTablaFactura();
+        Modelo_Facturacion model = (Modelo_Facturacion) this.jTable_Facturacion.getModel();
+        String factura = model.getValueAt(row, 0).toString();
+        panelCreaFact.jLabel_NumerodeFact.setText(factura);
+        panelCreaFact.cargarInfoFact();
+        panelCreaFact.cargarProductosFact((MyTableModel_FACT)panelCreaFact.jTable_Factura.getModel());
+        panelCreaFact.agregarListenerRenders();
+        }
+        else{
+            JOptionPane.showMessageDialog(
+                          null,
+                          "No se selecciono ninguna factura",                                 
+                          "Alert!", JOptionPane.ERROR_MESSAGE);
+        
+        }
+    }//GEN-LAST:event_jButton_ModificarActionPerformed
   /**
      * Actualiza la tabla que se ve en facturacion (Obtiene el total vendido
      * por cada factura y solo muestra las ultimas 100 facturas)**/

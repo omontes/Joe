@@ -1794,6 +1794,37 @@ public class JPanel_CrearFactura extends javax.swing.JPanel {
         }
         return infoTablaFactura;
     }
+     /**
+     * Este metodo carga la informacion de la factura que se desea ver, esta
+     * informacion es: cliente,vendedor,totalfact,descuento,fecha,detalle,
+     * tipo de pago etc.
+     */
+    public void cargarInfoFact() {
+        Direct_Control_BD AdminBD = Direct_Control_BD.getInstance();
+        AdminBD.verInfoFactura(Integer.parseInt(this.jLabel_NumerodeFact.getText()));
+        Object[][] dataInfoFactura = AdminBD.getData();
+        Object[] datosInfoFactura = dataInfoFactura[0];
+        String fecha = datosInfoFactura[0].toString();
+        String cliente = datosInfoFactura[1].toString();
+        String vendedor = datosInfoFactura[2].toString();
+        String tipopago = datosInfoFactura[3].toString();
+        String totalFact = datosInfoFactura[4].toString();
+        String detalle = datosInfoFactura[5].toString();
+        String descuento = datosInfoFactura[6].toString();
+        this.jFormattedTextField_Cliente.setText(cliente);
+        this.jLabel_Fecha.setText(fecha);
+        this.jComboBox_Vendedores.setSelectedItem(vendedor);
+        this.jComboBox_CategoriaTipoPago.setSelectedItem(tipopago);
+        this.jTextField_Detalle.setText(detalle);
+        BigDecimal totalFacturado = this.StringtoBigDecimal(totalFact);
+        BigDecimal descuentoD = this.StringtoBigDecimal(descuento);
+        BigDecimal subtotal = totalFacturado.divide(new BigDecimal("1.00").subtract(descuentoD.divide(new BigDecimal("100.00"))));
+        this.jFormattedTextField_DescuentoTotal.setValue(totalFacturado.subtract(subtotal));
+        this.jFormattedTextField_SubTotal.setValue(subtotal);
+        this.jFormattedTextField_Total.setValue(totalFacturado);
+        this.jFormattedTextField_desc.setValue(descuentoD);
+
+    }
     /**
      * Este metodo permite personalizar la tabla de crear Factura
      */
@@ -1811,50 +1842,17 @@ public class JPanel_CrearFactura extends javax.swing.JPanel {
         //Agrega 20 filas
         model.addRow(20);
         this.jTable_Factura.setModel(model);
-        //Gana la atencion en el panel
-        jTable_Factura.requestFocus();
-        jTable_Factura.changeSelection(0,0,false, false);
-        //AGREGA EL LISTENER QUE PERMITE HACER TODOS LOS EVENTOS DENTRO DE LA 
-        //TABLA DE FACTURA //IMPORTANTE ESTOS EVENTOS ESTAN EN LA CLASE DE
-        //MY TABLE MODEL LISTENER EN el metodo: tableChanged(TableModelEvent e)
-        this.jTable_Factura.getModel().addTableModelListener(
-                new MyTableModelListener_FACT(this.jTable_Factura,"",
-                this.jFormattedTextField_SubTotal,AdminBD));
-        //Permite que la primera columna de Codigos se desplace segun lo que
-        // haya en la base de datos
-        AdminBD.verCodigos();
-        String[] idproductos=this.obtenerFila(AdminBD.getData());
-        this.jTable_Factura.getColumnModel().getColumn(0).
-                setCellEditor(new SeleccionadorEditor(
-                        idproductos,jTable_Factura));
-        //Costumisando Precio y Cantidad (Solo van a permitir numeros)
-        DefaultTableCellRenderer rightRenderer = new DefaultTableCellRenderer();
-        rightRenderer.setHorizontalAlignment( JLabel.RIGHT );
-              
-        this.jTable_Factura.getColumnModel().getColumn(2).
-                setCellRenderer(rightRenderer);
-        this.jTable_Factura.getColumnModel().getColumn(3).
-                setCellRenderer(new CurrencyRender());
-        this.jTable_Factura.getColumnModel().getColumn(4).
-                setCellRenderer(new CurrencyRender());
-        this.jTable_Factura.getColumnModel().getColumn(2).
-                setCellEditor(new EditorDeCelda_Cantidad());
-        this.jTable_Factura.getColumnModel().getColumn(3).
-                setCellEditor(new EditorDeCeldaNumeros());
-        //Demasiado importante ******Permite que se pueda editar apenas se 
-        //ingresan datos*****
-        this.jTable_Factura.setSurrendersFocusOnKeystroke(true);        
-       /** Personalizando el jComboBox_Vendedores para que tenga los vendedores
+        AdminBD.verVendedores();
+        /** Personalizando el jComboBox_Vendedores para que tenga los vendedores
         * registrados en la base de datos
         */
-       AdminBD.verVendedores();
-       Object[][] dataVendedores = AdminBD.getData();
-       this.jComboBox_Vendedores.removeAllItems();
-       for(int i=0; i<dataVendedores.length; i++){
+        Object[][] dataVendedores = AdminBD.getData();
+        this.jComboBox_Vendedores.removeAllItems();
+        for(int i=0; i<dataVendedores.length; i++){
              this.jComboBox_Vendedores.addItem(dataVendedores[i][1]);
-       }
-       this.jComboBox_Vendedores.setSelectedItem("Sin Categoria");
-       this.jFormattedTextField_Cliente.setText("Cliente Anonimo");
+        }
+        
+        
         
     }
     /**
@@ -2198,6 +2196,87 @@ public class JPanel_CrearFactura extends javax.swing.JPanel {
 
         return result.toString();
 
+    }
+    
+    public void cargarProductosFact(MyTableModel_FACT  model ) {
+        Direct_Control_BD AdminBD = Direct_Control_BD.getInstance();
+        AdminBD.verProductosPorFactura(Integer.parseInt(this.jLabel_NumerodeFact.getText()));
+        Object[][] ProductosdeFactura = AdminBD.getData();
+        int numFilas = ProductosdeFactura.length;
+        for (int row = 0; row < numFilas; row++) {
+            Object[] producto= ProductosdeFactura[row];
+            String codArticulo= producto[0].toString();
+            String nombre= producto[1].toString();
+            BigDecimal cantidad= this.StringtoBigDecimal(producto[2].toString());
+            BigDecimal precioVenta= this.StringtoBigDecimal(producto[3].toString());
+            model.setValueAt(codArticulo, row, 0);
+            model.setValueAt(nombre, row, 1);
+            model.setValueAt(cantidad, row, 2);
+            model.setValueAt(precioVenta, row, 3);
+            model.setValueAt(precioVenta.multiply(cantidad), row, 4);
+            
+            
+            }
+    }
+    
+     /**
+     * Este metodo convierte un string que es un decimal a bigdecimal
+     * @param numero
+     * @return 
+     */
+    private BigDecimal StringtoBigDecimal(String numero){
+        DecimalFormat decimalfC = (DecimalFormat) NumberFormat.getInstance();
+        decimalfC.setParseBigDecimal(true);
+        BigDecimal numeroCorregido = null;
+        try {
+            numeroCorregido = (BigDecimal) decimalfC.parseObject(numero);
+        } catch (ParseException ex) {
+            Logger.getLogger(JPanel_VerFactura.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return numeroCorregido;
+    
+    }
+
+    public void agregarListenerRenders() {
+        Direct_Control_BD AdminBD = Direct_Control_BD.getInstance();
+         //Gana la atencion en el panel
+        jTable_Factura.requestFocus();
+        jTable_Factura.changeSelection(0,0,false, false);
+        //AGREGA EL LISTENER QUE PERMITE HACER TODOS LOS EVENTOS DENTRO DE LA 
+        //TABLA DE FACTURA //IMPORTANTE ESTOS EVENTOS ESTAN EN LA CLASE DE
+        //MY TABLE MODEL LISTENER EN el metodo: tableChanged(TableModelEvent e)
+        this.jTable_Factura.getModel().addTableModelListener(
+                new MyTableModelListener_FACT(this.jTable_Factura,"",
+                this.jFormattedTextField_SubTotal,AdminBD));
+        //Permite que la primera columna de Codigos se desplace segun lo que
+        // haya en la base de datos
+        AdminBD.verCodigos();
+        String[] idproductos=this.obtenerFila(AdminBD.getData());
+        this.jTable_Factura.getColumnModel().getColumn(0).
+                setCellEditor(new SeleccionadorEditor(
+                        idproductos,jTable_Factura));
+        //Costumisando Precio y Cantidad (Solo van a permitir numeros)
+        DefaultTableCellRenderer rightRenderer = new DefaultTableCellRenderer();
+        rightRenderer.setHorizontalAlignment( JLabel.RIGHT );
+              
+        this.jTable_Factura.getColumnModel().getColumn(2).
+                setCellRenderer(rightRenderer);
+        this.jTable_Factura.getColumnModel().getColumn(3).
+                setCellRenderer(new CurrencyRender());
+        this.jTable_Factura.getColumnModel().getColumn(4).
+                setCellRenderer(new CurrencyRender());
+        this.jTable_Factura.getColumnModel().getColumn(2).
+                setCellEditor(new EditorDeCelda_Cantidad());
+        this.jTable_Factura.getColumnModel().getColumn(3).
+                setCellEditor(new EditorDeCeldaNumeros());
+        //Demasiado importante ******Permite que se pueda editar apenas se 
+        //ingresan datos*****
+        this.jTable_Factura.setSurrendersFocusOnKeystroke(true);        
+       
+        //Agregando por default los datos del comboBox de vendedores y del 
+        //cliente
+        this.jComboBox_Vendedores.setSelectedItem("Sin Categoria");
+        
     }
     
 }

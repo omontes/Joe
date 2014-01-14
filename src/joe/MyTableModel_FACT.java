@@ -77,18 +77,24 @@ class MyTableModel_FACT extends AbstractTableModel {
         }
     @Override
      public void setValueAt(Object value, int row, int col) {
-        Object val=this.getValueAt(row, col);
-        TableModelListener[] mylistener= this.getTableModelListeners();
-        MyTableModelListener_FACT a=(MyTableModelListener_FACT)mylistener[0];
-        if (val != null) {
-            String oldValue = this.getValueAt(row, col).toString();
+        Object val = this.getValueAt(row, col);
+        TableModelListener[] mylistener = this.getTableModelListeners();
+        try {
+
+            MyTableModelListener_FACT a = (MyTableModelListener_FACT) mylistener[0];
+            if (val != null) {
+                String oldValue = this.getValueAt(row, col).toString();
+                data.get(row)[col] = value;
+                a.setOldValue(oldValue);
+                fireTableCellUpdated(row, col);
+                return;
+            }
+            a.setOldValue("");
+        } catch (Exception e) {
             data.get(row)[col] = value;
-            a.setOldValue(oldValue);
             fireTableCellUpdated(row, col);
-            return;
         }
-        a.setOldValue("");
-        data.get(row)[col]=value;
+        data.get(row)[col] = value;
         fireTableCellUpdated(row, col);
     }
     /**

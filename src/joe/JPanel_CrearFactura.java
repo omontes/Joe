@@ -1220,8 +1220,8 @@ public class JPanel_CrearFactura extends javax.swing.JPanel {
             BigDecimal bd = new BigDecimal(
                     this.jFormattedTextField_precioProducto.
                             getValue().toString());
-            AdminBD.crearProducto(codigo, this.jTextField_nombre.getText(),
-                    bd,0, dateFormat.format(date), "A", null, 1);
+            AdminBD.crearProducto(codigo,this.jTextField_nombre.getText(),
+                    bd,0,dateFormat.format(date),"A", null, 1);
             AdminBD.insertarEnInventario(this.jTextField_codigo.getText(),
                     1, Integer.parseInt(this.
                             jFormattedTextField_cantidadProducto.getValue()
@@ -1429,9 +1429,10 @@ public class JPanel_CrearFactura extends javax.swing.JPanel {
                 int cantidad = cantidadB.intValue();
                 String precioSinCorregir = infoTablaFact[i][3];
                 BigDecimal PrecioVenta = this.corregirDato(precioSinCorregir);
-                System.out.println(idProducto+idVersion+cantidad+idFactura+PrecioVenta);
+                int idVersionFacturasProducto =AdminBD.verVersionDEFacturaNueva(idFactura);
+                //System.out.println(idProducto+" "+idVersion+" "+cantidad+" "+idFactura+" "+PrecioVenta+" "+idVersionFacturasProducto);
                 AdminBD.insertarProductoCantidadFact(idProducto, idVersion,
-                        cantidad, idFactura, PrecioVenta);
+                        cantidad, idFactura, PrecioVenta,idVersionFacturasProducto);
 
             }
         }
@@ -1992,8 +1993,9 @@ public class JPanel_CrearFactura extends javax.swing.JPanel {
             Logger.getLogger(MyTableModelListener_FACT.class.getName()).
                     log(Level.SEVERE, null, ex);
         }
+        //System.out.println(idFactura+" "+descuento+" "+tipoPago+" "+idCliente+" "+idVendedor+" "+detalle+" "+totalFact+" ");
         AdminBD.crearFactura(idFactura,descuento,tipoPago,idCliente,idVendedor,
-                "Cerrada",detalle,totalFact);
+                "Cancelada",detalle,totalFact,"A");
         }
     /**
      * Cuando se guarda la factura se tiene que volver a crear un nuevo objeto
@@ -2252,10 +2254,12 @@ public class JPanel_CrearFactura extends javax.swing.JPanel {
         //Permite que la primera columna de Codigos se desplace segun lo que
         // haya en la base de datos
         AdminBD.verCodigos();
+        //Si no existen productos en la base que no los carge al editor
+        if(AdminBD.getData().length>0){
         String[] idproductos=this.obtenerFila(AdminBD.getData());
         this.jTable_Factura.getColumnModel().getColumn(0).
                 setCellEditor(new SeleccionadorEditor(
-                        idproductos,jTable_Factura));
+                        idproductos,jTable_Factura));}
         //Costumisando Precio y Cantidad (Solo van a permitir numeros)
         DefaultTableCellRenderer rightRenderer = new DefaultTableCellRenderer();
         rightRenderer.setHorizontalAlignment( JLabel.RIGHT );

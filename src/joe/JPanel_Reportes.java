@@ -79,12 +79,11 @@ public class JPanel_Reportes extends javax.swing.JPanel {
         jLabel8 = new javax.swing.JLabel();
         jLabel17 = new javax.swing.JLabel();
         jLabel_Cliente = new javax.swing.JLabel();
-        jComboBox_SeleccionarCliente = new javax.swing.JComboBox();
         jLabel22 = new javax.swing.JLabel();
         jRadioButton_ExcelClien = new javax.swing.JRadioButton();
         jRadioButton_PantallaCliente = new javax.swing.JRadioButton();
         jButton_buscarCliente = new javax.swing.JButton();
-        jTextField_cliente = new javax.swing.JTextField();
+        jTextField_Cliente = new javax.swing.JTextField();
         buttonGroup1 = new javax.swing.ButtonGroup();
         jPanel_VerVentasPorProd = new javax.swing.JPanel();
         jLabel10 = new javax.swing.JLabel();
@@ -168,10 +167,11 @@ public class JPanel_Reportes extends javax.swing.JPanel {
         jLabel39 = new javax.swing.JLabel();
         jLabel40 = new javax.swing.JLabel();
         jLabel_Cliente3 = new javax.swing.JLabel();
-        jComboBox_SeleccionarProdCliente = new javax.swing.JComboBox();
         jRadioButton_PantallaProdCliente = new javax.swing.JRadioButton();
         jRadioButton_ExcelProdCliente = new javax.swing.JRadioButton();
         jLabel41 = new javax.swing.JLabel();
+        jTextField_VentasProdPorCliente = new javax.swing.JTextField();
+        jButton_buscarVentasProdPorCliente = new javax.swing.JButton();
         jPanel_VerFacturasEliminadasPorFech = new javax.swing.JPanel();
         jLabel44 = new javax.swing.JLabel();
         jButton_AceptarVerFactEliminadas = new javax.swing.JButton();
@@ -199,6 +199,7 @@ public class JPanel_Reportes extends javax.swing.JPanel {
         jPanel3 = new javax.swing.JPanel();
 
         jDialog_Reportes.setIconImage(null);
+        jDialog_Reportes.setIconImages(null);
         jDialog_Reportes.setMinimumSize(new java.awt.Dimension(585, 360));
         jDialog_Reportes.setModal(true);
         jDialog_Reportes.addWindowListener(new java.awt.event.WindowAdapter() {
@@ -416,7 +417,7 @@ jPanel_VerVentasPorFechLayout.setHorizontalGroup(
                     .addComponent(jLabel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(dateChooserCombo_IniVent, javax.swing.GroupLayout.DEFAULT_SIZE, 25, Short.MAX_VALUE)
                     .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addComponent(dateChooserCombo_FinVent, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 25, Short.MAX_VALUE))
+                .addComponent(dateChooserCombo_FinVent, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 27, Short.MAX_VALUE))
             .addGroup(jPanel_VerVentasPorFechLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(jPanel_VerVentasPorFechLayout.createSequentialGroup()
                     .addGap(68, 68, 68)
@@ -434,7 +435,7 @@ jPanel_VerVentasPorFechLayout.setHorizontalGroup(
                     .addComponent(jRadioButton_Excel)
                     .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                     .addComponent(jRadioButton_Pantalla)))
-            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 36, Short.MAX_VALUE)
+            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 34, Short.MAX_VALUE)
             .addGroup(jPanel_VerVentasPorFechLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                 .addComponent(jButton_AceptarVerVentasPorFech)
                 .addComponent(jButton_CancelarVerFactPorFech))
@@ -565,26 +566,19 @@ jLabel17.setText("Seleccionar:");
 jLabel_Cliente.setForeground(new java.awt.Color(0, 51, 51));
 jLabel_Cliente.setText("Cliente");
 
-jComboBox_SeleccionarCliente.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-jComboBox_SeleccionarCliente.addKeyListener(new java.awt.event.KeyAdapter() {
-public void keyTyped(java.awt.event.KeyEvent evt) {
-    jComboBox_SeleccionarClienteKeyTyped(evt);
+jLabel22.setText("Ver en:");
+
+buttonGroup1.add(jRadioButton_ExcelClien);
+jRadioButton_ExcelClien.setText("Excel");
+
+buttonGroup1.add(jRadioButton_PantallaCliente);
+jRadioButton_PantallaCliente.setText("Pantalla");
+
+jButton_buscarCliente.setText("Buscar");
+jButton_buscarCliente.addActionListener(new java.awt.event.ActionListener() {
+public void actionPerformed(java.awt.event.ActionEvent evt) {
+    jButton_buscarClienteActionPerformed(evt);
     }
-    });
-
-    jLabel22.setText("Ver en:");
-
-    buttonGroup1.add(jRadioButton_ExcelClien);
-    jRadioButton_ExcelClien.setText("Excel");
-
-    buttonGroup1.add(jRadioButton_PantallaCliente);
-    jRadioButton_PantallaCliente.setText("Pantalla");
-
-    jButton_buscarCliente.setText("Buscar");
-    jButton_buscarCliente.addActionListener(new java.awt.event.ActionListener() {
-        public void actionPerformed(java.awt.event.ActionEvent evt) {
-            jButton_buscarClienteActionPerformed(evt);
-        }
     });
 
     javax.swing.GroupLayout jPanel_VentasPorClienteLayout = new javax.swing.GroupLayout(jPanel_VentasPorCliente);
@@ -608,8 +602,13 @@ public void keyTyped(java.awt.event.KeyEvent evt) {
                         .addComponent(jLabel6, javax.swing.GroupLayout.Alignment.LEADING)
                         .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel_VentasPorClienteLayout.createSequentialGroup()
                             .addGap(2, 2, 2)
-                            .addGroup(jPanel_VentasPorClienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel_VentasPorClienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                 .addComponent(jLabel17, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGroup(jPanel_VentasPorClienteLayout.createSequentialGroup()
+                                    .addGap(55, 55, 55)
+                                    .addGroup(jPanel_VentasPorClienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addComponent(jRadioButton_PantallaCliente)
+                                        .addComponent(jRadioButton_ExcelClien)))
                                 .addGroup(jPanel_VentasPorClienteLayout.createSequentialGroup()
                                     .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -618,22 +617,17 @@ public void keyTyped(java.awt.event.KeyEvent evt) {
                                     .addComponent(jLabel8)
                                     .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                     .addComponent(dateChooserCombo_FinClie, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGroup(jPanel_VentasPorClienteLayout.createSequentialGroup()
+                                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel_VentasPorClienteLayout.createSequentialGroup()
                                     .addGroup(jPanel_VentasPorClienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                                         .addComponent(jLabel22, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel_VentasPorClienteLayout.createSequentialGroup()
                                             .addGap(10, 10, 10)
                                             .addComponent(jLabel_Cliente, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)))
                                     .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                    .addComponent(jTextField_cliente, javax.swing.GroupLayout.PREFERRED_SIZE, 66, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                    .addComponent(jButton_buscarCliente))
-                                .addGroup(jPanel_VentasPorClienteLayout.createSequentialGroup()
-                                    .addGap(55, 55, 55)
-                                    .addGroup(jPanel_VentasPorClienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addComponent(jRadioButton_PantallaCliente)
-                                        .addComponent(jComboBox_SeleccionarCliente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addComponent(jRadioButton_ExcelClien))))))))
+                                    .addComponent(jTextField_Cliente)
+                                    .addGap(18, 18, 18)
+                                    .addComponent(jButton_buscarCliente)
+                                    .addGap(136, 136, 136)))))))
             .addContainerGap(161, Short.MAX_VALUE))
     );
     jPanel_VentasPorClienteLayout.setVerticalGroup(
@@ -656,10 +650,8 @@ public void keyTyped(java.awt.event.KeyEvent evt) {
             .addGroup(jPanel_VentasPorClienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                 .addComponent(jLabel_Cliente)
                 .addComponent(jButton_buscarCliente)
-                .addComponent(jTextField_cliente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-            .addGap(3, 3, 3)
-            .addComponent(jComboBox_SeleccionarCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
-            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 12, Short.MAX_VALUE)
+                .addComponent(jTextField_Cliente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 43, Short.MAX_VALUE)
             .addComponent(jLabel22)
             .addGap(6, 6, 6)
             .addComponent(jRadioButton_ExcelClien)
@@ -1427,8 +1419,7 @@ public void keyTyped(java.awt.event.KeyEvent evt) {
                 .addGroup(jPanel_VentasPorVendedorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton_AceptaVerVentasPorVendedor)
                     .addComponent(jButton_CancelarVerFactVendedor))
-                .addGroup(jPanel_VentasPorVendedorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jRadioButton_PantallaVendedor)))
+                .addComponent(jRadioButton_PantallaVendedor))
             .addGap(61, 61, 61))
     );
 
@@ -1567,6 +1558,7 @@ public void keyTyped(java.awt.event.KeyEvent evt) {
     jRadioButton_PantallaProdVendedor.setText("Pantalla");
 
     buttonGroup1.add(jRadioButton_ExcelProdVendedor);
+    jRadioButton_ExcelProdVendedor.setSelected(true);
     jRadioButton_ExcelProdVendedor.setText("Excel");
 
     jLabel35.setText("Ver en:");
@@ -1779,21 +1771,20 @@ jLabel40.setText("Seleccionar:");
 jLabel_Cliente3.setForeground(new java.awt.Color(0, 51, 51));
 jLabel_Cliente3.setText("Cliente:");
 
-jComboBox_SeleccionarProdCliente.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-jComboBox_SeleccionarProdCliente.addKeyListener(new java.awt.event.KeyAdapter() {
-public void keyTyped(java.awt.event.KeyEvent evt) {
-    jComboBox_SeleccionarProdClienteKeyTyped(evt);
+buttonGroup1.add(jRadioButton_PantallaProdCliente);
+jRadioButton_PantallaProdCliente.setText("Pantalla");
+
+buttonGroup1.add(jRadioButton_ExcelProdCliente);
+jRadioButton_ExcelProdCliente.setText("Excel");
+
+jLabel41.setText("Ver en:");
+
+jButton_buscarVentasProdPorCliente.setText("Buscar");
+jButton_buscarVentasProdPorCliente.addActionListener(new java.awt.event.ActionListener() {
+public void actionPerformed(java.awt.event.ActionEvent evt) {
+    jButton_buscarVentasProdPorClienteActionPerformed(evt);
     }
     });
-
-    buttonGroup1.add(jRadioButton_PantallaProdCliente);
-    jRadioButton_PantallaProdCliente.setText("Pantalla");
-
-    buttonGroup1.add(jRadioButton_ExcelProdCliente);
-    jRadioButton_ExcelProdCliente.setSelected(true);
-    jRadioButton_ExcelProdCliente.setText("Excel");
-
-    jLabel41.setText("Ver en:");
 
     javax.swing.GroupLayout jPanel_VentasProductosPorClienteLayout = new javax.swing.GroupLayout(jPanel_VentasProductosPorCliente);
     jPanel_VentasProductosPorCliente.setLayout(jPanel_VentasProductosPorClienteLayout);
@@ -1825,21 +1816,22 @@ public void keyTyped(java.awt.event.KeyEvent evt) {
                                     .addComponent(jLabel39)
                                     .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                     .addComponent(dateChooserCombo_FinProdCliente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(jLabel40, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGroup(jPanel_VentasProductosPorClienteLayout.createSequentialGroup()
+                                    .addGap(10, 10, 10)
                                     .addGroup(jPanel_VentasProductosPorClienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addComponent(jLabel40, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGroup(jPanel_VentasProductosPorClienteLayout.createSequentialGroup()
-                                            .addGap(10, 10, 10)
-                                            .addGroup(jPanel_VentasProductosPorClienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                                .addComponent(jLabel41, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                .addComponent(jLabel_Cliente3, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                    .addComponent(jComboBox_SeleccionarProdCliente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                        .addComponent(jLabel41, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(jLabel_Cliente3, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE)))
                                 .addGroup(jPanel_VentasProductosPorClienteLayout.createSequentialGroup()
                                     .addGap(55, 55, 55)
                                     .addGroup(jPanel_VentasProductosPorClienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                         .addComponent(jRadioButton_PantallaProdCliente)
-                                        .addComponent(jRadioButton_ExcelProdCliente))))))))
+                                        .addComponent(jRadioButton_ExcelProdCliente)))))))
+                .addGroup(jPanel_VentasProductosPorClienteLayout.createSequentialGroup()
+                    .addGap(69, 69, 69)
+                    .addComponent(jTextField_VentasProdPorCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 162, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                    .addComponent(jButton_buscarVentasProdPorCliente)))
             .addContainerGap(161, Short.MAX_VALUE))
     );
     jPanel_VentasProductosPorClienteLayout.setVerticalGroup(
@@ -1858,14 +1850,13 @@ public void keyTyped(java.awt.event.KeyEvent evt) {
                 .addComponent(dateChooserCombo_FinProdCliente, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
             .addGap(46, 46, 46)
             .addComponent(jLabel40)
-            .addGroup(jPanel_VentasProductosPorClienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(jPanel_VentasProductosPorClienteLayout.createSequentialGroup()
-                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                    .addComponent(jLabel_Cliente3))
-                .addGroup(jPanel_VentasProductosPorClienteLayout.createSequentialGroup()
-                    .addGap(24, 24, 24)
-                    .addComponent(jComboBox_SeleccionarProdCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)))
-            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 29, Short.MAX_VALUE)
+            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+            .addComponent(jLabel_Cliente3)
+            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+            .addGroup(jPanel_VentasProductosPorClienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addComponent(jButton_buscarVentasProdPorCliente)
+                .addComponent(jTextField_VentasProdPorCliente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 27, Short.MAX_VALUE)
             .addComponent(jLabel41)
             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
             .addGroup(jPanel_VentasProductosPorClienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -2258,26 +2249,27 @@ jPanel_VerFacturasEliminadasPorFechLayout.createParallelGroup(javax.swing.GroupL
         jDialog_Reportes.setLocation(getLocationOnScreen());
         jPanel_VerVentasPorFech.setSize(jDialog_Reportes.getSize());
         jDialog_Reportes.add(jPanel_VerVentasPorFech);
+//        jDialog_Reportes.setUndecorated(true);//no ver bordes del jdialogue
         jDialog_Reportes.setVisible(true);
 
 
     }//GEN-LAST:event_jButton_VentasPorFechaActionPerformed
 
     private void jButton_VentasPorClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_VentasPorClienteActionPerformed
-/////////////////esta parte al correr tira una advertencia, si se comenta no//////////////////
-        Direct_Control_BD mBD = Direct_Control_BD.getInstance();
-        mBD.consultarClientes();
-        Object[][] data;
-        data = mBD.getData();
-        String[] columnNames;
-        columnNames = mBD.getColumnNames();
-        this.jComboBox_SeleccionarCliente.removeAllItems();
-        for (Object[] data1 : data) {
-            this.jComboBox_SeleccionarCliente.addItem(data1[1]);
-        }
-        this.jComboBox_SeleccionarCliente.setSelectedItem("Clientes");
-
-        ///////////////////////////////    
+///////////////////esta parte al correr tira una advertencia, si se comenta no//////////////////
+//        Direct_Control_BD mBD = Direct_Control_BD.getInstance();
+//        mBD.consultarClientes();
+//        Object[][] data;
+//        data = mBD.getData();
+//        String[] columnNames;
+//        columnNames = mBD.getColumnNames();
+//        this.jComboBox_SeleccionarCliente.removeAllItems();
+//        for (Object[] data1 : data) {
+//            this.jComboBox_SeleccionarCliente.addItem(data1[1]);
+//        }
+//        this.jComboBox_SeleccionarCliente.setSelectedItem("Clientes");
+//
+//        ///////////////////////////////    
         buttonGroup4.add(jRadioButton_ExcelClien);
         buttonGroup4.add(jRadioButton_PantallaCliente);
         jRadioButton_ExcelClien.setSelected(true);
@@ -2295,11 +2287,11 @@ jPanel_VerFacturasEliminadasPorFechLayout.createParallelGroup(javax.swing.GroupL
 
         //Verifica que el tipo de archivo en el que se va a mostrar
         if (jRadioButton_ExcelClien.isSelected()) {//para mostrar en Excel
-            String concepto = "Ventas Por Cliente: " + jComboBox_SeleccionarCliente.getSelectedItem().toString();
+            String concepto = "Ventas Por Cliente: " + jTextField_Cliente.getText().toString();
             Direct_Control_BD AdminBD = Direct_Control_BD.getInstance();
             AdminBD.VerVentasPorCliente(dateF.format(//Consulta de Fact Por cliente
                     dateChooserCombo_IniClie.getSelectedDate().getTime()),
-                    dateF.format(dateChooserCombo_FinClie.getSelectedDate().getTime()), jComboBox_SeleccionarCliente.getSelectedItem().toString());
+                    dateF.format(dateChooserCombo_FinClie.getSelectedDate().getTime()), jTextField_Cliente.getText().toString());
 
             String[] infoEmpresa = {"Joe S.A ", "Oriente pa dentro", "Cartago,"
                 + " CA 20320", "Telefono:2650-11-36, fax:2655-0203"};
@@ -2314,8 +2306,8 @@ jPanel_VerFacturasEliminadasPorFechLayout.createParallelGroup(javax.swing.GroupL
                         AdminBD.getNombresColumnas(),
                         dateF1.format(dateChooserCombo_IniProd.getSelectedDate().getTime()),
                         dateF1.format(dateChooserCombo_FinProd.getSelectedDate().getTime()),
-                        concepto,"Excel");
-            } catch (    IOException | WriteException | CellException ex) {
+                        concepto, "Excel");
+            } catch (IOException | WriteException | CellException ex) {
                 Logger.getLogger(JPanel_Reportes.class.getName()).log(Level.SEVERE, null, ex);
             }
         } else {
@@ -2356,8 +2348,8 @@ jPanel_VerFacturasEliminadasPorFechLayout.createParallelGroup(javax.swing.GroupL
                         AdminBD.getNombresColumnas(),
                         dateF1.format(dateChooserCombo_IniVent.getSelectedDate().getTime()),
                         dateF1.format(dateChooserCombo_FinVent.getSelectedDate().getTime()),
-                        "Ventas Por Fechas Por Concepto: " + concepto,"Excel");
-            } catch (    IOException | WriteException | CellException ex) {
+                        "Ventas Por Fechas Por Concepto: " + concepto, "Excel");
+            } catch (IOException | WriteException | CellException ex) {
                 Logger.getLogger(JPanel_Reportes.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
@@ -2419,12 +2411,12 @@ jPanel_VerFacturasEliminadasPorFechLayout.createParallelGroup(javax.swing.GroupL
                         AdminBD.getNombresColumnas(),
                         dateF1.format(dateChooserCombo_IniProd.getSelectedDate().getTime()),
                         dateF1.format(dateChooserCombo_FinProd.getSelectedDate().getTime()),
-                        concepto,"Excel");
-            } catch (    IOException | WriteException | CellException ex) {
+                        concepto, "Excel");
+            } catch (IOException | WriteException | CellException ex) {
                 Logger.getLogger(JPanel_Reportes.class.getName()).log(Level.SEVERE, null, ex);
             }
         } else {
-            if (jRadioButton_PorCodigo.isSelected()) {
+            if (jRadioButton_PorCodigo.isSelected()&&jTextField_CodiOCateg.getText().trim().isEmpty()) {
                 JOptionPane.showMessageDialog(
                         null,
                         "Ingrese Un Codigo",
@@ -2521,13 +2513,6 @@ jPanel_VerFacturasEliminadasPorFechLayout.createParallelGroup(javax.swing.GroupL
         }
     }//GEN-LAST:event_jComboBox_SeleccionarCategoriaKeyTyped
 
-    private void jComboBox_SeleccionarClienteKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jComboBox_SeleccionarClienteKeyTyped
-        if (KeyEvent.VK_ENTER == evt.getKeyChar()) {
-            this.jComboBox_SeleccionarCliente.transferFocus();
-
-        }
-    }//GEN-LAST:event_jComboBox_SeleccionarClienteKeyTyped
-
     private void jButton_AceptaVerVentasPorVendedorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_AceptaVerVentasPorVendedorActionPerformed
         DateFormat dateF1 = new SimpleDateFormat("dd-MM-yyyy");//formato para mostrar
         DateFormat dateF = new SimpleDateFormat("yyyy/MM/dd");//formato para consultar
@@ -2579,8 +2564,8 @@ jPanel_VerFacturasEliminadasPorFechLayout.createParallelGroup(javax.swing.GroupL
                                 getSelectedDate().getTime()),
                         "Ventas Por Vendedor: " + jComboBox_SeleccionarVendedor.
                         getSelectedItem().toString() + " Por Concepto de : "
-                        + concepto,"Excel");
-            } catch (    IOException | WriteException | CellException ex) {
+                        + concepto, "Excel");
+            } catch (IOException | WriteException | CellException ex) {
                 Logger.getLogger(JPanel_Reportes.class.getName()).log(Level.SEVERE, null, ex);
             }
         } else {
@@ -2640,7 +2625,7 @@ jPanel_VerFacturasEliminadasPorFechLayout.createParallelGroup(javax.swing.GroupL
         jPanel_VerVentasPorTermino.setSize(jDialog_Reportes.getSize());
         jDialog_Reportes.add(jPanel_VerVentasPorTermino);
         jDialog_Reportes.setVisible(true);
-        
+
     }//GEN-LAST:event_jButton_VentasPorTerminosActionPerformed
 
     private void jButton_CancelarVerFactPorTerminoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_CancelarVerFactPorTerminoActionPerformed
@@ -2694,8 +2679,8 @@ jPanel_VerFacturasEliminadasPorFechLayout.createParallelGroup(javax.swing.GroupL
                                 getSelectedDate().getTime()),
                         dateF1.format(dateChooserCombo_FinTermino.
                                 getSelectedDate().getTime()),
-                        concepto,"Excel");
-            } catch (    IOException | WriteException | CellException ex) {
+                        concepto, "Excel");
+            } catch (IOException | WriteException | CellException ex) {
                 Logger.getLogger(JPanel_Reportes.class.getName()).
                         log(Level.SEVERE, null, ex);
             }
@@ -2759,8 +2744,8 @@ jPanel_VerFacturasEliminadasPorFechLayout.createParallelGroup(javax.swing.GroupL
                         AdminBD.getNombresColumnas(),
                         dateF1.format(dateChooserCombo_IniProdVendedor.getSelectedDate().getTime()),
                         dateF1.format(dateChooserCombo_FinProdVendedor.getSelectedDate().getTime()),
-                        "Ventas De Productos Para el Vendedor: " + jComboBox_SeleccionarProdVendedor.getSelectedItem().toString(),"Excel");
-            } catch (    IOException | WriteException | CellException ex) {
+                        "Ventas De Productos Para el Vendedor: " + jComboBox_SeleccionarProdVendedor.getSelectedItem().toString(), "Excel");
+            } catch (IOException | WriteException | CellException ex) {
                 Logger.getLogger(JPanel_Reportes.class.getName()).log(Level.SEVERE, null, ex);
             }
         } else {
@@ -2801,8 +2786,7 @@ jPanel_VerFacturasEliminadasPorFechLayout.createParallelGroup(javax.swing.GroupL
                     dateChooserCombo_IniProdCliente.getSelectedDate().getTime()),
                     dateF.format(dateChooserCombo_FinProdCliente.
                             getSelectedDate().getTime()),
-                    jComboBox_SeleccionarProdCliente.
-                    getSelectedItem().toString());
+                    jTextField_VentasProdPorCliente.getText().toString());
 
             String[] infoEmpresa = {"Joe S.A ", "Oriente pa dentro", "Cartago,"
                 + " CA 20320", "Telefono:2650-11-36, fax:2655-0203"};
@@ -2817,8 +2801,8 @@ jPanel_VerFacturasEliminadasPorFechLayout.createParallelGroup(javax.swing.GroupL
                         AdminBD.getNombresColumnas(),
                         dateF1.format(dateChooserCombo_IniProdCliente.getSelectedDate().getTime()),
                         dateF1.format(dateChooserCombo_FinProdCliente.getSelectedDate().getTime()),
-                        "Ventas De Productos Para el Cliente: " + jComboBox_SeleccionarProdCliente.getSelectedItem().toString(),"Excel");
-            } catch (    IOException | WriteException | CellException ex) {
+                        "Ventas De Productos Para el Cliente: " + jTextField_VentasProdPorCliente.getText().toString(), "Excel");
+            } catch (IOException | WriteException | CellException ex) {
                 Logger.getLogger(JPanel_Reportes.class.getName()).log(Level.SEVERE, null, ex);
             }
         } else {
@@ -2831,25 +2815,22 @@ jPanel_VerFacturasEliminadasPorFechLayout.createParallelGroup(javax.swing.GroupL
         jDialog_Reportes.setVisible(false);
     }//GEN-LAST:event_jButton_CancelarVerVentasProdClienteActionPerformed
 
-    private void jComboBox_SeleccionarProdClienteKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jComboBox_SeleccionarProdClienteKeyTyped
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jComboBox_SeleccionarProdClienteKeyTyped
-
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
-        Direct_Control_BD mBD = Direct_Control_BD.getInstance();
-        mBD.consultarClientes();//consulta los clientes existentes
-        Object[][] data;
-        data = mBD.getData();
-        String[] columnNames;
-        columnNames = mBD.getColumnNames();
-        this.jComboBox_SeleccionarProdCliente.removeAllItems();
-        for (Object[] data1 : data) {
-            //muestra los cliente
-            this.jComboBox_SeleccionarProdCliente.addItem(data1[1]);
-        }
-        this.jComboBox_SeleccionarProdCliente.setSelectedItem("Sin Cliente");
+//        Direct_Control_BD mBD = Direct_Control_BD.getInstance();
+//        mBD.consultarClientes();//consulta los clientes existentes
+//        Object[][] data;
+//        data = mBD.getData();
+//        String[] columnNames;
+//        columnNames = mBD.getColumnNames();
+//        this.jComboBox_SeleccionarProdCliente.removeAllItems();
+//        for (Object[] data1 : data) {
+//            //muestra los cliente
+//            this.jComboBox_SeleccionarProdCliente.addItem(data1[1]);
+//        }
+//        this.jComboBox_SeleccionarProdCliente.setSelectedItem("Sin Cliente");
+//
+//        ///////////////////////////////  
 
-        ///////////////////////////////  
         //mostrar componentes
         buttonGroup1.add(jRadioButton_ExcelProdCliente);
         buttonGroup1.add(jRadioButton_PantallaProdCliente);//mejorar unsando un solo buttogroup
@@ -2869,9 +2850,9 @@ jPanel_VerFacturasEliminadasPorFechLayout.createParallelGroup(javax.swing.GroupL
         Direct_Control_BD AdminBD = Direct_Control_BD.getInstance();
 
         //Consulta de Fact Por Fech y concepto
-        AdminBD.VerFacturasPorConeptoPorRangoDeFecha(dateF.format(
+        AdminBD.VerFacturasEliminadas(dateF.format(
                 dateChooserCombo_IniEliminadasFact.getSelectedDate().getTime()),
-                dateF.format(dateChooserCombo_FinEliminadasFact.getSelectedDate().getTime()), "Eliminada");
+                dateF.format(dateChooserCombo_FinEliminadasFact.getSelectedDate().getTime()));
         String[] infoEmpresa = {"Joe S.A ", "Oriente pa dentro", "Cartago,"
             + " CA 20320", "Telefono:2650-11-36, fax:2655-0203"};
 
@@ -2888,14 +2869,14 @@ jPanel_VerFacturasEliminadasPorFechLayout.createParallelGroup(javax.swing.GroupL
                         AdminBD.getNombresColumnas(),
                         dateF1.format(dateChooserCombo_IniEliminadasFact.getSelectedDate().getTime()),
                         dateF1.format(dateChooserCombo_FinEliminadasFact.getSelectedDate().getTime()),
-                        "Ventas Por Fechas Por Concepto:Eliminada","Excel");
+                        "Ventas Por Fechas Por Concepto:Eliminada", "Excel");
             } //para mostrar en pantalla 
             else if (jRadioButton_PantallaEliminadasFact.isSelected()) {
                 archivoExcel.escribir(infoEmpresa, AdminBD.getInfoFact(),
                         AdminBD.getNombresColumnas(),
                         dateF1.format(dateChooserCombo_IniEliminadasFact.getSelectedDate().getTime()),
                         dateF1.format(dateChooserCombo_FinEliminadasFact.getSelectedDate().getTime()),
-                        "Ventas Por Fechas Por Concepto:Eliminada","Pant");
+                        "Ventas Por Fechas Por Concepto:Eliminada", "Pant");
             }
         } catch (IOException | WriteException | CellException ex) {
             Logger.getLogger(JPanel_Reportes.class.getName()).log(Level.SEVERE, null, ex);
@@ -2909,12 +2890,19 @@ jPanel_VerFacturasEliminadasPorFechLayout.createParallelGroup(javax.swing.GroupL
     }//GEN-LAST:event_jButton_CancelarVerFactEliminadasActionPerformed
 
     private void jButton_buscarClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_buscarClienteActionPerformed
-        NewJDialog_Buscador buscador= new NewJDialog_Buscador();
+        NewJDialog_Buscador buscador = new NewJDialog_Buscador();
         buscador.actualizaTablaParaClientes();
-        String cliente= buscador.getCliente();
-        this.jTextField_cliente.setText(cliente);
-        
+        String cliente = buscador.getCliente();
+        this.jTextField_Cliente.setText(cliente);
+
     }//GEN-LAST:event_jButton_buscarClienteActionPerformed
+
+    private void jButton_buscarVentasProdPorClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_buscarVentasProdPorClienteActionPerformed
+        NewJDialog_Buscador buscador = new NewJDialog_Buscador();
+        buscador.actualizaTablaParaClientes();
+        String cliente = buscador.getCliente();
+        this.jTextField_VentasProdPorCliente.setText(cliente);
+    }//GEN-LAST:event_jButton_buscarVentasProdPorClienteActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -2965,9 +2953,8 @@ jPanel_VerFacturasEliminadasPorFechLayout.createParallelGroup(javax.swing.GroupL
     private javax.swing.JButton jButton_VentasPorTerminos;
     private javax.swing.JButton jButton_VentasPorVendedor;
     private javax.swing.JButton jButton_buscarCliente;
+    private javax.swing.JButton jButton_buscarVentasProdPorCliente;
     private javax.swing.JComboBox jComboBox_SeleccionarCategoria;
-    private javax.swing.JComboBox jComboBox_SeleccionarCliente;
-    private javax.swing.JComboBox jComboBox_SeleccionarProdCliente;
     private javax.swing.JComboBox jComboBox_SeleccionarProdVendedor;
     private javax.swing.JComboBox jComboBox_SeleccionarVendedor;
     private javax.swing.JDialog jDialog_Reportes;
@@ -3062,7 +3049,8 @@ jPanel_VerFacturasEliminadasPorFechLayout.createParallelGroup(javax.swing.GroupL
     private javax.swing.JRadioButton jRadioButton_PorCodigo;
     private javax.swing.JRadioButton jRadioButton_Tarjeta;
     private javax.swing.JTabbedPane jTabbedPane6;
+    private javax.swing.JTextField jTextField_Cliente;
     private javax.swing.JTextField jTextField_CodiOCateg;
-    private javax.swing.JTextField jTextField_cliente;
+    private javax.swing.JTextField jTextField_VentasProdPorCliente;
     // End of variables declaration//GEN-END:variables
 }

@@ -548,11 +548,11 @@ public class Direct_Control_BD {
      * @param tipoPago
      * @param idCliente
      * @param idVendedor
-     * @param estado
+     * @param concepto
      * @param nota
      */
     public void crearFactura(int idFactura, BigDecimal descuento, String tipoPago, int idCliente,
-            int idVendedor, String estado, String nota, BigDecimal TotalFacturado) {//Revisado+
+            int idVendedor, String concepto, String nota, BigDecimal TotalFacturado, String estado) {//Revisado+
         DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd");
         Date date = new Date();
         String fecha = dateFormat.format(date);
@@ -567,10 +567,11 @@ public class Direct_Control_BD {
             stm.setString(3, tipoPago);
             stm.setInt(4, idCliente);
             stm.setInt(5, idVendedor);
-            stm.setString(6, estado);
+            stm.setString(6, concepto);
             stm.setString(7, nota);
             stm.setString(8, fecha);
             stm.setDouble(9, TotalFacturado.doubleValue());
+            stm.setString(10, estado);
             stm.executeUpdate();
             ResultSet rs = stm.getGeneratedKeys();
             while (rs.next()) {
@@ -1591,8 +1592,8 @@ public class Direct_Control_BD {
     }
 
     /**
-     * Obtiene el numero de idvcliente de un producto segun el codigo y solo
-     * permite obtener la idvcliente con estado A
+     * Obtiene el numero de idversion de un producto segun el codigo y solo
+     * permite obtener la idversion con estado A
      */
     public int veridVersionActivaProductoPorCodigo(String codigo) {
         try {
@@ -1626,8 +1627,8 @@ public class Direct_Control_BD {
         infoFact = data;
     }
 
-    public void VerFacturasPorConeptoPorRangoDeFecha(String FechaIni, 
-            String FechaFin,String concepto) {
+    public void VerFacturasPorConeptoPorRangoDeFecha(String FechaIni,
+            String FechaFin, String concepto) {
         try {
             String Fact = this.readSql("../Joe"
                     + "/src/sql_files/VerFacturasPorConceptoPorRangoDeFecha.sql");
@@ -1654,7 +1655,7 @@ public class Direct_Control_BD {
      * @param idFactura
      * @param PrecioVenta
      */
-    public void insertarProductoCantidadFact(String idProducto, int idVersion, int Cantidad, int idFactura, BigDecimal PrecioVenta) {
+    public void insertarProductoCantidadFact(String idProducto, int idVersion, int Cantidad, int idFactura, BigDecimal PrecioVenta, int idVersionFacturasProducto) {
         try {
             String insertarProductoCantFact = this.readSql("../Joe/src/sql_files/"
                     + "insertarProductoCantidadFact.sql");
@@ -1664,6 +1665,7 @@ public class Direct_Control_BD {
             stm.setInt(3, Cantidad);
             stm.setInt(4, idFactura);
             stm.setDouble(5, PrecioVenta.doubleValue());
+            stm.setInt(6, idVersionFacturasProducto);
             stm.executeUpdate();
 
         } catch (Exception e) {
@@ -1901,8 +1903,8 @@ public class Direct_Control_BD {
 
         }
     }
-    
-     /**
+
+    /**
      * Devuelve todos los productos de una factura determinada.
      */
     public void verProductosPorFactura(int NumFact) {
@@ -1910,7 +1912,7 @@ public class Direct_Control_BD {
             String verProductosPorFactura = this.readSql("../Joe/src/"
                     + "sql_files/verProductosPorFactura.sql");
             PreparedStatement stm = this.conection.prepareStatement(verProductosPorFactura);
-            stm.setInt(1,NumFact);
+            stm.setInt(1, NumFact);
             ResultSet resultset = stm.executeQuery();
             this.setColumnNames(this.Get_Columnas(resultset));
             this.setData(this.ResultSet_Array(resultset));
@@ -1919,16 +1921,18 @@ public class Direct_Control_BD {
             System.out.println("Error al obtener los productos de la factura");
         }
     }
+
     /**
      * 'Elimina'(Cambia de estado a eliminada) el numero de factura seleccionado
-     * @param NumFact 
+     *
+     * @param NumFact
      */
-     public void eliminarFactura(int NumFact) {
+    public void eliminarFactura(int NumFact) {
         try {
             String eliminar = this.readSql("../Joe/src/sql_files/"
                     + "eliminarFactura.sql");
             PreparedStatement stm = this.conection.prepareStatement(eliminar);
-            stm.setInt(1,NumFact);
+            stm.setInt(1, NumFact);
             stm.executeUpdate();
         } catch (Exception e) {
             System.out.println("Error al eliminar la factura");
@@ -1992,6 +1996,59 @@ public class Direct_Control_BD {
 
             System.out.println("Error al Cosultar Ventas De Productos"
                     + " Por Cliente");
+
+        }
+    }
+
+    /**
+     * Esta consulta permite saber cual es el idversion de la factura que se
+     * esta creando en facturacion.
+     *
+     * @param idFactura
+     * @return
+     */
+    public int verVersionDEFacturaNueva(int idFactura) {
+        try {
+            String verVersionDEFacturaNueva = this.readSql("../Joe"
+                    + "/src/sql_files/verVersionFacturaNueva.sql");
+            PreparedStatement stm
+                    = this.conection.prepareStatement(verVersionDEFacturaNueva);
+            stm.setInt(1, idFactura);
+            ResultSet rs = stm.executeQuery();
+            int idversion = 0;
+            while (rs.next()) {
+                idversion = rs.getInt("idVersionFactura");
+            }
+            return idversion;
+        } catch (Exception e) {
+            System.out.println("Error al obtener la version de la factura");
+            return 0;
+        }
+    }
+
+    /**
+     * consultar facturas que han sido eliminadas, estado=I, concepto=Eliminadas
+     *
+     * @param FechaIni
+     * @param FechaFin
+     * @param Cliente
+     */
+    public void VerFacturasEliminadas(String FechaIni, String FechaFin) {
+
+        try {
+            String verFacturasEliminadas = readSql("../Joe"
+                    + "/src/sql_files/VerFacturasEliminadas.sql");
+            PreparedStatement stm
+                    = conection.prepareStatement(verFacturasEliminadas);
+            stm.setString(1, FechaIni);
+            stm.setString(2, FechaFin);
+            ResultSet rs = stm.executeQuery();
+            setColumnNames(Get_Columnas(rs));
+            setData2(ResultSet_Array(rs));
+
+        } catch (Exception e) {
+
+            System.out.println("Error al Cosultar Facturas Eliminadas");
 
         }
     }

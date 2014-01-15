@@ -3,7 +3,7 @@ C.`Nombre` AS Cliente,PCF.Cantidad AS Unidades,P.`Precio` AS PrecioRegular,
 PCF.`PrecioVenta`
 FROM Producto AS P, ProductoCantidadFact As PCF, Factura AS F, Persona AS C
 WHERE P.`idProducto` = ? AND P.`idVersion`=PCF.`idVersionFact` AND 
-P.idProducto = PCF.idProductoFact AND PCF.idFactura = F.idFactura
-
-AND F.Fecha BETWEEN ? AND ? AND F.`idCliente` = C.`idPersona` 
+P.idProducto = PCF.idProductoFact AND PCF.idFactura = F.idFactura AND 
+F.`Estado`="A" AND F.Fecha BETWEEN ? AND ? AND F.`idCliente` = C.`idPersona` 
+AND F.`idVersionFactura` = PCF.`idVersionFacturasProducto`
 GROUP BY PCF.`idProductoCantidadFact`; 

@@ -30,6 +30,7 @@ import jxl.format.Colour;
 import jxl.format.ScriptStyle;
 import jxl.write.Label;
 import jxl.write.Number;
+import jxl.write.NumberFormats;
 import jxl.write.WritableCellFormat;
 import jxl.write.WritableFont;
 import jxl.write.WritableSheet;
@@ -221,10 +222,12 @@ public class EscribirExcel {
             for (int col = 0; col < datosFact[0].length; col++) {
                 try {//escribir segun tipo(int o string)
                     hojaExcel.addCell(new Number(col, fil,
-                            Integer.parseInt(datosFact[fila][col].toString()), times10));
+                            Double.parseDouble(datosFact[fila][col].toString()), times10));
                 } catch (NumberFormatException | WriteException e) {
                     hojaExcel.addCell(new Label(col, fil,
                             datosFact[fila][col].toString(), times10));
+                
+                
                 }
             }
         }

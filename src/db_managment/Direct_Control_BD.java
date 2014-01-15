@@ -552,7 +552,7 @@ public class Direct_Control_BD {
      * @param nota
      */
     public void crearFactura(int idFactura, BigDecimal descuento, String tipoPago, int idCliente,
-            int idVendedor, String concepto, String nota, BigDecimal TotalFacturado,String estado) {//Revisado+
+        int idVendedor, String concepto, String nota, BigDecimal TotalFacturado,String estado) {//Revisado+
         DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd");
         Date date = new Date();
         String fecha = dateFormat.format(date);
@@ -573,13 +573,10 @@ public class Direct_Control_BD {
             stm.setDouble(9, TotalFacturado.doubleValue());
             stm.setString(10, estado);
             stm.executeUpdate();
-            ResultSet rs = stm.getGeneratedKeys();
-            while (rs.next()) {
-                System.out.println(rs.getInt(1));
-            }
+            
 
         } catch (Exception e) {
-            System.out.println(e);
+            System.out.println("error al crear la factura");
 
         }
 
@@ -1925,12 +1922,13 @@ public class Direct_Control_BD {
      * 'Elimina'(Cambia de estado a eliminada) el numero de factura seleccionado
      * @param NumFact 
      */
-     public void eliminarFactura(int NumFact) {
+     public void eliminarFactura(int NumFact,int idVersionFact) {
         try {
             String eliminar = this.readSql("../Joe/src/sql_files/"
                     + "eliminarFactura.sql");
             PreparedStatement stm = this.conection.prepareStatement(eliminar);
             stm.setInt(1,NumFact);
+            stm.setInt(2,idVersionFact);
             stm.executeUpdate();
         } catch (Exception e) {
             System.out.println("Error al eliminar la factura");
@@ -1999,11 +1997,11 @@ public class Direct_Control_BD {
     }
    /**
     * Esta consulta permite saber cual es el idversion de la factura que se esta
-    * creando en facturacion.
+    * creando en facturacion es decir la activa('A').
     * @param idFactura
     * @return 
     */
-    public int verVersionDEFacturaNueva(int idFactura) {
+    public int verVersionDEFacturaActiva(int idFactura) {
         try {
             String verVersionDEFacturaNueva = this.readSql("../Joe"
                     + "/src/sql_files/verVersionFacturaNueva.sql");

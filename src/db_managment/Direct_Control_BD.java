@@ -552,7 +552,7 @@ public class Direct_Control_BD {
      * @param nota
      */
     public void crearFactura(int idFactura, BigDecimal descuento, String tipoPago, int idCliente,
-            int idVendedor, String concepto, String nota, BigDecimal TotalFacturado, String estado) {//Revisado+
+        int idVendedor, String concepto, String nota, BigDecimal TotalFacturado,String estado) {//Revisado+
         DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd");
         Date date = new Date();
         String fecha = dateFormat.format(date);
@@ -573,13 +573,10 @@ public class Direct_Control_BD {
             stm.setDouble(9, TotalFacturado.doubleValue());
             stm.setString(10, estado);
             stm.executeUpdate();
-            ResultSet rs = stm.getGeneratedKeys();
-            while (rs.next()) {
-                System.out.println(rs.getInt(1));
-            }
+            
 
         } catch (Exception e) {
-            System.out.println(e);
+            System.out.println("error al crear la factura");
 
         }
 
@@ -1593,7 +1590,7 @@ public class Direct_Control_BD {
 
     /**
      * Obtiene el numero de idversion de un producto segun el codigo y solo
-     * permite obtener la idversion con estado A
+ permite obtener la idversion con estado A
      */
     public int veridVersionActivaProductoPorCodigo(String codigo) {
         try {
@@ -1927,12 +1924,13 @@ public class Direct_Control_BD {
      *
      * @param NumFact
      */
-    public void eliminarFactura(int NumFact) {
+     public void eliminarFactura(int NumFact,int idVersionFact) {
         try {
             String eliminar = this.readSql("../Joe/src/sql_files/"
                     + "eliminarFactura.sql");
             PreparedStatement stm = this.conection.prepareStatement(eliminar);
-            stm.setInt(1, NumFact);
+            stm.setInt(1,NumFact);
+            stm.setInt(2,idVersionFact);
             stm.executeUpdate();
         } catch (Exception e) {
             System.out.println("Error al eliminar la factura");
@@ -1999,15 +1997,13 @@ public class Direct_Control_BD {
 
         }
     }
-
-    /**
-     * Esta consulta permite saber cual es el idversion de la factura que se
-     * esta creando en facturacion.
-     *
-     * @param idFactura
-     * @return
-     */
-    public int verVersionDEFacturaNueva(int idFactura) {
+   /**
+    * Esta consulta permite saber cual es el idversion de la factura que se esta
+    * creando en facturacion es decir la activa('A').
+    * @param idFactura
+    * @return 
+    */
+    public int verVersionDEFacturaActiva(int idFactura) {
         try {
             String verVersionDEFacturaNueva = this.readSql("../Joe"
                     + "/src/sql_files/verVersionFacturaNueva.sql");
@@ -2025,31 +2021,38 @@ public class Direct_Control_BD {
             return 0;
         }
     }
-
     /**
-     * consultar facturas que han sido eliminadas, estado=I, concepto=Eliminadas
-     *
-     * @param FechaIni
-     * @param FechaFin
-     * @param Cliente
+     * Elimina la factura que se modifico(la vuelve inactiva para 
+     * poder luego ver
+     * cuales fueron las modificaciones que se le hicieron a la factura)
+     * @param NumFact 
      */
-    public void VerFacturasEliminadas(String FechaIni, String FechaFin) {
-
+    public void eliminarFacturaPorModificacion(int NumFact) {
         try {
-            String verFacturasEliminadas = readSql("../Joe"
-                    + "/src/sql_files/VerFacturasEliminadas.sql");
+            String eliminarFacturaPorModf = this.readSql("../Joe/src/sql_files/"
+                    + "eliminarFacturaPorModf.sql");
+            PreparedStatement stm = this.conection.prepareStatement(eliminarFacturaPorModf);
+            stm.setInt(1,NumFact);
+            stm.executeUpdate();
+        } catch (Exception e) {
+            System.out.println("Error al eliminar la factura por modificacion");
+        }
+    }
+
+    public void actualizarCantidadInventario(String codArticulo, int cantidad) {
+         try {
+            String actualizarCantidadInv = this.readSql("../Joe"
+                    + "/src/sql_files/actualizarCantidadInventario.sql");
             PreparedStatement stm
-                    = conection.prepareStatement(verFacturasEliminadas);
-            stm.setString(1, FechaIni);
-            stm.setString(2, FechaFin);
-            ResultSet rs = stm.executeQuery();
-            setColumnNames(Get_Columnas(rs));
-            setData2(ResultSet_Array(rs));
+                    = this.conection.prepareStatement(actualizarCantidadInv);
+            stm.setInt(1, cantidad);
+            stm.setString(2, codArticulo);
+            stm.executeUpdate();
 
         } catch (Exception e) {
-
-            System.out.println("Error al Cosultar Facturas Eliminadas");
-
+            System.out.println("Error al Actualizar la cantidad de un producto"
+                    + " en el inventario por modificacion");
         }
+    
     }
 }

@@ -209,9 +209,12 @@ public class JPanel_Facturacion extends javax.swing.JPanel {
     private void jButton_EliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_EliminarActionPerformed
         Modelo_Facturacion model = (Modelo_Facturacion) this.jTable_Facturacion.getModel();
         int row= this.jTable_Facturacion.getSelectedRow();
-        if(row>0){
+        if(row>=0){
         Direct_Control_BD AdminBD = Direct_Control_BD.getInstance();
-        AdminBD.eliminarFactura(Integer.parseInt(model.getValueAt(row,0).toString()));
+        int numFact = Integer.parseInt(model.getValueAt(row,0).toString());
+        this.devolverProductos(numFact);
+        int idVersion=AdminBD.verVersionDEFacturaActiva(numFact);
+        AdminBD.eliminarFactura(numFact,idVersion);
         this.completarTablaFacturacion();
         }
         else{
@@ -223,7 +226,21 @@ public class JPanel_Facturacion extends javax.swing.JPanel {
         }
         
     }//GEN-LAST:event_jButton_EliminarActionPerformed
-
+    private void devolverProductos(int NumFact) {
+        Direct_Control_BD AdminBD = Direct_Control_BD.getInstance();
+        AdminBD.verProductosPorFactura(NumFact);
+        Object[][] ProductosdeFactura = AdminBD.getData();
+        int numFilas = ProductosdeFactura.length;
+        for (int row = 0; row < numFilas; row++) {
+            Object[] producto= ProductosdeFactura[row];
+            String codArticulo= producto[0].toString();
+            int cantidadTotal = AdminBD.verCantidad(codArticulo);
+            int cantidad= Integer.parseInt(producto[2].toString());
+            AdminBD.actualizarCantidadInventario(codArticulo,cantidadTotal+cantidad);
+            
+            
+            }
+    }
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         VentanaDeInicio mVentana= VentanaDeInicio.getInstance();
         mVentana.remove(this);
@@ -272,7 +289,7 @@ public class JPanel_Facturacion extends javax.swing.JPanel {
         panelCreaFact.setVisible(true);
         mVentana.revalidate();
         mVentana.repaint();
-        mVentana.setTitle("Modificaion Factura");
+        mVentana.setTitle("Modifica Factura");
         panelCreaFact.personalizarTablaFactura();
         Modelo_Facturacion model = (Modelo_Facturacion) this.jTable_Facturacion.getModel();
         String factura = model.getValueAt(row, 0).toString();

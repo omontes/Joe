@@ -1182,6 +1182,10 @@ public class JPanel_CrearFactura extends javax.swing.JPanel {
    
     }//GEN-LAST:event_jTable_FacturaKeyPressed
     private void jButton_RegresarFactActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_RegresarFactActionPerformed
+        this.regresar();
+
+    }//GEN-LAST:event_jButton_RegresarFactActionPerformed
+    private void regresar(){
         VentanaDeInicio miVentana= VentanaDeInicio.getInstance();
         JPanel_Facturacion panelFact= new JPanel_Facturacion();
         panelFact.setSize(this.getSize());
@@ -1193,8 +1197,7 @@ public class JPanel_CrearFactura extends javax.swing.JPanel {
         panelFact.completarTablaFacturacion();
         miVentana.revalidate();
         miVentana.repaint();
-
-    }//GEN-LAST:event_jButton_RegresarFactActionPerformed
+    }
     /**
      * Este metodo permite que vuelva a la tabla y seleciones la fila donde
      * quedo o la siguiente en la tabla facturacion
@@ -1232,11 +1235,7 @@ public class JPanel_CrearFactura extends javax.swing.JPanel {
                     jTable_Factura.getModel();
             model.setValueAt(codigo, jTable_Factura.getSelectedRow(), 0);
             //Vuelve a cargar la informacion para el editor de la primer columna
-            AdminBD.verCodigos();
-            String[] idproductos=this.obtenerFila(AdminBD.getData());
-            this.jTable_Factura.getColumnModel().getColumn(0).
-                setCellEditor(new SeleccionadorEditor
-        (idproductos,jTable_Factura));
+            this.cargarSeleccionadorProductos();
             this.setFocusTablaFact(1);
         }
 
@@ -1429,7 +1428,7 @@ public class JPanel_CrearFactura extends javax.swing.JPanel {
                 int cantidad = cantidadB.intValue();
                 String precioSinCorregir = infoTablaFact[i][3];
                 BigDecimal PrecioVenta = this.corregirDato(precioSinCorregir);
-                int idVersionFacturasProducto =AdminBD.verVersionDEFacturaNueva(idFactura);
+                int idVersionFacturasProducto =AdminBD.verVersionDEFacturaActiva(idFactura);
                 //System.out.println(idProducto+" "+idVersion+" "+cantidad+" "+idFactura+" "+PrecioVenta+" "+idVersionFacturasProducto);
                 AdminBD.insertarProductoCantidadFact(idProducto, idVersion,
                         cantidad, idFactura, PrecioVenta,idVersionFacturasProducto);
@@ -1439,8 +1438,19 @@ public class JPanel_CrearFactura extends javax.swing.JPanel {
     }
     
     private void jButton_aceptarFacturaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_aceptarFacturaActionPerformed
+        VentanaDeInicio mVentana= VentanaDeInicio.getInstance();
+        if(mVentana.getTitle().equals("Modifica Factura")){
+            this.devolverProductos();
+            this.modificaFactura();
+            this.guardarFactura();
+            this.regresar();
+            return;
+            
+        
+        }
         this.guardarFactura();
         this.clearAll();
+        
         
         
     }//GEN-LAST:event_jButton_aceptarFacturaActionPerformed
@@ -2016,6 +2026,7 @@ public class JPanel_CrearFactura extends javax.swing.JPanel {
         String factura = Integer.toString(AdminBD.ObtenerUltimoidFact() + 1);
         panelCreaFact.jLabel_NumerodeFact.setText(factura);
         panelCreaFact.personalizarTablaFactura();
+        panelCreaFact.agregarListenerRenders();
     }
 
     private void aplicarDescAlProducto(String idProducto, BigDecimal precio) {
@@ -2256,10 +2267,7 @@ public class JPanel_CrearFactura extends javax.swing.JPanel {
         AdminBD.verCodigos();
         //Si no existen productos en la base que no los carge al editor
         if(AdminBD.getData().length>0){
-        String[] idproductos=this.obtenerFila(AdminBD.getData());
-        this.jTable_Factura.getColumnModel().getColumn(0).
-                setCellEditor(new SeleccionadorEditor(
-                        idproductos,jTable_Factura));}
+        this.cargarSeleccionadorProductos();}
         //Costumisando Precio y Cantidad (Solo van a permitir numeros)
         DefaultTableCellRenderer rightRenderer = new DefaultTableCellRenderer();
         rightRenderer.setHorizontalAlignment( JLabel.RIGHT );
@@ -2282,6 +2290,42 @@ public class JPanel_CrearFactura extends javax.swing.JPanel {
         //cliente
         this.jComboBox_Vendedores.setSelectedItem("Sin Categoria");
         
+    }
+
+    private void modificaFactura() {
+        //Hace la factura vieja en estado inhabilitada
+        Direct_Control_BD AdminBD = Direct_Control_BD.getInstance();
+        AdminBD.eliminarFacturaPorModificacion(Integer.parseInt(this.jLabel_NumerodeFact.getText()));
+    }
+
+    private void devolverProductos() {
+        Direct_Control_BD AdminBD = Direct_Control_BD.getInstance();
+        AdminBD.verProductosPorFactura(Integer.parseInt(this.jLabel_NumerodeFact.getText()));
+        Object[][] ProductosdeFactura = AdminBD.getData();
+        int numFilas = ProductosdeFactura.length;
+        for (int row = 0; row < numFilas; row++) {
+            Object[] producto= ProductosdeFactura[row];
+            String codArticulo= producto[0].toString();
+            int cantidadTotal = AdminBD.verCantidad(codArticulo);
+            int cantidad= Integer.parseInt(producto[2].toString());
+            AdminBD.actualizarCantidadInventario(codArticulo,cantidadTotal+cantidad);
+            
+            
+            }
+    }
+
+    private void cargarSeleccionadorProductos() {
+         Direct_Control_BD AdminBD = Direct_Control_BD.getInstance();
+         AdminBD.verCodigos();
+            String[] idproductos=this.obtenerFila(AdminBD.getData());
+            this.jTable_Factura.getColumnModel().getColumn(0).
+                setCellEditor(new SeleccionadorEditor
+        (idproductos,jTable_Factura));
+            
+            
+            
+            
+             
     }
     
 }

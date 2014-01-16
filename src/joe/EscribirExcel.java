@@ -127,7 +127,7 @@ public class EscribirExcel {
 
         ///tipos de letra
         WritableFont times10pt = new WritableFont(WritableFont.TIMES, 10);
-        times10pt.setItalic(true);//tipo de letra italic
+       // times10pt.setItalic(true);//tipo de letra italic
         WritableFont times14pt = new WritableFont(WritableFont.TIMES, 14);
         WritableFont times12pt = new WritableFont(WritableFont.TIMES, 12);
         WritableFont times11pt = new WritableFont(WritableFont.TIMES, 11);
@@ -337,12 +337,12 @@ public class EscribirExcel {
 
         ///tipos de letra
         WritableFont times10pt = new WritableFont(WritableFont.TIMES, 10);
-        times10pt.setItalic(true);//tipo de letra italic
+       // times10pt.setItalic(true);//tipo de letra italic
         WritableFont times14pt = new WritableFont(WritableFont.TIMES, 14);
         WritableFont times12pt = new WritableFont(WritableFont.TIMES, 12);
         WritableFont times11pt = new WritableFont(WritableFont.TIMES, 11);
         times14pt.setColour(Colour.BLUE_GREY);
-        workbook.setColourRGB(Colour.VIOLET, 54,96, 146);
+        workbook.setColourRGB(Colour.VIOLET, 54, 96, 146);
         times11pt.setColour(Colour.VIOLET);
 
         // formato para escribir linea separadora
@@ -359,7 +359,6 @@ public class EscribirExcel {
         times14 = new WritableCellFormat(times14pt);
         //asignar el tipo de letra times11pt al formato times11
         times11 = new WritableCellFormat(times11pt);
-
 
         workbook.setColourRGB(Colour.VIOLET2, 197, 217, 241);
         times11.setBackground(Colour.VIOLET2);
@@ -380,7 +379,7 @@ public class EscribirExcel {
 //        Date date = new Date();
         hojaExcel.mergeCells(3, 1, 4, 1);
 //        hojaExcel.addCell(new Label(4, 1, infoFact[0].toString(), times11));
-        hojaExcel.addCell(new Label(3, 1, "Factura Modificada "+infoFact[0].toString(), times11));
+        hojaExcel.addCell(new Label(3, 1, "Factura Modificada " + infoFact[0].toString(), times11));
         hojaExcel.addCell(new Label(0, 6, "Factura " + infoFact[1].toString(), times11));
         hojaExcel.addCell(new Label(1, 6, "Vendedor: " + infoFact[4].toString(), times11));
         hojaExcel.addCell(new Label(2, 6, "Cliente: " + infoFact[3].toString(), times11));
@@ -419,6 +418,10 @@ public class EscribirExcel {
         hojaExcel.addCell(new Number(3, ultimaFila + 5,
                 Double.parseDouble(infoFact[7].toString()), times10));
 
+        hojaExcel.addCell(new Label(0, ultimaFila + 8, "Nota: ", times11));
+//        hojaExcel.mergeCells(0, ultimaFila + 9, 0, ultimaFila + 12);
+        hojaExcel.addCell(new Label(0, ultimaFila + 9, infoFact[9].toString(), times10));
+        
     }
 
     public void crearLibro() throws IOException {

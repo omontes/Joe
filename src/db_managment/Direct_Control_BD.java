@@ -2059,7 +2059,7 @@ public class Direct_Control_BD {
     }
 
     public void VerFacturasEliminadas(String FechaIni, String FechaFin) {
-try {
+        try {
             String Fact = this.readSql("../Joe"
                     + "/src/sql_files/VerFacturasEliminadas.sql");
             PreparedStatement stm = this.conection.prepareStatement(Fact);
@@ -2072,6 +2072,62 @@ try {
 
             System.out.println("Error al Ver Facturas Eliminadas");
 
+        }
+    }
+
+    /**
+     * permite obtener el idFatura de todas las facturas que hayan sufrido una
+     * modificacion
+     */
+    public void ObtenerIdFactModificadas() {
+        try {
+            String idFacturas = this.readSql("../Joe"
+                    + "/src/sql_files/ObtenerIdFactModificadas.sql");
+            PreparedStatement stm = this.conection.prepareStatement(idFacturas);
+            ResultSet rs = stm.executeQuery();
+            setColumnNames(Get_Columnas(rs));
+            setData(ResultSet_Array(rs));
+        } catch (Exception e) {
+
+            System.out.println("Error al  Obtener Id Fact Modificadas");
+
+        }
+    }
+
+    /**
+     *
+     * @param idFactura
+     */
+    public void ObtenerFacturaModificadaYSusVersiones(String idFactura) {
+        try {
+            String Facturas = this.readSql("../Joe"
+                    + "/src/sql_files/ObtenerFacturasModificadas.sql");
+            PreparedStatement stm = this.conection.prepareStatement(Facturas);
+            stm.setString(1, idFactura);
+            ResultSet rs = stm.executeQuery();
+            setColumnNames(Get_Columnas(rs));
+            setData2(ResultSet_Array(rs));
+        } catch (Exception e) {
+
+            System.out.println("Error al  Obtener  informacion de "
+                    + "Fact Modificada y sus versiones");
+
+        }
+    }
+
+    public void verProductosPorFacturaYVersionDeFactura(String idFact,
+            int version) {
+        try {
+            String verProductosPorFacturaYVersion = this.readSql("../Joe/src/"
+                    + "sql_files/ProductosPorIdFacturaYIdVersionFactura.sql");
+            PreparedStatement stm = this.conection.prepareStatement(verProductosPorFacturaYVersion);
+            stm.setString(1, idFact);
+            stm.setInt(2, version);
+            ResultSet resultset = stm.executeQuery();
+            this.setColumnNames(this.Get_Columnas(resultset));
+            this.setData2(this.ResultSet_Array(resultset));
+        } catch (Exception e) {
+            System.out.println("Error al obtener los productos de la factura");
         }
     }
 

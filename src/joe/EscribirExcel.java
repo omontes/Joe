@@ -6,6 +6,8 @@
 package joe;
 
 //import com.jxcell.CellException;
+import static R.DM.r;
+import static R.JM.b;
 import java.awt.BorderLayout;
 import java.io.File;
 import java.io.FileInputStream;
@@ -18,6 +20,7 @@ import java.util.Locale;
 import javax.swing.BorderFactory;
 import javax.swing.text.View;
 import com.jxcell.*;
+import java.awt.Color;
 import java.io.FileNotFoundException;
 
 import jxl.Workbook;
@@ -44,6 +47,9 @@ import jxl.write.biff.RowsExceededException;
  */
 public class EscribirExcel {
 
+    WritableWorkbook workbook;
+    File ArchivoExcel;
+
     private WritableCellFormat timesReport;
     private WritableCellFormat times10; // formato de la celda
     private WritableCellFormat times14; // formato de la celda
@@ -61,6 +67,10 @@ public class EscribirExcel {
      */
     public void setNombreArchivoExcel(String nombreArchivoExcel) {
         this.nombreArchivoExcel = nombreArchivoExcel;
+    }
+
+    public String getNombreArchivoExcel() {
+        return this.nombreArchivoExcel;
     }
 
     public static EscribirExcel getInstance() {
@@ -226,8 +236,7 @@ public class EscribirExcel {
                 } catch (NumberFormatException | WriteException e) {
                     hojaExcel.addCell(new Label(col, fil,
                             datosFact[fila][col].toString(), times10));
-                
-                
+
                 }
             }
         }
@@ -318,5 +327,107 @@ public class EscribirExcel {
             hojaExc.addCell(new jxl.write.Formula(7, ultimaFila + 1,
                     "SUM(H11:H" + ultimaFila + ")", timesLines));
         }
+    }
+
+    public void escribirHojas(String nombreHoja, int pag, String[] infoEmpresa, Object[][] datosFact,
+            String[] nombresColum, Object[] infoFact) throws IOException, WriteException {
+        workbook.createSheet(nombreHoja, pag);//***crear una hoja***
+        WritableSheet hojaExcel = workbook.getSheet(pag);//obtiene la pagina pag
+        ///////////////////////////////////////////////////////
+
+        ///tipos de letra
+        WritableFont times10pt = new WritableFont(WritableFont.TIMES, 10);
+        times10pt.setItalic(true);//tipo de letra italic
+        WritableFont times14pt = new WritableFont(WritableFont.TIMES, 14);
+        WritableFont times12pt = new WritableFont(WritableFont.TIMES, 12);
+        WritableFont times11pt = new WritableFont(WritableFont.TIMES, 11);
+        times14pt.setColour(Colour.BLUE_GREY);
+        workbook.setColourRGB(Colour.VIOLET, 54,96, 146);
+        times11pt.setColour(Colour.VIOLET);
+
+        // formato para escribir linea separadora
+        WritableFont timesLinespt = new WritableFont(WritableFont.TIMES, 14);
+        timesLines = new WritableCellFormat(timesLinespt);
+        timesLines.setBorder(Border.TOP, BorderLineStyle.SLANTED_DASH_DOT, Colour.BLUE_GREY);
+        timesLines.setAlignment(Alignment.CENTRE);
+
+        //asignar el tipo de letra times12pt al formato times12
+        times12 = new WritableCellFormat(times12pt);
+        //asignar el tipo de letra times10pt al formato times10
+        times10 = new WritableCellFormat(times10pt);
+        //asignar el tipo de letra times14pt al formato times14
+        times14 = new WritableCellFormat(times14pt);
+        //asignar el tipo de letra times11pt al formato times11
+        times11 = new WritableCellFormat(times11pt);
+
+
+        workbook.setColourRGB(Colour.VIOLET2, 197, 217, 241);
+        times11.setBackground(Colour.VIOLET2);
+        timesReport = new WritableCellFormat(times11pt);
+
+        //escribir datos de la empresa
+        hojaExcel.addCell(new Label(0, 0, infoEmpresa[0], times14));
+        for (int i = 1; i < 4; i++) {//set info de la empresa
+            hojaExcel.addCell(new Label(0, i, infoEmpresa[i], times10));
+        }
+//        //escribir el rango de fechas
+//        hojaExcel.addCell(new Label(2, 5, "Relación de Facturas "
+//                + "desde " + fechaIni + " hasta " + fechaFin,
+//                times11));
+
+//        //poner fecha actual
+//        DateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
+//        Date date = new Date();
+        hojaExcel.mergeCells(3, 1, 4, 1);
+//        hojaExcel.addCell(new Label(4, 1, infoFact[0].toString(), times11));
+        hojaExcel.addCell(new Label(3, 1, "Factura Modificada "+infoFact[0].toString(), times11));
+        hojaExcel.addCell(new Label(0, 6, "Factura " + infoFact[1].toString(), times11));
+        hojaExcel.addCell(new Label(1, 6, "Vendedor: " + infoFact[4].toString(), times11));
+        hojaExcel.addCell(new Label(2, 6, "Cliente: " + infoFact[3].toString(), times11));
+        hojaExcel.addCell(new Label(3, 6, "Tipo de pago: " + infoFact[8].toString(), times11));
+
+//        //tipo de reporte 
+//        timesReport.setIndentation(3);
+//        hojaExcel.addCell(new Label(2, 6, tipoDeReporte, timesReport));
+        //Colocar Nombres de las columnas
+        establecerNombresDecolumnas(nombresColum, hojaExcel);
+
+        //cargar datos de las facturas
+        int ultimaFila = 10;
+        if (datosFact.length != 0) {//verifica que contenga datos
+            ultimaFila = cargarDatos(datosFact, hojaExcel);
+
+//            //Escribir el total dependiendo el tipo de reporte
+//            escribirResultado(tipoDeReporte, hojaExcel, ultimaFila);
+        } else {// si no hay datos escribe total cero
+
+            hojaExcel.addCell(new Label(1, 11, "Total  0",
+                    timesLines));
+        }
+        hojaExcel.addCell(new Label(2, ultimaFila + 3, "               "
+                + "              Sub Total:", times11));
+        hojaExcel.addCell(new Number(3, ultimaFila + 3,
+                Double.parseDouble(infoFact[6].toString()), times10));
+
+        hojaExcel.addCell(new Label(2, ultimaFila + 4, "               "
+                + "         Descuento%:", times11));
+        hojaExcel.addCell(new Number(3, ultimaFila + 4,
+                Double.parseDouble(infoFact[5].toString()), times10));
+
+        hojaExcel.addCell(new Label(2, ultimaFila + 5, "               "
+                + "                   Total: ", times11));
+        hojaExcel.addCell(new Number(3, ultimaFila + 5,
+                Double.parseDouble(infoFact[7].toString()), times10));
+
+    }
+
+    public void crearLibro() throws IOException {
+        //Poner el nombre al ArchivoExcel
+        ArchivoExcel = new File(nombreArchivoExcel);
+        //configuracion de el libro de trabajo
+        WorkbookSettings wbSettings = new WorkbookSettings();
+        wbSettings.setLocale(new Locale("en", "EN"));//Configu default para generar la hoja de cálculo
+        //Crea un libro, con su nombre de Archivo y la respectiva configuracion
+        workbook = Workbook.createWorkbook(ArchivoExcel, wbSettings);
     }
 }

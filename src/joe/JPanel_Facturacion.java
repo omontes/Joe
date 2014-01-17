@@ -11,6 +11,8 @@ import java.util.ArrayList;
 import java.util.List;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
+import javax.swing.JTabbedPane;
+import javax.swing.JTable;
 import javax.swing.table.DefaultTableCellRenderer;
 
 /**
@@ -46,6 +48,15 @@ public class JPanel_Facturacion extends javax.swing.JPanel {
         jTable_Facturacion = new javax.swing.JTable();
         jButton1 = new javax.swing.JButton();
         jPanel1 = new javax.swing.JPanel();
+        jButton_CrearApartado = new javax.swing.JButton();
+        jButton_ModificarApartado = new javax.swing.JButton();
+        jButton_EliminaApartado = new javax.swing.JButton();
+        jButton_VerApartado = new javax.swing.JButton();
+        jButton_ImprimirApartado = new javax.swing.JButton();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        jTable_Apartados = new javax.swing.JTable();
+        jButton_regresarFact = new javax.swing.JButton();
+        jButton2 = new javax.swing.JButton();
 
         jTabbedPane1.setTabLayoutPolicy(javax.swing.JTabbedPane.SCROLL_TAB_LAYOUT);
         jTabbedPane1.setTabPlacement(javax.swing.JTabbedPane.LEFT);
@@ -151,15 +162,99 @@ public class JPanel_Facturacion extends javax.swing.JPanel {
 
         jTabbedPane1.addTab("Facturacion", jPanel_Facturas);
 
+        jButton_CrearApartado.setText("Crear");
+        jButton_CrearApartado.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton_CrearApartadoActionPerformed(evt);
+            }
+        });
+
+        jButton_ModificarApartado.setText("Modificar");
+        jButton_ModificarApartado.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton_ModificarApartadoActionPerformed(evt);
+            }
+        });
+
+        jButton_EliminaApartado.setText("Eliminar");
+        jButton_EliminaApartado.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton_EliminaApartadoActionPerformed(evt);
+            }
+        });
+
+        jButton_VerApartado.setText("Ver");
+        jButton_VerApartado.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton_VerApartadoActionPerformed(evt);
+            }
+        });
+
+        jButton_ImprimirApartado.setText("Imprimir");
+
+        jTable_Apartados.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {},
+                {},
+                {},
+                {}
+            },
+            new String [] {
+
+            }
+        ));
+        jScrollPane2.setViewportView(jTable_Apartados);
+
+        jButton_regresarFact.setText("Regresar");
+        jButton_regresarFact.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton_regresarFactActionPerformed(evt);
+            }
+        });
+
+        jButton2.setText("Abonos");
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 1306, Short.MAX_VALUE)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 701, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(71, 71, 71)
+                        .addComponent(jButton_CrearApartado)
+                        .addGap(18, 18, 18)
+                        .addComponent(jButton_ModificarApartado)
+                        .addGap(18, 18, 18)
+                        .addComponent(jButton_EliminaApartado)
+                        .addGap(18, 18, 18)
+                        .addComponent(jButton_VerApartado)
+                        .addGap(18, 18, 18)
+                        .addComponent(jButton_ImprimirApartado)
+                        .addGap(18, 18, 18)
+                        .addComponent(jButton_regresarFact)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jButton2)))
+                .addContainerGap(595, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 395, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addGap(30, 30, 30)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 278, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jButton_CrearApartado)
+                    .addComponent(jButton_ModificarApartado)
+                    .addComponent(jButton_EliminaApartado)
+                    .addComponent(jButton_VerApartado)
+                    .addComponent(jButton_ImprimirApartado)
+                    .addComponent(jButton_regresarFact)
+                    .addComponent(jButton2))
+                .addGap(58, 58, 58))
         );
 
         jTabbedPane1.addTab("Apartados", jPanel1);
@@ -254,27 +349,7 @@ public class JPanel_Facturacion extends javax.swing.JPanel {
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton_VerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_VerActionPerformed
-        int row= this.jTable_Facturacion.getSelectedRow();
-        if(row>=0){
-        VentanaDeInicio mVentana= VentanaDeInicio.getInstance();
-        JPanel_VerFactura panelVerFact= new JPanel_VerFactura();
-        mVentana.add(panelVerFact);
-        panelVerFact.setSize(this.getSize());
-        panelVerFact.setLocation(this.getLocation());
-        mVentana.remove(this);
-        panelVerFact.setVisible(true);
-        mVentana.revalidate();
-        mVentana.repaint();
-        mVentana.setTitle("Ver Factura");
-        Modelo_Facturacion model = (Modelo_Facturacion) this.jTable_Facturacion.getModel();
-        panelVerFact.jLabel_NumerodeFact.setText(model.getValueAt(row, 0).toString());
-        panelVerFact.personalizarTablaVerFactura();}
-        else{
-            JOptionPane.showMessageDialog(
-                          null,
-                          "No se selecciono ninguna factura",                                 
-                          "Alert!", JOptionPane.ERROR_MESSAGE);
-        }
+      this.verFacturas(this.jTable_Facturacion);
     }//GEN-LAST:event_jButton_VerActionPerformed
 
     private void jButton_ModificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_ModificarActionPerformed
@@ -306,6 +381,42 @@ public class JPanel_Facturacion extends javax.swing.JPanel {
         
         }
     }//GEN-LAST:event_jButton_ModificarActionPerformed
+
+    private void jButton_CrearApartadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_CrearApartadoActionPerformed
+        VentanaDeInicio mVentana= VentanaDeInicio.getInstance();
+        JPanel_CrearFactura panelCreaApt= new JPanel_CrearFactura();
+        mVentana.add(panelCreaApt);
+        panelCreaApt.setSize(this.getSize());
+        panelCreaApt.setLocation(this.getLocation());
+        mVentana.remove(this);
+        panelCreaApt.setVisible(true);
+        mVentana.revalidate();
+        mVentana.repaint();
+        mVentana.setTitle("Apartados / Creditos");
+        Direct_Control_BD AdminBD = Direct_Control_BD.getInstance();
+        String factura = Integer.toString(AdminBD.ObtenerUltimoidFact() + 1);
+        panelCreaApt.jLabel_NumerodeFact.setText(factura);
+        panelCreaApt.personalizarTablaFactura();
+        panelCreaApt.agregarListenerRenders();
+        panelCreaApt.jFormattedTextField_Cliente.setText("Cliente Anonimo");
+    }//GEN-LAST:event_jButton_CrearApartadoActionPerformed
+
+    private void jButton_ModificarApartadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_ModificarApartadoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton_ModificarApartadoActionPerformed
+
+    private void jButton_EliminaApartadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_EliminaApartadoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton_EliminaApartadoActionPerformed
+    
+    private void jButton_VerApartadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_VerApartadoActionPerformed
+        this.verFacturas(this.jTable_Apartados);
+                        
+    }//GEN-LAST:event_jButton_VerApartadoActionPerformed
+
+    private void jButton_regresarFactActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_regresarFactActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton_regresarFactActionPerformed
   /**
      * Actualiza la tabla que se ve en facturacion (Obtiene el total vendido
      * por cada factura y solo muestra las ultimas 100 facturas)**/
@@ -325,19 +436,70 @@ public class JPanel_Facturacion extends javax.swing.JPanel {
         this.jTable_Facturacion.getColumnModel().getColumn(0).setCellRenderer
                 (centerRenderer);
     }
+    
+     /**
+     * Actualiza la tabla que se ve en apartados (Obtiene el total vendido
+     * por cada factura y solo muestra las ultimas 100 facturas de apartados)**/
+        public void completarTablaApartados() {
+         //Realiza la consulta para obtener los apartados
+        Direct_Control_BD AdminBD = Direct_Control_BD.getInstance();
+        AdminBD.verApartadosyCreditos();
+        String[] columnNames = AdminBD.getColumnNames();
+        Object[][] data = AdminBD.getData();
+        //Crea la tabla generica para Facturas
+        this.jTable_Apartados.setModel(new Modelo_Facturacion(columnNames,data));
+        //Alinea la primer columna de esta tabla hacia el centro
+        DefaultTableCellRenderer centerRenderer = new DefaultTableCellRenderer
+                ();
+        centerRenderer.setHorizontalAlignment(JLabel.CENTER);
+        this.jTable_Apartados.getColumnModel().getColumn(0).setCellRenderer
+                (centerRenderer);
+    }
+        public void verFacturas(JTable table){
+            int row = table.getSelectedRow();
+            if (row >= 0) {
+                VentanaDeInicio mVentana = VentanaDeInicio.getInstance();
+                JPanel_VerFactura panelVerFact = new JPanel_VerFactura();
+                mVentana.add(panelVerFact);
+                panelVerFact.setSize(this.getSize());
+                panelVerFact.setLocation(this.getLocation());
+                mVentana.remove(this);
+                panelVerFact.setVisible(true);
+                mVentana.revalidate();
+                mVentana.repaint();
+                mVentana.setTitle("Ver Factura");
+                Modelo_Facturacion model = (Modelo_Facturacion) table.getModel();
+                panelVerFact.jLabel_NumerodeFact.setText(model.getValueAt(row, 0).toString());
+                panelVerFact.personalizarTablaVerFactura();
+            } else {
+                JOptionPane.showMessageDialog(
+                        null,
+                        "No se selecciono ninguna factura",
+                        "Alert!", JOptionPane.ERROR_MESSAGE);
+            }
+        }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     javax.swing.JButton jButton1;
+    javax.swing.JButton jButton2;
     javax.swing.JButton jButton_CierreCaja;
     javax.swing.JButton jButton_Crear;
+    javax.swing.JButton jButton_CrearApartado;
+    javax.swing.JButton jButton_EliminaApartado;
     javax.swing.JButton jButton_Eliminar;
     javax.swing.JButton jButton_Imprimir;
+    javax.swing.JButton jButton_ImprimirApartado;
     javax.swing.JButton jButton_Modificar;
+    javax.swing.JButton jButton_ModificarApartado;
     javax.swing.JButton jButton_Ver;
+    javax.swing.JButton jButton_VerApartado;
+    javax.swing.JButton jButton_regresarFact;
     javax.swing.JPanel jPanel1;
     javax.swing.JPanel jPanel_Facturas;
     javax.swing.JScrollPane jScrollPane1;
+    javax.swing.JScrollPane jScrollPane2;
     javax.swing.JTabbedPane jTabbedPane1;
+    javax.swing.JTable jTable_Apartados;
     javax.swing.JTable jTable_Facturacion;
     // End of variables declaration//GEN-END:variables
 }

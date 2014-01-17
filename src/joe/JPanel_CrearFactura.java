@@ -131,9 +131,9 @@ public class JPanel_CrearFactura extends javax.swing.JPanel {
         jLabel16 = new javax.swing.JLabel();
         jComboBox_Vendedores = new javax.swing.JComboBox();
         jFormattedTextField_Cliente = new javax.swing.JFormattedTextField();
-        jButton1 = new javax.swing.JButton();
         jLabel_NumerodeFact = new javax.swing.JLabel();
         jButton_guardaImprime = new javax.swing.JButton();
+        jButton_buscarCliente = new javax.swing.JButton();
 
         jPanel2.setBackground(new java.awt.Color(153, 153, 153));
 
@@ -912,8 +912,6 @@ public class JPanel_CrearFactura extends javax.swing.JPanel {
             }
         });
 
-        jButton1.setText("Buscar");
-
         jLabel_NumerodeFact.setFont(new java.awt.Font("Arial", 0, 16)); // NOI18N
         jLabel_NumerodeFact.setForeground(new java.awt.Color(0, 51, 51));
         jLabel_NumerodeFact.setText("Num");
@@ -922,6 +920,13 @@ public class JPanel_CrearFactura extends javax.swing.JPanel {
         jButton_guardaImprime.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton_guardaImprimeActionPerformed(evt);
+            }
+        });
+
+        jButton_buscarCliente.setText("Buscar");
+        jButton_buscarCliente.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton_buscarClienteActionPerformed(evt);
             }
         });
 
@@ -985,8 +990,8 @@ public class JPanel_CrearFactura extends javax.swing.JPanel {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jFormattedTextField_Cliente, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jButton1)
-                        .addGap(18, 18, 18)
+                        .addComponent(jButton_buscarCliente)
+                        .addGap(10, 10, 10)
                         .addComponent(jLabel_FechaFact, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jLabel_Fecha, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -1006,9 +1011,9 @@ public class JPanel_CrearFactura extends javax.swing.JPanel {
                         .addComponent(jComboBox_Vendedores, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(jLabel16)
                         .addComponent(jFormattedTextField_Cliente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(jButton1)
                         .addComponent(jLabel_FechaFact, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(jLabel_Fecha, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(jLabel_Fecha, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jButton_buscarCliente)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
@@ -1195,6 +1200,7 @@ public class JPanel_CrearFactura extends javax.swing.JPanel {
         miVentana.setTitle("Facturacion");
         panelFact.setVisible(true);
         panelFact.completarTablaFacturacion();
+        panelFact.completarTablaApartados();
         miVentana.revalidate();
         miVentana.repaint();
     }
@@ -1436,23 +1442,38 @@ public class JPanel_CrearFactura extends javax.swing.JPanel {
             }
         }
     }
-    
-    private void jButton_aceptarFacturaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_aceptarFacturaActionPerformed
-        VentanaDeInicio mVentana= VentanaDeInicio.getInstance();
-        if(mVentana.getTitle().equals("Modifica Factura")){
+    public void guardarFactura() {
+        VentanaDeInicio mVentana = VentanaDeInicio.getInstance();
+        if (mVentana.getTitle().equals("Modifica Factura")) {
             this.devolverProductos();
             this.modificaFactura();
-            this.guardarFactura();
+            this.guardarFactura("Cancelada");
             this.regresar();
             return;
-            
-        
+
         }
-        this.guardarFactura();
+        if (mVentana.getTitle().equals("Apartados / Creditos")) {
+            NewJDialog_PagoApartado pago = new NewJDialog_PagoApartado();
+            pago.setVisible(true);
+            String fechaVencimiento = pago.getFecha();
+            BigDecimal montodePago = pago.getMontoDePago();
+            if (montodePago != null) {
+
+                this.guardarFactura("Apartado");
+                this.crearApartado(montodePago, fechaVencimiento);
+                this.clearAll();
+
+            }
+            return;
+        }
+        this.guardarFactura("Cancelada");
         this.clearAll();
-        
-        
-        
+    }
+    private void jButton_aceptarFacturaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_aceptarFacturaActionPerformed
+
+        this.guardarFactura();
+
+
     }//GEN-LAST:event_jButton_aceptarFacturaActionPerformed
     /**
      * Este metodo capta si haya algun cambio en el subtotal para que corriga
@@ -1786,6 +1807,14 @@ public class JPanel_CrearFactura extends javax.swing.JPanel {
                
         
     }//GEN-LAST:event_jButton_guardaImprimeActionPerformed
+
+    private void jButton_buscarClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_buscarClienteActionPerformed
+        NewJDialog_Buscador buscador= new NewJDialog_Buscador();
+        buscador.actualizaTablaParaClientes();
+        String cliente= buscador.getCliente();
+        this.jFormattedTextField_Cliente.setText(cliente);
+        this.setFocusTablaFact(0);
+    }//GEN-LAST:event_jButton_buscarClienteActionPerformed
     /**
      * Este metodo devuelve toda la informacion de la tabla de crear factura
      * @return 
@@ -1892,7 +1921,6 @@ public class JPanel_CrearFactura extends javax.swing.JPanel {
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    javax.swing.JButton jButton1;
     javax.swing.JButton jButton2;
     javax.swing.JButton jButton_BuscarProducto;
     javax.swing.JButton jButton_BusqueProducto;
@@ -1909,6 +1937,7 @@ public class JPanel_CrearFactura extends javax.swing.JPanel {
     javax.swing.JButton jButton_RegresarFact;
     javax.swing.JButton jButton_VerProducto;
     javax.swing.JButton jButton_aceptarFactura;
+    javax.swing.JButton jButton_buscarCliente;
     javax.swing.JButton jButton_guardaImprime;
     javax.swing.JComboBox jComboBox_CategoriaTipoPago;
     javax.swing.JComboBox jComboBox_Vendedores;
@@ -1982,7 +2011,7 @@ public class JPanel_CrearFactura extends javax.swing.JPanel {
     /**
      * Este metodo permite crear una factura y guardala en la base de datos
      */
-    private void crearFactura() {
+    private void crearFactura(String concepto) {
         Direct_Control_BD AdminBD = Direct_Control_BD.getInstance();
         String Cliente= this.jFormattedTextField_Cliente.getText();
         int idCliente = AdminBD.veridCliente(Cliente);
@@ -2005,7 +2034,7 @@ public class JPanel_CrearFactura extends javax.swing.JPanel {
         }
         //System.out.println(idFactura+" "+descuento+" "+tipoPago+" "+idCliente+" "+idVendedor+" "+detalle+" "+totalFact+" ");
         AdminBD.crearFactura(idFactura,descuento,tipoPago,idCliente,idVendedor,
-                "Cancelada",detalle,totalFact,"A");
+                concepto,detalle,totalFact,"A");
         }
     /**
      * Cuando se guarda la factura se tiene que volver a crear un nuevo objeto
@@ -2070,7 +2099,7 @@ public class JPanel_CrearFactura extends javax.swing.JPanel {
         this.jDialog_CrearCliente.dispose();
     }
 
-    private void guardarFactura() {
+    private void guardarFactura(String concepto) {
         if (jTable_Factura.isEditing()) {
             jTable_Factura.getCellEditor().cancelCellEditing();
             
@@ -2083,7 +2112,7 @@ public class JPanel_CrearFactura extends javax.swing.JPanel {
                           "Alert!", JOptionPane.ERROR_MESSAGE);
             return;
         }
-        this.crearFactura();   
+        this.crearFactura(concepto);   
         this.guardarProductosFactura();
     }
      /**
@@ -2327,5 +2356,24 @@ public class JPanel_CrearFactura extends javax.swing.JPanel {
             
              
     }
-    
+
+    private void crearApartado(BigDecimal montoDePago, String Fecha) {
+        Direct_Control_BD AdminBD = Direct_Control_BD.getInstance();
+        int idFactura = Integer.parseInt(this.jLabel_NumerodeFact.getText());
+        int idVersionFacturasProducto = AdminBD.verVersionDEFacturaActiva(idFactura);
+        String totalFacturaSinCorregir = this.jFormattedTextField_Total.getText();
+        BigDecimal totalFact = this.corregirDato(totalFacturaSinCorregir);
+        AdminBD.insertarFacturasPendientes(idFactura, totalFact.subtract(montoDePago), Fecha, idVersionFacturasProducto);
+        String fechaAcorregir = this.jLabel_Fecha.getText();
+        Date date = null;
+        try {
+            date = new SimpleDateFormat("dd/MM/yyyy").parse(fechaAcorregir);
+        } catch (ParseException ex) {
+            Logger.getLogger(JPanel_CrearFactura.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        String fechaCorregida = new SimpleDateFormat("yyyy/MM/dd").format(date);
+        AdminBD.insertarPago(fechaCorregida, montoDePago, idFactura, idVersionFacturasProducto);
+    }
 }
+    
+

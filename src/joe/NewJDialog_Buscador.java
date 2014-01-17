@@ -26,6 +26,7 @@ public class NewJDialog_Buscador extends javax.swing.JDialog {
     private String idFactura;
     private String Cliente;
     private String idProducto;
+    private String Categoria;
     public JPanel_CrearFactura panel;
 
     public NewJDialog_Buscador() {
@@ -120,7 +121,8 @@ public class NewJDialog_Buscador extends javax.swing.JDialog {
             setIdProducto(jTable_Generica.getValueAt(this.jTable_Generica.getSelectedRow(), 0).toString());
             setCliente(jTable_Generica.getValueAt(this.jTable_Generica.getSelectedRow(), 0).toString());
             setIdFactura(jTable_Generica.getValueAt(this.jTable_Generica.getSelectedRow(), 1).toString());
-            
+            setCatgeria(jTable_Generica.getValueAt(this.jTable_Generica.getSelectedRow(), 1).toString());
+
         } catch (Exception e) {
         }
         this.dispose();
@@ -199,7 +201,7 @@ public class NewJDialog_Buscador extends javax.swing.JDialog {
          * Agrega el listener al JtextField del buscador *
          */
         this.TextField_Buscador.getDocument().addDocumentListener(new ListenerBuscador(this.TextField_Buscador, ordenador));
-    
+
     }
 
     /**
@@ -216,13 +218,16 @@ public class NewJDialog_Buscador extends javax.swing.JDialog {
     public void setCliente(String Cliente) {
         this.Cliente = Cliente;
     }
+
     public void setIdFactura(String idFactura) {
         this.idFactura = idFactura;
     }
-     public String getIdFactura() {
+
+    public String getIdFactura() {
         setVisible(true);
         return idFactura;
     }
+
     public void actualizaTablaParaFacturasModificadas() {
         Direct_Control_BD AdminBD = Direct_Control_BD.getInstance();
         AdminBD.ObtenerIdFactModificadas();
@@ -241,10 +246,40 @@ public class NewJDialog_Buscador extends javax.swing.JDialog {
          * Agrega el listener al JtextField del buscador *
          */
         this.TextField_Buscador.getDocument().addDocumentListener(new ListenerBuscador(this.TextField_Buscador, ordenador));
-    
+
     }
-    
+
+    public void actualizaTablaParaCategorias() {
+        Direct_Control_BD AdminBD = Direct_Control_BD.getInstance();
+        AdminBD.consultarCategorias();
+        String[] columnNames = AdminBD.getColumnNames();
+        Object[][] data = AdminBD.getData();
+        this.jTable_Generica.setModel(new MyTableModel_Generic(columnNames, data));
+        //Crea el ordenador para la tabla generica
+        TableRowSorter<TableModel> ordenador = new TableRowSorter<TableModel>(this.jTable_Generica.getModel());
+        this.jTable_Generica.setRowSorter(ordenador);
+        Vector<RowSorter.SortKey> qq = new Vector<RowSorter.SortKey>();
+        qq.add(new RowSorter.SortKey(0, SortOrder.ASCENDING));
+        ordenador.setSortKeys(qq);
+        jTable_Generica.requestFocus();
+        jTable_Generica.changeSelection(0, 0, false, false);
+        /**
+         * Agrega el listener al JtextField del buscador *
+         */
+        this.TextField_Buscador.getDocument().addDocumentListener(new ListenerBuscador(this.TextField_Buscador, ordenador));
+
+    }
+
+    public String getCatgeria() {
+        setVisible(true);
+        return Categoria;
+    }
+
+    public void setCatgeria(String categoria) {
+        Categoria = categoria;
+    }
+
 }
 
 //Realiza la consulta para obtener las facturas
-       
+

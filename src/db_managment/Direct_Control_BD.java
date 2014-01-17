@@ -428,21 +428,17 @@ public class Direct_Control_BD {
     }
 
     /**
-     * Muestra todos los apartados(Cerrados y Abiertos)
-     * Detalles:idFactura||Saldo||FechaVencimiento||TotalFacturado||Nombre
-     * ||Tipopago
+     * Muestra todos los apartados y creditos(Cerrados y Abiertos)
+     * 
      */
-    public void verApartados() {//Bueno+
+    public void verApartadosyCreditos() {
         try {
             String VerApartados = readSql("../Joe/src/"
                     + "sql_files/VerApartados.sql");
-            ResultSet rs = statement.executeQuery(VerApartados);
-            while (rs.next()) {
-                System.out.println(rs.getString(1)
-                        + "||" + rs.getInt(2) + "||" + rs.getString(3) + "||"
-                        + rs.getInt(4) + "||" + rs.getString(5) + "||"
-                        + rs.getString(6));
-            }
+            ResultSet resultset = statement.executeQuery(VerApartados);
+            this.setColumnNames(this.Get_Columnas(resultset));
+            this.setData(this.ResultSet_Array(resultset));
+            
         } catch (Exception e) {
             System.out.println("Error al ver apartados");
         }
@@ -1219,14 +1215,15 @@ public class Direct_Control_BD {
      * @param saldo
      * @param fechaVencimiento
      */
-    public void insertarFacturasPendientes(int idFactura, int saldo, String fechaVencimiento) {
+    public void insertarFacturasPendientes(int idFactura, BigDecimal saldo, String fechaVencimiento, int idVersionFactPendientes) {
         try {
             String insertarFacturasPendientes = this.readSql("../Joe/src/sql_files/"
                     + "insertarFacturasPendientes.sql");
             PreparedStatement stm = this.conection.prepareStatement(insertarFacturasPendientes);
             stm.setInt(1, idFactura);
-            stm.setInt(2, saldo);
+            stm.setDouble(2, saldo.doubleValue());
             stm.setString(3, fechaVencimiento);
+            stm.setInt(4,idVersionFactPendientes);
             stm.executeUpdate();
 
         } catch (Exception e) {
@@ -1237,19 +1234,20 @@ public class Direct_Control_BD {
 
     /**
      * Permite insertar un pago en una factura pendiente.
-     *
      * @param fecha
-     * @param idFacturaPendiente
      * @param montoDePago
+     * @param idFacturaPendiente
+     * @param idFacturaVersionPagosPend 
      */
-    public void insertarPago(String fecha, int montoDePago, int idFacturaPendiente) {
+    public void insertarPago(String fecha, BigDecimal montoDePago, int idFacturaPendiente, int idFacturaVersionPagosPend) {
         try {
             String insertarPago = this.readSql("../Joe/src/sql_files/"
                     + "insertarPago.sql");
             PreparedStatement stm = this.conection.prepareStatement(insertarPago);
             stm.setString(1, fecha);
-            stm.setInt(2, montoDePago);
+            stm.setDouble(2, montoDePago.doubleValue());
             stm.setInt(3, idFacturaPendiente);
+            stm.setInt(4, idFacturaVersionPagosPend);
             stm.executeUpdate();
 
         } catch (Exception e) {
@@ -1273,7 +1271,21 @@ public class Direct_Control_BD {
         }
 
     }
+     /**
+     * Obtiene la informacion de las ultimos 100 apartados.
+     */
+    public void verApartadosParaTabla() {
+        try {
+            String verFacts = this.readSql("../Joe/src/sql_files/"
+                    + "VerFacturas.sql");
+            ResultSet rs = statement.executeQuery(verFacts);
+            this.setColumnNames(this.Get_Columnas(rs));
+            this.setData(this.ResultSet_Array(rs));
+        } catch (Exception e) {
+            System.out.println("Error al obtener las facturas");
+        }
 
+    }
     public void verInventario() {
         try {
             String verInventario = this.readSql("../Joe/src/sql_files/"

@@ -263,6 +263,7 @@ public class JPanel_VerFactura extends javax.swing.JPanel {
         miVentana.setTitle("Facturacion");
         panelFact.setVisible(true);
         panelFact.completarTablaFacturacion();
+        panelFact.completarTablaApartados();
         miVentana.revalidate();
         miVentana.repaint();
     }//GEN-LAST:event_jButton_RegresarFactActionPerformed

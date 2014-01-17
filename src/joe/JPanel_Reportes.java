@@ -15,6 +15,7 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 import jxl.write.WriteException;
 
@@ -26,6 +27,8 @@ public class JPanel_Reportes extends javax.swing.JPanel {
 
     private static JPanel_Reportes mPanelInventario = null;
     DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd-HH-mm-ss-SSS0");//formato fecha act
+    DateFormat dateF1 = new SimpleDateFormat("dd-MM-yyyy");//formato para mostrar
+    DateFormat dateF = new SimpleDateFormat("yyyy/MM/dd");//formato para consultar
 
     /**
      * Creates new form Reportes
@@ -2607,9 +2610,6 @@ jPanel_VerFacturasEliminadasPorFechLayout.createParallelGroup(javax.swing.GroupL
     }//GEN-LAST:event_jButton_VentasPorClienteActionPerformed
 
     private void jButton_AceptaVerVentasPorClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_AceptaVerVentasPorClienteActionPerformed
-        DateFormat dateF1 = new SimpleDateFormat("dd-MM-yyyy");//formato para mostrar
-        DateFormat dateF = new SimpleDateFormat("yyyy/MM/dd");//formato para consultar
-
         //Verifica que el tipo de archivo en el que se va a mostrar
         if (jRadioButton_ExcelClien.isSelected()) {//para mostrar en Excel
             String concepto = "Ventas Por Cliente: " + jTextField_Cliente.getText().toString();
@@ -2641,9 +2641,6 @@ jPanel_VerFacturasEliminadasPorFechLayout.createParallelGroup(javax.swing.GroupL
     }//GEN-LAST:event_jButton_AceptaVerVentasPorClienteActionPerformed
 
     private void jButton_AceptarVerVentasPorFechActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_AceptarVerVentasPorFechActionPerformed
-        DateFormat dateF1 = new SimpleDateFormat("dd-MM-yyyy");//formato para mostrar
-        DateFormat dateF = new SimpleDateFormat("yyyy/MM/dd");//formato para consultar
-
         if (jRadioButton_Excel.isSelected()) {//para mostrar en Excel
             Direct_Control_BD AdminBD = Direct_Control_BD.getInstance();
             String concepto = "";
@@ -2702,9 +2699,6 @@ jPanel_VerFacturasEliminadasPorFechLayout.createParallelGroup(javax.swing.GroupL
     }//GEN-LAST:event_jButton_CancelarVerFactClientActionPerformed
 
     private void jButton_AceptarVerVentasPorProdActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_AceptarVerVentasPorProdActionPerformed
-        DateFormat dateF1 = new SimpleDateFormat("dd-MM-yyyy");//formato para mostrar
-        DateFormat dateF = new SimpleDateFormat("yyyy/MM/dd");//formato para consultar
-
         //Verifica que el tipo de archivo en el que se va a mostrar, ademas de que la categoria o idpRod no sea vacio
         if (jRadioButton_ExcelProd.isSelected() && (jTextField_CodiOCateg.getText().trim().isEmpty() == false || jRadioButton_PorCategoria.isSelected())) {//para mostrar en Excel
             String concepto = "Ventas Por Producto ";
@@ -2837,9 +2831,6 @@ jPanel_VerFacturasEliminadasPorFechLayout.createParallelGroup(javax.swing.GroupL
     }//GEN-LAST:event_jComboBox_SeleccionarCategoriaKeyTyped
 
     private void jButton_AceptaVerVentasPorVendedorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_AceptaVerVentasPorVendedorActionPerformed
-        DateFormat dateF1 = new SimpleDateFormat("dd-MM-yyyy");//formato para mostrar
-        DateFormat dateF = new SimpleDateFormat("yyyy/MM/dd");//formato para consultar
-
         String concepto = "";
         //Verifica que el tipo de archivo en el que se va a mostrar
         if (jRadioButton_ExcelVendedor.isSelected()) {//para mostrar en Excel
@@ -2967,7 +2958,6 @@ jPanel_VerFacturasEliminadasPorFechLayout.createParallelGroup(javax.swing.GroupL
         //formato para consultar
         DateFormat dateF = new SimpleDateFormat("yyyy/MM/dd");
         //formato fecha act
-        DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd-HH-mm-ss-SSS0");
 
         //Verifica que el tipo de archivo en el que se va a mostrar
         if (jRadioButton_ExcelTermino.isSelected()) {//para mostrar en Excel
@@ -3044,9 +3034,6 @@ jPanel_VerFacturasEliminadasPorFechLayout.createParallelGroup(javax.swing.GroupL
     }//GEN-LAST:event_jButton5ActionPerformed
 
     private void jButton_AceptaVerVentasPorProdVendedorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_AceptaVerVentasPorProdVendedorActionPerformed
-        DateFormat dateF1 = new SimpleDateFormat("dd-MM-yyyy");//formato para mostrar
-        DateFormat dateF = new SimpleDateFormat("yyyy/MM/dd");//formato para consultar
-
         //Verifica que el tipo de archivo en el que se va a mostrar
         if (jRadioButton_ExcelProdVendedor.isSelected()) {//para mostrar en Excel
 
@@ -3101,9 +3088,6 @@ jPanel_VerFacturasEliminadasPorFechLayout.createParallelGroup(javax.swing.GroupL
     }//GEN-LAST:event_jButton6ActionPerformed
 
     private void jButton_AceptaVerVentasPorProdClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_AceptaVerVentasPorProdClienteActionPerformed
-        DateFormat dateF1 = new SimpleDateFormat("dd-MM-yyyy");//formato para mostrar
-        DateFormat dateF = new SimpleDateFormat("yyyy/MM/dd");//formato para consultar
-
         //Verifica que el tipo de archivo en el que se va a mostrar
         if (jRadioButton_ExcelProdCliente.isSelected()) {//para mostrar en Excel
 
@@ -3154,8 +3138,6 @@ jPanel_VerFacturasEliminadasPorFechLayout.createParallelGroup(javax.swing.GroupL
     }//GEN-LAST:event_jButton4ActionPerformed
 
     private void jButton_AceptarVerFactEliminadasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_AceptarVerFactEliminadasActionPerformed
-        DateFormat dateF1 = new SimpleDateFormat("dd-MM-yyyy");//formato para mostrar
-        DateFormat dateF = new SimpleDateFormat("yyyy/MM/dd");//formato para consultar
 
         Direct_Control_BD AdminBD = Direct_Control_BD.getInstance();
 
@@ -3268,6 +3250,7 @@ jPanel_VerFacturasEliminadasPorFechLayout.createParallelGroup(javax.swing.GroupL
     }//GEN-LAST:event_jButton_VerFactModifActionPerformed
 
     private void jButton_ListaDePrecioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_ListaDePrecioActionPerformed
+        jButton_aceptarListaPrec.setIcon(new ImageIcon(""));//poner imagen
         buttonGroup1.add(jRadioButton_ExcelListaPrec);
         buttonGroup1.add(jRadioButton_pantallaListaPrec);
         buttonGroup2.add(jRadioButton_CategListaPrec);
@@ -3358,7 +3341,50 @@ jPanel_VerFacturasEliminadasPorFechLayout.createParallelGroup(javax.swing.GroupL
     }//GEN-LAST:event_jButton_BuscarListaPrecActionPerformed
 
     private void jButton_aceptarListaPrecActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_aceptarListaPrecActionPerformed
+        Direct_Control_BD AdminBD = Direct_Control_BD.getInstance();
 
+        String[] infoEmpresa = {"Joe S.A ", "Oriente pa dentro", "Cartago,"
+            + " CA 20320", "Telefono:2650-11-36, fax:2655-0203"};
+
+        if (jRadioButton_ExcelProdCliente.isSelected()) {//para mostrar en Excel
+
+            if (jRadioButton_CodListaPrec.isSelected()) {
+                //Ver productos por codigo
+                AdminBD.VerProductosPorCodigo(jTextField_IniListaPrec.getText().
+                        toString(), jTextField_hastaListaPrec.getText().toString());
+
+            } else if (jRadioButton_DescListaPrec.isSelected()) {
+                // Ver productos por descripcion
+                AdminBD.VerProductosPorDescr(jTextField_IniListaPrec.getText().
+                        toString(), jTextField_hastaListaPrec.getText().toString());
+
+            } else {
+                //Ver productos por Categoria
+                AdminBD.VerProductosPorCategoria(jTextField_IniListaPrec.getText().
+                        toString(), jTextField_hastaListaPrec.getText().toString());
+
+            }
+
+            Date date = new Date();//hora Actual
+            String fechaAct = dateFormat.format(date);
+//
+//
+//            
+//
+//            EscribirExcel archivoExcel = new EscribirExcel();//
+//            archivoExcel.setNombreArchivoExcel("ListaDePrecio" + fechaAct + ".xls");//Nombre del excel "Fisico"
+//            try {
+//                archivoExcel.escribir(infoEmpresa, AdminBD.getInfoFact(),//escribir excel
+//                        AdminBD.getNombresColumnas(),
+//                        dateF1.format(dateChooserCombo_IniProdCliente.getSelectedDate().getTime()),
+//                        dateF1.format(dateChooserCombo_FinProdCliente.getSelectedDate().getTime()),
+//                        "Ventas De Productos Para el Cliente: " + jTextField_VentasProdPorCliente.getText().toString(), "Excel");
+//            } catch (IOException | WriteException | CellException ex) {
+//                Logger.getLogger(JPanel_Reportes.class.getName()).log(Level.SEVERE, null, ex);
+//            }
+        } else {
+
+        }
     }//GEN-LAST:event_jButton_aceptarListaPrecActionPerformed
 
     private void jButton_CancelarListaPrecActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_CancelarListaPrecActionPerformed

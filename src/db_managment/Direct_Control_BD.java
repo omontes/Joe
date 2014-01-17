@@ -15,6 +15,7 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JTextField;
 
 /**
  *
@@ -2129,6 +2130,18 @@ public class Direct_Control_BD {
         } catch (Exception e) {
             System.out.println("Error al obtener los productos de la factura");
         }
+    }
+
+    public void VerProductosPorCodigo(String Inic,
+          String hasta) {
+    }
+
+    public void VerProductosPorDescr(String toString,
+            String hasta) {
+    }
+
+    public void VerProductosPorCategoria(String toString,
+            String hasta) {
     }
 
 }

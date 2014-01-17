@@ -420,7 +420,7 @@ public class EscribirExcel {
         hojaExcel.addCell(new Label(2, ultimaFila + 3, "               "
                 + "              Sub Total:", times11));
         hojaExcel.addCell(new Number(3, ultimaFila + 3,
-                Double.parseDouble(infoFact[6].toString()), times10));
+                Double.parseDouble(infoFact[7].toString())/(1-(( Double.parseDouble(infoFact[5].toString()))/100)), times10));
 
         hojaExcel.addCell(new Label(2, ultimaFila + 4, "               "
                 + "         Descuento%:", times11));

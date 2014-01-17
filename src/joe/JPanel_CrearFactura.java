@@ -131,7 +131,7 @@ public class JPanel_CrearFactura extends javax.swing.JPanel {
         jLabel16 = new javax.swing.JLabel();
         jComboBox_Vendedores = new javax.swing.JComboBox();
         jFormattedTextField_Cliente = new javax.swing.JFormattedTextField();
-        jButton_BuscarCliente = new javax.swing.JButton();
+        jButton1 = new javax.swing.JButton();
         jLabel_NumerodeFact = new javax.swing.JLabel();
         jButton_guardaImprime = new javax.swing.JButton();
 
@@ -912,12 +912,7 @@ public class JPanel_CrearFactura extends javax.swing.JPanel {
             }
         });
 
-        jButton_BuscarCliente.setText("Buscar");
-        jButton_BuscarCliente.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton_BuscarClienteActionPerformed(evt);
-            }
-        });
+        jButton1.setText("Buscar");
 
         jLabel_NumerodeFact.setFont(new java.awt.Font("Arial", 0, 16)); // NOI18N
         jLabel_NumerodeFact.setForeground(new java.awt.Color(0, 51, 51));
@@ -990,7 +985,7 @@ public class JPanel_CrearFactura extends javax.swing.JPanel {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jFormattedTextField_Cliente, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jButton_BuscarCliente)
+                        .addComponent(jButton1)
                         .addGap(18, 18, 18)
                         .addComponent(jLabel_FechaFact, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -1011,7 +1006,7 @@ public class JPanel_CrearFactura extends javax.swing.JPanel {
                         .addComponent(jComboBox_Vendedores, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(jLabel16)
                         .addComponent(jFormattedTextField_Cliente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(jButton_BuscarCliente)
+                        .addComponent(jButton1)
                         .addComponent(jLabel_FechaFact, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(jLabel_Fecha, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -1791,14 +1786,6 @@ public class JPanel_CrearFactura extends javax.swing.JPanel {
                
         
     }//GEN-LAST:event_jButton_guardaImprimeActionPerformed
-
-    private void jButton_BuscarClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_BuscarClienteActionPerformed
-       NewJDialog_Buscador buscador= new NewJDialog_Buscador();
-       buscador.actualizaTablaParaClientes();
-       String cliente= buscador.getCliente();
-       this.jFormattedTextField_Cliente.setText(cliente);
-       this.setFocusTablaFact(0);
-    }//GEN-LAST:event_jButton_BuscarClienteActionPerformed
     /**
      * Este metodo devuelve toda la informacion de la tabla de crear factura
      * @return 
@@ -1905,8 +1892,8 @@ public class JPanel_CrearFactura extends javax.swing.JPanel {
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    javax.swing.JButton jButton1;
     javax.swing.JButton jButton2;
-    javax.swing.JButton jButton_BuscarCliente;
     javax.swing.JButton jButton_BuscarProducto;
     javax.swing.JButton jButton_BusqueProducto;
     javax.swing.JButton jButton_CancelaBusquedaProducto;

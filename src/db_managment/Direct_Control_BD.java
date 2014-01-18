@@ -2142,5 +2142,23 @@ public class Direct_Control_BD {
             System.out.println("Error al obtener los productos de la factura");
         }
     }
+    
+    /**
+     * Devuelve el total facturado y el saldo de un apartado
+     */
+    public void verInfoFacturaApartado(int NumFact) {
+        try {
+            String verInfoFacturaApartado = this.readSql("../Joe/src/"
+                    + "sql_files/verPago.sql");
+            PreparedStatement stm = this.conection.prepareStatement(verInfoFacturaApartado);
+            stm.setInt(1, NumFact);
+            ResultSet resultset = stm.executeQuery();
+            this.setColumnNames(this.Get_Columnas(resultset));
+            this.setData(this.ResultSet_Array(resultset));
+        } catch (Exception e) {
+            System.out.println(NumFact);
+            System.out.println("Error al obtener la informacion del apartado");
+        }
+    }
 
 }

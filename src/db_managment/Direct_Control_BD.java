@@ -2160,5 +2160,22 @@ public class Direct_Control_BD {
             System.out.println("Error al obtener la informacion del apartado");
         }
     }
-
+    /**
+     * Devuelve la fecha y el monto de pago que se le han hecho a la factura
+     * con el NumFact ingresado
+     */
+    public void verInfoFacturaApartadoPagos(int NumFact) {
+        try {
+            String verInfoFacturaApartadoPagos = this.readSql("../Joe/src/"
+                    + "sql_files/verPagoFactPendientes.sql");
+            PreparedStatement stm = this.conection.prepareStatement(verInfoFacturaApartadoPagos);
+            stm.setInt(1, NumFact);
+            ResultSet resultset = stm.executeQuery();
+            this.setColumnNames(this.Get_Columnas(resultset));
+            this.setData(this.ResultSet_Array(resultset));
+        } catch (Exception e) {
+            System.out.println(NumFact);
+            System.out.println("Error al obtener la informacion de los pagos del apartado");
+        }
+    }
 }

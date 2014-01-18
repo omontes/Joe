@@ -64,6 +64,15 @@ public class JPanel_Facturacion extends javax.swing.JPanel {
         jComboBox_TipodePago = new javax.swing.JComboBox();
         jFormattedTextField_Abono = new javax.swing.JFormattedTextField();
         jLabel_numFact = new javax.swing.JLabel();
+        jDialog_VerPagos = new javax.swing.JDialog();
+        jScrollPane3 = new javax.swing.JScrollPane();
+        jTable_VerPagos = new javax.swing.JTable();
+        jLabel5 = new javax.swing.JLabel();
+        jLabel_numFactVerPagos = new javax.swing.JLabel();
+        jLabel8 = new javax.swing.JLabel();
+        jFormattedTextField_saldoPendiente = new javax.swing.JFormattedTextField();
+        jLabel9 = new javax.swing.JLabel();
+        jFormattedTextField_totalFacturado = new javax.swing.JFormattedTextField();
         jTabbedPane1 = new javax.swing.JTabbedPane();
         jPanel_Facturas = new javax.swing.JPanel();
         jButton_Crear = new javax.swing.JButton();
@@ -85,6 +94,7 @@ public class JPanel_Facturacion extends javax.swing.JPanel {
         jTable_Apartados = new javax.swing.JTable();
         jButton_regresarFact = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
+        jButton_verPagos = new javax.swing.JButton();
 
         jDialog_CrearPago.setMinimumSize(new java.awt.Dimension(424, 450));
         jDialog_CrearPago.setModal(true);
@@ -259,6 +269,87 @@ public class JPanel_Facturacion extends javax.swing.JPanel {
             .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
 
+        jDialog_VerPagos.setMinimumSize(new java.awt.Dimension(340, 390));
+
+        jTable_VerPagos.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {},
+                {},
+                {},
+                {}
+            },
+            new String [] {
+
+            }
+        ));
+        jScrollPane3.setViewportView(jTable_VerPagos);
+
+        jLabel5.setText("Num Fact");
+
+        jLabel_numFactVerPagos.setText("705");
+
+        jLabel8.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jLabel8.setText("Saldo Pendiente");
+
+        jFormattedTextField_saldoPendiente.setEditable(false);
+        jFormattedTextField_saldoPendiente.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(new java.text.DecimalFormat("C#,##0.00"))));
+        jFormattedTextField_saldoPendiente.setText("0.00");
+
+        jLabel9.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jLabel9.setText("Total Facturado");
+
+        jFormattedTextField_totalFacturado.setEditable(false);
+        jFormattedTextField_totalFacturado.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(new java.text.DecimalFormat("C#,##0.00"))));
+        jFormattedTextField_totalFacturado.setText("0.00");
+
+        javax.swing.GroupLayout jDialog_VerPagosLayout = new javax.swing.GroupLayout(jDialog_VerPagos.getContentPane());
+        jDialog_VerPagos.getContentPane().setLayout(jDialog_VerPagosLayout);
+        jDialog_VerPagosLayout.setHorizontalGroup(
+            jDialog_VerPagosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jDialog_VerPagosLayout.createSequentialGroup()
+                .addGroup(jDialog_VerPagosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jDialog_VerPagosLayout.createSequentialGroup()
+                        .addGap(19, 19, 19)
+                        .addComponent(jLabel5)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jLabel_numFactVerPagos))
+                    .addGroup(jDialog_VerPagosLayout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 308, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jDialog_VerPagosLayout.createSequentialGroup()
+                        .addGap(19, 19, 19)
+                        .addGroup(jDialog_VerPagosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(jLabel9, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jLabel8, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGroup(jDialog_VerPagosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jDialog_VerPagosLayout.createSequentialGroup()
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(jFormattedTextField_saldoPendiente, javax.swing.GroupLayout.PREFERRED_SIZE, 126, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jDialog_VerPagosLayout.createSequentialGroup()
+                                .addGap(7, 7, 7)
+                                .addComponent(jFormattedTextField_totalFacturado, javax.swing.GroupLayout.PREFERRED_SIZE, 126, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                .addContainerGap(22, Short.MAX_VALUE))
+        );
+        jDialog_VerPagosLayout.setVerticalGroup(
+            jDialog_VerPagosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jDialog_VerPagosLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jDialog_VerPagosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel5)
+                    .addComponent(jLabel_numFactVerPagos))
+                .addGap(26, 26, 26)
+                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 196, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(30, 30, 30)
+                .addGroup(jDialog_VerPagosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel9)
+                    .addComponent(jFormattedTextField_totalFacturado, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(jDialog_VerPagosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel8)
+                    .addComponent(jFormattedTextField_saldoPendiente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(32, Short.MAX_VALUE))
+        );
+
         jTabbedPane1.setTabLayoutPolicy(javax.swing.JTabbedPane.SCROLL_TAB_LAYOUT);
         jTabbedPane1.setTabPlacement(javax.swing.JTabbedPane.LEFT);
         jTabbedPane1.setDebugGraphicsOptions(javax.swing.DebugGraphics.NONE_OPTION);
@@ -420,6 +511,13 @@ public class JPanel_Facturacion extends javax.swing.JPanel {
             }
         });
 
+        jButton_verPagos.setText("verPagos");
+        jButton_verPagos.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton_verPagosActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel_ApartadosLayout = new javax.swing.GroupLayout(jPanel_Apartados);
         jPanel_Apartados.setLayout(jPanel_ApartadosLayout);
         jPanel_ApartadosLayout.setHorizontalGroup(
@@ -440,11 +538,13 @@ public class JPanel_Facturacion extends javax.swing.JPanel {
                         .addComponent(jButton_VerApartado)
                         .addGap(18, 18, 18)
                         .addComponent(jButton_ImprimirApartado)
-                        .addGap(18, 18, 18)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jButton_regresarFact)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jButton2)))
-                .addContainerGap(86, Short.MAX_VALUE))
+                        .addComponent(jButton2)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jButton_verPagos)))
+                .addContainerGap(82, Short.MAX_VALUE))
         );
         jPanel_ApartadosLayout.setVerticalGroup(
             jPanel_ApartadosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -459,7 +559,8 @@ public class JPanel_Facturacion extends javax.swing.JPanel {
                     .addComponent(jButton_VerApartado)
                     .addComponent(jButton_ImprimirApartado)
                     .addComponent(jButton_regresarFact)
-                    .addComponent(jButton2))
+                    .addComponent(jButton2)
+                    .addComponent(jButton_verPagos))
                 .addGap(58, 58, 58))
         );
 
@@ -705,6 +806,25 @@ public class JPanel_Facturacion extends javax.swing.JPanel {
             this.jButton_AceptarPago.doClick();
         }
     }//GEN-LAST:event_jButton_AceptarPagoKeyPressed
+
+    private void jButton_verPagosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_verPagosActionPerformed
+        Direct_Control_BD AdminBD = Direct_Control_BD.getInstance();
+        Modelo_Facturacion model = (Modelo_Facturacion) this.jTable_Apartados.getModel();
+        int idFact = Integer.parseInt
+        (model.getValueAt(this.jTable_Apartados.getSelectedRow(),0).toString());
+        //Carga los datos a la tabla de ver pagos
+        this.cargarVerPagos(idFact);
+        // Obtiene la informacion de la factura, total facturado y 
+        // el saldo pendiente
+        AdminBD.verInfoFacturaApartado(idFact);
+        this.jLabel_numFactVerPagos.setText(Integer.toString(idFact));
+        Object[][] InfoApartados = AdminBD.getData();
+        BigDecimal Saldo = new BigDecimal(InfoApartados[0][0].toString());
+        BigDecimal TotalFacturado = new BigDecimal(InfoApartados[0][1].toString());
+        this.jFormattedTextField_totalFacturado.setValue(TotalFacturado);
+        this.jFormattedTextField_saldoPendiente.setValue(Saldo);
+        this.jDialog_VerPagos.setVisible(true);
+    }//GEN-LAST:event_jButton_verPagosActionPerformed
    
     
     /**
@@ -825,28 +945,38 @@ public class JPanel_Facturacion extends javax.swing.JPanel {
     javax.swing.JButton jButton_Ver;
     javax.swing.JButton jButton_VerApartado;
     javax.swing.JButton jButton_regresarFact;
+    javax.swing.JButton jButton_verPagos;
     javax.swing.JComboBox jComboBox_TipodePago;
     javax.swing.JDialog jDialog_CrearPago;
+    javax.swing.JDialog jDialog_VerPagos;
     javax.swing.JFormattedTextField jFormattedTextField_Abono;
     javax.swing.JFormattedTextField jFormattedTextField_Saldo;
     javax.swing.JFormattedTextField jFormattedTextField_Total;
     javax.swing.JFormattedTextField jFormattedTextField_TotalPagado;
+    javax.swing.JFormattedTextField jFormattedTextField_saldoPendiente;
+    javax.swing.JFormattedTextField jFormattedTextField_totalFacturado;
     javax.swing.JLabel jLabel1;
     javax.swing.JLabel jLabel2;
     javax.swing.JLabel jLabel3;
     javax.swing.JLabel jLabel4;
+    javax.swing.JLabel jLabel5;
     javax.swing.JLabel jLabel6;
+    javax.swing.JLabel jLabel8;
+    javax.swing.JLabel jLabel9;
     javax.swing.JLabel jLabel_fechaDePago;
     javax.swing.JLabel jLabel_numFact;
+    javax.swing.JLabel jLabel_numFactVerPagos;
     javax.swing.JPanel jPanel2;
     javax.swing.JPanel jPanel_Apartados;
     javax.swing.JPanel jPanel_Facturas;
     javax.swing.JScrollPane jScrollPane1;
     javax.swing.JScrollPane jScrollPane2;
+    javax.swing.JScrollPane jScrollPane3;
     javax.swing.JSeparator jSeparator1;
     javax.swing.JTabbedPane jTabbedPane1;
     javax.swing.JTable jTable_Apartados;
     javax.swing.JTable jTable_Facturacion;
+    javax.swing.JTable jTable_VerPagos;
     // End of variables declaration//GEN-END:variables
 
     private void crearPago(int idFactura, BigDecimal montoDePago) {
@@ -861,5 +991,25 @@ public class JPanel_Facturacion extends javax.swing.JPanel {
         }
         String fechaCorregida = new SimpleDateFormat("yyyy/MM/dd").format(date);
         AdminBD.insertarPago(fechaCorregida, montoDePago, idFactura, idVersionFacturasProducto);
+    }
+     /**
+     * Este metodo se encarga de llenar la tabla en ver pagos para mostrar los
+     * pagos que se le han hecho a la factura selecionada en apartados
+     */
+    private void cargarVerPagos(int numFact) {
+          //Realiza la consulta para obtener los apartados
+        Direct_Control_BD AdminBD = Direct_Control_BD.getInstance();
+        AdminBD.verInfoFacturaApartadoPagos(numFact);
+        String[] columnNames = AdminBD.getColumnNames();
+        Object[][] data = AdminBD.getData();
+        //Crea la tabla generica para Facturas
+        this.jTable_VerPagos.setModel(new Modelo_Facturacion(columnNames,data));
+        //Alinea la primer columna de esta tabla hacia el centro
+        DefaultTableCellRenderer centerRenderer = new DefaultTableCellRenderer
+                ();
+        centerRenderer.setHorizontalAlignment(JLabel.CENTER);
+        this.jTable_VerPagos.getColumnModel().getColumn(1).setCellRenderer
+                (centerRenderer);
+
     }
 }

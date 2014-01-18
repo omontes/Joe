@@ -549,7 +549,7 @@ public class Direct_Control_BD {
      */
     public void crearFactura(int idFactura, BigDecimal descuento, String tipoPago, int idCliente,
             int idVendedor, String concepto, String nota, BigDecimal TotalFacturado, String estado) {//Revisado+
-        DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd");
+        DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
         Date date = new Date();
         String fecha = dateFormat.format(date);
 
@@ -1238,8 +1238,11 @@ public class Direct_Control_BD {
      * @param idFacturaPendiente
      * @param idFacturaVersionPagosPend 
      */
-    public void insertarPago(String fecha, BigDecimal montoDePago, int idFacturaPendiente, int idFacturaVersionPagosPend) {
+    public void insertarPago(BigDecimal montoDePago, int idFacturaPendiente, int idFacturaVersionPagosPend) {
         try {
+            DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
+            Date date = new Date();
+            String fecha = dateFormat.format(date);
             String insertarPago = this.readSql("../Joe/src/sql_files/"
                     + "insertarPago.sql");
             PreparedStatement stm = this.conection.prepareStatement(insertarPago);

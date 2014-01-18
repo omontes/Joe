@@ -609,23 +609,8 @@ public class JPanel_Facturacion extends javax.swing.JPanel {
     }//GEN-LAST:event_jButton_CrearActionPerformed
 
     private void jButton_EliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_EliminarActionPerformed
-        Modelo_Facturacion model = (Modelo_Facturacion) this.jTable_Facturacion.getModel();
-        int row= this.jTable_Facturacion.getSelectedRow();
-        if(row>=0){
-        Direct_Control_BD AdminBD = Direct_Control_BD.getInstance();
-        int numFact = Integer.parseInt(model.getValueAt(row,0).toString());
-        this.devolverProductos(numFact);
-        int idVersion=AdminBD.verVersionDEFacturaActiva(numFact);
-        AdminBD.eliminarFactura(numFact,idVersion);
+        this.eliminar(this.jTable_Facturacion);
         this.completarTablaFacturacion();
-        }
-        else{
-            JOptionPane.showMessageDialog(
-                          null,
-                          "No se selecciono ninguna factura",                                 
-                          "Alert!", JOptionPane.ERROR_MESSAGE);
-        
-        }
         
     }//GEN-LAST:event_jButton_EliminarActionPerformed
     private void devolverProductos(int NumFact) {
@@ -644,13 +629,7 @@ public class JPanel_Facturacion extends javax.swing.JPanel {
             }
     }
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        VentanaDeInicio mVentana= VentanaDeInicio.getInstance();
-        mVentana.remove(this);
-        mVentana.revalidate();
-        mVentana.repaint();
-        mVentana.setTitle("Joe");
-        mVentana.add(mVentana.jPanel_VentanaPrincipal);
-        mVentana.jPanel_VentanaPrincipal.setVisible(true);
+       this.regresar();
         
        
     }//GEN-LAST:event_jButton1ActionPerformed
@@ -660,33 +639,7 @@ public class JPanel_Facturacion extends javax.swing.JPanel {
     }//GEN-LAST:event_jButton_VerActionPerformed
 
     private void jButton_ModificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_ModificarActionPerformed
-        int row= this.jTable_Facturacion.getSelectedRow();
-        if(row>=0){
-        VentanaDeInicio mVentana= VentanaDeInicio.getInstance();
-        JPanel_CrearFactura panelCreaFact= new JPanel_CrearFactura();
-        mVentana.add(panelCreaFact);
-        panelCreaFact.setSize(this.getSize());
-        panelCreaFact.setLocation(this.getLocation());
-        mVentana.remove(this);
-        panelCreaFact.setVisible(true);
-        mVentana.revalidate();
-        mVentana.repaint();
-        mVentana.setTitle("Modifica Factura");
-        panelCreaFact.personalizarTablaFactura();
-        Modelo_Facturacion model = (Modelo_Facturacion) this.jTable_Facturacion.getModel();
-        String factura = model.getValueAt(row, 0).toString();
-        panelCreaFact.jLabel_NumerodeFact.setText(factura);
-        panelCreaFact.cargarInfoFact();
-        panelCreaFact.cargarProductosFact((MyTableModel_FACT)panelCreaFact.jTable_Factura.getModel());
-        panelCreaFact.agregarListenerRenders();
-        }
-        else{
-            JOptionPane.showMessageDialog(
-                          null,
-                          "No se selecciono ninguna factura",                                 
-                          "Alert!", JOptionPane.ERROR_MESSAGE);
-        
-        }
+       this.modificar(this.jTable_Facturacion,"Modifica Factura");
     }//GEN-LAST:event_jButton_ModificarActionPerformed
 
     private void jButton_CrearApartadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_CrearApartadoActionPerformed
@@ -709,11 +662,12 @@ public class JPanel_Facturacion extends javax.swing.JPanel {
     }//GEN-LAST:event_jButton_CrearApartadoActionPerformed
 
     private void jButton_ModificarApartadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_ModificarApartadoActionPerformed
-        // TODO add your handling code here:
+        this.modificar(this.jTable_Apartados,"Modifica Apartados / Creditos");
     }//GEN-LAST:event_jButton_ModificarApartadoActionPerformed
 
     private void jButton_EliminaApartadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_EliminaApartadoActionPerformed
-        // TODO add your handling code here:
+       this.eliminar(this.jTable_Apartados);
+       this.completarTablaApartados();
     }//GEN-LAST:event_jButton_EliminaApartadoActionPerformed
     
     private void jButton_VerApartadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_VerApartadoActionPerformed
@@ -722,7 +676,7 @@ public class JPanel_Facturacion extends javax.swing.JPanel {
     }//GEN-LAST:event_jButton_VerApartadoActionPerformed
 
     private void jButton_regresarFactActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_regresarFactActionPerformed
-        // TODO add your handling code here:
+        this.regresar();
     }//GEN-LAST:event_jButton_regresarFactActionPerformed
 
     private void jButton_AceptarPagoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_AceptarPagoActionPerformed
@@ -989,8 +943,7 @@ public class JPanel_Facturacion extends javax.swing.JPanel {
         } catch (ParseException ex) {
             Logger.getLogger(JPanel_CrearFactura.class.getName()).log(Level.SEVERE, null, ex);
         }
-        String fechaCorregida = new SimpleDateFormat("yyyy/MM/dd").format(date);
-        AdminBD.insertarPago(fechaCorregida, montoDePago, idFactura, idVersionFacturasProducto);
+        AdminBD.insertarPago(montoDePago, idFactura, idVersionFacturasProducto);
     }
      /**
      * Este metodo se encarga de llenar la tabla en ver pagos para mostrar los
@@ -1011,5 +964,65 @@ public class JPanel_Facturacion extends javax.swing.JPanel {
         this.jTable_VerPagos.getColumnModel().getColumn(1).setCellRenderer
                 (centerRenderer);
 
+    }
+
+    private void regresar() {
+        VentanaDeInicio mVentana= VentanaDeInicio.getInstance();
+        mVentana.remove(this);
+        mVentana.revalidate();
+        mVentana.repaint();
+        mVentana.setTitle("Joe");
+        mVentana.add(mVentana.jPanel_VentanaPrincipal);
+        mVentana.jPanel_VentanaPrincipal.setVisible(true);
+    }
+
+    private void eliminar(JTable table) {
+        Modelo_Facturacion model = (Modelo_Facturacion) table.getModel();
+        int row= table.getSelectedRow();
+        if(row>=0){
+        Direct_Control_BD AdminBD = Direct_Control_BD.getInstance();
+        int numFact = Integer.parseInt(model.getValueAt(row,0).toString());
+        this.devolverProductos(numFact);
+        int idVersion=AdminBD.verVersionDEFacturaActiva(numFact);
+        AdminBD.eliminarFactura(numFact,idVersion);
+        
+        }
+        else{
+            JOptionPane.showMessageDialog(
+                          null,
+                          "No se selecciono ninguna factura",                                 
+                          "Alert!", JOptionPane.ERROR_MESSAGE);
+        
+        }
+    }
+
+    private void modificar(JTable table,String tituloVentana) {
+        int row= table.getSelectedRow();
+        if(row>=0){
+        VentanaDeInicio mVentana= VentanaDeInicio.getInstance();
+        JPanel_CrearFactura panelCreaFact= new JPanel_CrearFactura();
+        mVentana.add(panelCreaFact);
+        panelCreaFact.setSize(this.getSize());
+        panelCreaFact.setLocation(this.getLocation());
+        mVentana.remove(this);
+        panelCreaFact.setVisible(true);
+        mVentana.revalidate();
+        mVentana.repaint();
+        mVentana.setTitle(tituloVentana);
+        panelCreaFact.personalizarTablaFactura();
+        Modelo_Facturacion model = (Modelo_Facturacion) table.getModel();
+        String factura = model.getValueAt(row, 0).toString();
+        panelCreaFact.jLabel_NumerodeFact.setText(factura);
+        panelCreaFact.cargarInfoFact();
+        panelCreaFact.cargarProductosFact((MyTableModel_FACT)panelCreaFact.jTable_Factura.getModel());
+        panelCreaFact.agregarListenerRenders();
+        }
+        else{
+            JOptionPane.showMessageDialog(
+                          null,
+                          "No se selecciono ninguna factura",                                 
+                          "Alert!", JOptionPane.ERROR_MESSAGE);
+        
+        }
     }
 }

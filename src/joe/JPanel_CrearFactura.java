@@ -2363,7 +2363,7 @@ public class JPanel_CrearFactura extends javax.swing.JPanel {
         int idVersionFacturasProducto = AdminBD.verVersionDEFacturaActiva(idFactura);
         String totalFacturaSinCorregir = this.jFormattedTextField_Total.getText();
         BigDecimal totalFact = this.corregirDato(totalFacturaSinCorregir);
-        AdminBD.insertarFacturasPendientes(idFactura, totalFact.subtract(montoDePago), Fecha, idVersionFacturasProducto);
+        AdminBD.insertarFacturasPendientes(idFactura, totalFact, Fecha, idVersionFacturasProducto);
         String fechaAcorregir = this.jLabel_Fecha.getText();
         Date date = null;
         try {

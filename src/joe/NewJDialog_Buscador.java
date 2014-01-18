@@ -231,8 +231,10 @@ public class NewJDialog_Buscador extends javax.swing.JDialog {
     public void actualizaTablaParaFacturasModificadas() {
         Direct_Control_BD AdminBD = Direct_Control_BD.getInstance();
         AdminBD.ObtenerIdFactModificadas();
-        String[] columnNames = AdminBD.getColumnNames();
         Object[][] data = AdminBD.getData();
+        AdminBD.ObtenerFactModificada(data);
+        String[] columnNames = AdminBD.getColumnNames();
+        data = AdminBD.getData();
         this.jTable_Generica.setModel(new MyTableModel_Generic(columnNames, data));
         //Crea el ordenador para la tabla generica
         TableRowSorter<TableModel> ordenador = new TableRowSorter<TableModel>(this.jTable_Generica.getModel());

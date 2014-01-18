@@ -429,7 +429,7 @@ public class Direct_Control_BD {
 
     /**
      * Muestra todos los apartados y creditos(Cerrados y Abiertos)
-     * 
+     *
      */
     public void verApartadosyCreditos() {
         try {
@@ -438,7 +438,7 @@ public class Direct_Control_BD {
             ResultSet resultset = statement.executeQuery(VerApartados);
             this.setColumnNames(this.Get_Columnas(resultset));
             this.setData(this.ResultSet_Array(resultset));
-            
+
         } catch (Exception e) {
             System.out.println("Error al ver apartados");
         }
@@ -1223,7 +1223,7 @@ public class Direct_Control_BD {
             stm.setInt(1, idFactura);
             stm.setDouble(2, saldo.doubleValue());
             stm.setString(3, fechaVencimiento);
-            stm.setInt(4,idVersionFactPendientes);
+            stm.setInt(4, idVersionFactPendientes);
             stm.executeUpdate();
 
         } catch (Exception e) {
@@ -1234,10 +1234,11 @@ public class Direct_Control_BD {
 
     /**
      * Permite insertar un pago en una factura pendiente.
+     *
      * @param fecha
      * @param montoDePago
      * @param idFacturaPendiente
-     * @param idFacturaVersionPagosPend 
+     * @param idFacturaVersionPagosPend
      */
     public void insertarPago(String fecha, BigDecimal montoDePago, int idFacturaPendiente, int idFacturaVersionPagosPend) {
         try {
@@ -1271,7 +1272,8 @@ public class Direct_Control_BD {
         }
 
     }
-     /**
+
+    /**
      * Obtiene la informacion de las ultimos 100 apartados.
      */
     public void verApartadosParaTabla() {
@@ -1286,6 +1288,7 @@ public class Direct_Control_BD {
         }
 
     }
+
     public void verInventario() {
         try {
             String verInventario = this.readSql("../Joe/src/sql_files/"
@@ -2145,7 +2148,7 @@ public class Direct_Control_BD {
     }
 
     public void VerProductosPorCodigo(String Inic,
-          String hasta) {
+            String hasta) {
     }
 
     public void VerProductosPorDescr(String toString,
@@ -2154,6 +2157,24 @@ public class Direct_Control_BD {
 
     public void VerProductosPorCategoria(String toString,
             String hasta) {
+    }
+
+    public void ObtenerFactModificada(Object[][] idFact) {
+        try {
+            ResultSet resultset = null;
+            for (int i = 0; i < idFact.length; i++) {
+
+                String verProductosPorFacturaYVersion = this.readSql("../Joe/src/"
+                        + "sql_files/ObtenerFactModificada.sql");
+                PreparedStatement stm = this.conection.prepareStatement(verProductosPorFacturaYVersion);
+                stm.setString(1, idFact[i][0].toString());
+                resultset = stm.executeQuery();
+            }
+            this.setColumnNames(this.Get_Columnas(resultset));
+            this.setData(this.ResultSet_Array(resultset));
+        } catch (Exception e) {
+            System.out.println("Error al Obtener Fact Modificada");
+        }
     }
 
 }

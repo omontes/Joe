@@ -680,12 +680,21 @@ public class JPanel_Facturacion extends javax.swing.JPanel {
     }//GEN-LAST:event_jButton_regresarFactActionPerformed
 
     private void jButton_AceptarPagoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_AceptarPagoActionPerformed
-        this.crearPago(Integer.parseInt(this.jLabel_numFact.getText()),
-                this.StringtoBigDecimal(this.jFormattedTextField_Abono.getText()));
-        this.jDialog_CrearPago.dispose();
-        this.jFormattedTextField_Abono.setValue(new BigDecimal("0.00"));
-        this.jFormattedTextField_Saldo.setValue(new BigDecimal("0.00"));
-        this.completarTablaApartados();
+        BigDecimal montoDePago = this.StringtoBigDecimal(this.jFormattedTextField_Abono.getText());
+        if(montoDePago.compareTo(new BigDecimal("0.00"))>0){
+            this.crearPago(Integer.parseInt(this.jLabel_numFact.getText()), montoDePago);
+            this.jDialog_CrearPago.dispose();
+            this.jFormattedTextField_Abono.setValue(new BigDecimal("0.00"));
+            this.jFormattedTextField_Saldo.setValue(new BigDecimal("0.00"));
+            this.completarTablaApartados();}
+        else{
+            JOptionPane.showMessageDialog(
+                          null,
+                          "El abono debe ser mayor que cero",
+                          "Alert!", JOptionPane.ERROR_MESSAGE);
+            
+                this.jFormattedTextField_Abono.requestFocus(true);
+        }
         
     }//GEN-LAST:event_jButton_AceptarPagoActionPerformed
 
@@ -958,6 +967,7 @@ public class JPanel_Facturacion extends javax.swing.JPanel {
     // End of variables declaration//GEN-END:variables
 
     private void crearPago(int idFactura, BigDecimal montoDePago) {
+       
         Direct_Control_BD AdminBD = Direct_Control_BD.getInstance();
         int idVersionFacturasProducto = AdminBD.verVersionDEFacturaActiva(idFactura);
         String fechaAcorregir = this.jLabel_fechaDePago.getText();
@@ -968,6 +978,7 @@ public class JPanel_Facturacion extends javax.swing.JPanel {
             Logger.getLogger(JPanel_CrearFactura.class.getName()).log(Level.SEVERE, null, ex);
         }
         AdminBD.insertarPago(montoDePago, idFactura, idVersionFacturasProducto);
+
     }
      /**
      * Este metodo se encarga de llenar la tabla en ver pagos para mostrar los

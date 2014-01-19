@@ -14,6 +14,7 @@ import java.text.NumberFormat;
 import java.text.ParseException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -148,6 +149,14 @@ public class NewJDialog_PagoApartado extends javax.swing.JDialog {
 
     private void jButton_AceptarApartadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_AceptarApartadoActionPerformed
          try {
+             
+             if(this.jFormattedTextField_MontoApartado.getText().equals("")){
+                 JOptionPane.showMessageDialog(
+                          null,
+                          "Debe de ingresar un pago porfavor",
+                          "Alert!", JOptionPane.ERROR_MESSAGE);
+                          return;
+             }
              this.setFecha(this.jFormattedTextField_FechaVencimiento.getText());
              this.setMontoDePago(this.StringtoBigDecimal(this.jFormattedTextField_MontoApartado.getText()));
              

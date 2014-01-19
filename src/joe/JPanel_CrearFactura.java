@@ -1454,21 +1454,28 @@ public class JPanel_CrearFactura extends javax.swing.JPanel {
             return;
 
         }
-         if (mVentana.getTitle().equals("Modifica Apartados / Creditos")) {
+        if (mVentana.getTitle().equals("Modifica Apartados / Creditos")) {
             NewJDialog_PagoApartado pago = new NewJDialog_PagoApartado();
             pago.setVisible(true);
             String fechaVencimiento = pago.getFecha();
             BigDecimal montodePago = pago.getMontoDePago();
             if (montodePago != null) {
-                this.devolverProductos();
-                this.modificaFactura();
-                this.guardarFactura("Apartado");
-                this.crearApartado(montodePago, fechaVencimiento);
-                this.regresar();
-
+                BigDecimal saldo = this.corregirDato(this.jFormattedTextField_Total.getValue().toString());
+                if (montodePago.compareTo(saldo) < 0) {
+                    this.devolverProductos();
+                    this.modificaFactura();
+                    this.guardarFactura("Apartado");
+                    this.crearApartado(montodePago, fechaVencimiento);
+                    this.regresar();
+                } else {
+                    JOptionPane.showMessageDialog(
+                            null,
+                            "Debe de ingresar un pago inferior al saldo porfavor",
+                            "Alert!", JOptionPane.ERROR_MESSAGE);
+                    return;
+                }
             }
             return;
-            
 
         }
         if (mVentana.getTitle().equals("Apartados / Creditos")) {
@@ -1477,14 +1484,26 @@ public class JPanel_CrearFactura extends javax.swing.JPanel {
             String fechaVencimiento = pago.getFecha();
             BigDecimal montodePago = pago.getMontoDePago();
             if (montodePago != null) {
+                BigDecimal saldo = this.corregirDato(this.jFormattedTextField_Total.getValue().toString());
+                if (montodePago.compareTo(saldo) < 0) {
 
-                this.guardarFactura("Apartado");
-                this.crearApartado(montodePago, fechaVencimiento);
-                this.clearAll();
+                    this.guardarFactura("Apartado");
+                    this.crearApartado(montodePago, fechaVencimiento);
+                    this.clearAll();
 
+                } else {
+                    JOptionPane.showMessageDialog(
+                            null,
+                            "Debe de ingresar un pago inferior al saldo porfavor",
+                            "Alert!", JOptionPane.ERROR_MESSAGE);
+                    return;
+                }
             }
             return;
         }
+        
+        
+        
         this.guardarFactura("Cancelada");
         this.clearAll();
     }

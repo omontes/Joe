@@ -697,22 +697,33 @@ public class JPanel_Facturacion extends javax.swing.JPanel {
     }//GEN-LAST:event_jButton_CancelarPagoActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        
-        DateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
-        Date date = new Date();
-        this.jLabel_fechaDePago.setText(dateFormat.format(date));
-        Direct_Control_BD AdminBD = Direct_Control_BD.getInstance();
         Modelo_Facturacion model = (Modelo_Facturacion) this.jTable_Apartados.getModel();
-        int idFact = Integer.parseInt
-        (model.getValueAt(this.jTable_Apartados.getSelectedRow(),0).toString());
-        AdminBD.verInfoFacturaApartado(idFact);
-        this.jLabel_numFact.setText(Integer.toString(idFact));
-        Object[][] InfoApartados = AdminBD.getData();
-        BigDecimal Saldo = new BigDecimal(InfoApartados[0][0].toString());
-        BigDecimal TotalFacturado = new BigDecimal(InfoApartados[0][1].toString());
-        this.jFormattedTextField_Total.setValue(TotalFacturado);
-        this.jFormattedTextField_TotalPagado.setValue(Saldo);
-        this.jDialog_CrearPago.setVisible(true);
+        BigDecimal saldo = this.StringtoBigDecimal
+        (this.jTable_Apartados.getValueAt
+        (this.jTable_Apartados.getSelectedRow(),1).toString());
+        if (saldo.compareTo(new BigDecimal("0.00")) > 0) {
+            DateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
+            Date date = new Date();
+            this.jLabel_fechaDePago.setText(dateFormat.format(date));
+            Direct_Control_BD AdminBD = Direct_Control_BD.getInstance();
+
+            int idFact = Integer.parseInt(model.getValueAt(this.jTable_Apartados.getSelectedRow(), 0).toString());
+            AdminBD.verInfoFacturaApartado(idFact);
+            this.jLabel_numFact.setText(Integer.toString(idFact));
+            Object[][] InfoApartados = AdminBD.getData();
+            BigDecimal Saldo = new BigDecimal(InfoApartados[0][0].toString());
+            BigDecimal TotalFacturado = new BigDecimal(InfoApartados[0][1].toString());
+            this.jFormattedTextField_Total.setValue(TotalFacturado);
+            this.jFormattedTextField_TotalPagado.setValue(Saldo);
+            this.jDialog_CrearPago.setVisible(true);
+        }
+        else{
+            JOptionPane.showMessageDialog(
+                        null,
+                        "Esta factura ya esta paga",
+                        "Alert!", JOptionPane.ERROR_MESSAGE);
+        
+        }
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jFormattedTextField_AbonoKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jFormattedTextField_AbonoKeyPressed
@@ -751,7 +762,20 @@ public class JPanel_Facturacion extends javax.swing.JPanel {
             String text = evt.getNewValue().toString();
             BigDecimal abono = this.corregirDato(text);
             BigDecimal total = this.corregirDato(this.jFormattedTextField_TotalPagado.getValue().toString());
-            this.jFormattedTextField_Saldo.setValue(total.subtract(abono));
+            if(abono.compareTo(total)<=0){
+            this.jFormattedTextField_Saldo.setValue(total.subtract(abono));}
+            else{
+                
+                JOptionPane.showMessageDialog(
+                          null,
+                          "El abono debe ser menor o igual que el saldo pendiente",
+                          "Alert!", JOptionPane.ERROR_MESSAGE);
+            
+                this.jFormattedTextField_Abono.setValue(new BigDecimal("0.00"));
+                this.jFormattedTextField_Saldo.setValue(new BigDecimal("0.00"));
+                this.jFormattedTextField_Abono.requestFocus(true);
+                
+        }
         }
     }//GEN-LAST:event_jFormattedTextField_AbonoPropertyChange
 

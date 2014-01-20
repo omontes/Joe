@@ -427,10 +427,10 @@ public class Direct_Control_BD {
     }
 
     /**
-     * Muestra todos los apartados y creditos(Cerrados y Abiertos)
+     * Muestra todos los apartados (cancelados y pendientes)
      * 
      */
-    public void verApartadosyCreditos() {
+    public void verApartados() {
         try {
             String VerApartados = readSql("../Joe/src/"
                     + "sql_files/VerApartados.sql");
@@ -440,6 +440,23 @@ public class Direct_Control_BD {
             
         } catch (Exception e) {
             System.out.println("Error al ver apartados");
+        }
+    }
+    
+     /**
+     * Muestra todos los creditos(cancelados y pendientes)
+     * 
+     */
+    public void verCreditos() {
+        try {
+            String VerCreditos = readSql("../Joe/src/"
+                    + "sql_files/VerCreditos.sql");
+            ResultSet resultset = statement.executeQuery(VerCreditos);
+            this.setColumnNames(this.Get_Columnas(resultset));
+            this.setData(this.ResultSet_Array(resultset));
+            
+        } catch (Exception e) {
+            System.out.println("Error al ver creditos");
         }
     }
 
@@ -464,28 +481,7 @@ public class Direct_Control_BD {
         }
     }
 
-    /**
-     * Muestra todos los creditos(Cerrados y Abiertos)
-     * Detalles:idFactura||Saldo||FechaVencimiento||TotalFacturado||Nombre
-     * ||Tipopago
-     */
-    public void verCreditos() {//Bueno+
-        try {
-            String VerCreditos = readSql("../Joe/src/"
-                    + "sql_files/VerCreditos.sql");
-            ResultSet rs = statement.executeQuery(VerCreditos);
-            while (rs.next()) {
-                System.out.println(rs.getString(1)
-                        + "||" + rs.getInt(2) + "||" + rs.getString(3) + "||"
-                        + rs.getInt(4) + "||" + rs.getString(5) + "||"
-                        + rs.getString(6));
-            }
-        } catch (Exception e) {
-            System.out.println("Error al ver creditos");
-        }
-    }
-
-    /**
+     /**
      * Muestra todos los creditos pendientes(Abiertos)
      * Detalles:idFactura||Saldo||FechaVencimiento||TotalFacturado||Nombre
      * ||Tipopago
@@ -2181,4 +2177,23 @@ public class Direct_Control_BD {
             System.out.println("Error al obtener la informacion de los pagos del apartado");
         }
     }
+    /**
+     * Devuelve el total facturado y el saldo de un credito
+     */
+    public void verInfoFacturaCredito(int NumFact) {
+        
+        try {
+            String verInfoFacturaCredito = this.readSql("../Joe/src/"
+                    + "sql_files/verPagoCredito.sql");
+            PreparedStatement stm = this.conection.prepareStatement(verInfoFacturaCredito);
+            stm.setInt(1, NumFact);
+            ResultSet resultset = stm.executeQuery();
+            this.setColumnNames(this.Get_Columnas(resultset));
+            this.setData(this.ResultSet_Array(resultset));
+        } catch (Exception e) {
+            System.out.println(NumFact);
+            System.out.println("Error al obtener la informacion del credito");
+        }
+        
+}
 }

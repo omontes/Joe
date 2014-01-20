@@ -1203,6 +1203,7 @@ public class JPanel_CrearFactura extends javax.swing.JPanel {
         panelFact.setVisible(true);
         panelFact.completarTablaFacturacion();
         panelFact.completarTablaApartados();
+        panelFact.completarTablaCreditos();
         miVentana.revalidate();
         miVentana.repaint();
     }
@@ -1444,6 +1445,10 @@ public class JPanel_CrearFactura extends javax.swing.JPanel {
             }
         }
     }
+    /**
+     * Se encarga de guardar las facturas de acuerdo a la accion es decir
+     * si es un apartado, una factura o un credito.
+     */
     public void guardarFactura() {
         VentanaDeInicio mVentana = VentanaDeInicio.getInstance();
         if (mVentana.getTitle().equals("Modifica Factura")) {
@@ -1454,7 +1459,7 @@ public class JPanel_CrearFactura extends javax.swing.JPanel {
             return;
 
         }
-        if (mVentana.getTitle().equals("Modifica Apartados / Creditos")) {
+        if (mVentana.getTitle().equals("Modifica Apartado")) {
             NewJDialog_PagoApartado pago = new NewJDialog_PagoApartado();
             pago.setVisible(true);
             String fechaVencimiento = pago.getFecha();
@@ -1478,7 +1483,7 @@ public class JPanel_CrearFactura extends javax.swing.JPanel {
             return;
 
         }
-        if (mVentana.getTitle().equals("Apartados / Creditos")) {
+        if (mVentana.getTitle().equals("Apartado")) {
             NewJDialog_PagoApartado pago = new NewJDialog_PagoApartado();
             pago.setVisible(true);
             String fechaVencimiento = pago.getFecha();
@@ -1488,6 +1493,55 @@ public class JPanel_CrearFactura extends javax.swing.JPanel {
                 if (montodePago.compareTo(saldo) < 0) {
 
                     this.guardarFactura("Apartado");
+                    this.crearApartado(montodePago, fechaVencimiento);
+                    this.clearAll();
+
+                } else {
+                    JOptionPane.showMessageDialog(
+                            null,
+                            "Debe de ingresar un pago inferior al saldo porfavor",
+                            "Alert!", JOptionPane.ERROR_MESSAGE);
+                    return;
+                }
+            }
+            return;
+        }
+        
+        if (mVentana.getTitle().equals("Modifica Credito")) {
+            NewJDialog_PagoApartado pago = new NewJDialog_PagoApartado();
+            pago.setVisible(true);
+            String fechaVencimiento = pago.getFecha();
+            BigDecimal montodePago = pago.getMontoDePago();
+            if (montodePago != null) {
+                BigDecimal saldo = this.corregirDato(this.jFormattedTextField_Total.getValue().toString());
+                if (montodePago.compareTo(saldo) < 0) {
+                    this.devolverProductos();
+                    this.modificaFactura();
+                    this.guardarFactura("Credito");
+                    this.crearApartado(montodePago, fechaVencimiento);
+                    this.regresar();
+                } else {
+                    JOptionPane.showMessageDialog(
+                            null,
+                            "Debe de ingresar un pago inferior al saldo porfavor",
+                            "Alert!", JOptionPane.ERROR_MESSAGE);
+                    return;
+                }
+            }
+            return;
+
+        }
+          
+        if (mVentana.getTitle().equals("Credito")) {
+            NewJDialog_PagoApartado pago = new NewJDialog_PagoApartado();
+            pago.setVisible(true);
+            String fechaVencimiento = pago.getFecha();
+            BigDecimal montodePago = pago.getMontoDePago();
+            if (montodePago != null) {
+                BigDecimal saldo = this.corregirDato(this.jFormattedTextField_Total.getValue().toString());
+                if (montodePago.compareTo(saldo) < 0) {
+
+                    this.guardarFactura("Credito");
                     this.crearApartado(montodePago, fechaVencimiento);
                     this.clearAll();
 

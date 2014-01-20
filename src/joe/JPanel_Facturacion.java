@@ -73,7 +73,7 @@ public class JPanel_Facturacion extends javax.swing.JPanel {
         jFormattedTextField_saldoPendiente = new javax.swing.JFormattedTextField();
         jLabel9 = new javax.swing.JLabel();
         jFormattedTextField_totalFacturado = new javax.swing.JFormattedTextField();
-        jTabbedPane1 = new javax.swing.JTabbedPane();
+        jTabbedPane_Creditos = new javax.swing.JTabbedPane();
         jPanel_Facturas = new javax.swing.JPanel();
         jButton_Crear = new javax.swing.JButton();
         jButton_Modificar = new javax.swing.JButton();
@@ -95,6 +95,17 @@ public class JPanel_Facturacion extends javax.swing.JPanel {
         jButton_regresarFact = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
         jButton_verPagos = new javax.swing.JButton();
+        jPanel_Creditos = new javax.swing.JPanel();
+        jButton_CrearCredito = new javax.swing.JButton();
+        jButton_ModificarCredito = new javax.swing.JButton();
+        jButton_EliminaCredito = new javax.swing.JButton();
+        jButton_VerCredito = new javax.swing.JButton();
+        jButton_ImprimirCredito = new javax.swing.JButton();
+        jButton_regresarFact1 = new javax.swing.JButton();
+        jButton_AbonoCredito = new javax.swing.JButton();
+        jButton_verPagosCredito = new javax.swing.JButton();
+        jScrollPane4 = new javax.swing.JScrollPane();
+        jTable_Creditos = new javax.swing.JTable();
 
         jDialog_CrearPago.setMinimumSize(new java.awt.Dimension(424, 450));
         jDialog_CrearPago.setModal(true);
@@ -350,10 +361,10 @@ public class JPanel_Facturacion extends javax.swing.JPanel {
                 .addContainerGap(32, Short.MAX_VALUE))
         );
 
-        jTabbedPane1.setTabLayoutPolicy(javax.swing.JTabbedPane.SCROLL_TAB_LAYOUT);
-        jTabbedPane1.setTabPlacement(javax.swing.JTabbedPane.LEFT);
-        jTabbedPane1.setDebugGraphicsOptions(javax.swing.DebugGraphics.NONE_OPTION);
-        jTabbedPane1.setPreferredSize(new java.awt.Dimension(874, 418));
+        jTabbedPane_Creditos.setTabLayoutPolicy(javax.swing.JTabbedPane.SCROLL_TAB_LAYOUT);
+        jTabbedPane_Creditos.setTabPlacement(javax.swing.JTabbedPane.LEFT);
+        jTabbedPane_Creditos.setDebugGraphicsOptions(javax.swing.DebugGraphics.NONE_OPTION);
+        jTabbedPane_Creditos.setPreferredSize(new java.awt.Dimension(874, 418));
 
         jPanel_Facturas.setPreferredSize(new java.awt.Dimension(874, 600));
 
@@ -452,7 +463,7 @@ public class JPanel_Facturacion extends javax.swing.JPanel {
                 .addGap(58, 58, 58))
         );
 
-        jTabbedPane1.addTab("Facturacion", jPanel_Facturas);
+        jTabbedPane_Creditos.addTab("Facturacion", jPanel_Facturas);
 
         jButton_CrearApartado.setText("Crear");
         jButton_CrearApartado.addActionListener(new java.awt.event.ActionListener() {
@@ -544,7 +555,7 @@ public class JPanel_Facturacion extends javax.swing.JPanel {
                         .addComponent(jButton2)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(jButton_verPagos)))
-                .addContainerGap(82, Short.MAX_VALUE))
+                .addContainerGap(591, Short.MAX_VALUE))
         );
         jPanel_ApartadosLayout.setVerticalGroup(
             jPanel_ApartadosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -564,7 +575,119 @@ public class JPanel_Facturacion extends javax.swing.JPanel {
                 .addGap(58, 58, 58))
         );
 
-        jTabbedPane1.addTab("Apartados", jPanel_Apartados);
+        jTabbedPane_Creditos.addTab("Apartados", jPanel_Apartados);
+
+        jButton_CrearCredito.setText("Crear");
+        jButton_CrearCredito.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton_CrearCreditoActionPerformed(evt);
+            }
+        });
+
+        jButton_ModificarCredito.setText("Modificar");
+        jButton_ModificarCredito.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton_ModificarCreditoActionPerformed(evt);
+            }
+        });
+
+        jButton_EliminaCredito.setText("Eliminar");
+        jButton_EliminaCredito.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton_EliminaCreditoActionPerformed(evt);
+            }
+        });
+
+        jButton_VerCredito.setText("Ver");
+        jButton_VerCredito.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton_VerCreditoActionPerformed(evt);
+            }
+        });
+
+        jButton_ImprimirCredito.setText("Imprimir");
+
+        jButton_regresarFact1.setText("Regresar");
+        jButton_regresarFact1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton_regresarFact1ActionPerformed(evt);
+            }
+        });
+
+        jButton_AbonoCredito.setText("Abonos");
+        jButton_AbonoCredito.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton_AbonoCreditoActionPerformed(evt);
+            }
+        });
+
+        jButton_verPagosCredito.setText("verPagos");
+        jButton_verPagosCredito.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton_verPagosCreditoActionPerformed(evt);
+            }
+        });
+
+        jTable_Creditos.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {},
+                {},
+                {},
+                {}
+            },
+            new String [] {
+
+            }
+        ));
+        jScrollPane4.setViewportView(jTable_Creditos);
+
+        javax.swing.GroupLayout jPanel_CreditosLayout = new javax.swing.GroupLayout(jPanel_Creditos);
+        jPanel_Creditos.setLayout(jPanel_CreditosLayout);
+        jPanel_CreditosLayout.setHorizontalGroup(
+            jPanel_CreditosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel_CreditosLayout.createSequentialGroup()
+                .addGroup(jPanel_CreditosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel_CreditosLayout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 701, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel_CreditosLayout.createSequentialGroup()
+                        .addGap(71, 71, 71)
+                        .addComponent(jButton_CrearCredito)
+                        .addGap(18, 18, 18)
+                        .addComponent(jButton_ModificarCredito)
+                        .addGap(18, 18, 18)
+                        .addComponent(jButton_EliminaCredito)
+                        .addGap(18, 18, 18)
+                        .addComponent(jButton_VerCredito)
+                        .addGap(18, 18, 18)
+                        .addComponent(jButton_ImprimirCredito)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jButton_regresarFact1)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jButton_AbonoCredito)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jButton_verPagosCredito)))
+                .addContainerGap(591, Short.MAX_VALUE))
+        );
+        jPanel_CreditosLayout.setVerticalGroup(
+            jPanel_CreditosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel_CreditosLayout.createSequentialGroup()
+                .addGap(30, 30, 30)
+                .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 278, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(jPanel_CreditosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jButton_CrearCredito)
+                    .addComponent(jButton_ModificarCredito)
+                    .addComponent(jButton_EliminaCredito)
+                    .addComponent(jButton_VerCredito)
+                    .addComponent(jButton_ImprimirCredito)
+                    .addComponent(jButton_regresarFact1)
+                    .addComponent(jButton_AbonoCredito)
+                    .addComponent(jButton_verPagosCredito))
+                .addGap(58, 58, 58))
+        );
+
+        jTabbedPane_Creditos.addTab("Creditos", jPanel_Creditos);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -572,14 +695,14 @@ public class JPanel_Facturacion extends javax.swing.JPanel {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jTabbedPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 1383, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jTabbedPane_Creditos, javax.swing.GroupLayout.PREFERRED_SIZE, 1383, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jTabbedPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 400, Short.MAX_VALUE)
+                .addComponent(jTabbedPane_Creditos, javax.swing.GroupLayout.DEFAULT_SIZE, 400, Short.MAX_VALUE)
                 .addContainerGap())
         );
     }//GEN-END:initComponents
@@ -652,7 +775,7 @@ public class JPanel_Facturacion extends javax.swing.JPanel {
         panelCreaApt.setVisible(true);
         mVentana.revalidate();
         mVentana.repaint();
-        mVentana.setTitle("Apartados / Creditos");
+        mVentana.setTitle("Apartado");
         Direct_Control_BD AdminBD = Direct_Control_BD.getInstance();
         String factura = Integer.toString(AdminBD.ObtenerUltimoidFact() + 1);
         panelCreaApt.jLabel_NumerodeFact.setText(factura);
@@ -662,7 +785,7 @@ public class JPanel_Facturacion extends javax.swing.JPanel {
     }//GEN-LAST:event_jButton_CrearApartadoActionPerformed
 
     private void jButton_ModificarApartadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_ModificarApartadoActionPerformed
-        this.modificar(this.jTable_Apartados,"Modifica Apartados / Creditos");
+        this.modificar(this.jTable_Apartados,"Modifica Apartado");
     }//GEN-LAST:event_jButton_ModificarApartadoActionPerformed
 
     private void jButton_EliminaApartadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_EliminaApartadoActionPerformed
@@ -686,7 +809,9 @@ public class JPanel_Facturacion extends javax.swing.JPanel {
             this.jDialog_CrearPago.dispose();
             this.jFormattedTextField_Abono.setValue(new BigDecimal("0.00"));
             this.jFormattedTextField_Saldo.setValue(new BigDecimal("0.00"));
-            this.completarTablaApartados();}
+            this.completarTablaApartados();
+            this.completarTablaCreditos();
+        }
         else{
             JOptionPane.showMessageDialog(
                           null,
@@ -812,6 +937,91 @@ public class JPanel_Facturacion extends javax.swing.JPanel {
         this.jFormattedTextField_saldoPendiente.setValue(Saldo);
         this.jDialog_VerPagos.setVisible(true);
     }//GEN-LAST:event_jButton_verPagosActionPerformed
+
+    private void jButton_CrearCreditoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_CrearCreditoActionPerformed
+        VentanaDeInicio mVentana= VentanaDeInicio.getInstance();
+        JPanel_CrearFactura panelCreaApt= new JPanel_CrearFactura();
+        mVentana.add(panelCreaApt);
+        panelCreaApt.setSize(this.getSize());
+        panelCreaApt.setLocation(this.getLocation());
+        mVentana.remove(this);
+        panelCreaApt.setVisible(true);
+        mVentana.revalidate();
+        mVentana.repaint();
+        mVentana.setTitle("Credito");
+        Direct_Control_BD AdminBD = Direct_Control_BD.getInstance();
+        String factura = Integer.toString(AdminBD.ObtenerUltimoidFact() + 1);
+        panelCreaApt.jLabel_NumerodeFact.setText(factura);
+        panelCreaApt.personalizarTablaFactura();
+        panelCreaApt.agregarListenerRenders();
+        panelCreaApt.jFormattedTextField_Cliente.setText("Cliente Anonimo");
+    }//GEN-LAST:event_jButton_CrearCreditoActionPerformed
+
+    private void jButton_ModificarCreditoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_ModificarCreditoActionPerformed
+        this.modificar(this.jTable_Creditos,"Modifica Credito");
+    }//GEN-LAST:event_jButton_ModificarCreditoActionPerformed
+
+    private void jButton_EliminaCreditoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_EliminaCreditoActionPerformed
+        this.eliminar(this.jTable_Creditos);
+        this.completarTablaCreditos();
+    }//GEN-LAST:event_jButton_EliminaCreditoActionPerformed
+
+    private void jButton_VerCreditoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_VerCreditoActionPerformed
+        this.verFacturas(this.jTable_Creditos);
+    }//GEN-LAST:event_jButton_VerCreditoActionPerformed
+
+    private void jButton_regresarFact1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_regresarFact1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton_regresarFact1ActionPerformed
+
+    private void jButton_AbonoCreditoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_AbonoCreditoActionPerformed
+         Modelo_Facturacion model = (Modelo_Facturacion) this.jTable_Creditos.getModel();
+        BigDecimal saldo = this.StringtoBigDecimal
+        (this.jTable_Creditos.getValueAt
+        (this.jTable_Creditos.getSelectedRow(),1).toString());
+        if (saldo.compareTo(new BigDecimal("0.00")) > 0) {
+            DateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
+            Date date = new Date();
+            this.jLabel_fechaDePago.setText(dateFormat.format(date));
+            Direct_Control_BD AdminBD = Direct_Control_BD.getInstance();
+
+            int idFact = Integer.parseInt(model.getValueAt(this.jTable_Creditos.getSelectedRow(), 0).toString());
+            AdminBD.verInfoFacturaCredito(idFact);
+            this.jLabel_numFact.setText(Integer.toString(idFact));
+            Object[][] InfoApartados = AdminBD.getData();
+            BigDecimal Saldo = new BigDecimal(InfoApartados[0][0].toString());
+            BigDecimal TotalFacturado = new BigDecimal(InfoApartados[0][1].toString());
+            this.jFormattedTextField_Total.setValue(TotalFacturado);
+            this.jFormattedTextField_TotalPagado.setValue(Saldo);
+            this.jDialog_CrearPago.setVisible(true);
+        }
+        else{
+            JOptionPane.showMessageDialog(
+                        null,
+                        "Esta factura ya esta paga",
+                        "Alert!", JOptionPane.ERROR_MESSAGE);
+        
+        }
+    }//GEN-LAST:event_jButton_AbonoCreditoActionPerformed
+
+    private void jButton_verPagosCreditoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_verPagosCreditoActionPerformed
+        Direct_Control_BD AdminBD = Direct_Control_BD.getInstance();
+        Modelo_Facturacion model = (Modelo_Facturacion) this.jTable_Creditos.getModel();
+        int idFact = Integer.parseInt
+        (model.getValueAt(this.jTable_Creditos.getSelectedRow(),0).toString());
+        //Carga los datos a la tabla de ver pagos
+        this.cargarVerPagos(idFact);
+        // Obtiene la informacion de la factura, total facturado y 
+        // el saldo pendiente
+        AdminBD.verInfoFacturaCredito(idFact);
+        this.jLabel_numFactVerPagos.setText(Integer.toString(idFact));
+        Object[][] InfoApartados = AdminBD.getData();
+        BigDecimal Saldo = new BigDecimal(InfoApartados[0][0].toString());
+        BigDecimal TotalFacturado = new BigDecimal(InfoApartados[0][1].toString());
+        this.jFormattedTextField_totalFacturado.setValue(TotalFacturado);
+        this.jFormattedTextField_saldoPendiente.setValue(Saldo);
+        this.jDialog_VerPagos.setVisible(true);
+    }//GEN-LAST:event_jButton_verPagosCreditoActionPerformed
    
     
     /**
@@ -840,7 +1050,7 @@ public class JPanel_Facturacion extends javax.swing.JPanel {
         public void completarTablaApartados() {
          //Realiza la consulta para obtener los apartados
         Direct_Control_BD AdminBD = Direct_Control_BD.getInstance();
-        AdminBD.verApartadosyCreditos();
+        AdminBD.verApartados();
         String[] columnNames = AdminBD.getColumnNames();
         Object[][] data = AdminBD.getData();
         //Crea la tabla generica para Facturas
@@ -918,21 +1128,29 @@ public class JPanel_Facturacion extends javax.swing.JPanel {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     javax.swing.JButton jButton1;
     javax.swing.JButton jButton2;
+    javax.swing.JButton jButton_AbonoCredito;
     javax.swing.JButton jButton_AceptarPago;
     javax.swing.JButton jButton_CancelarPago;
     javax.swing.JButton jButton_CierreCaja;
     javax.swing.JButton jButton_Crear;
     javax.swing.JButton jButton_CrearApartado;
+    javax.swing.JButton jButton_CrearCredito;
     javax.swing.JButton jButton_EliminaApartado;
+    javax.swing.JButton jButton_EliminaCredito;
     javax.swing.JButton jButton_Eliminar;
     javax.swing.JButton jButton_Imprimir;
     javax.swing.JButton jButton_ImprimirApartado;
+    javax.swing.JButton jButton_ImprimirCredito;
     javax.swing.JButton jButton_Modificar;
     javax.swing.JButton jButton_ModificarApartado;
+    javax.swing.JButton jButton_ModificarCredito;
     javax.swing.JButton jButton_Ver;
     javax.swing.JButton jButton_VerApartado;
+    javax.swing.JButton jButton_VerCredito;
     javax.swing.JButton jButton_regresarFact;
+    javax.swing.JButton jButton_regresarFact1;
     javax.swing.JButton jButton_verPagos;
+    javax.swing.JButton jButton_verPagosCredito;
     javax.swing.JComboBox jComboBox_TipodePago;
     javax.swing.JDialog jDialog_CrearPago;
     javax.swing.JDialog jDialog_VerPagos;
@@ -955,13 +1173,16 @@ public class JPanel_Facturacion extends javax.swing.JPanel {
     javax.swing.JLabel jLabel_numFactVerPagos;
     javax.swing.JPanel jPanel2;
     javax.swing.JPanel jPanel_Apartados;
+    javax.swing.JPanel jPanel_Creditos;
     javax.swing.JPanel jPanel_Facturas;
     javax.swing.JScrollPane jScrollPane1;
     javax.swing.JScrollPane jScrollPane2;
     javax.swing.JScrollPane jScrollPane3;
+    javax.swing.JScrollPane jScrollPane4;
     javax.swing.JSeparator jSeparator1;
-    javax.swing.JTabbedPane jTabbedPane1;
+    javax.swing.JTabbedPane jTabbedPane_Creditos;
     javax.swing.JTable jTable_Apartados;
+    javax.swing.JTable jTable_Creditos;
     javax.swing.JTable jTable_Facturacion;
     javax.swing.JTable jTable_VerPagos;
     // End of variables declaration//GEN-END:variables
@@ -982,10 +1203,10 @@ public class JPanel_Facturacion extends javax.swing.JPanel {
     }
      /**
      * Este metodo se encarga de llenar la tabla en ver pagos para mostrar los
-     * pagos que se le han hecho a la factura selecionada en apartados
+     * pagos que se le han hecho a la factura selecionada en apartados o creditos
      */
     private void cargarVerPagos(int numFact) {
-          //Realiza la consulta para obtener los apartados
+          //Realiza la consulta para obtener los pagos de apartados o creditos
         Direct_Control_BD AdminBD = Direct_Control_BD.getInstance();
         AdminBD.verInfoFacturaApartadoPagos(numFact);
         String[] columnNames = AdminBD.getColumnNames();
@@ -1059,5 +1280,21 @@ public class JPanel_Facturacion extends javax.swing.JPanel {
                           "Alert!", JOptionPane.ERROR_MESSAGE);
         
         }
+    }
+
+    void completarTablaCreditos() {
+        //Realiza la consulta para obtener los creditos
+        Direct_Control_BD AdminBD = Direct_Control_BD.getInstance();
+        AdminBD.verCreditos();
+        String[] columnNames = AdminBD.getColumnNames();
+        Object[][] data = AdminBD.getData();
+        //Crea la tabla generica para Facturas
+        this.jTable_Creditos.setModel(new Modelo_Facturacion(columnNames,data));
+        //Alinea la primer columna de esta tabla hacia el centro
+        DefaultTableCellRenderer centerRenderer = new DefaultTableCellRenderer
+                ();
+        centerRenderer.setHorizontalAlignment(JLabel.CENTER);
+        this.jTable_Creditos.getColumnModel().getColumn(0).setCellRenderer
+                (centerRenderer);
     }
 }

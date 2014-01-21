@@ -157,10 +157,11 @@ public class EscribirExcel {
             hojaExcel.addCell(new Label(0, i, infoEmpresa[i], times10));
         }
         //escribir el rango de fechas
-        hojaExcel.addCell(new Label(2, 5, "Relación de Facturas "
-                + "desde " + fechaIni + " hasta " + fechaFin,
-                times11));
-
+        if (fechaIni != "") {
+            hojaExcel.addCell(new Label(2, 5, "Relación de Facturas "
+                    + "desde " + fechaIni + " hasta " + fechaFin,
+                    times11));
+        }
         //poner fecha actual
         DateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
         Date date = new Date();
@@ -318,6 +319,36 @@ public class EscribirExcel {
             hojaExc.addCell(new jxl.write.Formula(3, ultimaFila + 1,
                     "SUM(D11:D" + ultimaFila + ")", timesLines));
 
+        } else if (tipoDeReporte.startsWith("Lista De Precio")
+                || tipoDeReporte.startsWith("Lista De Costo")) {
+            hojaExc.addCell(new Label(1, ultimaFila + 1, "        Total:",
+                    timesLines));
+            hojaExc.addCell(new jxl.write.Formula(5, ultimaFila + 1,
+                    "SUM(F11:F" + ultimaFila + ")", timesLines));
+
+        } else if (tipoDeReporte.startsWith("Productos agotados")) {
+            hojaExc.addCell(new Label(0, ultimaFila + 1, "        Total:",
+                    timesLines));
+            hojaExc.addCell(new jxl.write.Formula(1, ultimaFila + 1,
+                    "COUNT(C11:C" + ultimaFila + ")", timesLines));
+        } else if (tipoDeReporte.startsWith("Productos En Inventario")) {
+            hojaExc.addCell(new Label(0, ultimaFila + 1, "        Total:",
+                    timesLines));
+            hojaExc.addCell(new jxl.write.Formula(1, ultimaFila + 1,
+                    "COUNT(C11:C" + ultimaFila + ")", timesLines));
+            hojaExc.addCell(new jxl.write.Formula(4, ultimaFila + 1,
+                    "SUM(E11:E" + ultimaFila + ")", timesLines));
+        } else if (tipoDeReporte.startsWith("Valor del Inventario")) {
+            hojaExc.addCell(new Label(1, ultimaFila + 1, "        Total:",
+                    timesLines));
+            hojaExc.addCell(new jxl.write.Formula(2, ultimaFila + 1,
+                    "COUNT(D11:D" + ultimaFila + ")", timesLines));
+            hojaExc.addCell(new jxl.write.Formula(3, ultimaFila + 1,
+                    "SUM(D11:D" + ultimaFila + ")", timesLines));
+            hojaExc.addCell(new jxl.write.Formula(4, ultimaFila + 1,
+                    "SUM(E11:E" + ultimaFila + ")", timesLines));
+            hojaExc.addCell(new jxl.write.Formula(5, ultimaFila + 1,
+                    "SUM(F11:F" + ultimaFila + ")", timesLines));
         } else {
             // En caso de Ventas Por Producto o por categoria de Producto
             hojaExc.addCell(new Label(0, ultimaFila + 1,
@@ -420,7 +451,7 @@ public class EscribirExcel {
         hojaExcel.addCell(new Label(2, ultimaFila + 3, "               "
                 + "              Sub Total:", times11));
         hojaExcel.addCell(new Number(3, ultimaFila + 3,
-                Double.parseDouble(infoFact[7].toString())/(1-(( Double.parseDouble(infoFact[5].toString()))/100)), times10));
+                Double.parseDouble(infoFact[7].toString()) / (1 - ((Double.parseDouble(infoFact[5].toString())) / 100)), times10));
 
         hojaExcel.addCell(new Label(2, ultimaFila + 4, "               "
                 + "         Descuento%:", times11));

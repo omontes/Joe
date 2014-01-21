@@ -31,10 +31,10 @@ public class Modelo_Facturacion extends AbstractTableModel {
     }
     @Override
     public String getColumnName(int col) {
-        if(col==0){
+        /**if(col==0){
             return "Numero de Fact";
         
-        }
+        }**/
             return columnNames[col];
         }
 

@@ -265,6 +265,7 @@ public class JPanel_VerFactura extends javax.swing.JPanel {
         panelFact.completarTablaFacturacion();
         panelFact.completarTablaApartados();
         panelFact.completarTablaCreditos();
+        panelFact.completarTablaDevoluciones();
         miVentana.revalidate();
         miVentana.repaint();
     }//GEN-LAST:event_jButton_RegresarFactActionPerformed
@@ -442,6 +443,81 @@ public class JPanel_VerFactura extends javax.swing.JPanel {
             
             
             }
+    }
+
+    void personalizarTablaVerDevoluciones() {
+        Direct_Control_BD AdminBD = Direct_Control_BD.getInstance();
+        String[] columnNames = {"Cod. Articulo","Articulo",
+            "Cantidad","Precio.Unit",
+            "Sub-Total"};
+        List<Object[]> data = new ArrayList<Object[]>();      
+        //Agrega el modelo a la factura
+        Modelo_verFacturas model=new Modelo_verFacturas(columnNames,data);
+        //Agrega 20 filas
+        model.addRow(20);
+        this.jTable_Factura.setModel(model);
+        //Gana la atencion en el panel
+        jTable_Factura.requestFocus();
+        jTable_Factura.changeSelection(0,0,false, false);
+        
+        //Costumisando Precio y Cantidad (Solo van a permitir numeros)
+        DefaultTableCellRenderer rightRenderer = new DefaultTableCellRenderer();
+        rightRenderer.setHorizontalAlignment( JLabel.RIGHT );
+              
+        this.jTable_Factura.getColumnModel().getColumn(2).
+                setCellRenderer(rightRenderer);
+        this.jTable_Factura.getColumnModel().getColumn(3).
+                setCellRenderer(new CurrencyRender());
+        this.jTable_Factura.getColumnModel().getColumn(4).
+                setCellRenderer(new CurrencyRender());
+        this.cargarInfoDev();
+        this.cargarProductosDevolucion();
+    }
+
+    private void cargarInfoDev() {
+        Direct_Control_BD AdminBD = Direct_Control_BD.getInstance();
+        AdminBD.verInfoDevolucion(Integer.parseInt(this.jLabel_NumerodeFact.getText()));
+        Object[][] dataInfoFactura = AdminBD.getData();
+        Object[] datosInfoFactura = dataInfoFactura[0];
+        String fecha = datosInfoFactura[0].toString();
+        String cliente = datosInfoFactura[1].toString();
+        String vendedor = datosInfoFactura[2].toString();
+        String tipopago = datosInfoFactura[3].toString();
+        String totalFact = datosInfoFactura[4].toString();
+        String detalle = datosInfoFactura[5].toString();
+        String descuento = datosInfoFactura[6].toString();
+        this.jFormattedTextField_Cliente.setText(cliente);
+        this.jLabel_Fecha.setText(fecha);
+        this.jTextField_Vendedor.setText(vendedor);
+        this.jTextField_tipopago.setText(tipopago);
+        this.jTextField_Detalle.setText(detalle);
+        BigDecimal totalFacturado = this.StringtoBigDecimal(totalFact);
+        BigDecimal descuentoD = this.StringtoBigDecimal(descuento);
+        BigDecimal subtotal = totalFacturado.divide(new BigDecimal("1.00").subtract(descuentoD.divide(new BigDecimal("100.00"))));
+        this.jFormattedTextField_DescuentoTotal.setValue(totalFacturado.subtract(subtotal));
+        this.jFormattedTextField_SubTotal.setValue(subtotal);
+        this.jFormattedTextField_Total.setValue(totalFacturado);
+        this.jFormattedTextField_desc.setValue(descuentoD);
+    }
+
+    private void cargarProductosDevolucion() {
+        Modelo_verFacturas model = (Modelo_verFacturas)jTable_Factura.getModel();
+        Direct_Control_BD AdminBD = Direct_Control_BD.getInstance();
+        AdminBD.verProductosPorDevolucion(Integer.parseInt(this.jLabel_NumerodeFact.getText()));
+        Object[][] ProductosdeFactura = AdminBD.getData();
+        int numFilas = ProductosdeFactura.length;
+        for (int row = 0; row < numFilas; row++) {
+            Object[] producto= ProductosdeFactura[row];
+            String codArticulo= producto[0].toString();
+            String nombre= producto[1].toString();
+            BigDecimal cantidad= this.StringtoBigDecimal(producto[2].toString());
+            BigDecimal precioVenta= this.StringtoBigDecimal(producto[3].toString());
+            model.setValueAt(codArticulo, row, 0);
+            model.setValueAt(nombre, row, 1);
+            model.setValueAt(cantidad, row, 2);
+            model.setValueAt(precioVenta, row, 3);
+            model.setValueAt(precioVenta.multiply(cantidad), row, 4);
+        }
     }
 
         

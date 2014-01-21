@@ -144,6 +144,7 @@ public class VentanaDeInicio extends javax.swing.JFrame {
         panelFacturacion.completarTablaFacturacion();
         panelFacturacion.completarTablaApartados();
         panelFacturacion.completarTablaCreditos();
+        panelFacturacion.completarTablaDevoluciones();
 
 
     }//GEN-LAST:event_jButton_FacturacionActionPerformed

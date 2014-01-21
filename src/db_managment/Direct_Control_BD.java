@@ -2196,4 +2196,174 @@ public class Direct_Control_BD {
         }
         
 }
+
+    public void verDevoluciones() {
+        try {
+            String verDevs = this.readSql("../Joe/src/sql_files/"
+                    + "VerDevoluciones.sql");
+            ResultSet rs = statement.executeQuery(verDevs);
+            this.setColumnNames(this.Get_Columnas(rs));
+            this.setData(this.ResultSet_Array(rs));
+        } catch (Exception e) {
+            System.out.println("Error al obtener las devoluciones");
+        }
+    }
+
+    public void crearDevolucion(int idFactura, BigDecimal descuento, String tipoPago, int idCliente, int idVendedor, String concepto, String detalle, BigDecimal totalFact, String estado) {
+        DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
+        Date date = new Date();
+        String fecha = dateFormat.format(date);
+
+        try {
+            String CrearDevolucion = this.readSql("../Joe/src/"
+                    + "sql_files/CrearDevolucion.sql");
+            PreparedStatement stm = conection.prepareStatement(CrearDevolucion, statement.RETURN_GENERATED_KEYS);
+            stm.setInt(1, idFactura);
+            stm.setDouble(2, descuento.doubleValue());
+            stm.setString(3, tipoPago);
+            stm.setInt(4, idCliente);
+            stm.setInt(5, idVendedor);
+            stm.setString(6, concepto);
+            stm.setString(7, detalle);
+            stm.setString(8, fecha);
+            stm.setDouble(9, totalFact.doubleValue());
+            stm.setString(10, estado);
+            stm.executeUpdate();
+
+        } catch (Exception e) {
+            System.out.println("error al crear la devolucion");
+
+        }
+    }
+    
+    public void insertarProductoCantidadDev(String idProducto, int idVersion, int cantidad, int idFactura, BigDecimal PrecioVenta, int idVersionFacturasProducto) {
+         try {
+            String insertarProductoCantDev = this.readSql("../Joe/src/sql_files/"
+                    + "insertarProductoCantidadDev.sql");
+            PreparedStatement stm = this.conection.prepareStatement(insertarProductoCantDev);
+            stm.setString(1, idProducto);
+            stm.setInt(2, idVersion);
+            stm.setInt(3, cantidad);
+            stm.setInt(4, idFactura);
+            stm.setDouble(5, PrecioVenta.doubleValue());
+            stm.setInt(6, idVersionFacturasProducto);
+            stm.executeUpdate();
+
+        } catch (Exception e) {
+            System.out.println("Error al insertar producto cantidad dev");
+        }
+    }
+     /**
+     * Esta consulta permite saber cual es el idversion de la devolucion que se
+     * esta creando en facturacion es decir la activa('A').
+     *
+     * @param idDev
+     * @return
+     */
+    public int verVersionDEDevolucionActiva(int idDev) {
+         try {
+            String verVersionDEDevNueva = this.readSql("../Joe"
+                    + "/src/sql_files/verVersionDevNueva.sql");
+            PreparedStatement stm
+                    = this.conection.prepareStatement(verVersionDEDevNueva);
+            stm.setInt(1, idDev);
+            ResultSet rs = stm.executeQuery();
+            int idversion = 0;
+            while (rs.next()) {
+                idversion = rs.getInt("idVersionDev");
+            }
+            return idversion;
+        } catch (Exception e) {
+            System.out.println("Error al obtener la version de la devolucion");
+            return 0;
+        }
+    }
+    /**
+     * Devuelve todos los productos de una devolucion determinada.
+     */
+    public void verProductosPorDevolucion(int NumFact) {
+        try {
+            String verProductosPorDevolucion = this.readSql("../Joe/src/"
+                    + "sql_files/verProductosPorDevolucion.sql");
+            PreparedStatement stm = this.conection.prepareStatement(verProductosPorDevolucion);
+            stm.setInt(1, NumFact);
+            ResultSet resultset = stm.executeQuery();
+            this.setColumnNames(this.Get_Columnas(resultset));
+            this.setData(this.ResultSet_Array(resultset));
+        } catch (Exception e) {
+            System.out.println(NumFact);
+            System.out.println("Error al obtener los productos de la devolucion");
+        }
+    }
+
+    public int ObtenerUltimoidDev() {
+        int result = 0;
+        try {
+            String ultimoIdDev = this.readSql("../Joe/"
+                    + "src/sql_files/ObtenerUltimoidDev.sql");
+            PreparedStatement stm = this.conection.prepareStatement(ultimoIdDev);
+            ResultSet resultset = stm.executeQuery();
+            //Imprime el resultado obtenido del valor del inventario
+            while (resultset.next()) {
+                result = resultset.getInt(1);
+
+            }
+
+        } catch (Exception e) {
+            System.out.println("Error al obtener el ultimo idDevolucion");
+        }
+        return result;
+
+    }
+
+    public void verInfoDevolucion(int NumDev) {
+         try {
+            String verInfoDev = this.readSql("../Joe/src/"
+                    + "sql_files/cargarDevolucion.sql");
+            PreparedStatement stm = this.conection.prepareStatement(verInfoDev);
+            stm.setInt(1, NumDev);
+            ResultSet resultset = stm.executeQuery();
+            this.setColumnNames(this.Get_Columnas(resultset));
+            this.setData(this.ResultSet_Array(resultset));
+        } catch (Exception e) {
+            System.out.println(NumDev);
+            System.out.println("Error al obtener la informacion de la devolucion");
+        }
+    }
+    /**
+     * Elimina la devolucion que se modifico(la vuelve inactiva para poder luego
+     * ver cuales fueron las modificaciones que se le hicieron a la devolucion)
+     *
+     * @param NumDev
+     */
+    public void eliminarDevolucionPorModificacion(int NumDev) {
+         try {
+            String eliminarDevPorModf = this.readSql("../Joe/src/sql_files/"
+                    + "eliminarDevolucionPorModf.sql");
+            PreparedStatement stm = this.conection.prepareStatement(eliminarDevPorModf);
+            stm.setInt(1, NumDev);
+            stm.executeUpdate();
+        } catch (Exception e) {
+            System.out.println("Error al eliminar la dev por modificacion");
+        }
+    }
+     /**
+     * 'Elimina'(Cambia de estado a eliminada) el numero de devolucion seleccionado
+     *
+     * @param NumDev
+     */
+    public void eliminarDevolucion(int NumDev, int idVersionFact) {
+        try {
+            String eliminar = this.readSql("../Joe/src/sql_files/"
+                    + "eliminarDevolucion.sql");
+            PreparedStatement stm = this.conection.prepareStatement(eliminar);
+            stm.setInt(1, NumDev);
+            stm.setInt(2, idVersionFact);
+            stm.executeUpdate();
+        } catch (Exception e) {
+            System.out.println("Error al eliminar la factura");
+        }
+    }
+    
+    
 }

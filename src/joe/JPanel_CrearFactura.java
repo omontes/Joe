@@ -1204,6 +1204,7 @@ public class JPanel_CrearFactura extends javax.swing.JPanel {
         panelFact.completarTablaFacturacion();
         panelFact.completarTablaApartados();
         panelFact.completarTablaCreditos();
+        panelFact.completarTablaDevoluciones();
         miVentana.revalidate();
         miVentana.repaint();
     }
@@ -1556,7 +1557,21 @@ public class JPanel_CrearFactura extends javax.swing.JPanel {
             return;
         }
         
-        
+         if (mVentana.getTitle().equals("Devolucion")) {
+            this.guardarDev();
+            this.devolverProductos();
+            this.regresar();
+            return;
+
+        }
+        if (mVentana.getTitle().equals("Modifica Devolucion")) {
+            this.devolverProductos();
+            this.modificaDevolucion();
+            this.guardarDev();
+            this.regresar();
+            return;
+
+        }
         
         this.guardarFactura("Cancelada");
         this.clearAll();
@@ -2421,11 +2436,11 @@ public class JPanel_CrearFactura extends javax.swing.JPanel {
 
     private void devolverProductos() {
         Direct_Control_BD AdminBD = Direct_Control_BD.getInstance();
-        AdminBD.verProductosPorFactura(Integer.parseInt(this.jLabel_NumerodeFact.getText()));
-        Object[][] ProductosdeFactura = AdminBD.getData();
-        int numFilas = ProductosdeFactura.length;
+        AdminBD.verProductosPorDevolucion(Integer.parseInt(this.jLabel_NumerodeFact.getText()));
+        Object[][] ProductosdeDevolucion = AdminBD.getData();
+        int numFilas = ProductosdeDevolucion.length;
         for (int row = 0; row < numFilas; row++) {
-            Object[] producto= ProductosdeFactura[row];
+            Object[] producto= ProductosdeDevolucion[row];
             String codArticulo= producto[0].toString();
             int cantidadTotal = AdminBD.verCantidad(codArticulo);
             int cantidad= Integer.parseInt(producto[2].toString());
@@ -2457,6 +2472,141 @@ public class JPanel_CrearFactura extends javax.swing.JPanel {
         BigDecimal totalFact = this.corregirDato(totalFacturaSinCorregir);
         AdminBD.insertarFacturasPendientes(idFactura, totalFact, Fecha, idVersionFacturasProducto);
         AdminBD.insertarPago(montoDePago, idFactura, idVersionFacturasProducto);
+    }
+
+    private void guardarDev() {
+         if (jTable_Factura.isEditing()) {
+            jTable_Factura.getCellEditor().cancelCellEditing();
+            
+        }
+        if(jTable_Factura.getValueAt(0,0).equals("")){
+            JOptionPane.showMessageDialog(
+                          null,
+                          "No se puede guardar facturas"
+                                  + " si no tienen ningun producto",                           
+                          "Alert!", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+        this.crearDev();   
+        this.guardarProductosDev();
+    }
+
+
+    private void crearDev() {
+        Direct_Control_BD AdminBD = Direct_Control_BD.getInstance();
+        String Cliente= this.jFormattedTextField_Cliente.getText();
+        int idCliente = AdminBD.veridCliente(Cliente);
+        int idFactura = Integer.parseInt(this.jLabel_NumerodeFact.getText());
+        String vendedor = this.jComboBox_Vendedores.getSelectedItem().toString();
+        int idVendedor= AdminBD.veridVendedor(vendedor);
+        String tipoPago = this.jComboBox_CategoriaTipoPago.getSelectedItem().toString();
+        String detalle= this.jTextField_Detalle.getText();
+        String totalFacturaSinCorregir = this.jFormattedTextField_Total.getText();
+        BigDecimal totalFact = this.corregirDato(totalFacturaSinCorregir);
+        String DescuentoSinCorregir = this.jFormattedTextField_desc.getText();
+        DecimalFormat decimaldesc = (DecimalFormat) NumberFormat.getInstance();
+        decimaldesc.setParseBigDecimal(true);
+        BigDecimal descuento = null;
+        try {
+            descuento = (BigDecimal) decimaldesc.parseObject(DescuentoSinCorregir);
+        } catch (ParseException ex) {
+            Logger.getLogger(MyTableModelListener_FACT.class.getName()).
+                    log(Level.SEVERE, null, ex);
+        }
+        //System.out.println(idFactura+" "+descuento+" "+tipoPago+" "+idCliente+" "+idVendedor+" "+detalle+" "+totalFact+" ");
+        AdminBD.crearDevolucion(idFactura,descuento,tipoPago,idCliente,idVendedor,
+                "Devolucion",detalle,totalFact,"A");
+        }
+    
+
+    private void guardarProductosDev() {
+        Direct_Control_BD AdminBD = Direct_Control_BD.getInstance();
+        MyTableModel_FACT model = (MyTableModel_FACT) jTable_Factura.getModel();
+        String[][] infoTablaFact = this.obtenerInfoTablaFact();
+        int rows = infoTablaFact.length;
+        int idFactura = Integer.parseInt(this.jLabel_NumerodeFact.getText());
+        //Recorre la informacion de la tabla para obtener los datos para 
+        //insertar los productos en la factura
+        for (int i = 0; i < rows; i++) {
+            //Si la fila esta vacia
+            if (model.getValueAt(i, 0) != "") {
+                String idProducto = infoTablaFact[i][0];
+                int idVersion = AdminBD.veridVersionActivaProductoPorCodigo
+        (idProducto);
+                String CantidadSinCorregir = infoTablaFact[i][2].toString();
+                DecimalFormat decimalfC = (DecimalFormat) 
+                        NumberFormat.getInstance();
+                decimalfC.setParseBigDecimal(true);
+                BigDecimal cantidadB = null;
+                try {
+                    cantidadB = (BigDecimal) decimalfC.parseObject
+        (CantidadSinCorregir);
+                } catch (ParseException ex) {
+                    Logger.getLogger(MyTableModelListener_FACT.class.
+                            getName()).log(Level.SEVERE, null, ex);
+                }
+                int cantidad = cantidadB.intValue();
+                String precioSinCorregir = infoTablaFact[i][3];
+                BigDecimal PrecioVenta = this.corregirDato(precioSinCorregir);
+                int idVersionFacturasProducto =AdminBD.verVersionDEDevolucionActiva(idFactura);
+                //System.out.println(idProducto+" "+idVersion+" "+cantidad+" "+idFactura+" "+PrecioVenta+" "+idVersionFacturasProducto);
+                AdminBD.insertarProductoCantidadDev(idProducto, idVersion,
+                        cantidad, idFactura, PrecioVenta,idVersionFacturasProducto);
+
+            }
+        }
+    }
+    
+     public void cargarInfoDev() {
+        Direct_Control_BD AdminBD = Direct_Control_BD.getInstance();
+        AdminBD.verInfoDevolucion(Integer.parseInt(this.jLabel_NumerodeFact.getText()));
+        Object[][] dataInfoFactura = AdminBD.getData();
+        Object[] datosInfoFactura = dataInfoFactura[0];
+        String fecha = datosInfoFactura[0].toString();
+        String cliente = datosInfoFactura[1].toString();
+        String vendedor = datosInfoFactura[2].toString();
+        String tipopago = datosInfoFactura[3].toString();
+        String totalFact = datosInfoFactura[4].toString();
+        String detalle = datosInfoFactura[5].toString();
+        String descuento = datosInfoFactura[6].toString();
+        this.jFormattedTextField_Cliente.setText(cliente);
+        this.jLabel_Fecha.setText(fecha);
+        this.jComboBox_Vendedores.setSelectedItem(vendedor);
+        this.jComboBox_CategoriaTipoPago.setSelectedItem(tipopago);
+        this.jTextField_Detalle.setText(detalle);
+        BigDecimal totalFacturado = this.StringtoBigDecimal(totalFact);
+        BigDecimal descuentoD = this.StringtoBigDecimal(descuento);
+        BigDecimal subtotal = totalFacturado.divide(new BigDecimal("1.00").subtract(descuentoD.divide(new BigDecimal("100.00"))));
+        this.jFormattedTextField_DescuentoTotal.setValue(totalFacturado.subtract(subtotal));
+        this.jFormattedTextField_SubTotal.setValue(subtotal);
+        this.jFormattedTextField_Total.setValue(totalFacturado);
+        this.jFormattedTextField_desc.setValue(descuentoD);
+    }
+
+    public void cargarProductosDevolucion() {
+        MyTableModel_FACT model = (MyTableModel_FACT)jTable_Factura.getModel();
+        Direct_Control_BD AdminBD = Direct_Control_BD.getInstance();
+        AdminBD.verProductosPorDevolucion(Integer.parseInt(this.jLabel_NumerodeFact.getText()));
+        Object[][] ProductosdeFactura = AdminBD.getData();
+        int numFilas = ProductosdeFactura.length;
+        for (int row = 0; row < numFilas; row++) {
+            Object[] producto= ProductosdeFactura[row];
+            String codArticulo= producto[0].toString();
+            String nombre= producto[1].toString();
+            BigDecimal cantidad= this.StringtoBigDecimal(producto[2].toString());
+            BigDecimal precioVenta= this.StringtoBigDecimal(producto[3].toString());
+            model.setValueAt(codArticulo, row, 0);
+            model.setValueAt(nombre, row, 1);
+            model.setValueAt(cantidad, row, 2);
+            model.setValueAt(precioVenta, row, 3);
+            model.setValueAt(precioVenta.multiply(cantidad), row, 4);
+        }
+}
+
+    private void modificaDevolucion() {
+        //Hace la devolucion vieja en estado inhabilitada
+        Direct_Control_BD AdminBD = Direct_Control_BD.getInstance();
+        AdminBD.eliminarDevolucionPorModificacion(Integer.parseInt(this.jLabel_NumerodeFact.getText()));
     }
 }
     

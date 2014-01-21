@@ -143,6 +143,8 @@ public class VentanaDeInicio extends javax.swing.JFrame {
         mVentana.setTitle("Facturacion");
         panelFacturacion.completarTablaFacturacion();
         panelFacturacion.completarTablaApartados();
+        panelFacturacion.completarTablaCreditos();
+        panelFacturacion.completarTablaDevoluciones();
 
 
     }//GEN-LAST:event_jButton_FacturacionActionPerformed

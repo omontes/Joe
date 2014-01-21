@@ -947,36 +947,7 @@ public class JPanel_CrearFactura extends javax.swing.JPanel {
                             .addComponent(jLabel_NumFacTitle)
                             .addComponent(jLabel_NumerodeFact))))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jTextField_Detalle, javax.swing.GroupLayout.PREFERRED_SIZE, 164, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel11))
-                        .addGap(28, 28, 28)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jButton_guardaImprime, javax.swing.GroupLayout.DEFAULT_SIZE, 130, Short.MAX_VALUE)
-                            .addComponent(jButton_RegresarFact, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jButton_aceptarFactura, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(36, 36, 36)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addGap(10, 10, 10)
-                                        .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(jFormattedTextField_desc, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                        .addComponent(jLabel8))
-                                    .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(jFormattedTextField_Total, javax.swing.GroupLayout.DEFAULT_SIZE, 231, Short.MAX_VALUE)
-                                    .addComponent(jFormattedTextField_DescuentoTotal)
-                                    .addComponent(jFormattedTextField_SubTotal)))
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(28, 28, 28)
-                                .addComponent(jLabel12, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jLabel10)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -994,9 +965,40 @@ public class JPanel_CrearFactura extends javax.swing.JPanel {
                         .addGap(10, 10, 10)
                         .addComponent(jLabel_FechaFact, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jLabel_Fecha, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 726, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(53, Short.MAX_VALUE))
+                        .addComponent(jLabel_Fecha, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                        .addComponent(jFormattedTextField_SubTotal, javax.swing.GroupLayout.PREFERRED_SIZE, 252, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jTextField_Detalle, javax.swing.GroupLayout.PREFERRED_SIZE, 164, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jLabel11))
+                                .addGap(28, 28, 28)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(jButton_guardaImprime, javax.swing.GroupLayout.DEFAULT_SIZE, 130, Short.MAX_VALUE)
+                                    .addComponent(jButton_RegresarFact, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(jButton_aceptarFactura, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addGap(28, 28, 28)
+                                        .addComponent(jLabel12, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addGap(36, 36, 36)
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addGroup(layout.createSequentialGroup()
+                                                .addGap(10, 10, 10)
+                                                .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                                .addComponent(jFormattedTextField_desc, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                                .addComponent(jLabel8))
+                                            .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(jFormattedTextField_Total)
+                                            .addComponent(jFormattedTextField_DescuentoTotal)))))
+                            .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 746, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addContainerGap(61, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -1201,6 +1203,8 @@ public class JPanel_CrearFactura extends javax.swing.JPanel {
         panelFact.setVisible(true);
         panelFact.completarTablaFacturacion();
         panelFact.completarTablaApartados();
+        panelFact.completarTablaCreditos();
+        panelFact.completarTablaDevoluciones();
         miVentana.revalidate();
         miVentana.repaint();
     }
@@ -1442,6 +1446,10 @@ public class JPanel_CrearFactura extends javax.swing.JPanel {
             }
         }
     }
+    /**
+     * Se encarga de guardar las facturas de acuerdo a la accion es decir
+     * si es un apartado, una factura o un credito.
+     */
     public void guardarFactura() {
         VentanaDeInicio mVentana = VentanaDeInicio.getInstance();
         if (mVentana.getTitle().equals("Modifica Factura")) {
@@ -1452,20 +1460,119 @@ public class JPanel_CrearFactura extends javax.swing.JPanel {
             return;
 
         }
-        if (mVentana.getTitle().equals("Apartados / Creditos")) {
+        if (mVentana.getTitle().equals("Modifica Apartado")) {
             NewJDialog_PagoApartado pago = new NewJDialog_PagoApartado();
             pago.setVisible(true);
             String fechaVencimiento = pago.getFecha();
             BigDecimal montodePago = pago.getMontoDePago();
             if (montodePago != null) {
+                BigDecimal saldo = this.corregirDato(this.jFormattedTextField_Total.getValue().toString());
+                if (montodePago.compareTo(saldo) < 0) {
+                    this.devolverProductos();
+                    this.modificaFactura();
+                    this.guardarFactura("Apartado");
+                    this.crearApartado(montodePago, fechaVencimiento);
+                    this.regresar();
+                } else {
+                    JOptionPane.showMessageDialog(
+                            null,
+                            "Debe de ingresar un pago inferior al saldo porfavor",
+                            "Alert!", JOptionPane.ERROR_MESSAGE);
+                    return;
+                }
+            }
+            return;
 
-                this.guardarFactura("Apartado");
-                this.crearApartado(montodePago, fechaVencimiento);
-                this.clearAll();
+        }
+        if (mVentana.getTitle().equals("Apartado")) {
+            NewJDialog_PagoApartado pago = new NewJDialog_PagoApartado();
+            pago.setVisible(true);
+            String fechaVencimiento = pago.getFecha();
+            BigDecimal montodePago = pago.getMontoDePago();
+            if (montodePago != null) {
+                BigDecimal saldo = this.corregirDato(this.jFormattedTextField_Total.getValue().toString());
+                if (montodePago.compareTo(saldo) < 0) {
 
+                    this.guardarFactura("Apartado");
+                    this.crearApartado(montodePago, fechaVencimiento);
+                    this.clearAll();
+
+                } else {
+                    JOptionPane.showMessageDialog(
+                            null,
+                            "Debe de ingresar un pago inferior al saldo porfavor",
+                            "Alert!", JOptionPane.ERROR_MESSAGE);
+                    return;
+                }
             }
             return;
         }
+        
+        if (mVentana.getTitle().equals("Modifica Credito")) {
+            NewJDialog_PagoApartado pago = new NewJDialog_PagoApartado();
+            pago.setVisible(true);
+            String fechaVencimiento = pago.getFecha();
+            BigDecimal montodePago = pago.getMontoDePago();
+            if (montodePago != null) {
+                BigDecimal saldo = this.corregirDato(this.jFormattedTextField_Total.getValue().toString());
+                if (montodePago.compareTo(saldo) < 0) {
+                    this.devolverProductos();
+                    this.modificaFactura();
+                    this.guardarFactura("Credito");
+                    this.crearApartado(montodePago, fechaVencimiento);
+                    this.regresar();
+                } else {
+                    JOptionPane.showMessageDialog(
+                            null,
+                            "Debe de ingresar un pago inferior al saldo porfavor",
+                            "Alert!", JOptionPane.ERROR_MESSAGE);
+                    return;
+                }
+            }
+            return;
+
+        }
+          
+        if (mVentana.getTitle().equals("Credito")) {
+            NewJDialog_PagoApartado pago = new NewJDialog_PagoApartado();
+            pago.setVisible(true);
+            String fechaVencimiento = pago.getFecha();
+            BigDecimal montodePago = pago.getMontoDePago();
+            if (montodePago != null) {
+                BigDecimal saldo = this.corregirDato(this.jFormattedTextField_Total.getValue().toString());
+                if (montodePago.compareTo(saldo) < 0) {
+
+                    this.guardarFactura("Credito");
+                    this.crearApartado(montodePago, fechaVencimiento);
+                    this.clearAll();
+
+                } else {
+                    JOptionPane.showMessageDialog(
+                            null,
+                            "Debe de ingresar un pago inferior al saldo porfavor",
+                            "Alert!", JOptionPane.ERROR_MESSAGE);
+                    return;
+                }
+            }
+            return;
+        }
+        
+         if (mVentana.getTitle().equals("Devolucion")) {
+            this.guardarDev();
+            this.devolverProductos();
+            this.regresar();
+            return;
+
+        }
+        if (mVentana.getTitle().equals("Modifica Devolucion")) {
+            this.devolverProductos();
+            this.modificaDevolucion();
+            this.guardarDev();
+            this.regresar();
+            return;
+
+        }
+        
         this.guardarFactura("Cancelada");
         this.clearAll();
     }
@@ -1870,7 +1977,7 @@ public class JPanel_CrearFactura extends javax.swing.JPanel {
      * Este metodo permite personalizar la tabla de crear Factura
      */
     public void personalizarTablaFactura() {
-        DateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
+        DateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
         Date date = new Date();
         this.jLabel_Fecha.setText(dateFormat.format(date));
        Direct_Control_BD AdminBD = Direct_Control_BD.getInstance();
@@ -2329,11 +2436,11 @@ public class JPanel_CrearFactura extends javax.swing.JPanel {
 
     private void devolverProductos() {
         Direct_Control_BD AdminBD = Direct_Control_BD.getInstance();
-        AdminBD.verProductosPorFactura(Integer.parseInt(this.jLabel_NumerodeFact.getText()));
-        Object[][] ProductosdeFactura = AdminBD.getData();
-        int numFilas = ProductosdeFactura.length;
+        AdminBD.verProductosPorDevolucion(Integer.parseInt(this.jLabel_NumerodeFact.getText()));
+        Object[][] ProductosdeDevolucion = AdminBD.getData();
+        int numFilas = ProductosdeDevolucion.length;
         for (int row = 0; row < numFilas; row++) {
-            Object[] producto= ProductosdeFactura[row];
+            Object[] producto= ProductosdeDevolucion[row];
             String codArticulo= producto[0].toString();
             int cantidadTotal = AdminBD.verCantidad(codArticulo);
             int cantidad= Integer.parseInt(producto[2].toString());
@@ -2364,15 +2471,142 @@ public class JPanel_CrearFactura extends javax.swing.JPanel {
         String totalFacturaSinCorregir = this.jFormattedTextField_Total.getText();
         BigDecimal totalFact = this.corregirDato(totalFacturaSinCorregir);
         AdminBD.insertarFacturasPendientes(idFactura, totalFact, Fecha, idVersionFacturasProducto);
-        String fechaAcorregir = this.jLabel_Fecha.getText();
-        Date date = null;
-        try {
-            date = new SimpleDateFormat("dd/MM/yyyy").parse(fechaAcorregir);
-        } catch (ParseException ex) {
-            Logger.getLogger(JPanel_CrearFactura.class.getName()).log(Level.SEVERE, null, ex);
+        AdminBD.insertarPago(montoDePago, idFactura, idVersionFacturasProducto);
+    }
+
+    private void guardarDev() {
+         if (jTable_Factura.isEditing()) {
+            jTable_Factura.getCellEditor().cancelCellEditing();
+            
         }
-        String fechaCorregida = new SimpleDateFormat("yyyy/MM/dd").format(date);
-        AdminBD.insertarPago(fechaCorregida, montoDePago, idFactura, idVersionFacturasProducto);
+        if(jTable_Factura.getValueAt(0,0).equals("")){
+            JOptionPane.showMessageDialog(
+                          null,
+                          "No se puede guardar facturas"
+                                  + " si no tienen ningun producto",                           
+                          "Alert!", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+        this.crearDev();   
+        this.guardarProductosDev();
+    }
+
+
+    private void crearDev() {
+        Direct_Control_BD AdminBD = Direct_Control_BD.getInstance();
+        String Cliente= this.jFormattedTextField_Cliente.getText();
+        int idCliente = AdminBD.veridCliente(Cliente);
+        int idFactura = Integer.parseInt(this.jLabel_NumerodeFact.getText());
+        String vendedor = this.jComboBox_Vendedores.getSelectedItem().toString();
+        int idVendedor= AdminBD.veridVendedor(vendedor);
+        String tipoPago = this.jComboBox_CategoriaTipoPago.getSelectedItem().toString();
+        String detalle= this.jTextField_Detalle.getText();
+        String totalFacturaSinCorregir = this.jFormattedTextField_Total.getText();
+        BigDecimal totalFact = this.corregirDato(totalFacturaSinCorregir);
+        String DescuentoSinCorregir = this.jFormattedTextField_desc.getText();
+        DecimalFormat decimaldesc = (DecimalFormat) NumberFormat.getInstance();
+        decimaldesc.setParseBigDecimal(true);
+        BigDecimal descuento = null;
+        try {
+            descuento = (BigDecimal) decimaldesc.parseObject(DescuentoSinCorregir);
+        } catch (ParseException ex) {
+            Logger.getLogger(MyTableModelListener_FACT.class.getName()).
+                    log(Level.SEVERE, null, ex);
+        }
+        //System.out.println(idFactura+" "+descuento+" "+tipoPago+" "+idCliente+" "+idVendedor+" "+detalle+" "+totalFact+" ");
+        AdminBD.crearDevolucion(idFactura,descuento,tipoPago,idCliente,idVendedor,
+                "Devolucion",detalle,totalFact,"A");
+        }
+    
+
+    private void guardarProductosDev() {
+        Direct_Control_BD AdminBD = Direct_Control_BD.getInstance();
+        MyTableModel_FACT model = (MyTableModel_FACT) jTable_Factura.getModel();
+        String[][] infoTablaFact = this.obtenerInfoTablaFact();
+        int rows = infoTablaFact.length;
+        int idFactura = Integer.parseInt(this.jLabel_NumerodeFact.getText());
+        //Recorre la informacion de la tabla para obtener los datos para 
+        //insertar los productos en la factura
+        for (int i = 0; i < rows; i++) {
+            //Si la fila esta vacia
+            if (model.getValueAt(i, 0) != "") {
+                String idProducto = infoTablaFact[i][0];
+                int idVersion = AdminBD.veridVersionActivaProductoPorCodigo
+        (idProducto);
+                String CantidadSinCorregir = infoTablaFact[i][2].toString();
+                DecimalFormat decimalfC = (DecimalFormat) 
+                        NumberFormat.getInstance();
+                decimalfC.setParseBigDecimal(true);
+                BigDecimal cantidadB = null;
+                try {
+                    cantidadB = (BigDecimal) decimalfC.parseObject
+        (CantidadSinCorregir);
+                } catch (ParseException ex) {
+                    Logger.getLogger(MyTableModelListener_FACT.class.
+                            getName()).log(Level.SEVERE, null, ex);
+                }
+                int cantidad = cantidadB.intValue();
+                String precioSinCorregir = infoTablaFact[i][3];
+                BigDecimal PrecioVenta = this.corregirDato(precioSinCorregir);
+                int idVersionFacturasProducto =AdminBD.verVersionDEDevolucionActiva(idFactura);
+                //System.out.println(idProducto+" "+idVersion+" "+cantidad+" "+idFactura+" "+PrecioVenta+" "+idVersionFacturasProducto);
+                AdminBD.insertarProductoCantidadDev(idProducto, idVersion,
+                        cantidad, idFactura, PrecioVenta,idVersionFacturasProducto);
+
+            }
+        }
+    }
+    
+     public void cargarInfoDev() {
+        Direct_Control_BD AdminBD = Direct_Control_BD.getInstance();
+        AdminBD.verInfoDevolucion(Integer.parseInt(this.jLabel_NumerodeFact.getText()));
+        Object[][] dataInfoFactura = AdminBD.getData();
+        Object[] datosInfoFactura = dataInfoFactura[0];
+        String fecha = datosInfoFactura[0].toString();
+        String cliente = datosInfoFactura[1].toString();
+        String vendedor = datosInfoFactura[2].toString();
+        String tipopago = datosInfoFactura[3].toString();
+        String totalFact = datosInfoFactura[4].toString();
+        String detalle = datosInfoFactura[5].toString();
+        String descuento = datosInfoFactura[6].toString();
+        this.jFormattedTextField_Cliente.setText(cliente);
+        this.jLabel_Fecha.setText(fecha);
+        this.jComboBox_Vendedores.setSelectedItem(vendedor);
+        this.jComboBox_CategoriaTipoPago.setSelectedItem(tipopago);
+        this.jTextField_Detalle.setText(detalle);
+        BigDecimal totalFacturado = this.StringtoBigDecimal(totalFact);
+        BigDecimal descuentoD = this.StringtoBigDecimal(descuento);
+        BigDecimal subtotal = totalFacturado.divide(new BigDecimal("1.00").subtract(descuentoD.divide(new BigDecimal("100.00"))));
+        this.jFormattedTextField_DescuentoTotal.setValue(totalFacturado.subtract(subtotal));
+        this.jFormattedTextField_SubTotal.setValue(subtotal);
+        this.jFormattedTextField_Total.setValue(totalFacturado);
+        this.jFormattedTextField_desc.setValue(descuentoD);
+    }
+
+    public void cargarProductosDevolucion() {
+        MyTableModel_FACT model = (MyTableModel_FACT)jTable_Factura.getModel();
+        Direct_Control_BD AdminBD = Direct_Control_BD.getInstance();
+        AdminBD.verProductosPorDevolucion(Integer.parseInt(this.jLabel_NumerodeFact.getText()));
+        Object[][] ProductosdeFactura = AdminBD.getData();
+        int numFilas = ProductosdeFactura.length;
+        for (int row = 0; row < numFilas; row++) {
+            Object[] producto= ProductosdeFactura[row];
+            String codArticulo= producto[0].toString();
+            String nombre= producto[1].toString();
+            BigDecimal cantidad= this.StringtoBigDecimal(producto[2].toString());
+            BigDecimal precioVenta= this.StringtoBigDecimal(producto[3].toString());
+            model.setValueAt(codArticulo, row, 0);
+            model.setValueAt(nombre, row, 1);
+            model.setValueAt(cantidad, row, 2);
+            model.setValueAt(precioVenta, row, 3);
+            model.setValueAt(precioVenta.multiply(cantidad), row, 4);
+        }
+}
+
+    private void modificaDevolucion() {
+        //Hace la devolucion vieja en estado inhabilitada
+        Direct_Control_BD AdminBD = Direct_Control_BD.getInstance();
+        AdminBD.eliminarDevolucionPorModificacion(Integer.parseInt(this.jLabel_NumerodeFact.getText()));
     }
 }
     

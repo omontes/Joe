@@ -1,3 +1,3 @@
 update factura 
-set Estado='I',Concepto='Eliminada' 
+set Estado='I' 
 where idFactura=? AND idVersionFactura=?;

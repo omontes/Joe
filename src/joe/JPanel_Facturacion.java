@@ -1501,7 +1501,7 @@ public class JPanel_Facturacion extends javax.swing.JPanel {
         Modelo_Facturacion model = (Modelo_Facturacion) table.getModel();
         String factura = model.getValueAt(row, 0).toString();
         panelCreaFact.jLabel_NumerodeFact.setText(factura);
-        panelCreaFact.cargarInfoFact();
+        panelCreaFact.cargarInfoDev();
         panelCreaFact.cargarProductosDevolucion();
         panelCreaFact.agregarListenerRenders();
         }

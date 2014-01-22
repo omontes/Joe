@@ -6,6 +6,7 @@
 
 package joe;
 
+import java.text.DecimalFormat;
 import java.text.NumberFormat;
 import java.util.Locale;
 import javax.swing.JLabel;
@@ -27,7 +28,9 @@ public class CurrencyRender extends DefaultTableCellRenderer {
         if ((value != null) && (value instanceof Number)) {
             Number numberValue = (Number) value;
             Locale l = new Locale("es", "CR");
-            NumberFormat formatter = NumberFormat.getCurrencyInstance(l);
+            DecimalFormat formatter = (DecimalFormat) NumberFormat.getCurrencyInstance(l);
+            formatter.setNegativePrefix("-"+"C"); // or "-"+symbol if that's what you need
+            formatter.setNegativeSuffix("");
             result = formatter.format(numberValue.doubleValue());
                     }
         super.setValue(result);

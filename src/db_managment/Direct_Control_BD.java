@@ -1240,7 +1240,7 @@ public class Direct_Control_BD {
      * @param idFacturaPendiente
      * @param idFacturaVersionPagosPend
      */
-    public void insertarPago(BigDecimal montoDePago, int idFacturaPendiente, int idFacturaVersionPagosPend) {
+    public void insertarPago(BigDecimal montoDePago, int idFacturaPendiente, int idFacturaVersionPagosPend, String tipopago) {
         try {
             DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
             Date date = new Date();
@@ -1252,6 +1252,7 @@ public class Direct_Control_BD {
             stm.setDouble(2, montoDePago.doubleValue());
             stm.setInt(3, idFacturaPendiente);
             stm.setInt(4, idFacturaVersionPagosPend);
+            stm.setString(5,tipopago);
             stm.executeUpdate();
 
         } catch (Exception e) {
@@ -2970,5 +2971,36 @@ public class Direct_Control_BD {
         }
         return result;
     }
+    
+     public void verCierreApartadosCreditos(String fechaInicio, String fechaFinal) {
+        try {
+            String verCierreApartadosCreditos = this.readSql("../Joe/src/"
+                    + "sql_files/verCierreApartadosCreditos.sql");
+            PreparedStatement stm = this.conection.prepareStatement(verCierreApartadosCreditos);
+            stm.setString(1,fechaInicio);
+            stm.setString(2,fechaFinal);
+            ResultSet resultset = stm.executeQuery();
+            this.setColumnNames(this.Get_Columnas(resultset));
+            this.setData(this.ResultSet_Array(resultset));
+        } catch (Exception e) {
+             System.out.println("Error al obtener la informacion de los creditos y apartados para el cierre");
+        }
+    }
+     public void verCierreDevoluciones(String fechaInicio, String fechaFinal) {
+        try {
+            String verCierreDevoluciones = this.readSql("../Joe/src/"
+                    + "sql_files/verCierreDevoluciones.sql");
+            PreparedStatement stm = this.conection.prepareStatement(verCierreDevoluciones);
+            stm.setString(1,fechaInicio);
+            stm.setString(2,fechaFinal);
+            ResultSet resultset = stm.executeQuery();
+            this.setColumnNames(this.Get_Columnas(resultset));
+            this.setData(this.ResultSet_Array(resultset));
+        } catch (Exception e) {
+             System.out.println("Error al obtener la informacion de las devoluciones para el cierre");
+        }
+    }
+    
+    
 
 }

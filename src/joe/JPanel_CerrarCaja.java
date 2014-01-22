@@ -276,11 +276,13 @@ public class JPanel_CerrarCaja extends javax.swing.JPanel {
         List<Object[]> data = new ArrayList<Object[]>();      
         //Agrega el modelo a la factura
         Modelo_CierreCaja model=new Modelo_CierreCaja(columnNames,data);
-        //Agrega 20 filas
-        model.addRow(20);
         this.jTable_VerCierre.setModel(model);
         this.cargarListenerRenders();
         this.cargarFacturasCierre(model);
+        this.cargarApartadoCreditosCierre(model);
+        this.cargarDevolucionesCierre(model);
+         //Agrega 20 filas
+        model.addRow(20);
         
     }
 
@@ -291,6 +293,7 @@ public class JPanel_CerrarCaja extends javax.swing.JPanel {
         Object[][] InfoFactsContadoCierre = AdminBD.getData();
         int numFilas = InfoFactsContadoCierre.length;
         for (int row = 0; row < numFilas; row++) {
+            model.addRow(1);
             Object[] infofactscontado= InfoFactsContadoCierre[row];
             String Fecha= infofactscontado[0].toString();
             String Concepto= infofactscontado[1].toString();
@@ -307,7 +310,56 @@ public class JPanel_CerrarCaja extends javax.swing.JPanel {
             }
     
     }
-
+    private void cargarApartadoCreditosCierre(Modelo_CierreCaja model) {
+       
+        Direct_Control_BD AdminBD = Direct_Control_BD.getInstance();
+        AdminBD.verCierreApartadosCreditos(this.jLabel_horaInicio.getText(),this.jLabel_horaCierre.getText());
+        Object[][] InfoApartadoCreditosCierre = AdminBD.getData();
+        int numFilasTablas = model.getRowCount();
+        int numFilas= InfoApartadoCreditosCierre.length;
+        for (int row = 0; row < numFilas; row++) {
+            model.addRow(1);
+            Object[] infoapscreditos= InfoApartadoCreditosCierre[row];
+            String Fecha= infoapscreditos[0].toString();
+            String Concepto= infoapscreditos[1].toString();
+            int NumFact = Integer.parseInt(infoapscreditos[2].toString());
+            String TipoPago=infoapscreditos[3].toString();
+            BigDecimal monto= this.StringtoBigDecimal(infoapscreditos[4].toString());
+            model.setValueAt(Fecha, numFilasTablas+row, 0);
+            model.setValueAt(Concepto, numFilasTablas+row, 1);
+            model.setValueAt(NumFact, numFilasTablas+row, 2);
+            model.setValueAt(TipoPago, numFilasTablas+row, 3);
+            model.setValueAt(monto, numFilasTablas+row, 4);
+            
+            
+            }
+    
+    }
+     private void cargarDevolucionesCierre(Modelo_CierreCaja model) {
+       
+        Direct_Control_BD AdminBD = Direct_Control_BD.getInstance();
+        AdminBD.verCierreDevoluciones(this.jLabel_horaInicio.getText(),this.jLabel_horaCierre.getText());
+        Object[][] InfoDevCierre = AdminBD.getData();
+        int numFilasTablas = model.getRowCount();
+        int numFilas= InfoDevCierre.length;
+        for (int row = 0; row < numFilas; row++) {
+            model.addRow(1);
+            Object[] infodev= InfoDevCierre[row];
+            String Fecha= infodev[0].toString();
+            String Concepto= infodev[1].toString();
+            int NumFact = Integer.parseInt(infodev[2].toString());
+            String TipoPago=infodev[3].toString();
+            BigDecimal monto= this.StringtoBigDecimal(infodev[4].toString());
+            model.setValueAt(Fecha, numFilasTablas+row, 0);
+            model.setValueAt(Concepto, numFilasTablas+row, 1);
+            model.setValueAt(NumFact, numFilasTablas+row, 2);
+            model.setValueAt(TipoPago, numFilasTablas+row, 3);
+            model.setValueAt(monto.negate(), numFilasTablas+row, 4);
+            
+            
+            }
+    
+    }
     private void cargarListenerRenders() {
         //AGREGA EL LISTENER QUE PERMITE HACER TODOS LOS EVENTOS DENTRO DE LA 
         //TABLA DE VER CIERRE //IMPORTANTE ESTOS EVENTOS ESTAN EN LA CLASE DE
@@ -323,8 +375,7 @@ public class JPanel_CerrarCaja extends javax.swing.JPanel {
                 setCellRenderer(rightRenderer);
         this.jTable_VerCierre.getColumnModel().getColumn(4).
                 setCellRenderer(new CurrencyRender());
-        this.jTable_VerCierre.getColumnModel().getColumn(4).
-                setCellEditor(new EditorDeCeldaNumeros());
+        
     
     }
 

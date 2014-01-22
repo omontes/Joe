@@ -2474,12 +2474,13 @@ public class JPanel_CrearFactura extends javax.swing.JPanel {
 
     private void crearApartado(BigDecimal montoDePago, String Fecha) {
         Direct_Control_BD AdminBD = Direct_Control_BD.getInstance();
+        String tipopago= this.jComboBox_CategoriaTipoPago.getSelectedItem().toString();
         int idFactura = Integer.parseInt(this.jLabel_NumerodeFact.getText());
         int idVersionFacturasProducto = AdminBD.verVersionDEFacturaActiva(idFactura);
         String totalFacturaSinCorregir = this.jFormattedTextField_Total.getText();
         BigDecimal totalFact = this.corregirDato(totalFacturaSinCorregir);
         AdminBD.insertarFacturasPendientes(idFactura, totalFact, Fecha, idVersionFacturasProducto);
-        AdminBD.insertarPago(montoDePago, idFactura, idVersionFacturasProducto);
+        AdminBD.insertarPago(montoDePago, idFactura, idVersionFacturasProducto,tipopago);
     }
 
     private void guardarDev() {

@@ -3,7 +3,6 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package joe;
 
 import db_managment.Direct_Control_BD;
@@ -1056,54 +1055,55 @@ public class JPanel_CrearFactura extends javax.swing.JPanel {
                 .addGap(36, 36, 36))
         );
     }//GEN-END:initComponents
-    private void creacionProductoPanel(){
-         //En caso de que quiera crear un producto mientras se este editando
+    private void creacionProductoPanel() {
+        //En caso de que quiera crear un producto mientras se este editando
         if (jTable_Factura.isEditing()) {
             jTable_Factura.getCellEditor().cancelCellEditing();
-            this.jDialog_CrearProducto.setSize(500,300);
+            this.jDialog_CrearProducto.setSize(500, 300);
             this.jDialog_CrearProducto.setVisible(true);
             return;
         }
-        
+
         //Llama a la ventana para crear el producto
-        this.jDialog_CrearProducto.setSize(500,300);
+        this.jDialog_CrearProducto.setSize(500, 300);
         this.jDialog_CrearProducto.setVisible(true);
-    
+
     }
     private void jButton_CreaProductoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_CreaProductoActionPerformed
-       this.creacionProductoPanel();
+        this.creacionProductoPanel();
     }//GEN-LAST:event_jButton_CreaProductoActionPerformed
     /**
      * Este metodo permite mostrar toda la informacion del producto
-     * @param idProducto 
+     *
+     * @param idProducto
      */
-    private void verProducto(String idProducto){
-            Direct_Control_BD AdminBD = Direct_Control_BD.getInstance();
-            String articulo = AdminBD.verNombreProductoPorCodigo(idProducto);
-            BigDecimal PrecioUnitario = AdminBD.verPrecio(idProducto);
-            int cantidad= AdminBD.verCantidad(idProducto);
-            jLabel_datoCant.setText(Integer.toString(cantidad));
-            jLabel_datoFact.setText(jLabel_NumerodeFact.getText());
-            jLabel_datoNomb.setText(articulo);
-            jLabel_datoPrecio.setText(PrecioUnitario.toString());
-            String detalle= AdminBD.verDetalle(idProducto);
-            //Si en la base el detalle es null
-            if (detalle==null) {
-                jLabel_Descripcion.setText("Descripcion  " + "Este producto"
-                        + " no tiene ningun detalle");
-                jDialog_VerProducto.setVisible(true);
-                return;
-            }
-            jLabel_Descripcion.setText("Descripcion  " + detalle);
+    private void verProducto(String idProducto) {
+        Direct_Control_BD AdminBD = Direct_Control_BD.getInstance();
+        String articulo = AdminBD.verNombreProductoPorCodigo(idProducto);
+        BigDecimal PrecioUnitario = AdminBD.verPrecio(idProducto);
+        int cantidad = AdminBD.verCantidad(idProducto);
+        jLabel_datoCant.setText(Integer.toString(cantidad));
+        jLabel_datoFact.setText(jLabel_NumerodeFact.getText());
+        jLabel_datoNomb.setText(articulo);
+        jLabel_datoPrecio.setText(PrecioUnitario.toString());
+        String detalle = AdminBD.verDetalle(idProducto);
+        //Si en la base el detalle es null
+        if (detalle == null) {
+            jLabel_Descripcion.setText("Descripcion  " + "Este producto"
+                    + " no tiene ningun detalle");
             jDialog_VerProducto.setVisible(true);
-       
+            return;
         }
-    
-    
+        jLabel_Descripcion.setText("Descripcion  " + detalle);
+        jDialog_VerProducto.setVisible(true);
+
+    }
+
+
     private void jButton_VerProductoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_VerProductoActionPerformed
         if (jTable_Factura.isEditing()) {
             jTable_Factura.getCellEditor().cancelCellEditing();
-            
+
         }
         MyTableModel_FACT model = (MyTableModel_FACT) jTable_Factura.getModel();
         int row = jTable_Factura.getSelectedRow();
@@ -1111,17 +1111,16 @@ public class JPanel_CrearFactura extends javax.swing.JPanel {
         //del producto seleccionado para VerProducto
         if (!"".equals(idProducto)) {//verifica que se quiere ver un producto
             this.verProducto(idProducto);
-        }
-        // Si no selecciono un producto entonces que busque el producto por cod
-        else{
-            jDialog_BuscarProductoPorCod.setSize(295,243);
+        } // Si no selecciono un producto entonces que busque el producto por cod
+        else {
+            jDialog_BuscarProductoPorCod.setSize(295, 243);
             jDialog_BuscarProductoPorCod.setVisible(true);
         }
     }//GEN-LAST:event_jButton_VerProductoActionPerformed
     /**
      * Este metodo es para poder eliminar una fila de la tabla de crear factura
      */
-    private void eliminarFila(){
+    private void eliminarFila() {
         MyTableModel_FACT model = (MyTableModel_FACT) jTable_Factura.getModel();
         int row = jTable_Factura.getSelectedRow();
         ///Si se esta escribiendo en la celda para el editor y luego elimina la
@@ -1131,14 +1130,14 @@ public class JPanel_CrearFactura extends javax.swing.JPanel {
             jTable_Factura.revalidate();
             jTable_Factura.repaint();
             jTable_Factura.requestFocus();
-            
+
         }
         String subTotal = model.getValueAt(row, 4).toString();
         if (subTotal != "") {
             //Elimina un producto ya ingresado y actualiza el total
             BigDecimal subtotal = new BigDecimal(subTotal);
             model.removeRow(row);
-            BigDecimal totalFact= this.corregirDato(
+            BigDecimal totalFact = this.corregirDato(
                     this.jFormattedTextField_SubTotal.getText());
             this.jFormattedTextField_SubTotal.setValue(
                     totalFact.subtract(subtotal));
@@ -1160,12 +1159,13 @@ public class JPanel_CrearFactura extends javax.swing.JPanel {
     /**
      * Este metodo permite que se actualice el campo del total y la rebaja
      * cuando se inserta un descuento unitario en la tabla Factura.
-     * @param evt 
+     *
+     * @param evt
      */
     private void jButton_DescuentoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_DescuentoActionPerformed
         if (jTable_Factura.isEditing()) {
             jTable_Factura.getCellEditor().cancelCellEditing();
-            
+
         }
         MyTableModel_FACT model = (MyTableModel_FACT) jTable_Factura.getModel();
         int row = jTable_Factura.getSelectedRow();
@@ -1182,19 +1182,19 @@ public class JPanel_CrearFactura extends javax.swing.JPanel {
     }//GEN-LAST:event_jButton_DescuentoActionPerformed
 
     private void jTable_FacturaKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTable_FacturaKeyPressed
-        int tecla=evt.getKeyCode();
-        if(tecla==KeyEvent.VK_F9){
+        int tecla = evt.getKeyCode();
+        if (tecla == KeyEvent.VK_F9) {
             this.eliminarFila();
-            }
-   
+        }
+
     }//GEN-LAST:event_jTable_FacturaKeyPressed
     private void jButton_RegresarFactActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_RegresarFactActionPerformed
         this.regresar();
 
     }//GEN-LAST:event_jButton_RegresarFactActionPerformed
-    private void regresar(){
-        VentanaDeInicio miVentana= VentanaDeInicio.getInstance();
-        JPanel_Facturacion panelFact= new JPanel_Facturacion();
+    private void regresar() {
+        VentanaDeInicio miVentana = VentanaDeInicio.getInstance();
+        JPanel_Facturacion panelFact = new JPanel_Facturacion();
         panelFact.setSize(this.getSize());
         panelFact.setLocation(this.getLocation());
         miVentana.remove(this);
@@ -1208,22 +1208,25 @@ public class JPanel_CrearFactura extends javax.swing.JPanel {
         miVentana.revalidate();
         miVentana.repaint();
     }
+
     /**
      * Este metodo permite que vuelva a la tabla y seleciones la fila donde
      * quedo o la siguiente en la tabla facturacion
-     * @param cantidad 
+     *
+     * @param cantidad
      */
-    private void setFocusTablaFact(int cantidad){
+    private void setFocusTablaFact(int cantidad) {
         jTable_Factura.revalidate();
         jTable_Factura.repaint();
         jTable_Factura.changeSelection(jTable_Factura.getSelectedRow()
                 + cantidad, jTable_Factura.getSelectedColumn(), false, false);
         jTable_Factura.requestFocus();
     }
+
     /**
      * Este metodo crea un producto en factura
      */
-    private void CrearProducto(){
+    private void CrearProducto() {
         Direct_Control_BD AdminBD = Direct_Control_BD.getInstance();
         DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd");
         Date date = new Date();
@@ -1232,28 +1235,24 @@ public class JPanel_CrearFactura extends javax.swing.JPanel {
         if (!existeProducto) {
             BigDecimal bd = new BigDecimal(
                     this.jFormattedTextField_precioProducto.
-                            getValue().toString());
-            AdminBD.crearProducto(codigo,this.jTextField_nombre.getText(),
-                    bd,0,dateFormat.format(date),"A", null, 1);
+                    getValue().toString());
+            AdminBD.crearProducto(codigo, this.jTextField_nombre.getText(),
+                    bd, 0, dateFormat.format(date), "A", null, 1);
             AdminBD.insertarEnInventario(this.jTextField_codigo.getText(),
-                    1, Integer.parseInt(this.
-                            jFormattedTextField_cantidadProducto.getValue()
+                    1, Integer.parseInt(this.jFormattedTextField_cantidadProducto.getValue()
                             .toString()));
             this.clearCrearProducto();
             this.jDialog_CrearProducto.dispose();
-            MyTableModel_FACT model = (MyTableModel_FACT) 
-                    jTable_Factura.getModel();
+            MyTableModel_FACT model = (MyTableModel_FACT) jTable_Factura.getModel();
             model.setValueAt(codigo, jTable_Factura.getSelectedRow(), 0);
             //Vuelve a cargar la informacion para el editor de la primer columna
             this.cargarSeleccionadorProductos();
             this.setFocusTablaFact(1);
-        }
-
-        else {
+        } else {
             JOptionPane.showMessageDialog(
-                          null,
-                          "ESTE Cod ya existe en el inventario",
-                          "Alert!", JOptionPane.ERROR_MESSAGE);
+                    null,
+                    "ESTE Cod ya existe en el inventario",
+                    "Alert!", JOptionPane.ERROR_MESSAGE);
             this.jTextField_codigo.setText("");
             this.jButton_CrearProducto.transferFocus();
             this.jButton_CancelarCrearProducto.transferFocus();
@@ -1261,8 +1260,8 @@ public class JPanel_CrearFactura extends javax.swing.JPanel {
     }
 
     private void jButton_CrearProductoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_CrearProductoActionPerformed
-       this.CrearProducto();
-       this.clearCrearProducto();
+        this.CrearProducto();
+        this.clearCrearProducto();
 
     }//GEN-LAST:event_jButton_CrearProductoActionPerformed
 
@@ -1270,12 +1269,12 @@ public class JPanel_CrearFactura extends javax.swing.JPanel {
         this.setFocusTablaFact(0);
         this.jDialog_VerProducto.dispose();
     }//GEN-LAST:event_jButton2ActionPerformed
-    private void clearCrearProducto(){
+    private void clearCrearProducto() {
         this.jTextField_codigo.setText("");
         this.jTextField_nombre.setText("");
         this.jFormattedTextField_cantidadProducto.setText("0");
         this.jFormattedTextField_precioProducto.setText("0.00");
-       
+
     }
     private void jButton_CancelarCrearProductoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_CancelarCrearProductoActionPerformed
         this.clearCrearProducto();
@@ -1287,19 +1286,19 @@ public class JPanel_CrearFactura extends javax.swing.JPanel {
     private void jTextField_codigoKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField_codigoKeyPressed
         //Se presiono enter en el textfield de codigo por lo tanto tiene que
         // hacer que se haga focus el que sigue
-        if(evt.getKeyCode()==10){
-            this.jTextField_codigo.transferFocus();           
-        
+        if (evt.getKeyCode() == 10) {
+            this.jTextField_codigo.transferFocus();
+
         }
     }//GEN-LAST:event_jTextField_codigoKeyPressed
     private void jTextField_nombreKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField_nombreKeyPressed
-        if(evt.getKeyCode()==10){
+        if (evt.getKeyCode() == 10) {
             this.jTextField_nombre.transferFocus();
         }
     }//GEN-LAST:event_jTextField_nombreKeyPressed
 
     private void jButton_CrearProductoKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jButton_CrearProductoKeyPressed
-        if(evt.getKeyCode()==10){
+        if (evt.getKeyCode() == 10) {
             this.CrearProducto();
         }
     }//GEN-LAST:event_jButton_CrearProductoKeyPressed
@@ -1307,23 +1306,23 @@ public class JPanel_CrearFactura extends javax.swing.JPanel {
      * Permite buscar el producto cuando el usuario presiona el boton buscar
      * producto en crear factura
      */
-    private void buscarProducto(){
+    private void buscarProducto() {
         Direct_Control_BD AdminBD = Direct_Control_BD.getInstance();
         String idProducto = this.jTextField_busqueProducto.getText();
-        boolean existeProducto=AdminBD.verSiExisteCod(idProducto);        
-        if(existeProducto){
+        boolean existeProducto = AdminBD.verSiExisteCod(idProducto);
+        if (existeProducto) {
             this.jDialog_BuscarProductoPorCod.dispose();
             this.verProducto(idProducto);
             this.jTextField_busqueProducto.setText("");
             this.jLabel_CodNoEncontrado.setText("");
-            return;        
+            return;
         }
         this.jLabel_CodNoEncontrado.setText("Cod. No Existe");
         this.jTextField_busqueProducto.setText("");
         this.jButton_BusqueProducto.transferFocus();
-        this.jButton_CancelaBusquedaProducto.transferFocus();               
-    }                          
-    
+        this.jButton_CancelaBusquedaProducto.transferFocus();
+    }
+
     private void jButton_BusqueProductoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_BusqueProductoActionPerformed
         this.buscarProducto();
     }//GEN-LAST:event_jButton_BusqueProductoActionPerformed
@@ -1331,35 +1330,35 @@ public class JPanel_CrearFactura extends javax.swing.JPanel {
     private void jButton_CancelaBusquedaProductoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_CancelaBusquedaProductoActionPerformed
         this.jDialog_BuscarProductoPorCod.dispose();
         this.jLabel_CodNoEncontrado.setText("");
-        this.setFocusTablaFact(0);        
+        this.setFocusTablaFact(0);
     }//GEN-LAST:event_jButton_CancelaBusquedaProductoActionPerformed
 
     private void jTextField_busqueProductoKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField_busqueProductoKeyPressed
-        if(evt.getKeyCode()==10){
-            this.jTextField_busqueProducto.transferFocus();   
-        
+        if (evt.getKeyCode() == 10) {
+            this.jTextField_busqueProducto.transferFocus();
+
         }
     }//GEN-LAST:event_jTextField_busqueProductoKeyPressed
 
     private void jButton_BusqueProductoKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jButton_BusqueProductoKeyPressed
-        if(evt.getKeyCode()==10){
+        if (evt.getKeyCode() == 10) {
             this.buscarProducto();
         }
     }//GEN-LAST:event_jButton_BusqueProductoKeyPressed
 
     private void jButton2KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jButton2KeyPressed
-         if(evt.getKeyCode()==10){
-             this.setFocusTablaFact(0);
-             this.jDialog_VerProducto.dispose();
+        if (evt.getKeyCode() == 10) {
+            this.setFocusTablaFact(0);
+            this.jDialog_VerProducto.dispose();
         }
-       
+
     }//GEN-LAST:event_jButton2KeyPressed
     private void jFormattedTextField_precioProductoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jFormattedTextField_precioProductoKeyTyped
-        int tecla= evt.getKeyChar();
-        if(tecla==KeyEvent.VK_COMMA){
+        int tecla = evt.getKeyChar();
+        if (tecla == KeyEvent.VK_COMMA) {
             return;
         }
-        if(tecla==KeyEvent.VK_PERIOD){
+        if (tecla == KeyEvent.VK_PERIOD) {
             return;
         }
         if (!Character.isDigit(tecla) & !Character.isISOControl(evt.getKeyChar())) {
@@ -1367,14 +1366,14 @@ public class JPanel_CrearFactura extends javax.swing.JPanel {
             evt.consume();
 
         }
-    
+
     }//GEN-LAST:event_jFormattedTextField_precioProductoKeyTyped
     private void jFormattedTextField_precioProductoKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jFormattedTextField_precioProductoKeyPressed
-         if(evt.getKeyCode()==10){
+        if (evt.getKeyCode() == 10) {
             this.jFormattedTextField_precioProducto.transferFocus();
-              
+
         }
-         if (evt.isControlDown()) {
+        if (evt.isControlDown()) {
             evt.consume();
         }
     }//GEN-LAST:event_jFormattedTextField_precioProductoKeyPressed
@@ -1388,9 +1387,9 @@ public class JPanel_CrearFactura extends javax.swing.JPanel {
     }//GEN-LAST:event_jFormattedTextField_cantidadProductoFocusGained
 
     private void jFormattedTextField_cantidadProductoKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jFormattedTextField_cantidadProductoKeyPressed
-        if(evt.getKeyCode()==10){
+        if (evt.getKeyCode() == 10) {
             this.jFormattedTextField_cantidadProducto.transferFocus();
-            
+
         }
         if (evt.isControlDown()) {
             evt.consume();
@@ -1398,8 +1397,8 @@ public class JPanel_CrearFactura extends javax.swing.JPanel {
     }//GEN-LAST:event_jFormattedTextField_cantidadProductoKeyPressed
 
     private void jFormattedTextField_cantidadProductoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jFormattedTextField_cantidadProductoKeyTyped
-       int tecla= evt.getKeyChar();
-       if (!Character.isDigit(tecla) & !Character.isISOControl(evt.getKeyChar())) {
+        int tecla = evt.getKeyChar();
+        if (!Character.isDigit(tecla) & !Character.isISOControl(evt.getKeyChar())) {
             Toolkit.getDefaultToolkit().beep();
             evt.consume();
 
@@ -1421,16 +1420,13 @@ public class JPanel_CrearFactura extends javax.swing.JPanel {
             //Si la fila esta vacia
             if (model.getValueAt(i, 0) != "") {
                 String idProducto = infoTablaFact[i][0];
-                int idVersion = AdminBD.veridVersionActivaProductoPorCodigo
-        (idProducto);
+                int idVersion = AdminBD.veridVersionActivaProductoPorCodigo(idProducto);
                 String CantidadSinCorregir = infoTablaFact[i][2].toString();
-                DecimalFormat decimalfC = (DecimalFormat) 
-                        NumberFormat.getInstance();
+                DecimalFormat decimalfC = (DecimalFormat) NumberFormat.getInstance();
                 decimalfC.setParseBigDecimal(true);
                 BigDecimal cantidadB = null;
                 try {
-                    cantidadB = (BigDecimal) decimalfC.parseObject
-        (CantidadSinCorregir);
+                    cantidadB = (BigDecimal) decimalfC.parseObject(CantidadSinCorregir);
                 } catch (ParseException ex) {
                     Logger.getLogger(MyTableModelListener_FACT.class.
                             getName()).log(Level.SEVERE, null, ex);
@@ -1438,17 +1434,18 @@ public class JPanel_CrearFactura extends javax.swing.JPanel {
                 int cantidad = cantidadB.intValue();
                 String precioSinCorregir = infoTablaFact[i][3];
                 BigDecimal PrecioVenta = this.corregirDato(precioSinCorregir);
-                int idVersionFacturasProducto =AdminBD.verVersionDEFacturaActiva(idFactura);
+                int idVersionFacturasProducto = AdminBD.verVersionDEFacturaActiva(idFactura);
                 //System.out.println(idProducto+" "+idVersion+" "+cantidad+" "+idFactura+" "+PrecioVenta+" "+idVersionFacturasProducto);
                 AdminBD.insertarProductoCantidadFact(idProducto, idVersion,
-                        cantidad, idFactura, PrecioVenta,idVersionFacturasProducto);
+                        cantidad, idFactura, PrecioVenta, idVersionFacturasProducto);
 
             }
         }
     }
+
     /**
-     * Se encarga de guardar las facturas de acuerdo a la accion es decir
-     * si es un apartado, una factura o un credito.
+     * Se encarga de guardar las facturas de acuerdo a la accion es decir si es
+     * un apartado, una factura o un credito.
      */
     public void guardarFactura() {
         VentanaDeInicio mVentana = VentanaDeInicio.getInstance();
@@ -1507,7 +1504,7 @@ public class JPanel_CrearFactura extends javax.swing.JPanel {
             }
             return;
         }
-        
+
         if (mVentana.getTitle().equals("Modifica Credito")) {
             NewJDialog_PagoApartado pago = new NewJDialog_PagoApartado();
             pago.setVisible(true);
@@ -1532,7 +1529,7 @@ public class JPanel_CrearFactura extends javax.swing.JPanel {
             return;
 
         }
-          
+
         if (mVentana.getTitle().equals("Credito")) {
             NewJDialog_PagoApartado pago = new NewJDialog_PagoApartado();
             pago.setVisible(true);
@@ -1556,8 +1553,8 @@ public class JPanel_CrearFactura extends javax.swing.JPanel {
             }
             return;
         }
-        
-         if (mVentana.getTitle().equals("Devolucion")) {
+
+        if (mVentana.getTitle().equals("Devolucion")) {
             this.guardarDev();
             this.devolverProductos();
             this.regresar();
@@ -1572,7 +1569,7 @@ public class JPanel_CrearFactura extends javax.swing.JPanel {
             return;
 
         }
-        
+
         this.guardarFactura("Cancelada");
         this.clearAll();
     }
@@ -1583,9 +1580,10 @@ public class JPanel_CrearFactura extends javax.swing.JPanel {
 
     }//GEN-LAST:event_jButton_aceptarFacturaActionPerformed
     /**
-     * Este metodo capta si haya algun cambio en el subtotal para que corriga
-     * el descuento si es que se aplico uno y el total en la factua.
-     * @param evt 
+     * Este metodo capta si haya algun cambio en el subtotal para que corriga el
+     * descuento si es que se aplico uno y el total en la factua.
+     *
+     * @param evt
      */
     private void jFormattedTextField_SubTotalPropertyChange(java.beans.PropertyChangeEvent evt) {//GEN-FIRST:event_jFormattedTextField_SubTotalPropertyChange
         if (evt.getPropertyName().equals("value")) {
@@ -1637,18 +1635,18 @@ public class JPanel_CrearFactura extends javax.swing.JPanel {
             } else {
                 this.jFormattedTextField_desc.setValue(0.00);
                 JOptionPane.showMessageDialog(
-                          null,
-                          "No se puede aplicar un descuento de "
-                                  +descuentoAaplicar,
-                          "Alert!", JOptionPane.ERROR_MESSAGE);
+                        null,
+                        "No se puede aplicar un descuento de "
+                        + descuentoAaplicar,
+                        "Alert!", JOptionPane.ERROR_MESSAGE);
             }
         }
     }//GEN-LAST:event_jFormattedTextField_descPropertyChange
 
     private void jFormattedTextField_descKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jFormattedTextField_descKeyPressed
-        if(evt.getKeyCode()==10){
-             this.setFocusTablaFact(0);          
-                   
+        if (evt.getKeyCode() == 10) {
+            this.setFocusTablaFact(0);
+
         }
         if (evt.isControlDown()) {
             evt.consume();
@@ -1656,11 +1654,11 @@ public class JPanel_CrearFactura extends javax.swing.JPanel {
     }//GEN-LAST:event_jFormattedTextField_descKeyPressed
 
     private void jFormattedTextField_descKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jFormattedTextField_descKeyTyped
-        int tecla= evt.getKeyChar();
-        if(tecla==KeyEvent.VK_COMMA){
+        int tecla = evt.getKeyChar();
+        if (tecla == KeyEvent.VK_COMMA) {
             evt.consume();
         }
-        if(tecla==KeyEvent.VK_PERIOD){
+        if (tecla == KeyEvent.VK_PERIOD) {
             return;
         };
         if (!Character.isDigit(tecla) & !Character.isISOControl(
@@ -1671,69 +1669,72 @@ public class JPanel_CrearFactura extends javax.swing.JPanel {
 
     }//GEN-LAST:event_jFormattedTextField_descKeyTyped
     /**
-     * Este metodo permite activar el buscador para poder buscar un producto
-     * y luego insertarlo en la tabla de crear Factura
-     * @param evt 
+     * Este metodo permite activar el buscador para poder buscar un producto y
+     * luego insertarlo en la tabla de crear Factura
+     *
+     * @param evt
      */
     private void jButton_BuscarProductoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_BuscarProductoActionPerformed
-        NewJDialog_Buscador buscador= new NewJDialog_Buscador();
+        NewJDialog_Buscador buscador = new NewJDialog_Buscador();
         buscador.actualizaTablaParaInventario();
-        String id= buscador.getIdProducto();
+        String id = buscador.getIdProducto();
         MyTableModel_FACT model = (MyTableModel_FACT) jTable_Factura.getModel();
-        int row=this.jTable_Factura.getSelectedRow();
-        model.setValueAt(id,row,0);
-        this.setFocusTablaFact(1);       
-                
+        int row = this.jTable_Factura.getSelectedRow();
+        model.setValueAt(id, row, 0);
+        this.setFocusTablaFact(1);
+
     }//GEN-LAST:event_jButton_BuscarProductoActionPerformed
 
     private void jButton_CancelarCrearProductoKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jButton_CancelarCrearProductoKeyPressed
-         if(evt.getKeyCode()==10){
+        if (evt.getKeyCode() == 10) {
             this.jButton_CancelarCrearProducto.doClick();
         }
     }//GEN-LAST:event_jButton_CancelarCrearProductoKeyPressed
     /**
      * Este metodo permite actualizar la rebaja del descuento y el total cuando
      * se crear un descuento unitario
-     * @param evt 
+     *
+     * @param evt
      */
     private void jFormattedTextField_PrecioRegularPropertyChange(java.beans.PropertyChangeEvent evt) {//GEN-FIRST:event_jFormattedTextField_PrecioRegularPropertyChange
-        if(evt.getPropertyName().equals("value")){
-        String text = evt.getNewValue().toString();
-        DecimalFormat decimalf = (DecimalFormat) NumberFormat.getInstance();
-        decimalf.setParseBigDecimal(true);
-        BigDecimal PrecioRegular = null;
-                try {
-                    PrecioRegular = (BigDecimal) decimalf.parseObject(text);
-                } catch (ParseException ex) {
-                    Logger.getLogger(
-                            MyTableModelListener_FACT.class.
-                                    getName()).log(Level.SEVERE, null, ex);
-                }
-                this.jFormattedTextField_PrecioConDesc.setValue(PrecioRegular);
-                double descuentoAaplicar= Double.parseDouble(
-                        this.jFormattedTextField_descUnitario.getText());
-                if(descuentoAaplicar<=100 & descuentoAaplicar>0){
-                    double desc= descuentoAaplicar/100;
-                    BigDecimal descuento = BigDecimal.valueOf(desc);
-                    BigDecimal PrecioNuevo;
-                    BigDecimal rebaja=PrecioRegular.multiply(descuento);
-                    PrecioNuevo = PrecioRegular.subtract(rebaja);
-                    this.jFormattedTextField_RebajaDelDesc.setValue(rebaja);
-                    this.jFormattedTextField_PrecioConDesc.setValue(PrecioNuevo);
-                }
-                else{
-                    return;
-                
-                }
-                
+        if (evt.getPropertyName().equals("value")) {
+            String text = evt.getNewValue().toString();
+            DecimalFormat decimalf = (DecimalFormat) NumberFormat.getInstance();
+            decimalf.setParseBigDecimal(true);
+            BigDecimal PrecioRegular = null;
+            try {
+                PrecioRegular = (BigDecimal) decimalf.parseObject(text);
+            } catch (ParseException ex) {
+                Logger.getLogger(
+                        MyTableModelListener_FACT.class.
+                        getName()).log(Level.SEVERE, null, ex);
+            }
+            this.jFormattedTextField_PrecioConDesc.setValue(PrecioRegular);
+            double descuentoAaplicar = Double.parseDouble(
+                    this.jFormattedTextField_descUnitario.getText());
+            if (descuentoAaplicar <= 100 & descuentoAaplicar > 0) {
+                double desc = descuentoAaplicar / 100;
+                BigDecimal descuento = BigDecimal.valueOf(desc);
+                BigDecimal PrecioNuevo;
+                BigDecimal rebaja = PrecioRegular.multiply(descuento);
+                PrecioNuevo = PrecioRegular.subtract(rebaja);
+                this.jFormattedTextField_RebajaDelDesc.setValue(rebaja);
+                this.jFormattedTextField_PrecioConDesc.setValue(PrecioNuevo);
+            } else {
+                return;
+
+            }
+
         }
-            
+
     }//GEN-LAST:event_jFormattedTextField_PrecioRegularPropertyChange
-    /***
+    /**
+     * *
      * Este metodo permite actualizar el valor del precio con descuento y la
      * rebaja que se le hace a un producto cuando se le aplica un descuento
      * unitario
-     * @param evt 
+     *
+     * @param evt
      */
     private void jFormattedTextField_descUnitarioPropertyChange(java.beans.PropertyChangeEvent evt) {//GEN-FIRST:event_jFormattedTextField_descUnitarioPropertyChange
         if (evt.getPropertyName().equals("value")) {
@@ -1756,28 +1757,28 @@ public class JPanel_CrearFactura extends javax.swing.JPanel {
             } else {
                 this.jFormattedTextField_descUnitario.setValue(0.00);
                 JOptionPane.showMessageDialog(
-                          null,
-                          "No se puede aplicar un descuento de "
-                                  +descuentoAaplicar,
-                          "Alert!", JOptionPane.ERROR_MESSAGE);
+                        null,
+                        "No se puede aplicar un descuento de "
+                        + descuentoAaplicar,
+                        "Alert!", JOptionPane.ERROR_MESSAGE);
             }
         }
     }//GEN-LAST:event_jFormattedTextField_descUnitarioPropertyChange
 
     private void jFormattedTextField_descUnitarioKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jFormattedTextField_descUnitarioKeyPressed
-        if(evt.getKeyCode()==10){
-             this.jFormattedTextField_descUnitario.transferFocus();                   
+        if (evt.getKeyCode() == 10) {
+            this.jFormattedTextField_descUnitario.transferFocus();
         }
         if (evt.isControlDown()) {
             evt.consume();
         }
     }//GEN-LAST:event_jFormattedTextField_descUnitarioKeyPressed
     private void jFormattedTextField_descUnitarioKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jFormattedTextField_descUnitarioKeyTyped
-        int tecla= evt.getKeyChar();
-        if(tecla==KeyEvent.VK_COMMA){
+        int tecla = evt.getKeyChar();
+        if (tecla == KeyEvent.VK_COMMA) {
             evt.consume();
         }
-        if(tecla==KeyEvent.VK_PERIOD){
+        if (tecla == KeyEvent.VK_PERIOD) {
             return;
         };
         if (!Character.isDigit(tecla) & !Character.isISOControl(evt.getKeyChar())) {
@@ -1793,37 +1794,38 @@ public class JPanel_CrearFactura extends javax.swing.JPanel {
     private void jButton_IngresarDescuentoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_IngresarDescuentoActionPerformed
         this.clearDescuentoUnitario();
         MyTableModel_FACT model = (MyTableModel_FACT) jTable_Factura.getModel();
-        int row =jTable_Factura.getSelectedRow();
-        model.setValueAt(this.jFormattedTextField_PrecioConDesc.getValue(),row,3);
+        int row = jTable_Factura.getSelectedRow();
+        model.setValueAt(this.jFormattedTextField_PrecioConDesc.getValue(), row, 3);
         this.setFocusTablaFact(1);
         this.jDialog_DescuentoUnitario.dispose();
-        
+
     }//GEN-LAST:event_jButton_IngresarDescuentoActionPerformed
     private void jButton_CancelarDescuentoUnitarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_CancelarDescuentoUnitarioActionPerformed
         this.clearDescuentoUnitario();
-        int row =jTable_Factura.getSelectedRow();
+        int row = jTable_Factura.getSelectedRow();
         this.setFocusTablaFact(1);
         this.jDialog_DescuentoUnitario.dispose();
     }//GEN-LAST:event_jButton_CancelarDescuentoUnitarioActionPerformed
 
     private void jFormattedTextField_descUnitarioMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jFormattedTextField_descUnitarioMouseClicked
-       this.jFormattedTextField_descUnitario.selectAll();
+        this.jFormattedTextField_descUnitario.selectAll();
     }//GEN-LAST:event_jFormattedTextField_descUnitarioMouseClicked
 
     private void jFormattedTextField_descMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jFormattedTextField_descMouseClicked
-         this.jFormattedTextField_desc.selectAll();
+        this.jFormattedTextField_desc.selectAll();
     }//GEN-LAST:event_jFormattedTextField_descMouseClicked
 
     private void jComboBox_VendedoresKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jComboBox_VendedoresKeyTyped
-        if(KeyEvent.VK_ENTER==evt.getKeyChar()){
+        if (KeyEvent.VK_ENTER == evt.getKeyChar()) {
             this.jComboBox_Vendedores.transferFocus();
 
         }
     }//GEN-LAST:event_jComboBox_VendedoresKeyTyped
     /**
-     *  Este metodo detecta si el usuario ingresa un cliente y verifica si este
-     *  existe o no para poder mostrarle la interfaz de crear un cliente.
-     * @param evt 
+     * Este metodo detecta si el usuario ingresa un cliente y verifica si este
+     * existe o no para poder mostrarle la interfaz de crear un cliente.
+     *
+     * @param evt
      */
     private void jFormattedTextField_ClientePropertyChange(java.beans.PropertyChangeEvent evt) {//GEN-FIRST:event_jFormattedTextField_ClientePropertyChange
         if (evt.getPropertyName().equals("value")) {
@@ -1834,8 +1836,7 @@ public class JPanel_CrearFactura extends javax.swing.JPanel {
                 if (existeCliente) {
                     return;
 
-                } 
-                else {
+                } else {
                     this.jFormattedTextField_nombreCliente.setText(cliente);
                     this.jDialog_CrearCliente.setVisible(true);
 
@@ -1846,7 +1847,7 @@ public class JPanel_CrearFactura extends javax.swing.JPanel {
     }//GEN-LAST:event_jFormattedTextField_ClientePropertyChange
 
     private void jFormattedTextField_ClienteKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jFormattedTextField_ClienteKeyPressed
-        if(evt.getKeyChar()==KeyEvent.VK_ENTER){
+        if (evt.getKeyChar() == KeyEvent.VK_ENTER) {
             this.setFocusTablaFact(0);
         }
     }//GEN-LAST:event_jFormattedTextField_ClienteKeyPressed
@@ -1862,7 +1863,7 @@ public class JPanel_CrearFactura extends javax.swing.JPanel {
     }//GEN-LAST:event_jFormattedTextField_ClienteMouseClicked
 
     private void jFormattedTextField_nombreClienteKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jFormattedTextField_nombreClienteKeyPressed
-        if(evt.getKeyChar()==KeyEvent.VK_ENTER){
+        if (evt.getKeyChar() == KeyEvent.VK_ENTER) {
             this.jFormattedTextField_nombreCliente.transferFocus();
         }
     }//GEN-LAST:event_jFormattedTextField_nombreClienteKeyPressed
@@ -1872,36 +1873,36 @@ public class JPanel_CrearFactura extends javax.swing.JPanel {
     }//GEN-LAST:event_jButton_CrearClienteActionPerformed
 
     private void jFormattedTextField_telefonoKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jFormattedTextField_telefonoKeyPressed
-         if(evt.getKeyChar()==KeyEvent.VK_ENTER){
+        if (evt.getKeyChar() == KeyEvent.VK_ENTER) {
             this.jFormattedTextField_telefono.transferFocus();
         }
-      
+
     }//GEN-LAST:event_jFormattedTextField_telefonoKeyPressed
 
     private void jFormattedTextField_direccionClienteKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jFormattedTextField_direccionClienteKeyPressed
-         if(evt.getKeyChar()==KeyEvent.VK_ENTER){
+        if (evt.getKeyChar() == KeyEvent.VK_ENTER) {
             this.jFormattedTextField_direccionCliente.transferFocus();
         }
-       
+
     }//GEN-LAST:event_jFormattedTextField_direccionClienteKeyPressed
 
     private void jFormattedTextField_fechaCumpleKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jFormattedTextField_fechaCumpleKeyPressed
-         if(evt.getKeyChar()==KeyEvent.VK_ENTER){
+        if (evt.getKeyChar() == KeyEvent.VK_ENTER) {
             this.jFormattedTextField_fechaCumple.transferFocus();
-        
-    }   
+
+        }
     }//GEN-LAST:event_jFormattedTextField_fechaCumpleKeyPressed
 
     private void jButton_CrearClienteKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jButton_CrearClienteKeyPressed
-         if(evt.getKeyChar()==KeyEvent.VK_ENTER){
+        if (evt.getKeyChar() == KeyEvent.VK_ENTER) {
             this.crearCliente();
         }
-       
+
     }//GEN-LAST:event_jButton_CrearClienteKeyPressed
 
     private void jButton_guardaImprimeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_guardaImprimeActionPerformed
         this.guardarFactura();
-        boolean impresion=this.imprimir(this.jLabel_NumerodeFact.getText(),
+        boolean impresion = this.imprimir(this.jLabel_NumerodeFact.getText(),
                 this.jLabel_Fecha.getText(),
                 this.jFormattedTextField_Total.getText(),
                 this.jFormattedTextField_SubTotal.getText(),
@@ -1911,41 +1912,43 @@ public class JPanel_CrearFactura extends javax.swing.JPanel {
                 this.jComboBox_Vendedores.getSelectedItem().toString(),
                 this.jComboBox_CategoriaTipoPago.getSelectedItem().toString());
         this.clearAll();
-               
-        
+
+
     }//GEN-LAST:event_jButton_guardaImprimeActionPerformed
 
     private void jButton_buscarClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_buscarClienteActionPerformed
-        NewJDialog_Buscador buscador= new NewJDialog_Buscador();
+        NewJDialog_Buscador buscador = new NewJDialog_Buscador();
         buscador.actualizaTablaParaClientes();
-        String cliente= buscador.getCliente();
+        String cliente = buscador.getCliente();
         this.jFormattedTextField_Cliente.setText(cliente);
         this.setFocusTablaFact(0);
     }//GEN-LAST:event_jButton_buscarClienteActionPerformed
     /**
      * Este metodo devuelve toda la informacion de la tabla de crear factura
-     * @return 
+     *
+     * @return
      */
     private String[][] obtenerInfoTablaFact() {
         MyTableModel_FACT model = (MyTableModel_FACT) jTable_Factura.getModel();
         int filas = model.getRowCount();
         String[][] infoTablaFactura = new String[filas][5];
         for (int i = 0; i < filas; i++) {
-            for (int j = 0; j < 5; j++) {              
+            for (int j = 0; j < 5; j++) {
                 if (model.getValueAt(i, j) != null) {
                     String om = model.getValueAt(i, j).toString();
                     if (om.trim().length() != 0) {
-                        infoTablaFactura[i][j] = om;                       
+                        infoTablaFactura[i][j] = om;
                     }
                 }
             }
         }
         return infoTablaFactura;
     }
-     /**
+
+    /**
      * Este metodo carga la informacion de la factura que se desea ver, esta
-     * informacion es: cliente,vendedor,totalfact,descuento,fecha,detalle,
-     * tipo de pago etc.
+     * informacion es: cliente,vendedor,totalfact,descuento,fecha,detalle, tipo
+     * de pago etc.
      */
     public void cargarInfoFact() {
         Direct_Control_BD AdminBD = Direct_Control_BD.getInstance();
@@ -1973,6 +1976,7 @@ public class JPanel_CrearFactura extends javax.swing.JPanel {
         this.jFormattedTextField_desc.setValue(descuentoD);
 
     }
+
     /**
      * Este metodo permite personalizar la tabla de crear Factura
      */
@@ -1980,51 +1984,49 @@ public class JPanel_CrearFactura extends javax.swing.JPanel {
         DateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
         Date date = new Date();
         this.jLabel_Fecha.setText(dateFormat.format(date));
-       Direct_Control_BD AdminBD = Direct_Control_BD.getInstance();
-        String[] columnNames = {"Cod. Articulo","Articulo",
-            "Cantidad","Precio.Unit",
+        Direct_Control_BD AdminBD = Direct_Control_BD.getInstance();
+        String[] columnNames = {"Cod. Articulo", "Articulo",
+            "Cantidad", "Precio.Unit",
             "Sub-Total"};
-        List<Object[]> data = new ArrayList<Object[]>();      
+        List<Object[]> data = new ArrayList<Object[]>();
         //Agrega el modelo a la factura
-        MyTableModel_FACT model=new MyTableModel_FACT(columnNames,data);
+        MyTableModel_FACT model = new MyTableModel_FACT(columnNames, data);
         //Agrega 20 filas
         model.addRow(20);
         this.jTable_Factura.setModel(model);
         AdminBD.verVendedores();
-        /** Personalizando el jComboBox_Vendedores para que tenga los vendedores
-        * registrados en la base de datos
-        */
+        /**
+         * Personalizando el jComboBox_Vendedores para que tenga los vendedores
+         * registrados en la base de datos
+         */
         Object[][] dataVendedores = AdminBD.getData();
         this.jComboBox_Vendedores.removeAllItems();
-        for(int i=0; i<dataVendedores.length; i++){
-             this.jComboBox_Vendedores.addItem(dataVendedores[i][1]);
+        for (int i = 0; i < dataVendedores.length; i++) {
+            this.jComboBox_Vendedores.addItem(dataVendedores[i][1]);
         }
-        
-        
-        
+
     }
+
     /**
      * De vuelve un String[] con toda la informacion de una fila de una tabla
-     * @param data  
-     * //Viene de un consulta UNICAMENTE de una fila
-     * @return 
+     *
+     * @param data //Viene de un consulta UNICAMENTE de una fila
+     * @return
      */
     private String[] obtenerFila(Object[][] data) {
         //System.out.println("ESTO ES LO QUE QUIERO");
-        int numFilas= data.length;
-        String[] string= new String[numFilas];
-        int numColumnas= data[0].length;
-        for(int row =0 ; row < numFilas;row++) {
-            for(int column =0; column<numColumnas;column++) {
-                string[row]=data[row][column].toString();
-               
-                
+        int numFilas = data.length;
+        String[] string = new String[numFilas];
+        int numColumnas = data[0].length;
+        for (int row = 0; row < numFilas; row++) {
+            for (int column = 0; column < numColumnas; column++) {
+                string[row] = data[row][column].toString();
+
             }
-            
+
         }
         return string;
     }
-    
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -2120,13 +2122,13 @@ public class JPanel_CrearFactura extends javax.swing.JPanel {
      */
     private void crearFactura(String concepto) {
         Direct_Control_BD AdminBD = Direct_Control_BD.getInstance();
-        String Cliente= this.jFormattedTextField_Cliente.getText();
+        String Cliente = this.jFormattedTextField_Cliente.getText();
         int idCliente = AdminBD.veridCliente(Cliente);
         int idFactura = Integer.parseInt(this.jLabel_NumerodeFact.getText());
         String vendedor = this.jComboBox_Vendedores.getSelectedItem().toString();
-        int idVendedor= AdminBD.veridVendedor(vendedor);
+        int idVendedor = AdminBD.veridVendedor(vendedor);
         String tipoPago = this.jComboBox_CategoriaTipoPago.getSelectedItem().toString();
-        String detalle= this.jTextField_Detalle.getText();
+        String detalle = this.jTextField_Detalle.getText();
         String totalFacturaSinCorregir = this.jFormattedTextField_Total.getText();
         BigDecimal totalFact = this.corregirDato(totalFacturaSinCorregir);
         String DescuentoSinCorregir = this.jFormattedTextField_desc.getText();
@@ -2140,16 +2142,17 @@ public class JPanel_CrearFactura extends javax.swing.JPanel {
                     log(Level.SEVERE, null, ex);
         }
         //System.out.println(idFactura+" "+descuento+" "+tipoPago+" "+idCliente+" "+idVendedor+" "+detalle+" "+totalFact+" ");
-        AdminBD.crearFactura(idFactura,descuento,tipoPago,idCliente,idVendedor,
-                concepto,detalle,totalFact,"A");
-        }
+        AdminBD.crearFactura(idFactura, descuento, tipoPago, idCliente, idVendedor,
+                concepto, detalle, totalFact, "A");
+    }
+
     /**
      * Cuando se guarda la factura se tiene que volver a crear un nuevo objeto
      * del panel de crear factura
      */
     private void clearAll() {
-        VentanaDeInicio mVentana= VentanaDeInicio.getInstance();
-        JPanel_CrearFactura panelCreaFact= new JPanel_CrearFactura();
+        VentanaDeInicio mVentana = VentanaDeInicio.getInstance();
+        JPanel_CrearFactura panelCreaFact = new JPanel_CrearFactura();
         mVentana.add(panelCreaFact);
         panelCreaFact.setSize(this.getSize());
         panelCreaFact.setLocation(this.getLocation());
@@ -2168,40 +2171,42 @@ public class JPanel_CrearFactura extends javax.swing.JPanel {
     private void aplicarDescAlProducto(String idProducto, BigDecimal precio) {
         this.jDialog_DescuentoUnitario.setVisible(true);
         this.jLabel_DescripcionDescUnitario.setText(idProducto);
-        this.jFormattedTextField_PrecioRegular.setValue(precio);     
-                
+        this.jFormattedTextField_PrecioRegular.setValue(precio);
+
     }
+
     /**
-     * Este metodo permite corregir el dato que tiene el signo de C y ademas
-     * que puede tener comas ya que el tipo Decimal en la base solo
-     * puede tener puntos y no comas.
+     * Este metodo permite corregir el dato que tiene el signo de C y ademas que
+     * puede tener comas ya que el tipo Decimal en la base solo puede tener
+     * puntos y no comas.
+     *
      * @param Dato
-     * @return 
+     * @return
      */
-    private BigDecimal corregirDato(String Dato){
-            String datoAcorregir = Dato.replace("C", "");
-            DecimalFormat decimalformat = (DecimalFormat) NumberFormat.getInstance();
-            decimalformat.setParseBigDecimal(true);
-            BigDecimal DatoCorregido = null;
-            try {
-                DatoCorregido = (BigDecimal) decimalformat.parseObject(datoAcorregir);
-            } catch (ParseException ex) {
-                Logger.getLogger(MyTableModelListener_FACT.class.getName()).log(Level.SEVERE, null, ex);
-            }
-            return DatoCorregido;
-    
+    private BigDecimal corregirDato(String Dato) {
+        String datoAcorregir = Dato.replace("C", "");
+        DecimalFormat decimalformat = (DecimalFormat) NumberFormat.getInstance();
+        decimalformat.setParseBigDecimal(true);
+        BigDecimal DatoCorregido = null;
+        try {
+            DatoCorregido = (BigDecimal) decimalformat.parseObject(datoAcorregir);
+        } catch (ParseException ex) {
+            Logger.getLogger(MyTableModelListener_FACT.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return DatoCorregido;
+
     }
 
     private void crearCliente() {
         Direct_Control_BD AdminBD = Direct_Control_BD.getInstance();
-        String nombre= this.jFormattedTextField_nombreCliente.getText();
-        String direccion= this.jFormattedTextField_direccionCliente.getText();
-        String telefono= this.jFormattedTextField_telefono.getText();
+        String nombre = this.jFormattedTextField_nombreCliente.getText();
+        String direccion = this.jFormattedTextField_direccionCliente.getText();
+        String telefono = this.jFormattedTextField_telefono.getText();
         String fechaCumpleanos = this.jFormattedTextField_fechaCumple.getText();
-        if(fechaCumpleanos.equals("")){
-            fechaCumpleanos=null;
+        if (fechaCumpleanos.equals("")) {
+            fechaCumpleanos = null;
         }
-        AdminBD.insertarCliente(nombre,direccion,1,telefono,fechaCumpleanos);
+        AdminBD.insertarCliente(nombre, direccion, 1, telefono, fechaCumpleanos);
         this.jFormattedTextField_Cliente.setValue(nombre);
         this.jDialog_CrearCliente.dispose();
     }
@@ -2209,83 +2214,91 @@ public class JPanel_CrearFactura extends javax.swing.JPanel {
     private void guardarFactura(String concepto) {
         if (jTable_Factura.isEditing()) {
             jTable_Factura.getCellEditor().cancelCellEditing();
-            
+
         }
-        if(jTable_Factura.getValueAt(0,0).equals("")){
+        if (jTable_Factura.getValueAt(0, 0).equals("")) {
             JOptionPane.showMessageDialog(
-                          null,
-                          "No se puede guardar facturas"
-                                  + " si no tienen ningun producto",                           
-                          "Alert!", JOptionPane.ERROR_MESSAGE);
+                    null,
+                    "No se puede guardar facturas"
+                    + " si no tienen ningun producto",
+                    "Alert!", JOptionPane.ERROR_MESSAGE);
             return;
         }
-        this.crearFactura(concepto);   
+        this.crearFactura(concepto);
         this.guardarProductosFactura();
     }
-     /**
+
+    /**
      * Imprime la factura.
-     * @param numFact  //Debe ser Generico.
+     *
+     * @param numFact //Debe ser Generico.
      * @param date
      * @param totalFact
-     * @return 
+     * @return
      */
-    private boolean imprimir(String numFact, String date,String totalFact,String subtotalFact,String desc,String rebaja,String cliente,
-            String vendedor,String venta) {
-         try {
+    private boolean imprimir(String numFact, String date, String totalFact, String subtotalFact, String desc, String rebaja, String cliente,
+            String vendedor, String venta) {
+        try {
             String rawCmds = "FIRST NAME";
             String printer = "Generic / Text Only"; // debe tener 
             //el mismo nombre que la impresora 
             PrintService ps = PrintServiceMatcher.findPrinter(printer);
             if (ps != null) {
-                
+
                 PrintRaw p = new PrintRaw(ps, rawCmds);
-               /** p.clear();
-                p.append("N\n");
-                p.append("^XA\n");
-                p.append("^FO350,355^A0N,30,30^FD\"" + title + "\"\n");
-                p.append("^XZ\n");
-                p.append("P1,1\n");**/
+                /**
+                 * p.clear(); p.append("N\n"); p.append("^XA\n");
+                 * p.append("^FO350,355^A0N,30,30^FD\"" + title + "\"\n");
+                 * p.append("^XZ\n");
+                p.append("P1,1\n");*
+                 */
                 p.clear();
                 p.append("\u001B\u0040"); //reset printer 
                 //p.append("\u001B"+"\u0045"+"\u0001"+"\r");//Negrita
-                /***********************************************************/
-                
-                p.append("\u001B"+"\u0061"+"\u0001"+"\r");//*** Centrado
+                /**
+                 * ********************************************************
+                 */
+
+                p.append("\u001B" + "\u0061" + "\u0001" + "\r");//*** Centrado
                 p.append("Boutique Francini\r\n");
                 p.append("San Jose, Costa Rica\r\n");
                 p.append("Tel:228826962,pulgamontes@gmail.com\r\n");
                 p.append("Resolucion nro. 234252 del 2003-89\r\n");
-                p.append("\u001B"+"\u0064"+"\u0001"+"\r");//*** 3lineas
-                /**********************************************************/
+                p.append("\u001B" + "\u0064" + "\u0001" + "\r");//*** 3lineas
+                /**
+                 * *******************************************************
+                 */
                 //p.append("\u001B"+"\u0045"+"\u0000"+"\r");//QuitalaNegrita
-                /***********************************************************/
-                
-                p.append("\u001B"+"\u0061"+"\u0000"+"\r");//Quita Centrado
-                p.append("Fecha   : \t "+date+"\r\n");
-                p.append("NoFact  : \t "+numFact+"\r\n");
-                p.append("Cliente : \t "+cliente+"\r\n");
-                p.append("Vendedor: \t "+vendedor+"\r\n");
-                p.append("Venta   : \t "+venta+"\r\n");
+                /**
+                 * ********************************************************
+                 */
+
+                p.append("\u001B" + "\u0061" + "\u0000" + "\r");//Quita Centrado
+                p.append("Fecha   : \t " + date + "\r\n");
+                p.append("NoFact  : \t " + numFact + "\r\n");
+                p.append("Cliente : \t " + cliente + "\r\n");
+                p.append("Vendedor: \t " + vendedor + "\r\n");
+                p.append("Venta   : \t " + venta + "\r\n");
                 p.append("CANT. \t DESCRIPCION \t      TOTAL\r\n");
                 p.append("----  ----------------       ------\r\n");
-                
-                /***********************************************************/
-                MyTableModel_FACT dtm = (MyTableModel_FACT) 
-                        jTable_Factura.getModel();
+
+                /**
+                 * ********************************************************
+                 */
+                MyTableModel_FACT dtm = (MyTableModel_FACT) jTable_Factura.getModel();
                 int nRow = dtm.getRowCount();
                 for (int i = 0; i < nRow; i++) {
                     String Producto = dtm.getValueAt(i, 1).toString();
                     if (!Producto.equals("")) {
                         String cantidad = dtm.getValueAt(i, 2).toString();
-                        String subtotal=dtm.getValueAt(i, 4).toString();
-                        p.append(""  +Producto+"   \r\n");
-                        p.append(""  +cantidad+"                           "
-                                + ""+subtotal+"   \r\n");
+                        String subtotal = dtm.getValueAt(i, 4).toString();
+                        p.append("" + Producto + "   \r\n");
+                        p.append("" + cantidad + "                           "
+                                + "" + subtotal + "   \r\n");
                     }
 
-
                 }
-                
+
                 //p.append("----  ----------------    -----------   \r\n");
                 //p.append("----------------------------------------\r\n"); 
                 /*
@@ -2299,27 +2312,26 @@ public class JPanel_CrearFactura extends javax.swing.JPanel {
                  * http://www.lprng.com/DISTRIB/RESOURCES/PPD/epson.htm 
                  * (FAVORITOS)
                  */
-                p.append("\u001B"+"\u0061"+"\u0002"+"\r");//*** Derecha
-                p.append("\u001B"+"\u0064"+"\u0003"+"\r");//*** 1lineas
-                String subto= " SUB TOTAL : \t " + subtotalFact+"";
-                String subtoCantidad=this.fill(subto,25," ");
-                p.append(subtoCantidad+ "\r\n");
-                p.append(this.fill(" DESCTO  % : \t " +desc+"",subtoCantidad.length()," ")+"\r\n");
-                p.append(this.fill(" DESCUENTO : \t " +rebaja+"",subtoCantidad.length()," ")+"\r\n");
-                p.append("---------------------------\r\n"); 
-                p.append(this.fill(" T O T A L : \t " + totalFact+"",subtoCantidad.length()," ")+"\r\n");
-                p.append("\u001B"+"\u0061"+"\u0000"+"\r");//Quita Centrado
-                p.append("\u001B"+"\u0061"+"\u0001"+"\r");//*** Centrado
-                p.append("\u001B"+"\u0064"+"\u0004"+"\r");//*** 3lineas
+                p.append("\u001B" + "\u0061" + "\u0002" + "\r");//*** Derecha
+                p.append("\u001B" + "\u0064" + "\u0003" + "\r");//*** 1lineas
+                String subto = " SUB TOTAL : \t " + subtotalFact + "";
+                String subtoCantidad = this.fill(subto, 25, " ");
+                p.append(subtoCantidad + "\r\n");
+                p.append(this.fill(" DESCTO  % : \t " + desc + "", subtoCantidad.length(), " ") + "\r\n");
+                p.append(this.fill(" DESCUENTO : \t " + rebaja + "", subtoCantidad.length(), " ") + "\r\n");
+                p.append("---------------------------\r\n");
+                p.append(this.fill(" T O T A L : \t " + totalFact + "", subtoCantidad.length(), " ") + "\r\n");
+                p.append("\u001B" + "\u0061" + "\u0000" + "\r");//Quita Centrado
+                p.append("\u001B" + "\u0061" + "\u0001" + "\r");//*** Centrado
+                p.append("\u001B" + "\u0064" + "\u0004" + "\r");//*** 3lineas
                 p.append("Muchas Gracias por su compra\r\n");
                 p.append("\u001B\u0040");//reset printer
-                p.append("\u001B"+"\u0064"+"\u0008"+"\r");//*** 10lineas**/
-                p.append("\u001D"+"\u0056"+"\u0001"+"\r");//*** CutPaper
+                p.append("\u001B" + "\u0064" + "\u0008" + "\r");//*** 10lineas**/
+                p.append("\u001D" + "\u0056" + "\u0001" + "\r");//*** CutPaper
                 //p.append("-Texto sin negrita-\r\n");
                 //p.append("-XXXXXXXXXXXXXX-\r\n");
-               	return p.print();
-                
-                
+                return p.print();
+
             } else {
                 System.err.println("No encontro ninguna impresora");
                 return false;
@@ -2330,6 +2342,7 @@ public class JPanel_CrearFactura extends javax.swing.JPanel {
             return false;
         }
     }
+
     public String fill(int length, String with) {
         StringBuilder sb = new StringBuilder(length);
         while (sb.length() < length) {
@@ -2347,34 +2360,34 @@ public class JPanel_CrearFactura extends javax.swing.JPanel {
         return result.toString();
 
     }
-    
-    public void cargarProductosFact(MyTableModel_FACT  model ) {
+
+    public void cargarProductosFact(MyTableModel_FACT model) {
         Direct_Control_BD AdminBD = Direct_Control_BD.getInstance();
         AdminBD.verProductosPorFactura(Integer.parseInt(this.jLabel_NumerodeFact.getText()));
         Object[][] ProductosdeFactura = AdminBD.getData();
         int numFilas = ProductosdeFactura.length;
         for (int row = 0; row < numFilas; row++) {
-            Object[] producto= ProductosdeFactura[row];
-            String codArticulo= producto[0].toString();
-            String nombre= producto[1].toString();
-            BigDecimal cantidad= this.StringtoBigDecimal(producto[2].toString());
-            BigDecimal precioVenta= this.StringtoBigDecimal(producto[3].toString());
+            Object[] producto = ProductosdeFactura[row];
+            String codArticulo = producto[0].toString();
+            String nombre = producto[1].toString();
+            BigDecimal cantidad = this.StringtoBigDecimal(producto[2].toString());
+            BigDecimal precioVenta = this.StringtoBigDecimal(producto[3].toString());
             model.setValueAt(codArticulo, row, 0);
             model.setValueAt(nombre, row, 1);
             model.setValueAt(cantidad, row, 2);
             model.setValueAt(precioVenta, row, 3);
             model.setValueAt(precioVenta.multiply(cantidad), row, 4);
-            
-            
-            }
+
+        }
     }
-    
-     /**
+
+    /**
      * Este metodo convierte un string que es un decimal a bigdecimal
+     *
      * @param numero
-     * @return 
+     * @return
      */
-    private BigDecimal StringtoBigDecimal(String numero){
+    private BigDecimal StringtoBigDecimal(String numero) {
         DecimalFormat decimalfC = (DecimalFormat) NumberFormat.getInstance();
         decimalfC.setParseBigDecimal(true);
         BigDecimal numeroCorregido = null;
@@ -2384,30 +2397,31 @@ public class JPanel_CrearFactura extends javax.swing.JPanel {
             Logger.getLogger(JPanel_VerFactura.class.getName()).log(Level.SEVERE, null, ex);
         }
         return numeroCorregido;
-    
+
     }
 
     public void agregarListenerRenders() {
         Direct_Control_BD AdminBD = Direct_Control_BD.getInstance();
-         //Gana la atencion en el panel
+        //Gana la atencion en el panel
         jTable_Factura.requestFocus();
-        jTable_Factura.changeSelection(0,0,false, false);
+        jTable_Factura.changeSelection(0, 0, false, false);
         //AGREGA EL LISTENER QUE PERMITE HACER TODOS LOS EVENTOS DENTRO DE LA 
         //TABLA DE FACTURA //IMPORTANTE ESTOS EVENTOS ESTAN EN LA CLASE DE
         //MY TABLE MODEL LISTENER EN el metodo: tableChanged(TableModelEvent e)
         this.jTable_Factura.getModel().addTableModelListener(
-                new MyTableModelListener_FACT(this.jTable_Factura,"",
-                this.jFormattedTextField_SubTotal,AdminBD));
+                new MyTableModelListener_FACT(this.jTable_Factura, "",
+                        this.jFormattedTextField_SubTotal, AdminBD));
         //Permite que la primera columna de Codigos se desplace segun lo que
         // haya en la base de datos
         AdminBD.verCodigos();
         //Si no existen productos en la base que no los carge al editor
-        if(AdminBD.getData().length>0){
-        this.cargarSeleccionadorProductos();}
+        if (AdminBD.getData().length > 0) {
+            this.cargarSeleccionadorProductos();
+        }
         //Costumisando Precio y Cantidad (Solo van a permitir numeros)
         DefaultTableCellRenderer rightRenderer = new DefaultTableCellRenderer();
-        rightRenderer.setHorizontalAlignment( JLabel.RIGHT );
-              
+        rightRenderer.setHorizontalAlignment(JLabel.RIGHT);
+
         this.jTable_Factura.getColumnModel().getColumn(2).
                 setCellRenderer(rightRenderer);
         this.jTable_Factura.getColumnModel().getColumn(3).
@@ -2420,12 +2434,12 @@ public class JPanel_CrearFactura extends javax.swing.JPanel {
                 setCellEditor(new EditorDeCeldaNumeros());
         //Demasiado importante ******Permite que se pueda editar apenas se 
         //ingresan datos*****
-        this.jTable_Factura.setSurrendersFocusOnKeystroke(true);        
-       
+        this.jTable_Factura.setSurrendersFocusOnKeystroke(true);
+
         //Agregando por default los datos del comboBox de vendedores y del 
         //cliente
         this.jComboBox_Vendedores.setSelectedItem("Sin Categoria");
-        
+
     }
 
     private void modificaFactura() {
@@ -2440,28 +2454,22 @@ public class JPanel_CrearFactura extends javax.swing.JPanel {
         Object[][] ProductosdeDevolucion = AdminBD.getData();
         int numFilas = ProductosdeDevolucion.length;
         for (int row = 0; row < numFilas; row++) {
-            Object[] producto= ProductosdeDevolucion[row];
-            String codArticulo= producto[0].toString();
+            Object[] producto = ProductosdeDevolucion[row];
+            String codArticulo = producto[0].toString();
             int cantidadTotal = AdminBD.verCantidad(codArticulo);
-            int cantidad= Integer.parseInt(producto[2].toString());
-            AdminBD.actualizarCantidadInventario(codArticulo,cantidadTotal+cantidad);
-            
-            
-            }
+            int cantidad = Integer.parseInt(producto[2].toString());
+            AdminBD.actualizarCantidadInventario(codArticulo, cantidadTotal + cantidad);
+
+        }
     }
 
     private void cargarSeleccionadorProductos() {
-         Direct_Control_BD AdminBD = Direct_Control_BD.getInstance();
-         AdminBD.verCodigos();
-            String[] idproductos=this.obtenerFila(AdminBD.getData());
-            this.jTable_Factura.getColumnModel().getColumn(0).
-                setCellEditor(new SeleccionadorEditor
-        (idproductos,jTable_Factura));
-            
-            
-            
-            
-             
+        Direct_Control_BD AdminBD = Direct_Control_BD.getInstance();
+        AdminBD.verCodigos();
+        String[] idproductos = this.obtenerFila(AdminBD.getData());
+        this.jTable_Factura.getColumnModel().getColumn(0).
+                setCellEditor(new SeleccionadorEditor(idproductos, jTable_Factura));
+
     }
 
     private void crearApartado(BigDecimal montoDePago, String Fecha) {
@@ -2476,32 +2484,31 @@ public class JPanel_CrearFactura extends javax.swing.JPanel {
     }
 
     private void guardarDev() {
-         if (jTable_Factura.isEditing()) {
+        if (jTable_Factura.isEditing()) {
             jTable_Factura.getCellEditor().cancelCellEditing();
-            
+
         }
-        if(jTable_Factura.getValueAt(0,0).equals("")){
+        if (jTable_Factura.getValueAt(0, 0).equals("")) {
             JOptionPane.showMessageDialog(
-                          null,
-                          "No se puede guardar facturas"
-                                  + " si no tienen ningun producto",                           
-                          "Alert!", JOptionPane.ERROR_MESSAGE);
+                    null,
+                    "No se puede guardar facturas"
+                    + " si no tienen ningun producto",
+                    "Alert!", JOptionPane.ERROR_MESSAGE);
             return;
         }
-        this.crearDev();   
+        this.crearDev();
         this.guardarProductosDev();
     }
 
-
     private void crearDev() {
         Direct_Control_BD AdminBD = Direct_Control_BD.getInstance();
-        String Cliente= this.jFormattedTextField_Cliente.getText();
+        String Cliente = this.jFormattedTextField_Cliente.getText();
         int idCliente = AdminBD.veridCliente(Cliente);
         int idFactura = Integer.parseInt(this.jLabel_NumerodeFact.getText());
         String vendedor = this.jComboBox_Vendedores.getSelectedItem().toString();
-        int idVendedor= AdminBD.veridVendedor(vendedor);
+        int idVendedor = AdminBD.veridVendedor(vendedor);
         String tipoPago = this.jComboBox_CategoriaTipoPago.getSelectedItem().toString();
-        String detalle= this.jTextField_Detalle.getText();
+        String detalle = this.jTextField_Detalle.getText();
         String totalFacturaSinCorregir = this.jFormattedTextField_Total.getText();
         BigDecimal totalFact = this.corregirDato(totalFacturaSinCorregir);
         String DescuentoSinCorregir = this.jFormattedTextField_desc.getText();
@@ -2515,10 +2522,9 @@ public class JPanel_CrearFactura extends javax.swing.JPanel {
                     log(Level.SEVERE, null, ex);
         }
         //System.out.println(idFactura+" "+descuento+" "+tipoPago+" "+idCliente+" "+idVendedor+" "+detalle+" "+totalFact+" ");
-        AdminBD.crearDevolucion(idFactura,descuento,tipoPago,idCliente,idVendedor,
-                "Devolucion",detalle,totalFact,"A");
-        }
-    
+        AdminBD.crearDevolucion(idFactura, descuento, tipoPago, idCliente, idVendedor,
+                "Devolucion", detalle, totalFact, "A");
+    }
 
     private void guardarProductosDev() {
         Direct_Control_BD AdminBD = Direct_Control_BD.getInstance();
@@ -2532,16 +2538,13 @@ public class JPanel_CrearFactura extends javax.swing.JPanel {
             //Si la fila esta vacia
             if (model.getValueAt(i, 0) != "") {
                 String idProducto = infoTablaFact[i][0];
-                int idVersion = AdminBD.veridVersionActivaProductoPorCodigo
-        (idProducto);
+                int idVersion = AdminBD.veridVersionActivaProductoPorCodigo(idProducto);
                 String CantidadSinCorregir = infoTablaFact[i][2].toString();
-                DecimalFormat decimalfC = (DecimalFormat) 
-                        NumberFormat.getInstance();
+                DecimalFormat decimalfC = (DecimalFormat) NumberFormat.getInstance();
                 decimalfC.setParseBigDecimal(true);
                 BigDecimal cantidadB = null;
                 try {
-                    cantidadB = (BigDecimal) decimalfC.parseObject
-        (CantidadSinCorregir);
+                    cantidadB = (BigDecimal) decimalfC.parseObject(CantidadSinCorregir);
                 } catch (ParseException ex) {
                     Logger.getLogger(MyTableModelListener_FACT.class.
                             getName()).log(Level.SEVERE, null, ex);
@@ -2549,16 +2552,16 @@ public class JPanel_CrearFactura extends javax.swing.JPanel {
                 int cantidad = cantidadB.intValue();
                 String precioSinCorregir = infoTablaFact[i][3];
                 BigDecimal PrecioVenta = this.corregirDato(precioSinCorregir);
-                int idVersionFacturasProducto =AdminBD.verVersionDEDevolucionActiva(idFactura);
+                int idVersionFacturasProducto = AdminBD.verVersionDEDevolucionActiva(idFactura);
                 //System.out.println(idProducto+" "+idVersion+" "+cantidad+" "+idFactura+" "+PrecioVenta+" "+idVersionFacturasProducto);
                 AdminBD.insertarProductoCantidadDev(idProducto, idVersion,
-                        cantidad, idFactura, PrecioVenta,idVersionFacturasProducto);
+                        cantidad, idFactura, PrecioVenta, idVersionFacturasProducto);
 
             }
         }
     }
-    
-     public void cargarInfoDev() {
+
+    public void cargarInfoDev() {
         Direct_Control_BD AdminBD = Direct_Control_BD.getInstance();
         AdminBD.verInfoDevolucion(Integer.parseInt(this.jLabel_NumerodeFact.getText()));
         Object[][] dataInfoFactura = AdminBD.getData();
@@ -2585,24 +2588,24 @@ public class JPanel_CrearFactura extends javax.swing.JPanel {
     }
 
     public void cargarProductosDevolucion() {
-        MyTableModel_FACT model = (MyTableModel_FACT)jTable_Factura.getModel();
+        MyTableModel_FACT model = (MyTableModel_FACT) jTable_Factura.getModel();
         Direct_Control_BD AdminBD = Direct_Control_BD.getInstance();
         AdminBD.verProductosPorDevolucion(Integer.parseInt(this.jLabel_NumerodeFact.getText()));
         Object[][] ProductosdeFactura = AdminBD.getData();
         int numFilas = ProductosdeFactura.length;
         for (int row = 0; row < numFilas; row++) {
-            Object[] producto= ProductosdeFactura[row];
-            String codArticulo= producto[0].toString();
-            String nombre= producto[1].toString();
-            BigDecimal cantidad= this.StringtoBigDecimal(producto[2].toString());
-            BigDecimal precioVenta= this.StringtoBigDecimal(producto[3].toString());
+            Object[] producto = ProductosdeFactura[row];
+            String codArticulo = producto[0].toString();
+            String nombre = producto[1].toString();
+            BigDecimal cantidad = this.StringtoBigDecimal(producto[2].toString());
+            BigDecimal precioVenta = this.StringtoBigDecimal(producto[3].toString());
             model.setValueAt(codArticulo, row, 0);
             model.setValueAt(nombre, row, 1);
             model.setValueAt(cantidad, row, 2);
             model.setValueAt(precioVenta, row, 3);
             model.setValueAt(precioVenta.multiply(cantidad), row, 4);
         }
-}
+    }
 
     private void modificaDevolucion() {
         //Hace la devolucion vieja en estado inhabilitada
@@ -2610,5 +2613,3 @@ public class JPanel_CrearFactura extends javax.swing.JPanel {
         AdminBD.eliminarDevolucionPorModificacion(Integer.parseInt(this.jLabel_NumerodeFact.getText()));
     }
 }
-    
-

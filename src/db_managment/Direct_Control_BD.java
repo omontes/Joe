@@ -430,7 +430,7 @@ public class Direct_Control_BD {
 
     /**
      * Muestra todos los apartados (cancelados y pendientes)
-     * 
+     *
      */
     public void verApartados() {
         try {
@@ -444,10 +444,10 @@ public class Direct_Control_BD {
             System.out.println("Error al ver apartados");
         }
     }
-    
-     /**
+
+    /**
      * Muestra todos los creditos(cancelados y pendientes)
-     * 
+     *
      */
     public void verCreditos() {
         try {
@@ -456,7 +456,7 @@ public class Direct_Control_BD {
             ResultSet resultset = statement.executeQuery(VerCreditos);
             this.setColumnNames(this.Get_Columnas(resultset));
             this.setData(this.ResultSet_Array(resultset));
-            
+
         } catch (Exception e) {
             System.out.println("Error al ver creditos");
         }
@@ -483,7 +483,7 @@ public class Direct_Control_BD {
         }
     }
 
-     /**
+    /**
      * Muestra todos los creditos pendientes(Abiertos)
      * Detalles:idFactura||Saldo||FechaVencimiento||TotalFacturado||Nombre
      * ||Tipopago
@@ -2075,6 +2075,12 @@ public class Direct_Control_BD {
 
     }
 
+    /**
+     * permite obtener las facturas que fueron eliminadas
+     *
+     * @param FechaIni
+     * @param FechaFin
+     */
     public void VerFacturasEliminadas(String FechaIni, String FechaFin) {
         try {
             String Fact = this.readSql("../Joe"
@@ -2111,6 +2117,7 @@ public class Direct_Control_BD {
 //        }
 //    }
     /**
+     * Obtiene Facturas Modificadas Y Sus Versiones
      *
      * @param idFactura
      */
@@ -2131,12 +2138,42 @@ public class Direct_Control_BD {
         }
     }
 
+    /**
+     * Obtiene Devoluciones Modificadas Y Sus Versiones
+     *
+     * @param idDev
+     */
+    public void ObtenerDevolucionesModificadaYSusVersiones(String idDev) {
+        try {
+            String Facturas = this.readSql("../Joe"
+                    + "/src/sql_files/"
+                    + "ObtenerDevolucionesModificadaYSusVersiones.sql");
+            PreparedStatement stm = this.conection.prepareStatement(Facturas);
+            stm.setString(1, idDev);
+            ResultSet rs = stm.executeQuery();
+            setColumnNames(Get_Columnas(rs));
+            setData2(ResultSet_Array(rs));
+        } catch (Exception e) {
+
+            System.out.println("Error al  Obtener Dev Modificadas"
+                    + " y sus versiones");
+
+        }
+    }
+
+    /**
+     * Obtiene los productos de una factura dado su idVersion e idFactura
+     *
+     * @param idFact
+     * @param version
+     */
     public void verProductosPorFacturaYVersionDeFactura(String idFact,
             int version) {
         try {
             String verProductosPorFacturaYVersion = this.readSql("../Joe/src/"
                     + "sql_files/ProductosPorIdFacturaYIdVersionFactura.sql");
-            PreparedStatement stm = this.conection.prepareStatement(verProductosPorFacturaYVersion);
+            PreparedStatement stm = this.conection.
+                    prepareStatement(verProductosPorFacturaYVersion);
             stm.setString(1, idFact);
             stm.setInt(2, version);
             ResultSet resultset = stm.executeQuery();
@@ -2146,8 +2183,35 @@ public class Direct_Control_BD {
             System.out.println("Error al obtener los productos de la factura");
         }
     }
+    /**
+     * Obtiene los productos de una factura dado su idVersion e idFactura
+     *
+     * @param idFact
+     * @param version
+     */
+    public void verProductosPorDevolucionYVersionDeDev(String idFact,
+            int version) {
+        try {
+            String verProductosPorFacturaYVersion = this.readSql("../Joe/src/"
+                    + "sql_files/ProductosPorIdDevolucionYIdVersionDev.sql");
+            PreparedStatement stm = this.conection.
+                    prepareStatement(verProductosPorFacturaYVersion);
+            stm.setString(1, idFact);
+            stm.setInt(2, version);
+            ResultSet resultset = stm.executeQuery();
+            this.setColumnNames(Get_Columnas(resultset));
+            this.setData2(ResultSet_Array(resultset));
+        } catch (Exception e) {
+            System.out.println("Error al obtener los productos de la Dev");
+        }
+    }
 
-
+    /**
+     * Permite Ver Productos Por Rango Codigo
+     *
+     * @param Inic
+     * @param hasta
+     */
     public void VerProductosPorRangoCodigo(String Inic,
             String hasta) {
         try {
@@ -2160,10 +2224,17 @@ public class Direct_Control_BD {
             this.setColumnNames(Get_Columnas(resultset));
             this.setData2(ResultSet_Array(resultset));
         } catch (Exception e) {
-            System.out.println("Error al obtener los productos por rango de codigo");
+            System.out.println("Error al obtener los productos "
+                    + "por rango de codigo");
         }
     }
 
+    /**
+     * Obtener informacion de productos dado un nombre
+     *
+     * @param Inic
+     * @param hasta
+     */
     public void VerProductosPorNombre(String Inic,
             String hasta) {
         try {
@@ -2176,10 +2247,16 @@ public class Direct_Control_BD {
             this.setColumnNames(Get_Columnas(resultset));
             this.setData2(ResultSet_Array(resultset));
         } catch (Exception e) {
-            System.out.println("Error al obtener los productos por rango descripcion");
+            System.out.println("Error al obtener los productos por "
+                    + "rango descripcion");
         }
     }
 
+    /**
+     * Obtener informacion de productos dado una categoria
+     *
+     * @param categoria
+     */
     public void VerProductosPorCategoria(String categoria) {
         try {
             String Productos = this.readSql("../Joe/src/"
@@ -2195,6 +2272,12 @@ public class Direct_Control_BD {
 
     }
 
+    /**
+     * Permite Ver Costo y Precio de Productos,Por Rango de Codigo
+     *
+     * @param Inic
+     * @param hasta
+     */
     public void VerCostoPrecioProductosPorRangoCodigo(String Inic,
             String hasta) {
         try {
@@ -2207,16 +2290,23 @@ public class Direct_Control_BD {
             this.setColumnNames(Get_Columnas(resultset));
             this.setData2(ResultSet_Array(resultset));
         } catch (Exception e) {
-            System.out.println("Error al obtener costos productos por rango de codigo");
+            System.out.println("Error al obtener costos productos por "
+                    + "rango de codigo");
         }
     }
 
+    /**
+     * Permite obtener una factura modificada y sus versiones
+     *
+     * @param idFact
+     */
     public void ObtenerFactModificada(String idFact) {
         try {
 
             String verProductosPorFacturaYVersion = this.readSql("../Joe/src/"
                     + "sql_files/ObtenerFactModificada.sql");
-            PreparedStatement stm = this.conection.prepareStatement(verProductosPorFacturaYVersion);
+            PreparedStatement stm = this.conection.
+                    prepareStatement(verProductosPorFacturaYVersion);
             stm.setString(1, idFact);
             ResultSet resultset = stm.executeQuery();
             this.setData(this.ResultSet_Array(resultset));
@@ -2229,12 +2319,15 @@ public class Direct_Control_BD {
 
     /**
      * Devuelve el total facturado y el saldo de un apartado
+     *
+     * @param NumFact
      */
     public void verInfoFacturaApartado(int NumFact) {
         try {
             String verInfoFacturaApartado = this.readSql("../Joe/src/"
                     + "sql_files/verPago.sql");
-            PreparedStatement stm = this.conection.prepareStatement(verInfoFacturaApartado);
+            PreparedStatement stm = this.conection.
+                    prepareStatement(verInfoFacturaApartado);
             stm.setInt(1, NumFact);
             ResultSet resultset = stm.executeQuery();
             this.setColumnNames(this.Get_Columnas(resultset));
@@ -2245,7 +2338,13 @@ public class Direct_Control_BD {
         }
     }
 
-   public void VerCostoPrecioProductosPorNombre(String Inic, String hasta) {
+    /**
+     * Permite Ver Costo y Precio de Productos,Por Rango de Nombre
+     *
+     * @param Inic
+     * @param hasta
+     */
+    public void VerCostoPrecioProductosPorNombre(String Inic, String hasta) {
         try {
             String Productos = this.readSql("../Joe/src/"
                     + "sql_files/VerCostoPrecioProductosPorRangoNombre.sql");
@@ -2256,10 +2355,16 @@ public class Direct_Control_BD {
             this.setColumnNames(Get_Columnas(resultset));
             this.setData2(ResultSet_Array(resultset));
         } catch (Exception e) {
-            System.out.println("Error al obtener costos productos por rango de codigo");
+            System.out.println("Error al obtener costos productos por "
+                    + "rango de nombre");
         }
     }
 
+    /**
+     * Permite Ver Costo y Precio de Productos,Por Categoria
+     *
+     * @param categoria
+     */
     public void VerCostoPrecioProductosPorCategoria(String categoria) {
         try {
             String Productos = this.readSql("../Joe/src/"
@@ -2270,26 +2375,60 @@ public class Direct_Control_BD {
             this.setColumnNames(Get_Columnas(resultset));
             this.setData2(ResultSet_Array(resultset));
         } catch (Exception e) {
-            System.out.println("Error al obtener los Precios Costos de productos por categoria");
+            System.out.println("Error al obtener los Precios Costos de "
+                    + "productos por categoria");
         }
     }
 
+    /**
+     * Permite obtener las facturas que tengan alguna modificacion
+     */
     public void ObtenerFactModificadaOriginales() {
         try {
             String verInfoFacturaApartadoPagos = this.readSql("../Joe/src/"
                     + "sql_files/VerFacturasOriginalesModf.sql");
-            PreparedStatement stm = this.conection.prepareStatement(verInfoFacturaApartadoPagos);
+            PreparedStatement stm = this.conection.
+                    prepareStatement(verInfoFacturaApartadoPagos);
 
             ResultSet resultset = stm.executeQuery();
             this.setColumnNames(this.Get_Columnas(resultset));
             this.setData(this.ResultSet_Array(resultset));
         } catch (Exception e) {
 
-            System.out.println("Error al obtener la informacion de los pagos del apartado");
+            System.out.println("Error al obtener facturas que tengan "
+                    + "alguna modificacion");
         }
 
     }
 
+    /**
+     * Permite obtener las devoluciones que tengan alguna modificacion
+     */
+    public void ObtenerDevModificadasOriginales() {
+        try {
+            String verInfoFacturaApartadoPagos = this.readSql("../Joe/src/"
+                    + "sql_files/VerModificadasOriginalesModf.sql");
+            PreparedStatement stm = this.conection.
+                    prepareStatement(verInfoFacturaApartadoPagos);
+
+            ResultSet resultset = stm.executeQuery();
+            this.setColumnNames(this.Get_Columnas(resultset));
+            this.setData(this.ResultSet_Array(resultset));
+        } catch (Exception e) {
+
+            System.out.println("Error al obtener Devoluciones"
+                    + " Modificadas Originales");
+        }
+
+    }
+
+    /**
+     * Permite Ver Productos Agotados Por Rango de Codigo
+     *
+     * @param Inic
+     * @param hasta
+     * @param ubicacion
+     */
     public void VerProductosAgotadosPorRangoCodigo(String Inic, String hasta,
             String ubicacion) {
         try {
@@ -2304,11 +2443,20 @@ public class Direct_Control_BD {
             this.setData2(ResultSet_Array(resultset));
 
         } catch (Exception e) {
-            System.out.println("Error al obtener costos productos por rango de codigo");
+            System.out.println("Error al obtener costos productos "
+                    + "por rango de codigo");
         }
     }
 
-    public void VerProductosAgotadosPorNombre(String Inic, String hasta, String ubicacion) {
+    /**
+     * Permite Ver Productos Agotados Por Rango de Nombre
+     *
+     * @param Inic
+     * @param hasta
+     * @param ubicacion
+     */
+    public void VerProductosAgotadosPorNombre(String Inic, String hasta,
+            String ubicacion) {
         try {
             String Productos = this.readSql("../Joe/src/"
                     + "sql_files/VerProductosAgotadosPorRangoNombre.sql");
@@ -2321,11 +2469,19 @@ public class Direct_Control_BD {
             this.setData2(ResultSet_Array(resultset));
 
         } catch (Exception e) {
-            System.out.println("Error al obtener costos productos por rango de codigo");
+            System.out.println("Error al obtener costos productos por "
+                    + "rango de Nombre");
         }
     }
 
-    public void VerProductosAgotadosPorCategoria(String Inic, String ubicacion) {
+    /**
+     * Permite Ver Productos Agotados Por Categoria
+     *
+     * @param Inic
+     * @param ubicacion
+     */
+    public void VerProductosAgotadosPorCategoria(String Inic,
+            String ubicacion) {
         try {
             String Productos = this.readSql("../Joe/src/"
                     + "sql_files/VerProductosAgotadosPorCategoria.sql");
@@ -2337,11 +2493,20 @@ public class Direct_Control_BD {
             this.setData2(ResultSet_Array(resultset));
 
         } catch (Exception e) {
-            System.out.println("Error al obtener costos productos por rango de codigo");
+            System.out.println("Error al obtener  productos"
+                    + " agotados por categoria");
         }
     }
 
-    public void VerProductosEnInvPorRangoCodigo(String Inic, String hasta, String ubicacion) {
+    /**
+     * Permite Ver Productos en inventario Por Rango de Codigo
+     *
+     * @param Inic
+     * @param hasta
+     * @param ubicacion
+     */
+    public void VerProductosEnInvPorRangoCodigo(String Inic, String hasta,
+            String ubicacion) {
         try {
             String Productos = this.readSql("../Joe/src/"
                     + "sql_files/VerProductosEnInvPorRangoCodigo.sql");
@@ -2354,12 +2519,21 @@ public class Direct_Control_BD {
             this.setData2(ResultSet_Array(resultset));
 
         } catch (Exception e) {
-            System.out.println("Error al obtener lista productos en inv por rango de codigo");
+            System.out.println("Error al obtener lista productos en inv"
+                    + " por rango de codigo");
         }
 
     }
 
-    public void VerProductosEnInvPorNombre(String Inic, String hasta, String ubicacion) {
+    /**
+     * Permite Ver Productos en inventario Por Rango de Nombre
+     *
+     * @param Inic
+     * @param hasta
+     * @param ubicacion
+     */
+    public void VerProductosEnInvPorNombre(String Inic, String hasta,
+            String ubicacion) {
         try {
             String Productos = this.readSql("../Joe/src/"
                     + "sql_files/VerProductosEnInvPorRangoNombre.sql");
@@ -2372,11 +2546,19 @@ public class Direct_Control_BD {
             this.setData2(ResultSet_Array(resultset));
 
         } catch (Exception e) {
-            System.out.println("Error al obtener lista productos en inv por rango de nombre");
+            System.out.println("Error al obtener lista productos en inv "
+                    + "por rango de nombre");
         }
     }
 
-    public void VerProductosEnInvPorCategoria(String categoria, String ubicacion) {
+    /**
+     * Permite Ver Productos en inventario Por Categoria
+     *
+     * @param categoria
+     * @param ubicacion
+     */
+    public void VerProductosEnInvPorCategoria(String categoria,
+            String ubicacion) {
         try {
             String Productos = this.readSql("../Joe/src/"
                     + "sql_files/VerProductosEnInvPorCategoria.sql");
@@ -2388,11 +2570,20 @@ public class Direct_Control_BD {
             this.setData2(ResultSet_Array(resultset));
 
         } catch (Exception e) {
-            System.out.println("Error al obtener lista productos en inv por rango de nombre");
+            System.out.println("Error al obtener lista productos en"
+                    + " inv por categoria");
         }
     }
 
-    public void ValorDeInvPorRangoCodigo(String Inic, String hasta, String ubicacion) {
+    /**
+     * Permite Obtener el Valor Del Inventario Por Rango de Codigo
+     *
+     * @param Inic
+     * @param hasta
+     * @param ubicacion
+     */
+    public void ValorDeInvPorRangoCodigo(String Inic, String hasta,
+            String ubicacion) {
         try {
             String Productos = this.readSql("../Joe/src/"
                     + "sql_files/ValorDeInvPorRangoCodigo.sql");
@@ -2405,11 +2596,20 @@ public class Direct_Control_BD {
             this.setData2(ResultSet_Array(resultset));
 
         } catch (Exception e) {
-            System.out.println("Error al obtener Valor De Inv Por Rango Codigo");
+            System.out.println("Error al obtener Valor De Inv Por "
+                    + "Rango Codigo");
         }
     }
 
-    public void ValorDeInvPorNombreProd(String Inic, String hasta, String ubicacion) {
+    /**
+     * Permite Obtener el Valor Del Inventario Por Rango de Nombre de Producto
+     *
+     * @param Inic
+     * @param hasta
+     * @param ubicacion
+     */
+    public void ValorDeInvPorNombreProd(String Inic, String hasta,
+            String ubicacion) {
         try {
             String Productos = this.readSql("../Joe/src/"
                     + "sql_files/ValorDeInvPorNombreProd.sql");
@@ -2422,11 +2622,16 @@ public class Direct_Control_BD {
             this.setData2(ResultSet_Array(resultset));
 
         } catch (Exception e) {
-            System.out.println("Error al obtener Valor De Inv Por Rango Codigo");
+            System.out.println("Error al obtener Valor De Inv Por "
+                    + "Rango Nombre Producto");
         }
 
     }
-
+/**
+ * Permite Obtener el Valor Del Inventario Por Categoria del Producto
+ * @param categoria
+ * @param ubicacion 
+ */
     public void ValorDeInvPorCategoriaProd(String categoria, String ubicacion) {
         try {
             String Productos = this.readSql("../Joe/src/"
@@ -2439,15 +2644,14 @@ public class Direct_Control_BD {
             this.setData2(ResultSet_Array(resultset));
 
         } catch (Exception e) {
-            System.out.println("Error al obtener Valor De Inv Por Rango Codigo");
+            System.out.println("Error al obtener Valor De Inv Por Categoria del producto");
         }
 
     }
 
-   
     /**
-     * Devuelve la fecha y el monto de pago que se le han hecho a la factura
-     * con el NumFact ingresado
+     * Devuelve la fecha y el monto de pago que se le han hecho a la factura con
+     * el NumFact ingresado
      */
     public void verInfoFacturaApartadoPagos(int NumFact) {
         try {
@@ -2463,11 +2667,12 @@ public class Direct_Control_BD {
             System.out.println("Error al obtener la informacion de los pagos del apartado");
         }
     }
+
     /**
      * Devuelve el total facturado y el saldo de un credito
      */
     public void verInfoFacturaCredito(int NumFact) {
-        
+
         try {
             String verInfoFacturaCredito = this.readSql("../Joe/src/"
                     + "sql_files/verPagoCredito.sql");
@@ -2480,9 +2685,8 @@ public class Direct_Control_BD {
             System.out.println(NumFact);
             System.out.println("Error al obtener la informacion del credito");
         }
-        
 
-}
+    }
 
     public void verDevoluciones() {
         try {
@@ -2522,9 +2726,9 @@ public class Direct_Control_BD {
 
         }
     }
-    
+
     public void insertarProductoCantidadDev(String idProducto, int idVersion, int cantidad, int idFactura, BigDecimal PrecioVenta, int idVersionFacturasProducto) {
-         try {
+        try {
             String insertarProductoCantDev = this.readSql("../Joe/src/sql_files/"
                     + "insertarProductoCantidadDev.sql");
             PreparedStatement stm = this.conection.prepareStatement(insertarProductoCantDev);
@@ -2540,7 +2744,8 @@ public class Direct_Control_BD {
             System.out.println("Error al insertar producto cantidad dev");
         }
     }
-     /**
+
+    /**
      * Esta consulta permite saber cual es el idversion de la devolucion que se
      * esta creando en facturacion es decir la activa('A').
      *
@@ -2548,7 +2753,7 @@ public class Direct_Control_BD {
      * @return
      */
     public int verVersionDEDevolucionActiva(int idDev) {
-         try {
+        try {
             String verVersionDEDevNueva = this.readSql("../Joe"
                     + "/src/sql_files/verVersionDevNueva.sql");
             PreparedStatement stm
@@ -2565,6 +2770,7 @@ public class Direct_Control_BD {
             return 0;
         }
     }
+
     /**
      * Devuelve todos los productos de una devolucion determinada.
      */
@@ -2604,7 +2810,7 @@ public class Direct_Control_BD {
     }
 
     public void verInfoDevolucion(int NumDev) {
-         try {
+        try {
             String verInfoDev = this.readSql("../Joe/src/"
                     + "sql_files/cargarDevolucion.sql");
             PreparedStatement stm = this.conection.prepareStatement(verInfoDev);
@@ -2617,6 +2823,7 @@ public class Direct_Control_BD {
             System.out.println("Error al obtener la informacion de la devolucion");
         }
     }
+
     /**
      * Elimina la devolucion que se modifico(la vuelve inactiva para poder luego
      * ver cuales fueron las modificaciones que se le hicieron a la devolucion)
@@ -2624,7 +2831,7 @@ public class Direct_Control_BD {
      * @param NumDev
      */
     public void eliminarDevolucionPorModificacion(int NumDev) {
-         try {
+        try {
             String eliminarDevPorModf = this.readSql("../Joe/src/sql_files/"
                     + "eliminarDevolucionPorModf.sql");
             PreparedStatement stm = this.conection.prepareStatement(eliminarDevPorModf);
@@ -2634,8 +2841,10 @@ public class Direct_Control_BD {
             System.out.println("Error al eliminar la dev por modificacion");
         }
     }
-     /**
-     * 'Elimina'(Cambia de estado a eliminada) el numero de devolucion seleccionado
+
+    /**
+     * 'Elimina'(Cambia de estado a eliminada) el numero de devolucion
+     * seleccionado
      *
      * @param NumDev
      */
@@ -2651,6 +2860,43 @@ public class Direct_Control_BD {
             System.out.println("Error al eliminar la factura");
         }
     }
+
+
+    public void VerDevolucionesPorRangoDeFecha(String FechaIni, String FechaFin) {
+        try {
+            String Dev = this.readSql("../Joe"
+                    + "/src/sql_files/VerDevolucionesPorRangoDeFecha.sql");
+            PreparedStatement stm = this.conection.prepareStatement(Dev);
+            stm.setString(1, FechaIni);
+            stm.setString(2, FechaFin);
+            ResultSet rs = stm.executeQuery();
+            setColumnNames(Get_Columnas(rs));
+            setData2(ResultSet_Array(rs));
+        } catch (Exception e) {
+
+            System.out.println("Error al Ver devoluciones Por Rango De Fecha");
+
+        }
+    }
+
+    public void VerDevolucionesEliminadas(String FechaIni, String FechaFin) {
+        try {
+            String Fact = this.readSql("../Joe"
+                    + "/src/sql_files/VerDevolucionesEliminadas.sql");
+            PreparedStatement stm = this.conection.prepareStatement(Fact);
+            stm.setString(1, FechaIni);
+            stm.setString(2, FechaFin);
+            ResultSet rs = stm.executeQuery();
+            setColumnNames(Get_Columnas(rs));
+            setData2(ResultSet_Array(rs));
+        } catch (Exception e) {
+
+            System.out.println("Error al Ver Facturas Eliminadas");
+
+        }
+    }
+
+
     
     public void insertarCierreDeCaja(String HoraInicio,String Cajero,BigDecimal ReporteInicio) {
          try {
@@ -2754,4 +3000,5 @@ public class Direct_Control_BD {
     }
     
     
+
 }

@@ -6,7 +6,7 @@
 package joe;
 
 import com.jxcell.CellException;
-import datechooser.model.exeptions.IncompatibleDataExeption;
+//import datechooser.model.exeptions.IncompatibleDataExeption;
 import db_managment.Direct_Control_BD;
 import java.awt.event.KeyEvent;
 import java.io.IOException;
@@ -3836,7 +3836,8 @@ jPanel_VerDevEliminadasPorFechLayout.createParallelGroup(javax.swing.GroupLayout
             String concepto = "Ventas Por Cliente: " + jTextField_Cliente.
                     getText().toString();
             Direct_Control_BD AdminBD = Direct_Control_BD.getInstance();
-            AdminBD.VerVentasPorCliente(dateF.format(//Consulta de Fact Por cliente
+            //Consulta de Fact Por cliente
+            AdminBD.VerVentasPorCliente(dateF.format(
                     dateChooserCombo_IniClie.getSelectedDate().getTime()),
                     dateF.format(dateChooserCombo_FinClie.getSelectedDate().
                             getTime()), jTextField_Cliente.getText().toString());
@@ -3848,9 +3849,11 @@ jPanel_VerDevEliminadasPorFechLayout.createParallelGroup(javax.swing.GroupLayout
             String fechaAct = dateFormat.format(date);
 
             EscribirExcel archivoExcel = new EscribirExcel();
-            archivoExcel.setNombreArchivoExcel("VentasPorCliente" + fechaAct + ".xls");
+            archivoExcel.setNombreArchivoExcel("VentasPorCliente"
+                    + fechaAct + ".xls");
             try {
-                archivoExcel.escribir(infoEmpresa, AdminBD.getInfoFact(),//escribir excel
+                //escribir excel
+                archivoExcel.escribir(infoEmpresa, AdminBD.getInfoFact(),
                         AdminBD.getNombresColumnas(),
                         dateF1.format(dateChooserCombo_IniProd.
                                 getSelectedDate().getTime()),
@@ -3858,7 +3861,8 @@ jPanel_VerDevEliminadasPorFechLayout.createParallelGroup(javax.swing.GroupLayout
                                 getSelectedDate().getTime()),
                         concepto, "Excel");
             } catch (IOException | WriteException | CellException ex) {
-                Logger.getLogger(JPanel_Reportes.class.getName()).log(Level.SEVERE, null, ex);
+                Logger.getLogger(JPanel_Reportes.class.getName()).
+                        log(Level.SEVERE, null, ex);
             }
         } else {
 
@@ -3890,8 +3894,8 @@ jPanel_VerDevEliminadasPorFechLayout.createParallelGroup(javax.swing.GroupLayout
             String fechaAct = dateFormat.format(date);
 
             EscribirExcel archivoExcel = new EscribirExcel();
-            archivoExcel.setNombreArchivoExcel("VentasPorFechasPor" + concepto +
-                    fechaAct + ".xls");
+            archivoExcel.setNombreArchivoExcel("VentasPorFechasPor" + concepto
+                    + fechaAct + ".xls");
             try {
                 archivoExcel.escribir(infoEmpresa, AdminBD.getInfoFact(),
                         AdminBD.getNombresColumnas(),
@@ -3934,25 +3938,30 @@ jPanel_VerDevEliminadasPorFechLayout.createParallelGroup(javax.swing.GroupLayout
         //Verifica que el tipo de archivo en el que se va a mostrar, 
         //ademas de que la categoria o idpRod no sea vacio
         if (jRadioButton_ExcelProd.isSelected() && (jTextField_CodiOCateg.
-                getText().trim().isEmpty() == false 
-                || jRadioButton_PorCategoria.isSelected())) {//para mostrar en Excel
+                getText().trim().isEmpty() == false//para mostrar en Excel
+                || jRadioButton_PorCategoria.isSelected())) {
             String concepto = "Ventas Por Producto ";
             Direct_Control_BD AdminBD = Direct_Control_BD.getInstance();
             if (jRadioButton_PorCodigo.isSelected()) {//Cosulta Por codigo
                 concepto = "Ventas Por Producto Para " + jTextField_CodiOCateg.
                         getText();
-                AdminBD.VerFacturasPoridProducto(dateF.format(//Consulta de Fact Por Prod
+                //Consulta de Fact Por idProd
+                AdminBD.VerFacturasPoridProducto(dateF.format(
                         dateChooserCombo_IniProd.getSelectedDate().getTime()),
                         dateF.format(dateChooserCombo_FinProd.getSelectedDate().
                                 getTime()), jTextField_CodiOCateg.getText());
 
-            } else if (jRadioButton_PorCategoria.isSelected()) {//Consulta por categoria
-                concepto = "Ventas de Productos Para la Categoria " + 
-                        jComboBox_SeleccionarCategoria.getSelectedItem().toString();
-                AdminBD.FacturasPorCategoriaDeProd(dateF.format(//Consluta de Fact Por Categ 
+            }//Consulta por categoria 
+            else if (jRadioButton_PorCategoria.isSelected()) {
+                concepto = "Ventas de Productos Para la Categoria "
+                        + jComboBox_SeleccionarCategoria.getSelectedItem().
+                        toString();
+                //Consluta de Fact Por Categ 
+                AdminBD.FacturasPorCategoriaDeProd(dateF.format(
                         dateChooserCombo_IniProd.getSelectedDate().getTime()),
                         dateF.format(dateChooserCombo_FinProd.getSelectedDate().
-                                getTime()), jComboBox_SeleccionarCategoria.getSelectedItem().toString());
+                                getTime()), jComboBox_SeleccionarCategoria.
+                        getSelectedItem().toString());
 
             }
             String[] infoEmpresa = {"Joe S.A ", "Oriente pa dentro", "Cartago,"
@@ -3962,10 +3971,11 @@ jPanel_VerDevEliminadasPorFechLayout.createParallelGroup(javax.swing.GroupLayout
             String fechaAct = dateFormat.format(date);
 
             EscribirExcel archivoExcel = new EscribirExcel();
-            archivoExcel.setNombreArchivoExcel("VentasPorProducto" +
-                    fechaAct + ".xls");
+            archivoExcel.setNombreArchivoExcel("VentasPorProducto"
+                    + fechaAct + ".xls");
             try {
-                archivoExcel.escribir(infoEmpresa, AdminBD.getInfoFact(),//escribir excel
+                //escribir excel
+                archivoExcel.escribir(infoEmpresa, AdminBD.getInfoFact(),
                         AdminBD.getNombresColumnas(),
                         dateF1.format(dateChooserCombo_IniProd.
                                 getSelectedDate().getTime()),
@@ -3973,10 +3983,12 @@ jPanel_VerDevEliminadasPorFechLayout.createParallelGroup(javax.swing.GroupLayout
                                 getSelectedDate().getTime()),
                         concepto, "Excel");
             } catch (IOException | WriteException | CellException ex) {
-                Logger.getLogger(JPanel_Reportes.class.getName()).log(Level.SEVERE, null, ex);
+                Logger.getLogger(JPanel_Reportes.class.getName()).
+                        log(Level.SEVERE, null, ex);
             }
         } else {
-            if (jRadioButton_PorCodigo.isSelected() && jTextField_CodiOCateg.getText().trim().isEmpty()) {
+            if (jRadioButton_PorCodigo.isSelected()
+                    && jTextField_CodiOCateg.getText().trim().isEmpty()) {
                 JOptionPane.showMessageDialog(
                         null,
                         "Ingrese Un Codigo",
@@ -4047,14 +4059,18 @@ jPanel_VerDevEliminadasPorFechLayout.createParallelGroup(javax.swing.GroupLayout
                 concepto = "Canceladas";
                 //Consulta de Fact Por Vendedor, termino cancelado
                 AdminBD.ventasPorVendedorCancelada(dateF.format(
-                        dateChooserCombo_IniVendedor.getSelectedDate().getTime()),
-                        dateF.format(dateChooserCombo_FinVendedor.getSelectedDate().getTime()),
-                        jComboBox_SeleccionarVendedor.getSelectedItem().toString());
+                        dateChooserCombo_IniVendedor.getSelectedDate().
+                        getTime()),
+                        dateF.format(dateChooserCombo_FinVendedor.
+                                getSelectedDate().getTime()),
+                        jComboBox_SeleccionarVendedor.getSelectedItem().
+                        toString());
             } else if (jRadioButton_CreditoVend.isSelected()) {
                 concepto = "Credito";
                 //Consulta de Fact Por Vendedor, termino credito
                 AdminBD.ventasPorVendedorAparatadoOCredito(dateF.format(
-                        dateChooserCombo_IniVendedor.getSelectedDate().getTime()),
+                        dateChooserCombo_IniVendedor.getSelectedDate().
+                        getTime()),
                         dateF.format(dateChooserCombo_FinVendedor.
                                 getSelectedDate().getTime()),
                         jComboBox_SeleccionarVendedor.getSelectedItem().
@@ -4122,15 +4138,17 @@ jPanel_VerDevEliminadasPorFechLayout.createParallelGroup(javax.swing.GroupLayout
                 concepto = "Ventas Por Término: Efectivo";
                 //Consulta de Fact Por Efectivo
                 AdminBD.FacturasPorTerminoPorFecha(dateF.format(
-                        dateChooserCombo_IniTermino.getSelectedDate().getTime()),
-                        dateF.format(dateChooserCombo_FinTermino.
+                        dateChooserCombo_IniTermino.getSelectedDate().
+                        getTime()), dateF.
+                        format(dateChooserCombo_FinTermino.
                                 getSelectedDate().getTime()), "Efectivo");
 
             }//Consulta de Fact Por Tarjeta 
             else if (jRadioButton_Tarjeta.isSelected()) {
                 concepto = "Ventas Por Término: Facturas Pendientes ";
                 AdminBD.FacturasPorTerminoPorFecha(dateF.format(
-                        dateChooserCombo_IniTermino.getSelectedDate().getTime()),
+                        dateChooserCombo_IniTermino.getSelectedDate().
+                        getTime()),
                         dateF.format(dateChooserCombo_FinTermino.
                                 getSelectedDate().getTime()), "Tarjeta");
 
@@ -4164,11 +4182,13 @@ jPanel_VerDevEliminadasPorFechLayout.createParallelGroup(javax.swing.GroupLayout
 
     private void jButton_AceptaVerVentasPorProdVendedorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_AceptaVerVentasPorProdVendedorActionPerformed
         //Verifica que el tipo de archivo en el que se va a mostrar
-        if (jRadioButton_ExcelProdVendedor.isSelected()) {//para mostrar en Excel
+        if (jRadioButton_ExcelProdVendedor.isSelected()) {//mostrar en Excel
 
             Direct_Control_BD AdminBD = Direct_Control_BD.getInstance();
-            AdminBD.VentasDeProductosPorVendedor(dateF.format(//Consulta de Ventas De Productos Por Vendedor
-                    dateChooserCombo_IniProdVendedor.getSelectedDate().getTime()),
+            //Consulta de Ventas De Productos Por Vendedor
+            AdminBD.VentasDeProductosPorVendedor(dateF.format(
+                    dateChooserCombo_IniProdVendedor.getSelectedDate().
+                    getTime()),
                     dateF.format(dateChooserCombo_FinProdVendedor.
                             getSelectedDate().getTime()),
                     jComboBox_SeleccionarProdVendedor.
@@ -4181,15 +4201,22 @@ jPanel_VerDevEliminadasPorFechLayout.createParallelGroup(javax.swing.GroupLayout
             String fechaAct = dateFormat.format(date);
 
             EscribirExcel archivoExcel = new EscribirExcel();//
-            archivoExcel.setNombreArchivoExcel("VentasDeProductosPorVendedor" + fechaAct + ".xls");//Nombre del excel "Fisico"
+            archivoExcel.setNombreArchivoExcel("VentasDeProductosPorVendedor"
+                    + fechaAct + ".xls");//Nombre del excel "Fisico"
             try {
-                archivoExcel.escribir(infoEmpresa, AdminBD.getInfoFact(),//escribir excel
+                //escribir excel
+                archivoExcel.escribir(infoEmpresa, AdminBD.getInfoFact(),
                         AdminBD.getNombresColumnas(),
-                        dateF1.format(dateChooserCombo_IniProdVendedor.getSelectedDate().getTime()),
-                        dateF1.format(dateChooserCombo_FinProdVendedor.getSelectedDate().getTime()),
-                        "Ventas De Productos Para el Vendedor: " + jComboBox_SeleccionarProdVendedor.getSelectedItem().toString(), "Excel");
+                        dateF1.format(dateChooserCombo_IniProdVendedor.
+                                getSelectedDate().getTime()),
+                        dateF1.format(dateChooserCombo_FinProdVendedor.
+                                getSelectedDate().getTime()),
+                        "Ventas De Productos Para el Vendedor: "
+                        + jComboBox_SeleccionarProdVendedor.getSelectedItem().
+                        toString(), "Excel");
             } catch (IOException | WriteException | CellException ex) {
-                Logger.getLogger(JPanel_Reportes.class.getName()).log(Level.SEVERE, null, ex);
+                Logger.getLogger(JPanel_Reportes.class.getName()).
+                        log(Level.SEVERE, null, ex);
             }
         } else {
 
@@ -4210,8 +4237,10 @@ jPanel_VerDevEliminadasPorFechLayout.createParallelGroup(javax.swing.GroupLayout
         if (jRadioButton_ExcelProdCliente.isSelected()) {//para mostrar en Excel
 
             Direct_Control_BD AdminBD = Direct_Control_BD.getInstance();
-            AdminBD.VentasDeProductosPorCliente(dateF.format(//Consulta de Ventas De Productos Por Vendedor
-                    dateChooserCombo_IniProdCliente.getSelectedDate().getTime()),
+            //Consulta de Ventas De Productos Por Cliente
+            AdminBD.VentasDeProductosPorCliente(dateF.format(
+                    dateChooserCombo_IniProdCliente.getSelectedDate()
+                    .getTime()),
                     dateF.format(dateChooserCombo_FinProdCliente.
                             getSelectedDate().getTime()),
                     jTextField_VentasProdPorCliente.getText().toString());
@@ -4223,15 +4252,22 @@ jPanel_VerDevEliminadasPorFechLayout.createParallelGroup(javax.swing.GroupLayout
             String fechaAct = dateFormat.format(date);
 
             EscribirExcel archivoExcel = new EscribirExcel();//
-            archivoExcel.setNombreArchivoExcel("VentasDeProductosPorCliente" + fechaAct + ".xls");//Nombre del excel "Fisico"
+            archivoExcel.setNombreArchivoExcel("VentasDeProductosPorCliente"
+                    + fechaAct + ".xls");//Nombre del excel "Fisico"
             try {
-                archivoExcel.escribir(infoEmpresa, AdminBD.getInfoFact(),//escribir excel
+                //escribir excel
+                archivoExcel.escribir(infoEmpresa, AdminBD.getInfoFact(),
                         AdminBD.getNombresColumnas(),
-                        dateF1.format(dateChooserCombo_IniProdCliente.getSelectedDate().getTime()),
-                        dateF1.format(dateChooserCombo_FinProdCliente.getSelectedDate().getTime()),
-                        "Ventas De Productos Para el Cliente: " + jTextField_VentasProdPorCliente.getText().toString(), "Excel");
+                        dateF1.format(dateChooserCombo_IniProdCliente.
+                                getSelectedDate().getTime()),
+                        dateF1.format(dateChooserCombo_FinProdCliente.
+                                getSelectedDate().getTime()),
+                        "Ventas De Productos Para el Cliente: "
+                        + jTextField_VentasProdPorCliente.getText().
+                        toString(), "Excel");
             } catch (IOException | WriteException | CellException ex) {
-                Logger.getLogger(JPanel_Reportes.class.getName()).log(Level.SEVERE, null, ex);
+                Logger.getLogger(JPanel_Reportes.class.getName()).
+                        log(Level.SEVERE, null, ex);
             }
         } else {
 
@@ -4247,10 +4283,11 @@ jPanel_VerDevEliminadasPorFechLayout.createParallelGroup(javax.swing.GroupLayout
 
         Direct_Control_BD AdminBD = Direct_Control_BD.getInstance();
 
-        //Consulta de Fact Por Fech y concepto
+        //Consulta de Fact Eliminadas
         AdminBD.VerFacturasEliminadas(dateF.format(
                 dateChooserCombo_IniEliminadasFact.getSelectedDate().getTime()),
-                dateF.format(dateChooserCombo_FinEliminadasFact.getSelectedDate().getTime()));
+                dateF.format(dateChooserCombo_FinEliminadasFact.
+                        getSelectedDate().getTime()));
         String[] infoEmpresa = {"Joe S.A ", "Oriente pa dentro", "Cartago,"
             + " CA 20320", "Telefono:2650-11-36, fax:2655-0203"};
 
@@ -4259,25 +4296,31 @@ jPanel_VerDevEliminadasPorFechLayout.createParallelGroup(javax.swing.GroupLayout
 
         EscribirExcel archivoExcel = new EscribirExcel();
         System.out.println(fechaAct);
-        archivoExcel.setNombreArchivoExcel("VentasPorFechasPorEliminada" + fechaAct + ".xls");
+        archivoExcel.setNombreArchivoExcel("VentasPorFechasPorEliminada"
+                + fechaAct + ".xls");
         try {
             //para mostrar en Excel
             if (jRadioButton_ExcelEliminadasFact.isSelected()) {
                 archivoExcel.escribir(infoEmpresa, AdminBD.getInfoFact(),
                         AdminBD.getNombresColumnas(),
-                        dateF1.format(dateChooserCombo_IniEliminadasFact.getSelectedDate().getTime()),
-                        dateF1.format(dateChooserCombo_FinEliminadasFact.getSelectedDate().getTime()),
+                        dateF1.format(dateChooserCombo_IniEliminadasFact.
+                                getSelectedDate().getTime()),
+                        dateF1.format(dateChooserCombo_FinEliminadasFact.
+                                getSelectedDate().getTime()),
                         "Ventas Por Fechas Por Concepto:Eliminada", "Excel");
             } //para mostrar en pantalla 
             else if (jRadioButton_PantallaEliminadasFact.isSelected()) {
                 archivoExcel.escribir(infoEmpresa, AdminBD.getInfoFact(),
                         AdminBD.getNombresColumnas(),
-                        dateF1.format(dateChooserCombo_IniEliminadasFact.getSelectedDate().getTime()),
-                        dateF1.format(dateChooserCombo_FinEliminadasFact.getSelectedDate().getTime()),
+                        dateF1.format(dateChooserCombo_IniEliminadasFact.
+                                getSelectedDate().getTime()),
+                        dateF1.format(dateChooserCombo_FinEliminadasFact.
+                                getSelectedDate().getTime()),
                         "Ventas Por Fechas Por Concepto:Eliminada", "Pant");
             }
         } catch (IOException | WriteException | CellException ex) {
-            Logger.getLogger(JPanel_Reportes.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(JPanel_Reportes.class.getName()).
+                    log(Level.SEVERE, null, ex);
         }
 
     }//GEN-LAST:event_jButton_AceptarVerFactEliminadasActionPerformed
@@ -4307,12 +4350,12 @@ jPanel_VerDevEliminadasPorFechLayout.createParallelGroup(javax.swing.GroupLayout
         jPanel_VerListaDeCostos.setVisible(false);
         jPanel_VerProductosAgotados.setVisible(false);
         jPanel_VerProductosEnInventario.setVisible(false);
+        jPanel_VerValorDelInventario.setVisible(false);
     }//GEN-LAST:event_jDialog_ReportesInventarioWindowClosing
 
     private void jRadioButton_CategListaPrecActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButton_CategListaPrecActionPerformed
         jLabel_InicListaPrec.setText("Categoria:");
         jButton_BuscarListaPrec.setVisible(true);
-
         jLabel_hastaListaPrec.setVisible(false);
         jTextField_hastaListaPrec.setVisible(false);
     }//GEN-LAST:event_jRadioButton_CategListaPrecActionPerformed
@@ -4351,38 +4394,39 @@ jPanel_VerDevEliminadasPorFechLayout.createParallelGroup(javax.swing.GroupLayout
         if (jRadioButton_ExcelListaPrec.isSelected()) {//para mostrar en Excel
 
             if (jRadioButton_CodListaPrec.isSelected()) {
-                //Ver productos por codigo
-                AdminBD.VerProductosPorRangoCodigo(jTextField_IniListaPrec.getText().
-                        toString(), jTextField_hastaListaPrec.getText().toString());
+                //Ver productos por rango de codigo
+                AdminBD.VerProductosPorRangoCodigo(jTextField_IniListaPrec.
+                        getText().
+                        toString(), jTextField_hastaListaPrec.getText().
+                        toString());
 
             } else if (jRadioButton_NombListaPrec.isSelected()) {
-                // Ver productos por descripcion
+                // Ver productos por rango de nombre
                 AdminBD.VerProductosPorNombre(jTextField_IniListaPrec.getText().
-                        toString(), jTextField_hastaListaPrec.getText().toString());
+                        toString(), jTextField_hastaListaPrec.getText().
+                        toString());
 
             } else {
                 //Ver productos por Categoria
-                AdminBD.VerProductosPorCategoria(jTextField_IniListaPrec.getText().
-                        toString());
-
+                AdminBD.VerProductosPorCategoria(jTextField_IniListaPrec.
+                        getText().toString());
             }
 
             Date date = new Date();//hora Actual
             String fechaAct = dateFormat.format(date);
-//
-//
-//            
-//
             EscribirExcel archivoExcel = new EscribirExcel();//
-            archivoExcel.setNombreArchivoExcel("ListaDePrecio" + fechaAct + ".xls");//Nombre del excel "Fisico"
+            archivoExcel.setNombreArchivoExcel("ListaDePrecio"
+                    + fechaAct + ".xls");//Nombre del excel "Fisico"
             try {
-                archivoExcel.escribir(infoEmpresa, AdminBD.getInfoFact(),//escribir excel
+                //escribir excel
+                archivoExcel.escribir(infoEmpresa, AdminBD.getInfoFact(),
                         AdminBD.getNombresColumnas(),
                         "",
                         "",
                         "Lista De Precio", "Excel");
             } catch (IOException | WriteException | CellException ex) {
-                Logger.getLogger(JPanel_Reportes.class.getName()).log(Level.SEVERE, null, ex);
+                Logger.getLogger(JPanel_Reportes.class.getName()).
+                        log(Level.SEVERE, null, ex);
             }
         } else {
 
@@ -4436,17 +4480,22 @@ jPanel_VerDevEliminadasPorFechLayout.createParallelGroup(javax.swing.GroupLayout
 
             if (jRadioButton_CodListaCost.isSelected()) {
                 //Ver productos por codigo
-                AdminBD.VerCostoPrecioProductosPorRangoCodigo(jTextField_IniListaCost.getText().
-                        toString(), jTextField_hastaListaCost.getText().toString());
+                AdminBD.VerCostoPrecioProductosPorRangoCodigo(
+                        jTextField_IniListaCost.getText().
+                        toString(), jTextField_hastaListaCost.
+                        getText().toString());
 
             } else if (jRadioButton_NombreListaCost.isSelected()) {
                 // Ver productos por descripcion
-                AdminBD.VerCostoPrecioProductosPorNombre(jTextField_IniListaCost.getText().
-                        toString(), jTextField_hastaListaCost.getText().toString());
+                AdminBD.VerCostoPrecioProductosPorNombre(
+                        jTextField_IniListaCost.getText().
+                        toString(), jTextField_hastaListaCost.
+                        getText().toString());
 
             } else {
                 //Ver productos por Categoria
-                AdminBD.VerCostoPrecioProductosPorCategoria(jTextField_IniListaCost.getText().
+                AdminBD.VerCostoPrecioProductosPorCategoria(
+                        jTextField_IniListaCost.getText().
                         toString());
 
             }
@@ -4458,15 +4507,18 @@ jPanel_VerDevEliminadasPorFechLayout.createParallelGroup(javax.swing.GroupLayout
 //            
 //
             EscribirExcel archivoExcel = new EscribirExcel();//
-            archivoExcel.setNombreArchivoExcel("ListaDeCostoPrecio" + fechaAct + ".xls");//Nombre del excel "Fisico"
+            archivoExcel.setNombreArchivoExcel("ListaDeCostoPrecio"
+                    + fechaAct + ".xls");//Nombre del excel "Fisico"
             try {
-                archivoExcel.escribir(infoEmpresa, AdminBD.getInfoFact(),//escribir excel
+                //escribir excel
+                archivoExcel.escribir(infoEmpresa, AdminBD.getInfoFact(),
                         AdminBD.getNombresColumnas(),
                         "",
                         "",
                         "Lista De Costo,Precio", "Excel");
             } catch (IOException | WriteException | CellException ex) {
-                Logger.getLogger(JPanel_Reportes.class.getName()).log(Level.SEVERE, null, ex);
+                Logger.getLogger(JPanel_Reportes.class.getName()).
+                        log(Level.SEVERE, null, ex);
             }
         } else {
 
@@ -4522,18 +4574,23 @@ jPanel_VerDevEliminadasPorFechLayout.createParallelGroup(javax.swing.GroupLayout
                 ubicacion = "Bodega";
             }
             if (jRadioButton_CodAgotados.isSelected()) {
-                //Ver productos por codigo
-                AdminBD.VerProductosAgotadosPorRangoCodigo(jTextField_IniListaAgotados.getText().
-                        toString(), jTextField_hastaListaAgotados.getText().toString(), ubicacion);
+                //Ver productos por rango codigo
+                AdminBD.VerProductosAgotadosPorRangoCodigo(
+                        jTextField_IniListaAgotados.getText().
+                        toString(), jTextField_hastaListaAgotados.
+                        getText().toString(), ubicacion);
 
             } else if (jRadioButton_NombAgotados.isSelected()) {
-                // Ver productos por descripcion
-                AdminBD.VerProductosAgotadosPorNombre(jTextField_IniListaAgotados.getText().
-                        toString(), jTextField_hastaListaAgotados.getText().toString(), ubicacion);
+                // Ver productos por rango nombre
+                AdminBD.VerProductosAgotadosPorNombre(
+                        jTextField_IniListaAgotados.getText().
+                        toString(), jTextField_hastaListaAgotados.
+                        getText().toString(), ubicacion);
 
             } else {
                 //Ver productos por Categoria
-                AdminBD.VerProductosAgotadosPorCategoria(jTextField_IniListaAgotados.getText().
+                AdminBD.VerProductosAgotadosPorCategoria(
+                        jTextField_IniListaAgotados.getText().
                         toString(), ubicacion);
 
             }
@@ -4541,16 +4598,17 @@ jPanel_VerDevEliminadasPorFechLayout.createParallelGroup(javax.swing.GroupLayout
             Date date = new Date();//hora Actual
             String fechaAct = dateFormat.format(date);
 
-            EscribirExcel archivoExcel = new EscribirExcel();//
-            archivoExcel.setNombreArchivoExcel("ProductosAgotados" + fechaAct + ".xls");//Nombre del excel "Fisico"
+            EscribirExcel archivoExcel = new EscribirExcel();
+            archivoExcel.setNombreArchivoExcel("ProductosAgotados"
+                    + fechaAct + ".xls");//Nombre del excel "Fisico"
             try {
-                archivoExcel.escribir(infoEmpresa, AdminBD.getInfoFact(),//escribir excel
-                        AdminBD.getNombresColumnas(),
-                        "",
-                        "",
+                //escribir excel
+                archivoExcel.escribir(infoEmpresa, AdminBD.getInfoFact(),
+                        AdminBD.getNombresColumnas(), "", "",
                         "Productos agotados, Ubicacion " + ubicacion, "Excel");
             } catch (IOException | WriteException | CellException ex) {
-                Logger.getLogger(JPanel_Reportes.class.getName()).log(Level.SEVERE, null, ex);
+                Logger.getLogger(JPanel_Reportes.class.getName()).
+                        log(Level.SEVERE, null, ex);
             }
         } else {
 
@@ -4605,18 +4663,23 @@ jPanel_VerDevEliminadasPorFechLayout.createParallelGroup(javax.swing.GroupLayout
                 ubicacion = "Bodega";
             }
             if (jRadioButton_CodInv.isSelected()) {
-                //Ver productos por codigo
-                AdminBD.VerProductosEnInvPorRangoCodigo(jTextField_IniListaInv.getText().
-                        toString(), jTextField_hastaListaInv.getText().toString(), ubicacion);
+                //Ver productos por rango de codigo
+                AdminBD.VerProductosEnInvPorRangoCodigo(jTextField_IniListaInv.
+                        getText().
+                        toString(), jTextField_hastaListaInv.getText().
+                        toString(), ubicacion);
 
             } else if (jRadioButton_NombInv.isSelected()) {
-                // Ver productos por descripcion
-                AdminBD.VerProductosEnInvPorNombre(jTextField_IniListaInv.getText().
-                        toString(), jTextField_hastaListaInv.getText().toString(), ubicacion);
+                // Ver productos por rango de nombre
+                AdminBD.VerProductosEnInvPorNombre(jTextField_IniListaInv.
+                        getText().
+                        toString(), jTextField_hastaListaInv.getText().
+                        toString(), ubicacion);
 
             } else {
                 //Ver productos por Categoria
-                AdminBD.VerProductosEnInvPorCategoria(jTextField_IniListaInv.getText().
+                AdminBD.VerProductosEnInvPorCategoria(jTextField_IniListaInv.
+                        getText().
                         toString(), ubicacion);
 
             }
@@ -4625,13 +4688,17 @@ jPanel_VerDevEliminadasPorFechLayout.createParallelGroup(javax.swing.GroupLayout
             String fechaAct = dateFormat.format(date);
 
             EscribirExcel archivoExcel = new EscribirExcel();//
-            archivoExcel.setNombreArchivoExcel("ProductosEnInventario" + fechaAct + ".xls");//Nombre del excel "Fisico"
+            archivoExcel.setNombreArchivoExcel("ProductosEnInventario"
+                    + fechaAct + ".xls");//Nombre del excel "Fisico"
             try {
-                archivoExcel.escribir(infoEmpresa, AdminBD.getInfoFact(),//escribir excel
+                //escribir excel
+                archivoExcel.escribir(infoEmpresa, AdminBD.getInfoFact(),
                         AdminBD.getNombresColumnas(), "", "",
-                        "Productos En Inventario, Ubicacion " + ubicacion, "Excel");
+                        "Productos En Inventario, Ubicacion " + ubicacion,
+                        "Excel");
             } catch (IOException | WriteException | CellException ex) {
-                Logger.getLogger(JPanel_Reportes.class.getName()).log(Level.SEVERE, null, ex);
+                Logger.getLogger(JPanel_Reportes.class.getName()).
+                        log(Level.SEVERE, null, ex);
             }
         } else {
 
@@ -4681,24 +4748,27 @@ jPanel_VerDevEliminadasPorFechLayout.createParallelGroup(javax.swing.GroupLayout
         String[] infoEmpresa = {"Joe S.A ", "Oriente pa dentro", "Cartago,"
             + " CA 20320", "Telefono:2650-11-36, fax:2655-0203"};
         String ubicacion = "General";
-        if (jRadioButton_ExcelListaValorInv.isSelected()) {//para mostrar en Excel
+        //para mostrar en Excel
+        if (jRadioButton_ExcelListaValorInv.isSelected()) {
             if (jRadioButton_bodegaValorInv.isSelected()) {
                 ubicacion = "Bodega";
             }
             if (jRadioButton_CodValorInv.isSelected()) {
-                //Ver productos por codigo
-                AdminBD.ValorDeInvPorRangoCodigo(jTextField_IniListaValorInv.getText().
-                        toString(), jTextField_hastaListaValorInv.getText().toString(), ubicacion);
+                //Ver productos por rango de codigo
+                AdminBD.ValorDeInvPorRangoCodigo(jTextField_IniListaValorInv.
+                        getText().toString(), jTextField_hastaListaValorInv.
+                        getText().toString(), ubicacion);
 
             } else if (jRadioButton_NombValorInv.isSelected()) {
-                // Ver productos por descripcion
-                AdminBD.ValorDeInvPorNombreProd(jTextField_IniListaValorInv.getText().
-                        toString(), jTextField_hastaListaValorInv.getText().toString(), ubicacion);
+                // Ver productos por rango de nombre
+                AdminBD.ValorDeInvPorNombreProd(jTextField_IniListaValorInv.
+                        getText().toString(), jTextField_hastaListaValorInv.
+                        getText().toString(), ubicacion);
 
             } else {
                 //Ver productos por Categoria
-                AdminBD.ValorDeInvPorCategoriaProd(jTextField_IniListaValorInv.getText().
-                        toString(), ubicacion);
+                AdminBD.ValorDeInvPorCategoriaProd(jTextField_IniListaValorInv.
+                        getText().toString(), ubicacion);
 
             }
 
@@ -4706,13 +4776,17 @@ jPanel_VerDevEliminadasPorFechLayout.createParallelGroup(javax.swing.GroupLayout
             String fechaAct = dateFormat.format(date);
 
             EscribirExcel archivoExcel = new EscribirExcel();//
-            archivoExcel.setNombreArchivoExcel("ValorInventario" + fechaAct + ".xls");//Nombre del excel "Fisico"
+            archivoExcel.setNombreArchivoExcel("ValorInventario"
+                    + fechaAct + ".xls");//Nombre del excel "Fisico"
             try {
-                archivoExcel.escribir(infoEmpresa, AdminBD.getInfoFact(),//escribir excel
+                //escribir excel
+                archivoExcel.escribir(infoEmpresa, AdminBD.getInfoFact(),
                         AdminBD.getNombresColumnas(), "", "",
-                        "Valor del Inventario, Ubicacion " + ubicacion, "Excel");
+                        "Valor del Inventario, Ubicacion " + ubicacion,
+                        "Excel");
             } catch (IOException | WriteException | CellException ex) {
-                Logger.getLogger(JPanel_Reportes.class.getName()).log(Level.SEVERE, null, ex);
+                Logger.getLogger(JPanel_Reportes.class.getName()).
+                        log(Level.SEVERE, null, ex);
             }
         } else {
 
@@ -4720,7 +4794,8 @@ jPanel_VerDevEliminadasPorFechLayout.createParallelGroup(javax.swing.GroupLayout
     }//GEN-LAST:event_jButton_aceptarListaValorInvActionPerformed
 
     private void jButton_CancelarListaValorInvActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_CancelarListaValorInvActionPerformed
-        // TODO add your handling code here:
+        jDialog_ReportesInventario.remove(jPanel_VerValorDelInventario);
+        jDialog_ReportesInventario.setVisible(false);
     }//GEN-LAST:event_jButton_CancelarListaValorInvActionPerformed
 
     private void jButton9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton9ActionPerformed
@@ -4744,7 +4819,8 @@ jPanel_VerDevEliminadasPorFechLayout.createParallelGroup(javax.swing.GroupLayout
         jRadioButton_ExcelListaInv.setSelected(true);
         jPanel_VerProductosEnInventario.setVisible(true);
         jDialog_ReportesInventario.setLocation(getLocationOnScreen());
-        jPanel_VerProductosEnInventario.setSize(jDialog_ReportesInventario.getSize());
+        jPanel_VerProductosEnInventario.setSize(jDialog_ReportesInventario.
+                getSize());
         jDialog_ReportesInventario.add(jPanel_VerProductosEnInventario);
         jDialog_ReportesInventario.setVisible(true);
         jTextField_IniListaInv.setText("");
@@ -4752,7 +4828,6 @@ jPanel_VerDevEliminadasPorFechLayout.createParallelGroup(javax.swing.GroupLayout
     }//GEN-LAST:event_jButton_ProductosenInventarioActionPerformed
 
     private void jButton_ValorDelInventarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_ValorDelInventarioActionPerformed
-        //        jButton_aceptarListaPrec.setIcon(new ImageIcon(""));//poner imagen
         buttonGroup1.add(jRadioButton_ExcelListaValorInv);
         buttonGroup1.add(jRadioButton_pantallaListaValorInv);
         buttonGroup2.add(jRadioButton_CategValorInv);
@@ -4766,7 +4841,8 @@ jPanel_VerDevEliminadasPorFechLayout.createParallelGroup(javax.swing.GroupLayout
         jRadioButton_ExcelListaValorInv.setSelected(true);
         jPanel_VerValorDelInventario.setVisible(true);
         jDialog_ReportesInventario.setLocation(getLocationOnScreen());
-        jPanel_VerValorDelInventario.setSize(jDialog_ReportesInventario.getSize());
+        jPanel_VerValorDelInventario.setSize(jDialog_ReportesInventario.
+                getSize());
         jDialog_ReportesInventario.add(jPanel_VerValorDelInventario);
         jDialog_ReportesInventario.setVisible(true);
         jTextField_IniListaValorInv.setText("");
@@ -4774,7 +4850,6 @@ jPanel_VerDevEliminadasPorFechLayout.createParallelGroup(javax.swing.GroupLayout
     }//GEN-LAST:event_jButton_ValorDelInventarioActionPerformed
 
     private void jButton_ListaDeCostoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_ListaDeCostoActionPerformed
-        //        jButton_aceptarListaPrec.setIcon(new ImageIcon(""));//poner imagen
         buttonGroup1.add(jRadioButton_ExcelListaCost);
         buttonGroup1.add(jRadioButton_pantallaListaCost);
         buttonGroup2.add(jRadioButton_CategListaCost);
@@ -4867,24 +4942,28 @@ jPanel_VerDevEliminadasPorFechLayout.createParallelGroup(javax.swing.GroupLayout
             String fechaAct = dateFormat.format(date);
 
             EscribirExcel archivoExcel = new EscribirExcel();
-            archivoExcel.setNombreArchivoExcel("FacturaModificada" + fechaAct + ".xls");
+            archivoExcel.setNombreArchivoExcel("FacturaModificada"
+                    + fechaAct + ".xls");
             try {
                 archivoExcel.crearLibro();//crear libro para agregar hojas
             } catch (IOException ex) {
-                Logger.getLogger(JPanel_Reportes.class.getName()).log(Level.SEVERE, null, ex);
+                Logger.getLogger(JPanel_Reportes.class.getName()).
+                        log(Level.SEVERE, null, ex);
             }
             String[] infoEmpresa = {"Joe S.A ", "Oriente pa dentro", "Cartago,"
                 + " CA 20320", "Telefono:2650-11-36, fax:2655-0203"};
 
             for (int i = 0; i < infoFact.length; i++) {
                 AdminBD.verProductosPorFacturaYVersionDeFactura(infoFact[i][1].
-                        toString(), Integer.parseInt(infoFact[i][2].toString()));
+                        toString(),
+                        Integer.parseInt(infoFact[i][2].toString()));
                 try {
                     archivoExcel.escribirHojas("Factura ", i, infoEmpresa,
                             AdminBD.getInfoFact(), AdminBD.getColumnNames(),
                             infoFact[i]);
                 } catch (IOException | WriteException ex) {
-                    Logger.getLogger(JPanel_Reportes.class.getName()).log(Level.SEVERE, null, ex);
+                    Logger.getLogger(JPanel_Reportes.class.getName()).
+                            log(Level.SEVERE, null, ex);
                 }
 
             }
@@ -4895,11 +4974,13 @@ jPanel_VerDevEliminadasPorFechLayout.createParallelGroup(javax.swing.GroupLayout
                 archivoExcel.workbook.close();
                 //mostrar el Excel
 
-                Runtime.getRuntime().exec("rundll32 url.dll,FileProtocolHandler "
+                Runtime.getRuntime().exec(
+                        "rundll32 url.dll,FileProtocolHandler "
                         + archivoExcel.getNombreArchivoExcel());
 
             } catch (IOException | WriteException ex) {
-                Logger.getLogger(JPanel_Reportes.class.getName()).log(Level.SEVERE, null, ex);
+                Logger.getLogger(JPanel_Reportes.class.getName()).
+                        log(Level.SEVERE, null, ex);
             }
 
         }
@@ -4953,7 +5034,7 @@ jPanel_VerDevEliminadasPorFechLayout.createParallelGroup(javax.swing.GroupLayout
         buttonGroup2.add(jRadioButton_CreditoVend);
         jRadioButton_CanceladoVend.setSelected(true);
         buttonGroup1.add(jRadioButton_ExcelVendedor);
-        buttonGroup1.add(jRadioButton_PantallaVendedor);//mejorar unsando un solo buttogroup
+        buttonGroup1.add(jRadioButton_PantallaVendedor);
         jRadioButton_ExcelVendedor.setSelected(true);
         jPanel_VentasPorVendedor.setVisible(true);
         jDialog_ReportesFact.setLocation(getLocationOnScreen());
@@ -4990,7 +5071,7 @@ jPanel_VerDevEliminadasPorFechLayout.createParallelGroup(javax.swing.GroupLayout
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
         //mostrar componentes
         buttonGroup1.add(jRadioButton_ExcelProdCliente);
-        buttonGroup1.add(jRadioButton_PantallaProdCliente);//mejorar unsando un solo buttogroup
+        buttonGroup1.add(jRadioButton_PantallaProdCliente);
         jRadioButton_ExcelProdCliente.setSelected(true);
         jPanel_VentasProductosPorCliente.setVisible(true);
         jDialog_ReportesFact.setLocation(getLocationOnScreen());
@@ -5056,7 +5137,6 @@ jPanel_VerDevEliminadasPorFechLayout.createParallelGroup(javax.swing.GroupLayout
         jDialog_ReportesFact.setLocation(getLocationOnScreen());
         jPanel_VerVentasPorFech.setSize(jDialog_ReportesFact.getSize());
         jDialog_ReportesFact.add(jPanel_VerVentasPorFech);
-        //        jDialog_Reportes.setUndecorated(true);//no ver bordes del jdialogue
         jDialog_ReportesFact.setVisible(true);
 
     }//GEN-LAST:event_jButton_VentasPorFechaActionPerformed
@@ -5065,10 +5145,11 @@ jPanel_VerDevEliminadasPorFechLayout.createParallelGroup(javax.swing.GroupLayout
         if (jRadioButton_ExcelDevFech.isSelected()) {//para mostrar en Excel
             Direct_Control_BD AdminBD = Direct_Control_BD.getInstance();
 
-            //Consulta de Devoluciones Por Fech
+            //Consulta de Devoluciones Por rango de Fecha
             AdminBD.VerDevolucionesPorRangoDeFecha(dateF.format(
                     dateChooserCombo_IniDevFech.getSelectedDate().getTime()),
-                    dateF.format(dateChooserCombo_FinDevFech.getSelectedDate().getTime()));
+                    dateF.format(dateChooserCombo_FinDevFech.getSelectedDate().
+                            getTime()));
             String[] infoEmpresa = {"Joe S.A ", "Oriente pa dentro", "Cartago,"
                 + " CA 20320", "Telefono:2650-11-36, fax:2655-0203"};
 
@@ -5076,15 +5157,19 @@ jPanel_VerDevEliminadasPorFechLayout.createParallelGroup(javax.swing.GroupLayout
             String fechaAct = dateFormat.format(date);
 
             EscribirExcel archivoExcel = new EscribirExcel();
-            archivoExcel.setNombreArchivoExcel("DevolucionesPorFechas" + fechaAct + ".xls");
+            archivoExcel.setNombreArchivoExcel("DevolucionesPorFechas"
+                    + fechaAct + ".xls");
             try {
                 archivoExcel.escribir(infoEmpresa, AdminBD.getInfoFact(),
                         AdminBD.getNombresColumnas(),
-                        dateF1.format(dateChooserCombo_IniDevFech.getSelectedDate().getTime()),
-                        dateF1.format(dateChooserCombo_FinDevFech.getSelectedDate().getTime()),
+                        dateF1.format(dateChooserCombo_IniDevFech.
+                                getSelectedDate().getTime()),
+                        dateF1.format(dateChooserCombo_FinDevFech.
+                                getSelectedDate().getTime()),
                         "Devoluciones Por Fechas", "Excel");
             } catch (IOException | WriteException | CellException ex) {
-                Logger.getLogger(JPanel_Reportes.class.getName()).log(Level.SEVERE, null, ex);
+                Logger.getLogger(JPanel_Reportes.class.getName()).
+                        log(Level.SEVERE, null, ex);
             }
         }
     }//GEN-LAST:event_jButton_AceptarVerDevFechActionPerformed
@@ -5111,7 +5196,8 @@ jPanel_VerDevEliminadasPorFechLayout.createParallelGroup(javax.swing.GroupLayout
         //Consulta de devoluciones eliminadas
         AdminBD.VerDevolucionesEliminadas(dateF.format(
                 dateChooserCombo_IniEliminadasDev.getSelectedDate().getTime()),
-                dateF.format(dateChooserCombo_FinEliminadasDev.getSelectedDate().getTime()));
+                dateF.format(dateChooserCombo_FinEliminadasDev.
+                        getSelectedDate().getTime()));
         String[] infoEmpresa = {"Joe S.A ", "Oriente pa dentro", "Cartago,"
             + " CA 20320", "Telefono:2650-11-36, fax:2655-0203"};
 
@@ -5119,25 +5205,31 @@ jPanel_VerDevEliminadasPorFechLayout.createParallelGroup(javax.swing.GroupLayout
         String fechaAct = dateFormat.format(date);
 
         EscribirExcel archivoExcel = new EscribirExcel();
-        archivoExcel.setNombreArchivoExcel("DevolucionesEliminadas" + fechaAct + ".xls");
+        archivoExcel.setNombreArchivoExcel("DevolucionesEliminadas"
+                + fechaAct + ".xls");
         try {
             //para mostrar en Excel
             if (jRadioButton_ExcelEliminadasDev.isSelected()) {
                 archivoExcel.escribir(infoEmpresa, AdminBD.getInfoFact(),
                         AdminBD.getNombresColumnas(),
-                        dateF1.format(dateChooserCombo_IniEliminadasDev.getSelectedDate().getTime()),
-                        dateF1.format(dateChooserCombo_FinEliminadasDev.getSelectedDate().getTime()),
+                        dateF1.format(dateChooserCombo_IniEliminadasDev.
+                                getSelectedDate().getTime()),
+                        dateF1.format(dateChooserCombo_FinEliminadasDev.
+                                getSelectedDate().getTime()),
                         "Devoluciones Eliminadas", "Excel");
             } //para mostrar en pantalla 
             else if (jRadioButton_PantallaEliminadasFact.isSelected()) {
                 archivoExcel.escribir(infoEmpresa, AdminBD.getInfoFact(),
                         AdminBD.getNombresColumnas(),
-                        dateF1.format(dateChooserCombo_IniEliminadasFact.getSelectedDate().getTime()),
-                        dateF1.format(dateChooserCombo_FinEliminadasFact.getSelectedDate().getTime()),
+                        dateF1.format(dateChooserCombo_IniEliminadasFact.
+                                getSelectedDate().getTime()),
+                        dateF1.format(dateChooserCombo_FinEliminadasFact.
+                                getSelectedDate().getTime()),
                         "Devoluciones Eliminadas", "Pant");
             }
         } catch (IOException | WriteException | CellException ex) {
-            Logger.getLogger(JPanel_Reportes.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(JPanel_Reportes.class.getName()).
+                    log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_jButton_AceptarVerDevEliminadasActionPerformed
 
@@ -5171,24 +5263,29 @@ jPanel_VerDevEliminadasPorFechLayout.createParallelGroup(javax.swing.GroupLayout
             String fechaAct = dateFormat.format(date);
 
             EscribirExcel archivoExcel = new EscribirExcel();
-            archivoExcel.setNombreArchivoExcel("DevolucionModificada" + fechaAct + ".xls");
+            archivoExcel.setNombreArchivoExcel("DevolucionModificada"
+                    + fechaAct + ".xls");
             try {
                 archivoExcel.crearLibro();//crear libro para agregar hojas
             } catch (IOException ex) {
-                Logger.getLogger(JPanel_Reportes.class.getName()).log(Level.SEVERE, null, ex);
+                Logger.getLogger(JPanel_Reportes.class.getName()).
+                        log(Level.SEVERE, null, ex);
             }
             String[] infoEmpresa = {"Joe S.A ", "Oriente pa dentro", "Cartago,"
                 + " CA 20320", "Telefono:2650-11-36, fax:2655-0203"};
 
             for (int i = 0; i < infoFact.length; i++) {
+                //Obtener la devolucion modificada y sus versiones
                 AdminBD.verProductosPorDevolucionYVersionDeDev(infoFact[i][1].
-                        toString(), Integer.parseInt(infoFact[i][2].toString()));
+                        toString(),
+                        Integer.parseInt(infoFact[i][2].toString()));
                 try {
                     archivoExcel.escribirHojas("Devolucion", i, infoEmpresa,
                             AdminBD.getInfoFact(), AdminBD.getColumnNames(),
                             infoFact[i]);
                 } catch (IOException | WriteException ex) {
-                    Logger.getLogger(JPanel_Reportes.class.getName()).log(Level.SEVERE, null, ex);
+                    Logger.getLogger(JPanel_Reportes.class.getName()).
+                            log(Level.SEVERE, null, ex);
                 }
 
             }
@@ -5199,11 +5296,13 @@ jPanel_VerDevEliminadasPorFechLayout.createParallelGroup(javax.swing.GroupLayout
                 archivoExcel.workbook.close();
                 //mostrar el Excel
 
-                Runtime.getRuntime().exec("rundll32 url.dll,FileProtocolHandler "
-                        + archivoExcel.getNombreArchivoExcel());
+                Runtime.getRuntime().
+                        exec("rundll32 url.dll,FileProtocolHandler "
+                                + archivoExcel.getNombreArchivoExcel());
 
             } catch (IOException | WriteException ex) {
-                Logger.getLogger(JPanel_Reportes.class.getName()).log(Level.SEVERE, null, ex);
+                Logger.getLogger(JPanel_Reportes.class.getName()).
+                        log(Level.SEVERE, null, ex);
             }
         }
     }//GEN-LAST:event_jButton2ActionPerformed

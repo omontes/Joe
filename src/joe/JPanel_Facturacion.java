@@ -408,6 +408,11 @@ public class JPanel_Facturacion extends javax.swing.JPanel {
         jButton_Imprimir.setText("Imprimir");
 
         jButton_CierreCaja.setText("Cierre Caja");
+        jButton_CierreCaja.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton_CierreCajaActionPerformed(evt);
+            }
+        });
 
         jTable_Facturacion.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -1159,6 +1164,23 @@ public class JPanel_Facturacion extends javax.swing.JPanel {
     private void jButton_regresarDevActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_regresarDevActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton_regresarDevActionPerformed
+
+    private void jButton_CierreCajaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_CierreCajaActionPerformed
+        VentanaDeInicio mVentana= VentanaDeInicio.getInstance();
+        JPanel_CerrarCaja panelCreaCierre= new JPanel_CerrarCaja();
+        mVentana.add(panelCreaCierre);
+        panelCreaCierre.setSize(this.getSize());
+        panelCreaCierre.setLocation(this.getLocation());
+        mVentana.remove(this);
+        panelCreaCierre.setVisible(true);
+        mVentana.revalidate();
+        mVentana.repaint();
+        mVentana.setTitle("Cierre de Caja");
+        Direct_Control_BD AdminBD = Direct_Control_BD.getInstance();
+        panelCreaCierre.personalizarTablaCierre();
+        
+        
+    }//GEN-LAST:event_jButton_CierreCajaActionPerformed
    
     
     /**

@@ -2365,5 +2365,77 @@ public class Direct_Control_BD {
         }
     }
     
+    public void insertarCierreDeCaja(String HoraInicio,String Cajero,BigDecimal ReporteInicio) {
+         try {
+            String insertarProductoCantDev = this.readSql("../Joe/src/sql_files/"
+                    + "insertarCierreCaja.sql");
+            PreparedStatement stm = this.conection.prepareStatement(insertarProductoCantDev);
+            stm.setString(1, HoraInicio);
+            stm.setString(2, Cajero);
+            stm.setDouble(3, ReporteInicio.doubleValue());
+            stm.executeUpdate();
+
+        } catch (Exception e) {
+            System.out.println("Error al insertar producto cantidad dev");
+        }
+    }
+
+    public void verCierreFacturasContado(String fechaInicio, String fechaFinal) {
+        try {
+            String verFactContadoParaCierre = this.readSql("../Joe/src/"
+                    + "sql_files/verCierreFacturasContado.sql");
+            PreparedStatement stm = this.conection.prepareStatement(verFactContadoParaCierre);
+            stm.setString(1,fechaInicio);
+            stm.setString(2,fechaFinal);
+            ResultSet resultset = stm.executeQuery();
+            this.setColumnNames(this.Get_Columnas(resultset));
+            this.setData(this.ResultSet_Array(resultset));
+        } catch (Exception e) {
+             System.out.println("Error al obtener la informacion de las facturas de contado para el cierre");
+        }
+    }
+
+    public int obtenerultimoidCierre() {
+        int result = 0;
+        try {
+            String ultimoIDCierre = this.readSql("../Joe/"
+                    + "src/sql_files/ObtenerUltimoidCierre.sql");
+            PreparedStatement stm = this.conection.prepareStatement(ultimoIDCierre);
+            ResultSet resultset = stm.executeQuery();
+            //Imprime el resultado obtenido del valor del inventario
+            while (resultset.next()) {
+                result = resultset.getInt(1);
+
+            }
+
+        } catch (Exception e) {
+            System.out.println("Error al obtener el ultimo idCierre");
+        }
+        return result;
+
+    }
+    
+
+    public String obtenerFechaInicioCierre(int idCierreVigente) {
+        String result="";
+        try {
+            String HoraInicioCierre = this.readSql("../Joe/"
+                    + "src/sql_files/ObtenerHoraInicioCierre.sql");
+            PreparedStatement stm = this.conection.prepareStatement(HoraInicioCierre);
+            stm.setInt(1,idCierreVigente);
+            ResultSet resultset = stm.executeQuery();
+
+            //Imprime el resultado obtenido del valor del inventario
+            while (resultset.next()) {
+                result = resultset.getString(1);
+
+            }
+
+        } catch (Exception e) {
+            System.out.println("Error al obtener la hora de inicio del cierre");
+        }
+        return result;
+    }
+    
     
 }

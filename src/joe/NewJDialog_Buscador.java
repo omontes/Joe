@@ -249,6 +249,27 @@ public class NewJDialog_Buscador extends javax.swing.JDialog {
         this.TextField_Buscador.getDocument().addDocumentListener(new ListenerBuscador(this.TextField_Buscador, ordenador));
 
     }
+    public void actualizaTablaParaDevolucionesModificadas() {
+        Direct_Control_BD AdminBD = Direct_Control_BD.getInstance();
+        AdminBD.ObtenerDevModificadasOriginales();
+        Object[][] data = AdminBD.getData();
+        String[] columnNames = AdminBD.getColumnNames();
+
+        this.jTable_Generica.setModel(new MyTableModel_Generic(columnNames, data));
+        //Crea el ordenador para la tabla generica
+        TableRowSorter<TableModel> ordenador = new TableRowSorter<TableModel>(this.jTable_Generica.getModel());
+        this.jTable_Generica.setRowSorter(ordenador);
+        Vector<RowSorter.SortKey> qq = new Vector<RowSorter.SortKey>();
+        qq.add(new RowSorter.SortKey(0, SortOrder.ASCENDING));
+        ordenador.setSortKeys(qq);
+        jTable_Generica.requestFocus();
+        jTable_Generica.changeSelection(0, 0, false, false);
+        /**
+         * Agrega el listener al JtextField del buscador *
+         */
+        this.TextField_Buscador.getDocument().addDocumentListener(new ListenerBuscador(this.TextField_Buscador, ordenador));
+
+    }
 
     public void actualizaTablaParaCategorias() {
         Direct_Control_BD AdminBD = Direct_Control_BD.getInstance();

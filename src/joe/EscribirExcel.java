@@ -262,8 +262,9 @@ public class EscribirExcel {
             int ultimaFila) throws WriteException {
 
         if (tipoDeReporte.startsWith("Ventas Por Fechas")
-                || tipoDeReporte.startsWith("Ventas Por Término:")) {
-
+                || tipoDeReporte.startsWith("Ventas Por Término:")
+                || tipoDeReporte.startsWith("Devoluciones")
+                || tipoDeReporte.startsWith("Devoluciones")) {
             hojaExc.addCell(new Label(1, ultimaFila + 1,
                     "       Total Facturas", timesLines));
             //total de fact
@@ -378,7 +379,7 @@ public class EscribirExcel {
     public void escribirHojas(String nombreHoja, int pag, String[] infoEmpresa,
             Object[][] datosFact, String[] nombresColum, Object[] infoFact)
             throws IOException, WriteException {
-        workbook.createSheet(nombreHoja, pag);//***crear una hoja***
+        workbook.createSheet(nombreHoja+pag, pag);//***crear una hoja***
         WritableSheet hojaExcel = workbook.getSheet(pag);//obtiene la pagina pag
 
         ///tipos de letra
@@ -418,9 +419,9 @@ public class EscribirExcel {
         }
 
         hojaExcel.mergeCells(3, 1, 4, 1);
-        hojaExcel.addCell(new Label(3, 1, "Factura Modificada " + infoFact[0]
+        hojaExcel.addCell(new Label(3, 1, nombreHoja+" Modificada " + infoFact[0]
                 .toString(), times11));
-        hojaExcel.addCell(new Label(0, 6, "Factura " + infoFact[1]
+        hojaExcel.addCell(new Label(0, 6, nombreHoja+"   " + infoFact[1]
                 .toString(), times11));
         hojaExcel.addCell(new Label(1, 6, "Vendedor: " + infoFact[4]
                 .toString(), times11));
@@ -451,7 +452,7 @@ public class EscribirExcel {
         hojaExcel.addCell(new Label(2, ultimaFila + 3, "               "
                 + "              Sub Total:", times11));
         hojaExcel.addCell(new Number(3, ultimaFila + 3,
-                Double.parseDouble(infoFact[7].toString()) / (1 - ((Double.parseDouble(infoFact[5].toString())) / 100)), times10));
+                Double.parseDouble(infoFact[6].toString()), times10));
 
         hojaExcel.addCell(new Label(2, ultimaFila + 4, "               "
                 + "         Descuento%:", times11));

@@ -911,7 +911,8 @@ public class JPanel_Facturacion extends javax.swing.JPanel {
     private void jButton_AceptarPagoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_AceptarPagoActionPerformed
         BigDecimal montoDePago = this.StringtoBigDecimal(this.jFormattedTextField_Abono.getText());
         if(montoDePago.compareTo(new BigDecimal("0.00"))>0){
-            this.crearPago(Integer.parseInt(this.jLabel_numFact.getText()), montoDePago);
+            String tipopago= this.jComboBox_TipodePago.getSelectedItem().toString();
+            this.crearPago(Integer.parseInt(this.jLabel_numFact.getText()), montoDePago,tipopago);
             this.jDialog_CrearPago.dispose();
             this.jFormattedTextField_Abono.setValue(new BigDecimal("0.00"));
             this.jFormattedTextField_Saldo.setValue(new BigDecimal("0.00"));
@@ -1354,18 +1355,11 @@ public class JPanel_Facturacion extends javax.swing.JPanel {
     javax.swing.JTable jTable_VerPagos;
     // End of variables declaration//GEN-END:variables
 
-    private void crearPago(int idFactura, BigDecimal montoDePago) {
+    private void crearPago(int idFactura, BigDecimal montoDePago, String tipopago) {
        
         Direct_Control_BD AdminBD = Direct_Control_BD.getInstance();
         int idVersionFacturasProducto = AdminBD.verVersionDEFacturaActiva(idFactura);
-        String fechaAcorregir = this.jLabel_fechaDePago.getText();
-        Date date = null;
-        try {
-            date = new SimpleDateFormat("dd/MM/yyyy").parse(fechaAcorregir);
-        } catch (ParseException ex) {
-            Logger.getLogger(JPanel_CrearFactura.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        AdminBD.insertarPago(montoDePago, idFactura, idVersionFacturasProducto);
+        AdminBD.insertarPago(montoDePago,idFactura,idVersionFacturasProducto,tipopago);
 
     }
      /**

@@ -1,2 +1,2 @@
-INSERT INTO pagosfactpendientes(Fecha,MontoDePago,idFacturaPendiente,idFacturaVersionPagosPend)
-VALUES(?,?,?,?);
+INSERT INTO pagosfactpendientes(Fecha,MontoDePago,idFacturaPendiente,idFacturaVersionPagosPend,TipoPago)
+VALUES(?,?,?,?,?);

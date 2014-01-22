@@ -15,6 +15,7 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 import jxl.write.WriteException;
 
@@ -26,6 +27,8 @@ public class JPanel_Reportes extends javax.swing.JPanel {
 
     private static JPanel_Reportes mPanelInventario = null;
     DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd-HH-mm-ss-SSS0");//formato fecha act
+    DateFormat dateF1 = new SimpleDateFormat("dd-MM-yyyy");//formato para mostrar
+    DateFormat dateF = new SimpleDateFormat("yyyy/MM/dd");//formato para consultar
 
     /**
      * Creates new form Reportes
@@ -189,7 +192,7 @@ public class JPanel_Reportes extends javax.swing.JPanel {
         jLabel49 = new javax.swing.JLabel();
         jLabel50 = new javax.swing.JLabel();
         jRadioButton_CodListaPrec = new javax.swing.JRadioButton();
-        jRadioButton_DescListaPrec = new javax.swing.JRadioButton();
+        jRadioButton_NombListaPrec = new javax.swing.JRadioButton();
         jRadioButton_CategListaPrec = new javax.swing.JRadioButton();
         jButton_BuscarListaPrec = new javax.swing.JButton();
         jLabel_InicListaPrec = new javax.swing.JLabel();
@@ -203,6 +206,83 @@ public class JPanel_Reportes extends javax.swing.JPanel {
         jTextField_hastaListaPrec = new javax.swing.JTextField();
         filler1 = new javax.swing.Box.Filler(new java.awt.Dimension(0, 0), new java.awt.Dimension(0, 0), new java.awt.Dimension(32767, 0));
         jDialog_ReportesInventario = new javax.swing.JDialog();
+        jPanel_VerListaDeCostos = new javax.swing.JPanel();
+        jLabel51 = new javax.swing.JLabel();
+        jLabel52 = new javax.swing.JLabel();
+        jRadioButton_CodListaCost = new javax.swing.JRadioButton();
+        jRadioButton_NombreListaCost = new javax.swing.JRadioButton();
+        jRadioButton_CategListaCost = new javax.swing.JRadioButton();
+        jButton_BuscarListaCost = new javax.swing.JButton();
+        jLabel_InicListaCost = new javax.swing.JLabel();
+        jLabel_hastaListaCost = new javax.swing.JLabel();
+        jTextField_IniListaCost = new javax.swing.JTextField();
+        jLabel54 = new javax.swing.JLabel();
+        jRadioButton_ExcelListaCost = new javax.swing.JRadioButton();
+        jRadioButton_pantallaListaCost = new javax.swing.JRadioButton();
+        jButton_aceptarListaCost = new javax.swing.JButton();
+        jButton_CancelarListaCost = new javax.swing.JButton();
+        jTextField_hastaListaCost = new javax.swing.JTextField();
+        filler2 = new javax.swing.Box.Filler(new java.awt.Dimension(0, 0), new java.awt.Dimension(0, 0), new java.awt.Dimension(32767, 0));
+        jPanel_VerProductosAgotados = new javax.swing.JPanel();
+        jLabel58 = new javax.swing.JLabel();
+        jLabel59 = new javax.swing.JLabel();
+        jRadioButton_CodAgotados = new javax.swing.JRadioButton();
+        jRadioButton_NombAgotados = new javax.swing.JRadioButton();
+        jRadioButton_CategAgotados = new javax.swing.JRadioButton();
+        jButton_BuscarListaAgotados = new javax.swing.JButton();
+        jLabel_InicListaAgotados = new javax.swing.JLabel();
+        jLabel_hastaListaAgotados = new javax.swing.JLabel();
+        jTextField_IniListaAgotados = new javax.swing.JTextField();
+        jLabel60 = new javax.swing.JLabel();
+        jRadioButton_ExcelListaAgotados = new javax.swing.JRadioButton();
+        jRadioButton_pantallaListaAgotados = new javax.swing.JRadioButton();
+        jButton_aceptarListaAgotados = new javax.swing.JButton();
+        jButton_CancelarListaAgotados = new javax.swing.JButton();
+        jTextField_hastaListaAgotados = new javax.swing.JTextField();
+        filler4 = new javax.swing.Box.Filler(new java.awt.Dimension(0, 0), new java.awt.Dimension(0, 0), new java.awt.Dimension(32767, 0));
+        jLabel61 = new javax.swing.JLabel();
+        jRadioButton_general = new javax.swing.JRadioButton();
+        jRadioButton_bodega = new javax.swing.JRadioButton();
+        jPanel_VerProductosEnInventario = new javax.swing.JPanel();
+        jLabel62 = new javax.swing.JLabel();
+        jLabel63 = new javax.swing.JLabel();
+        jRadioButton_CodInv = new javax.swing.JRadioButton();
+        jRadioButton_NombInv = new javax.swing.JRadioButton();
+        jRadioButton_CategInv = new javax.swing.JRadioButton();
+        jButton_BuscarListaInv = new javax.swing.JButton();
+        jLabel_InicListaInv = new javax.swing.JLabel();
+        jLabel_hastaListaInv = new javax.swing.JLabel();
+        jTextField_IniListaInv = new javax.swing.JTextField();
+        jLabel64 = new javax.swing.JLabel();
+        jRadioButton_ExcelListaInv = new javax.swing.JRadioButton();
+        jRadioButton_pantallaListaInv = new javax.swing.JRadioButton();
+        jButton_aceptarListaInv = new javax.swing.JButton();
+        jButton_CancelarListaInv = new javax.swing.JButton();
+        jTextField_hastaListaInv = new javax.swing.JTextField();
+        filler5 = new javax.swing.Box.Filler(new java.awt.Dimension(0, 0), new java.awt.Dimension(0, 0), new java.awt.Dimension(32767, 0));
+        jLabel65 = new javax.swing.JLabel();
+        jRadioButton_generalInv = new javax.swing.JRadioButton();
+        jRadioButton_bodegaInv = new javax.swing.JRadioButton();
+        jPanel_VerValorDelInventario = new javax.swing.JPanel();
+        jLabel66 = new javax.swing.JLabel();
+        jLabel67 = new javax.swing.JLabel();
+        jRadioButton_CodValorInv = new javax.swing.JRadioButton();
+        jRadioButton_NombValorInv = new javax.swing.JRadioButton();
+        jRadioButton_CategValorInv = new javax.swing.JRadioButton();
+        jButton_BuscarListaValorInv = new javax.swing.JButton();
+        jLabel_InicListaValorInv = new javax.swing.JLabel();
+        jLabel_hastaListaValorInv = new javax.swing.JLabel();
+        jTextField_IniListaValorInv = new javax.swing.JTextField();
+        jLabel68 = new javax.swing.JLabel();
+        jRadioButton_ExcelListaValorInv = new javax.swing.JRadioButton();
+        jRadioButton_pantallaListaValorInv = new javax.swing.JRadioButton();
+        jButton_aceptarListaValorInv = new javax.swing.JButton();
+        jButton_CancelarListaValorInv = new javax.swing.JButton();
+        jTextField_hastaListaValorInv = new javax.swing.JTextField();
+        filler6 = new javax.swing.Box.Filler(new java.awt.Dimension(0, 0), new java.awt.Dimension(0, 0), new java.awt.Dimension(32767, 0));
+        jLabel69 = new javax.swing.JLabel();
+        jRadioButton_generalValorInv = new javax.swing.JRadioButton();
+        jRadioButton_bodegaValorInv = new javax.swing.JRadioButton();
         jButton1 = new javax.swing.JButton();
         jTabbedPane6 = new javax.swing.JTabbedPane();
         jPanel1 = new javax.swing.JPanel();
@@ -2108,11 +2188,11 @@ jPanel_VerFacturasEliminadasPorFechLayout.createParallelGroup(javax.swing.GroupL
         }
     });
 
-    jRadioButton_DescListaPrec.setForeground(new java.awt.Color(0, 51, 51));
-    jRadioButton_DescListaPrec.setText("Descripción");
-    jRadioButton_DescListaPrec.addActionListener(new java.awt.event.ActionListener() {
+    jRadioButton_NombListaPrec.setForeground(new java.awt.Color(0, 51, 51));
+    jRadioButton_NombListaPrec.setText("Nombre");
+    jRadioButton_NombListaPrec.addActionListener(new java.awt.event.ActionListener() {
         public void actionPerformed(java.awt.event.ActionEvent evt) {
-            jRadioButton_DescListaPrecActionPerformed(evt);
+            jRadioButton_NombListaPrecActionPerformed(evt);
         }
     });
 
@@ -2147,6 +2227,7 @@ jPanel_VerFacturasEliminadasPorFechLayout.createParallelGroup(javax.swing.GroupL
     jLabel53.setText("Ver en:");
 
     jRadioButton_ExcelListaPrec.setForeground(new java.awt.Color(0, 51, 51));
+    jRadioButton_ExcelListaPrec.setSelected(true);
     jRadioButton_ExcelListaPrec.setText("Excel");
 
     jRadioButton_pantallaListaPrec.setForeground(new java.awt.Color(0, 51, 51));
@@ -2210,7 +2291,7 @@ jPanel_VerFacturasEliminadasPorFechLayout.createParallelGroup(javax.swing.GroupL
                 .addGroup(jPanel_VerListaDePreciosLayout.createSequentialGroup()
                     .addComponent(jRadioButton_CodListaPrec)
                     .addGap(18, 18, 18)
-                    .addComponent(jRadioButton_DescListaPrec)))
+                    .addComponent(jRadioButton_NombListaPrec)))
             .addGap(18, 18, 18)
             .addGroup(jPanel_VerListaDePreciosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(jPanel_VerListaDePreciosLayout.createSequentialGroup()
@@ -2237,7 +2318,7 @@ jPanel_VerFacturasEliminadasPorFechLayout.createParallelGroup(javax.swing.GroupL
                 .addComponent(filler1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel_VerListaDePreciosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jRadioButton_CodListaPrec)
-                    .addComponent(jRadioButton_DescListaPrec)
+                    .addComponent(jRadioButton_NombListaPrec)
                     .addComponent(jRadioButton_CategListaPrec)))
             .addGap(27, 27, 27)
             .addGroup(jPanel_VerListaDePreciosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -2255,12 +2336,11 @@ jPanel_VerFacturasEliminadasPorFechLayout.createParallelGroup(javax.swing.GroupL
                 .addGroup(jPanel_VerListaDePreciosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton_aceptarListaPrec)
                     .addComponent(jButton_CancelarListaPrec))
-                .addGroup(jPanel_VerListaDePreciosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jRadioButton_pantallaListaPrec)))
+                .addComponent(jRadioButton_pantallaListaPrec))
             .addGap(59, 59, 59))
     );
 
-    jPanel_VerListaDePreciosLayout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {jRadioButton_CategListaPrec, jRadioButton_CodListaPrec, jRadioButton_DescListaPrec});
+    jPanel_VerListaDePreciosLayout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {jRadioButton_CategListaPrec, jRadioButton_CodListaPrec, jRadioButton_NombListaPrec});
 
     jPanel_VerListaDePreciosLayout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {jButton_CancelarListaPrec, jButton_aceptarListaPrec});
 
@@ -2283,6 +2363,749 @@ jPanel_VerFacturasEliminadasPorFechLayout.createParallelGroup(javax.swing.GroupL
     jDialog_ReportesInventarioLayout.setVerticalGroup(
         jDialog_ReportesInventarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
         .addGap(0, 360, Short.MAX_VALUE)
+    );
+
+    jPanel_VerListaDeCostos.setMaximumSize(new java.awt.Dimension(585, 360));
+    jPanel_VerListaDeCostos.setMinimumSize(new java.awt.Dimension(585, 360));
+
+    jLabel51.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+    jLabel51.setForeground(new java.awt.Color(0, 51, 51));
+    jLabel51.setText("Ver Lista de Costos,Precio");
+
+    jLabel52.setForeground(new java.awt.Color(0, 51, 51));
+    jLabel52.setText("Productos por:");
+
+    jRadioButton_CodListaCost.setForeground(new java.awt.Color(0, 51, 51));
+    jRadioButton_CodListaCost.setSelected(true);
+    jRadioButton_CodListaCost.setText("Código");
+    jRadioButton_CodListaCost.addActionListener(new java.awt.event.ActionListener() {
+        public void actionPerformed(java.awt.event.ActionEvent evt) {
+            jRadioButton_CodListaCostActionPerformed(evt);
+        }
+    });
+
+    jRadioButton_NombreListaCost.setForeground(new java.awt.Color(0, 51, 51));
+    jRadioButton_NombreListaCost.setText("Nombre");
+    jRadioButton_NombreListaCost.addActionListener(new java.awt.event.ActionListener() {
+        public void actionPerformed(java.awt.event.ActionEvent evt) {
+            jRadioButton_NombreListaCostActionPerformed(evt);
+        }
+    });
+
+    jRadioButton_CategListaCost.setForeground(new java.awt.Color(0, 51, 51));
+    jRadioButton_CategListaCost.setText("Categoría");
+    jRadioButton_CategListaCost.addActionListener(new java.awt.event.ActionListener() {
+        public void actionPerformed(java.awt.event.ActionEvent evt) {
+            jRadioButton_CategListaCostActionPerformed(evt);
+        }
+    });
+
+    jButton_BuscarListaCost.setForeground(new java.awt.Color(0, 51, 51));
+    jButton_BuscarListaCost.setText("Buscar");
+    jButton_BuscarListaCost.addActionListener(new java.awt.event.ActionListener() {
+        public void actionPerformed(java.awt.event.ActionEvent evt) {
+            jButton_BuscarListaCostActionPerformed(evt);
+        }
+    });
+
+    jLabel_InicListaCost.setFont(new java.awt.Font("Tahoma", 0, 10)); // NOI18N
+    jLabel_InicListaCost.setForeground(new java.awt.Color(0, 51, 51));
+    jLabel_InicListaCost.setText("Inicia en:");
+
+    jLabel_hastaListaCost.setFont(new java.awt.Font("Tahoma", 0, 10)); // NOI18N
+    jLabel_hastaListaCost.setForeground(new java.awt.Color(0, 51, 51));
+    jLabel_hastaListaCost.setText("Hasta:");
+
+    jTextField_IniListaCost.setForeground(new java.awt.Color(0, 51, 51));
+    jTextField_IniListaCost.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
+
+    jLabel54.setForeground(new java.awt.Color(0, 51, 51));
+    jLabel54.setText("Ver en:");
+
+    jRadioButton_ExcelListaCost.setForeground(new java.awt.Color(0, 51, 51));
+    jRadioButton_ExcelListaCost.setSelected(true);
+    jRadioButton_ExcelListaCost.setText("Excel");
+
+    jRadioButton_pantallaListaCost.setForeground(new java.awt.Color(0, 51, 51));
+    jRadioButton_pantallaListaCost.setText("Pantalla");
+
+    jButton_aceptarListaCost.setForeground(new java.awt.Color(0, 51, 51));
+    jButton_aceptarListaCost.setText("Aceptar");
+    jButton_aceptarListaCost.addActionListener(new java.awt.event.ActionListener() {
+        public void actionPerformed(java.awt.event.ActionEvent evt) {
+            jButton_aceptarListaCostActionPerformed(evt);
+        }
+    });
+
+    jButton_CancelarListaCost.setForeground(new java.awt.Color(0, 51, 51));
+    jButton_CancelarListaCost.setText("Cancelar");
+    jButton_CancelarListaCost.addActionListener(new java.awt.event.ActionListener() {
+        public void actionPerformed(java.awt.event.ActionEvent evt) {
+            jButton_CancelarListaCostActionPerformed(evt);
+        }
+    });
+
+    jTextField_hastaListaCost.setForeground(new java.awt.Color(0, 51, 51));
+    jTextField_hastaListaCost.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
+
+    javax.swing.GroupLayout jPanel_VerListaDeCostosLayout = new javax.swing.GroupLayout(jPanel_VerListaDeCostos);
+    jPanel_VerListaDeCostos.setLayout(jPanel_VerListaDeCostosLayout);
+    jPanel_VerListaDeCostosLayout.setHorizontalGroup(
+        jPanel_VerListaDeCostosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        .addGroup(jPanel_VerListaDeCostosLayout.createSequentialGroup()
+            .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(filler2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        .addGroup(jPanel_VerListaDeCostosLayout.createSequentialGroup()
+            .addGap(48, 48, 48)
+            .addGroup(jPanel_VerListaDeCostosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jPanel_VerListaDeCostosLayout.createSequentialGroup()
+                    .addGap(35, 35, 35)
+                    .addGroup(jPanel_VerListaDeCostosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(jRadioButton_ExcelListaCost)
+                        .addGroup(jPanel_VerListaDeCostosLayout.createSequentialGroup()
+                            .addComponent(jRadioButton_pantallaListaCost)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jButton_aceptarListaCost)
+                            .addGap(46, 46, 46)
+                            .addComponent(jButton_CancelarListaCost))))
+                .addComponent(jLabel54)
+                .addComponent(jLabel52))
+            .addGap(57, 57, 57))
+        .addGroup(jPanel_VerListaDeCostosLayout.createSequentialGroup()
+            .addGap(82, 82, 82)
+            .addGroup(jPanel_VerListaDeCostosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                .addGroup(jPanel_VerListaDeCostosLayout.createSequentialGroup()
+                    .addComponent(jLabel_InicListaCost, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                    .addComponent(jTextField_IniListaCost, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(jPanel_VerListaDeCostosLayout.createSequentialGroup()
+                    .addComponent(jRadioButton_CodListaCost)
+                    .addGap(18, 18, 18)
+                    .addComponent(jRadioButton_NombreListaCost)))
+            .addGap(18, 18, 18)
+            .addGroup(jPanel_VerListaDeCostosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jPanel_VerListaDeCostosLayout.createSequentialGroup()
+                    .addComponent(jButton_BuscarListaCost)
+                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                    .addComponent(jLabel_hastaListaCost, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                    .addComponent(jTextField_hastaListaCost, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addComponent(jRadioButton_CategListaCost))
+            .addGap(0, 177, Short.MAX_VALUE))
+        .addGroup(jPanel_VerListaDeCostosLayout.createSequentialGroup()
+            .addContainerGap()
+            .addComponent(jLabel51, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+    );
+    jPanel_VerListaDeCostosLayout.setVerticalGroup(
+        jPanel_VerListaDeCostosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        .addGroup(jPanel_VerListaDeCostosLayout.createSequentialGroup()
+            .addContainerGap()
+            .addComponent(jLabel51)
+            .addGap(51, 51, 51)
+            .addComponent(jLabel52)
+            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+            .addGroup(jPanel_VerListaDeCostosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addComponent(filler2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel_VerListaDeCostosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jRadioButton_CodListaCost)
+                    .addComponent(jRadioButton_NombreListaCost)
+                    .addComponent(jRadioButton_CategListaCost)))
+            .addGap(27, 27, 27)
+            .addGroup(jPanel_VerListaDeCostosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addComponent(jTextField_IniListaCost, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jLabel_InicListaCost, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jButton_BuscarListaCost, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jTextField_hastaListaCost, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jLabel_hastaListaCost))
+            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 64, Short.MAX_VALUE)
+            .addComponent(jLabel54)
+            .addGap(4, 4, 4)
+            .addComponent(jRadioButton_ExcelListaCost)
+            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+            .addGroup(jPanel_VerListaDeCostosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jPanel_VerListaDeCostosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jButton_aceptarListaCost)
+                    .addComponent(jButton_CancelarListaCost))
+                .addComponent(jRadioButton_pantallaListaCost))
+            .addGap(59, 59, 59))
+    );
+
+    jPanel_VerProductosAgotados.setMaximumSize(new java.awt.Dimension(585, 360));
+    jPanel_VerProductosAgotados.setMinimumSize(new java.awt.Dimension(585, 360));
+
+    jLabel58.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+    jLabel58.setForeground(new java.awt.Color(0, 51, 51));
+    jLabel58.setText("Ver Lista de Productos Agotados");
+
+    jLabel59.setForeground(new java.awt.Color(0, 51, 51));
+    jLabel59.setText("Productos por:");
+
+    jRadioButton_CodAgotados.setForeground(new java.awt.Color(0, 51, 51));
+    jRadioButton_CodAgotados.setSelected(true);
+    jRadioButton_CodAgotados.setText("Código");
+    jRadioButton_CodAgotados.addActionListener(new java.awt.event.ActionListener() {
+        public void actionPerformed(java.awt.event.ActionEvent evt) {
+            jRadioButton_CodAgotadosActionPerformed(evt);
+        }
+    });
+
+    jRadioButton_NombAgotados.setForeground(new java.awt.Color(0, 51, 51));
+    jRadioButton_NombAgotados.setText("Nombre");
+    jRadioButton_NombAgotados.addActionListener(new java.awt.event.ActionListener() {
+        public void actionPerformed(java.awt.event.ActionEvent evt) {
+            jRadioButton_NombAgotadosActionPerformed(evt);
+        }
+    });
+
+    jRadioButton_CategAgotados.setForeground(new java.awt.Color(0, 51, 51));
+    jRadioButton_CategAgotados.setText("Categoría");
+    jRadioButton_CategAgotados.addActionListener(new java.awt.event.ActionListener() {
+        public void actionPerformed(java.awt.event.ActionEvent evt) {
+            jRadioButton_CategAgotadosActionPerformed(evt);
+        }
+    });
+
+    jButton_BuscarListaAgotados.setForeground(new java.awt.Color(0, 51, 51));
+    jButton_BuscarListaAgotados.setText("Buscar");
+    jButton_BuscarListaAgotados.addActionListener(new java.awt.event.ActionListener() {
+        public void actionPerformed(java.awt.event.ActionEvent evt) {
+            jButton_BuscarListaAgotadosActionPerformed(evt);
+        }
+    });
+
+    jLabel_InicListaAgotados.setFont(new java.awt.Font("Tahoma", 0, 10)); // NOI18N
+    jLabel_InicListaAgotados.setForeground(new java.awt.Color(0, 51, 51));
+    jLabel_InicListaAgotados.setText("Inicia en:");
+
+    jLabel_hastaListaAgotados.setFont(new java.awt.Font("Tahoma", 0, 10)); // NOI18N
+    jLabel_hastaListaAgotados.setForeground(new java.awt.Color(0, 51, 51));
+    jLabel_hastaListaAgotados.setText("Hasta:");
+
+    jTextField_IniListaAgotados.setForeground(new java.awt.Color(0, 51, 51));
+    jTextField_IniListaAgotados.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
+
+    jLabel60.setForeground(new java.awt.Color(0, 51, 51));
+    jLabel60.setText("Ver en:");
+
+    jRadioButton_ExcelListaAgotados.setForeground(new java.awt.Color(0, 51, 51));
+    jRadioButton_ExcelListaAgotados.setSelected(true);
+    jRadioButton_ExcelListaAgotados.setText("Excel");
+
+    jRadioButton_pantallaListaAgotados.setForeground(new java.awt.Color(0, 51, 51));
+    jRadioButton_pantallaListaAgotados.setText("Pantalla");
+
+    jButton_aceptarListaAgotados.setForeground(new java.awt.Color(0, 51, 51));
+    jButton_aceptarListaAgotados.setText("Aceptar");
+    jButton_aceptarListaAgotados.addActionListener(new java.awt.event.ActionListener() {
+        public void actionPerformed(java.awt.event.ActionEvent evt) {
+            jButton_aceptarListaAgotadosActionPerformed(evt);
+        }
+    });
+
+    jButton_CancelarListaAgotados.setForeground(new java.awt.Color(0, 51, 51));
+    jButton_CancelarListaAgotados.setText("Cancelar");
+    jButton_CancelarListaAgotados.addActionListener(new java.awt.event.ActionListener() {
+        public void actionPerformed(java.awt.event.ActionEvent evt) {
+            jButton_CancelarListaAgotadosActionPerformed(evt);
+        }
+    });
+
+    jTextField_hastaListaAgotados.setForeground(new java.awt.Color(0, 51, 51));
+    jTextField_hastaListaAgotados.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
+
+    jLabel61.setForeground(new java.awt.Color(0, 51, 51));
+    jLabel61.setText("Ubicacion:");
+
+    jRadioButton_general.setSelected(true);
+    jRadioButton_general.setText("General");
+
+    jRadioButton_bodega.setText("Bodega");
+
+    javax.swing.GroupLayout jPanel_VerProductosAgotadosLayout = new javax.swing.GroupLayout(jPanel_VerProductosAgotados);
+    jPanel_VerProductosAgotados.setLayout(jPanel_VerProductosAgotadosLayout);
+    jPanel_VerProductosAgotadosLayout.setHorizontalGroup(
+        jPanel_VerProductosAgotadosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        .addGroup(jPanel_VerProductosAgotadosLayout.createSequentialGroup()
+            .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(filler4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        .addGroup(jPanel_VerProductosAgotadosLayout.createSequentialGroup()
+            .addContainerGap()
+            .addComponent(jLabel58, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        .addGroup(jPanel_VerProductosAgotadosLayout.createSequentialGroup()
+            .addGap(48, 48, 48)
+            .addGroup(jPanel_VerProductosAgotadosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jPanel_VerProductosAgotadosLayout.createSequentialGroup()
+                    .addGroup(jPanel_VerProductosAgotadosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(jPanel_VerProductosAgotadosLayout.createSequentialGroup()
+                            .addGap(35, 35, 35)
+                            .addGroup(jPanel_VerProductosAgotadosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(jRadioButton_ExcelListaAgotados)
+                                .addGroup(jPanel_VerProductosAgotadosLayout.createSequentialGroup()
+                                    .addComponent(jRadioButton_pantallaListaAgotados)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 310, Short.MAX_VALUE)
+                                    .addComponent(jButton_aceptarListaAgotados)
+                                    .addGap(46, 46, 46)
+                                    .addComponent(jButton_CancelarListaAgotados))))
+                        .addComponent(jLabel60))
+                    .addGap(57, 57, 57))
+                .addGroup(jPanel_VerProductosAgotadosLayout.createSequentialGroup()
+                    .addGroup(jPanel_VerProductosAgotadosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(jLabel59)
+                        .addGroup(jPanel_VerProductosAgotadosLayout.createSequentialGroup()
+                            .addGap(34, 34, 34)
+                            .addGroup(jPanel_VerProductosAgotadosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                .addGroup(jPanel_VerProductosAgotadosLayout.createSequentialGroup()
+                                    .addComponent(jLabel_InicListaAgotados, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                    .addComponent(jTextField_IniListaAgotados, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGroup(jPanel_VerProductosAgotadosLayout.createSequentialGroup()
+                                    .addComponent(jRadioButton_CodAgotados)
+                                    .addGap(18, 18, 18)
+                                    .addComponent(jRadioButton_NombAgotados)))
+                            .addGap(18, 18, 18)
+                            .addGroup(jPanel_VerProductosAgotadosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addGroup(jPanel_VerProductosAgotadosLayout.createSequentialGroup()
+                                    .addComponent(jButton_BuscarListaAgotados)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                    .addComponent(jLabel_hastaListaAgotados, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                    .addComponent(jTextField_hastaListaAgotados, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(jRadioButton_CategAgotados)))
+                        .addComponent(jLabel61, javax.swing.GroupLayout.PREFERRED_SIZE, 62, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+        .addGroup(jPanel_VerProductosAgotadosLayout.createSequentialGroup()
+            .addGap(116, 116, 116)
+            .addComponent(jRadioButton_general)
+            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+            .addComponent(jRadioButton_bodega)
+            .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+    );
+    jPanel_VerProductosAgotadosLayout.setVerticalGroup(
+        jPanel_VerProductosAgotadosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        .addGroup(jPanel_VerProductosAgotadosLayout.createSequentialGroup()
+            .addContainerGap()
+            .addComponent(jLabel58)
+            .addGap(32, 32, 32)
+            .addComponent(jLabel59)
+            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+            .addGroup(jPanel_VerProductosAgotadosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addComponent(jRadioButton_CodAgotados)
+                .addComponent(jRadioButton_NombAgotados)
+                .addComponent(jRadioButton_CategAgotados))
+            .addGap(27, 27, 27)
+            .addGroup(jPanel_VerProductosAgotadosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addComponent(jTextField_IniListaAgotados, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jLabel_InicListaAgotados, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jButton_BuscarListaAgotados, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jTextField_hastaListaAgotados, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jLabel_hastaListaAgotados))
+            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+            .addComponent(filler4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addGap(26, 26, 26)
+            .addComponent(jLabel61)
+            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 4, Short.MAX_VALUE)
+            .addGroup(jPanel_VerProductosAgotadosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addComponent(jRadioButton_general)
+                .addComponent(jRadioButton_bodega))
+            .addGap(23, 23, 23)
+            .addComponent(jLabel60)
+            .addGap(4, 4, 4)
+            .addComponent(jRadioButton_ExcelListaAgotados)
+            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+            .addGroup(jPanel_VerProductosAgotadosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jPanel_VerProductosAgotadosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jButton_aceptarListaAgotados)
+                    .addComponent(jButton_CancelarListaAgotados))
+                .addComponent(jRadioButton_pantallaListaAgotados))
+            .addGap(46, 46, 46))
+    );
+
+    jPanel_VerProductosEnInventario.setMaximumSize(new java.awt.Dimension(585, 360));
+    jPanel_VerProductosEnInventario.setMinimumSize(new java.awt.Dimension(585, 360));
+
+    jLabel62.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+    jLabel62.setForeground(new java.awt.Color(0, 51, 51));
+    jLabel62.setText("Ver Productos en Inventario");
+
+    jLabel63.setForeground(new java.awt.Color(0, 51, 51));
+    jLabel63.setText("Productos por:");
+
+    jRadioButton_CodInv.setForeground(new java.awt.Color(0, 51, 51));
+    jRadioButton_CodInv.setSelected(true);
+    jRadioButton_CodInv.setText("Código");
+    jRadioButton_CodInv.addActionListener(new java.awt.event.ActionListener() {
+        public void actionPerformed(java.awt.event.ActionEvent evt) {
+            jRadioButton_CodInvActionPerformed(evt);
+        }
+    });
+
+    jRadioButton_NombInv.setForeground(new java.awt.Color(0, 51, 51));
+    jRadioButton_NombInv.setText("Nombre");
+    jRadioButton_NombInv.addActionListener(new java.awt.event.ActionListener() {
+        public void actionPerformed(java.awt.event.ActionEvent evt) {
+            jRadioButton_NombInvActionPerformed(evt);
+        }
+    });
+
+    jRadioButton_CategInv.setForeground(new java.awt.Color(0, 51, 51));
+    jRadioButton_CategInv.setText("Categoría");
+    jRadioButton_CategInv.addActionListener(new java.awt.event.ActionListener() {
+        public void actionPerformed(java.awt.event.ActionEvent evt) {
+            jRadioButton_CategInvActionPerformed(evt);
+        }
+    });
+
+    jButton_BuscarListaInv.setForeground(new java.awt.Color(0, 51, 51));
+    jButton_BuscarListaInv.setText("Buscar");
+    jButton_BuscarListaInv.addActionListener(new java.awt.event.ActionListener() {
+        public void actionPerformed(java.awt.event.ActionEvent evt) {
+            jButton_BuscarListaInvActionPerformed(evt);
+        }
+    });
+
+    jLabel_InicListaInv.setFont(new java.awt.Font("Tahoma", 0, 10)); // NOI18N
+    jLabel_InicListaInv.setForeground(new java.awt.Color(0, 51, 51));
+    jLabel_InicListaInv.setText("Inicia en:");
+
+    jLabel_hastaListaInv.setFont(new java.awt.Font("Tahoma", 0, 10)); // NOI18N
+    jLabel_hastaListaInv.setForeground(new java.awt.Color(0, 51, 51));
+    jLabel_hastaListaInv.setText("Hasta:");
+
+    jTextField_IniListaInv.setForeground(new java.awt.Color(0, 51, 51));
+    jTextField_IniListaInv.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
+
+    jLabel64.setForeground(new java.awt.Color(0, 51, 51));
+    jLabel64.setText("Ver en:");
+
+    jRadioButton_ExcelListaInv.setForeground(new java.awt.Color(0, 51, 51));
+    jRadioButton_ExcelListaInv.setSelected(true);
+    jRadioButton_ExcelListaInv.setText("Excel");
+
+    jRadioButton_pantallaListaInv.setForeground(new java.awt.Color(0, 51, 51));
+    jRadioButton_pantallaListaInv.setText("Pantalla");
+
+    jButton_aceptarListaInv.setForeground(new java.awt.Color(0, 51, 51));
+    jButton_aceptarListaInv.setText("Aceptar");
+    jButton_aceptarListaInv.addActionListener(new java.awt.event.ActionListener() {
+        public void actionPerformed(java.awt.event.ActionEvent evt) {
+            jButton_aceptarListaInvActionPerformed(evt);
+        }
+    });
+
+    jButton_CancelarListaInv.setForeground(new java.awt.Color(0, 51, 51));
+    jButton_CancelarListaInv.setText("Cancelar");
+    jButton_CancelarListaInv.addActionListener(new java.awt.event.ActionListener() {
+        public void actionPerformed(java.awt.event.ActionEvent evt) {
+            jButton_CancelarListaInvActionPerformed(evt);
+        }
+    });
+
+    jTextField_hastaListaInv.setForeground(new java.awt.Color(0, 51, 51));
+    jTextField_hastaListaInv.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
+
+    jLabel65.setForeground(new java.awt.Color(0, 51, 51));
+    jLabel65.setText("Ubicacion:");
+
+    jRadioButton_generalInv.setSelected(true);
+    jRadioButton_generalInv.setText("General");
+
+    jRadioButton_bodegaInv.setText("Bodega");
+
+    javax.swing.GroupLayout jPanel_VerProductosEnInventarioLayout = new javax.swing.GroupLayout(jPanel_VerProductosEnInventario);
+    jPanel_VerProductosEnInventario.setLayout(jPanel_VerProductosEnInventarioLayout);
+    jPanel_VerProductosEnInventarioLayout.setHorizontalGroup(
+        jPanel_VerProductosEnInventarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        .addGroup(jPanel_VerProductosEnInventarioLayout.createSequentialGroup()
+            .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(filler5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        .addGroup(jPanel_VerProductosEnInventarioLayout.createSequentialGroup()
+            .addContainerGap()
+            .addComponent(jLabel62, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        .addGroup(jPanel_VerProductosEnInventarioLayout.createSequentialGroup()
+            .addGap(48, 48, 48)
+            .addGroup(jPanel_VerProductosEnInventarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jPanel_VerProductosEnInventarioLayout.createSequentialGroup()
+                    .addGroup(jPanel_VerProductosEnInventarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(jPanel_VerProductosEnInventarioLayout.createSequentialGroup()
+                            .addGap(35, 35, 35)
+                            .addGroup(jPanel_VerProductosEnInventarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(jRadioButton_ExcelListaInv)
+                                .addGroup(jPanel_VerProductosEnInventarioLayout.createSequentialGroup()
+                                    .addComponent(jRadioButton_pantallaListaInv)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 310, Short.MAX_VALUE)
+                                    .addComponent(jButton_aceptarListaInv)
+                                    .addGap(46, 46, 46)
+                                    .addComponent(jButton_CancelarListaInv))))
+                        .addComponent(jLabel64))
+                    .addGap(57, 57, 57))
+                .addGroup(jPanel_VerProductosEnInventarioLayout.createSequentialGroup()
+                    .addGroup(jPanel_VerProductosEnInventarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(jLabel63)
+                        .addGroup(jPanel_VerProductosEnInventarioLayout.createSequentialGroup()
+                            .addGap(34, 34, 34)
+                            .addGroup(jPanel_VerProductosEnInventarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                .addGroup(jPanel_VerProductosEnInventarioLayout.createSequentialGroup()
+                                    .addComponent(jLabel_InicListaInv, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                    .addComponent(jTextField_IniListaInv, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGroup(jPanel_VerProductosEnInventarioLayout.createSequentialGroup()
+                                    .addComponent(jRadioButton_CodInv)
+                                    .addGap(18, 18, 18)
+                                    .addComponent(jRadioButton_NombInv)))
+                            .addGap(18, 18, 18)
+                            .addGroup(jPanel_VerProductosEnInventarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addGroup(jPanel_VerProductosEnInventarioLayout.createSequentialGroup()
+                                    .addComponent(jButton_BuscarListaInv)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                    .addComponent(jLabel_hastaListaInv, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                    .addComponent(jTextField_hastaListaInv, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(jRadioButton_CategInv)))
+                        .addComponent(jLabel65, javax.swing.GroupLayout.PREFERRED_SIZE, 62, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+        .addGroup(jPanel_VerProductosEnInventarioLayout.createSequentialGroup()
+            .addGap(116, 116, 116)
+            .addComponent(jRadioButton_generalInv)
+            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+            .addComponent(jRadioButton_bodegaInv)
+            .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+    );
+    jPanel_VerProductosEnInventarioLayout.setVerticalGroup(
+        jPanel_VerProductosEnInventarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        .addGroup(jPanel_VerProductosEnInventarioLayout.createSequentialGroup()
+            .addContainerGap()
+            .addComponent(jLabel62)
+            .addGap(32, 32, 32)
+            .addComponent(jLabel63)
+            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+            .addGroup(jPanel_VerProductosEnInventarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addComponent(jRadioButton_CodInv)
+                .addComponent(jRadioButton_NombInv)
+                .addComponent(jRadioButton_CategInv))
+            .addGap(27, 27, 27)
+            .addGroup(jPanel_VerProductosEnInventarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addComponent(jTextField_IniListaInv, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jLabel_InicListaInv, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jButton_BuscarListaInv, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jTextField_hastaListaInv, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jLabel_hastaListaInv))
+            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+            .addComponent(filler5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addGap(26, 26, 26)
+            .addComponent(jLabel65)
+            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 4, Short.MAX_VALUE)
+            .addGroup(jPanel_VerProductosEnInventarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addComponent(jRadioButton_generalInv)
+                .addComponent(jRadioButton_bodegaInv))
+            .addGap(23, 23, 23)
+            .addComponent(jLabel64)
+            .addGap(4, 4, 4)
+            .addComponent(jRadioButton_ExcelListaInv)
+            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+            .addGroup(jPanel_VerProductosEnInventarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jPanel_VerProductosEnInventarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jButton_aceptarListaInv)
+                    .addComponent(jButton_CancelarListaInv))
+                .addComponent(jRadioButton_pantallaListaInv))
+            .addGap(46, 46, 46))
+    );
+
+    jPanel_VerValorDelInventario.setMaximumSize(new java.awt.Dimension(585, 360));
+    jPanel_VerValorDelInventario.setMinimumSize(new java.awt.Dimension(585, 360));
+
+    jLabel66.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+    jLabel66.setForeground(new java.awt.Color(0, 51, 51));
+    jLabel66.setText("Ver Valor del Inventario");
+
+    jLabel67.setForeground(new java.awt.Color(0, 51, 51));
+    jLabel67.setText("Productos por:");
+
+    jRadioButton_CodValorInv.setForeground(new java.awt.Color(0, 51, 51));
+    jRadioButton_CodValorInv.setSelected(true);
+    jRadioButton_CodValorInv.setText("Código");
+    jRadioButton_CodValorInv.addActionListener(new java.awt.event.ActionListener() {
+        public void actionPerformed(java.awt.event.ActionEvent evt) {
+            jRadioButton_CodValorInvActionPerformed(evt);
+        }
+    });
+
+    jRadioButton_NombValorInv.setForeground(new java.awt.Color(0, 51, 51));
+    jRadioButton_NombValorInv.setText("Nombre");
+    jRadioButton_NombValorInv.addActionListener(new java.awt.event.ActionListener() {
+        public void actionPerformed(java.awt.event.ActionEvent evt) {
+            jRadioButton_NombValorInvActionPerformed(evt);
+        }
+    });
+
+    jRadioButton_CategValorInv.setForeground(new java.awt.Color(0, 51, 51));
+    jRadioButton_CategValorInv.setText("Categoría");
+    jRadioButton_CategValorInv.addActionListener(new java.awt.event.ActionListener() {
+        public void actionPerformed(java.awt.event.ActionEvent evt) {
+            jRadioButton_CategValorInvActionPerformed(evt);
+        }
+    });
+
+    jButton_BuscarListaValorInv.setForeground(new java.awt.Color(0, 51, 51));
+    jButton_BuscarListaValorInv.setText("Buscar");
+    jButton_BuscarListaValorInv.addActionListener(new java.awt.event.ActionListener() {
+        public void actionPerformed(java.awt.event.ActionEvent evt) {
+            jButton_BuscarListaValorInvActionPerformed(evt);
+        }
+    });
+
+    jLabel_InicListaValorInv.setFont(new java.awt.Font("Tahoma", 0, 10)); // NOI18N
+    jLabel_InicListaValorInv.setForeground(new java.awt.Color(0, 51, 51));
+    jLabel_InicListaValorInv.setText("Inicia en:");
+
+    jLabel_hastaListaValorInv.setFont(new java.awt.Font("Tahoma", 0, 10)); // NOI18N
+    jLabel_hastaListaValorInv.setForeground(new java.awt.Color(0, 51, 51));
+    jLabel_hastaListaValorInv.setText("Hasta:");
+
+    jTextField_IniListaValorInv.setForeground(new java.awt.Color(0, 51, 51));
+    jTextField_IniListaValorInv.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
+
+    jLabel68.setForeground(new java.awt.Color(0, 51, 51));
+    jLabel68.setText("Ver en:");
+
+    jRadioButton_ExcelListaValorInv.setForeground(new java.awt.Color(0, 51, 51));
+    jRadioButton_ExcelListaValorInv.setSelected(true);
+    jRadioButton_ExcelListaValorInv.setText("Excel");
+
+    jRadioButton_pantallaListaValorInv.setForeground(new java.awt.Color(0, 51, 51));
+    jRadioButton_pantallaListaValorInv.setText("Pantalla");
+
+    jButton_aceptarListaValorInv.setForeground(new java.awt.Color(0, 51, 51));
+    jButton_aceptarListaValorInv.setText("Aceptar");
+    jButton_aceptarListaValorInv.addActionListener(new java.awt.event.ActionListener() {
+        public void actionPerformed(java.awt.event.ActionEvent evt) {
+            jButton_aceptarListaValorInvActionPerformed(evt);
+        }
+    });
+
+    jButton_CancelarListaValorInv.setForeground(new java.awt.Color(0, 51, 51));
+    jButton_CancelarListaValorInv.setText("Cancelar");
+    jButton_CancelarListaValorInv.addActionListener(new java.awt.event.ActionListener() {
+        public void actionPerformed(java.awt.event.ActionEvent evt) {
+            jButton_CancelarListaValorInvActionPerformed(evt);
+        }
+    });
+
+    jTextField_hastaListaValorInv.setForeground(new java.awt.Color(0, 51, 51));
+    jTextField_hastaListaValorInv.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
+
+    jLabel69.setForeground(new java.awt.Color(0, 51, 51));
+    jLabel69.setText("Ubicacion:");
+
+    jRadioButton_generalValorInv.setSelected(true);
+    jRadioButton_generalValorInv.setText("General");
+
+    jRadioButton_bodegaValorInv.setText("Bodega");
+
+    javax.swing.GroupLayout jPanel_VerValorDelInventarioLayout = new javax.swing.GroupLayout(jPanel_VerValorDelInventario);
+    jPanel_VerValorDelInventario.setLayout(jPanel_VerValorDelInventarioLayout);
+    jPanel_VerValorDelInventarioLayout.setHorizontalGroup(
+        jPanel_VerValorDelInventarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        .addGroup(jPanel_VerValorDelInventarioLayout.createSequentialGroup()
+            .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(filler6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        .addGroup(jPanel_VerValorDelInventarioLayout.createSequentialGroup()
+            .addContainerGap()
+            .addComponent(jLabel66, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        .addGroup(jPanel_VerValorDelInventarioLayout.createSequentialGroup()
+            .addGap(48, 48, 48)
+            .addGroup(jPanel_VerValorDelInventarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jPanel_VerValorDelInventarioLayout.createSequentialGroup()
+                    .addGroup(jPanel_VerValorDelInventarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(jPanel_VerValorDelInventarioLayout.createSequentialGroup()
+                            .addGap(35, 35, 35)
+                            .addGroup(jPanel_VerValorDelInventarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(jRadioButton_ExcelListaValorInv)
+                                .addGroup(jPanel_VerValorDelInventarioLayout.createSequentialGroup()
+                                    .addComponent(jRadioButton_pantallaListaValorInv)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 310, Short.MAX_VALUE)
+                                    .addComponent(jButton_aceptarListaValorInv)
+                                    .addGap(46, 46, 46)
+                                    .addComponent(jButton_CancelarListaValorInv))))
+                        .addComponent(jLabel68))
+                    .addGap(57, 57, 57))
+                .addGroup(jPanel_VerValorDelInventarioLayout.createSequentialGroup()
+                    .addGroup(jPanel_VerValorDelInventarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(jLabel67)
+                        .addGroup(jPanel_VerValorDelInventarioLayout.createSequentialGroup()
+                            .addGap(34, 34, 34)
+                            .addGroup(jPanel_VerValorDelInventarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                .addGroup(jPanel_VerValorDelInventarioLayout.createSequentialGroup()
+                                    .addComponent(jLabel_InicListaValorInv, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                    .addComponent(jTextField_IniListaValorInv, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGroup(jPanel_VerValorDelInventarioLayout.createSequentialGroup()
+                                    .addComponent(jRadioButton_CodValorInv)
+                                    .addGap(18, 18, 18)
+                                    .addComponent(jRadioButton_NombValorInv)))
+                            .addGap(18, 18, 18)
+                            .addGroup(jPanel_VerValorDelInventarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addGroup(jPanel_VerValorDelInventarioLayout.createSequentialGroup()
+                                    .addComponent(jButton_BuscarListaValorInv)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                    .addComponent(jLabel_hastaListaValorInv, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                    .addComponent(jTextField_hastaListaValorInv, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(jRadioButton_CategValorInv)))
+                        .addComponent(jLabel69, javax.swing.GroupLayout.PREFERRED_SIZE, 62, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+        .addGroup(jPanel_VerValorDelInventarioLayout.createSequentialGroup()
+            .addGap(116, 116, 116)
+            .addComponent(jRadioButton_generalValorInv)
+            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+            .addComponent(jRadioButton_bodegaValorInv)
+            .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+    );
+    jPanel_VerValorDelInventarioLayout.setVerticalGroup(
+        jPanel_VerValorDelInventarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        .addGroup(jPanel_VerValorDelInventarioLayout.createSequentialGroup()
+            .addContainerGap()
+            .addComponent(jLabel66)
+            .addGap(32, 32, 32)
+            .addComponent(jLabel67)
+            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+            .addGroup(jPanel_VerValorDelInventarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addComponent(jRadioButton_CodValorInv)
+                .addComponent(jRadioButton_NombValorInv)
+                .addComponent(jRadioButton_CategValorInv))
+            .addGap(27, 27, 27)
+            .addGroup(jPanel_VerValorDelInventarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addComponent(jTextField_IniListaValorInv, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jLabel_InicListaValorInv, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jButton_BuscarListaValorInv, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jTextField_hastaListaValorInv, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jLabel_hastaListaValorInv))
+            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+            .addComponent(filler6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addGap(26, 26, 26)
+            .addComponent(jLabel69)
+            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 4, Short.MAX_VALUE)
+            .addGroup(jPanel_VerValorDelInventarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addComponent(jRadioButton_generalValorInv)
+                .addComponent(jRadioButton_bodegaValorInv))
+            .addGap(23, 23, 23)
+            .addComponent(jLabel68)
+            .addGap(4, 4, 4)
+            .addComponent(jRadioButton_ExcelListaValorInv)
+            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+            .addGroup(jPanel_VerValorDelInventarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jPanel_VerValorDelInventarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jButton_aceptarListaValorInv)
+                    .addComponent(jButton_CancelarListaValorInv))
+                .addComponent(jRadioButton_pantallaListaValorInv))
+            .addGap(46, 46, 46))
     );
 
     setMaximumSize(new java.awt.Dimension(2147483647, 2147483647));
@@ -2448,7 +3271,6 @@ jPanel_VerFacturasEliminadasPorFechLayout.createParallelGroup(javax.swing.GroupL
     });
 
     jButton_ProductosPorCategoria.setForeground(new java.awt.Color(0, 51, 51));
-    jButton_ProductosPorCategoria.setText("Productos Por Categoria");
     jButton_ProductosPorCategoria.addActionListener(new java.awt.event.ActionListener() {
         public void actionPerformed(java.awt.event.ActionEvent evt) {
             jButton_ProductosPorCategoriaActionPerformed(evt);
@@ -2607,9 +3429,6 @@ jPanel_VerFacturasEliminadasPorFechLayout.createParallelGroup(javax.swing.GroupL
     }//GEN-LAST:event_jButton_VentasPorClienteActionPerformed
 
     private void jButton_AceptaVerVentasPorClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_AceptaVerVentasPorClienteActionPerformed
-        DateFormat dateF1 = new SimpleDateFormat("dd-MM-yyyy");//formato para mostrar
-        DateFormat dateF = new SimpleDateFormat("yyyy/MM/dd");//formato para consultar
-
         //Verifica que el tipo de archivo en el que se va a mostrar
         if (jRadioButton_ExcelClien.isSelected()) {//para mostrar en Excel
             String concepto = "Ventas Por Cliente: " + jTextField_Cliente.getText().toString();
@@ -2641,9 +3460,6 @@ jPanel_VerFacturasEliminadasPorFechLayout.createParallelGroup(javax.swing.GroupL
     }//GEN-LAST:event_jButton_AceptaVerVentasPorClienteActionPerformed
 
     private void jButton_AceptarVerVentasPorFechActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_AceptarVerVentasPorFechActionPerformed
-        DateFormat dateF1 = new SimpleDateFormat("dd-MM-yyyy");//formato para mostrar
-        DateFormat dateF = new SimpleDateFormat("yyyy/MM/dd");//formato para consultar
-
         if (jRadioButton_Excel.isSelected()) {//para mostrar en Excel
             Direct_Control_BD AdminBD = Direct_Control_BD.getInstance();
             String concepto = "";
@@ -2702,9 +3518,6 @@ jPanel_VerFacturasEliminadasPorFechLayout.createParallelGroup(javax.swing.GroupL
     }//GEN-LAST:event_jButton_CancelarVerFactClientActionPerformed
 
     private void jButton_AceptarVerVentasPorProdActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_AceptarVerVentasPorProdActionPerformed
-        DateFormat dateF1 = new SimpleDateFormat("dd-MM-yyyy");//formato para mostrar
-        DateFormat dateF = new SimpleDateFormat("yyyy/MM/dd");//formato para consultar
-
         //Verifica que el tipo de archivo en el que se va a mostrar, ademas de que la categoria o idpRod no sea vacio
         if (jRadioButton_ExcelProd.isSelected() && (jTextField_CodiOCateg.getText().trim().isEmpty() == false || jRadioButton_PorCategoria.isSelected())) {//para mostrar en Excel
             String concepto = "Ventas Por Producto ";
@@ -2837,9 +3650,6 @@ jPanel_VerFacturasEliminadasPorFechLayout.createParallelGroup(javax.swing.GroupL
     }//GEN-LAST:event_jComboBox_SeleccionarCategoriaKeyTyped
 
     private void jButton_AceptaVerVentasPorVendedorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_AceptaVerVentasPorVendedorActionPerformed
-        DateFormat dateF1 = new SimpleDateFormat("dd-MM-yyyy");//formato para mostrar
-        DateFormat dateF = new SimpleDateFormat("yyyy/MM/dd");//formato para consultar
-
         String concepto = "";
         //Verifica que el tipo de archivo en el que se va a mostrar
         if (jRadioButton_ExcelVendedor.isSelected()) {//para mostrar en Excel
@@ -2967,7 +3777,6 @@ jPanel_VerFacturasEliminadasPorFechLayout.createParallelGroup(javax.swing.GroupL
         //formato para consultar
         DateFormat dateF = new SimpleDateFormat("yyyy/MM/dd");
         //formato fecha act
-        DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd-HH-mm-ss-SSS0");
 
         //Verifica que el tipo de archivo en el que se va a mostrar
         if (jRadioButton_ExcelTermino.isSelected()) {//para mostrar en Excel
@@ -3044,9 +3853,6 @@ jPanel_VerFacturasEliminadasPorFechLayout.createParallelGroup(javax.swing.GroupL
     }//GEN-LAST:event_jButton5ActionPerformed
 
     private void jButton_AceptaVerVentasPorProdVendedorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_AceptaVerVentasPorProdVendedorActionPerformed
-        DateFormat dateF1 = new SimpleDateFormat("dd-MM-yyyy");//formato para mostrar
-        DateFormat dateF = new SimpleDateFormat("yyyy/MM/dd");//formato para consultar
-
         //Verifica que el tipo de archivo en el que se va a mostrar
         if (jRadioButton_ExcelProdVendedor.isSelected()) {//para mostrar en Excel
 
@@ -3101,9 +3907,6 @@ jPanel_VerFacturasEliminadasPorFechLayout.createParallelGroup(javax.swing.GroupL
     }//GEN-LAST:event_jButton6ActionPerformed
 
     private void jButton_AceptaVerVentasPorProdClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_AceptaVerVentasPorProdClienteActionPerformed
-        DateFormat dateF1 = new SimpleDateFormat("dd-MM-yyyy");//formato para mostrar
-        DateFormat dateF = new SimpleDateFormat("yyyy/MM/dd");//formato para consultar
-
         //Verifica que el tipo de archivo en el que se va a mostrar
         if (jRadioButton_ExcelProdCliente.isSelected()) {//para mostrar en Excel
 
@@ -3154,8 +3957,6 @@ jPanel_VerFacturasEliminadasPorFechLayout.createParallelGroup(javax.swing.GroupL
     }//GEN-LAST:event_jButton4ActionPerformed
 
     private void jButton_AceptarVerFactEliminadasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_AceptarVerFactEliminadasActionPerformed
-        DateFormat dateF1 = new SimpleDateFormat("dd-MM-yyyy");//formato para mostrar
-        DateFormat dateF = new SimpleDateFormat("yyyy/MM/dd");//formato para consultar
 
         Direct_Control_BD AdminBD = Direct_Control_BD.getInstance();
 
@@ -3268,11 +4069,12 @@ jPanel_VerFacturasEliminadasPorFechLayout.createParallelGroup(javax.swing.GroupL
     }//GEN-LAST:event_jButton_VerFactModifActionPerformed
 
     private void jButton_ListaDePrecioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_ListaDePrecioActionPerformed
+        jButton_aceptarListaPrec.setIcon(new ImageIcon(""));//poner imagen
         buttonGroup1.add(jRadioButton_ExcelListaPrec);
         buttonGroup1.add(jRadioButton_pantallaListaPrec);
         buttonGroup2.add(jRadioButton_CategListaPrec);
         buttonGroup2.add(jRadioButton_CodListaPrec);
-        buttonGroup2.add(jRadioButton_DescListaPrec);
+        buttonGroup2.add(jRadioButton_NombListaPrec);
         jLabel_InicListaPrec.setText("Inicia en:");
         jLabel_hastaListaPrec.setVisible(true);
         jTextField_hastaListaPrec.setVisible(true);
@@ -3289,7 +4091,27 @@ jPanel_VerFacturasEliminadasPorFechLayout.createParallelGroup(javax.swing.GroupL
     }//GEN-LAST:event_jButton_ListaDePrecioActionPerformed
 
     private void jButton_ProductosAgotadosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_ProductosAgotadosActionPerformed
-        // TODO add your handling code here:
+        buttonGroup1.add(jRadioButton_ExcelListaAgotados);
+        buttonGroup1.add(jRadioButton_pantallaListaAgotados);
+        buttonGroup2.add(jRadioButton_CategAgotados);
+        buttonGroup2.add(jRadioButton_CodAgotados);
+        buttonGroup2.add(jRadioButton_NombAgotados);
+        buttonGroup3.add(jRadioButton_bodega);
+        buttonGroup3.add(jRadioButton_general);
+        jRadioButton_general.setSelected(true);
+        jLabel_InicListaAgotados.setText("Inicia en:");
+        jLabel_hastaListaAgotados.setVisible(true);
+        jTextField_hastaListaAgotados.setVisible(true);
+        jButton_BuscarListaAgotados.setVisible(false);
+        jRadioButton_CodAgotados.setSelected(true);
+        jRadioButton_ExcelListaAgotados.setSelected(true);
+        jPanel_VerProductosAgotados.setVisible(true);
+        jDialog_ReportesInventario.setLocation(getLocationOnScreen());
+        jPanel_VerProductosAgotados.setSize(jDialog_ReportesInventario.getSize());
+        jDialog_ReportesInventario.add(jPanel_VerProductosAgotados);
+        jDialog_ReportesInventario.setVisible(true);
+        jTextField_IniListaAgotados.setText("");
+        jTextField_hastaListaAgotados.setText("");
     }//GEN-LAST:event_jButton_ProductosAgotadosActionPerformed
 
     private void jButton_ProductosPorCategoriaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_ProductosPorCategoriaActionPerformed
@@ -3305,15 +4127,71 @@ jPanel_VerFacturasEliminadasPorFechLayout.createParallelGroup(javax.swing.GroupL
     }//GEN-LAST:event_jButton7ActionPerformed
 
     private void jButton_ListaDeCostoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_ListaDeCostoActionPerformed
-        // TODO add your handling code here:
+//        jButton_aceptarListaPrec.setIcon(new ImageIcon(""));//poner imagen
+        buttonGroup1.add(jRadioButton_ExcelListaCost);
+        buttonGroup1.add(jRadioButton_pantallaListaCost);
+        buttonGroup2.add(jRadioButton_CategListaCost);
+        buttonGroup2.add(jRadioButton_CodListaCost);
+        buttonGroup2.add(jRadioButton_NombreListaCost);
+        jLabel_InicListaCost.setText("Inicia en:");
+        jLabel_hastaListaCost.setVisible(true);
+        jTextField_hastaListaCost.setVisible(true);
+        jButton_BuscarListaCost.setVisible(false);
+        jRadioButton_CodListaCost.setSelected(true);
+        jRadioButton_ExcelListaCost.setSelected(true);
+        jPanel_VerListaDeCostos.setVisible(true);
+        jDialog_ReportesInventario.setLocation(getLocationOnScreen());
+        jPanel_VerListaDeCostos.setSize(jDialog_ReportesInventario.getSize());
+        jDialog_ReportesInventario.add(jPanel_VerListaDeCostos);
+        jDialog_ReportesInventario.setVisible(true);
+        jTextField_IniListaCost.setText("");
+        jTextField_hastaListaCost.setText("");
     }//GEN-LAST:event_jButton_ListaDeCostoActionPerformed
 
     private void jButton_ValorDelInventarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_ValorDelInventarioActionPerformed
-        // TODO add your handling code here:
+//        jButton_aceptarListaPrec.setIcon(new ImageIcon(""));//poner imagen
+        buttonGroup1.add(jRadioButton_ExcelListaValorInv);
+        buttonGroup1.add(jRadioButton_pantallaListaValorInv);
+        buttonGroup2.add(jRadioButton_CategValorInv);
+        buttonGroup2.add(jRadioButton_CodValorInv);
+        buttonGroup2.add(jRadioButton_NombValorInv);
+        jLabel_InicListaValorInv.setText("Inicia en:");
+        jLabel_hastaListaValorInv.setVisible(true);
+        jTextField_hastaListaValorInv.setVisible(true);
+        jButton_BuscarListaValorInv.setVisible(false);
+        jRadioButton_CodValorInv.setSelected(true);
+        jRadioButton_ExcelListaValorInv.setSelected(true);
+        jPanel_VerValorDelInventario.setVisible(true);
+        jDialog_ReportesInventario.setLocation(getLocationOnScreen());
+        jPanel_VerValorDelInventario.setSize(jDialog_ReportesInventario.getSize());
+        jDialog_ReportesInventario.add(jPanel_VerValorDelInventario);
+        jDialog_ReportesInventario.setVisible(true);
+        jTextField_IniListaValorInv.setText("");
+        jTextField_hastaListaValorInv.setText("");
     }//GEN-LAST:event_jButton_ValorDelInventarioActionPerformed
 
     private void jButton_ProductosenInventarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_ProductosenInventarioActionPerformed
-        // TODO add your handling code here:
+        buttonGroup1.add(jRadioButton_ExcelListaInv);
+        buttonGroup1.add(jRadioButton_pantallaListaInv);
+        buttonGroup2.add(jRadioButton_CategInv);
+        buttonGroup2.add(jRadioButton_CodInv);
+        buttonGroup2.add(jRadioButton_NombInv);
+        buttonGroup3.add(jRadioButton_bodegaInv);
+        buttonGroup3.add(jRadioButton_generalInv);
+        jRadioButton_generalInv.setSelected(true);
+        jLabel_InicListaInv.setText("Inicia en:");
+        jLabel_hastaListaInv.setVisible(true);
+        jTextField_hastaListaInv.setVisible(true);
+        jButton_BuscarListaInv.setVisible(false);
+        jRadioButton_CodInv.setSelected(true);
+        jRadioButton_ExcelListaInv.setSelected(true);
+        jPanel_VerProductosEnInventario.setVisible(true);
+        jDialog_ReportesInventario.setLocation(getLocationOnScreen());
+        jPanel_VerProductosEnInventario.setSize(jDialog_ReportesInventario.getSize());
+        jDialog_ReportesInventario.add(jPanel_VerProductosEnInventario);
+        jDialog_ReportesInventario.setVisible(true);
+        jTextField_IniListaInv.setText("");
+        jTextField_hastaListaInv.setText("");
     }//GEN-LAST:event_jButton_ProductosenInventarioActionPerformed
 
     private void jButton9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton9ActionPerformed
@@ -3322,6 +4200,9 @@ jPanel_VerFacturasEliminadasPorFechLayout.createParallelGroup(javax.swing.GroupL
 
     private void jDialog_ReportesInventarioWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_jDialog_ReportesInventarioWindowClosing
         jPanel_VerListaDePrecios.setVisible(false);
+        jPanel_VerListaDeCostos.setVisible(false);
+        jPanel_VerProductosAgotados.setVisible(false);
+        jPanel_VerProductosEnInventario.setVisible(false);
     }//GEN-LAST:event_jDialog_ReportesInventarioWindowClosing
 
     private void jRadioButton_CategListaPrecActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButton_CategListaPrecActionPerformed
@@ -3332,14 +4213,14 @@ jPanel_VerFacturasEliminadasPorFechLayout.createParallelGroup(javax.swing.GroupL
         jTextField_hastaListaPrec.setVisible(false);
     }//GEN-LAST:event_jRadioButton_CategListaPrecActionPerformed
 
-    private void jRadioButton_DescListaPrecActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButton_DescListaPrecActionPerformed
+    private void jRadioButton_NombListaPrecActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButton_NombListaPrecActionPerformed
         jLabel_InicListaPrec.setText("Inicia en:");
         jButton_BuscarListaPrec.setVisible(false);
         jLabel_InicListaPrec.setVisible(true);
         jLabel_hastaListaPrec.setVisible(true);
         jTextField_hastaListaPrec.setVisible(true);
         jTextField_IniListaPrec.setText("");
-    }//GEN-LAST:event_jRadioButton_DescListaPrecActionPerformed
+    }//GEN-LAST:event_jRadioButton_NombListaPrecActionPerformed
 
     private void jRadioButton_CodListaPrecActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButton_CodListaPrecActionPerformed
         jLabel_InicListaPrec.setText("Inicia en:");
@@ -3358,13 +4239,385 @@ jPanel_VerFacturasEliminadasPorFechLayout.createParallelGroup(javax.swing.GroupL
     }//GEN-LAST:event_jButton_BuscarListaPrecActionPerformed
 
     private void jButton_aceptarListaPrecActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_aceptarListaPrecActionPerformed
+        Direct_Control_BD AdminBD = Direct_Control_BD.getInstance();
 
+        String[] infoEmpresa = {"Joe S.A ", "Oriente pa dentro", "Cartago,"
+            + " CA 20320", "Telefono:2650-11-36, fax:2655-0203"};
+
+        if (jRadioButton_ExcelListaPrec.isSelected()) {//para mostrar en Excel
+
+            if (jRadioButton_CodListaPrec.isSelected()) {
+                //Ver productos por codigo
+                AdminBD.VerProductosPorRangoCodigo(jTextField_IniListaPrec.getText().
+                        toString(), jTextField_hastaListaPrec.getText().toString());
+
+            } else if (jRadioButton_NombListaPrec.isSelected()) {
+                // Ver productos por descripcion
+                AdminBD.VerProductosPorNombre(jTextField_IniListaPrec.getText().
+                        toString(), jTextField_hastaListaPrec.getText().toString());
+
+            } else {
+                //Ver productos por Categoria
+                AdminBD.VerProductosPorCategoria(jTextField_IniListaPrec.getText().
+                        toString());
+
+            }
+
+            Date date = new Date();//hora Actual
+            String fechaAct = dateFormat.format(date);
+//
+//
+//            
+//
+            EscribirExcel archivoExcel = new EscribirExcel();//
+            archivoExcel.setNombreArchivoExcel("ListaDePrecio" + fechaAct + ".xls");//Nombre del excel "Fisico"
+            try {
+                archivoExcel.escribir(infoEmpresa, AdminBD.getInfoFact(),//escribir excel
+                        AdminBD.getNombresColumnas(),
+                        "",
+                        "",
+                        "Lista De Precio", "Excel");
+            } catch (IOException | WriteException | CellException ex) {
+                Logger.getLogger(JPanel_Reportes.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        } else {
+
+        }
     }//GEN-LAST:event_jButton_aceptarListaPrecActionPerformed
 
     private void jButton_CancelarListaPrecActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_CancelarListaPrecActionPerformed
         jDialog_ReportesInventario.remove(jPanel_VerListaDePrecios);
         jDialog_ReportesInventario.setVisible(false);
     }//GEN-LAST:event_jButton_CancelarListaPrecActionPerformed
+
+    private void jRadioButton_CodListaCostActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButton_CodListaCostActionPerformed
+        jLabel_InicListaCost.setText("Inicia en:");
+        jButton_BuscarListaCost.setVisible(false);
+        jLabel_InicListaCost.setVisible(true);
+        jLabel_hastaListaCost.setVisible(true);
+        jTextField_hastaListaCost.setVisible(true);
+        jTextField_IniListaCost.setText("");
+    }//GEN-LAST:event_jRadioButton_CodListaCostActionPerformed
+
+    private void jRadioButton_NombreListaCostActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButton_NombreListaCostActionPerformed
+        jLabel_InicListaCost.setText("Inicia en:");
+        jButton_BuscarListaCost.setVisible(false);
+        jLabel_InicListaCost.setVisible(true);
+        jLabel_hastaListaCost.setVisible(true);
+        jTextField_hastaListaCost.setVisible(true);
+        jTextField_IniListaCost.setText("");
+    }//GEN-LAST:event_jRadioButton_NombreListaCostActionPerformed
+
+    private void jRadioButton_CategListaCostActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButton_CategListaCostActionPerformed
+        jLabel_InicListaCost.setText("Categoria:");
+        jButton_BuscarListaCost.setVisible(true);
+        jLabel_hastaListaCost.setVisible(false);
+        jTextField_hastaListaCost.setVisible(false);
+    }//GEN-LAST:event_jRadioButton_CategListaCostActionPerformed
+
+    private void jButton_BuscarListaCostActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_BuscarListaCostActionPerformed
+        NewJDialog_Buscador buscador = new NewJDialog_Buscador();
+        buscador.actualizaTablaParaCategorias();
+        String categoria = buscador.getCatgeria();
+        this.jTextField_IniListaCost.setText(categoria);
+    }//GEN-LAST:event_jButton_BuscarListaCostActionPerformed
+
+    private void jButton_aceptarListaCostActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_aceptarListaCostActionPerformed
+        Direct_Control_BD AdminBD = Direct_Control_BD.getInstance();
+
+        String[] infoEmpresa = {"Joe S.A ", "Oriente pa dentro", "Cartago,"
+            + " CA 20320", "Telefono:2650-11-36, fax:2655-0203"};
+
+        if (jRadioButton_ExcelListaCost.isSelected()) {//para mostrar en Excel
+
+            if (jRadioButton_CodListaCost.isSelected()) {
+                //Ver productos por codigo
+                AdminBD.VerCostoPrecioProductosPorRangoCodigo(jTextField_IniListaCost.getText().
+                        toString(), jTextField_hastaListaCost.getText().toString());
+
+            } else if (jRadioButton_NombreListaCost.isSelected()) {
+                // Ver productos por descripcion
+                AdminBD.VerCostoPrecioProductosPorNombre(jTextField_IniListaCost.getText().
+                        toString(), jTextField_hastaListaCost.getText().toString());
+
+            } else {
+                //Ver productos por Categoria
+                AdminBD.VerCostoPrecioProductosPorCategoria(jTextField_IniListaCost.getText().
+                        toString());
+
+            }
+
+            Date date = new Date();//hora Actual
+            String fechaAct = dateFormat.format(date);
+//
+//
+//            
+//
+            EscribirExcel archivoExcel = new EscribirExcel();//
+            archivoExcel.setNombreArchivoExcel("ListaDeCostoPrecio" + fechaAct + ".xls");//Nombre del excel "Fisico"
+            try {
+                archivoExcel.escribir(infoEmpresa, AdminBD.getInfoFact(),//escribir excel
+                        AdminBD.getNombresColumnas(),
+                        "",
+                        "",
+                        "Lista De Costo,Precio", "Excel");
+            } catch (IOException | WriteException | CellException ex) {
+                Logger.getLogger(JPanel_Reportes.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        } else {
+
+        }
+    }//GEN-LAST:event_jButton_aceptarListaCostActionPerformed
+
+    private void jButton_CancelarListaCostActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_CancelarListaCostActionPerformed
+        jDialog_ReportesInventario.remove(jPanel_VerListaDeCostos);
+        jDialog_ReportesInventario.setVisible(false);
+    }//GEN-LAST:event_jButton_CancelarListaCostActionPerformed
+
+    private void jRadioButton_CodAgotadosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButton_CodAgotadosActionPerformed
+        jLabel_InicListaAgotados.setText("Inicia en:");
+        jButton_BuscarListaAgotados.setVisible(false);
+        jLabel_InicListaAgotados.setVisible(true);
+        jLabel_hastaListaAgotados.setVisible(true);
+        jTextField_hastaListaAgotados.setVisible(true);
+        jTextField_IniListaAgotados.setText("");
+    }//GEN-LAST:event_jRadioButton_CodAgotadosActionPerformed
+
+    private void jRadioButton_NombAgotadosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButton_NombAgotadosActionPerformed
+
+        jLabel_InicListaAgotados.setText("Inicia en:");
+        jButton_BuscarListaAgotados.setVisible(false);
+        jLabel_InicListaAgotados.setVisible(true);
+        jLabel_hastaListaAgotados.setVisible(true);
+        jTextField_hastaListaAgotados.setVisible(true);
+        jTextField_IniListaAgotados.setText("");
+    }//GEN-LAST:event_jRadioButton_NombAgotadosActionPerformed
+
+    private void jRadioButton_CategAgotadosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButton_CategAgotadosActionPerformed
+        jLabel_InicListaAgotados.setText("Categoria:");
+        jButton_BuscarListaAgotados.setVisible(true);
+        jLabel_hastaListaAgotados.setVisible(false);
+        jTextField_hastaListaAgotados.setVisible(false);
+    }//GEN-LAST:event_jRadioButton_CategAgotadosActionPerformed
+
+    private void jButton_BuscarListaAgotadosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_BuscarListaAgotadosActionPerformed
+        NewJDialog_Buscador buscador = new NewJDialog_Buscador();
+        buscador.actualizaTablaParaCategorias();
+        String categoria = buscador.getCatgeria();
+        this.jTextField_IniListaAgotados.setText(categoria);
+    }//GEN-LAST:event_jButton_BuscarListaAgotadosActionPerformed
+
+    private void jButton_aceptarListaAgotadosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_aceptarListaAgotadosActionPerformed
+        Direct_Control_BD AdminBD = Direct_Control_BD.getInstance();
+
+        String[] infoEmpresa = {"Joe S.A ", "Oriente pa dentro", "Cartago,"
+            + " CA 20320", "Telefono:2650-11-36, fax:2655-0203"};
+        String ubicacion = "General";
+        if (jRadioButton_ExcelListaAgotados.isSelected()) {//para mostrar en Excel
+            if (jRadioButton_bodega.isSelected()) {
+                ubicacion = "Bodega";
+            }
+            if (jRadioButton_CodAgotados.isSelected()) {
+                //Ver productos por codigo
+                AdminBD.VerProductosAgotadosPorRangoCodigo(jTextField_IniListaAgotados.getText().
+                        toString(), jTextField_hastaListaAgotados.getText().toString(), ubicacion);
+
+            } else if (jRadioButton_NombAgotados.isSelected()) {
+                // Ver productos por descripcion
+                AdminBD.VerProductosAgotadosPorNombre(jTextField_IniListaAgotados.getText().
+                        toString(), jTextField_hastaListaAgotados.getText().toString(), ubicacion);
+
+            } else {
+                //Ver productos por Categoria
+                AdminBD.VerProductosAgotadosPorCategoria(jTextField_IniListaAgotados.getText().
+                        toString(), ubicacion);
+
+            }
+
+            Date date = new Date();//hora Actual
+            String fechaAct = dateFormat.format(date);
+
+            EscribirExcel archivoExcel = new EscribirExcel();//
+            archivoExcel.setNombreArchivoExcel("ProductosAgotados" + fechaAct + ".xls");//Nombre del excel "Fisico"
+            try {
+                archivoExcel.escribir(infoEmpresa, AdminBD.getInfoFact(),//escribir excel
+                        AdminBD.getNombresColumnas(),
+                        "",
+                        "",
+                        "Productos agotados, Ubicacion " + ubicacion, "Excel");
+            } catch (IOException | WriteException | CellException ex) {
+                Logger.getLogger(JPanel_Reportes.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        } else {
+
+        }
+    }//GEN-LAST:event_jButton_aceptarListaAgotadosActionPerformed
+
+    private void jButton_CancelarListaAgotadosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_CancelarListaAgotadosActionPerformed
+        jDialog_ReportesInventario.remove(jPanel_VerProductosAgotados);
+        jDialog_ReportesInventario.setVisible(false);
+    }//GEN-LAST:event_jButton_CancelarListaAgotadosActionPerformed
+
+    private void jRadioButton_CodInvActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButton_CodInvActionPerformed
+        jLabel_InicListaInv.setText("Inicia en:");
+        jButton_BuscarListaInv.setVisible(false);
+        jLabel_InicListaInv.setVisible(true);
+        jLabel_hastaListaInv.setVisible(true);
+        jTextField_hastaListaInv.setVisible(true);
+        jTextField_IniListaInv.setText("");
+    }//GEN-LAST:event_jRadioButton_CodInvActionPerformed
+
+    private void jRadioButton_NombInvActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButton_NombInvActionPerformed
+        jLabel_InicListaInv.setText("Inicia en:");
+        jButton_BuscarListaInv.setVisible(false);
+        jLabel_InicListaInv.setVisible(true);
+        jLabel_hastaListaInv.setVisible(true);
+        jTextField_hastaListaInv.setVisible(true);
+        jTextField_IniListaInv.setText("");
+    }//GEN-LAST:event_jRadioButton_NombInvActionPerformed
+
+    private void jRadioButton_CategInvActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButton_CategInvActionPerformed
+        jLabel_InicListaInv.setText("Categoria:");
+        jButton_BuscarListaInv.setVisible(true);
+        jLabel_hastaListaInv.setVisible(false);
+        jTextField_hastaListaInv.setVisible(false);
+    }//GEN-LAST:event_jRadioButton_CategInvActionPerformed
+
+    private void jButton_BuscarListaInvActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_BuscarListaInvActionPerformed
+        NewJDialog_Buscador buscador = new NewJDialog_Buscador();
+        buscador.actualizaTablaParaCategorias();
+        String categoria = buscador.getCatgeria();
+        this.jTextField_IniListaInv.setText(categoria);
+    }//GEN-LAST:event_jButton_BuscarListaInvActionPerformed
+
+    private void jButton_aceptarListaInvActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_aceptarListaInvActionPerformed
+        Direct_Control_BD AdminBD = Direct_Control_BD.getInstance();
+
+        String[] infoEmpresa = {"Joe S.A ", "Oriente pa dentro", "Cartago,"
+            + " CA 20320", "Telefono:2650-11-36, fax:2655-0203"};
+        String ubicacion = "General";
+        if (jRadioButton_ExcelListaInv.isSelected()) {//para mostrar en Excel
+            if (jRadioButton_bodegaInv.isSelected()) {
+                ubicacion = "Bodega";
+            }
+            if (jRadioButton_CodInv.isSelected()) {
+                //Ver productos por codigo
+                AdminBD.VerProductosEnInvPorRangoCodigo(jTextField_IniListaInv.getText().
+                        toString(), jTextField_hastaListaInv.getText().toString(), ubicacion);
+
+            } else if (jRadioButton_NombInv.isSelected()) {
+                // Ver productos por descripcion
+                AdminBD.VerProductosEnInvPorNombre(jTextField_IniListaInv.getText().
+                        toString(), jTextField_hastaListaInv.getText().toString(), ubicacion);
+
+            } else {
+                //Ver productos por Categoria
+                AdminBD.VerProductosEnInvPorCategoria(jTextField_IniListaInv.getText().
+                        toString(), ubicacion);
+
+            }
+
+            Date date = new Date();//hora Actual
+            String fechaAct = dateFormat.format(date);
+
+            EscribirExcel archivoExcel = new EscribirExcel();//
+            archivoExcel.setNombreArchivoExcel("ProductosEnInventario" + fechaAct + ".xls");//Nombre del excel "Fisico"
+            try {
+                archivoExcel.escribir(infoEmpresa, AdminBD.getInfoFact(),//escribir excel
+                        AdminBD.getNombresColumnas(), "", "",
+                        "Productos En Inventario, Ubicacion " + ubicacion, "Excel");
+            } catch (IOException | WriteException | CellException ex) {
+                Logger.getLogger(JPanel_Reportes.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        } else {
+
+        }
+    }//GEN-LAST:event_jButton_aceptarListaInvActionPerformed
+
+    private void jButton_CancelarListaInvActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_CancelarListaInvActionPerformed
+        jDialog_ReportesInventario.remove(jPanel_VerProductosEnInventario);
+        jDialog_ReportesInventario.setVisible(false);
+    }//GEN-LAST:event_jButton_CancelarListaInvActionPerformed
+
+    private void jRadioButton_CodValorInvActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButton_CodValorInvActionPerformed
+        jLabel_InicListaValorInv.setText("Inicia en:");
+        jButton_BuscarListaValorInv.setVisible(false);
+        jLabel_InicListaValorInv.setVisible(true);
+        jLabel_hastaListaValorInv.setVisible(true);
+        jTextField_hastaListaValorInv.setVisible(true);
+        jTextField_IniListaValorInv.setText("");
+    }//GEN-LAST:event_jRadioButton_CodValorInvActionPerformed
+
+    private void jRadioButton_NombValorInvActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButton_NombValorInvActionPerformed
+        jLabel_InicListaValorInv.setText("Inicia en:");
+        jButton_BuscarListaValorInv.setVisible(false);
+        jLabel_InicListaValorInv.setVisible(true);
+        jLabel_hastaListaValorInv.setVisible(true);
+        jTextField_hastaListaValorInv.setVisible(true);
+        jTextField_IniListaValorInv.setText("");
+    }//GEN-LAST:event_jRadioButton_NombValorInvActionPerformed
+
+    private void jRadioButton_CategValorInvActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButton_CategValorInvActionPerformed
+        jLabel_InicListaValorInv.setText("Categoria:");
+        jButton_BuscarListaValorInv.setVisible(true);
+        jLabel_hastaListaValorInv.setVisible(false);
+        jTextField_hastaListaValorInv.setVisible(false);
+    }//GEN-LAST:event_jRadioButton_CategValorInvActionPerformed
+
+    private void jButton_BuscarListaValorInvActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_BuscarListaValorInvActionPerformed
+         NewJDialog_Buscador buscador = new NewJDialog_Buscador();
+        buscador.actualizaTablaParaCategorias();
+        String categoria = buscador.getCatgeria();
+        this.jTextField_IniListaValorInv.setText(categoria);
+    }//GEN-LAST:event_jButton_BuscarListaValorInvActionPerformed
+
+    private void jButton_aceptarListaValorInvActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_aceptarListaValorInvActionPerformed
+         Direct_Control_BD AdminBD = Direct_Control_BD.getInstance();
+
+        String[] infoEmpresa = {"Joe S.A ", "Oriente pa dentro", "Cartago,"
+            + " CA 20320", "Telefono:2650-11-36, fax:2655-0203"};
+        String ubicacion = "General";
+        if (jRadioButton_ExcelListaValorInv.isSelected()) {//para mostrar en Excel
+            if (jRadioButton_bodegaValorInv.isSelected()) {
+                ubicacion = "Bodega";
+            }
+            if (jRadioButton_CodValorInv.isSelected()) {
+                //Ver productos por codigo
+                AdminBD.ValorDeInvPorRangoCodigo(jTextField_IniListaValorInv.getText().
+                        toString(), jTextField_hastaListaValorInv.getText().toString(), ubicacion);
+
+            } else if (jRadioButton_NombValorInv.isSelected()) {
+                // Ver productos por descripcion
+                AdminBD.ValorDeInvPorNombreProd(jTextField_IniListaValorInv.getText().
+                        toString(), jTextField_hastaListaValorInv.getText().toString(), ubicacion);
+
+            } else {
+                //Ver productos por Categoria
+                AdminBD.ValorDeInvPorCategoriaProd(jTextField_IniListaValorInv.getText().
+                        toString(), ubicacion);
+
+            }
+
+            Date date = new Date();//hora Actual
+            String fechaAct = dateFormat.format(date);
+
+            EscribirExcel archivoExcel = new EscribirExcel();//
+            archivoExcel.setNombreArchivoExcel("ValorInventario" + fechaAct + ".xls");//Nombre del excel "Fisico"
+            try {
+                archivoExcel.escribir(infoEmpresa, AdminBD.getInfoFact(),//escribir excel
+                        AdminBD.getNombresColumnas(), "", "",
+                        "Valor del Inventario, Ubicacion " + ubicacion, "Excel");
+            } catch (IOException | WriteException | CellException ex) {
+                Logger.getLogger(JPanel_Reportes.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        } else {
+
+        }
+    }//GEN-LAST:event_jButton_aceptarListaValorInvActionPerformed
+
+    private void jButton_CancelarListaValorInvActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_CancelarListaValorInvActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton_CancelarListaValorInvActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -3389,6 +4642,10 @@ jPanel_VerFacturasEliminadasPorFechLayout.createParallelGroup(javax.swing.GroupL
     private datechooser.beans.DateChooserCombo dateChooserCombo_IniVendedor;
     private datechooser.beans.DateChooserCombo dateChooserCombo_IniVent;
     private javax.swing.Box.Filler filler1;
+    private javax.swing.Box.Filler filler2;
+    private javax.swing.Box.Filler filler4;
+    private javax.swing.Box.Filler filler5;
+    private javax.swing.Box.Filler filler6;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton4;
     private javax.swing.JButton jButton5;
@@ -3404,8 +4661,16 @@ jPanel_VerFacturasEliminadasPorFechLayout.createParallelGroup(javax.swing.GroupL
     private javax.swing.JButton jButton_AceptarVerVentasPorProd;
     private javax.swing.JButton jButton_AceptarVerVentasPorTermino;
     private javax.swing.JButton jButton_Buscar;
+    private javax.swing.JButton jButton_BuscarListaAgotados;
+    private javax.swing.JButton jButton_BuscarListaCost;
+    private javax.swing.JButton jButton_BuscarListaInv;
     private javax.swing.JButton jButton_BuscarListaPrec;
+    private javax.swing.JButton jButton_BuscarListaValorInv;
+    private javax.swing.JButton jButton_CancelarListaAgotados;
+    private javax.swing.JButton jButton_CancelarListaCost;
+    private javax.swing.JButton jButton_CancelarListaInv;
     private javax.swing.JButton jButton_CancelarListaPrec;
+    private javax.swing.JButton jButton_CancelarListaValorInv;
     private javax.swing.JButton jButton_CancelarVerFactClient;
     private javax.swing.JButton jButton_CancelarVerFactEliminadas;
     private javax.swing.JButton jButton_CancelarVerFactPorFech;
@@ -3427,7 +4692,11 @@ jPanel_VerFacturasEliminadasPorFechLayout.createParallelGroup(javax.swing.GroupL
     private javax.swing.JButton jButton_VentasPorVendedor;
     private javax.swing.JButton jButton_VerFactModif;
     private javax.swing.JButton jButton_VerFactModif1;
+    private javax.swing.JButton jButton_aceptarListaAgotados;
+    private javax.swing.JButton jButton_aceptarListaCost;
+    private javax.swing.JButton jButton_aceptarListaInv;
     private javax.swing.JButton jButton_aceptarListaPrec;
+    private javax.swing.JButton jButton_aceptarListaValorInv;
     private javax.swing.JButton jButton_buscarCliente;
     private javax.swing.JButton jButton_buscarVentasProdPorCliente;
     private javax.swing.JComboBox jComboBox_SeleccionarCategoria;
@@ -3481,8 +4750,23 @@ jPanel_VerFacturasEliminadasPorFechLayout.createParallelGroup(javax.swing.GroupL
     private javax.swing.JLabel jLabel49;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel50;
+    private javax.swing.JLabel jLabel51;
+    private javax.swing.JLabel jLabel52;
     private javax.swing.JLabel jLabel53;
+    private javax.swing.JLabel jLabel54;
+    private javax.swing.JLabel jLabel58;
+    private javax.swing.JLabel jLabel59;
     private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel60;
+    private javax.swing.JLabel jLabel61;
+    private javax.swing.JLabel jLabel62;
+    private javax.swing.JLabel jLabel63;
+    private javax.swing.JLabel jLabel64;
+    private javax.swing.JLabel jLabel65;
+    private javax.swing.JLabel jLabel66;
+    private javax.swing.JLabel jLabel67;
+    private javax.swing.JLabel jLabel68;
+    private javax.swing.JLabel jLabel69;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
@@ -3491,8 +4775,16 @@ jPanel_VerFacturasEliminadasPorFechLayout.createParallelGroup(javax.swing.GroupL
     private javax.swing.JLabel jLabel_Cliente2;
     private javax.swing.JLabel jLabel_Cliente3;
     private javax.swing.JLabel jLabel_CodOCateg;
+    private javax.swing.JLabel jLabel_InicListaAgotados;
+    private javax.swing.JLabel jLabel_InicListaCost;
+    private javax.swing.JLabel jLabel_InicListaInv;
     private javax.swing.JLabel jLabel_InicListaPrec;
+    private javax.swing.JLabel jLabel_InicListaValorInv;
+    private javax.swing.JLabel jLabel_hastaListaAgotados;
+    private javax.swing.JLabel jLabel_hastaListaCost;
+    private javax.swing.JLabel jLabel_hastaListaInv;
     private javax.swing.JLabel jLabel_hastaListaPrec;
+    private javax.swing.JLabel jLabel_hastaListaValorInv;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
@@ -3501,7 +4793,11 @@ jPanel_VerFacturasEliminadasPorFechLayout.createParallelGroup(javax.swing.GroupL
     private javax.swing.JPanel jPanel_VentasProductosPorCliente;
     private javax.swing.JPanel jPanel_VentasProductosPorVendedor;
     private javax.swing.JPanel jPanel_VerFacturasEliminadasPorFech;
+    private javax.swing.JPanel jPanel_VerListaDeCostos;
     private javax.swing.JPanel jPanel_VerListaDePrecios;
+    private javax.swing.JPanel jPanel_VerProductosAgotados;
+    private javax.swing.JPanel jPanel_VerProductosEnInventario;
+    private javax.swing.JPanel jPanel_VerValorDelInventario;
     private javax.swing.JPanel jPanel_VerVentasPorFech;
     private javax.swing.JPanel jPanel_VerVentasPorProd;
     private javax.swing.JPanel jPanel_VerVentasPorTermino;
@@ -3509,21 +4805,37 @@ jPanel_VerFacturasEliminadasPorFechLayout.createParallelGroup(javax.swing.GroupL
     private javax.swing.JRadioButton jRadioButton_ApartadoVentasFecha;
     private javax.swing.JRadioButton jRadioButton_CanceladoVend;
     private javax.swing.JRadioButton jRadioButton_CanceladoVentasFecha;
+    private javax.swing.JRadioButton jRadioButton_CategAgotados;
+    private javax.swing.JRadioButton jRadioButton_CategInv;
+    private javax.swing.JRadioButton jRadioButton_CategListaCost;
     private javax.swing.JRadioButton jRadioButton_CategListaPrec;
+    private javax.swing.JRadioButton jRadioButton_CategValorInv;
+    private javax.swing.JRadioButton jRadioButton_CodAgotados;
+    private javax.swing.JRadioButton jRadioButton_CodInv;
+    private javax.swing.JRadioButton jRadioButton_CodListaCost;
     private javax.swing.JRadioButton jRadioButton_CodListaPrec;
+    private javax.swing.JRadioButton jRadioButton_CodValorInv;
     private javax.swing.JRadioButton jRadioButton_CreditoVend;
     private javax.swing.JRadioButton jRadioButton_CreditoVentasFecha;
-    private javax.swing.JRadioButton jRadioButton_DescListaPrec;
     private javax.swing.JRadioButton jRadioButton_Efectivo;
     private javax.swing.JRadioButton jRadioButton_Excel;
     private javax.swing.JRadioButton jRadioButton_ExcelClien;
     private javax.swing.JRadioButton jRadioButton_ExcelEliminadasFact;
+    private javax.swing.JRadioButton jRadioButton_ExcelListaAgotados;
+    private javax.swing.JRadioButton jRadioButton_ExcelListaCost;
+    private javax.swing.JRadioButton jRadioButton_ExcelListaInv;
     private javax.swing.JRadioButton jRadioButton_ExcelListaPrec;
+    private javax.swing.JRadioButton jRadioButton_ExcelListaValorInv;
     private javax.swing.JRadioButton jRadioButton_ExcelProd;
     private javax.swing.JRadioButton jRadioButton_ExcelProdCliente;
     private javax.swing.JRadioButton jRadioButton_ExcelProdVendedor;
     private javax.swing.JRadioButton jRadioButton_ExcelTermino;
     private javax.swing.JRadioButton jRadioButton_ExcelVendedor;
+    private javax.swing.JRadioButton jRadioButton_NombAgotados;
+    private javax.swing.JRadioButton jRadioButton_NombInv;
+    private javax.swing.JRadioButton jRadioButton_NombListaPrec;
+    private javax.swing.JRadioButton jRadioButton_NombValorInv;
+    private javax.swing.JRadioButton jRadioButton_NombreListaCost;
     private javax.swing.JRadioButton jRadioButton_Pantalla;
     private javax.swing.JRadioButton jRadioButton_PantallaCliente;
     private javax.swing.JRadioButton jRadioButton_PantallaEliminadasFact;
@@ -3535,12 +4847,30 @@ jPanel_VerFacturasEliminadasPorFechLayout.createParallelGroup(javax.swing.GroupL
     private javax.swing.JRadioButton jRadioButton_PorCategoria;
     private javax.swing.JRadioButton jRadioButton_PorCodigo;
     private javax.swing.JRadioButton jRadioButton_Tarjeta;
+    private javax.swing.JRadioButton jRadioButton_bodega;
+    private javax.swing.JRadioButton jRadioButton_bodegaInv;
+    private javax.swing.JRadioButton jRadioButton_bodegaValorInv;
+    private javax.swing.JRadioButton jRadioButton_general;
+    private javax.swing.JRadioButton jRadioButton_generalInv;
+    private javax.swing.JRadioButton jRadioButton_generalValorInv;
+    private javax.swing.JRadioButton jRadioButton_pantallaListaAgotados;
+    private javax.swing.JRadioButton jRadioButton_pantallaListaCost;
+    private javax.swing.JRadioButton jRadioButton_pantallaListaInv;
     private javax.swing.JRadioButton jRadioButton_pantallaListaPrec;
+    private javax.swing.JRadioButton jRadioButton_pantallaListaValorInv;
     private javax.swing.JTabbedPane jTabbedPane6;
     private javax.swing.JTextField jTextField_Cliente;
     private javax.swing.JTextField jTextField_CodiOCateg;
+    private javax.swing.JTextField jTextField_IniListaAgotados;
+    private javax.swing.JTextField jTextField_IniListaCost;
+    private javax.swing.JTextField jTextField_IniListaInv;
     private javax.swing.JTextField jTextField_IniListaPrec;
+    private javax.swing.JTextField jTextField_IniListaValorInv;
     private javax.swing.JTextField jTextField_VentasProdPorCliente;
+    private javax.swing.JTextField jTextField_hastaListaAgotados;
+    private javax.swing.JTextField jTextField_hastaListaCost;
+    private javax.swing.JTextField jTextField_hastaListaInv;
     private javax.swing.JTextField jTextField_hastaListaPrec;
+    private javax.swing.JTextField jTextField_hastaListaValorInv;
     // End of variables declaration//GEN-END:variables
 }

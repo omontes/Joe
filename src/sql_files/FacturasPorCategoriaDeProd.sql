@@ -5,6 +5,6 @@ FROM Producto AS P, ProductoCantidadFact As PCF, Factura AS F, Persona AS C, Cat
 WHERE  CAT.`Descripcion` = ? AND P.`idVersion`=PCF.`idVersionFact` AND 
 P.idProducto = PCF.idProductoFact AND PCF.idFactura = F.idFactura 
 AND CAT.`idCategoria`= P.`idCategoriaProd` AND F.`Estado` = "A"
-AND F.Fecha BETWEEN ? AND ? AND F.`idCliente` = C.`idPersona`  
+AND SUBSTRING(F.Fecha,1,10) BETWEEN ? AND ? AND F.`idCliente` = C.`idPersona`  
 AND F.`idVersionFactura` = PCF.`idVersionFacturasProducto`
 GROUP BY PCF.`idProductoCantidadFact`; 

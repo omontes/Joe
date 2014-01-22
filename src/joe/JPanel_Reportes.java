@@ -28,7 +28,7 @@ public class JPanel_Reportes extends javax.swing.JPanel {
     private static JPanel_Reportes mPanelInventario = null;
     DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd-HH-mm-ss-SSS0");//formato fecha act
     DateFormat dateF1 = new SimpleDateFormat("dd-MM-yyyy");//formato para mostrar
-    DateFormat dateF = new SimpleDateFormat("yyyy/MM/dd");//formato para consultar
+    DateFormat dateF = new SimpleDateFormat("yyyy-MM-dd");//formato para consultar
 
     /**
      * Creates new form Reportes
@@ -3830,13 +3830,16 @@ jPanel_VerDevEliminadasPorFechLayout.createParallelGroup(javax.swing.GroupLayout
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton_AceptaVerVentasPorClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_AceptaVerVentasPorClienteActionPerformed
+
         //Verifica que el tipo de archivo en el que se va a mostrar
         if (jRadioButton_ExcelClien.isSelected()) {//para mostrar en Excel
-            String concepto = "Ventas Por Cliente: " + jTextField_Cliente.getText().toString();
+            String concepto = "Ventas Por Cliente: " + jTextField_Cliente.
+                    getText().toString();
             Direct_Control_BD AdminBD = Direct_Control_BD.getInstance();
             AdminBD.VerVentasPorCliente(dateF.format(//Consulta de Fact Por cliente
                     dateChooserCombo_IniClie.getSelectedDate().getTime()),
-                    dateF.format(dateChooserCombo_FinClie.getSelectedDate().getTime()), jTextField_Cliente.getText().toString());
+                    dateF.format(dateChooserCombo_FinClie.getSelectedDate().
+                            getTime()), jTextField_Cliente.getText().toString());
 
             String[] infoEmpresa = {"Joe S.A ", "Oriente pa dentro", "Cartago,"
                 + " CA 20320", "Telefono:2650-11-36, fax:2655-0203"};
@@ -3849,8 +3852,10 @@ jPanel_VerDevEliminadasPorFechLayout.createParallelGroup(javax.swing.GroupLayout
             try {
                 archivoExcel.escribir(infoEmpresa, AdminBD.getInfoFact(),//escribir excel
                         AdminBD.getNombresColumnas(),
-                        dateF1.format(dateChooserCombo_IniProd.getSelectedDate().getTime()),
-                        dateF1.format(dateChooserCombo_FinProd.getSelectedDate().getTime()),
+                        dateF1.format(dateChooserCombo_IniProd.
+                                getSelectedDate().getTime()),
+                        dateF1.format(dateChooserCombo_FinProd.
+                                getSelectedDate().getTime()),
                         concepto, "Excel");
             } catch (IOException | WriteException | CellException ex) {
                 Logger.getLogger(JPanel_Reportes.class.getName()).log(Level.SEVERE, null, ex);
@@ -3872,10 +3877,12 @@ jPanel_VerDevEliminadasPorFechLayout.createParallelGroup(javax.swing.GroupLayout
             } else if (jRadioButton_ApartadoVentasFecha.isSelected()) {
                 concepto = "Apartado";
             }
+
             //Consulta de Fact Por Fech y concepto
             AdminBD.VerFacturasPorConeptoPorRangoDeFecha(dateF.format(
                     dateChooserCombo_IniVent.getSelectedDate().getTime()),
-                    dateF.format(dateChooserCombo_FinVent.getSelectedDate().getTime()), concepto);
+                    dateF.format(dateChooserCombo_FinVent.getSelectedDate().
+                            getTime()), concepto);
             String[] infoEmpresa = {"Joe S.A ", "Oriente pa dentro", "Cartago,"
                 + " CA 20320", "Telefono:2650-11-36, fax:2655-0203"};
 
@@ -3883,16 +3890,19 @@ jPanel_VerDevEliminadasPorFechLayout.createParallelGroup(javax.swing.GroupLayout
             String fechaAct = dateFormat.format(date);
 
             EscribirExcel archivoExcel = new EscribirExcel();
-            System.out.println(fechaAct);
-            archivoExcel.setNombreArchivoExcel("VentasPorFechasPor" + concepto + fechaAct + ".xls");
+            archivoExcel.setNombreArchivoExcel("VentasPorFechasPor" + concepto +
+                    fechaAct + ".xls");
             try {
                 archivoExcel.escribir(infoEmpresa, AdminBD.getInfoFact(),
                         AdminBD.getNombresColumnas(),
-                        dateF1.format(dateChooserCombo_IniVent.getSelectedDate().getTime()),
-                        dateF1.format(dateChooserCombo_FinVent.getSelectedDate().getTime()),
+                        dateF1.format(dateChooserCombo_IniVent.
+                                getSelectedDate().getTime()),
+                        dateF1.format(dateChooserCombo_FinVent.
+                                getSelectedDate().getTime()),
                         "Ventas Por Fechas Por Concepto: " + concepto, "Excel");
             } catch (IOException | WriteException | CellException ex) {
-                Logger.getLogger(JPanel_Reportes.class.getName()).log(Level.SEVERE, null, ex);
+                Logger.getLogger(JPanel_Reportes.class.getName()).
+                        log(Level.SEVERE, null, ex);
             }
         }
     }//GEN-LAST:event_jButton_AceptarVerVentasPorFechActionPerformed
@@ -3921,21 +3931,28 @@ jPanel_VerDevEliminadasPorFechLayout.createParallelGroup(javax.swing.GroupLayout
     }//GEN-LAST:event_jButton_CancelarVerFactClientActionPerformed
 
     private void jButton_AceptarVerVentasPorProdActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_AceptarVerVentasPorProdActionPerformed
-        //Verifica que el tipo de archivo en el que se va a mostrar, ademas de que la categoria o idpRod no sea vacio
-        if (jRadioButton_ExcelProd.isSelected() && (jTextField_CodiOCateg.getText().trim().isEmpty() == false || jRadioButton_PorCategoria.isSelected())) {//para mostrar en Excel
+        //Verifica que el tipo de archivo en el que se va a mostrar, 
+        //ademas de que la categoria o idpRod no sea vacio
+        if (jRadioButton_ExcelProd.isSelected() && (jTextField_CodiOCateg.
+                getText().trim().isEmpty() == false 
+                || jRadioButton_PorCategoria.isSelected())) {//para mostrar en Excel
             String concepto = "Ventas Por Producto ";
             Direct_Control_BD AdminBD = Direct_Control_BD.getInstance();
             if (jRadioButton_PorCodigo.isSelected()) {//Cosulta Por codigo
-                concepto = "Ventas Por Producto Para " + jTextField_CodiOCateg.getText();
+                concepto = "Ventas Por Producto Para " + jTextField_CodiOCateg.
+                        getText();
                 AdminBD.VerFacturasPoridProducto(dateF.format(//Consulta de Fact Por Prod
                         dateChooserCombo_IniProd.getSelectedDate().getTime()),
-                        dateF.format(dateChooserCombo_FinProd.getSelectedDate().getTime()), jTextField_CodiOCateg.getText());
+                        dateF.format(dateChooserCombo_FinProd.getSelectedDate().
+                                getTime()), jTextField_CodiOCateg.getText());
 
             } else if (jRadioButton_PorCategoria.isSelected()) {//Consulta por categoria
-                concepto = "Ventas de Productos Para la Categoria " + jComboBox_SeleccionarCategoria.getSelectedItem().toString();
+                concepto = "Ventas de Productos Para la Categoria " + 
+                        jComboBox_SeleccionarCategoria.getSelectedItem().toString();
                 AdminBD.FacturasPorCategoriaDeProd(dateF.format(//Consluta de Fact Por Categ 
                         dateChooserCombo_IniProd.getSelectedDate().getTime()),
-                        dateF.format(dateChooserCombo_FinProd.getSelectedDate().getTime()), jComboBox_SeleccionarCategoria.getSelectedItem().toString());
+                        dateF.format(dateChooserCombo_FinProd.getSelectedDate().
+                                getTime()), jComboBox_SeleccionarCategoria.getSelectedItem().toString());
 
             }
             String[] infoEmpresa = {"Joe S.A ", "Oriente pa dentro", "Cartago,"
@@ -3945,12 +3962,15 @@ jPanel_VerDevEliminadasPorFechLayout.createParallelGroup(javax.swing.GroupLayout
             String fechaAct = dateFormat.format(date);
 
             EscribirExcel archivoExcel = new EscribirExcel();
-            archivoExcel.setNombreArchivoExcel("VentasPorProducto" + fechaAct + ".xls");
+            archivoExcel.setNombreArchivoExcel("VentasPorProducto" +
+                    fechaAct + ".xls");
             try {
                 archivoExcel.escribir(infoEmpresa, AdminBD.getInfoFact(),//escribir excel
                         AdminBD.getNombresColumnas(),
-                        dateF1.format(dateChooserCombo_IniProd.getSelectedDate().getTime()),
-                        dateF1.format(dateChooserCombo_FinProd.getSelectedDate().getTime()),
+                        dateF1.format(dateChooserCombo_IniProd.
+                                getSelectedDate().getTime()),
+                        dateF1.format(dateChooserCombo_FinProd.
+                                getSelectedDate().getTime()),
                         concepto, "Excel");
             } catch (IOException | WriteException | CellException ex) {
                 Logger.getLogger(JPanel_Reportes.class.getName()).log(Level.SEVERE, null, ex);
@@ -4094,12 +4114,6 @@ jPanel_VerDevEliminadasPorFechLayout.createParallelGroup(javax.swing.GroupLayout
     }//GEN-LAST:event_jButton_CancelarVerFactPorTerminoActionPerformed
 
     private void jButton_AceptarVerVentasPorTerminoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_AceptarVerVentasPorTerminoActionPerformed
-        //formato para mostrar
-        DateFormat dateF1 = new SimpleDateFormat("dd-MM-yyyy");
-        //formato para consultar
-        DateFormat dateF = new SimpleDateFormat("yyyy/MM/dd");
-        //formato fecha act
-
         //Verifica que el tipo de archivo en el que se va a mostrar
         if (jRadioButton_ExcelTermino.isSelected()) {//para mostrar en Excel
             String concepto = "";
@@ -5031,9 +5045,6 @@ jPanel_VerDevEliminadasPorFechLayout.createParallelGroup(javax.swing.GroupLayout
     }//GEN-LAST:event_jButton_VentasPorClienteActionPerformed
 
     private void jButton_VentasPorFechaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_VentasPorFechaActionPerformed
-        //        DateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
-        //        Date date = new Date();
-        //        dateFormat.format(date);
         buttonGroup1.add(jRadioButton_Excel);
         buttonGroup1.add(jRadioButton_Pantalla);
         buttonGroup2.add(jRadioButton_ApartadoVentasFecha);

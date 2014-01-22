@@ -575,6 +575,9 @@ public class Direct_Control_BD {
 
     }
 
+    /**
+     * Muetras las Categorias disponibles
+     */
     public void consultarCategorias() {
         try {
             String categorias = this.readSql("../Joe/src/"
@@ -2182,6 +2185,7 @@ public class Direct_Control_BD {
             System.out.println("Error al obtener los productos de la factura");
         }
     }
+
     /**
      * Obtiene los productos de una factura dado su idVersion e idFactura
      *
@@ -2626,11 +2630,13 @@ public class Direct_Control_BD {
         }
 
     }
-/**
- * Permite Obtener el Valor Del Inventario Por Categoria del Producto
- * @param categoria
- * @param ubicacion 
- */
+
+    /**
+     * Permite Obtener el Valor Del Inventario Por Categoria del Producto
+     *
+     * @param categoria
+     * @param ubicacion
+     */
     public void ValorDeInvPorCategoriaProd(String categoria, String ubicacion) {
         try {
             String Productos = this.readSql("../Joe/src/"
@@ -2860,7 +2866,6 @@ public class Direct_Control_BD {
         }
     }
 
-
     public void VerDevolucionesPorRangoDeFecha(String FechaIni, String FechaFin) {
         try {
             String Dev = this.readSql("../Joe"
@@ -2895,10 +2900,8 @@ public class Direct_Control_BD {
         }
     }
 
-
-    
-    public void insertarCierreDeCaja(String HoraInicio,String Cajero,BigDecimal ReporteInicio) {
-         try {
+    public void insertarCierreDeCaja(String HoraInicio, String Cajero, BigDecimal ReporteInicio) {
+        try {
             String insertarProductoCantDev = this.readSql("../Joe/src/sql_files/"
                     + "insertarCierreCaja.sql");
             PreparedStatement stm = this.conection.prepareStatement(insertarProductoCantDev);
@@ -2917,13 +2920,13 @@ public class Direct_Control_BD {
             String verFactContadoParaCierre = this.readSql("../Joe/src/"
                     + "sql_files/verCierreFacturasContado.sql");
             PreparedStatement stm = this.conection.prepareStatement(verFactContadoParaCierre);
-            stm.setString(1,fechaInicio);
-            stm.setString(2,fechaFinal);
+            stm.setString(1, fechaInicio);
+            stm.setString(2, fechaFinal);
             ResultSet resultset = stm.executeQuery();
             this.setColumnNames(this.Get_Columnas(resultset));
             this.setData(this.ResultSet_Array(resultset));
         } catch (Exception e) {
-             System.out.println("Error al obtener la informacion de las facturas de contado para el cierre");
+            System.out.println("Error al obtener la informacion de las facturas de contado para el cierre");
         }
     }
 
@@ -2946,15 +2949,14 @@ public class Direct_Control_BD {
         return result;
 
     }
-    
 
     public String obtenerFechaInicioCierre(int idCierreVigente) {
-        String result="";
+        String result = "";
         try {
             String HoraInicioCierre = this.readSql("../Joe/"
                     + "src/sql_files/ObtenerHoraInicioCierre.sql");
             PreparedStatement stm = this.conection.prepareStatement(HoraInicioCierre);
-            stm.setInt(1,idCierreVigente);
+            stm.setInt(1, idCierreVigente);
             ResultSet resultset = stm.executeQuery();
 
             //Imprime el resultado obtenido del valor del inventario
@@ -2968,7 +2970,5 @@ public class Direct_Control_BD {
         }
         return result;
     }
-    
-    
 
 }

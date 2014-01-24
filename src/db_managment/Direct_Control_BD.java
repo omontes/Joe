@@ -2998,6 +2998,109 @@ public class Direct_Control_BD {
              System.out.println("Error al obtener la informacion de las devoluciones para el cierre");
         }
     }
+     
+       public String obtenerCajeroCierre(int idCierreVigente) {
+        String result="";
+        try {
+            String Cajero = this.readSql("../Joe/"
+                    + "src/sql_files/ObtenerCajeroCierre.sql");
+            PreparedStatement stm = this.conection.prepareStatement(Cajero);
+            stm.setInt(1,idCierreVigente);
+            ResultSet resultset = stm.executeQuery();
+
+            
+            while (resultset.next()) {
+                result = resultset.getString(1);
+
+            }
+
+        } catch (Exception e) {
+            System.out.println("Error al obtener el cajero del cierre");
+        }
+        return result;
+    }
+
+    public BigDecimal obtenerMontoInicio(int idCierreVigente) {
+         BigDecimal result = null;
+        try {
+            String MontoInicio = this.readSql("../Joe/"
+                    + "src/sql_files/ObtenerMontoInicioCierre.sql");
+            PreparedStatement stm = this.conection.prepareStatement(MontoInicio);
+            stm.setInt(1,idCierreVigente);
+            ResultSet resultset = stm.executeQuery();
+
+            
+            while (resultset.next()) {
+                result = resultset.getBigDecimal(1);
+
+            }
+
+        } catch (Exception e) {
+            System.out.println("Error al obtener el monto inicial del cierre");
+        }
+        return result;
+    }
+    
+    
+    public void actualizarCierreDeCaja(String HoraCierre, 
+            BigDecimal totalVendido,String observaciones,BigDecimal reportefinal
+            ,BigDecimal totalCont,BigDecimal totalTarj,
+            BigDecimal totalContReportado,BigDecimal totalTarjReportado, 
+            int idCierreCaja) {//esta bien
+        try {
+            String ActualizarCierreCaja = this.readSql("../Joe"
+                    + "/src/sql_files/actualizarCierreCaja.sql");
+            PreparedStatement stm
+                    = this.conection.prepareStatement(ActualizarCierreCaja);
+            stm.setString(1, HoraCierre);
+            stm.setBigDecimal(2, totalVendido);
+            stm.setString(3, observaciones);
+            stm.setBigDecimal(4, reportefinal);
+            stm.setBigDecimal(5, totalCont);
+            stm.setBigDecimal(6, totalTarj);
+            stm.setBigDecimal(7, totalContReportado);
+            stm.setBigDecimal(8, totalTarjReportado);
+            stm.setInt(9,idCierreCaja);
+
+            stm.executeUpdate();
+
+        } catch (Exception e) {
+            System.out.println("Actualizar el cierre de caja");
+        }
+    }
+
+    public void verCierres() {
+        try {
+            String verCierres = this.readSql("../Joe/src/sql_files/"
+                    + "verCierres.sql");
+            ResultSet rs = statement.executeQuery(verCierres);
+            this.setColumnNames(this.Get_Columnas(rs));
+            this.setData(this.ResultSet_Array(rs));
+        } catch (Exception e) {
+            System.out.println("Error al obtener los cierres");
+        } 
+    }
+    
+    
+    public void obtenerInfoCierre(int idCierre) {
+         
+        try {
+            String ObtenerInfoCierre = this.readSql("../Joe/"
+                    + "src/sql_files/ObtenerInfoCierre.sql");
+            PreparedStatement stm = this.conection.prepareStatement(ObtenerInfoCierre);
+            stm.setInt(1,idCierre);
+            ResultSet rs = stm.executeQuery();
+            this.setColumnNames(this.Get_Columnas(rs));
+            this.setData(this.ResultSet_Array(rs));
+
+            
+            
+
+        } catch (Exception e) {
+            System.out.println("Error al obtener la info del cierre");
+        }
+        
+    }
     
     
 

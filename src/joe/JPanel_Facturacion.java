@@ -84,6 +84,7 @@ public class JPanel_Facturacion extends javax.swing.JPanel {
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable_Facturacion = new javax.swing.JTable();
         jButton1 = new javax.swing.JButton();
+        jButton3 = new javax.swing.JButton();
         jPanel_Apartados = new javax.swing.JPanel();
         jButton_CrearApartado = new javax.swing.JButton();
         jButton_ModificarApartado = new javax.swing.JButton();
@@ -434,31 +435,40 @@ public class JPanel_Facturacion extends javax.swing.JPanel {
             }
         });
 
+        jButton3.setText("VerCierreTodos");
+        jButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton3ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel_FacturasLayout = new javax.swing.GroupLayout(jPanel_Facturas);
         jPanel_Facturas.setLayout(jPanel_FacturasLayout);
         jPanel_FacturasLayout.setHorizontalGroup(
             jPanel_FacturasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel_FacturasLayout.createSequentialGroup()
-                .addGroup(jPanel_FacturasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jPanel_FacturasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(jPanel_FacturasLayout.createSequentialGroup()
                         .addContainerGap()
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 701, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel_FacturasLayout.createSequentialGroup()
                         .addGap(71, 71, 71)
                         .addComponent(jButton_Crear)
-                        .addGap(18, 18, 18)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jButton_Modificar)
-                        .addGap(18, 18, 18)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(jButton_Eliminar)
-                        .addGap(18, 18, 18)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jButton_Ver)
-                        .addGap(18, 18, 18)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jButton_Imprimir)
-                        .addGap(18, 18, 18)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jButton_CierreCaja)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jButton1)))
-                .addContainerGap(79, Short.MAX_VALUE))
+                        .addComponent(jButton1)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jButton3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                .addContainerGap(588, Short.MAX_VALUE))
         );
         jPanel_FacturasLayout.setVerticalGroup(
             jPanel_FacturasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -473,7 +483,8 @@ public class JPanel_Facturacion extends javax.swing.JPanel {
                     .addComponent(jButton_Ver)
                     .addComponent(jButton_Imprimir)
                     .addComponent(jButton_CierreCaja)
-                    .addComponent(jButton1))
+                    .addComponent(jButton1)
+                    .addComponent(jButton3))
                 .addGap(58, 58, 58))
         );
 
@@ -982,7 +993,7 @@ public class JPanel_Facturacion extends javax.swing.JPanel {
     private void jFormattedTextField_AbonoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jFormattedTextField_AbonoKeyTyped
         int tecla= evt.getKeyChar();
         if(tecla==KeyEvent.VK_COMMA){
-            evt.consume();
+            return;
         }
         if(tecla==KeyEvent.VK_PERIOD){
             return;
@@ -1167,20 +1178,27 @@ public class JPanel_Facturacion extends javax.swing.JPanel {
     }//GEN-LAST:event_jButton_regresarDevActionPerformed
 
     private void jButton_CierreCajaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_CierreCajaActionPerformed
-        VentanaDeInicio mVentana= VentanaDeInicio.getInstance();
-        JPanel_CerrarCaja panelCreaCerrarCaja= new JPanel_CerrarCaja();
-        mVentana.add(panelCreaCerrarCaja);
-        panelCreaCerrarCaja.setSize(this.getSize());
-        panelCreaCerrarCaja.setLocation(this.getLocation());
-        mVentana.remove(this);
-        panelCreaCerrarCaja.setVisible(true);
-        mVentana.revalidate();
-        mVentana.repaint();
-        mVentana.setTitle("Cierre De Caja");
-        panelCreaCerrarCaja.personalizarTablaCierre();
+        NewJDialog_VerCierre vercierre = new NewJDialog_VerCierre(this);
+        vercierre.setVisible(true);
+        
         
        
     }//GEN-LAST:event_jButton_CierreCajaActionPerformed
+
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+        VentanaDeInicio mVentana= VentanaDeInicio.getInstance();
+        JPanel_VerCierresCaja panelVerCierres= new JPanel_VerCierresCaja();
+        mVentana.add(panelVerCierres);
+        panelVerCierres.setSize(this.getSize());
+        panelVerCierres.setLocation(this.getLocation());
+        mVentana.remove(this);
+        panelVerCierres.setVisible(true);
+        mVentana.revalidate();
+        mVentana.repaint();
+        mVentana.setTitle("Cierres de Caja");
+        panelVerCierres.completarTablaVerCierres();
+        
+    }//GEN-LAST:event_jButton3ActionPerformed
    
     
     /**
@@ -1287,6 +1305,7 @@ public class JPanel_Facturacion extends javax.swing.JPanel {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     javax.swing.JButton jButton1;
     javax.swing.JButton jButton2;
+    javax.swing.JButton jButton3;
     javax.swing.JButton jButton_AbonoCredito;
     javax.swing.JButton jButton_AceptarPago;
     javax.swing.JButton jButton_CancelarPago;

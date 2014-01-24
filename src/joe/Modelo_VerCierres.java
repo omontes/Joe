@@ -1,23 +1,23 @@
 /*
- * To change this template, choose Tools | Templates
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package joe;
 
+package joe;
 
 import java.util.Date;
 import javax.swing.table.AbstractTableModel;
-
-
 
 /**
  *
  * @author Oscar Montes
  */
-public class Modelo_Facturacion extends AbstractTableModel {
+public class Modelo_VerCierres extends AbstractTableModel {
+    
     private String[] columnNames;
     public Object[][] data;
-    public Modelo_Facturacion(String[] columnNames,Object[][] data){
+    public Modelo_VerCierres(String[] columnNames,Object[][] data){
         this.columnNames=columnNames;
         this.data=data;
         
@@ -55,7 +55,10 @@ public class Modelo_Facturacion extends AbstractTableModel {
      * Les agrega el tipo de clase a cada columna
      */
     public Class getColumnClass(int c) {
-                return getValueAt(0, c).getClass();
+            if(c==1 || c==2){
+                return String.class;
+            }
+            return getValueAt(0, c).getClass();
         }
     @Override
      public void setValueAt(Object value, int row, int col) {
@@ -67,7 +70,6 @@ public class Modelo_Facturacion extends AbstractTableModel {
                return false;
         
     }
-   
    
    
     

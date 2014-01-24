@@ -1,3 +1,3 @@
-SELECT C.`TotalContado`,C.`TotalTarjeta`,C.`TotalVendido`
+SELECT C.`TotalContadoReportado`,C.`TotalTarjetaReportado`,C.`ReporteFinal`
 FROM cierredecaja AS C
 WHERE C.idCierreDeCaja=?;

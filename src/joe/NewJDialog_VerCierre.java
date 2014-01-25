@@ -10,9 +10,12 @@ import db_managment.Direct_Control_BD;
 import java.awt.Toolkit;
 import java.awt.event.KeyEvent;
 import java.math.BigDecimal;
+import java.text.DateFormat;
 import java.text.DecimalFormat;
 import java.text.NumberFormat;
 import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
@@ -194,7 +197,10 @@ public class NewJDialog_VerCierre extends javax.swing.JDialog {
               String fechaInicio = AdminBD.obtenerFechaInicioCierre(idCierreVigente);
               String Cajero = AdminBD.obtenerCajeroCierre(idCierreVigente);
               BigDecimal montoinicio = AdminBD.obtenerMontoInicio(idCierreVigente);
-              panelCreaCerrarCaja.personalizarTablaCierre(totalcont, totaltarj, totalvent, Cajero, fechaInicio,montoinicio);
+              DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+              Date date = new Date();
+              panelCreaCerrarCaja.jLabel_horaCierre.setText(dateFormat.format(date));
+              panelCreaCerrarCaja.personalizarTablaCierre(totalcont, totaltarj, totalvent, Cajero, fechaInicio, montoinicio);
 
 
 
@@ -269,9 +275,17 @@ public class NewJDialog_VerCierre extends javax.swing.JDialog {
     private void jFormattedTextField_totalTarjetaReportadoPropertyChange(java.beans.PropertyChangeEvent evt) {//GEN-FIRST:event_jFormattedTextField_totalTarjetaReportadoPropertyChange
         if (evt.getPropertyName().equals("value")) {
             String text = evt.getNewValue().toString();
-            BigDecimal abono = this.StringtoBigDecimal(text);
+            BigDecimal totaltarj = this.StringtoBigDecimal(text);
+            if(evt.getOldValue()!=null){
+                String text2 = evt.getOldValue().toString();
+                BigDecimal totaltarjold = this.StringtoBigDecimal(text2);
+                BigDecimal total = this.StringtoBigDecimal(this.jFormattedTextField_totalVentaReportado.getText());
+                this.jFormattedTextField_totalVentaReportado.setValue(total.add(totaltarj.subtract(totaltarjold)));
+                return;
+            }
             BigDecimal total = this.StringtoBigDecimal(this.jFormattedTextField_totalVentaReportado.getText());
-            this.jFormattedTextField_totalVentaReportado.setValue(total.add(abono));
+            this.jFormattedTextField_totalVentaReportado.setValue(total.add(totaltarj));
+            
                 
         }
         
@@ -280,9 +294,16 @@ public class NewJDialog_VerCierre extends javax.swing.JDialog {
     private void jFormattedTextField_totalContadoReportadoPropertyChange(java.beans.PropertyChangeEvent evt) {//GEN-FIRST:event_jFormattedTextField_totalContadoReportadoPropertyChange
          if (evt.getPropertyName().equals("value")) {
             String text = evt.getNewValue().toString();
-            BigDecimal abono = this.StringtoBigDecimal(text);
-            BigDecimal total = this.StringtoBigDecimal(this.jFormattedTextField_totalVentaReportado.getText());
-            this.jFormattedTextField_totalVentaReportado.setValue(total.add(abono));
+            BigDecimal totalcont = this.StringtoBigDecimal(text);
+            if(evt.getOldValue()!=null){
+                String text2 = evt.getOldValue().toString();
+                BigDecimal totalcontold = this.StringtoBigDecimal(text2);
+                BigDecimal total = this.StringtoBigDecimal(this.jFormattedTextField_totalVentaReportado.getText());
+                this.jFormattedTextField_totalVentaReportado.setValue(total.add(totalcont.subtract(totalcontold)));
+                return;
+            }
+             BigDecimal total = this.StringtoBigDecimal(this.jFormattedTextField_totalVentaReportado.getText());
+             this.jFormattedTextField_totalVentaReportado.setValue(total.add(totalcont));
                 
         }
     }//GEN-LAST:event_jFormattedTextField_totalContadoReportadoPropertyChange

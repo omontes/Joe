@@ -304,7 +304,7 @@ public class JPanel_CerrarCaja extends javax.swing.JPanel {
         BigDecimal totalTarjtReportado= this.corregirDato(this.jFormattedTextField_totalTarjetaReportado.getText());
         BigDecimal totalContReportado = this.corregirDato(this.jFormattedTextField_totalContadoReportado.getText());
         AdminBD.actualizarCierreDeCaja(HoraCierre, totalVendido, observaciones, ReporteFinal, totalCont, totalTarjet, totalContReportado, totalTarjtReportado, idCierreVigente);
-        System.out.println("cierre guardado exitosamente");
+        this.regresarVentanaPrincipal();
     }//GEN-LAST:event_jButton_GuardarCierreActionPerformed
 
 
@@ -339,10 +339,7 @@ public class JPanel_CerrarCaja extends javax.swing.JPanel {
     // End of variables declaration//GEN-END:variables
 
     void personalizarTablaCierre(BigDecimal totalcontadoreportado,BigDecimal totaltarjetareportado,BigDecimal totalventareportado,String Cajero,
-            String fechaInicio,BigDecimal montoinicio) {
-        DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-        Date date = new Date();
-        this.jLabel_horaCierre.setText(dateFormat.format(date));
+        String fechaInicio,BigDecimal montoinicio) {
         this.jLabel_Cajero.setText(Cajero);
         this.jLabel_horaInicio.setText(fechaInicio);        
         String[] columnNames = {"Fecha","Concepto",
@@ -365,10 +362,10 @@ public class JPanel_CerrarCaja extends javax.swing.JPanel {
         this.jFormattedTextField_totalVentaReportado.setValue(totalventareportado.subtract(montoinicio));
         this.jFormattedTextField_totalVentaCajaReportado.setValue(totalventareportado);
         if(totalventareportado.compareTo(totalventaconcaja)<0){
-            this.jLabel_detalle.setText("Existe un sobrante de: "+""+ totalventaconcaja.subtract(totalventareportado));
+            this.jLabel_detalle.setText("Existe un faltante de: "+""+ totalventaconcaja.subtract(totalventareportado));
         }
         if(totalventareportado.compareTo(totalventaconcaja)>0){
-            this.jLabel_detalle.setText("Existe un faltante de: "+""+ totalventaconcaja.subtract(totalventareportado));
+            this.jLabel_detalle.setText("Existe un sobrante de: "+""+ totalventaconcaja.subtract(totalventareportado).abs());
         }
         
         //Agrega 20 filas
@@ -522,6 +519,16 @@ public class JPanel_CerrarCaja extends javax.swing.JPanel {
         panelFact.completarTablaDevoluciones();
         miVentana.revalidate();
         miVentana.repaint();
+    }
+
+    private void regresarVentanaPrincipal() {
+        VentanaDeInicio mVentana= VentanaDeInicio.getInstance();
+        mVentana.remove(this);
+        mVentana.revalidate();
+        mVentana.repaint();
+        mVentana.setTitle("Joe");
+        mVentana.add(mVentana.jPanel_VentanaPrincipal);
+        mVentana.jPanel_VentanaPrincipal.setVisible(true);    
     }
     
 }

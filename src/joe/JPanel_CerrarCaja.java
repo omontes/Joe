@@ -15,12 +15,18 @@ import java.text.NumberFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Date;
 import java.util.List;
+import java.util.Vector;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JLabel;
+import javax.swing.RowSorter;
+import javax.swing.SortOrder;
 import javax.swing.table.DefaultTableCellRenderer;
+import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableRowSorter;
 
 /**
  *
@@ -367,9 +373,16 @@ public class JPanel_CerrarCaja extends javax.swing.JPanel {
         if(totalventareportado.compareTo(totalventaconcaja)>0){
             this.jLabel_detalle.setText("Existe un sobrante de: "+""+ totalventaconcaja.subtract(totalventareportado).abs());
         }
-        
-        //Agrega 20 filas
+        /// Ordena la tabla con base a la fecha de la ultima compra
+        RowSorter<Modelo_CierreCaja> sorter= new TableRowSorter<Modelo_CierreCaja>(model);
+        this.jTable_VerCierre.setRowSorter(sorter);
+        List<RowSorter.SortKey> sortKeys = new ArrayList<RowSorter.SortKey>();
+        sortKeys.add(new RowSorter.SortKey(0, SortOrder.DESCENDING));
+        sorter.setSortKeys(sortKeys);
         model.addRow(20);
+    
+        
+        //this.jTable_VerCierre.setAutoCreateRowSorter(true);
         
     }
     /**

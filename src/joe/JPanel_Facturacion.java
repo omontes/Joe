@@ -1414,52 +1414,68 @@ public class JPanel_Facturacion extends javax.swing.JPanel {
 
     private void eliminar(JTable table) {
         Modelo_Facturacion model = (Modelo_Facturacion) table.getModel();
-        int row= table.getSelectedRow();
-        if(row>=0){
-        Direct_Control_BD AdminBD = Direct_Control_BD.getInstance();
-        int numFact = Integer.parseInt(model.getValueAt(row,0).toString());
-        this.devolverProductos(numFact);
-        int idVersion=AdminBD.verVersionDEFacturaActiva(numFact);
-        AdminBD.eliminarFactura(numFact,idVersion);
-        
-        }
-        else{
-            JOptionPane.showMessageDialog(
-                          null,
-                          "No se selecciono ninguna factura",                                 
-                          "Alert!", JOptionPane.ERROR_MESSAGE);
-        
-        }
-    }
+        int row = table.getSelectedRow();
+        String factura = model.getValueAt(row, 0).toString();
+        boolean SiSepuedeEliminar = this.verificarCierreFacts(Integer.parseInt(factura));
+        if (SiSepuedeEliminar) {
+            if (row >= 0) {
+                Direct_Control_BD AdminBD = Direct_Control_BD.getInstance();
+                int numFact = Integer.parseInt(model.getValueAt(row, 0).toString());
+                this.devolverProductos(numFact);
+                int idVersion = AdminBD.verVersionDEFacturaActiva(numFact);
+                AdminBD.eliminarFactura(numFact, idVersion);
 
+            } else {
+                JOptionPane.showMessageDialog(
+                        null,
+                        "No se selecciono ninguna factura",
+                        "Alert!", JOptionPane.ERROR_MESSAGE);
+
+            }
+        } else {
+            JOptionPane.showMessageDialog(
+                    null,
+                    "Esta factura no se puede eliminar porque ya pertence a un cierre de caja",
+                    "Alert!", JOptionPane.ERROR_MESSAGE);
+        }
+
+    }
     private void modificar(JTable table,String tituloVentana) {
-        int row= table.getSelectedRow();
-        if(row>=0){
-        VentanaDeInicio mVentana= VentanaDeInicio.getInstance();
-        JPanel_CrearFactura panelCreaFact= new JPanel_CrearFactura();
-        mVentana.add(panelCreaFact);
-        panelCreaFact.setSize(this.getSize());
-        panelCreaFact.setLocation(this.getLocation());
-        mVentana.remove(this);
-        panelCreaFact.setVisible(true);
-        mVentana.revalidate();
-        mVentana.repaint();
-        mVentana.setTitle(tituloVentana);
-        panelCreaFact.personalizarTablaFactura();
+        
+        int row = table.getSelectedRow();
         Modelo_Facturacion model = (Modelo_Facturacion) table.getModel();
         String factura = model.getValueAt(row, 0).toString();
-        panelCreaFact.jLabel_NumerodeFact.setText(factura);
-        panelCreaFact.cargarInfoFact();
-        panelCreaFact.cargarProductosFact((MyTableModel_FACT)panelCreaFact.jTable_Factura.getModel());
-        panelCreaFact.agregarListenerRenders();
+        boolean SiSepuedeModificar = this.verificarCierreFacts(Integer.parseInt(factura));
+        if (SiSepuedeModificar) {
+            if (row >= 0) {
+                VentanaDeInicio mVentana = VentanaDeInicio.getInstance();
+                JPanel_CrearFactura panelCreaFact = new JPanel_CrearFactura();
+                mVentana.add(panelCreaFact);
+                panelCreaFact.setSize(this.getSize());
+                panelCreaFact.setLocation(this.getLocation());
+                mVentana.remove(this);
+                panelCreaFact.setVisible(true);
+                mVentana.revalidate();
+                mVentana.repaint();
+                mVentana.setTitle(tituloVentana);
+                panelCreaFact.personalizarTablaFactura();
+                panelCreaFact.jLabel_NumerodeFact.setText(factura);
+                panelCreaFact.cargarInfoFact();
+                panelCreaFact.cargarProductosFact((MyTableModel_FACT) panelCreaFact.jTable_Factura.getModel());
+                panelCreaFact.agregarListenerRenders();
+            } else {
+                JOptionPane.showMessageDialog(
+                        null,
+                        "No se selecciono ninguna factura",
+                        "Alert!", JOptionPane.ERROR_MESSAGE);
+
+            }
         }
-        else{
-            JOptionPane.showMessageDialog(
-                          null,
-                          "No se selecciono ninguna factura",                                 
-                          "Alert!", JOptionPane.ERROR_MESSAGE);
-        
-        }
+        else {
+                JOptionPane.showMessageDialog(
+                        null,
+                        "Esta factura no se puede modificar porque ya pertence a un cierre de caja",
+                        "Alert!", JOptionPane.ERROR_MESSAGE);}
     }
 
     void completarTablaCreditos() {
@@ -1518,54 +1534,88 @@ public class JPanel_Facturacion extends javax.swing.JPanel {
             }
         }
 
-    private void modificarDev(JTable table,String titulo) {
-        int row= table.getSelectedRow();
-        if(row>=0){
-        VentanaDeInicio mVentana= VentanaDeInicio.getInstance();
-        JPanel_CrearFactura panelCreaFact= new JPanel_CrearFactura();
-        mVentana.add(panelCreaFact);
-        panelCreaFact.setSize(this.getSize());
-        panelCreaFact.setLocation(this.getLocation());
-        mVentana.remove(this);
-        panelCreaFact.setVisible(true);
-        mVentana.revalidate();
-        mVentana.repaint();
-        mVentana.setTitle(titulo);
-        panelCreaFact.personalizarTablaFactura();
+    private void modificarDev(JTable table, String titulo) {
+        int row = table.getSelectedRow();
         Modelo_Facturacion model = (Modelo_Facturacion) table.getModel();
         String factura = model.getValueAt(row, 0).toString();
-        panelCreaFact.jLabel_NumerodeFact.setText(factura);
-        panelCreaFact.cargarInfoDev();
-        panelCreaFact.cargarProductosDevolucion();
-        panelCreaFact.agregarListenerRenders();
-        }
-        else{
+        boolean SiSepuedeModificar = this.verificarCierreDevs(Integer.parseInt(factura));
+        if (SiSepuedeModificar) {
+            if (row >= 0) {
+                VentanaDeInicio mVentana = VentanaDeInicio.getInstance();
+                JPanel_CrearFactura panelCreaFact = new JPanel_CrearFactura();
+                mVentana.add(panelCreaFact);
+                panelCreaFact.setSize(this.getSize());
+                panelCreaFact.setLocation(this.getLocation());
+                mVentana.remove(this);
+                panelCreaFact.setVisible(true);
+                mVentana.revalidate();
+                mVentana.repaint();
+                mVentana.setTitle(titulo);
+                panelCreaFact.personalizarTablaFactura();
+                panelCreaFact.jLabel_NumerodeFact.setText(factura);
+                panelCreaFact.cargarInfoDev();
+                panelCreaFact.cargarProductosDevolucion();
+                panelCreaFact.agregarListenerRenders();
+            } else {
+                JOptionPane.showMessageDialog(
+                        null,
+                        "No se selecciono ninguna devolucion",
+                        "Alert!", JOptionPane.ERROR_MESSAGE);
+
+            }
+        } else {
             JOptionPane.showMessageDialog(
-                          null,
-                          "No se selecciono ninguna factura",                                 
-                          "Alert!", JOptionPane.ERROR_MESSAGE);
-        
+                    null,
+                    "No se puede modificar la devolucion porque ya pertenece a un cierre de caja",
+                    "Alert!", JOptionPane.ERROR_MESSAGE);
+
         }
+
     }
     
     private void eliminarDev(JTable table) {
+        int row = table.getSelectedRow();
         Modelo_Facturacion model = (Modelo_Facturacion) table.getModel();
-        int row= table.getSelectedRow();
-        if(row>=0){
-        Direct_Control_BD AdminBD = Direct_Control_BD.getInstance();
-        int numFact = Integer.parseInt(model.getValueAt(row,0).toString());
-        this.devolverProductos(numFact);
-        int idVersion=AdminBD.verVersionDEDevolucionActiva(numFact);
-        AdminBD.eliminarDevolucion(numFact,idVersion);
-        
-        }
-        else{
+        String factura = model.getValueAt(row, 0).toString();
+        boolean SiSepuedeModificar = this.verificarCierreDevs(Integer.parseInt(factura));
+        if (SiSepuedeModificar) {
+            if (row >= 0) {
+                Direct_Control_BD AdminBD = Direct_Control_BD.getInstance();
+                int numFact = Integer.parseInt(model.getValueAt(row, 0).toString());
+                this.devolverProductos(numFact);
+                int idVersion = AdminBD.verVersionDEDevolucionActiva(numFact);
+                AdminBD.eliminarDevolucion(numFact, idVersion);
+
+            } else {
+                JOptionPane.showMessageDialog(
+                        null,
+                        "No se selecciono ninguna devolucion",
+                        "Alert!", JOptionPane.ERROR_MESSAGE);
+
+            }
+        } else {
             JOptionPane.showMessageDialog(
-                          null,
-                          "No se selecciono ninguna devolucion",                                 
-                          "Alert!", JOptionPane.ERROR_MESSAGE);
-        
+                    null,
+                    "No se puede eliminar una devolucion que pertence a un cierre de caja",
+                    "Alert!", JOptionPane.ERROR_MESSAGE);
+
         }
+    }
+
+    private boolean verificarCierreFacts(int idFact) {
+        Direct_Control_BD AdminBD = Direct_Control_BD.getInstance();
+        int idCierreVigente= AdminBD.obtenerultimoidCierre();
+        String fechaInicio = AdminBD.obtenerFechaInicioCierre(idCierreVigente);
+        boolean Sisepuede = AdminBD.verificarFacturaCierre(fechaInicio,idFact);
+        return Sisepuede;
+    }
+
+    private boolean verificarCierreDevs(int idDev) {
+        Direct_Control_BD AdminBD = Direct_Control_BD.getInstance();
+        int idCierreVigente= AdminBD.obtenerultimoidCierre();
+        String fechaInicio = AdminBD.obtenerFechaInicioCierre(idCierreVigente);
+        boolean Sisepuede = AdminBD.verificarDevCierre(fechaInicio,idDev);
+        return Sisepuede;
     }
     
 }

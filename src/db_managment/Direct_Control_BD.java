@@ -3103,6 +3103,44 @@ public class Direct_Control_BD {
         }
         
     }
+
+    public boolean verificarFacturaCierre(String fechaInicio,int idFact) {
+        DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
+        Date date = new Date();
+        String fecha = dateFormat.format(date);
+        try {
+            String verSiModEliminaFactura = this.readSql("../Joe"
+                    + "/src/sql_files/verSiModElimFactura.sql");
+            PreparedStatement stm = this.conection.prepareStatement(verSiModEliminaFactura);
+            stm.setInt(1, idFact);
+            stm.setString(2, fechaInicio);
+            stm.setString(3, fecha);
+            ResultSet rs = stm.executeQuery();
+            return rs.next();
+        } catch (Exception e) {
+            System.out.println("No pertenece al cierre actual esa factura");
+            return false;
+        }
+    }
+    
+     public boolean verificarDevCierre(String fechaInicio,int idDev) {
+        DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
+        Date date = new Date();
+        String fecha = dateFormat.format(date);
+        try {
+            String verSiModEliminaDev = this.readSql("../Joe"
+                    + "/src/sql_files/verSiModElimDevolucion.sql");
+            PreparedStatement stm = this.conection.prepareStatement(verSiModEliminaDev);
+            stm.setInt(1, idDev);
+            stm.setString(2, fechaInicio);
+            stm.setString(3, fecha);
+            ResultSet rs = stm.executeQuery();
+            return rs.next();
+        } catch (Exception e) {
+            System.out.println("No pertenece al cierre actual esa devolucion");
+            return false;
+        }
+    }
     
     
 

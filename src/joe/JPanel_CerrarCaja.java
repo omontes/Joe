@@ -8,18 +8,25 @@ package joe;
 
 import db_managment.Direct_Control_BD;
 import java.math.BigDecimal;
+import java.math.MathContext;
 import java.text.DateFormat;
 import java.text.DecimalFormat;
 import java.text.NumberFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Date;
 import java.util.List;
+import java.util.Vector;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JLabel;
+import javax.swing.RowSorter;
+import javax.swing.SortOrder;
 import javax.swing.table.DefaultTableCellRenderer;
+import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableRowSorter;
 
 /**
  *
@@ -50,20 +57,25 @@ public class JPanel_CerrarCaja extends javax.swing.JPanel {
         jLabel_horaCierre = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
-        jFormattedTextField_totalTarjetaReportado = new javax.swing.JFormattedTextField();
         jFormattedTextField_totalContado = new javax.swing.JFormattedTextField();
         jLabel6 = new javax.swing.JLabel();
         jFormattedTextField_totalVenta = new javax.swing.JFormattedTextField();
-        jLabel7 = new javax.swing.JLabel();
-        jLabel8 = new javax.swing.JLabel();
-        jLabel9 = new javax.swing.JLabel();
         jFormattedTextField_totalTarjeta = new javax.swing.JFormattedTextField();
-        jFormattedTextField_totalContadoReportado = new javax.swing.JFormattedTextField();
-        jFormattedTextField_totalVentaReportado = new javax.swing.JFormattedTextField();
-        jButton1 = new javax.swing.JButton();
+        jButton_GuardarCierre = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
         jScrollPane2 = new javax.swing.JScrollPane();
         jTable_VerCierre = new javax.swing.JTable();
+        jLabel7 = new javax.swing.JLabel();
+        jFormattedTextField_totalVentaConCaja = new javax.swing.JFormattedTextField();
+        jLabel8 = new javax.swing.JLabel();
+        jLabel9 = new javax.swing.JLabel();
+        jLabel10 = new javax.swing.JLabel();
+        jLabel11 = new javax.swing.JLabel();
+        jFormattedTextField_totalContadoReportado = new javax.swing.JFormattedTextField();
+        jFormattedTextField_totalTarjetaReportado = new javax.swing.JFormattedTextField();
+        jFormattedTextField_totalVentaReportado = new javax.swing.JFormattedTextField();
+        jFormattedTextField_totalVentaCajaReportado = new javax.swing.JFormattedTextField();
+        jLabel_detalle = new javax.swing.JLabel();
 
         jLabel1.setText("Hora Inicio");
 
@@ -81,12 +93,6 @@ public class JPanel_CerrarCaja extends javax.swing.JPanel {
 
         jLabel5.setText("Total Contado");
 
-        jFormattedTextField_totalTarjetaReportado.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jFormattedTextField_totalTarjetaReportadoActionPerformed(evt);
-            }
-        });
-
         jFormattedTextField_totalContado.setEditable(false);
         jFormattedTextField_totalContado.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(new java.text.DecimalFormat("C#,##0.00"))));
         jFormattedTextField_totalContado.setText("0.00");
@@ -94,18 +100,19 @@ public class JPanel_CerrarCaja extends javax.swing.JPanel {
         jLabel6.setText("Total Venta");
 
         jFormattedTextField_totalVenta.setEditable(false);
-
-        jLabel7.setText("Total Tarjeta Reportado");
-
-        jLabel8.setText("Total Contado Reportado");
-
-        jLabel9.setText("Total Venta Reprotado");
+        jFormattedTextField_totalVenta.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(new java.text.DecimalFormat("C#,##0.00"))));
+        jFormattedTextField_totalVenta.setText("0.00");
 
         jFormattedTextField_totalTarjeta.setEditable(false);
         jFormattedTextField_totalTarjeta.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(new java.text.DecimalFormat("C#,##0.00"))));
         jFormattedTextField_totalTarjeta.setText("0.00");
 
-        jButton1.setText("Guardar Cierre");
+        jButton_GuardarCierre.setText("Guardar Cierre");
+        jButton_GuardarCierre.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton_GuardarCierreActionPerformed(evt);
+            }
+        });
 
         jButton2.setText("Salir");
         jButton2.addActionListener(new java.awt.event.ActionListener() {
@@ -127,6 +134,40 @@ public class JPanel_CerrarCaja extends javax.swing.JPanel {
         ));
         jScrollPane2.setViewportView(jTable_VerCierre);
 
+        jLabel7.setText("Total Venta + Monto Caja");
+
+        jFormattedTextField_totalVentaConCaja.setEditable(false);
+        jFormattedTextField_totalVentaConCaja.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(new java.text.DecimalFormat("C#,##0.00"))));
+        jFormattedTextField_totalVentaConCaja.setText("0.00");
+
+        jLabel8.setText("Total Contado Reportado");
+
+        jLabel9.setText("Total Tarjeta  Reportado");
+
+        jLabel10.setText("Total Venta Reportado");
+
+        jLabel11.setText("Total Venta + Monto Caja");
+
+        jFormattedTextField_totalContadoReportado.setEditable(false);
+        jFormattedTextField_totalContadoReportado.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(new java.text.DecimalFormat("C#,##0.00"))));
+        jFormattedTextField_totalContadoReportado.setText("0.00");
+
+        jFormattedTextField_totalTarjetaReportado.setEditable(false);
+        jFormattedTextField_totalTarjetaReportado.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(new java.text.DecimalFormat("C#,##0.00"))));
+        jFormattedTextField_totalTarjetaReportado.setText("0.00");
+        jFormattedTextField_totalTarjetaReportado.setToolTipText("");
+
+        jFormattedTextField_totalVentaReportado.setEditable(false);
+        jFormattedTextField_totalVentaReportado.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(new java.text.DecimalFormat("C#,##0.00"))));
+        jFormattedTextField_totalVentaReportado.setText("0.00");
+
+        jFormattedTextField_totalVentaCajaReportado.setEditable(false);
+        jFormattedTextField_totalVentaCajaReportado.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(new java.text.DecimalFormat("C#,##0.00"))));
+        jFormattedTextField_totalVentaCajaReportado.setText("0.00");
+
+        jLabel_detalle.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel_detalle.setText("Todo esta perfecto");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
@@ -134,120 +175,159 @@ public class JPanel_CerrarCaja extends javax.swing.JPanel {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane2)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addComponent(jScrollPane2, javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(17, 17, 17)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jButton_GuardarCierre)
+                                    .addComponent(jButton2))
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addGap(58, 58, 58)
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(jLabel9)
+                                            .addComponent(jLabel10)
+                                            .addComponent(jLabel11)
+                                            .addComponent(jLabel8))
+                                        .addGap(27, 27, 27)
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(jFormattedTextField_totalContadoReportado, javax.swing.GroupLayout.PREFERRED_SIZE, 136, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(jFormattedTextField_totalVentaReportado, javax.swing.GroupLayout.PREFERRED_SIZE, 136, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(jFormattedTextField_totalVentaCajaReportado, javax.swing.GroupLayout.PREFERRED_SIZE, 136, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(jFormattedTextField_totalTarjetaReportado, javax.swing.GroupLayout.PREFERRED_SIZE, 136, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                        .addGap(45, 45, 45)
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                            .addGroup(layout.createSequentialGroup()
+                                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                                    .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                    .addComponent(jLabel5))
+                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 51, Short.MAX_VALUE)
+                                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                                    .addComponent(jFormattedTextField_totalContado, javax.swing.GroupLayout.PREFERRED_SIZE, 151, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                    .addComponent(jFormattedTextField_totalTarjeta, javax.swing.GroupLayout.PREFERRED_SIZE, 151, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                            .addGroup(layout.createSequentialGroup()
+                                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                                    .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 128, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                    .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 142, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                                    .addComponent(jFormattedTextField_totalVenta)
+                                                    .addComponent(jFormattedTextField_totalVentaConCaja)))))
+                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(jLabel_detalle, javax.swing.GroupLayout.PREFERRED_SIZE, 472, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(103, 103, 103)))))
+                        .addGap(0, 18, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(jLabel9, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(jLabel8, javax.swing.GroupLayout.DEFAULT_SIZE, 136, Short.MAX_VALUE)
-                                    .addComponent(jLabel7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(jFormattedTextField_totalTarjetaReportado, javax.swing.GroupLayout.DEFAULT_SIZE, 178, Short.MAX_VALUE)
-                                    .addComponent(jFormattedTextField_totalVentaReportado, javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(jFormattedTextField_totalContadoReportado, javax.swing.GroupLayout.Alignment.TRAILING))
-                                .addGap(55, 55, 55)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jButton1)
-                                    .addComponent(jButton2))
-                                .addGap(42, 42, 42)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 129, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jLabel5)
-                                    .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 142, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jFormattedTextField_totalContado, javax.swing.GroupLayout.PREFERRED_SIZE, 185, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jFormattedTextField_totalVenta, javax.swing.GroupLayout.PREFERRED_SIZE, 185, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jFormattedTextField_totalTarjeta, javax.swing.GroupLayout.PREFERRED_SIZE, 185, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                            .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel3)
-                                    .addComponent(jLabel1))
-                                .addGap(35, 35, 35)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addGap(19, 19, 19)
+                                        .addComponent(jLabel2)
+                                        .addGap(19, 19, 19))
+                                    .addComponent(jLabel1, javax.swing.GroupLayout.Alignment.TRAILING))
+                                .addGap(22, 22, 22)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jLabel_horaInicio, javax.swing.GroupLayout.PREFERRED_SIZE, 154, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jLabel_horaCierre, javax.swing.GroupLayout.PREFERRED_SIZE, 154, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                    .addComponent(jLabel_Cajero)))
                             .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLabel_Cajero)
+                                .addGap(19, 19, 19)
+                                .addComponent(jLabel3)
                                 .addGap(18, 18, 18)
-                                .addComponent(jLabel2)))
-                        .addGap(0, 10, Short.MAX_VALUE)))
-                .addContainerGap())
+                                .addComponent(jLabel_horaCierre, javax.swing.GroupLayout.PREFERRED_SIZE, 154, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
                     .addComponent(jLabel_Cajero))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel1)
-                    .addComponent(jLabel_horaInicio))
+                    .addComponent(jLabel_horaInicio)
+                    .addComponent(jLabel1))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
                     .addComponent(jLabel_horaCierre))
-                .addGap(15, 15, 15)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 194, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 175, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jButton1)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jButton2)
-                        .addGap(68, 68, 68))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(11, 11, 11)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 17, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jFormattedTextField_totalContado, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel8)
+                            .addComponent(jFormattedTextField_totalContadoReportado, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jFormattedTextField_totalTarjeta, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel9)
+                            .addComponent(jFormattedTextField_totalTarjetaReportado, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel6)
+                            .addComponent(jFormattedTextField_totalVenta)
+                            .addComponent(jLabel10)
+                            .addComponent(jFormattedTextField_totalVentaReportado, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel7)
-                            .addComponent(jFormattedTextField_totalTarjetaReportado, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 17, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jFormattedTextField_totalContado, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                    .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jFormattedTextField_totalTarjeta, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                    .addComponent(jLabel6)
-                                    .addComponent(jFormattedTextField_totalVenta)))
-                            .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                    .addComponent(jFormattedTextField_totalContadoReportado, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                    .addComponent(jFormattedTextField_totalVentaReportado, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jLabel9))))
-                        .addGap(52, 52, 52))))
+                            .addComponent(jFormattedTextField_totalVentaConCaja, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel11)
+                            .addComponent(jFormattedTextField_totalVentaCajaReportado, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jLabel_detalle)
+                        .addGap(9, 9, 9))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(69, 69, 69)
+                        .addComponent(jButton_GuardarCierre)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jButton2)
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
         );
     }//GEN-END:initComponents
-
-    private void jFormattedTextField_totalTarjetaReportadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jFormattedTextField_totalTarjetaReportadoActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jFormattedTextField_totalTarjetaReportadoActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         this.regresar();
     }//GEN-LAST:event_jButton2ActionPerformed
 
+    private void jButton_GuardarCierreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_GuardarCierreActionPerformed
+        Direct_Control_BD AdminBD = Direct_Control_BD.getInstance();
+        int idCierreVigente= AdminBD.obtenerultimoidCierre();
+        String HoraCierre= this.jLabel_horaCierre.getText();
+        BigDecimal totalTarjet = this.corregirDato(this.jFormattedTextField_totalTarjeta.getText());
+        BigDecimal totalCont = this.corregirDato(this.jFormattedTextField_totalContado.getText());
+        BigDecimal totalVendido = totalTarjet.add(totalCont);
+        String observaciones= this.jLabel_detalle.getText();
+        BigDecimal ReporteFinal= this.corregirDato(this.jFormattedTextField_totalVentaReportado.getText());
+        BigDecimal totalTarjtReportado= this.corregirDato(this.jFormattedTextField_totalTarjetaReportado.getText());
+        BigDecimal totalContReportado = this.corregirDato(this.jFormattedTextField_totalContadoReportado.getText());
+        AdminBD.actualizarCierreDeCaja(HoraCierre, totalVendido, observaciones, ReporteFinal, totalCont, totalTarjet, totalContReportado, totalTarjtReportado, idCierreVigente);
+        this.regresarVentanaPrincipal();
+    }//GEN-LAST:event_jButton_GuardarCierreActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    javax.swing.JButton jButton1;
     javax.swing.JButton jButton2;
+    javax.swing.JButton jButton_GuardarCierre;
     javax.swing.JFormattedTextField jFormattedTextField_totalContado;
     javax.swing.JFormattedTextField jFormattedTextField_totalContadoReportado;
     javax.swing.JFormattedTextField jFormattedTextField_totalTarjeta;
     javax.swing.JFormattedTextField jFormattedTextField_totalTarjetaReportado;
     javax.swing.JFormattedTextField jFormattedTextField_totalVenta;
+    javax.swing.JFormattedTextField jFormattedTextField_totalVentaCajaReportado;
+    javax.swing.JFormattedTextField jFormattedTextField_totalVentaConCaja;
     javax.swing.JFormattedTextField jFormattedTextField_totalVentaReportado;
     javax.swing.JLabel jLabel1;
+    javax.swing.JLabel jLabel10;
+    javax.swing.JLabel jLabel11;
     javax.swing.JLabel jLabel2;
     javax.swing.JLabel jLabel3;
     javax.swing.JLabel jLabel4;
@@ -257,19 +337,16 @@ public class JPanel_CerrarCaja extends javax.swing.JPanel {
     javax.swing.JLabel jLabel8;
     javax.swing.JLabel jLabel9;
     javax.swing.JLabel jLabel_Cajero;
+    javax.swing.JLabel jLabel_detalle;
     javax.swing.JLabel jLabel_horaCierre;
     javax.swing.JLabel jLabel_horaInicio;
     javax.swing.JScrollPane jScrollPane2;
     javax.swing.JTable jTable_VerCierre;
     // End of variables declaration//GEN-END:variables
 
-    void personalizarTablaCierre() {
-        DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-        Date date = new Date();
-        this.jLabel_horaCierre.setText(dateFormat.format(date));
-        Direct_Control_BD AdminBD = Direct_Control_BD.getInstance();
-        int idCierreVigente= AdminBD.obtenerultimoidCierre();
-        String fechaInicio = AdminBD.obtenerFechaInicioCierre(idCierreVigente);
+    void personalizarTablaCierre(BigDecimal totalcontadoreportado,BigDecimal totaltarjetareportado,BigDecimal totalventareportado,String Cajero,
+        String fechaInicio,BigDecimal montoinicio) {
+        this.jLabel_Cajero.setText(Cajero);
         this.jLabel_horaInicio.setText(fechaInicio);        
         String[] columnNames = {"Fecha","Concepto",
             "Num Fact","Tipo Pago","Monto"};
@@ -281,11 +358,54 @@ public class JPanel_CerrarCaja extends javax.swing.JPanel {
         this.cargarFacturasCierre(model);
         this.cargarApartadoCreditosCierre(model);
         this.cargarDevolucionesCierre(model);
-         //Agrega 20 filas
+        BigDecimal totalTarjet = this.corregirDato(this.jFormattedTextField_totalTarjeta.getText());
+        BigDecimal totalCont = this.corregirDato(this.jFormattedTextField_totalContado.getText());
+        BigDecimal totalventaconcaja=totalTarjet.add(totalCont).add(montoinicio);
+        this.jFormattedTextField_totalVenta.setValue(totalTarjet.add(totalCont));
+        this.jFormattedTextField_totalVentaConCaja.setValue(totalventaconcaja);
+        this.jFormattedTextField_totalContadoReportado.setValue(totalcontadoreportado);
+        this.jFormattedTextField_totalTarjetaReportado.setValue(totaltarjetareportado);
+        this.jFormattedTextField_totalVentaReportado.setValue(totalventareportado.subtract(montoinicio));
+        this.jFormattedTextField_totalVentaCajaReportado.setValue(totalventareportado);
+        if(totalventareportado.compareTo(totalventaconcaja)<0){
+            this.jLabel_detalle.setText("Existe un faltante de: "+""+ totalventaconcaja.subtract(totalventareportado));
+        }
+        if(totalventareportado.compareTo(totalventaconcaja)>0){
+            this.jLabel_detalle.setText("Existe un sobrante de: "+""+ totalventaconcaja.subtract(totalventareportado).abs());
+        }
+        /// Ordena la tabla con base a la fecha de la ultima compra
+        RowSorter<Modelo_CierreCaja> sorter= new TableRowSorter<Modelo_CierreCaja>(model);
+        this.jTable_VerCierre.setRowSorter(sorter);
+        List<RowSorter.SortKey> sortKeys = new ArrayList<RowSorter.SortKey>();
+        sortKeys.add(new RowSorter.SortKey(0, SortOrder.DESCENDING));
+        sorter.setSortKeys(sortKeys);
         model.addRow(20);
+    
+        
+        //this.jTable_VerCierre.setAutoCreateRowSorter(true);
         
     }
+    /**
+     * Este metodo permite corregir el dato que tiene el signo de C y ademas que
+     * puede tener comas ya que el tipo Decimal en la base solo puede tener
+     * puntos y no comas.
+     *
+     * @param Dato
+     * @return
+     */
+    private BigDecimal corregirDato(String Dato) {
+        String datoAcorregir = Dato.replace("C", "");
+        DecimalFormat decimalformat = (DecimalFormat) NumberFormat.getInstance();
+        decimalformat.setParseBigDecimal(true);
+        BigDecimal DatoCorregido = null;
+        try {
+            DatoCorregido = (BigDecimal) decimalformat.parseObject(datoAcorregir);
+        } catch (ParseException ex) {
+            Logger.getLogger(MyTableModelListener_FACT.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return DatoCorregido;
 
+    }
     private void cargarFacturasCierre(Modelo_CierreCaja model) {
        
         Direct_Control_BD AdminBD = Direct_Control_BD.getInstance();
@@ -412,6 +532,16 @@ public class JPanel_CerrarCaja extends javax.swing.JPanel {
         panelFact.completarTablaDevoluciones();
         miVentana.revalidate();
         miVentana.repaint();
+    }
+
+    private void regresarVentanaPrincipal() {
+        VentanaDeInicio mVentana= VentanaDeInicio.getInstance();
+        mVentana.remove(this);
+        mVentana.revalidate();
+        mVentana.repaint();
+        mVentana.setTitle("Joe");
+        mVentana.add(mVentana.jPanel_VentanaPrincipal);
+        mVentana.jPanel_VentanaPrincipal.setVisible(true);    
     }
     
 }

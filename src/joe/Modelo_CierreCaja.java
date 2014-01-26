@@ -6,6 +6,8 @@
 
 package joe;
 
+import java.math.BigDecimal;
+import java.util.Date;
 import java.util.List;
 import javax.swing.event.TableModelListener;
 import javax.swing.table.AbstractTableModel;
@@ -69,9 +71,6 @@ public class Modelo_CierreCaja extends AbstractTableModel {
      */
     public Class getColumnClass(int c) {
                 
-            /**if(c==3){
-              return Double.class;
-            }**/
             //System.out.println(getValueAt(0, c).getClass());
             return getValueAt(0, c).getClass();
         }

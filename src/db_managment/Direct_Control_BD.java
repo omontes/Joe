@@ -15,6 +15,7 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JFormattedTextField;
 import javax.swing.JTextField;
 
 /**
@@ -1252,7 +1253,7 @@ public class Direct_Control_BD {
             stm.setDouble(2, montoDePago.doubleValue());
             stm.setInt(3, idFacturaPendiente);
             stm.setInt(4, idFacturaVersionPagosPend);
-            stm.setString(5,tipopago);
+            stm.setString(5, tipopago);
             stm.executeUpdate();
 
         } catch (Exception e) {
@@ -1741,16 +1742,55 @@ public class Direct_Control_BD {
         }
     }
 
+    /**
+     * Obtener informacion de Clientes
+     */
     public void consultarClientes() {
         try {
-            String categorias = this.readSql("../Joe/src/"
+            String clientes = this.readSql("../Joe/src/"
                     + "sql_files/consultarClientes.sql");
+            PreparedStatement stm = this.conection.prepareStatement(clientes);
+            ResultSet resultset = stm.executeQuery();
+            this.setColumnNames(this.Get_Columnas(resultset));
+            this.setData(this.ResultSet_Array(resultset));
+        } catch (Exception e) {
+            System.out.println("Error al consultar clientes");
+        }
+    }
+
+    /**
+     * Retorna informacion de una persona, dado un nombre
+     *
+     * @param nombre
+     */
+    public void consultarPersona(String nombre) {
+        try {
+            String infoPersona = this.readSql("../Joe/src/"
+                    + "sql_files/consultarPersona.sql");
+            PreparedStatement stm = this.conection.
+                    prepareStatement(infoPersona);
+            stm.setString(1, nombre);
+            ResultSet resultset = stm.executeQuery();
+            this.setColumnNames(this.Get_Columnas(resultset));
+            this.setData(this.ResultSet_Array(resultset));
+        } catch (Exception e) {
+            System.out.println("Error al consultar informacion de persona");
+        }
+    }
+
+    /**
+     * Obtener informacion de los vendedores
+     */
+    public void consultarVendedores() {
+        try {
+            String categorias = this.readSql("../Joe/src/"
+                    + "sql_files/consultarInfoVendedores.sql");
             PreparedStatement stm = this.conection.prepareStatement(categorias);
             ResultSet resultset = stm.executeQuery();
             this.setColumnNames(this.Get_Columnas(resultset));
             this.setData(this.ResultSet_Array(resultset));
         } catch (Exception e) {
-            System.out.println("Error al obtener el categoria");
+            System.out.println("Error al consultar Vendedores");
         }
     }
 
@@ -2971,35 +3011,101 @@ public class Direct_Control_BD {
         }
         return result;
     }
-    
-     public void verCierreApartadosCreditos(String fechaInicio, String fechaFinal) {
+
+    public void verCierreApartadosCreditos(String fechaInicio, String fechaFinal) {
         try {
             String verCierreApartadosCreditos = this.readSql("../Joe/src/"
                     + "sql_files/verCierreApartadosCreditos.sql");
             PreparedStatement stm = this.conection.prepareStatement(verCierreApartadosCreditos);
-            stm.setString(1,fechaInicio);
-            stm.setString(2,fechaFinal);
+            stm.setString(1, fechaInicio);
+            stm.setString(2, fechaFinal);
             ResultSet resultset = stm.executeQuery();
             this.setColumnNames(this.Get_Columnas(resultset));
             this.setData(this.ResultSet_Array(resultset));
         } catch (Exception e) {
-             System.out.println("Error al obtener la informacion de los creditos y apartados para el cierre");
+            System.out.println("Error al obtener la informacion de los creditos y apartados para el cierre");
         }
     }
-     public void verCierreDevoluciones(String fechaInicio, String fechaFinal) {
+
+    public void verCierreDevoluciones(String fechaInicio, String fechaFinal) {
         try {
             String verCierreDevoluciones = this.readSql("../Joe/src/"
                     + "sql_files/verCierreDevoluciones.sql");
             PreparedStatement stm = this.conection.prepareStatement(verCierreDevoluciones);
-            stm.setString(1,fechaInicio);
-            stm.setString(2,fechaFinal);
+            stm.setString(1, fechaInicio);
+            stm.setString(2, fechaFinal);
             ResultSet resultset = stm.executeQuery();
             this.setColumnNames(this.Get_Columnas(resultset));
             this.setData(this.ResultSet_Array(resultset));
         } catch (Exception e) {
-             System.out.println("Error al obtener la informacion de las devoluciones para el cierre");
+            System.out.println("Error al obtener la informacion de las devoluciones para el cierre");
         }
     }
+
+
+    /**
+     * Modifica datos de una persona, nombre es el nombre anterior
+     *
+     * @param NuevoNombre
+     * @param direccion
+     * @param tipoPersona
+     * @param telefono
+     * @param fechaCumple
+     * @param cedula
+     * @param nombre
+     */
+    public void modificarPersona(String NuevoNombre, String direccion,
+            int tipoPersona, String telefono, String fechaCumple, String cedula,
+            String nombre) {
+
+        try {
+            String modif = this.readSql("../Joe/src/"
+                    + "sql_files/actualizarInfoPersona.sql");
+            PreparedStatement stm = this.conection.prepareStatement(modif);
+            stm.setString(1, NuevoNombre);
+            stm.setString(2, direccion);
+            stm.setString(3, cedula);
+            stm.setString(4, telefono);
+            stm.setString(5, fechaCumple);
+            stm.setString(6, nombre);
+            stm.setInt(7, tipoPersona);
+            stm.executeUpdate();
+        } catch (IOException | SQLException e) {
+            System.out.println("Error al actualizar la informacion de persona");
+        }
+
+    }
+    /**
+     * Modifica datos de una persona nombre, menos a fechaCumple
+     *
+     * @param NuevoNombre
+     * @param direccion
+     * @param tipoPersona
+     * @param telefono
+     * @param cedula
+     * @param nombre
+     */
+    public void modificarPersona(String NuevoNombre, String direccion,
+            int tipoPersona, String telefono, String cedula,
+            String nombre) {
+
+        try {
+            String modif = this.readSql("../Joe/src/"
+                    + "sql_files/actualizarInfoFechaPersona.sql");
+            PreparedStatement stm = this.conection.prepareStatement(modif);
+            stm.setString(1, NuevoNombre);
+            stm.setString(2, direccion);
+            stm.setString(3, cedula);
+            stm.setString(4, telefono);
+            stm.setString(5, nombre);
+            stm.setInt(6, tipoPersona);
+            stm.executeUpdate();
+        } catch (IOException | SQLException e) {
+            System.out.println("Error al actualizar la informacion de persona");
+        }
+
+    }
+
      
        public String obtenerCajeroCierre(int idCierreVigente) {
         String result="";
@@ -3141,7 +3247,5 @@ public class Direct_Control_BD {
             return false;
         }
     }
-    
-    
 
 }

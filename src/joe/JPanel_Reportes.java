@@ -4024,10 +4024,8 @@ jPanel_VerDevEliminadasPorFechLayout.createParallelGroup(javax.swing.GroupLayout
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         VentanaDeInicio panelReportes = VentanaDeInicio.getInstance();
-        setVisible(false);//hacer cosulta
+        setVisible(false);
         panelReportes.jPanel_VentanaPrincipal.setVisible(true);
-
-
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton_BuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_BuscarActionPerformed
@@ -5126,6 +5124,7 @@ jPanel_VerDevEliminadasPorFechLayout.createParallelGroup(javax.swing.GroupLayout
     }//GEN-LAST:event_jButton_VentasPorClienteActionPerformed
 
     private void jButton_VentasPorFechaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_VentasPorFechaActionPerformed
+
         buttonGroup1.add(jRadioButton_Excel);
         buttonGroup1.add(jRadioButton_Pantalla);
         buttonGroup2.add(jRadioButton_ApartadoVentasFecha);

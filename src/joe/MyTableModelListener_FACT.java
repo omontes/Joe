@@ -98,39 +98,53 @@ public class MyTableModelListener_FACT implements TableModelListener {
       }          
       
       if (columnName.equals("Cod. Articulo")) {
-              String codigo = data.toString();
-              BigDecimal precio = this.BDmanagment.verPrecio(codigo);
-              if (precio.toString().equals("0") & !info.equals("")) {
-                  JOptionPane.showMessageDialog(
-                          null,
-                          "El producto con el cod  "+
-                          info+
-                          "  no esta disponible en el invetario\n"+
-                          "puede crearlo en las opciones de la izquierda",
-                          "El producto no existe", JOptionPane.ERROR_MESSAGE);
+          String codigo = data.toString();
+          BigDecimal precio = this.BDmanagment.verPrecio(codigo);
+          if (precio.toString().equals("0") & !info.equals("")) {
+              JOptionPane.showMessageDialog(
+                      null,
+                      "El producto con el cod  "
+                      + info
+                      + "  no esta disponible en el invetario\n"
+                      + "puede crearlo en las opciones de la izquierda",
+                      "El producto no existe", JOptionPane.ERROR_MESSAGE);
+              String subTotal = model.getValueAt(row, 4).toString();
+              if (subTotal != "") {
+                  //Elimina un producto ya ingresado y actualiza el total
+                  BigDecimal subtotal = new BigDecimal(subTotal);
                   model.removeRow(row);
-                  table.clearSelection();
-                  table.changeSelection(row, column,false,false);
-                  table.requestFocus();
-                  return;
+                  BigDecimal totalFacts = this.corregirDato(this.total.getText());
+                  this.total.setValue(
+                          totalFacts.subtract(subtotal));
+
+              } else { //Si es vacio el subtotal significa que no tiene que actualizar
+                  // el subtotal
+                  model.removeRow(row);
+
               }
-              //si ingresa un codigo el usuario
-              if (!info.equals("")) {
-                  String descripcion = this.BDmanagment.verNombreProductoPorCodigo(codigo);
-                  model.setValueAt(precio, row, column + 3);///IMPORTANTE ESTE ORDEN
-                  model.setValueAt(1, row, column + 2);
-                  model.setValueAt(descripcion, row, column + 1);
-              }
+
+              table.clearSelection();
+              table.changeSelection(row, column, false, false);
+              table.requestFocus();
+              return;
+          }
+
+          //si ingresa un codigo el usuario
+          if (!info.equals("")) {
+              String descripcion = this.BDmanagment.verNombreProductoPorCodigo(codigo);
+              model.setValueAt(precio, row, column + 3);///IMPORTANTE ESTE ORDEN
+              model.setValueAt(1, row, column + 2);
+              model.setValueAt(descripcion, row, column + 1);
+          }
               // Por si el usuario no deja nada en la celda y ya tenia un cod
-              // de un articulo entonces hace que se mantega el que ya estaba
-              if(info.equals("") & !oldValue.equals("")){
-                   model.setValueAt(oldValue, row,0);
-                   return;
-                  
-              }
-                 
-           
-        }
+          // de un articulo entonces hace que se mantega el que ya estaba
+          if (info.equals("") & !oldValue.equals("")) {
+              model.setValueAt(oldValue, row, 0);
+              return;
+
+          }
+
+      }
         
         if (columnName.equals("Cantidad") & !info.equals("1")) {
             String codigo = model.getValueAt(row,column-2).toString();

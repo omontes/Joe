@@ -2240,7 +2240,7 @@ public class JPanel_CrearFactura extends javax.swing.JPanel {
             String vendedor, String venta) {
         try {
             String rawCmds = "FIRST NAME";
-            String printer = "Generic / Text Only"; // debe tener 
+            String printer = "Generic / Text Only (Copy 3)"; // debe tener 
             //el mismo nombre que la impresora 
             PrintService ps = PrintServiceMatcher.findPrinter(printer);
             if (ps != null) {
@@ -2328,6 +2328,7 @@ public class JPanel_CrearFactura extends javax.swing.JPanel {
                 p.append("\u001B\u0040");//reset printer
                 p.append("\u001B" + "\u0064" + "\u0008" + "\r");//*** 10lineas**/
                 p.append("\u001D" + "\u0056" + "\u0001" + "\r");//*** CutPaper
+                
                 //p.append("-Texto sin negrita-\r\n");
                 //p.append("-XXXXXXXXXXXXXX-\r\n");
                 return p.print();

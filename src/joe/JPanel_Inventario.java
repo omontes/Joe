@@ -1393,44 +1393,44 @@ public class JPanel_Inventario extends javax.swing.JPanel {
     }//GEN-LAST:event_jTextField_IdProductoModificarActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-       this.jDialog_ConfirmacionModificacionProducto.dispose();
-        
-       
-       Direct_Control_BD mBD= Direct_Control_BD.getInstance();
-       mBD.consultarProducto(this.jTextField_IdProductoModificar.getText());
-       String[] columnNames = mBD.getColumnNames();
-       Object[][] data = mBD.getData();
+        this.jDialog_ConfirmacionModificacionProducto.dispose();
+
+        Direct_Control_BD mBD = Direct_Control_BD.getInstance();
+        mBD.consultarProducto(this.jTextField_IdProductoModificar.getText());
+        String[] columnNames = mBD.getColumnNames();
+        Object[][] data = mBD.getData();
        //Nombre,Precio,Costo,idCategoriaProd,Descripcion
-        
-       if(data.length==0)
-       {
-           JOptionPane.showOptionDialog(this, "El producto no existe", "Error Producto", 
-           JOptionPane.ERROR_MESSAGE, JOptionPane.ERROR_MESSAGE, null, new Object[]{" Cancelar "},"Cancelar"); 
-       }
-       else{
-       this.jDialog_ModificarProducto.setSize(430,400);
-       JPanel_Inventario mPanel= JPanel_Inventario.getInstance();
-       this.jDialog_ModificarProducto.setLocation(mPanel.getLocation());
-       this.jDialog_ModificarProducto.setVisible(true); 
-       this.jTextField_nombre1.setText(data[0][0].toString());
-       this.jTextField_Precio1.setText(data[0][1].toString());
-       this.jTextField_Costo.setText(data[0][2].toString());
-       String NombreCategoria = mBD.consultarNombreCategoriaXid(Integer.parseInt(data[0][3].toString()));
-       this.jTextField_Descripcion.setText(data[0][4].toString());
-       this.jTextField_CodigoProducto.setText(data[0][5].toString());
-       this.jTextField_CodigoProducto.disable();
-       
-       mBD.consultarCategorias();
-       
-       columnNames = mBD.getColumnNames();
-       data = mBD.getData();
-       
-       this.jComboBox_Categorias.removeAllItems();
-       for(int i=0; i<data.length; i++){
-             this.jComboBox_Categorias.addItem(data[i][1]);
-       }
-       
-       this.jComboBox_Categorias.setSelectedItem(NombreCategoria);
+
+        if (data.length == 0) {
+            JOptionPane.showOptionDialog(this, "El producto no existe", "Error Producto",
+                    JOptionPane.ERROR_MESSAGE, JOptionPane.ERROR_MESSAGE, null, new Object[]{" Cancelar "}, "Cancelar");
+        } else {
+            this.jDialog_ModificarProducto.setSize(430, 400);
+            JPanel_Inventario mPanel = JPanel_Inventario.getInstance();
+            this.jDialog_ModificarProducto.setLocation(mPanel.getLocation());
+            this.jDialog_ModificarProducto.setVisible(true);
+            this.jTextField_nombre1.setText(data[0][0].toString());
+            this.jTextField_Precio1.setText(data[0][1].toString());
+            this.jTextField_Costo.setText(data[0][2].toString());
+            String NombreCategoria = mBD.consultarNombreCategoriaXid(Integer.parseInt(data[0][3].toString()));
+            if (data[0][4] != null) {
+                this.jTextField_Descripcion.setText(data[0][4].toString());
+            }
+            this.jTextField_Descripcion.setText("No tiene descripcion");
+            this.jTextField_CodigoProducto.setText(data[0][5].toString());
+            this.jTextField_CodigoProducto.disable();
+
+            mBD.consultarCategorias();
+
+            columnNames = mBD.getColumnNames();
+            data = mBD.getData();
+
+            this.jComboBox_Categorias.removeAllItems();
+            for (int i = 0; i < data.length; i++) {
+                this.jComboBox_Categorias.addItem(data[i][1]);
+            }
+
+            this.jComboBox_Categorias.setSelectedItem(NombreCategoria);
     }//GEN-LAST:event_jButton1ActionPerformed
     }
     private void jButton_CrearCategoriaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_CrearCategoriaActionPerformed

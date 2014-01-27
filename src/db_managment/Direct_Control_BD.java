@@ -3042,7 +3042,6 @@ public class Direct_Control_BD {
         }
     }
 
-
     /**
      * Modifica datos de una persona, nombre es el nombre anterior
      *
@@ -3075,6 +3074,7 @@ public class Direct_Control_BD {
         }
 
     }
+
     /**
      * Modifica datos de una persona nombre, menos a fechaCumple
      *
@@ -3106,17 +3106,15 @@ public class Direct_Control_BD {
 
     }
 
-     
-       public String obtenerCajeroCierre(int idCierreVigente) {
-        String result="";
+    public String obtenerCajeroCierre(int idCierreVigente) {
+        String result = "";
         try {
             String Cajero = this.readSql("../Joe/"
                     + "src/sql_files/ObtenerCajeroCierre.sql");
             PreparedStatement stm = this.conection.prepareStatement(Cajero);
-            stm.setInt(1,idCierreVigente);
+            stm.setInt(1, idCierreVigente);
             ResultSet resultset = stm.executeQuery();
 
-            
             while (resultset.next()) {
                 result = resultset.getString(1);
 
@@ -3129,15 +3127,14 @@ public class Direct_Control_BD {
     }
 
     public BigDecimal obtenerMontoInicio(int idCierreVigente) {
-         BigDecimal result = null;
+        BigDecimal result = null;
         try {
             String MontoInicio = this.readSql("../Joe/"
                     + "src/sql_files/ObtenerMontoInicioCierre.sql");
             PreparedStatement stm = this.conection.prepareStatement(MontoInicio);
-            stm.setInt(1,idCierreVigente);
+            stm.setInt(1, idCierreVigente);
             ResultSet resultset = stm.executeQuery();
 
-            
             while (resultset.next()) {
                 result = resultset.getBigDecimal(1);
 
@@ -3148,12 +3145,10 @@ public class Direct_Control_BD {
         }
         return result;
     }
-    
-    
-    public void actualizarCierreDeCaja(String HoraCierre, 
-            BigDecimal totalVendido,String observaciones,BigDecimal reportefinal
-            ,BigDecimal totalCont,BigDecimal totalTarj,
-            BigDecimal totalContReportado,BigDecimal totalTarjReportado, 
+
+    public void actualizarCierreDeCaja(String HoraCierre,
+            BigDecimal totalVendido, String observaciones, BigDecimal reportefinal, BigDecimal totalCont, BigDecimal totalTarj,
+            BigDecimal totalContReportado, BigDecimal totalTarjReportado,
             int idCierreCaja) {//esta bien
         try {
             String ActualizarCierreCaja = this.readSql("../Joe"
@@ -3168,7 +3163,7 @@ public class Direct_Control_BD {
             stm.setBigDecimal(6, totalTarj);
             stm.setBigDecimal(7, totalContReportado);
             stm.setBigDecimal(8, totalTarjReportado);
-            stm.setInt(9,idCierreCaja);
+            stm.setInt(9, idCierreCaja);
 
             stm.executeUpdate();
 
@@ -3186,31 +3181,27 @@ public class Direct_Control_BD {
             this.setData(this.ResultSet_Array(rs));
         } catch (Exception e) {
             System.out.println("Error al obtener los cierres");
-        } 
+        }
     }
-    
-    
+
     public void obtenerInfoCierre(int idCierre) {
-         
+
         try {
             String ObtenerInfoCierre = this.readSql("../Joe/"
                     + "src/sql_files/ObtenerInfoCierre.sql");
             PreparedStatement stm = this.conection.prepareStatement(ObtenerInfoCierre);
-            stm.setInt(1,idCierre);
+            stm.setInt(1, idCierre);
             ResultSet rs = stm.executeQuery();
             this.setColumnNames(this.Get_Columnas(rs));
             this.setData(this.ResultSet_Array(rs));
 
-            
-            
-
         } catch (Exception e) {
             System.out.println("Error al obtener la info del cierre");
         }
-        
+
     }
 
-    public boolean verificarFacturaCierre(String fechaInicio,int idFact) {
+    public boolean verificarFacturaCierre(String fechaInicio, int idFact) {
         DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
         Date date = new Date();
         String fecha = dateFormat.format(date);
@@ -3228,8 +3219,8 @@ public class Direct_Control_BD {
             return false;
         }
     }
-    
-     public boolean verificarDevCierre(String fechaInicio,int idDev) {
+
+    public boolean verificarDevCierre(String fechaInicio, int idDev) {
         DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
         Date date = new Date();
         String fecha = dateFormat.format(date);

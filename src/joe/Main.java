@@ -6,7 +6,11 @@
 package joe;
 
 import db_managment.Direct_Control_BD;
+import java.io.File;
 import java.io.IOException;
+import java.net.URISyntaxException;
+import java.security.CodeSource;
+import javax.swing.JOptionPane;
 import jxl.write.WriteException;
 
 /**
@@ -15,50 +19,14 @@ import jxl.write.WriteException;
  */
 public class Main {
 
+    
     /**
      * @param args the command line arguments
      * @throws java.io.IOException
      * @throws jxl.write.WriteException
      */
-    public static void main(String args[]) throws IOException, WriteException {
-
-        ///****///pruebas sobre excel borrar///////********///////////////////////////////
-//        String[] infoEmpresa = {"Joe S.A ", "Oriente pa dentro", "Cartago,"
-//            + " CA 20320", "Telefono:2650-11-36, fax:2655-0203"};
-//        String[][] datosFact = {{"01/01/2012", "Jason", "1", "5", "10500", "75", "5000", "10075"},
-//        {"02/01/2012", "Oscar", "2", "7", "25300", "35", "300", "25035"},
-//        {"01/01/2012", "Jason", "3", "5", "10500", "75", "5000", "10075"},
-//        {"02/01/2012", "Oscar", "4", "7", "25300", "35", "300", "25035"},
-//        {"", "", "Total de Fact", "24", "253045", "", "", "2522035"}};
-//        String[] NombreColumnas = {"Fecha", "Cliente", "Num.Factura",
-//            " Total Item", "SubTotal ", "Impuesto",
-//            "Descuento", "Total Factura"};
-//        EscribirExcel archivoExcel = new EscribirExcel();
-//        archivoExcel.setNombreArchivoExcel("ExcelPrueba.xls");
-//        archivoExcel.escribir(infoEmpresa, datosFact, NombreColumnas, "01/01/2012", "02/01/2012",
-//                "Ventas Por Fechas");
-        ///*****///Fin de pruebas sobre excel borrar//////////**********////////////////////////////
-        /**
-         * *
-         *///pruebas sobre excel borrar///////********///////////////////////////////
-//        String[] infoEmpresa = {"Joe S.A ", "Oriente pa dentro", "Cartago,"
-//            + " CA 20320", "Telefono:2650-11-36, fax:2655-0203"};
-//        Object[][] datosFact = {{"01/01/2012", "Jason", "1", "5", "10500", "75", "5000", "10075"},
-//        {"02/01/2012", "Oscar", "2", "7", "25300", "35", "300", "25035"},
-//        {"01/01/2012", "Jason", "3", "5", "10500", "75", "5000", "10075"},
-//        {"02/01/2012", "Oscar", "4", "7", "25300", "35", "300", "25035"},
-//        {"", "", "Total de Fact", "24", "253045", "", "", "2522035"}};
-//        String[] NombreColumnas = {"Fecha", "Cliente", "Num.Factura",
-//            " Total Item", "SubTotal ", "Impuesto",
-//            "Descuento", "Total Factura"};
-//        EscribirExcel archivoExcel = new EscribirExcel();
-//        archivoExcel.setNombreArchivoExcel("ExcelPrueba.xls");
-//        archivoExcel.escribir(infoEmpresa, datosFact, NombreColumnas, "01/01/2012", "02/01/2012",
-//                "Ventas Por Fechas");
-        /**
-         * **
-         *///Fin de pruebas sobre excel borrar//////////**********////////////////////////////
-
+    public static void main(String args[]) throws IOException, WriteException, URISyntaxException {
+//        Backupdbtosql();
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
@@ -94,6 +62,14 @@ public class Main {
 
             }
         });
+        
     }
 ;
 }
+//Replace your executeCmd with this:
+//
+//String executeCmd = "mysqldump -u " + dbUserName + " -p" + dbPassword + " "
+//+ dbName + " --tables " + tbName + " -r " + path;
+//
+//And change your path like this: "\"C:/New Folder/table.sql\""
+

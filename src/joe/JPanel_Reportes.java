@@ -5,7 +5,7 @@
  */
 package joe;
 
-import com.jxcell.CellException;
+//import com.jxcell.CellException;
 //import datechooser.model.exeptions.IncompatibleDataExeption;
 import db_managment.Direct_Control_BD;
 import java.awt.event.KeyEvent;
@@ -3860,7 +3860,7 @@ jPanel_VerDevEliminadasPorFechLayout.createParallelGroup(javax.swing.GroupLayout
                         dateF1.format(dateChooserCombo_FinProd.
                                 getSelectedDate().getTime()),
                         concepto, "Excel");
-            } catch (IOException | WriteException | CellException ex) {
+            } catch (IOException | WriteException ex) {
                 Logger.getLogger(JPanel_Reportes.class.getName()).
                         log(Level.SEVERE, null, ex);
             }
@@ -3904,7 +3904,7 @@ jPanel_VerDevEliminadasPorFechLayout.createParallelGroup(javax.swing.GroupLayout
                         dateF1.format(dateChooserCombo_FinVent.
                                 getSelectedDate().getTime()),
                         "Ventas Por Fechas Por Concepto: " + concepto, "Excel");
-            } catch (IOException | WriteException | CellException ex) {
+            } catch (IOException | WriteException ex) {
                 Logger.getLogger(JPanel_Reportes.class.getName()).
                         log(Level.SEVERE, null, ex);
             }
@@ -3982,7 +3982,7 @@ jPanel_VerDevEliminadasPorFechLayout.createParallelGroup(javax.swing.GroupLayout
                         dateF1.format(dateChooserCombo_FinProd.
                                 getSelectedDate().getTime()),
                         concepto, "Excel");
-            } catch (IOException | WriteException | CellException ex) {
+            } catch (IOException | WriteException ex) {
                 Logger.getLogger(JPanel_Reportes.class.getName()).
                         log(Level.SEVERE, null, ex);
             }
@@ -4104,7 +4104,7 @@ jPanel_VerDevEliminadasPorFechLayout.createParallelGroup(javax.swing.GroupLayout
                         "Ventas Por Vendedor: " + jComboBox_SeleccionarVendedor.
                         getSelectedItem().toString() + " Por Concepto de : "
                         + concepto, "Excel");
-            } catch (IOException | WriteException | CellException ex) {
+            } catch (IOException | WriteException ex) {
                 Logger.getLogger(JPanel_Reportes.class.getName()).
                         log(Level.SEVERE, null, ex);
             }
@@ -4169,7 +4169,7 @@ jPanel_VerDevEliminadasPorFechLayout.createParallelGroup(javax.swing.GroupLayout
                         dateF1.format(dateChooserCombo_FinTermino.
                                 getSelectedDate().getTime()),
                         concepto, "Excel");
-            } catch (IOException | WriteException | CellException ex) {
+            } catch (IOException | WriteException ex) {
                 Logger.getLogger(JPanel_Reportes.class.getName()).
                         log(Level.SEVERE, null, ex);
             }
@@ -4212,7 +4212,7 @@ jPanel_VerDevEliminadasPorFechLayout.createParallelGroup(javax.swing.GroupLayout
                         "Ventas De Productos Para el Vendedor: "
                         + jComboBox_SeleccionarProdVendedor.getSelectedItem().
                         toString(), "Excel");
-            } catch (IOException | WriteException | CellException ex) {
+            } catch (IOException | WriteException ex) {
                 Logger.getLogger(JPanel_Reportes.class.getName()).
                         log(Level.SEVERE, null, ex);
             }
@@ -4263,7 +4263,7 @@ jPanel_VerDevEliminadasPorFechLayout.createParallelGroup(javax.swing.GroupLayout
                         "Ventas De Productos Para el Cliente: "
                         + jTextField_VentasProdPorCliente.getText().
                         toString(), "Excel");
-            } catch (IOException | WriteException | CellException ex) {
+            } catch (IOException | WriteException ex) {
                 Logger.getLogger(JPanel_Reportes.class.getName()).
                         log(Level.SEVERE, null, ex);
             }
@@ -4316,7 +4316,7 @@ jPanel_VerDevEliminadasPorFechLayout.createParallelGroup(javax.swing.GroupLayout
                                 getSelectedDate().getTime()),
                         "Ventas Por Fechas Por Concepto:Eliminada", "Pant");
             }
-        } catch (IOException | WriteException | CellException ex) {
+        } catch (IOException | WriteException ex) {
             Logger.getLogger(JPanel_Reportes.class.getName()).
                     log(Level.SEVERE, null, ex);
         }
@@ -4422,7 +4422,7 @@ jPanel_VerDevEliminadasPorFechLayout.createParallelGroup(javax.swing.GroupLayout
                         "",
                         "",
                         "Lista De Precio", "Excel");
-            } catch (IOException | WriteException | CellException ex) {
+            } catch (IOException | WriteException ex) {
                 Logger.getLogger(JPanel_Reportes.class.getName()).
                         log(Level.SEVERE, null, ex);
             }
@@ -4514,7 +4514,7 @@ jPanel_VerDevEliminadasPorFechLayout.createParallelGroup(javax.swing.GroupLayout
                         "",
                         "",
                         "Lista De Costo,Precio", "Excel");
-            } catch (IOException | WriteException | CellException ex) {
+            } catch (IOException | WriteException ex) {
                 Logger.getLogger(JPanel_Reportes.class.getName()).
                         log(Level.SEVERE, null, ex);
             }
@@ -4604,7 +4604,7 @@ jPanel_VerDevEliminadasPorFechLayout.createParallelGroup(javax.swing.GroupLayout
                 archivoExcel.escribir(infoEmpresa, AdminBD.getInfoFact(),
                         AdminBD.getNombresColumnas(), "", "",
                         "Productos agotados, Ubicacion " + ubicacion, "Excel");
-            } catch (IOException | WriteException | CellException ex) {
+            } catch (IOException | WriteException ex) {
                 Logger.getLogger(JPanel_Reportes.class.getName()).
                         log(Level.SEVERE, null, ex);
             }
@@ -4694,7 +4694,7 @@ jPanel_VerDevEliminadasPorFechLayout.createParallelGroup(javax.swing.GroupLayout
                         AdminBD.getNombresColumnas(), "", "",
                         "Productos En Inventario, Ubicacion " + ubicacion,
                         "Excel");
-            } catch (IOException | WriteException | CellException ex) {
+            } catch (IOException | WriteException ex) {
                 Logger.getLogger(JPanel_Reportes.class.getName()).
                         log(Level.SEVERE, null, ex);
             }
@@ -4782,7 +4782,7 @@ jPanel_VerDevEliminadasPorFechLayout.createParallelGroup(javax.swing.GroupLayout
                         AdminBD.getNombresColumnas(), "", "",
                         "Valor del Inventario, Ubicacion " + ubicacion,
                         "Excel");
-            } catch (IOException | WriteException | CellException ex) {
+            } catch (IOException | WriteException ex) {
                 Logger.getLogger(JPanel_Reportes.class.getName()).
                         log(Level.SEVERE, null, ex);
             }
@@ -5166,7 +5166,7 @@ jPanel_VerDevEliminadasPorFechLayout.createParallelGroup(javax.swing.GroupLayout
                         dateF1.format(dateChooserCombo_FinDevFech.
                                 getSelectedDate().getTime()),
                         "Devoluciones Por Fechas", "Excel");
-            } catch (IOException | WriteException | CellException ex) {
+            } catch (IOException | WriteException ex) {
                 Logger.getLogger(JPanel_Reportes.class.getName()).
                         log(Level.SEVERE, null, ex);
             }
@@ -5226,7 +5226,7 @@ jPanel_VerDevEliminadasPorFechLayout.createParallelGroup(javax.swing.GroupLayout
                                 getSelectedDate().getTime()),
                         "Devoluciones Eliminadas", "Pant");
             }
-        } catch (IOException | WriteException | CellException ex) {
+        } catch (IOException | WriteException ex) {
             Logger.getLogger(JPanel_Reportes.class.getName()).
                     log(Level.SEVERE, null, ex);
         }

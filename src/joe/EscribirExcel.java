@@ -5,8 +5,7 @@
  */
 package joe;
 
-import static R.DM.r;
-import static R.JM.b;
+
 import java.awt.BorderLayout;
 import java.io.File;
 import java.io.FileInputStream;
@@ -18,7 +17,7 @@ import java.util.Date;
 import java.util.Locale;
 import javax.swing.BorderFactory;
 import javax.swing.text.View;
-import com.jxcell.*;
+
 import java.awt.Color;
 import java.io.FileNotFoundException;
 
@@ -57,7 +56,7 @@ public class EscribirExcel {
     private String nombreArchivoExcel;//nombre del archivo excel
     private static EscribirExcel escribir;
     private WritableCellFormat timesLines;
-    private com.jxcell.View book;
+//    private com.jxcell.View book;
 
     /**
      * asigna el el nombre del archivoExcel
@@ -110,7 +109,7 @@ public class EscribirExcel {
     public void escribir(String[] infoEmpresa, Object[][] datosFact,
             String[] nombresColum, String fechaIni, String fechaFin,
             String tipoDeReporte, String formato) throws IOException,
-            WriteException, CellException {
+            WriteException {
         //crear un nuevo excel un el nombreArchivoExcel
         File ArchivoExcel = new File(nombreArchivoExcel);
         //configuracion de el libro de trabajo

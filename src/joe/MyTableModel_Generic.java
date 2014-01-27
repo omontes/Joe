@@ -5,6 +5,7 @@
 package joe;
 
 
+import java.util.Date;
 import javax.swing.table.AbstractTableModel;
 
 
@@ -49,7 +50,10 @@ public class MyTableModel_Generic extends AbstractTableModel {
      * Les agrega el tipo de clase a cada columna
      */
     public Class getColumnClass(int c) {
-            return getValueAt(0, c).getClass();
+        if(c==3){
+        return Date.class;
+        }
+            return String.class;
         }
     @Override
      public void setValueAt(Object value, int row, int col) {

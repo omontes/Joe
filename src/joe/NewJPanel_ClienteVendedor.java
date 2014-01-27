@@ -94,17 +94,14 @@ public class NewJPanel_ClienteVendedor extends javax.swing.JPanel {
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable_Generica = new javax.swing.JTable();
         jButton_CrearClteVend = new javax.swing.JButton();
-        jButton_BuscarClteVend = new javax.swing.JButton();
         jButton_ModifClteVend = new javax.swing.JButton();
         jButton_VerClteVend = new javax.swing.JButton();
         jButton1 = new javax.swing.JButton();
         TextField_Buscador = new javax.swing.JTextField();
         jLabel1 = new javax.swing.JLabel();
 
-        jDialog_CrearClte.setMaximumSize(new java.awt.Dimension(490, 322));
         jDialog_CrearClte.setMinimumSize(new java.awt.Dimension(490, 322));
         jDialog_CrearClte.setModal(true);
-        jDialog_CrearClte.setPreferredSize(new java.awt.Dimension(490, 322));
         jDialog_CrearClte.addWindowListener(new java.awt.event.WindowAdapter() {
             public void windowClosed(java.awt.event.WindowEvent evt) {
                 jDialog_CrearClteWindowClosed(evt);
@@ -541,8 +538,6 @@ public class NewJPanel_ClienteVendedor extends javax.swing.JPanel {
             }
         });
 
-        jButton_BuscarClteVend.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Buscar.png"))); // NOI18N
-
         jButton_ModifClteVend.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Modificar.png"))); // NOI18N
         jButton_ModifClteVend.setText("Modificar");
         jButton_ModifClteVend.addActionListener(new java.awt.event.ActionListener() {
@@ -580,9 +575,7 @@ public class NewJPanel_ClienteVendedor extends javax.swing.JPanel {
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 965, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(layout.createSequentialGroup()
                         .addGap(10, 10, 10)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jButton_CrearClteVend, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jButton_BuscarClteVend, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(jButton_CrearClteVend, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(jButton_ModifClteVend, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -608,13 +601,12 @@ public class NewJPanel_ClienteVendedor extends javax.swing.JPanel {
                             .addComponent(jButton_ModifClteVend, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jButton_CrearClteVend, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jButton_VerClteVend, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jButton_BuscarClteVend, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(jButton1)
-                        .addComponent(TextField_Buscador, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(jButton_VerClteVend, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(jLabel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jButton1)
+                            .addComponent(TextField_Buscador, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addContainerGap(42, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
@@ -774,7 +766,6 @@ public class NewJPanel_ClienteVendedor extends javax.swing.JPanel {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTextField TextField_Buscador;
     private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton_BuscarClteVend;
     private javax.swing.JButton jButton_CancelarCrearCliente;
     private javax.swing.JButton jButton_CancelarCrearCliente1;
     private javax.swing.JButton jButton_CancelarModifiCliente;

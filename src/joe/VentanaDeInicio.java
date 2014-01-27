@@ -73,6 +73,7 @@ public class VentanaDeInicio extends javax.swing.JFrame {
         jButton_Inventario = new javax.swing.JButton();
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
+        jButton_Configuracion = new javax.swing.JButton();
 
         jDialog_InicioCaja.setMinimumSize(new java.awt.Dimension(362, 270));
 
@@ -206,12 +207,14 @@ public class VentanaDeInicio extends javax.swing.JFrame {
             }
         });
 
-        jButton2.setText("Vendedores");
+        jButton2.setText("Clientes y Vendedores");
         jButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton2ActionPerformed(evt);
             }
         });
+
+        jButton_Configuracion.setText("Configuración");
 
         javax.swing.GroupLayout jPanel_VentanaPrincipalLayout = new javax.swing.GroupLayout(jPanel_VentanaPrincipal);
         jPanel_VentanaPrincipal.setLayout(jPanel_VentanaPrincipalLayout);
@@ -223,10 +226,12 @@ public class VentanaDeInicio extends javax.swing.JFrame {
                     .addComponent(jButton_Facturacion, javax.swing.GroupLayout.DEFAULT_SIZE, 170, Short.MAX_VALUE)
                     .addComponent(jButton_Inventario, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(89, 89, 89)
-                .addGroup(jPanel_VentanaPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 166, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 166, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(358, Short.MAX_VALUE))
+                .addGroup(jPanel_VentanaPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, 166, Short.MAX_VALUE)
+                    .addComponent(jButton2, javax.swing.GroupLayout.DEFAULT_SIZE, 166, Short.MAX_VALUE))
+                .addGap(88, 88, 88)
+                .addComponent(jButton_Configuracion, javax.swing.GroupLayout.PREFERRED_SIZE, 166, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(104, Short.MAX_VALUE))
         );
         jPanel_VentanaPrincipalLayout.setVerticalGroup(
             jPanel_VentanaPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -238,7 +243,8 @@ public class VentanaDeInicio extends javax.swing.JFrame {
                 .addGap(29, 29, 29)
                 .addGroup(jPanel_VentanaPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton_Inventario, javax.swing.GroupLayout.PREFERRED_SIZE, 69, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 69, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 69, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButton_Configuracion, javax.swing.GroupLayout.PREFERRED_SIZE, 69, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(184, Short.MAX_VALUE))
         );
 
@@ -364,6 +370,7 @@ public class VentanaDeInicio extends javax.swing.JFrame {
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton_CancelarInicioCierre;
+    private javax.swing.JButton jButton_Configuracion;
     private javax.swing.JButton jButton_Facturacion;
     private javax.swing.JButton jButton_Inventario;
     private javax.swing.JButton jButton_aceptarInicioCierre;

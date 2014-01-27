@@ -1297,7 +1297,7 @@ public class Direct_Control_BD {
     public void verInventario() {
         try {
             String verInventario = this.readSql("../Joe/src/sql_files/"
-                    + "consultarInventarioxSucursal.sql");
+                    + "consultarInventario.sql");
             ResultSet rs = statement.executeQuery(verInventario);
             this.setColumnNames(this.Get_Columnas(rs));
             this.setData(this.ResultSet_Array(rs));

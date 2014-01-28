@@ -215,6 +215,11 @@ public class VentanaDeInicio extends javax.swing.JFrame {
         });
 
         jButton_Configuracion.setText("Configuración");
+        jButton_Configuracion.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton_ConfiguracionActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel_VentanaPrincipalLayout = new javax.swing.GroupLayout(jPanel_VentanaPrincipal);
         jPanel_VentanaPrincipal.setLayout(jPanel_VentanaPrincipalLayout);
@@ -358,12 +363,20 @@ public class VentanaDeInicio extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton_aceptarInicioCierreKeyPressed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        NewJPanel_ClienteVendedor panelClienteVendedor =  new NewJPanel_ClienteVendedor();
+        NewJPanel_ClienteVendedor panelClienteVendedor = new NewJPanel_ClienteVendedor();
         add(panelClienteVendedor);
         panelClienteVendedor.setSize(this.getSize());
         jPanel_VentanaPrincipal.setVisible(false);
         panelClienteVendedor.setVisible(true);
     }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void jButton_ConfiguracionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_ConfiguracionActionPerformed
+        NewJPanel_Configuracion panelConfiguracion = new NewJPanel_Configuracion();
+        add(panelConfiguracion);
+        panelConfiguracion.setSize(this.getSize());
+        jPanel_VentanaPrincipal.setVisible(false);
+        panelConfiguracion.setVisible(true);
+    }//GEN-LAST:event_jButton_ConfiguracionActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

@@ -1,3 +1,3 @@
-SELECT V.Nombre,V.Direccion,V.Telefono,V.FechaCumpleanos
-FROM Persona As V
-WHERE V.idTipoPersona=2;
+SELECT P.Nombre,P.Direccion,P.Telefono,P.FechaCumpleanos
+FROM Persona As P, usuario AS U
+WHERE P.`idPersona`= U.`idUsuario` AND U.`TipoUsuario` = "Vendedor";

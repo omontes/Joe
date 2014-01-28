@@ -91,11 +91,11 @@ public class JPanel_CrearEntradaSalidaMercaderia extends javax.swing.JPanel {
         jFormattedTextField_Total = new javax.swing.JFormattedTextField();
         jLabel6 = new javax.swing.JLabel();
         jButton_BuscarProducto = new javax.swing.JButton();
-        jLabel_NumerodeFact = new javax.swing.JLabel();
+        jLabel_NumerodeMovimiento = new javax.swing.JLabel();
         jButton_guardaImprime = new javax.swing.JButton();
         jLabel7 = new javax.swing.JLabel();
         jTextField_referencia = new javax.swing.JTextField();
-        jComboBox_CategoriaTipoPago = new javax.swing.JComboBox();
+        jComboBox_LugarDeMov = new javax.swing.JComboBox();
         jLabel8 = new javax.swing.JLabel();
 
         jPanel2.setBackground(new java.awt.Color(153, 153, 153));
@@ -533,9 +533,9 @@ public class JPanel_CrearEntradaSalidaMercaderia extends javax.swing.JPanel {
             }
         });
 
-        jLabel_NumerodeFact.setFont(new java.awt.Font("Arial", 0, 16)); // NOI18N
-        jLabel_NumerodeFact.setForeground(new java.awt.Color(0, 51, 51));
-        jLabel_NumerodeFact.setText("Num");
+        jLabel_NumerodeMovimiento.setFont(new java.awt.Font("Arial", 0, 16)); // NOI18N
+        jLabel_NumerodeMovimiento.setForeground(new java.awt.Color(0, 51, 51));
+        jLabel_NumerodeMovimiento.setText("Num");
 
         jButton_guardaImprime.setText("Guarda e Imprimir");
         jButton_guardaImprime.addActionListener(new java.awt.event.ActionListener() {
@@ -546,7 +546,7 @@ public class JPanel_CrearEntradaSalidaMercaderia extends javax.swing.JPanel {
 
         jLabel7.setText("Referencia");
 
-        jComboBox_CategoriaTipoPago.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Inventario General", "Bodega" }));
+        jComboBox_LugarDeMov.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Inventario General", "Bodega" }));
 
         jLabel8.setText("Entrada a:");
 
@@ -565,7 +565,7 @@ public class JPanel_CrearEntradaSalidaMercaderia extends javax.swing.JPanel {
                                 .addContainerGap()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jLabel_NumFacTitle)
-                                    .addComponent(jLabel_NumerodeFact))))
+                                    .addComponent(jLabel_NumerodeMovimiento))))
                         .addGap(12, 12, 12))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addComponent(jButton_BuscarProducto)
@@ -577,7 +577,7 @@ public class JPanel_CrearEntradaSalidaMercaderia extends javax.swing.JPanel {
                             .addComponent(jButton_guardaImprime, javax.swing.GroupLayout.DEFAULT_SIZE, 130, Short.MAX_VALUE)
                             .addComponent(jButton_RegresarFact, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(jButton_aceptarMovimiento, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 122, Short.MAX_VALUE)
                         .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jFormattedTextField_Total, javax.swing.GroupLayout.PREFERRED_SIZE, 252, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -585,16 +585,16 @@ public class JPanel_CrearEntradaSalidaMercaderia extends javax.swing.JPanel {
                         .addComponent(jLabel_FechaFact, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jLabel_Fecha, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jLabel8)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jComboBox_CategoriaTipoPago, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jComboBox_LugarDeMov, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jTextField_referencia, javax.swing.GroupLayout.PREFERRED_SIZE, 298, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 746, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(20, Short.MAX_VALUE))
+                    .addComponent(jScrollPane2))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -606,12 +606,12 @@ public class JPanel_CrearEntradaSalidaMercaderia extends javax.swing.JPanel {
                     .addComponent(jLabel_Fecha, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel7)
                     .addComponent(jTextField_referencia, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jComboBox_CategoriaTipoPago, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jComboBox_LugarDeMov, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel8))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabel_NumerodeFact)
+                        .addComponent(jLabel_NumerodeMovimiento)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(jButton_CreaProducto)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -834,7 +834,7 @@ public class JPanel_CrearEntradaSalidaMercaderia extends javax.swing.JPanel {
     javax.swing.JButton jButton_VerProducto;
     javax.swing.JButton jButton_aceptarMovimiento;
     javax.swing.JButton jButton_guardaImprime;
-    javax.swing.JComboBox jComboBox_CategoriaTipoPago;
+    javax.swing.JComboBox jComboBox_LugarDeMov;
     javax.swing.JDialog jDialog_BuscarProductoPorCod;
     javax.swing.JDialog jDialog_CrearProducto;
     javax.swing.JDialog jDialog_VerProducto;
@@ -856,7 +856,7 @@ public class JPanel_CrearEntradaSalidaMercaderia extends javax.swing.JPanel {
     javax.swing.JLabel jLabel_FechaFact;
     javax.swing.JLabel jLabel_Nombre;
     javax.swing.JLabel jLabel_NumFacTitle;
-    javax.swing.JLabel jLabel_NumerodeFact;
+    javax.swing.JLabel jLabel_NumerodeMovimiento;
     javax.swing.JLabel jLabel_PrecioUnitario;
     javax.swing.JLabel jLabel_Producto;
     javax.swing.JLabel jLabel_datoCant;
@@ -896,9 +896,9 @@ public class JPanel_CrearEntradaSalidaMercaderia extends javax.swing.JPanel {
         Direct_Control_BD AdminBD = Direct_Control_BD.getInstance();
         String articulo = AdminBD.verNombreProductoPorCodigo(idProducto);
         BigDecimal PrecioUnitario = AdminBD.verPrecio(idProducto);
-        int cantidad = AdminBD.verCantidad(idProducto);
+        int cantidad = AdminBD.verCantidadInvGeneral(idProducto);
         jLabel_datoCant.setText(Integer.toString(cantidad));
-        jLabel_datoFact.setText(jLabel_NumerodeFact.getText());
+        jLabel_datoFact.setText(jLabel_NumerodeMovimiento.getText());
         jLabel_datoNomb.setText(articulo);
         jLabel_datoPrecio.setText(PrecioUnitario.toString());
         String detalle = AdminBD.verDetalle(idProducto);
@@ -1173,15 +1173,101 @@ public class JPanel_CrearEntradaSalidaMercaderia extends javax.swing.JPanel {
     
 
     private void guardarMovimiento() {
+        this.crearMovimiento();
+        this.guardarProductosMovimiento();
+        this.clearAll();
+    }
+
+    private void crearMovimiento() {
         Direct_Control_BD AdminBD = Direct_Control_BD.getInstance();
         String detalle= this.jTextField_referencia.getText();
         int idLugarMovimiento=1;
-        if(this.jComboBox_CategoriaTipoPago.getSelectedItem().toString().equals("Bodega")){
+        if(this.jComboBox_LugarDeMov.getSelectedItem().toString().equals("Bodega")){
                idLugarMovimiento=2;
         
         }
         BigDecimal valorMovimiento = this.corregirDato(this.jFormattedTextField_Total.getText());
         AdminBD.insertarmovimiento(detalle, 1, idLugarMovimiento, valorMovimiento);
+    }
+
+    private void guardarProductosMovimiento() {
+        Direct_Control_BD AdminBD = Direct_Control_BD.getInstance();
+        MyTableModel_FACT model = (MyTableModel_FACT) this.jTable_Movimiento.getModel();
+        String lugarMov= this.jComboBox_LugarDeMov.getSelectedItem().toString();
+        String[][] infoTablaMov = this.obtenerInfoTablaMovimiento();
+        int rows = infoTablaMov.length;
+        int idMovimiento = Integer.parseInt(this.jLabel_NumerodeMovimiento.getText());
+        //Recorre la informacion de la tabla para obtener los datos para 
+        //insertar los productos en el movimiento
+        for (int i = 0; i < rows; i++) {
+            //Si la fila esta vacia
+            if (model.getValueAt(i, 0) != "") {
+                String idProducto = infoTablaMov[i][0];
+                int idVersion = AdminBD.veridVersionActivaProductoPorCodigo(idProducto);
+                String CantidadSinCorregir = infoTablaMov[i][2].toString();
+                DecimalFormat decimalfC = (DecimalFormat) NumberFormat.getInstance();
+                decimalfC.setParseBigDecimal(true);
+                BigDecimal cantidadB = null;
+                try {
+                    cantidadB = (BigDecimal) decimalfC.parseObject(CantidadSinCorregir);
+                } catch (ParseException ex) {
+                    Logger.getLogger(MyTableModelListener_FACT.class.
+                            getName()).log(Level.SEVERE, null, ex);
+                }
+                int cantidadMov = cantidadB.intValue();
+                String precioSinCorregir = infoTablaMov[i][3];
+                BigDecimal PrecioVenta = this.corregirDato(precioSinCorregir);
+                AdminBD.insertarProductoCantidadMovimiento(idProducto,idVersion,idMovimiento,cantidadMov,PrecioVenta);
+                
+
+            }
+        }
+    }
+    /**
+     * Este metodo devuelve toda la informacion de la tabla de crear movimiento
+     *
+     * @return
+     */
+    private String[][] obtenerInfoTablaMovimiento() {
+        MyTableModel_FACT model = (MyTableModel_FACT) this.jTable_Movimiento.getModel();
+        int filas = model.getRowCount();
+        String[][] infoTablaFactura = new String[filas][5];
+        for (int i = 0; i < filas; i++) {
+            for (int j = 0; j < 5; j++) {
+                if (model.getValueAt(i, j) != null) {
+                    String om = model.getValueAt(i, j).toString();
+                    if (om.trim().length() != 0) {
+                        infoTablaFactura[i][j] = om;
+                    }
+                }
+            }
+        }
+        return infoTablaFactura;
+    }
+
+
+    private void clearAll() {
+        
+        VentanaDeInicio mVentana = VentanaDeInicio.getInstance();
+        JPanel_CrearEntradaSalidaMercaderia panelCreaEntradaSalida = new JPanel_CrearEntradaSalidaMercaderia();
+        mVentana.add(panelCreaEntradaSalida);
+        panelCreaEntradaSalida.setSize(this.getSize());
+        panelCreaEntradaSalida.setLocation(this.getLocation());
+        mVentana.remove(this);
+        panelCreaEntradaSalida.setVisible(true);
+        mVentana.revalidate();
+        mVentana.repaint();
+        mVentana.setTitle("Entrada de Mercaderia");
+        Direct_Control_BD AdminBD = Direct_Control_BD.getInstance();
+        String factura = Integer.toString(AdminBD.ObtenerUltimoidMovimiento() + 1);
+        panelCreaEntradaSalida.jLabel_NumerodeMovimiento.setText(factura);
+        panelCreaEntradaSalida.personalizarTablaMovimiento();
+        panelCreaEntradaSalida.agregarListenerRenders();
+    
+    }
+
+    private String[][] obtenerInfoTablaFact() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
 

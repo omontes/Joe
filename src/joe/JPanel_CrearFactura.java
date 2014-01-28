@@ -1083,7 +1083,7 @@ public class JPanel_CrearFactura extends javax.swing.JPanel {
         Direct_Control_BD AdminBD = Direct_Control_BD.getInstance();
         String articulo = AdminBD.verNombreProductoPorCodigo(idProducto);
         BigDecimal PrecioUnitario = AdminBD.verPrecio(idProducto);
-        int cantidad = AdminBD.verCantidad(idProducto);
+        int cantidad = AdminBD.verCantidadInvGeneral(idProducto);
         jLabel_datoCant.setText(Integer.toString(cantidad));
         jLabel_datoFact.setText(jLabel_NumerodeFact.getText());
         jLabel_datoNomb.setText(articulo);
@@ -2459,7 +2459,7 @@ public class JPanel_CrearFactura extends javax.swing.JPanel {
         for (int row = 0; row < numFilas; row++) {
             Object[] producto = ProductosdeDevolucion[row];
             String codArticulo = producto[0].toString();
-            int cantidadTotal = AdminBD.verCantidad(codArticulo);
+            int cantidadTotal = AdminBD.verCantidadInvGeneral(codArticulo);
             int cantidad = Integer.parseInt(producto[2].toString());
             AdminBD.actualizarCantidadInventario(codArticulo, cantidadTotal + cantidad);
 

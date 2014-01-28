@@ -1559,7 +1559,7 @@ public class Direct_Control_BD {
      * @param idProducto
      * @return
      */
-    public int verCantidad(String idProducto) {
+    public int verCantidadInvGeneral(String idProducto) {
         int cantidad = 0;
         try {
             String verCantidad = this.readSql("../Joe"
@@ -3289,6 +3289,55 @@ public class Direct_Control_BD {
         } catch (Exception e) {
             System.out.println("No se pudo insertar el cliente");
 
+        }
+    }
+
+    public void insertarProductoCantidadMovimiento(String idProducto, int idVersion, int idMovimiento,int cantidad,BigDecimal PrecioVenta) {
+        try {
+            String insertarProductoCantFact = this.readSql("../Joe/src/sql_files/"
+                    + "insertarProductoCantidadMov.sql");
+            PreparedStatement stm = this.conection.prepareStatement(insertarProductoCantFact);
+            stm.setString(1, idProducto);
+            stm.setInt(2, idVersion);
+            stm.setInt(3, idMovimiento);
+            stm.setInt(4, cantidad);
+            stm.setBigDecimal(5, PrecioVenta);
+            stm.executeUpdate();
+
+        } catch (Exception e) {
+            System.out.println("Error al insertar producto cantidad movimiento");
+        }
+    }
+
+    public int verCantidadBodega(String idProducto) {
+        int cantidad = 0;
+        try {
+            String verCantidad = this.readSql("../Joe"
+                    + "/src/sql_files/verCantidadPorCod_Bodega.sql");
+            PreparedStatement stm = this.conection.prepareStatement(verCantidad);
+            stm.setString(1, idProducto);
+            ResultSet rs = stm.executeQuery();
+            while (rs.next()) {
+                cantidad = rs.getInt("Cantidad");
+            }
+            return cantidad;
+        } catch (Exception e) {
+            System.out.println(cantidad);
+            System.out.println("Error al obtener la cantidad del producto en bodega");
+            return 0;
+        }
+    }
+
+    public void verEntradasMercaderia() {
+        try {
+            String VerEntradasMercaderia = readSql("../Joe/src/"
+                    + "sql_files/verEntradasMercaderia.sql");
+            ResultSet resultset = statement.executeQuery(VerEntradasMercaderia);
+            this.setColumnNames(this.Get_Columnas(resultset));
+            this.setData(this.ResultSet_Array(resultset));
+
+        } catch (Exception e) {
+            System.out.println("Error al ver entradas de mercaderia");
         }
     }
 

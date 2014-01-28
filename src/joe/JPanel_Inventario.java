@@ -35,6 +35,7 @@ public class JPanel_Inventario extends javax.swing.JPanel {
     public JPanel_Inventario() {
         initComponents();
         personalizarTablaInventario();
+        personalizarTablaEntradaMercaderia();
          
     }
     
@@ -1522,7 +1523,7 @@ public class JPanel_Inventario extends javax.swing.JPanel {
         mVentana.setTitle("Entrada de Mercaderia");
         Direct_Control_BD AdminBD = Direct_Control_BD.getInstance();
         String numDoc = Integer.toString(AdminBD.ObtenerUltimoidMovimiento() + 1);
-        panelCreaFact.jLabel_NumerodeFact.setText(numDoc);
+        panelCreaFact.jLabel_NumerodeMovimiento.setText(numDoc);
         panelCreaFact.personalizarTablaMovimiento();
         panelCreaFact.agregarListenerRenders();
 
@@ -1595,7 +1596,21 @@ public class JPanel_Inventario extends javax.swing.JPanel {
                 "Alert!", JOptionPane.ERROR_MESSAGE);
         }
     }//GEN-LAST:event_jButton_ModificarProductoActionPerformed
-
+    public void personalizarTablaEntradaMercaderia(){
+     //Realiza la consulta para obtener los creditos
+        Direct_Control_BD AdminBD = Direct_Control_BD.getInstance();
+        AdminBD.verEntradasMercaderia();
+        String[] columnNames = AdminBD.getColumnNames();
+        Object[][] data = AdminBD.getData();
+        //Crea la tabla generica para Facturas
+        this.jTable_EntradasMercaderia.setModel(new Modelo_Facturacion(columnNames,data));
+        //Alinea la primer columna de esta tabla hacia el centro
+        DefaultTableCellRenderer centerRenderer = new DefaultTableCellRenderer
+                ();
+        centerRenderer.setHorizontalAlignment(JLabel.CENTER);
+        this.jTable_EntradasMercaderia.getColumnModel().getColumn(0).setCellRenderer
+                (centerRenderer);
+    }
     private void jButtonRegresarInventarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonRegresarInventarioActionPerformed
         VentanaDeInicio mVentana= VentanaDeInicio.getInstance();
         mVentana.remove(this);

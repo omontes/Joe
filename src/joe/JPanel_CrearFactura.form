@@ -1248,7 +1248,7 @@
     </Component>
     <Component class="javax.swing.JFormattedTextField" name="jFormattedTextField_Cliente">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Cliente Anonimo"/>
+        <Property name="text" type="java.lang.String" value="Cliente Generico"/>
       </Properties>
       <Events>
         <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="jFormattedTextField_ClienteMouseClicked"/>

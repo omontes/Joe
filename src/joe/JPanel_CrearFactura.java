@@ -894,7 +894,7 @@ public class JPanel_CrearFactura extends javax.swing.JPanel {
             }
         });
 
-        jFormattedTextField_Cliente.setText("Cliente Anonimo");
+        jFormattedTextField_Cliente.setText("Cliente Generico");
         jFormattedTextField_Cliente.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jFormattedTextField_ClienteMouseClicked(evt);

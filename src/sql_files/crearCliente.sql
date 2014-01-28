@@ -1,2 +1,2 @@
-INSERT INTO persona(Nombre,Direccion,idTipoPersona,Telefono,FechaCumpleanos)
-VALUES(?,?,?,?,?);
+INSERT INTO persona(Nombre,Direccion,Telefono,FechaCumpleanos)
+VALUES(?,?,?,?);

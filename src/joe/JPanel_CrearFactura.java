@@ -2208,7 +2208,7 @@ public class JPanel_CrearFactura extends javax.swing.JPanel {
         if (fechaCumpleanos.equals("")) {
             fechaCumpleanos = null;
         }
-        AdminBD.insertarCliente(nombre, direccion, 1, telefono, fechaCumpleanos);
+        AdminBD.insertarCliente(nombre, direccion,telefono, fechaCumpleanos);
         this.jFormattedTextField_Cliente.setValue(nombre);
         this.jDialog_CrearCliente.dispose();
     }

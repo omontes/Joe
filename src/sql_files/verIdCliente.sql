@@ -1,3 +1,3 @@
 SELECT P.idPersona
-FROM persona AS P,tipopersona AS V
-WHERE P.Nombre=? AND P.idTipoPersona=V.idTipoPersona AND V.tipo='Cliente';
+FROM persona AS P,cliente AS C
+WHERE P.Nombre=? AND C.`idCliente`=P.`idPersona`;

@@ -1852,17 +1852,18 @@ public class Direct_Control_BD {
      * @param telefono
      * @param FechaCumpleanos
      */
-    public void insertarCliente(String nombre, String direccion, int idTipoPersona, String telefono, String FechaCumpleanos) {
+    public void insertarCliente(String nombre, String direccion,String telefono, String FechaCumpleanos) {
         try {
             String crearCliente = this.readSql("../Joe/src/sql_files/"
                     + "crearCliente.sql");
             PreparedStatement stm = this.conection.prepareStatement(crearCliente);
             stm.setString(1, nombre);
             stm.setString(2, direccion);
-            stm.setInt(3, idTipoPersona);
-            stm.setString(4, telefono);
-            stm.setString(5, FechaCumpleanos);
+            stm.setString(3, telefono);
+            stm.setString(4, FechaCumpleanos);
             stm.executeUpdate();
+            int idCliente= this.veridCliente(nombre);
+            this.insertarIdCliente(idCliente);
 
         } catch (Exception e) {
             System.out.println("Error al crear cliente");
@@ -3264,5 +3265,22 @@ public class Direct_Control_BD {
             System.out.println("Error al obtener el ultimo idMovimientos");
         }
         return result;
+    }
+    /**
+     * Este metodo permite crear un cliente
+     * @param idCliente 
+     */
+    private void insertarIdCliente(int idCliente) {
+        try {
+            String insertarIdCliente = this.readSql("../Joe"
+                    + "/src/sql_files/crearIdCliente.sql");
+            PreparedStatement stm = this.conection.prepareStatement(insertarIdCliente);
+            stm.setInt(1, idCliente);
+            stm.executeUpdate();
+
+        } catch (Exception e) {
+            System.out.println("No se pudo insertar el cliente");
+
+        }
     }
 }

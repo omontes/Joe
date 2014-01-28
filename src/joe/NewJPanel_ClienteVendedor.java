@@ -864,7 +864,7 @@ public class NewJPanel_ClienteVendedor extends javax.swing.JPanel {
         if (fechaCumpleanos.equals("")) {
             fechaCumpleanos = null;
         }
-        AdminBD.insertarCliente(nombre, direccion, tipoPersona, telefono, fechaCumpleanos);
+        AdminBD.insertarCliente(nombre, direccion,telefono, fechaCumpleanos);
     }
 
     private void llenarInformacionClteVend() {

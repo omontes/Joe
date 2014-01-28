@@ -3248,6 +3248,13 @@ public class Direct_Control_BD {
         }
     }
 
+
+    public void consultarAdministradores() {
+    
+    
+    }
+
+
     public int ObtenerUltimoidMovimiento() {
         int result = 0;
         try {
@@ -3266,6 +3273,7 @@ public class Direct_Control_BD {
         }
         return result;
     }
+
     /**
      * Este metodo permite crear un cliente
      * @param idCliente 
@@ -3283,4 +3291,5 @@ public class Direct_Control_BD {
 
         }
     }
+
 }

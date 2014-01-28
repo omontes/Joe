@@ -1,3 +1,3 @@
-SELECT C.Nombre,C.Direccion,C.Telefono,C.FechaCumpleanos
-FROM Persona As C
-WHERE C.idTipoPersona=1;
+SELECT P.Nombre,P.Direccion,P.Telefono,P.FechaCumpleanos
+FROM Persona As P, cliente AS C
+WHERE P.`idPersona`=C.`idCliente`;

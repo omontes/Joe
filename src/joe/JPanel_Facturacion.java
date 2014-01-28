@@ -898,7 +898,7 @@ public class JPanel_Facturacion extends javax.swing.JPanel {
         panelCreaApt.jLabel_NumerodeFact.setText(factura);
         panelCreaApt.personalizarTablaFactura();
         panelCreaApt.agregarListenerRenders();
-        panelCreaApt.jFormattedTextField_Cliente.setText("Cliente Anonimo");
+        panelCreaApt.jFormattedTextField_Cliente.setText("Cliente Generico");
     }//GEN-LAST:event_jButton_CrearApartadoActionPerformed
 
     private void jButton_ModificarApartadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_ModificarApartadoActionPerformed
@@ -1072,7 +1072,7 @@ public class JPanel_Facturacion extends javax.swing.JPanel {
         panelCreaApt.jLabel_NumerodeFact.setText(factura);
         panelCreaApt.personalizarTablaFactura();
         panelCreaApt.agregarListenerRenders();
-        panelCreaApt.jFormattedTextField_Cliente.setText("Cliente Anonimo");
+        panelCreaApt.jFormattedTextField_Cliente.setText("Cliente Generico");
     }//GEN-LAST:event_jButton_CrearCreditoActionPerformed
 
     private void jButton_ModificarCreditoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_ModificarCreditoActionPerformed
@@ -1157,7 +1157,7 @@ public class JPanel_Facturacion extends javax.swing.JPanel {
         panelCreaFact.jLabel_NumerodeFact.setText(factura);
         panelCreaFact.personalizarTablaFactura();
         panelCreaFact.agregarListenerRenders();
-        panelCreaFact.jFormattedTextField_Cliente.setText("Cliente Anonimo");
+        panelCreaFact.jFormattedTextField_Cliente.setText("Cliente Generico");
     }//GEN-LAST:event_jButton_CrearDevActionPerformed
 
     private void jButton_ModificarDevActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_ModificarDevActionPerformed

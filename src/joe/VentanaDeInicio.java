@@ -405,7 +405,9 @@ public class VentanaDeInicio extends javax.swing.JFrame {
         Direct_Control_BD AdminBD = Direct_Control_BD.getInstance();
         String fecha = this.jLabel_fechaInicioCaja.getText();
         String Cajero = this.jFormattedTextField_Cajero.getText();
-        BigDecimal reporteInicio = new BigDecimal(this.jFormattedTextField_MontoInicioCaja.getValue().toString());
+        
+        Object montoInicio = this.jFormattedTextField_MontoInicioCaja.getValue();
+        BigDecimal reporteInicio = new BigDecimal(montoInicio!=null?montoInicio.toString():"0");
         AdminBD.insertarCierreDeCaja(fecha, Cajero, reporteInicio);
     }
 

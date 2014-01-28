@@ -1039,15 +1039,16 @@ public class Direct_Control_BD {
 
     /**
      * Inserta un movimiento en la base
+     *
      * @param Fecha
      * @param Detalle
      * @param idTipoMovimiento
      * @param idLugarMovimiento
-     * @param valormovimiento 
+     * @param valormovimiento
      */
     public void insertarmovimiento(String Detalle, int idTipoMovimiento,
-            int idLugarMovimiento,BigDecimal valormovimiento) {
-        
+            int idLugarMovimiento, BigDecimal valormovimiento) {
+
         try {
             String devolucion = this.readSql("../Joe/src/sql_files/"
                     + "insertarMovimiento.sql");
@@ -1060,7 +1061,7 @@ public class Direct_Control_BD {
             stm.setInt(3, idTipoMovimiento);
             stm.setInt(4, idLugarMovimiento);
             stm.setBigDecimal(5, valormovimiento);
-           stm.executeUpdate();
+            stm.executeUpdate();
 
         } catch (Exception e) {
             System.out.println("Error al insertar movimiento");
@@ -1852,7 +1853,7 @@ public class Direct_Control_BD {
      * @param telefono
      * @param FechaCumpleanos
      */
-    public void insertarCliente(String nombre, String direccion,String telefono, String FechaCumpleanos) {
+    public void insertarCliente(String nombre, String direccion, String telefono, String FechaCumpleanos) {
         try {
             String crearCliente = this.readSql("../Joe/src/sql_files/"
                     + "crearCliente.sql");
@@ -1862,7 +1863,7 @@ public class Direct_Control_BD {
             stm.setString(3, telefono);
             stm.setString(4, FechaCumpleanos);
             stm.executeUpdate();
-            int idCliente= this.veridCliente(nombre);
+            int idCliente = this.veridCliente(nombre);
             this.insertarIdCliente(idCliente);
 
         } catch (Exception e) {
@@ -3248,12 +3249,19 @@ public class Direct_Control_BD {
         }
     }
 
-
     public void consultarAdministradores() {
-    
-    
-    }
+        try {
+            String administradores = this.readSql("../Joe/src/"
+                    + "sql_files/ConsultarAdministradores.sql");
+            PreparedStatement stm = this.conection.prepareStatement(administradores);
+            ResultSet resultset = stm.executeQuery();
+            this.setColumnNames(this.Get_Columnas(resultset));
+            this.setData(this.ResultSet_Array(resultset));
+        } catch (Exception e) {
+            System.out.println("Error al Consultar Administradores");
+        }
 
+    }
 
     public int ObtenerUltimoidMovimiento() {
         int result = 0;
@@ -3276,7 +3284,8 @@ public class Direct_Control_BD {
 
     /**
      * Este metodo permite crear un cliente
-     * @param idCliente 
+     *
+     * @param idCliente
      */
     private void insertarIdCliente(int idCliente) {
         try {

@@ -209,6 +209,11 @@ public class NewJPanel_Configuracion extends javax.swing.JPanel {
 
         jPanel_administrador.setMaximumSize(new java.awt.Dimension(540, 500));
         jPanel_administrador.setMinimumSize(new java.awt.Dimension(540, 500));
+        jPanel_administrador.addComponentListener(new java.awt.event.ComponentAdapter() {
+            public void componentShown(java.awt.event.ComponentEvent evt) {
+                jPanel_administradorComponentShown(evt);
+            }
+        });
 
         jButton10.setText("Ver");
 
@@ -498,6 +503,10 @@ public class NewJPanel_Configuracion extends javax.swing.JPanel {
         jDialog_empresaUsuario.setVisible(false);
     }//GEN-LAST:event_jButton14ActionPerformed
 
+    private void jPanel_administradorComponentShown(java.awt.event.ComponentEvent evt) {//GEN-FIRST:event_jPanel_administradorComponentShown
+       actualizaTablaParaAdministradores();
+    }//GEN-LAST:event_jPanel_administradorComponentShown
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTextField TextField_Buscador;
@@ -543,23 +552,24 @@ public class NewJPanel_Configuracion extends javax.swing.JPanel {
     // End of variables declaration//GEN-END:variables
 
 public void actualizaTablaParaAdministradores() {
-        AdminBD.consultarAdministradores();
-        data = AdminBD.getData();
-        String[] columnNames = AdminBD.getColumnNames();
+    System.out.println("aquiaquiaquiaqui");
+        //AdminBD.consultarAdministradores();
+//        data = AdminBD.getData();
+//        String[] columnNames = AdminBD.getColumnNames();
 
-        this.jTable_Generica_Administrador.setModel(new MyTableModel_Generic(columnNames, data));
-        //Crea el ordenador para la tabla generica
-        TableRowSorter<TableModel> ordenador = new TableRowSorter<TableModel>(this.jTable_Generica_Administrador.getModel());
-        this.jTable_Generica_Administrador.setRowSorter(ordenador);
-        Vector<RowSorter.SortKey> qq = new Vector<RowSorter.SortKey>();
-        qq.add(new RowSorter.SortKey(0, SortOrder.ASCENDING));
-        ordenador.setSortKeys(qq);
-        jTable_Generica_Administrador.requestFocus();
-       jTable_Generica_Administrador.changeSelection(0, 0, false, false);
-        /**
-         * Agrega el listener al JtextField del buscador *
-         */
-        this.TextField_BuscadorAdm.getDocument().addDocumentListener(new ListenerBuscador(this.TextField_BuscadorAdm, ordenador));
+//        this.jTable_Generica_Administrador.setModel(new MyTableModel_Generic(columnNames, data));
+//        //Crea el ordenador para la tabla generica
+//        TableRowSorter<TableModel> ordenador = new TableRowSorter<TableModel>(this.jTable_Generica_Administrador.getModel());
+//        this.jTable_Generica_Administrador.setRowSorter(ordenador);
+//        Vector<RowSorter.SortKey> qq = new Vector<RowSorter.SortKey>();
+//        qq.add(new RowSorter.SortKey(0, SortOrder.ASCENDING));
+//        ordenador.setSortKeys(qq);
+//        jTable_Generica_Administrador.requestFocus();
+//       jTable_Generica_Administrador.changeSelection(0, 0, false, false);
+//        /**
+//         * Agrega el listener al JtextField del buscador *
+//         */
+//        this.TextField_BuscadorAdm.getDocument().addDocumentListener(new ListenerBuscador(this.TextField_BuscadorAdm, ordenador));
 
     }
 

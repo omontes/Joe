@@ -1520,9 +1520,9 @@ public class JPanel_Inventario extends javax.swing.JPanel {
         mVentana.revalidate();
         mVentana.repaint();
         mVentana.setTitle("Entrada de Mercaderia");
-        //Direct_Control_BD AdminBD = Direct_Control_BD.getInstance();
-        //String factura = Integer.toString(AdminBD.ObtenerUltimoidFact() + 1);
-        panelCreaFact.jLabel_NumerodeFact.setText("Num Doc");
+        Direct_Control_BD AdminBD = Direct_Control_BD.getInstance();
+        String numDoc = Integer.toString(AdminBD.ObtenerUltimoidMovimiento() + 1);
+        panelCreaFact.jLabel_NumerodeFact.setText(numDoc);
         panelCreaFact.personalizarTablaMovimiento();
         panelCreaFact.agregarListenerRenders();
 

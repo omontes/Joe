@@ -364,7 +364,7 @@ public class VentanaDeInicio extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton_aceptarInicioCierreKeyPressed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        NewJPanel_ClienteVendedor panelClienteVendedor = new NewJPanel_ClienteVendedor();
+        NewJPanel_Clientes panelClienteVendedor = new NewJPanel_Clientes();
         add(panelClienteVendedor);
         panelClienteVendedor.setSize(this.getSize());
         jPanel_VentanaPrincipal.setVisible(false);
@@ -419,9 +419,9 @@ public class VentanaDeInicio extends javax.swing.JFrame {
         Direct_Control_BD AdminBD = Direct_Control_BD.getInstance();
         String fecha = this.jLabel_fechaInicioCaja.getText();
         String Cajero = this.jFormattedTextField_Cajero.getText();
-        
+
         Object montoInicio = this.jFormattedTextField_MontoInicioCaja.getValue();
-        BigDecimal reporteInicio = new BigDecimal(montoInicio!=null?montoInicio.toString():"0");
+        BigDecimal reporteInicio = new BigDecimal(montoInicio != null ? montoInicio.toString() : "0");
         AdminBD.insertarCierreDeCaja(fecha, Cajero, reporteInicio);
     }
 

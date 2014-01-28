@@ -6,6 +6,7 @@
 package joe;
 
 import db_managment.Direct_Control_BD;
+import java.awt.event.KeyEvent;
 import java.util.Vector;
 import javax.swing.RowSorter;
 import javax.swing.SortOrder;
@@ -17,14 +18,16 @@ import javax.swing.table.TableRowSorter;
  * @author Jason
  */
 public class NewJPanel_Configuracion extends javax.swing.JPanel {
-    private Direct_Control_BD AdminBD;
-    private Object[][] data;
+
+    Object[][] data;
+    Direct_Control_BD AdminBD;
 
     /**
      * Creates new form NewJPanel_Configuracion
      */
     public NewJPanel_Configuracion() {
         initComponents();
+        AdminBD = Direct_Control_BD.getInstance();
     }
 
     /**
@@ -36,7 +39,7 @@ public class NewJPanel_Configuracion extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jDialog_empresaUsuario = new javax.swing.JDialog();
+        jDialog_configuracion = new javax.swing.JDialog();
         jPanel_infoEmpresa = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
@@ -70,31 +73,58 @@ public class NewJPanel_Configuracion extends javax.swing.JPanel {
         jButton9 = new javax.swing.JButton();
         jButton11 = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable_Generica = new javax.swing.JTable();
+        jTable_Generica_Vend = new javax.swing.JTable();
         jLabel8 = new javax.swing.JLabel();
-        TextField_Buscador = new javax.swing.JTextField();
+        TextField_BuscadorVend = new javax.swing.JTextField();
+        jDialog_AdmiVend = new javax.swing.JDialog();
+        jPanel_CrearAdmVend = new javax.swing.JPanel();
+        jLabel_nombreCliente10 = new javax.swing.JLabel();
+        jLabel_telefonoCliente7 = new javax.swing.JLabel();
+        jLabel_direccionCliente7 = new javax.swing.JLabel();
+        jLabel_FechaCumpleanos7 = new javax.swing.JLabel();
+        jFormattedTextField_nombreAdm = new javax.swing.JFormattedTextField();
+        jFormattedTextField_telefonoAdm = new javax.swing.JFormattedTextField();
+        jFormattedTextField_direccionAdm = new javax.swing.JFormattedTextField();
+        jFormattedTextField_fechaCumpleAdm = new javax.swing.JFormattedTextField();
+        jButton_CrearCliente4 = new javax.swing.JButton();
+        jButton_CancelarCrearCliente4 = new javax.swing.JButton();
+        jLabel_nombreCliente11 = new javax.swing.JLabel();
+        jPasswordField_Adm = new javax.swing.JPasswordField();
+        jPanel_VerAdmVend = new javax.swing.JPanel();
+        jLabel_nombreCliente12 = new javax.swing.JLabel();
+        jLabel_telefonoCliente8 = new javax.swing.JLabel();
+        jLabel_direccionCliente8 = new javax.swing.JLabel();
+        jLabel_FechaCumpleanos8 = new javax.swing.JLabel();
+        jButton_CrearCliente5 = new javax.swing.JButton();
+        jButton_CancelarCrearCliente5 = new javax.swing.JButton();
+        jLabel_DirreVerClteVend = new javax.swing.JLabel();
+        jLabel_FechaCVerClteVend = new javax.swing.JLabel();
+        jLabel_TeleVerClteVend = new javax.swing.JLabel();
+        jLabel_NombreVerClteVend = new javax.swing.JLabel();
+        jLabel_FechaCumpleanos9 = new javax.swing.JLabel();
+        jLabel_CedCVerClteVend = new javax.swing.JLabel();
         jButton_informacionEmpresa = new javax.swing.JButton();
         jButton_usuarios = new javax.swing.JButton();
         jButton1 = new javax.swing.JButton();
 
-        jDialog_empresaUsuario.setLocationByPlatform(true);
-        jDialog_empresaUsuario.setMaximumSize(new java.awt.Dimension(540, 560));
-        jDialog_empresaUsuario.setMinimumSize(new java.awt.Dimension(540, 560));
-        jDialog_empresaUsuario.setPreferredSize(new java.awt.Dimension(540, 560));
-        jDialog_empresaUsuario.addWindowListener(new java.awt.event.WindowAdapter() {
+        jDialog_configuracion.setLocationByPlatform(true);
+        jDialog_configuracion.setMaximumSize(new java.awt.Dimension(540, 560));
+        jDialog_configuracion.setMinimumSize(new java.awt.Dimension(540, 560));
+        jDialog_configuracion.setPreferredSize(new java.awt.Dimension(540, 560));
+        jDialog_configuracion.addWindowListener(new java.awt.event.WindowAdapter() {
             public void windowClosing(java.awt.event.WindowEvent evt) {
-                jDialog_empresaUsuarioWindowClosing(evt);
+                jDialog_configuracionWindowClosing(evt);
             }
         });
 
-        javax.swing.GroupLayout jDialog_empresaUsuarioLayout = new javax.swing.GroupLayout(jDialog_empresaUsuario.getContentPane());
-        jDialog_empresaUsuario.getContentPane().setLayout(jDialog_empresaUsuarioLayout);
-        jDialog_empresaUsuarioLayout.setHorizontalGroup(
-            jDialog_empresaUsuarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        javax.swing.GroupLayout jDialog_configuracionLayout = new javax.swing.GroupLayout(jDialog_configuracion.getContentPane());
+        jDialog_configuracion.getContentPane().setLayout(jDialog_configuracionLayout);
+        jDialog_configuracionLayout.setHorizontalGroup(
+            jDialog_configuracionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGap(0, 493, Short.MAX_VALUE)
         );
-        jDialog_empresaUsuarioLayout.setVerticalGroup(
-            jDialog_empresaUsuarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        jDialog_configuracionLayout.setVerticalGroup(
+            jDialog_configuracionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGap(0, 507, Short.MAX_VALUE)
         );
 
@@ -206,15 +236,39 @@ public class NewJPanel_Configuracion extends javax.swing.JPanel {
         jTabbedPane_crearUsuario.setTabLayoutPolicy(javax.swing.JTabbedPane.SCROLL_TAB_LAYOUT);
         jTabbedPane_crearUsuario.setMaximumSize(new java.awt.Dimension(540, 500));
         jTabbedPane_crearUsuario.setMinimumSize(new java.awt.Dimension(540, 500));
+        jTabbedPane_crearUsuario.addComponentListener(new java.awt.event.ComponentAdapter() {
+            public void componentShown(java.awt.event.ComponentEvent evt) {
+                jTabbedPane_crearUsuarioComponentShown(evt);
+            }
+        });
 
         jPanel_administrador.setMaximumSize(new java.awt.Dimension(540, 500));
         jPanel_administrador.setMinimumSize(new java.awt.Dimension(540, 500));
+        jPanel_administrador.addAncestorListener(new javax.swing.event.AncestorListener() {
+            public void ancestorMoved(javax.swing.event.AncestorEvent evt) {
+            }
+            public void ancestorAdded(javax.swing.event.AncestorEvent evt) {
+                jPanel_administradorAncestorAdded(evt);
+            }
+            public void ancestorRemoved(javax.swing.event.AncestorEvent evt) {
+            }
+        });
 
         jButton10.setText("Ver");
+        jButton10.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton10ActionPerformed(evt);
+            }
+        });
 
         jLabel9.setText("Buscar");
 
         jButton13.setText("Eliminar");
+        jButton13.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton13ActionPerformed(evt);
+            }
+        });
 
         jTable_Generica_Administrador.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -240,8 +294,18 @@ public class NewJPanel_Configuracion extends javax.swing.JPanel {
         });
 
         jButton15.setText("Modificar");
+        jButton15.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton15ActionPerformed(evt);
+            }
+        });
 
         jButton16.setText("Crear");
+        jButton16.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton16ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel_administradorLayout = new javax.swing.GroupLayout(jPanel_administrador);
         jPanel_administrador.setLayout(jPanel_administradorLayout);
@@ -301,12 +365,31 @@ public class NewJPanel_Configuracion extends javax.swing.JPanel {
 
         jPanel_Vendedor.setMaximumSize(new java.awt.Dimension(540, 500));
         jPanel_Vendedor.setMinimumSize(new java.awt.Dimension(540, 500));
+        jPanel_Vendedor.addAncestorListener(new javax.swing.event.AncestorListener() {
+            public void ancestorMoved(javax.swing.event.AncestorEvent evt) {
+            }
+            public void ancestorAdded(javax.swing.event.AncestorEvent evt) {
+                jPanel_VendedorAncestorAdded(evt);
+            }
+            public void ancestorRemoved(javax.swing.event.AncestorEvent evt) {
+            }
+        });
 
         jButton6.setText("Ver");
 
         jButton7.setText("Eliminar");
+        jButton7.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton7ActionPerformed(evt);
+            }
+        });
 
         jButton8.setText("Crear");
+        jButton8.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton8ActionPerformed(evt);
+            }
+        });
 
         jButton9.setText("Modificar");
 
@@ -317,7 +400,7 @@ public class NewJPanel_Configuracion extends javax.swing.JPanel {
             }
         });
 
-        jTable_Generica.setModel(new javax.swing.table.DefaultTableModel(
+        jTable_Generica_Vend.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
@@ -325,13 +408,13 @@ public class NewJPanel_Configuracion extends javax.swing.JPanel {
 
             }
         ));
-        jTable_Generica.setFillsViewportHeight(true);
-        jTable_Generica.addMouseListener(new java.awt.event.MouseAdapter() {
+        jTable_Generica_Vend.setFillsViewportHeight(true);
+        jTable_Generica_Vend.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jTable_GenericaMouseClicked(evt);
+                jTable_Generica_VendMouseClicked(evt);
             }
         });
-        jScrollPane1.setViewportView(jTable_Generica);
+        jScrollPane1.setViewportView(jTable_Generica_Vend);
 
         jLabel8.setText("Buscar");
 
@@ -361,7 +444,7 @@ public class NewJPanel_Configuracion extends javax.swing.JPanel {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jLabel8)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(TextField_Buscador, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(TextField_BuscadorVend, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(31, 31, 31))
         );
         jPanel_VendedorLayout.setVerticalGroup(
@@ -379,7 +462,7 @@ public class NewJPanel_Configuracion extends javax.swing.JPanel {
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel_VendedorLayout.createSequentialGroup()
                         .addGroup(jPanel_VendedorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel8, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(TextField_Buscador, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(TextField_BuscadorVend, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(38, 38, 38)))
                 .addGroup(jPanel_VendedorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton7, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -390,6 +473,257 @@ public class NewJPanel_Configuracion extends javax.swing.JPanel {
         );
 
         jTabbedPane_crearUsuario.addTab("                  Vendedor                                             ", jPanel_Vendedor);
+
+        jTabbedPane_crearUsuario.getAccessibleContext().setAccessibleParent(this);
+
+        jDialog_AdmiVend.setMaximumSize(new java.awt.Dimension(520, 365));
+        jDialog_AdmiVend.setMinimumSize(new java.awt.Dimension(520, 365));
+        jDialog_AdmiVend.setPreferredSize(new java.awt.Dimension(520, 365));
+        jDialog_AdmiVend.addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowClosed(java.awt.event.WindowEvent evt) {
+                jDialog_AdmiVendWindowClosed(evt);
+            }
+        });
+
+        jPanel_CrearAdmVend.setMaximumSize(new java.awt.Dimension(480, 280));
+        jPanel_CrearAdmVend.setMinimumSize(new java.awt.Dimension(480, 280));
+
+        jLabel_nombreCliente10.setText("Nombre del Cliente");
+
+        jLabel_telefonoCliente7.setText("Telefono");
+
+        jLabel_direccionCliente7.setText("Direccion");
+
+        jLabel_FechaCumpleanos7.setText("Fecha de Cumpleanos");
+
+        jFormattedTextField_nombreAdm.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                jFormattedTextField_nombreAdmKeyPressed(evt);
+            }
+        });
+
+        jFormattedTextField_telefonoAdm.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(new java.text.DecimalFormat("#0"))));
+        jFormattedTextField_telefonoAdm.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                jFormattedTextField_telefonoAdmKeyPressed(evt);
+            }
+        });
+
+        jFormattedTextField_direccionAdm.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                jFormattedTextField_direccionAdmKeyPressed(evt);
+            }
+        });
+
+        jFormattedTextField_fechaCumpleAdm.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                jFormattedTextField_fechaCumpleAdmKeyPressed(evt);
+            }
+        });
+
+        jButton_CrearCliente4.setText("Aceptar");
+        jButton_CrearCliente4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton_CrearCliente4ActionPerformed(evt);
+            }
+        });
+        jButton_CrearCliente4.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                jButton_CrearCliente4KeyPressed(evt);
+            }
+        });
+
+        jButton_CancelarCrearCliente4.setText("Cancelar");
+        jButton_CancelarCrearCliente4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton_CancelarCrearCliente4ActionPerformed(evt);
+            }
+        });
+
+        jLabel_nombreCliente11.setText("Contrasena");
+
+        javax.swing.GroupLayout jPanel_CrearAdmVendLayout = new javax.swing.GroupLayout(jPanel_CrearAdmVend);
+        jPanel_CrearAdmVend.setLayout(jPanel_CrearAdmVendLayout);
+        jPanel_CrearAdmVendLayout.setHorizontalGroup(
+            jPanel_CrearAdmVendLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel_CrearAdmVendLayout.createSequentialGroup()
+                .addContainerGap(309, Short.MAX_VALUE)
+                .addComponent(jButton_CrearCliente4)
+                .addGap(27, 27, 27)
+                .addComponent(jButton_CancelarCrearCliente4)
+                .addGap(18, 18, 18))
+            .addGroup(jPanel_CrearAdmVendLayout.createSequentialGroup()
+                .addGap(20, 20, 20)
+                .addGroup(jPanel_CrearAdmVendLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel_CrearAdmVendLayout.createSequentialGroup()
+                        .addGroup(jPanel_CrearAdmVendLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(jLabel_telefonoCliente7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jLabel_direccionCliente7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jLabel_FechaCumpleanos7, javax.swing.GroupLayout.Alignment.TRAILING))
+                        .addGap(18, 18, 18)
+                        .addGroup(jPanel_CrearAdmVendLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(jFormattedTextField_telefonoAdm)
+                            .addComponent(jFormattedTextField_direccionAdm)
+                            .addComponent(jFormattedTextField_fechaCumpleAdm, javax.swing.GroupLayout.DEFAULT_SIZE, 168, Short.MAX_VALUE)))
+                    .addGroup(jPanel_CrearAdmVendLayout.createSequentialGroup()
+                        .addGroup(jPanel_CrearAdmVendLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel_nombreCliente10)
+                            .addComponent(jLabel_nombreCliente11))
+                        .addGap(33, 33, 33)
+                        .addGroup(jPanel_CrearAdmVendLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(jFormattedTextField_nombreAdm, javax.swing.GroupLayout.DEFAULT_SIZE, 168, Short.MAX_VALUE)
+                            .addComponent(jPasswordField_Adm))))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+        jPanel_CrearAdmVendLayout.setVerticalGroup(
+            jPanel_CrearAdmVendLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel_CrearAdmVendLayout.createSequentialGroup()
+                .addGap(24, 24, 24)
+                .addGroup(jPanel_CrearAdmVendLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel_nombreCliente10)
+                    .addComponent(jFormattedTextField_nombreAdm, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(jPanel_CrearAdmVendLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel_nombreCliente11)
+                    .addComponent(jPasswordField_Adm, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(jPanel_CrearAdmVendLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel_telefonoCliente7)
+                    .addComponent(jFormattedTextField_telefonoAdm, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(jPanel_CrearAdmVendLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel_direccionCliente7)
+                    .addComponent(jFormattedTextField_direccionAdm, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(29, 29, 29)
+                .addGroup(jPanel_CrearAdmVendLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel_FechaCumpleanos7)
+                    .addComponent(jFormattedTextField_fechaCumpleAdm, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 60, Short.MAX_VALUE)
+                .addGroup(jPanel_CrearAdmVendLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jButton_CancelarCrearCliente4)
+                    .addComponent(jButton_CrearCliente4))
+                .addGap(19, 19, 19))
+        );
+
+        jPanel_VerAdmVend.setMaximumSize(new java.awt.Dimension(480, 280));
+        jPanel_VerAdmVend.setMinimumSize(new java.awt.Dimension(480, 280));
+
+        jLabel_nombreCliente12.setText("Nombre del Cliente");
+
+        jLabel_telefonoCliente8.setText("Telefono");
+
+        jLabel_direccionCliente8.setText("Direccion");
+
+        jLabel_FechaCumpleanos8.setText("Fecha de Cumpleaños");
+
+        jButton_CrearCliente5.setText("Aceptar");
+        jButton_CrearCliente5.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton_CrearCliente5ActionPerformed(evt);
+            }
+        });
+        jButton_CrearCliente5.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                jButton_CrearCliente5KeyPressed(evt);
+            }
+        });
+
+        jButton_CancelarCrearCliente5.setText("Cancelar");
+        jButton_CancelarCrearCliente5.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton_CancelarCrearCliente5ActionPerformed(evt);
+            }
+        });
+
+        jLabel_DirreVerClteVend.setBackground(new java.awt.Color(0, 51, 51));
+
+        jLabel_FechaCVerClteVend.setBackground(new java.awt.Color(0, 51, 51));
+
+        jLabel_TeleVerClteVend.setBackground(new java.awt.Color(0, 51, 51));
+
+        jLabel_NombreVerClteVend.setBackground(new java.awt.Color(0, 51, 51));
+
+        jLabel_FechaCumpleanos9.setText("Cedula");
+
+        jLabel_CedCVerClteVend.setBackground(new java.awt.Color(0, 51, 51));
+
+        javax.swing.GroupLayout jPanel_VerAdmVendLayout = new javax.swing.GroupLayout(jPanel_VerAdmVend);
+        jPanel_VerAdmVend.setLayout(jPanel_VerAdmVendLayout);
+        jPanel_VerAdmVendLayout.setHorizontalGroup(
+            jPanel_VerAdmVendLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel_VerAdmVendLayout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jButton_CrearCliente5)
+                .addGap(27, 27, 27)
+                .addComponent(jButton_CancelarCrearCliente5)
+                .addGap(18, 18, 18))
+            .addGroup(jPanel_VerAdmVendLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel_VerAdmVendLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jLabel_FechaCumpleanos9, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jLabel_telefonoCliente8, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jLabel_nombreCliente12)
+                    .addComponent(jLabel_direccionCliente8, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jLabel_FechaCumpleanos8, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel_VerAdmVendLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel_DirreVerClteVend, javax.swing.GroupLayout.PREFERRED_SIZE, 168, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel_TeleVerClteVend, javax.swing.GroupLayout.PREFERRED_SIZE, 168, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel_FechaCVerClteVend, javax.swing.GroupLayout.PREFERRED_SIZE, 168, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel_NombreVerClteVend, javax.swing.GroupLayout.PREFERRED_SIZE, 168, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel_CedCVerClteVend, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 168, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(191, Short.MAX_VALUE))
+        );
+        jPanel_VerAdmVendLayout.setVerticalGroup(
+            jPanel_VerAdmVendLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel_VerAdmVendLayout.createSequentialGroup()
+                .addContainerGap(38, Short.MAX_VALUE)
+                .addGroup(jPanel_VerAdmVendLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel_nombreCliente12)
+                    .addComponent(jLabel_NombreVerClteVend, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(25, 25, 25)
+                .addGroup(jPanel_VerAdmVendLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel_telefonoCliente8)
+                    .addComponent(jLabel_TeleVerClteVend, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(28, 28, 28)
+                .addGroup(jPanel_VerAdmVendLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel_direccionCliente8)
+                    .addComponent(jLabel_DirreVerClteVend, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(28, 28, 28)
+                .addGroup(jPanel_VerAdmVendLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel_FechaCumpleanos8)
+                    .addComponent(jLabel_FechaCVerClteVend, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(28, 28, 28)
+                .addGroup(jPanel_VerAdmVendLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel_FechaCumpleanos9)
+                    .addComponent(jLabel_CedCVerClteVend, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(jPanel_VerAdmVendLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jButton_CancelarCrearCliente5)
+                    .addComponent(jButton_CrearCliente5))
+                .addGap(19, 19, 19))
+        );
+
+        javax.swing.GroupLayout jDialog_AdmiVendLayout = new javax.swing.GroupLayout(jDialog_AdmiVend.getContentPane());
+        jDialog_AdmiVend.getContentPane().setLayout(jDialog_AdmiVendLayout);
+        jDialog_AdmiVendLayout.setHorizontalGroup(
+            jDialog_AdmiVendLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jPanel_CrearAdmVend, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(jDialog_AdmiVendLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jDialog_AdmiVendLayout.createSequentialGroup()
+                    .addContainerGap()
+                    .addComponent(jPanel_VerAdmVend, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addContainerGap()))
+        );
+        jDialog_AdmiVendLayout.setVerticalGroup(
+            jDialog_AdmiVendLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jPanel_CrearAdmVend, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(jDialog_AdmiVendLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jDialog_AdmiVendLayout.createSequentialGroup()
+                    .addContainerGap()
+                    .addComponent(jPanel_VerAdmVend, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addContainerGap()))
+        );
 
         setMaximumSize(new java.awt.Dimension(897, 477));
         setMinimumSize(new java.awt.Dimension(897, 477));
@@ -445,31 +779,31 @@ public class NewJPanel_Configuracion extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton_informacionEmpresaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_informacionEmpresaActionPerformed
-        jDialog_empresaUsuario.setTitle("Informacion de la Empresa");
+        jDialog_configuracion.setTitle("Informacion de la Empresa");
         jPanel_infoEmpresa.setVisible(true);
-        jDialog_empresaUsuario.setLocation(getLocationOnScreen());
-        jPanel_infoEmpresa.setSize(jDialog_empresaUsuario.getSize());
-        jDialog_empresaUsuario.add(jPanel_infoEmpresa);
-        jDialog_empresaUsuario.setVisible(true);
+        jDialog_configuracion.setLocation(getLocationOnScreen());
+        jPanel_infoEmpresa.setSize(jDialog_configuracion.getSize());
+        jDialog_configuracion.add(jPanel_infoEmpresa);
+        jDialog_configuracion.setVisible(true);
     }//GEN-LAST:event_jButton_informacionEmpresaActionPerformed
 
-    private void jDialog_empresaUsuarioWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_jDialog_empresaUsuarioWindowClosing
+    private void jDialog_configuracionWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_jDialog_configuracionWindowClosing
         jTabbedPane_crearUsuario.setVisible(false);
         jPanel_infoEmpresa.setVisible(false);
-    }//GEN-LAST:event_jDialog_empresaUsuarioWindowClosing
+    }//GEN-LAST:event_jDialog_configuracionWindowClosing
 
     private void jButton_usuariosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_usuariosActionPerformed
         jTabbedPane_crearUsuario.setVisible(true);
-        jDialog_empresaUsuario.setLocation(getLocationOnScreen());
-        jTabbedPane_crearUsuario.setSize(jDialog_empresaUsuario.getSize());
-        jDialog_empresaUsuario.add(jTabbedPane_crearUsuario);
-        jDialog_empresaUsuario.setTitle("Crear Usuario");
-        jDialog_empresaUsuario.setVisible(true);
+        jDialog_configuracion.setLocation(getLocationOnScreen());
+        jTabbedPane_crearUsuario.setSize(jDialog_configuracion.getSize());
+        jDialog_configuracion.add(jTabbedPane_crearUsuario);
+        jDialog_configuracion.setTitle("Crear Usuario");
+        jDialog_configuracion.setVisible(true);
     }//GEN-LAST:event_jButton_usuariosActionPerformed
 
     private void jButton_cancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_cancelarActionPerformed
-        jDialog_empresaUsuario.remove(jPanel_infoEmpresa);
-        jDialog_empresaUsuario.setVisible(false);
+        jDialog_configuracion.remove(jPanel_infoEmpresa);
+        jDialog_configuracion.setVisible(false);
     }//GEN-LAST:event_jButton_cancelarActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
@@ -480,28 +814,137 @@ public class NewJPanel_Configuracion extends javax.swing.JPanel {
 
     private void jButton11ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton11ActionPerformed
         jTabbedPane_crearUsuario.setVisible(false);
-        jDialog_empresaUsuario.setVisible(false);
+        jDialog_configuracion.setVisible(false);
     }//GEN-LAST:event_jButton11ActionPerformed
 
-    private void jTable_GenericaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable_GenericaMouseClicked
+    private void jTable_Generica_VendMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable_Generica_VendMouseClicked
         if (evt.getClickCount() == 2) {
             //            this.jButton_AceptarBusqueda.doClick();
         }
-    }//GEN-LAST:event_jTable_GenericaMouseClicked
+    }//GEN-LAST:event_jTable_Generica_VendMouseClicked
 
     private void jTable_Generica_AdministradorMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable_Generica_AdministradorMouseClicked
         // TODO add your handling code here:
     }//GEN-LAST:event_jTable_Generica_AdministradorMouseClicked
 
     private void jButton14ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton14ActionPerformed
-        jDialog_empresaUsuario.remove(jTabbedPane_crearUsuario);
-        jDialog_empresaUsuario.setVisible(false);
+        jDialog_configuracion.remove(jTabbedPane_crearUsuario);
+        jDialog_configuracion.setVisible(false);
     }//GEN-LAST:event_jButton14ActionPerformed
+
+    private void jTabbedPane_crearUsuarioComponentShown(java.awt.event.ComponentEvent evt) {//GEN-FIRST:event_jTabbedPane_crearUsuarioComponentShown
+
+    }//GEN-LAST:event_jTabbedPane_crearUsuarioComponentShown
+
+    private void jPanel_administradorAncestorAdded(javax.swing.event.AncestorEvent evt) {//GEN-FIRST:event_jPanel_administradorAncestorAdded
+        actualizaTablaParaAdministradores();
+    }//GEN-LAST:event_jPanel_administradorAncestorAdded
+
+    private void jPanel_VendedorAncestorAdded(javax.swing.event.AncestorEvent evt) {//GEN-FIRST:event_jPanel_VendedorAncestorAdded
+        actualizaTablaParaVendedores();
+    }//GEN-LAST:event_jPanel_VendedorAncestorAdded
+
+    private void jButton16ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton16ActionPerformed
+        jPanel_CrearAdmVend.setVisible(true);
+        jPanel_VerAdmVend.setVisible(false);
+        jDialog_AdmiVend.setLocation(getLocationOnScreen());
+        jDialog_AdmiVend.setVisible(true);
+    }//GEN-LAST:event_jButton16ActionPerformed
+
+    private void jFormattedTextField_nombreAdmKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jFormattedTextField_nombreAdmKeyPressed
+        if (evt.getKeyChar() == KeyEvent.VK_ENTER) {
+            this.jFormattedTextField_nombreClteVend.transferFocus();
+        }
+    }//GEN-LAST:event_jFormattedTextField_nombreAdmKeyPressed
+
+    private void jFormattedTextField_telefonoAdmKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jFormattedTextField_telefonoAdmKeyPressed
+        if (evt.getKeyChar() == KeyEvent.VK_ENTER) {
+            this.jFormattedTextField_telefonoClteVend.transferFocus();
+        }
+    }//GEN-LAST:event_jFormattedTextField_telefonoAdmKeyPressed
+
+    private void jFormattedTextField_direccionAdmKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jFormattedTextField_direccionAdmKeyPressed
+        if (evt.getKeyChar() == KeyEvent.VK_ENTER) {
+            this.jFormattedTextField_direccionClteVend.transferFocus();
+        }
+    }//GEN-LAST:event_jFormattedTextField_direccionAdmKeyPressed
+
+    private void jFormattedTextField_fechaCumpleAdmKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jFormattedTextField_fechaCumpleAdmKeyPressed
+        if (evt.getKeyChar() == KeyEvent.VK_ENTER) {
+            this.jFormattedTextField_fechaCumpleClteVend.transferFocus();
+
+        }
+    }//GEN-LAST:event_jFormattedTextField_fechaCumpleAdmKeyPressed
+
+    private void jButton_CrearCliente4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_CrearCliente4ActionPerformed
+        crearPersona("Administrador");
+        actualizaTablaParaAdministradores();
+        jDialog_AdmiVend.dispose();
+    }//GEN-LAST:event_jButton_CrearCliente4ActionPerformed
+
+    private void jButton_CrearCliente4KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jButton_CrearCliente4KeyPressed
+        if (evt.getKeyChar() == KeyEvent.VK_ENTER) {
+            // this.crearCliente();
+        }
+    }//GEN-LAST:event_jButton_CrearCliente4KeyPressed
+
+    private void jButton_CancelarCrearCliente4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_CancelarCrearCliente4ActionPerformed
+        jDialog_AdmiVend.dispose();
+    }//GEN-LAST:event_jButton_CancelarCrearCliente4ActionPerformed
+
+    private void jButton_CrearCliente5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_CrearCliente5ActionPerformed
+        jDialog_AdmiVend.dispose();
+    }//GEN-LAST:event_jButton_CrearCliente5ActionPerformed
+
+    private void jButton_CrearCliente5KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jButton_CrearCliente5KeyPressed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton_CrearCliente5KeyPressed
+
+    private void jButton_CancelarCrearCliente5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_CancelarCrearCliente5ActionPerformed
+        jDialog_AdmiVend.dispose();
+    }//GEN-LAST:event_jButton_CancelarCrearCliente5ActionPerformed
+
+    private void jButton10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton10ActionPerformed
+        jPanel_CrearAdmVend.setVisible(false);
+        jPanel_VerAdmVend.setVisible(true);
+        jDialog_AdmiVend.setLocation(getLocationOnScreen());
+        jDialog_AdmiVend.setVisible(true);
+
+    }//GEN-LAST:event_jButton10ActionPerformed
+
+    private void jDialog_AdmiVendWindowClosed(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_jDialog_AdmiVendWindowClosed
+        jPanel_CrearAdmVend.setVisible(false);
+        jPanel_VerAdmVend.setVisible(false);
+    }//GEN-LAST:event_jDialog_AdmiVendWindowClosed
+
+    private void jButton8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton8ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton8ActionPerformed
+
+    private void jButton13ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton13ActionPerformed
+        AdminBD.eliminarUsuario(jTable_Generica_Administrador
+                .getValueAt(
+                        jTable_Generica_Administrador.getSelectedRow(), 0).
+                toString(), "Administrador");
+        actualizaTablaParaAdministradores();
+    }//GEN-LAST:event_jButton13ActionPerformed
+
+    private void jButton15ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton15ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton15ActionPerformed
+
+    private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton7ActionPerformed
+        AdminBD.eliminarUsuario(jTable_Generica_Vend
+                .getValueAt(
+                        jTable_Generica_Vend.getSelectedRow(), 0).
+                toString(), "Vendedor");
+        actualizaTablaParaVendedores();
+    }//GEN-LAST:event_jButton7ActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JTextField TextField_Buscador;
     private javax.swing.JTextField TextField_BuscadorAdm;
+    private javax.swing.JTextField TextField_BuscadorVend;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton10;
     private javax.swing.JButton jButton11;
@@ -513,11 +956,48 @@ public class NewJPanel_Configuracion extends javax.swing.JPanel {
     private javax.swing.JButton jButton7;
     private javax.swing.JButton jButton8;
     private javax.swing.JButton jButton9;
+    private javax.swing.JButton jButton_CancelarCrearCliente;
+    private javax.swing.JButton jButton_CancelarCrearCliente1;
+    private javax.swing.JButton jButton_CancelarCrearCliente2;
+    private javax.swing.JButton jButton_CancelarCrearCliente3;
+    private javax.swing.JButton jButton_CancelarCrearCliente4;
+    private javax.swing.JButton jButton_CancelarCrearCliente5;
+    private javax.swing.JButton jButton_CrearCliente;
+    private javax.swing.JButton jButton_CrearCliente1;
+    private javax.swing.JButton jButton_CrearCliente2;
+    private javax.swing.JButton jButton_CrearCliente3;
+    private javax.swing.JButton jButton_CrearCliente4;
+    private javax.swing.JButton jButton_CrearCliente5;
     private javax.swing.JButton jButton_aceptar;
     private javax.swing.JButton jButton_cancelar;
     private javax.swing.JButton jButton_informacionEmpresa;
     private javax.swing.JButton jButton_usuarios;
-    private javax.swing.JDialog jDialog_empresaUsuario;
+    private javax.swing.JDialog jDialog_AdmiVend;
+    private javax.swing.JDialog jDialog_CrearVendAdm;
+    private javax.swing.JDialog jDialog_configuracion;
+    private javax.swing.JFormattedTextField jFormattedTextField_direccionAdm;
+    private javax.swing.JFormattedTextField jFormattedTextField_direccionClteVend;
+    private javax.swing.JFormattedTextField jFormattedTextField_direccionClteVend1;
+    private javax.swing.JFormattedTextField jFormattedTextField_direccionClteVend2;
+    private javax.swing.JFormattedTextField jFormattedTextField_direccionClteVend3;
+    private javax.swing.JFormattedTextField jFormattedTextField_fechaCumpleAdm;
+    private javax.swing.JFormattedTextField jFormattedTextField_fechaCumpleClteVend;
+    private javax.swing.JFormattedTextField jFormattedTextField_fechaCumpleClteVend1;
+    private javax.swing.JFormattedTextField jFormattedTextField_fechaCumpleClteVend2;
+    private javax.swing.JFormattedTextField jFormattedTextField_fechaCumpleClteVend3;
+    private javax.swing.JFormattedTextField jFormattedTextField_nombreAdm;
+    private javax.swing.JFormattedTextField jFormattedTextField_nombreClteVend;
+    private javax.swing.JFormattedTextField jFormattedTextField_nombreClteVend1;
+    private javax.swing.JFormattedTextField jFormattedTextField_nombreClteVend2;
+    private javax.swing.JFormattedTextField jFormattedTextField_nombreClteVend3;
+    private javax.swing.JFormattedTextField jFormattedTextField_nombreClteVend4;
+    private javax.swing.JFormattedTextField jFormattedTextField_nombreClteVend5;
+    private javax.swing.JFormattedTextField jFormattedTextField_nombreClteVend6;
+    private javax.swing.JFormattedTextField jFormattedTextField_telefonoAdm;
+    private javax.swing.JFormattedTextField jFormattedTextField_telefonoClteVend;
+    private javax.swing.JFormattedTextField jFormattedTextField_telefonoClteVend1;
+    private javax.swing.JFormattedTextField jFormattedTextField_telefonoClteVend2;
+    private javax.swing.JFormattedTextField jFormattedTextField_telefonoClteVend3;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -526,14 +1006,55 @@ public class NewJPanel_Configuracion extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
+    private javax.swing.JLabel jLabel_CedCVerClteVend;
+    private javax.swing.JLabel jLabel_DirreVerClteVend;
+    private javax.swing.JLabel jLabel_FechaCVerClteVend;
+    private javax.swing.JLabel jLabel_FechaCumpleanos3;
+    private javax.swing.JLabel jLabel_FechaCumpleanos4;
+    private javax.swing.JLabel jLabel_FechaCumpleanos5;
+    private javax.swing.JLabel jLabel_FechaCumpleanos6;
+    private javax.swing.JLabel jLabel_FechaCumpleanos7;
+    private javax.swing.JLabel jLabel_FechaCumpleanos8;
+    private javax.swing.JLabel jLabel_FechaCumpleanos9;
+    private javax.swing.JLabel jLabel_NombreVerClteVend;
+    private javax.swing.JLabel jLabel_TeleVerClteVend;
+    private javax.swing.JLabel jLabel_direccionCliente3;
+    private javax.swing.JLabel jLabel_direccionCliente4;
+    private javax.swing.JLabel jLabel_direccionCliente5;
+    private javax.swing.JLabel jLabel_direccionCliente6;
+    private javax.swing.JLabel jLabel_direccionCliente7;
+    private javax.swing.JLabel jLabel_direccionCliente8;
+    private javax.swing.JLabel jLabel_nombreCliente10;
+    private javax.swing.JLabel jLabel_nombreCliente11;
+    private javax.swing.JLabel jLabel_nombreCliente12;
+    private javax.swing.JLabel jLabel_nombreCliente3;
+    private javax.swing.JLabel jLabel_nombreCliente4;
+    private javax.swing.JLabel jLabel_nombreCliente5;
+    private javax.swing.JLabel jLabel_nombreCliente6;
+    private javax.swing.JLabel jLabel_nombreCliente7;
+    private javax.swing.JLabel jLabel_nombreCliente8;
+    private javax.swing.JLabel jLabel_nombreCliente9;
+    private javax.swing.JLabel jLabel_telefonoCliente3;
+    private javax.swing.JLabel jLabel_telefonoCliente4;
+    private javax.swing.JLabel jLabel_telefonoCliente5;
+    private javax.swing.JLabel jLabel_telefonoCliente6;
+    private javax.swing.JLabel jLabel_telefonoCliente7;
+    private javax.swing.JLabel jLabel_telefonoCliente8;
+    private javax.swing.JPanel jPanel_CrearAdmVend;
+    private javax.swing.JPanel jPanel_CrearCliente;
+    private javax.swing.JPanel jPanel_CrearVendAdm;
+    private javax.swing.JPanel jPanel_CrearVendAdm1;
+    private javax.swing.JPanel jPanel_CrearVendAdm2;
     private javax.swing.JPanel jPanel_Vendedor;
+    private javax.swing.JPanel jPanel_VerAdmVend;
     private javax.swing.JPanel jPanel_administrador;
     private javax.swing.JPanel jPanel_infoEmpresa;
+    private javax.swing.JPasswordField jPasswordField_Adm;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JTabbedPane jTabbedPane_crearUsuario;
-    private javax.swing.JTable jTable_Generica;
     private javax.swing.JTable jTable_Generica_Administrador;
+    private javax.swing.JTable jTable_Generica_Vend;
     private javax.swing.JTextField jTextField_CedJ;
     private javax.swing.JTextField jTextField_Direccion;
     private javax.swing.JTextField jTextField_ciudad;
@@ -542,11 +1063,11 @@ public class NewJPanel_Configuracion extends javax.swing.JPanel {
     private javax.swing.JTextField jTextField_telefono;
     // End of variables declaration//GEN-END:variables
 
-public void actualizaTablaParaAdministradores() {
+    public void actualizaTablaParaAdministradores() {
+
         AdminBD.consultarAdministradores();
         data = AdminBD.getData();
         String[] columnNames = AdminBD.getColumnNames();
-
         this.jTable_Generica_Administrador.setModel(new MyTableModel_Generic(columnNames, data));
         //Crea el ordenador para la tabla generica
         TableRowSorter<TableModel> ordenador = new TableRowSorter<TableModel>(this.jTable_Generica_Administrador.getModel());
@@ -555,13 +1076,50 @@ public void actualizaTablaParaAdministradores() {
         qq.add(new RowSorter.SortKey(0, SortOrder.ASCENDING));
         ordenador.setSortKeys(qq);
         jTable_Generica_Administrador.requestFocus();
-       jTable_Generica_Administrador.changeSelection(0, 0, false, false);
+        jTable_Generica_Administrador.changeSelection(0, 0, false, false);
         /**
          * Agrega el listener al JtextField del buscador *
          */
         this.TextField_BuscadorAdm.getDocument().addDocumentListener(new ListenerBuscador(this.TextField_BuscadorAdm, ordenador));
+    }
+
+    public void actualizaTablaParaVendedores() {
+        AdminBD.consultarVendedores();
+        data = AdminBD.getData();
+        String[] columnNames = AdminBD.getColumnNames();
+
+        this.jTable_Generica_Vend.setModel(new MyTableModel_Generic(columnNames,
+                data));
+        //Crea el ordenador para la tabla generica
+        TableRowSorter<TableModel> ordenador = new TableRowSorter<TableModel>(
+                this.jTable_Generica_Vend.getModel());
+        this.jTable_Generica_Vend.setRowSorter(ordenador);
+        Vector<RowSorter.SortKey> qq = new Vector<RowSorter.SortKey>();
+        qq.add(new RowSorter.SortKey(0, SortOrder.ASCENDING));
+        ordenador.setSortKeys(qq);
+        jTable_Generica_Vend.requestFocus();
+        jTable_Generica_Vend.changeSelection(0, 0, false, false);
+        /**
+         * Agrega el listener al JtextField del buscador *
+         */
+        this.TextField_BuscadorVend.getDocument().
+                addDocumentListener(new ListenerBuscador(
+                                this.TextField_BuscadorVend, ordenador));
 
     }
 
-}
+    private void crearPersona(String tipoPersona) {
+        String nombre = this.jFormattedTextField_nombreAdm.getText();
+        String direccion = this.jFormattedTextField_direccionAdm.getText();
+        String telefono = this.jFormattedTextField_telefonoAdm.getText();
+        String fechaCumpleanos = this.jFormattedTextField_fechaCumpleAdm.getText();
+        String clave = this.jPasswordField_Adm.getText();
+        if (fechaCumpleanos.equals("")) {
+            fechaCumpleanos = null;
+        }
+        //si se crea la persona 
+        if(AdminBD.insertarPersona(nombre, direccion, telefono, fechaCumpleanos)){
+        }
+    }
 
+}

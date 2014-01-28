@@ -1039,15 +1039,16 @@ public class Direct_Control_BD {
 
     /**
      * Inserta un movimiento en la base
+     *
      * @param Fecha
      * @param Detalle
      * @param idTipoMovimiento
      * @param idLugarMovimiento
-     * @param valormovimiento 
+     * @param valormovimiento
      */
     public void insertarmovimiento(String Detalle, int idTipoMovimiento,
-            int idLugarMovimiento,BigDecimal valormovimiento) {
-        
+            int idLugarMovimiento, BigDecimal valormovimiento) {
+
         try {
             String devolucion = this.readSql("../Joe/src/sql_files/"
                     + "insertarMovimiento.sql");
@@ -1060,7 +1061,7 @@ public class Direct_Control_BD {
             stm.setInt(3, idTipoMovimiento);
             stm.setInt(4, idLugarMovimiento);
             stm.setBigDecimal(5, valormovimiento);
-           stm.executeUpdate();
+            stm.executeUpdate();
 
         } catch (Exception e) {
             System.out.println("Error al insertar movimiento");
@@ -1852,7 +1853,7 @@ public class Direct_Control_BD {
      * @param telefono
      * @param FechaCumpleanos
      */
-    public void insertarCliente(String nombre, String direccion,String telefono, String FechaCumpleanos) {
+    public void insertarCliente(String nombre, String direccion, String telefono, String FechaCumpleanos) {
         try {
             String crearCliente = this.readSql("../Joe/src/sql_files/"
                     + "crearCliente.sql");
@@ -1862,7 +1863,7 @@ public class Direct_Control_BD {
             stm.setString(3, telefono);
             stm.setString(4, FechaCumpleanos);
             stm.executeUpdate();
-            int idCliente= this.veridCliente(nombre);
+            int idCliente = this.veridCliente(nombre);
             this.insertarIdCliente(idCliente);
 
         } catch (Exception e) {
@@ -3063,7 +3064,7 @@ public class Direct_Control_BD {
      * @param nombre
      */
     public void modificarPersona(String NuevoNombre, String direccion,
-            int tipoPersona, String telefono, String fechaCumple, String cedula,
+            String telefono, String fechaCumple, String cedula,
             String nombre) {
 
         try {
@@ -3076,7 +3077,6 @@ public class Direct_Control_BD {
             stm.setString(4, telefono);
             stm.setString(5, fechaCumple);
             stm.setString(6, nombre);
-            stm.setInt(7, tipoPersona);
             stm.executeUpdate();
         } catch (IOException | SQLException e) {
             System.out.println("Error al actualizar la informacion de persona");
@@ -3095,7 +3095,7 @@ public class Direct_Control_BD {
      * @param nombre
      */
     public void modificarPersona(String NuevoNombre, String direccion,
-            int tipoPersona, String telefono, String cedula,
+            String telefono, String cedula,
             String nombre) {
 
         try {
@@ -3107,7 +3107,6 @@ public class Direct_Control_BD {
             stm.setString(3, cedula);
             stm.setString(4, telefono);
             stm.setString(5, nombre);
-            stm.setInt(6, tipoPersona);
             stm.executeUpdate();
         } catch (IOException | SQLException e) {
             System.out.println("Error al actualizar la informacion de persona");
@@ -3248,12 +3247,19 @@ public class Direct_Control_BD {
         }
     }
 
-
     public void consultarAdministradores() {
-    
-    
-    }
+        try {
+            String administradores = this.readSql("../Joe/src/"
+                    + "sql_files/ConsultarAdministradores.sql");
+            PreparedStatement stm = this.conection.prepareStatement(administradores);
+            ResultSet resultset = stm.executeQuery();
+            this.setColumnNames(this.Get_Columnas(resultset));
+            this.setData(this.ResultSet_Array(resultset));
+        } catch (Exception e) {
+            System.out.println("Error al Consultar Administradores");
+        }
 
+    }
 
     public int ObtenerUltimoidMovimiento() {
         int result = 0;
@@ -3276,7 +3282,8 @@ public class Direct_Control_BD {
 
     /**
      * Este metodo permite crear un cliente
-     * @param idCliente 
+     *
+     * @param idCliente
      */
     public void insertarIdCliente(int idCliente) {
         try {
@@ -3291,6 +3298,7 @@ public class Direct_Control_BD {
 
         }
     }
+
 
     public void insertarProductoCantidadMovimiento(String idProducto, int idVersion, int idMovimiento,int cantidad,BigDecimal PrecioVenta) {
         try {
@@ -3337,7 +3345,54 @@ public class Direct_Control_BD {
             this.setData(this.ResultSet_Array(resultset));
 
         } catch (Exception e) {
-            System.out.println("Error al ver entradas de mercaderia");
+            System.out.println("Error al ver entradas de mercaderia");}}
+
+    public void eliminarUsuario(String usuario, String tipoUsuario) {
+        try {
+            String Usuario = this.readSql("../Joe"
+                    + "/src/sql_files/eliminarUsuario.sql");
+            PreparedStatement stm = this.conection.prepareStatement(Usuario);
+            stm.setString(1, usuario);
+            stm.setString(2, tipoUsuario);
+            stm.executeUpdate();
+
+        } catch (Exception e) {
+            System.out.println("No se pudo eliminar el usuario");
+
+        }
+    }
+
+    public boolean insertarPersona(String nombre, String direccion,
+            String telefono, String fechaCumpleanos) {
+        try {
+            String PersonaUsuario = this.readSql("../Joe"
+                    + "/src/sql_files/CrearUsuario.sql");
+            PreparedStatement stm = this.conection.
+                    prepareStatement(PersonaUsuario);
+            stm.setString(1, nombre);
+            stm.setString(2, direccion);
+            stm.setString(3, telefono);
+            stm.setString(4, fechaCumpleanos);
+            stm.executeUpdate();
+            return true;
+        } catch (Exception e) {
+            System.out.println("Error al crear Usuario");
+
+        }
+        return false;
+    }
+
+    private void insertarUsuario(String tipoUsuario) {
+        try {
+            String Usuario = this.readSql("../Joe"
+                    + "/src/sql_files/InsertarUsuario.sql");
+            PreparedStatement stm = this.conection.prepareStatement(Usuario);
+            stm.setString(1, tipoUsuario);
+            stm.executeUpdate();
+        } catch (Exception e) {
+            System.out.println("Error al insertar Usuario");
+
+
         }
     }
 

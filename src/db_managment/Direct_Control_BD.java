@@ -3278,7 +3278,7 @@ public class Direct_Control_BD {
      * Este metodo permite crear un cliente
      * @param idCliente 
      */
-    private void insertarIdCliente(int idCliente) {
+    public void insertarIdCliente(int idCliente) {
         try {
             String insertarIdCliente = this.readSql("../Joe"
                     + "/src/sql_files/crearIdCliente.sql");

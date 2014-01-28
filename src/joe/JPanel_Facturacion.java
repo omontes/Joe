@@ -840,7 +840,7 @@ public class JPanel_Facturacion extends javax.swing.JPanel {
         panelCreaFact.jLabel_NumerodeFact.setText(factura);
         panelCreaFact.personalizarTablaFactura();
         panelCreaFact.agregarListenerRenders();
-        panelCreaFact.jFormattedTextField_Cliente.setText("Cliente Anonimo");
+        panelCreaFact.jFormattedTextField_Cliente.setText("Cliente Generico");
        
         
         

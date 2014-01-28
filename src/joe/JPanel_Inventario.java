@@ -154,6 +154,8 @@ public class JPanel_Inventario extends javax.swing.JPanel {
         jButton5 = new javax.swing.JButton();
         jButton_CrearEntrada = new javax.swing.JButton();
         jPanel6 = new javax.swing.JPanel();
+        jPanel1 = new javax.swing.JPanel();
+        jPanel4 = new javax.swing.JPanel();
 
         jPanel2.setBackground(new java.awt.Color(153, 153, 153));
 
@@ -839,7 +841,7 @@ public class JPanel_Inventario extends javax.swing.JPanel {
             .addGroup(jPanel_InventarioGeneralLayout.createSequentialGroup()
                 .addGap(83, 83, 83)
                 .addComponent(jButton4)
-                .addGap(27, 27, 27)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jButton_CrearProductoInventario, javax.swing.GroupLayout.PREFERRED_SIZE, 129, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jButton_EliminarProductoInventario, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -857,7 +859,7 @@ public class JPanel_Inventario extends javax.swing.JPanel {
             jPanel_InventarioGeneralLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel_InventarioGeneralLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane5, javax.swing.GroupLayout.DEFAULT_SIZE, 355, Short.MAX_VALUE)
+                .addComponent(jScrollPane5, javax.swing.GroupLayout.DEFAULT_SIZE, 350, Short.MAX_VALUE)
                 .addGap(18, 18, 18)
                 .addGroup(jPanel_InventarioGeneralLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton_CrearProductoInventario)
@@ -935,6 +937,32 @@ public class JPanel_Inventario extends javax.swing.JPanel {
 
         jTabbedPane1.addTab("Salida de Mercaderia", jPanel6);
 
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 899, Short.MAX_VALUE)
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 417, Short.MAX_VALUE)
+        );
+
+        jTabbedPane1.addTab("Bodega", jPanel1);
+
+        javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
+        jPanel4.setLayout(jPanel4Layout);
+        jPanel4Layout.setHorizontalGroup(
+            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 899, Short.MAX_VALUE)
+        );
+        jPanel4Layout.setVerticalGroup(
+            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 417, Short.MAX_VALUE)
+        );
+
+        jTabbedPane1.addTab("Movimientos", jPanel4);
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
@@ -951,42 +979,6 @@ public class JPanel_Inventario extends javax.swing.JPanel {
                 .addContainerGap())
         );
     }//GEN-END:initComponents
-
-    private void jButtonRegresarInventarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonRegresarInventarioActionPerformed
-        VentanaDeInicio mVentana= VentanaDeInicio.getInstance();
-        mVentana.remove(this);
-        mVentana.revalidate();
-        mVentana.repaint();
-        mVentana.setTitle("Joe ");
-        mVentana.add(mVentana.jPanel_VentanaPrincipal);
-        mVentana.jPanel_VentanaPrincipal.setVisible(true);
-        mVentana.jPanel_VentanaPrincipal.setSize(this.getSize());
-        mVentana.jPanel_VentanaPrincipal.setLocation(this.getLocation());
-        
-        
-     
-    }//GEN-LAST:event_jButtonRegresarInventarioActionPerformed
-
-    private void jButton_CrearProductoInventarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_CrearProductoInventarioActionPerformed
-      this.jDialog_CrearProducto.setSize(510,500);
-        this.jDialog_CrearProducto.setVisible(true);  
-        
-        Direct_Control_BD mBD= Direct_Control_BD.getInstance();
-        mBD.consultarCategorias();
-       String[] columnNames = mBD.getColumnNames();
-       Object[][] data = mBD.getData();
-       
-       columnNames = mBD.getColumnNames();
-       data = mBD.getData();
-       
-       this.jComboBox_CategoriaCrearProducto.removeAllItems();
-       for(int i=0; i<data.length; i++){
-             this.jComboBox_CategoriaCrearProducto.addItem(data[i][1]);
-       }
-       
-       this.jComboBox_CategoriaCrearProducto.setSelectedItem("Sin Categoria");
-        
-    }//GEN-LAST:event_jButton_CrearProductoInventarioActionPerformed
 //String idProducto, String nombre, int precio,
             //int costo, String fechaCreacion, String estado, String Descripcion,
             //int idCategoria
@@ -1041,14 +1033,6 @@ public class JPanel_Inventario extends javax.swing.JPanel {
         jTable_Inventario.requestFocus();*/
     }//GEN-LAST:event_jButton_CrearProductoActionPerformed
 
-    private void jButton_EliminarProductoInventarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_EliminarProductoInventarioActionPerformed
-        this.jDialog_EliminarProducto.setSize(200,200);
-       JPanel_Inventario mPanel= JPanel_Inventario.getInstance();
-       this.jDialog_EliminarProducto.setLocation(mPanel.getLocation());
-       this.jDialog_EliminarProducto.setVisible(true); 
-       
-    }//GEN-LAST:event_jButton_EliminarProductoInventarioActionPerformed
-
     private void jButton_EliminarProductoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_EliminarProductoActionPerformed
        Direct_Control_BD mBD= Direct_Control_BD.getInstance();
        
@@ -1101,26 +1085,6 @@ public class JPanel_Inventario extends javax.swing.JPanel {
            JOptionPane.ERROR_MESSAGE, JOptionPane.ERROR_MESSAGE, null, new Object[]{" Cancelar "},"Cancelar");
          }
     }//GEN-LAST:event_jButton_CrearProducto1ActionPerformed
-
-    private void jButton_ModificarProductoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_ModificarProductoActionPerformed
-        int row = this.jTable_Inventario.getSelectedRow();
-        
-        
-        if (row >= 0) {
-            Modelo_Inventario model = (Modelo_Inventario) this.jTable_Inventario.getModel();
-            String idProducto = model.getValueAt(row, 0).toString();
-            this.jDialog_ConfirmacionModificacionProducto.setSize(200, 100);
-            JPanel_Inventario mPanel = JPanel_Inventario.getInstance();
-            this.jDialog_ConfirmacionModificacionProducto.setLocation(mPanel.getLocation());
-            this.jTextField_IdProductoModificar.setText(idProducto);
-            this.jDialog_ConfirmacionModificacionProducto.setVisible(true);
-        } else {
-            JOptionPane.showMessageDialog(
-                    null,
-                    "No se selecciono ningun producto",
-                    "Alert!", JOptionPane.ERROR_MESSAGE);
-        }
-    }//GEN-LAST:event_jButton_ModificarProductoActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         this.jDialog_ConfirmacionModificacionProducto.dispose();
@@ -1521,27 +1485,6 @@ public class JPanel_Inventario extends javax.swing.JPanel {
         
     }//GEN-LAST:event_jButton_CrearCategoriaFocusGained
 
-    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
-     
-        Modelo_Inventario model = (Modelo_Inventario) this.jTable_Inventario.getModel();
-        int row = this.jTable_Inventario.getSelectedRow();
-        if(row>0){
-        String idProducto = model.getValueAt(row, 0).toString();
-        this.jDialog_ConfirmacionVerProducto.setSize(200, 100);
-        JPanel_Inventario mPanel = JPanel_Inventario.getInstance();
-        this.jDialog_ConfirmacionVerProducto.setLocation(mPanel.getLocation());
-        this.jTextField_IdProductoModificar1.setText(idProducto);
-        this.jDialog_ConfirmacionVerProducto.setVisible(true);}
-        else{
-            JOptionPane.showMessageDialog(
-                        null,
-                        "No se selecciono ningun producto",
-                        "Alert!", JOptionPane.ERROR_MESSAGE);
-        }
-
-       
-    }//GEN-LAST:event_jButton4ActionPerformed
-
     private void jTextField_IdProductoModificar1KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField_IdProductoModificar1KeyPressed
         if(evt.getKeyChar()== KeyEvent.VK_ENTER){
             this.jTextField_IdProductoModificar1.transferFocus();
@@ -1577,13 +1520,94 @@ public class JPanel_Inventario extends javax.swing.JPanel {
         mVentana.revalidate();
         mVentana.repaint();
         mVentana.setTitle("Entrada de Mercaderia");
-        //Direct_Control_BD AdminBD = Direct_Control_BD.getInstance();
-        //String factura = Integer.toString(AdminBD.ObtenerUltimoidFact() + 1);
-        panelCreaFact.jLabel_NumerodeFact.setText("Num Doc");
+        Direct_Control_BD AdminBD = Direct_Control_BD.getInstance();
+        String numDoc = Integer.toString(AdminBD.ObtenerUltimoidMovimiento() + 1);
+        panelCreaFact.jLabel_NumerodeFact.setText(numDoc);
         panelCreaFact.personalizarTablaMovimiento();
         panelCreaFact.agregarListenerRenders();
-        
+
     }//GEN-LAST:event_jButton_CrearEntradaActionPerformed
+
+    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
+
+        Modelo_Inventario model = (Modelo_Inventario) this.jTable_Inventario.getModel();
+        int row = this.jTable_Inventario.getSelectedRow();
+        if(row>0){
+            String idProducto = model.getValueAt(row, 0).toString();
+            this.jDialog_ConfirmacionVerProducto.setSize(200, 100);
+            JPanel_Inventario mPanel = JPanel_Inventario.getInstance();
+            this.jDialog_ConfirmacionVerProducto.setLocation(mPanel.getLocation());
+            this.jTextField_IdProductoModificar1.setText(idProducto);
+            this.jDialog_ConfirmacionVerProducto.setVisible(true);}
+        else{
+            JOptionPane.showMessageDialog(
+                null,
+                "No se selecciono ningun producto",
+                "Alert!", JOptionPane.ERROR_MESSAGE);
+        }
+
+    }//GEN-LAST:event_jButton4ActionPerformed
+
+    private void jButton_EliminarProductoInventarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_EliminarProductoInventarioActionPerformed
+        this.jDialog_EliminarProducto.setSize(200,200);
+        JPanel_Inventario mPanel= JPanel_Inventario.getInstance();
+        this.jDialog_EliminarProducto.setLocation(mPanel.getLocation());
+        this.jDialog_EliminarProducto.setVisible(true);
+
+    }//GEN-LAST:event_jButton_EliminarProductoInventarioActionPerformed
+
+    private void jButton_CrearProductoInventarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_CrearProductoInventarioActionPerformed
+        this.jDialog_CrearProducto.setSize(510,500);
+        this.jDialog_CrearProducto.setVisible(true);
+
+        Direct_Control_BD mBD= Direct_Control_BD.getInstance();
+        mBD.consultarCategorias();
+        String[] columnNames = mBD.getColumnNames();
+        Object[][] data = mBD.getData();
+
+        columnNames = mBD.getColumnNames();
+        data = mBD.getData();
+
+        this.jComboBox_CategoriaCrearProducto.removeAllItems();
+        for(int i=0; i<data.length; i++){
+            this.jComboBox_CategoriaCrearProducto.addItem(data[i][1]);
+        }
+
+        this.jComboBox_CategoriaCrearProducto.setSelectedItem("Sin Categoria");
+
+    }//GEN-LAST:event_jButton_CrearProductoInventarioActionPerformed
+
+    private void jButton_ModificarProductoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_ModificarProductoActionPerformed
+        int row = this.jTable_Inventario.getSelectedRow();
+
+        if (row >= 0) {
+            Modelo_Inventario model = (Modelo_Inventario) this.jTable_Inventario.getModel();
+            String idProducto = model.getValueAt(row, 0).toString();
+            this.jDialog_ConfirmacionModificacionProducto.setSize(200, 100);
+            JPanel_Inventario mPanel = JPanel_Inventario.getInstance();
+            this.jDialog_ConfirmacionModificacionProducto.setLocation(mPanel.getLocation());
+            this.jTextField_IdProductoModificar.setText(idProducto);
+            this.jDialog_ConfirmacionModificacionProducto.setVisible(true);
+        } else {
+            JOptionPane.showMessageDialog(
+                null,
+                "No se selecciono ningun producto",
+                "Alert!", JOptionPane.ERROR_MESSAGE);
+        }
+    }//GEN-LAST:event_jButton_ModificarProductoActionPerformed
+
+    private void jButtonRegresarInventarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonRegresarInventarioActionPerformed
+        VentanaDeInicio mVentana= VentanaDeInicio.getInstance();
+        mVentana.remove(this);
+        mVentana.revalidate();
+        mVentana.repaint();
+        mVentana.setTitle("Joe ");
+        mVentana.add(mVentana.jPanel_VentanaPrincipal);
+        mVentana.jPanel_VentanaPrincipal.setVisible(true);
+        mVentana.jPanel_VentanaPrincipal.setSize(this.getSize());
+        mVentana.jPanel_VentanaPrincipal.setLocation(this.getLocation());
+
+    }//GEN-LAST:event_jButtonRegresarInventarioActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -1634,8 +1658,10 @@ public class JPanel_Inventario extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel_Nombre2;
     private javax.swing.JLabel jLabel_Precio;
     private javax.swing.JLabel jLabel_Precio2;
+    private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
+    private javax.swing.JPanel jPanel4;
     private javax.swing.JPanel jPanel5;
     private javax.swing.JPanel jPanel6;
     private javax.swing.JPanel jPanel_EntradaMercaderia;

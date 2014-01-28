@@ -1037,25 +1037,33 @@ public class Direct_Control_BD {
         }
     }
 
-    //Fecha, Detalle, idTipoMovimiento, CantidadMovida, Balance, idProductoMovimiento,
-    //idLugarMovimiento
-    public void insertarmovimiento(String Fecha, String Detalle, int idTipoMovimiento,
-            int CantidadMovida, int Balance, String idProductoMovimiento, int idLugarMovimiento) {
+    /**
+     * Inserta un movimiento en la base
+     * @param Fecha
+     * @param Detalle
+     * @param idTipoMovimiento
+     * @param idLugarMovimiento
+     * @param valormovimiento 
+     */
+    public void insertarmovimiento(String Detalle, int idTipoMovimiento,
+            int idLugarMovimiento,BigDecimal valormovimiento) {
+        
         try {
             String devolucion = this.readSql("../Joe/src/sql_files/"
                     + "insertarMovimiento.sql");
             PreparedStatement stm = this.conection.prepareStatement(devolucion);
-            stm.setString(1, Fecha);
+            DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
+            Date date = new Date();
+            String fecha = dateFormat.format(date);
+            stm.setString(1, fecha);
             stm.setString(2, Detalle);
             stm.setInt(3, idTipoMovimiento);
-            stm.setInt(4, CantidadMovida);
-            stm.setInt(5, Balance);
-            stm.setString(6, idProductoMovimiento);
-            stm.setInt(7, idLugarMovimiento);
-            stm.executeUpdate();
+            stm.setInt(4, idLugarMovimiento);
+            stm.setBigDecimal(5, valormovimiento);
+           stm.executeUpdate();
 
         } catch (Exception e) {
-            System.out.println("Error al insertar Devoluciones");
+            System.out.println("Error al insertar movimiento");
         }
     }
 
@@ -3239,9 +3247,30 @@ public class Direct_Control_BD {
         }
     }
 
+
     public void consultarAdministradores() {
     
     
+    }
+
+
+    public int ObtenerUltimoidMovimiento() {
+        int result = 0;
+        try {
+            String verUltimoIdMov = this.readSql("../Joe/"
+                    + "src/sql_files/ObtenerUltimoidMovimiento.sql");
+            PreparedStatement stm = this.conection.prepareStatement(verUltimoIdMov);
+            ResultSet resultset = stm.executeQuery();
+            //Imprime el resultado obtenido del valor del inventario
+            while (resultset.next()) {
+                result = resultset.getInt(1);
+
+            }
+
+        } catch (Exception e) {
+            System.out.println("Error al obtener el ultimo idMovimientos");
+        }
+        return result;
     }
 
 }

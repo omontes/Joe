@@ -122,7 +122,7 @@ public class MyTableModelListener_FACT implements TableModelListener {
                   model.removeRow(row);
 
               }
-
+              table.revalidate();
               table.clearSelection();
               table.changeSelection(row, column, false, false);
               table.requestFocus();

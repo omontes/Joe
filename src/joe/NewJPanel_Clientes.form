@@ -16,18 +16,18 @@
       <Layout>
         <DimensionLayout dim="0">
           <Group type="103" groupAlignment="0" attributes="0">
-              <Component id="jPanel_CrearClienteVendedor" alignment="0" pref="520" max="32767" attributes="0"/>
+              <Component id="jPanel_CrearCliente" alignment="0" pref="520" max="32767" attributes="0"/>
               <Group type="103" rootIndex="1" groupAlignment="0" attributes="0">
                   <Group type="102" attributes="0">
                       <EmptySpace max="-2" attributes="0"/>
-                      <Component id="jPanel_VerClteVend" max="32767" attributes="0"/>
+                      <Component id="jPanel_VerClte" max="32767" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
                   </Group>
               </Group>
               <Group type="103" rootIndex="2" groupAlignment="0" attributes="0">
                   <Group type="102" attributes="0">
                       <EmptySpace max="-2" attributes="0"/>
-                      <Component id="jPanel_ModifClienteVendedor" max="32767" attributes="0"/>
+                      <Component id="jPanel_ModifCliente" max="32767" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
                   </Group>
               </Group>
@@ -35,18 +35,18 @@
         </DimensionLayout>
         <DimensionLayout dim="1">
           <Group type="103" groupAlignment="0" attributes="0">
-              <Component id="jPanel_CrearClienteVendedor" alignment="0" pref="365" max="32767" attributes="0"/>
+              <Component id="jPanel_CrearCliente" alignment="0" pref="365" max="32767" attributes="0"/>
               <Group type="103" rootIndex="1" groupAlignment="0" attributes="0">
                   <Group type="102" attributes="0">
                       <EmptySpace max="-2" attributes="0"/>
-                      <Component id="jPanel_VerClteVend" max="32767" attributes="0"/>
+                      <Component id="jPanel_VerClte" max="32767" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
                   </Group>
               </Group>
               <Group type="103" rootIndex="2" groupAlignment="0" attributes="0">
                   <Group type="102" attributes="0">
                       <EmptySpace max="-2" attributes="0"/>
-                      <Component id="jPanel_ModifClienteVendedor" max="32767" attributes="0"/>
+                      <Component id="jPanel_ModifCliente" max="32767" attributes="0"/>
                       <EmptySpace min="-2" pref="32" max="-2" attributes="0"/>
                   </Group>
               </Group>
@@ -54,7 +54,7 @@
         </DimensionLayout>
       </Layout>
       <SubComponents>
-        <Container class="javax.swing.JPanel" name="jPanel_CrearClienteVendedor">
+        <Container class="javax.swing.JPanel" name="jPanel_CrearCliente">
           <Properties>
             <Property name="maximumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
               <Dimension value="[480, 280]"/>
@@ -194,7 +194,7 @@
             </Component>
           </SubComponents>
         </Container>
-        <Container class="javax.swing.JPanel" name="jPanel_VerClteVend">
+        <Container class="javax.swing.JPanel" name="jPanel_VerClte">
           <Properties>
             <Property name="maximumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
               <Dimension value="[480, 280]"/>
@@ -353,7 +353,7 @@
             </Component>
           </SubComponents>
         </Container>
-        <Container class="javax.swing.JPanel" name="jPanel_ModifClienteVendedor">
+        <Container class="javax.swing.JPanel" name="jPanel_ModifCliente">
           <Properties>
             <Property name="maximumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
               <Dimension value="[480, 280]"/>
@@ -546,9 +546,18 @@
     <DimensionLayout dim="0">
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" alignment="0" attributes="0">
-              <EmptySpace max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="1" attributes="0">
+              <EmptySpace min="-2" pref="21" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" attributes="0">
+                      <EmptySpace pref="124" max="32767" attributes="0"/>
+                      <Component id="jLabel2" min="-2" pref="86" max="-2" attributes="0"/>
+                      <EmptySpace pref="934" max="32767" attributes="0"/>
+                  </Group>
+                  <Group type="102" attributes="0">
+                      <Component id="jScrollPane1" min="-2" pref="965" max="-2" attributes="0"/>
+                      <EmptySpace max="32767" attributes="0"/>
+                  </Group>
+                  <Group type="102" alignment="1" attributes="0">
                       <Component id="jButton_CrearClteVend" min="-2" pref="92" max="-2" attributes="0"/>
                       <EmptySpace type="separate" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" max="-2" attributes="0">
@@ -561,18 +570,9 @@
                       <Component id="TextField_Buscador" min="-2" pref="96" max="-2" attributes="0"/>
                       <EmptySpace max="32767" attributes="0"/>
                       <Component id="jButton1" min="-2" max="-2" attributes="0"/>
-                  </Group>
-                  <Group type="102" attributes="0">
-                      <Component id="jLabel2" min="-2" pref="86" max="-2" attributes="0"/>
-                      <EmptySpace min="-2" pref="879" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="63" max="-2" attributes="0"/>
                   </Group>
               </Group>
-              <EmptySpace max="32767" attributes="0"/>
-          </Group>
-          <Group type="102" alignment="0" attributes="0">
-              <EmptySpace min="-2" pref="21" max="-2" attributes="0"/>
-              <Component id="jScrollPane1" min="-2" pref="965" max="-2" attributes="0"/>
-              <EmptySpace pref="179" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -580,25 +580,30 @@
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" attributes="0">
               <EmptySpace max="-2" attributes="0"/>
-              <Component id="jLabel2" min="-2" pref="22" max="-2" attributes="0"/>
-              <EmptySpace type="separate" max="-2" attributes="0"/>
-              <Component id="jScrollPane1" min="-2" pref="308" max="-2" attributes="0"/>
-              <EmptySpace min="-2" pref="40" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="1" attributes="0">
                   <Group type="102" alignment="1" attributes="0">
-                      <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="jButton_ModifClteVend" min="-2" pref="26" max="-2" attributes="0"/>
-                          <Component id="jButton_CrearClteVend" alignment="0" min="-2" pref="26" max="-2" attributes="0"/>
+                      <Component id="jLabel2" min="-2" pref="22" max="-2" attributes="0"/>
+                      <EmptySpace type="separate" max="-2" attributes="0"/>
+                      <Component id="jScrollPane1" min="-2" pref="308" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="40" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="1" attributes="0">
+                          <Group type="102" alignment="1" attributes="0">
+                              <Group type="103" groupAlignment="0" attributes="0">
+                                  <Component id="jButton_ModifClteVend" min="-2" pref="26" max="-2" attributes="0"/>
+                                  <Component id="jButton_CrearClteVend" alignment="0" min="-2" pref="26" max="-2" attributes="0"/>
+                              </Group>
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Component id="jButton_VerClteVend" min="-2" pref="26" max="-2" attributes="0"/>
+                          </Group>
+                          <Group type="103" alignment="1" groupAlignment="0" attributes="0">
+                              <Component id="jLabel1" alignment="1" min="-2" pref="26" max="-2" attributes="0"/>
+                              <Component id="TextField_Buscador" alignment="0" min="-2" max="-2" attributes="0"/>
+                          </Group>
                       </Group>
-                      <EmptySpace max="-2" attributes="0"/>
-                      <Component id="jButton_VerClteVend" min="-2" pref="26" max="-2" attributes="0"/>
                   </Group>
-                  <Group type="103" alignment="1" groupAlignment="0" attributes="0">
-                      <Component id="jLabel1" alignment="1" min="-2" pref="26" max="-2" attributes="0"/>
-                      <Group type="103" alignment="0" groupAlignment="3" attributes="0">
-                          <Component id="jButton1" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="TextField_Buscador" alignment="3" min="-2" max="-2" attributes="0"/>
-                      </Group>
+                  <Group type="102" alignment="1" attributes="0">
+                      <Component id="jButton1" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="5" max="-2" attributes="0"/>
                   </Group>
               </Group>
               <EmptySpace pref="56" max="32767" attributes="0"/>
@@ -632,9 +637,7 @@
     </Container>
     <Component class="javax.swing.JButton" name="jButton_CrearClteVend">
       <Properties>
-        <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-          <Image iconType="3" name="/CrearCliente.png"/>
-        </Property>
+        <Property name="text" type="java.lang.String" value="Crear"/>
       </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton_CrearClteVendActionPerformed"/>
@@ -642,9 +645,6 @@
     </Component>
     <Component class="javax.swing.JButton" name="jButton_ModifClteVend">
       <Properties>
-        <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-          <Image iconType="3" name="/Modificar.png"/>
-        </Property>
         <Property name="text" type="java.lang.String" value="Modificar"/>
       </Properties>
       <Events>
@@ -653,9 +653,7 @@
     </Component>
     <Component class="javax.swing.JButton" name="jButton_VerClteVend">
       <Properties>
-        <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-          <Image iconType="3" name="/Ver.png"/>
-        </Property>
+        <Property name="text" type="java.lang.String" value="Ver"/>
       </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton_VerClteVendActionPerformed"/>

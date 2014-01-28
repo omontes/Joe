@@ -363,7 +363,7 @@ public class VentanaDeInicio extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton_aceptarInicioCierreKeyPressed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        NewJPanel_ClienteVendedor panelClienteVendedor = new NewJPanel_ClienteVendedor();
+        NewJPanel_Clientes panelClienteVendedor = new NewJPanel_Clientes();
         add(panelClienteVendedor);
         panelClienteVendedor.setSize(this.getSize());
         jPanel_VentanaPrincipal.setVisible(false);

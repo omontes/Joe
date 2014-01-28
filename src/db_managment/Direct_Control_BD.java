@@ -3299,4 +3299,52 @@ public class Direct_Control_BD {
         }
     }
 
+    public void eliminarUsuario(String usuario, String tipoUsuario) {
+        try {
+            String Usuario = this.readSql("../Joe"
+                    + "/src/sql_files/eliminarUsuario.sql");
+            PreparedStatement stm = this.conection.prepareStatement(Usuario);
+            stm.setString(1, usuario);
+            stm.setString(2, tipoUsuario);
+            stm.executeUpdate();
+
+        } catch (Exception e) {
+            System.out.println("No se pudo eliminar el usuario");
+
+        }
+    }
+
+    public boolean insertarPersona(String nombre, String direccion,
+            String telefono, String fechaCumpleanos) {
+        try {
+            String PersonaUsuario = this.readSql("../Joe"
+                    + "/src/sql_files/CrearUsuario.sql");
+            PreparedStatement stm = this.conection.
+                    prepareStatement(PersonaUsuario);
+            stm.setString(1, nombre);
+            stm.setString(2, direccion);
+            stm.setString(3, telefono);
+            stm.setString(4, fechaCumpleanos);
+            stm.executeUpdate();
+            return true;
+        } catch (Exception e) {
+            System.out.println("Error al crear Usuario");
+
+        }
+        return false;
+    }
+
+    private void insertarUsuario(String tipoUsuario) {
+        try {
+            String Usuario = this.readSql("../Joe"
+                    + "/src/sql_files/InsertarUsuario.sql");
+            PreparedStatement stm = this.conection.prepareStatement(Usuario);
+            stm.setString(1, tipoUsuario);
+            stm.executeUpdate();
+        } catch (Exception e) {
+            System.out.println("Error al insertar Usuario");
+
+        }
+    }
+
 }

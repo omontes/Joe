@@ -17,14 +17,16 @@ import javax.swing.table.TableRowSorter;
  * @author Jason
  */
 public class NewJPanel_Configuracion extends javax.swing.JPanel {
-    private Direct_Control_BD AdminBD;
-    private Object[][] data;
+
+    Object[][] data;
+    Direct_Control_BD AdminBD;
 
     /**
      * Creates new form NewJPanel_Configuracion
      */
     public NewJPanel_Configuracion() {
         initComponents();
+        AdminBD = Direct_Control_BD.getInstance();
     }
 
     /**
@@ -70,9 +72,9 @@ public class NewJPanel_Configuracion extends javax.swing.JPanel {
         jButton9 = new javax.swing.JButton();
         jButton11 = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable_Generica = new javax.swing.JTable();
+        jTable_Generica_Vend = new javax.swing.JTable();
         jLabel8 = new javax.swing.JLabel();
-        TextField_Buscador = new javax.swing.JTextField();
+        TextField_BuscadorVend = new javax.swing.JTextField();
         jButton_informacionEmpresa = new javax.swing.JButton();
         jButton_usuarios = new javax.swing.JButton();
         jButton1 = new javax.swing.JButton();
@@ -206,12 +208,21 @@ public class NewJPanel_Configuracion extends javax.swing.JPanel {
         jTabbedPane_crearUsuario.setTabLayoutPolicy(javax.swing.JTabbedPane.SCROLL_TAB_LAYOUT);
         jTabbedPane_crearUsuario.setMaximumSize(new java.awt.Dimension(540, 500));
         jTabbedPane_crearUsuario.setMinimumSize(new java.awt.Dimension(540, 500));
+        jTabbedPane_crearUsuario.addComponentListener(new java.awt.event.ComponentAdapter() {
+            public void componentShown(java.awt.event.ComponentEvent evt) {
+                jTabbedPane_crearUsuarioComponentShown(evt);
+            }
+        });
 
         jPanel_administrador.setMaximumSize(new java.awt.Dimension(540, 500));
         jPanel_administrador.setMinimumSize(new java.awt.Dimension(540, 500));
-        jPanel_administrador.addComponentListener(new java.awt.event.ComponentAdapter() {
-            public void componentShown(java.awt.event.ComponentEvent evt) {
-                jPanel_administradorComponentShown(evt);
+        jPanel_administrador.addAncestorListener(new javax.swing.event.AncestorListener() {
+            public void ancestorMoved(javax.swing.event.AncestorEvent evt) {
+            }
+            public void ancestorAdded(javax.swing.event.AncestorEvent evt) {
+                jPanel_administradorAncestorAdded(evt);
+            }
+            public void ancestorRemoved(javax.swing.event.AncestorEvent evt) {
             }
         });
 
@@ -306,6 +317,15 @@ public class NewJPanel_Configuracion extends javax.swing.JPanel {
 
         jPanel_Vendedor.setMaximumSize(new java.awt.Dimension(540, 500));
         jPanel_Vendedor.setMinimumSize(new java.awt.Dimension(540, 500));
+        jPanel_Vendedor.addAncestorListener(new javax.swing.event.AncestorListener() {
+            public void ancestorMoved(javax.swing.event.AncestorEvent evt) {
+            }
+            public void ancestorAdded(javax.swing.event.AncestorEvent evt) {
+                jPanel_VendedorAncestorAdded(evt);
+            }
+            public void ancestorRemoved(javax.swing.event.AncestorEvent evt) {
+            }
+        });
 
         jButton6.setText("Ver");
 
@@ -322,7 +342,7 @@ public class NewJPanel_Configuracion extends javax.swing.JPanel {
             }
         });
 
-        jTable_Generica.setModel(new javax.swing.table.DefaultTableModel(
+        jTable_Generica_Vend.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
@@ -330,13 +350,13 @@ public class NewJPanel_Configuracion extends javax.swing.JPanel {
 
             }
         ));
-        jTable_Generica.setFillsViewportHeight(true);
-        jTable_Generica.addMouseListener(new java.awt.event.MouseAdapter() {
+        jTable_Generica_Vend.setFillsViewportHeight(true);
+        jTable_Generica_Vend.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jTable_GenericaMouseClicked(evt);
+                jTable_Generica_VendMouseClicked(evt);
             }
         });
-        jScrollPane1.setViewportView(jTable_Generica);
+        jScrollPane1.setViewportView(jTable_Generica_Vend);
 
         jLabel8.setText("Buscar");
 
@@ -366,7 +386,7 @@ public class NewJPanel_Configuracion extends javax.swing.JPanel {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jLabel8)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(TextField_Buscador, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(TextField_BuscadorVend, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(31, 31, 31))
         );
         jPanel_VendedorLayout.setVerticalGroup(
@@ -384,7 +404,7 @@ public class NewJPanel_Configuracion extends javax.swing.JPanel {
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel_VendedorLayout.createSequentialGroup()
                         .addGroup(jPanel_VendedorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel8, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(TextField_Buscador, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(TextField_BuscadorVend, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(38, 38, 38)))
                 .addGroup(jPanel_VendedorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton7, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -395,6 +415,8 @@ public class NewJPanel_Configuracion extends javax.swing.JPanel {
         );
 
         jTabbedPane_crearUsuario.addTab("                  Vendedor                                             ", jPanel_Vendedor);
+
+        jTabbedPane_crearUsuario.getAccessibleContext().setAccessibleParent(this);
 
         setMaximumSize(new java.awt.Dimension(897, 477));
         setMinimumSize(new java.awt.Dimension(897, 477));
@@ -488,11 +510,11 @@ public class NewJPanel_Configuracion extends javax.swing.JPanel {
         jDialog_empresaUsuario.setVisible(false);
     }//GEN-LAST:event_jButton11ActionPerformed
 
-    private void jTable_GenericaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable_GenericaMouseClicked
+    private void jTable_Generica_VendMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable_Generica_VendMouseClicked
         if (evt.getClickCount() == 2) {
             //            this.jButton_AceptarBusqueda.doClick();
         }
-    }//GEN-LAST:event_jTable_GenericaMouseClicked
+    }//GEN-LAST:event_jTable_Generica_VendMouseClicked
 
     private void jTable_Generica_AdministradorMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable_Generica_AdministradorMouseClicked
         // TODO add your handling code here:
@@ -503,14 +525,22 @@ public class NewJPanel_Configuracion extends javax.swing.JPanel {
         jDialog_empresaUsuario.setVisible(false);
     }//GEN-LAST:event_jButton14ActionPerformed
 
-    private void jPanel_administradorComponentShown(java.awt.event.ComponentEvent evt) {//GEN-FIRST:event_jPanel_administradorComponentShown
-       actualizaTablaParaAdministradores();
-    }//GEN-LAST:event_jPanel_administradorComponentShown
+    private void jTabbedPane_crearUsuarioComponentShown(java.awt.event.ComponentEvent evt) {//GEN-FIRST:event_jTabbedPane_crearUsuarioComponentShown
+
+    }//GEN-LAST:event_jTabbedPane_crearUsuarioComponentShown
+
+    private void jPanel_administradorAncestorAdded(javax.swing.event.AncestorEvent evt) {//GEN-FIRST:event_jPanel_administradorAncestorAdded
+        actualizaTablaParaAdministradores();
+    }//GEN-LAST:event_jPanel_administradorAncestorAdded
+
+    private void jPanel_VendedorAncestorAdded(javax.swing.event.AncestorEvent evt) {//GEN-FIRST:event_jPanel_VendedorAncestorAdded
+actualizaTablaParaVendedores();
+    }//GEN-LAST:event_jPanel_VendedorAncestorAdded
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JTextField TextField_Buscador;
     private javax.swing.JTextField TextField_BuscadorAdm;
+    private javax.swing.JTextField TextField_BuscadorVend;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton10;
     private javax.swing.JButton jButton11;
@@ -541,8 +571,8 @@ public class NewJPanel_Configuracion extends javax.swing.JPanel {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JTabbedPane jTabbedPane_crearUsuario;
-    private javax.swing.JTable jTable_Generica;
     private javax.swing.JTable jTable_Generica_Administrador;
+    private javax.swing.JTable jTable_Generica_Vend;
     private javax.swing.JTextField jTextField_CedJ;
     private javax.swing.JTextField jTextField_Direccion;
     private javax.swing.JTextField jTextField_ciudad;
@@ -551,27 +581,49 @@ public class NewJPanel_Configuracion extends javax.swing.JPanel {
     private javax.swing.JTextField jTextField_telefono;
     // End of variables declaration//GEN-END:variables
 
-public void actualizaTablaParaAdministradores() {
-    System.out.println("aquiaquiaquiaqui");
-        //AdminBD.consultarAdministradores();
-//        data = AdminBD.getData();
-//        String[] columnNames = AdminBD.getColumnNames();
+    public void actualizaTablaParaAdministradores() {
 
-//        this.jTable_Generica_Administrador.setModel(new MyTableModel_Generic(columnNames, data));
-//        //Crea el ordenador para la tabla generica
-//        TableRowSorter<TableModel> ordenador = new TableRowSorter<TableModel>(this.jTable_Generica_Administrador.getModel());
-//        this.jTable_Generica_Administrador.setRowSorter(ordenador);
-//        Vector<RowSorter.SortKey> qq = new Vector<RowSorter.SortKey>();
-//        qq.add(new RowSorter.SortKey(0, SortOrder.ASCENDING));
-//        ordenador.setSortKeys(qq);
-//        jTable_Generica_Administrador.requestFocus();
-//       jTable_Generica_Administrador.changeSelection(0, 0, false, false);
-//        /**
-//         * Agrega el listener al JtextField del buscador *
-//         */
-//        this.TextField_BuscadorAdm.getDocument().addDocumentListener(new ListenerBuscador(this.TextField_BuscadorAdm, ordenador));
+        AdminBD.consultarAdministradores();
+        data = AdminBD.getData();
+        String[] columnNames = AdminBD.getColumnNames();
+        this.jTable_Generica_Administrador.setModel(new MyTableModel_Generic(columnNames, data));
+        //Crea el ordenador para la tabla generica
+        TableRowSorter<TableModel> ordenador = new TableRowSorter<TableModel>(this.jTable_Generica_Administrador.getModel());
+        this.jTable_Generica_Administrador.setRowSorter(ordenador);
+        Vector<RowSorter.SortKey> qq = new Vector<RowSorter.SortKey>();
+        qq.add(new RowSorter.SortKey(0, SortOrder.ASCENDING));
+        ordenador.setSortKeys(qq);
+        jTable_Generica_Administrador.requestFocus();
+        jTable_Generica_Administrador.changeSelection(0, 0, false, false);
+        /**
+         * Agrega el listener al JtextField del buscador *
+         */
+        this.TextField_BuscadorAdm.getDocument().addDocumentListener(new ListenerBuscador(this.TextField_BuscadorAdm, ordenador));
+    }
+
+    public void actualizaTablaParaVendedores() {
+        AdminBD.consultarVendedores();
+        data = AdminBD.getData();
+        String[] columnNames = AdminBD.getColumnNames();
+
+        this.jTable_Generica_Vend.setModel(new MyTableModel_Generic(columnNames,
+                data));
+        //Crea el ordenador para la tabla generica
+        TableRowSorter<TableModel> ordenador = new TableRowSorter<TableModel>(
+                this.jTable_Generica_Vend.getModel());
+        this.jTable_Generica_Vend.setRowSorter(ordenador);
+        Vector<RowSorter.SortKey> qq = new Vector<RowSorter.SortKey>();
+        qq.add(new RowSorter.SortKey(0, SortOrder.ASCENDING));
+        ordenador.setSortKeys(qq);
+        jTable_Generica_Vend.requestFocus();
+        jTable_Generica_Vend.changeSelection(0, 0, false, false);
+        /**
+         * Agrega el listener al JtextField del buscador *
+         */
+        this.TextField_BuscadorVend.getDocument().
+                addDocumentListener(new ListenerBuscador(
+                                this.TextField_BuscadorVend, ordenador));
 
     }
 
 }
-

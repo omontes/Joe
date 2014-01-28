@@ -3287,7 +3287,7 @@ public class Direct_Control_BD {
      *
      * @param idCliente
      */
-    private void insertarIdCliente(int idCliente) {
+    public void insertarIdCliente(int idCliente) {
         try {
             String insertarIdCliente = this.readSql("../Joe"
                     + "/src/sql_files/crearIdCliente.sql");

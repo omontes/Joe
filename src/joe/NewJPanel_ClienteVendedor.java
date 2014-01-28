@@ -39,6 +39,7 @@ public class NewJPanel_ClienteVendedor extends javax.swing.JPanel {
     public NewJPanel_ClienteVendedor() {
         initComponents();
         AdminBD = Direct_Control_BD.getInstance();
+        this.actualizaTablaParaClientes();
     }
 
     /**
@@ -88,9 +89,6 @@ public class NewJPanel_ClienteVendedor extends javax.swing.JPanel {
         jFormattedTextField_ModfCedulaClteVend = new javax.swing.JFormattedTextField();
         jLabel_FechaCumpleanos7 = new javax.swing.JLabel();
         jFormattedTextField_ModftelefonoClteVend = new javax.swing.JFormattedTextField();
-        jTabbedPane1 = new javax.swing.JTabbedPane();
-        jPanel1 = new javax.swing.JPanel();
-        jPanel2 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable_Generica = new javax.swing.JTable();
         jButton_CrearClteVend = new javax.swing.JButton();
@@ -99,6 +97,7 @@ public class NewJPanel_ClienteVendedor extends javax.swing.JPanel {
         jButton1 = new javax.swing.JButton();
         TextField_Buscador = new javax.swing.JTextField();
         jLabel1 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
 
         jDialog_CrearClte.setMinimumSize(new java.awt.Dimension(490, 322));
         jDialog_CrearClte.setModal(true);
@@ -443,7 +442,7 @@ public class NewJPanel_ClienteVendedor extends javax.swing.JPanel {
         jDialog_CrearClte.getContentPane().setLayout(jDialog_CrearClteLayout);
         jDialog_CrearClteLayout.setHorizontalGroup(
             jDialog_CrearClteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel_CrearClienteVendedor, javax.swing.GroupLayout.DEFAULT_SIZE, 500, Short.MAX_VALUE)
+            .addComponent(jPanel_CrearClienteVendedor, javax.swing.GroupLayout.DEFAULT_SIZE, 520, Short.MAX_VALUE)
             .addGroup(jDialog_CrearClteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(jDialog_CrearClteLayout.createSequentialGroup()
                     .addContainerGap()
@@ -452,12 +451,12 @@ public class NewJPanel_ClienteVendedor extends javax.swing.JPanel {
             .addGroup(jDialog_CrearClteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(jDialog_CrearClteLayout.createSequentialGroup()
                     .addContainerGap()
-                    .addComponent(jPanel_ModifClienteVendedor, javax.swing.GroupLayout.DEFAULT_SIZE, 500, Short.MAX_VALUE)
+                    .addComponent(jPanel_ModifClienteVendedor, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addContainerGap()))
         );
         jDialog_CrearClteLayout.setVerticalGroup(
             jDialog_CrearClteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel_CrearClienteVendedor, javax.swing.GroupLayout.DEFAULT_SIZE, 322, Short.MAX_VALUE)
+            .addComponent(jPanel_CrearClienteVendedor, javax.swing.GroupLayout.DEFAULT_SIZE, 365, Short.MAX_VALUE)
             .addGroup(jDialog_CrearClteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(jDialog_CrearClteLayout.createSequentialGroup()
                     .addContainerGap()
@@ -466,54 +465,12 @@ public class NewJPanel_ClienteVendedor extends javax.swing.JPanel {
             .addGroup(jDialog_CrearClteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(jDialog_CrearClteLayout.createSequentialGroup()
                     .addContainerGap()
-                    .addComponent(jPanel_ModifClienteVendedor, javax.swing.GroupLayout.DEFAULT_SIZE, 322, Short.MAX_VALUE)
+                    .addComponent(jPanel_ModifClienteVendedor, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGap(32, 32, 32)))
         );
 
         setMaximumSize(new java.awt.Dimension(897, 477));
         setMinimumSize(new java.awt.Dimension(897, 477));
-
-        jTabbedPane1.setTabLayoutPolicy(javax.swing.JTabbedPane.SCROLL_TAB_LAYOUT);
-        jTabbedPane1.setDebugGraphicsOptions(javax.swing.DebugGraphics.NONE_OPTION);
-        jTabbedPane1.setMinimumSize(new java.awt.Dimension(200, 228));
-
-        jPanel1.addComponentListener(new java.awt.event.ComponentAdapter() {
-            public void componentShown(java.awt.event.ComponentEvent evt) {
-                jPanel1ComponentShown(evt);
-            }
-        });
-
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 1160, Short.MAX_VALUE)
-        );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
-        );
-
-        jTabbedPane1.addTab("                                               Clientes                                                                                                  ", jPanel1);
-
-        jPanel2.addComponentListener(new java.awt.event.ComponentAdapter() {
-            public void componentShown(java.awt.event.ComponentEvent evt) {
-                jPanel2ComponentShown(evt);
-            }
-        });
-
-        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
-        jPanel2.setLayout(jPanel2Layout);
-        jPanel2Layout.setHorizontalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 1160, Short.MAX_VALUE)
-        );
-        jPanel2Layout.setVerticalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
-        );
-
-        jTabbedPane1.addTab("                                                   Vendedores                                                                                       ", jPanel2);
 
         jTable_Generica.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -562,19 +519,16 @@ public class NewJPanel_ClienteVendedor extends javax.swing.JPanel {
 
         jLabel1.setText("Buscar");
 
+        jLabel2.setText("Clientes");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addComponent(jTabbedPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 1165, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
-            .addGroup(layout.createSequentialGroup()
-                .addGap(23, 23, 23)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 965, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(10, 10, 10)
                         .addComponent(jButton_CrearClteVend, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
@@ -585,16 +539,24 @@ public class NewJPanel_ClienteVendedor extends javax.swing.JPanel {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(TextField_Buscador, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jButton1)
-                        .addGap(186, 186, 186))))
+                        .addComponent(jButton1))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 86, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(879, 879, 879)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(21, 21, 21)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 965, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(179, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addComponent(jTabbedPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addContainerGap()
+                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 308, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGap(40, 40, 40)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -607,17 +569,9 @@ public class NewJPanel_ClienteVendedor extends javax.swing.JPanel {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jButton1)
                             .addComponent(TextField_Buscador, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addContainerGap(42, Short.MAX_VALUE))
+                .addContainerGap(56, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
-
-    private void jPanel1ComponentShown(java.awt.event.ComponentEvent evt) {//GEN-FIRST:event_jPanel1ComponentShown
-        actualizaTablaParaClientes();
-    }//GEN-LAST:event_jPanel1ComponentShown
-
-    private void jPanel2ComponentShown(java.awt.event.ComponentEvent evt) {//GEN-FIRST:event_jPanel2ComponentShown
-        actualizaTablaParaVendedores();
-    }//GEN-LAST:event_jPanel2ComponentShown
 
     private void jButton_ModifClteVendActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_ModifClteVendActionPerformed
         llenarEditarInformacionClteVend();
@@ -654,13 +608,8 @@ public class NewJPanel_ClienteVendedor extends javax.swing.JPanel {
     }//GEN-LAST:event_jFormattedTextField_fechaCumpleClteVendKeyPressed
 
     private void jButton_CrearClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_CrearClienteActionPerformed
-        if (jTabbedPane1.getSelectedIndex() == 0) {
-            crearPersona(1);
-            actualizaTablaParaClientes();
-        } else {
-            crearPersona(2);
-            actualizaTablaParaVendedores();
-        }
+        crearPersona();
+        actualizaTablaParaClientes();
         jDialog_CrearClte.dispose();
     }//GEN-LAST:event_jButton_CrearClienteActionPerformed
 
@@ -730,15 +679,10 @@ public class NewJPanel_ClienteVendedor extends javax.swing.JPanel {
     }//GEN-LAST:event_jFormattedTextField_ModffechaCumpleClteVendKeyPressed
 
     private void jButton_ModifClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_ModifClienteActionPerformed
-        if (jTabbedPane1.getSelectedIndex() == 0) {
 
-            modificarPersona(1, data[0][0].toString());
-            actualizaTablaParaClientes();
+        modificarPersona(data[0][0].toString());
+        actualizaTablaParaClientes();
 
-        } else {
-            modificarPersona(2, data[0][0].toString());
-            actualizaTablaParaVendedores();
-        }
         jDialog_CrearClte.dispose();
     }//GEN-LAST:event_jButton_ModifClienteActionPerformed
 
@@ -786,6 +730,7 @@ public class NewJPanel_ClienteVendedor extends javax.swing.JPanel {
     private javax.swing.JFormattedTextField jFormattedTextField_nombreClteVend;
     private javax.swing.JFormattedTextField jFormattedTextField_telefonoClteVend;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel_CedCVerClteVend;
     private javax.swing.JLabel jLabel_DirreVerClteVend;
     private javax.swing.JLabel jLabel_FechaCVerClteVend;
@@ -805,13 +750,10 @@ public class NewJPanel_ClienteVendedor extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel_telefonoCliente3;
     private javax.swing.JLabel jLabel_telefonoCliente4;
     private javax.swing.JLabel jLabel_telefonoCliente5;
-    private javax.swing.JPanel jPanel1;
-    private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel_CrearClienteVendedor;
     private javax.swing.JPanel jPanel_ModifClienteVendedor;
     private javax.swing.JPanel jPanel_VerClteVend;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTabbedPane jTabbedPane1;
     private javax.swing.JTable jTable_Generica;
     // End of variables declaration//GEN-END:variables
  public void actualizaTablaParaClientes() {
@@ -856,7 +798,7 @@ public class NewJPanel_ClienteVendedor extends javax.swing.JPanel {
 
     }
 
-    private void crearPersona(int tipoPersona) {
+    private void crearPersona() {
         String nombre = this.jFormattedTextField_nombreClteVend.getText();
         String direccion = this.jFormattedTextField_direccionClteVend.getText();
         String telefono = this.jFormattedTextField_telefonoClteVend.getText();
@@ -864,7 +806,7 @@ public class NewJPanel_ClienteVendedor extends javax.swing.JPanel {
         if (fechaCumpleanos.equals("")) {
             fechaCumpleanos = null;
         }
-        AdminBD.insertarCliente(nombre, direccion,telefono, fechaCumpleanos);
+        AdminBD.insertarCliente(nombre, direccion, telefono, fechaCumpleanos);
     }
 
     private void llenarInformacionClteVend() {
@@ -910,7 +852,7 @@ public class NewJPanel_ClienteVendedor extends javax.swing.JPanel {
      * @param tipoPersona
      * @param nombre
      */
-    private void modificarPersona(int tipoPersona, String nombre) {
+    private void modificarPersona(String nombre) {
         String fecha = "";
         try {//convertir de formato yyyy/MM/dd a dd/MM/yyyy
             Date date = new SimpleDateFormat("dd/MM/yyyy").
@@ -923,13 +865,13 @@ public class NewJPanel_ClienteVendedor extends javax.swing.JPanel {
         if ("".equals(fecha)) {// si la fecha es vacia, no la actualiza
             AdminBD.modificarPersona(jFormattedTextField_ModfnombreClteVend.
                     getText().toString(), jFormattedTextField_ModfdireccionClteVend.getText().toString(),
-                    tipoPersona, jFormattedTextField_ModftelefonoClteVend.getText().toString(),
+                    jFormattedTextField_ModftelefonoClteVend.getText().toString(),
                     jFormattedTextField_ModfCedulaClteVend.
                     getText().toString(), nombre);
         } else {
             AdminBD.modificarPersona(jFormattedTextField_ModfnombreClteVend.
                     getText().toString(), jFormattedTextField_ModfdireccionClteVend.getText().toString(),
-                    tipoPersona, jFormattedTextField_ModftelefonoClteVend.getText().toString(), fecha,
+                    jFormattedTextField_ModftelefonoClteVend.getText().toString(), fecha,
                     jFormattedTextField_ModfCedulaClteVend.
                     getText().toString(), nombre);
         }

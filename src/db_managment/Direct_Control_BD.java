@@ -3064,7 +3064,7 @@ public class Direct_Control_BD {
      * @param nombre
      */
     public void modificarPersona(String NuevoNombre, String direccion,
-            int tipoPersona, String telefono, String fechaCumple, String cedula,
+            String telefono, String fechaCumple, String cedula,
             String nombre) {
 
         try {
@@ -3077,7 +3077,6 @@ public class Direct_Control_BD {
             stm.setString(4, telefono);
             stm.setString(5, fechaCumple);
             stm.setString(6, nombre);
-            stm.setInt(7, tipoPersona);
             stm.executeUpdate();
         } catch (IOException | SQLException e) {
             System.out.println("Error al actualizar la informacion de persona");
@@ -3096,7 +3095,7 @@ public class Direct_Control_BD {
      * @param nombre
      */
     public void modificarPersona(String NuevoNombre, String direccion,
-            int tipoPersona, String telefono, String cedula,
+            String telefono, String cedula,
             String nombre) {
 
         try {
@@ -3108,7 +3107,6 @@ public class Direct_Control_BD {
             stm.setString(3, cedula);
             stm.setString(4, telefono);
             stm.setString(5, nombre);
-            stm.setInt(6, tipoPersona);
             stm.executeUpdate();
         } catch (IOException | SQLException e) {
             System.out.println("Error al actualizar la informacion de persona");

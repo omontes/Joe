@@ -853,7 +853,7 @@ public class NewJPanel_Configuracion extends javax.swing.JPanel {
 
     private void jFormattedTextField_nombreAdmKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jFormattedTextField_nombreAdmKeyPressed
         if (evt.getKeyChar() == KeyEvent.VK_ENTER) {
-            this.jFormattedTextField_nombreClteVend.transferFocus();
+            this.jFormattedTextField_nombreAdm.transferFocus();
         }
     }//GEN-LAST:event_jFormattedTextField_nombreAdmKeyPressed
 

@@ -3345,7 +3345,9 @@ public class Direct_Control_BD {
             this.setData(this.ResultSet_Array(resultset));
 
         } catch (Exception e) {
-            System.out.println("Error al ver entradas de mercaderia");}}
+            System.out.println("Error al ver entradas de mercaderia");
+        }
+    }
 
     public void eliminarUsuario(String usuario, String tipoUsuario) {
         try {

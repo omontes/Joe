@@ -3413,4 +3413,14 @@ public class Direct_Control_BD {
         }
     }
 
+    public void eliminarProductosQueNoTienenInventario() {
+        try {
+            String eliminaProductos = this.readSql("../Joe"
+                    + "/src/sql_files/eliminaProductosSinINV.sql");
+            statement.executeUpdate(eliminaProductos);
+        } catch (Exception e) {
+            System.out.println("Error al eliminar los productos que no tienen ningun inventario");
+        }
+    }
+
 }

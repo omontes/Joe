@@ -37,6 +37,7 @@ public class JPanel_CrearEntradaSalidaMercaderia extends javax.swing.JPanel {
     /**
      * Creates new form JPanel_CrearEntradaSalidaMercaderia
      */
+    boolean cargoArchivo=false;
     public JPanel_CrearEntradaSalidaMercaderia() {
         initComponents();
         
@@ -576,11 +577,8 @@ public class JPanel_CrearEntradaSalidaMercaderia extends javax.swing.JPanel {
                                 .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addComponent(jFormattedTextField_Total, javax.swing.GroupLayout.PREFERRED_SIZE, 315, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jButton_guardaImprime, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jButton_RegresarFact, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                            .addComponent(jButton_guardaImprime, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jButton_RegresarFact, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(layout.createSequentialGroup()
                         .addContainerGap()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -642,18 +640,18 @@ public class JPanel_CrearEntradaSalidaMercaderia extends javax.swing.JPanel {
                             .addComponent(jLabel_FechaFact, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)))
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jButton_aceptarMovimiento)
-                        .addGap(5, 5, 5)
-                        .addComponent(jButton_RegresarFact)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jButton_guardaImprime))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jButton_RegresarFact))
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(jFormattedTextField_Total, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap())
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jButton_guardaImprime)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
     }//GEN-END:initComponents
 
@@ -684,6 +682,9 @@ public class JPanel_CrearEntradaSalidaMercaderia extends javax.swing.JPanel {
     }//GEN-LAST:event_jButton_EliminaFilaActionPerformed
 
     private void jButton_RegresarFactActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_RegresarFactActionPerformed
+        if(cargoArchivo){
+            this.limpiarProductos();
+        }
         this.regresar();
     }//GEN-LAST:event_jButton_RegresarFactActionPerformed
 
@@ -705,6 +706,7 @@ public class JPanel_CrearEntradaSalidaMercaderia extends javax.swing.JPanel {
 
     private void jButton_guardaImprimeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_guardaImprimeActionPerformed
         this.guardarMovimiento();
+        
         
 
     }//GEN-LAST:event_jButton_guardaImprimeActionPerformed
@@ -838,10 +840,15 @@ public class JPanel_CrearEntradaSalidaMercaderia extends javax.swing.JPanel {
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         JFileChooser filechooser= new JFileChooser();
         int value = filechooser.showOpenDialog(null);
+        this.cargoArchivo=true;
         if (value == JFileChooser.APPROVE_OPTION) {
                 File file = filechooser.getSelectedFile();
                 String direccion=(String.valueOf(file));
-                this.cargarMovimiento(direccion);
+                try{
+                this.cargarMovimiento(direccion);}
+                catch(Exception e){
+                    this.clearAll();
+                }
                
         }
     }//GEN-LAST:event_jButton1ActionPerformed
@@ -1316,57 +1323,70 @@ public class JPanel_CrearEntradaSalidaMercaderia extends javax.swing.JPanel {
         String[][] inventario = excel.leerArchivoExcel(new File(direccion));
         int numFilas = inventario.length;
         for (int row = 0; row < numFilas; row++) {
-
-            String idProducto = inventario[row][0];
-            if (idProducto.equals("")) {
-                continue;
-            }
-            model.addRow(1);
-            int cantidad;
-            if (inventario[row][2].equals("")) {
-                cantidad = 0;
-            } else {
-                cantidad = Integer.parseInt(inventario[row][2]);
-            }
-            BigDecimal precio;
-            if (inventario[row][3].equals("")) {
-                precio = BigDecimal.ZERO;
-            } else {
-                precio = this.StringtoBigDecimal(inventario[row][3]);
-            }
-            if (AdminBD.verSiExisteCod(idProducto)) {
-                model.setValueAt(idProducto, row, 0);
-                model.setValueAt(cantidad, row, 2);
-                model.setValueAt(precio,row,3);
-                AdminBD.actualizarPrecioProducto(idProducto,precio);
-
-            } 
-            else {
-                DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd");
-                Date date = new Date();
-                String fecha = dateFormat.format(date);
-                String nombre = inventario[row][1];
-                BigDecimal costo;
-                if (inventario[row][4].equals("")) {
-                    costo = BigDecimal.ZERO;
+            try {
+                String idProducto = inventario[row][0];
+                if (idProducto.equals("")) {
+                    continue;
+                }
+                model.addRow(1);
+                int cantidad;
+                if (inventario[row][2].equals("")) {
+                    cantidad = 0;
                 } else {
-                    costo = this.StringtoBigDecimal(inventario[row][4]);
+                    cantidad = Integer.parseInt(inventario[row][2]);
                 }
-                String categoria = inventario[row][5];
-                if (categoria.equals("")) {
-                    categoria = "General";
+                BigDecimal precio;
+                if (inventario[row][3].equals("")) {
+                    precio = BigDecimal.ZERO;
+                } else {
+                    precio = this.StringtoBigDecimal(inventario[row][3]);
                 }
-                int idCategoria = AdminBD.consultarIdCategoriaXNombre(categoria);
-                AdminBD.crearProducto(idProducto, nombre, precio, costo.intValue(), fecha, "A", "", idCategoria);
-                model.setValueAt(idProducto, row, 0);
-                model.setValueAt(cantidad, row, 2);
-                
+                if (AdminBD.verSiExisteCod(idProducto)) {
+                    model.setValueAt(idProducto, row, 0);
+                    model.setValueAt(cantidad, row, 2);
+                    model.setValueAt(precio, row, 3);
+                    AdminBD.actualizarPrecioProducto(idProducto, precio);
 
+                } else {
+                    DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd");
+                    Date date = new Date();
+                    String fecha = dateFormat.format(date);
+                    String nombre = inventario[row][1];
+                    BigDecimal costo;
+                    if (inventario[row][4].equals("")) {
+                        costo = BigDecimal.ZERO;
+                    } else {
+                        costo = this.StringtoBigDecimal(inventario[row][4]);
+                    }
+                    String categoria = inventario[row][5];
+                    if (categoria.equals("")) {
+                        categoria = "General";
+                    }
+                    int idCategoria = AdminBD.consultarIdCategoriaXNombre(categoria);
+                    AdminBD.crearProducto(idProducto, nombre, precio, costo.intValue(), fecha, "A", "", idCategoria);
+                    model.setValueAt(idProducto, row, 0);
+                    model.setValueAt(cantidad, row, 2);
+
+                }
+            } catch (Exception e) {
+                JOptionPane.showMessageDialog(
+                            null,
+                            "Debe de ingresar un archivo de excel con un formato adecuado "
+                                    + "\nque tenga las columnas especificas de una entrada de mercaderia",
+                            "Alert!", JOptionPane.ERROR_MESSAGE);
+                this.limpiarProductos();
+                this.clearAll();
+                return;
             }
         }
         model.addRow(20);
         //Vuelve a cargar la informacion para el editor de la primer columna
         this.cargarSeleccionadorProductos();
+    }
+
+    private void limpiarProductos() {
+        Direct_Control_BD AdminBD = Direct_Control_BD.getInstance();
+        AdminBD.eliminarProductosQueNoTienenInventario();
     }
 
 

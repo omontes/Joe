@@ -493,6 +493,12 @@ public class NewJPanel_Configuracion extends javax.swing.JPanel {
 
         jLabel_FechaCumpleanos7.setText("Fecha de Cumpleanos");
 
+        jFormattedTextField_nombreAdm.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                jFormattedTextField_nombreAdmKeyPressed(evt);
+            }
+        });
+
         jFormattedTextField_telefonoAdm.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(new java.text.DecimalFormat("#0"))));
         jFormattedTextField_telefonoAdm.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
@@ -844,19 +850,19 @@ public class NewJPanel_Configuracion extends javax.swing.JPanel {
 
     private void jFormattedTextField_telefonoAdmKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jFormattedTextField_telefonoAdmKeyPressed
         if (evt.getKeyChar() == KeyEvent.VK_ENTER) {
-            this.jFormattedTextField_telefonoClteVend.transferFocus();
+            this.jFormattedTextField_telefonoAdm.transferFocus();
         }
     }//GEN-LAST:event_jFormattedTextField_telefonoAdmKeyPressed
 
     private void jFormattedTextField_direccionAdmKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jFormattedTextField_direccionAdmKeyPressed
         if (evt.getKeyChar() == KeyEvent.VK_ENTER) {
-            this.jFormattedTextField_direccionClteVend.transferFocus();
+            this.jFormattedTextField_direccionAdm.transferFocus();
         }
     }//GEN-LAST:event_jFormattedTextField_direccionAdmKeyPressed
 
     private void jFormattedTextField_fechaCumpleAdmKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jFormattedTextField_fechaCumpleAdmKeyPressed
         if (evt.getKeyChar() == KeyEvent.VK_ENTER) {
-            this.jFormattedTextField_fechaCumpleClteVend.transferFocus();
+            this.jFormattedTextField_fechaCumpleAdm.transferFocus();
 
         }
     }//GEN-LAST:event_jFormattedTextField_fechaCumpleAdmKeyPressed
@@ -925,6 +931,12 @@ public class NewJPanel_Configuracion extends javax.swing.JPanel {
                 toString(), "Vendedor");
         actualizaTablaParaVendedores();
     }//GEN-LAST:event_jButton7ActionPerformed
+
+    private void jFormattedTextField_nombreAdmKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jFormattedTextField_nombreAdmKeyPressed
+        if (evt.getKeyChar() == KeyEvent.VK_ENTER) {
+            this.jFormattedTextField_nombreAdm.transferFocus();
+        }
+    }//GEN-LAST:event_jFormattedTextField_nombreAdmKeyPressed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

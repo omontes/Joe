@@ -3299,8 +3299,7 @@ public class Direct_Control_BD {
         }
     }
 
-
-    public void insertarProductoCantidadMovimiento(String idProducto, int idVersion, int idMovimiento,int cantidad,BigDecimal PrecioVenta) {
+    public void insertarProductoCantidadMovimiento(String idProducto, int idVersion, int idMovimiento, int cantidad, BigDecimal PrecioVenta) {
         try {
             String insertarProductoCantFact = this.readSql("../Joe/src/sql_files/"
                     + "insertarProductoCantidadMov.sql");
@@ -3345,7 +3344,9 @@ public class Direct_Control_BD {
             this.setData(this.ResultSet_Array(resultset));
 
         } catch (Exception e) {
-            System.out.println("Error al ver entradas de mercaderia");}}
+            System.out.println("Error al ver entradas de mercaderia");
+        }
+    }
 
     public void eliminarUsuario(String usuario, String tipoUsuario) {
         try {
@@ -3366,7 +3367,7 @@ public class Direct_Control_BD {
             String telefono, String fechaCumpleanos) {
         try {
             String PersonaUsuario = this.readSql("../Joe"
-                    + "/src/sql_files/CrearUsuario.sql");
+                    + "/src/sql_files/CrearPersona.sql");
             PreparedStatement stm = this.conection.
                     prepareStatement(PersonaUsuario);
             stm.setString(1, nombre);
@@ -3382,16 +3383,60 @@ public class Direct_Control_BD {
         return false;
     }
 
-    private void insertarUsuario(String tipoUsuario) {
+    public void modificarUsuario(String nombre, String direccion,
+            String telefono, String fechaCumpleanos, String clave,
+            String tipoUsuario,String nombreNuevo) {
+        try {
+            String PersonaUsuario = this.readSql("../Joe"
+                    + "/src/sql_files/modificarUsuario.sql");
+            PreparedStatement stm = this.conection.
+                    prepareStatement(PersonaUsuario);
+            stm.setString(1, clave);
+            stm.setString(2, direccion);
+            stm.setString(3, telefono);
+            stm.setString(4, fechaCumpleanos);
+            stm.setString(5,nombreNuevo);
+            stm.setString(6,nombre);
+            stm.setString(7,tipoUsuario);
+            stm.executeUpdate();
+        } catch (Exception e) {
+            System.out.println("Error al modificar el Usuario");
+
+        }
+
+    }
+
+    public void insertarUsuario(String tipoUsuario, String clave) {
         try {
             String Usuario = this.readSql("../Joe"
                     + "/src/sql_files/InsertarUsuario.sql");
             PreparedStatement stm = this.conection.prepareStatement(Usuario);
             stm.setString(1, tipoUsuario);
+            stm.setString(2, clave);
             stm.executeUpdate();
         } catch (Exception e) {
             System.out.println("Error al insertar Usuario");
 
+        }
+    }
+
+    /**
+     * Obtener la contrasena de un usuario
+     *
+     * @param usuario
+     * @param tipoUsuario
+     */
+    public void ConsultarContrasena(String usuario, String tipoUsuario) {
+        try {
+            String Usuario = this.readSql("../Joe"
+                    + "/src/sql_files/ConsultarUsuario.sql");
+            PreparedStatement stm = this.conection.prepareStatement(Usuario);
+            stm.setString(1, tipoUsuario);
+            stm.setString(2, usuario);
+            ResultSet resultset = stm.executeQuery();
+            this.setData(this.ResultSet_Array(resultset));
+        } catch (Exception e) {
+            System.out.println("No se pudo cosultar la contrasena del usuario");
 
         }
     }

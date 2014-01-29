@@ -1,2 +1,3 @@
-INSERT INTO persona(Nombre,Direccion,Telefono,FechaCumpleanos)
-VALUES(?,?,?,?);
+INSERT INTO usuario(`TipoUsuario`,`Clave`,`idUsuario`) SELECT ?,?, MAX(idPersona)
+FROM persona;
+     

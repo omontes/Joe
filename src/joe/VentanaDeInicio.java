@@ -295,7 +295,7 @@ public class VentanaDeInicio extends javax.swing.JFrame {
         panelInventario.setLocation(jPanel_VentanaPrincipal.getLocation());
         this.jPanel_VentanaPrincipal.setVisible(false);
         panelInventario.setVisible(true);
-        
+
     }//GEN-LAST:event_jButton_InventarioActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
@@ -372,7 +372,11 @@ public class VentanaDeInicio extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton_ConfiguracionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_ConfiguracionActionPerformed
-        
+        NewJPanel_Configuracion panelConfiguracion = new NewJPanel_Configuracion();
+        add(panelConfiguracion);
+        panelConfiguracion.setSize(this.getSize());
+        jPanel_VentanaPrincipal.setVisible(false);
+        panelConfiguracion.setVisible(true);
     }//GEN-LAST:event_jButton_ConfiguracionActionPerformed
 
 

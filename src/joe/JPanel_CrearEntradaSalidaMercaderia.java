@@ -9,6 +9,7 @@ package joe;
 import db_managment.Direct_Control_BD;
 import java.awt.Toolkit;
 import java.awt.event.KeyEvent;
+import java.io.File;
 import java.math.BigDecimal;
 import java.text.DateFormat;
 import java.text.DecimalFormat;
@@ -20,6 +21,7 @@ import java.util.Date;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JFileChooser;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableCellRenderer;
@@ -35,8 +37,10 @@ public class JPanel_CrearEntradaSalidaMercaderia extends javax.swing.JPanel {
     /**
      * Creates new form JPanel_CrearEntradaSalidaMercaderia
      */
+    boolean cargoArchivo=false;
     public JPanel_CrearEntradaSalidaMercaderia() {
         initComponents();
+        
     }
 
     /**
@@ -81,8 +85,6 @@ public class JPanel_CrearEntradaSalidaMercaderia extends javax.swing.JPanel {
         jButton_CreaProducto = new javax.swing.JButton();
         jButton_VerProducto = new javax.swing.JButton();
         jButton_EliminaFila = new javax.swing.JButton();
-        jScrollPane2 = new javax.swing.JScrollPane();
-        jTable_Movimiento = new javax.swing.JTable();
         jButton_RegresarFact = new javax.swing.JButton();
         jButton_aceptarMovimiento = new javax.swing.JButton();
         jLabel_NumFacTitle = new javax.swing.JLabel();
@@ -97,6 +99,9 @@ public class JPanel_CrearEntradaSalidaMercaderia extends javax.swing.JPanel {
         jTextField_referencia = new javax.swing.JTextField();
         jComboBox_LugarDeMov = new javax.swing.JComboBox();
         jLabel8 = new javax.swing.JLabel();
+        jButton1 = new javax.swing.JButton();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        jTable_Movimiento = new javax.swing.JTable();
 
         jPanel2.setBackground(new java.awt.Color(153, 153, 153));
 
@@ -477,27 +482,6 @@ public class JPanel_CrearEntradaSalidaMercaderia extends javax.swing.JPanel {
             }
         });
 
-        jTable_Movimiento.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {},
-                {},
-                {},
-                {}
-            },
-            new String [] {
-
-            }
-        ));
-        jTable_Movimiento.setCellSelectionEnabled(true);
-        jTable_Movimiento.setFillsViewportHeight(true);
-        jTable_Movimiento.setSurrendersFocusOnKeystroke(true);
-        jTable_Movimiento.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyPressed(java.awt.event.KeyEvent evt) {
-                jTable_MovimientoKeyPressed(evt);
-            }
-        });
-        jScrollPane2.setViewportView(jTable_Movimiento);
-
         jButton_RegresarFact.setText("Regresar");
         jButton_RegresarFact.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -550,88 +534,124 @@ public class JPanel_CrearEntradaSalidaMercaderia extends javax.swing.JPanel {
 
         jLabel8.setText("Entrada a:");
 
+        jButton1.setText("Cargar Archivo Excel");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+
+        jTable_Movimiento.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {},
+                {},
+                {},
+                {}
+            },
+            new String [] {
+
+            }
+        ));
+        jTable_Movimiento.setCellSelectionEnabled(true);
+        jTable_Movimiento.setFillsViewportHeight(true);
+        jTable_Movimiento.setSurrendersFocusOnKeystroke(true);
+        jTable_Movimiento.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                jTable_MovimientoKeyPressed(evt);
+            }
+        });
+        jScrollPane2.setViewportView(jTable_Movimiento);
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                        .addGap(203, 203, 203)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jButton_VerProducto, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jButton_CreaProducto)
-                            .addComponent(jButton_EliminaFila, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(layout.createSequentialGroup()
-                                .addContainerGap()
+                                .addComponent(jButton_aceptarMovimiento, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(jFormattedTextField_Total, javax.swing.GroupLayout.PREFERRED_SIZE, 315, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jButton_guardaImprime, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jButton_RegresarFact, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jLabel_NumFacTitle)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(jLabel_FechaFact, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(jLabel_Fecha, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jLabel8)
+                                .addGap(18, 18, 18)
+                                .addComponent(jComboBox_LugarDeMov, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(jLabel7)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jTextField_referencia, javax.swing.GroupLayout.PREFERRED_SIZE, 306, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel_NumFacTitle)
-                                    .addComponent(jLabel_NumerodeMovimiento))))
-                        .addGap(12, 12, 12))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(jButton_BuscarProducto)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)))
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(192, 192, 192)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jButton_guardaImprime, javax.swing.GroupLayout.DEFAULT_SIZE, 130, Short.MAX_VALUE)
-                            .addComponent(jButton_RegresarFact, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jButton_aceptarMovimiento, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 122, Short.MAX_VALUE)
-                        .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jFormattedTextField_Total, javax.swing.GroupLayout.PREFERRED_SIZE, 252, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabel_FechaFact, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jLabel_Fecha, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jLabel8)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jComboBox_LugarDeMov, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jTextField_referencia, javax.swing.GroupLayout.PREFERRED_SIZE, 298, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jScrollPane2))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                        .addComponent(jButton_CreaProducto)
+                                        .addComponent(jButton_VerProducto, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(jButton_EliminaFila, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(jButton_BuscarProducto, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jLabel_NumerodeMovimiento))
+                                .addGap(18, 18, 18)
+                                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 730, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                .addContainerGap(37, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel_NumFacTitle, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel_FechaFact, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel_Fecha, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel7)
-                    .addComponent(jTextField_referencia, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jComboBox_LugarDeMov, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel8))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabel_NumerodeMovimiento)
+                        .addGap(18, 18, 18)
+                        .addComponent(jLabel_NumFacTitle, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jLabel_NumerodeMovimiento)
+                        .addGap(18, 18, 18)
                         .addComponent(jButton_CreaProducto)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(jButton_VerProducto)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(jButton_EliminaFila)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(jButton_BuscarProducto)
-                        .addGap(0, 37, Short.MAX_VALUE))
-                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
-                .addGap(12, 12, 12)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton_aceptarMovimiento)
-                    .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jFormattedTextField_Total, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jButton_RegresarFact)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jButton1)
+                        .addGap(63, 63, 63))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(28, 28, 28)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jTextField_referencia, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel7)
+                            .addComponent(jComboBox_LugarDeMov, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel8)
+                            .addComponent(jLabel_Fecha, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel_FechaFact, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jButton_aceptarMovimiento)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jButton_RegresarFact))
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jFormattedTextField_Total, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jButton_guardaImprime)
-                .addGap(36, 36, 36))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
     }//GEN-END:initComponents
 
@@ -661,14 +681,10 @@ public class JPanel_CrearEntradaSalidaMercaderia extends javax.swing.JPanel {
         this.eliminarFila();
     }//GEN-LAST:event_jButton_EliminaFilaActionPerformed
 
-    private void jTable_MovimientoKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTable_MovimientoKeyPressed
-        int tecla = evt.getKeyCode();
-        if (tecla == KeyEvent.VK_F9) {
-            this.eliminarFila();
-        }
-    }//GEN-LAST:event_jTable_MovimientoKeyPressed
-
     private void jButton_RegresarFactActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_RegresarFactActionPerformed
+        if(cargoArchivo){
+            this.limpiarProductos();
+        }
         this.regresar();
     }//GEN-LAST:event_jButton_RegresarFactActionPerformed
 
@@ -690,6 +706,7 @@ public class JPanel_CrearEntradaSalidaMercaderia extends javax.swing.JPanel {
 
     private void jButton_guardaImprimeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_guardaImprimeActionPerformed
         this.guardarMovimiento();
+        
         
 
     }//GEN-LAST:event_jButton_guardaImprimeActionPerformed
@@ -820,8 +837,33 @@ public class JPanel_CrearEntradaSalidaMercaderia extends javax.swing.JPanel {
         }
     }//GEN-LAST:event_jTextField_busqueProductoKeyPressed
 
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        JFileChooser filechooser= new JFileChooser();
+        int value = filechooser.showOpenDialog(null);
+        this.cargoArchivo=true;
+        this.jFormattedTextField_Total.setValue(BigDecimal.ZERO);
+        if (value == JFileChooser.APPROVE_OPTION) {
+                File file = filechooser.getSelectedFile();
+                String direccion=(String.valueOf(file));
+                try{
+                this.cargarMovimiento(direccion);}
+                catch(Exception e){
+                    this.clearAll();
+                }
+               
+        }
+    }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jTable_MovimientoKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTable_MovimientoKeyPressed
+        int tecla = evt.getKeyCode();
+        if (tecla == KeyEvent.VK_F9) {
+            this.eliminarFila();
+        }
+    }//GEN-LAST:event_jTable_MovimientoKeyPressed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    javax.swing.JButton jButton1;
     javax.swing.JButton jButton2;
     javax.swing.JButton jButton_BuscarProducto;
     javax.swing.JButton jButton_BusqueProducto;
@@ -1134,13 +1176,7 @@ public class JPanel_CrearEntradaSalidaMercaderia extends javax.swing.JPanel {
         this.jTable_Movimiento.getModel().addTableModelListener(
                 new MyTableModelListener_FACT(this.jTable_Movimiento, "",
                         this.jFormattedTextField_Total, AdminBD));
-        //Permite que la primera columna de Codigos se desplace segun lo que
-        // haya en la base de datos
-        AdminBD.verCodigos();
-        //Si no existen productos en la base que no los carge al editor
-        if (AdminBD.getData().length > 0) {
-            this.cargarSeleccionadorProductos();
-        }
+        
         //Costumisando Precio y Cantidad (Solo van a permitir numeros)
         DefaultTableCellRenderer rightRenderer = new DefaultTableCellRenderer();
         rightRenderer.setHorizontalAlignment(JLabel.RIGHT);
@@ -1162,9 +1198,15 @@ public class JPanel_CrearEntradaSalidaMercaderia extends javax.swing.JPanel {
       
 
     }   
-    private void cargarSeleccionadorProductos() {
+    public void cargarSeleccionadorProductos() {
         Direct_Control_BD AdminBD = Direct_Control_BD.getInstance();
         AdminBD.verCodigos();
+        //Permite que la primera columna de Codigos se desplace segun lo que
+        // haya en la base de datos
+        //Si no existen productos en la base que no los carge al editor
+        if (AdminBD.getData().length <= 0) {
+            return;
+        }
         String[] idproductos = this.obtenerFila(AdminBD.getData());
         this.jTable_Movimiento.getColumnModel().getColumn(0).
                 setCellEditor(new SeleccionadorEditor(idproductos, jTable_Movimiento));
@@ -1173,6 +1215,13 @@ public class JPanel_CrearEntradaSalidaMercaderia extends javax.swing.JPanel {
     
 
     private void guardarMovimiento() {
+        if(this.jTextField_referencia.getText().equals("")){
+        JOptionPane.showMessageDialog(
+                            null,
+                            "Debe de ingresar una referencia de la entrada de mercaderia",
+                            "Alert!", JOptionPane.ERROR_MESSAGE);
+        return;
+        }
         this.crearMovimiento();
         this.guardarProductosMovimiento();
         this.clearAll();
@@ -1193,7 +1242,6 @@ public class JPanel_CrearEntradaSalidaMercaderia extends javax.swing.JPanel {
     private void guardarProductosMovimiento() {
         Direct_Control_BD AdminBD = Direct_Control_BD.getInstance();
         MyTableModel_FACT model = (MyTableModel_FACT) this.jTable_Movimiento.getModel();
-        String lugarMov= this.jComboBox_LugarDeMov.getSelectedItem().toString();
         String[][] infoTablaMov = this.obtenerInfoTablaMovimiento();
         int rows = infoTablaMov.length;
         int idMovimiento = Integer.parseInt(this.jLabel_NumerodeMovimiento.getText());
@@ -1263,11 +1311,89 @@ public class JPanel_CrearEntradaSalidaMercaderia extends javax.swing.JPanel {
         panelCreaEntradaSalida.jLabel_NumerodeMovimiento.setText(factura);
         panelCreaEntradaSalida.personalizarTablaMovimiento();
         panelCreaEntradaSalida.agregarListenerRenders();
+        panelCreaEntradaSalida.cargarSeleccionadorProductos();
     
     }
+ 
 
-    private String[][] obtenerInfoTablaFact() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    private void cargarMovimiento(String direccion) {
+        Direct_Control_BD AdminBD = Direct_Control_BD.getInstance();
+        ReadExcel excel = new ReadExcel();
+        String[] columnNames = {"Cod. Articulo", "Articulo",
+            "Cantidad", "Precio.Unit",
+            "Sub-Total"};
+        List<Object[]> data = new ArrayList<Object[]>();
+        //Agrega el modelo a la factura
+        MyTableModel_FACT model = new MyTableModel_FACT(columnNames, data);
+        this.jTable_Movimiento.setModel(model);
+        this.agregarListenerRenders();
+        String[][] inventario = excel.leerArchivoExcel(new File(direccion));
+        int numFilas = inventario.length;
+        for (int row = 0; row < numFilas; row++) {
+            try {
+                String idProducto = inventario[row][0];
+                if (idProducto.equals("")) {
+                    continue;
+                }
+                model.addRow(1);
+                int cantidad;
+                if (inventario[row][2].equals("")) {
+                    cantidad = 0;
+                } else {
+                    cantidad = Integer.parseInt(inventario[row][2]);
+                }
+                BigDecimal precio;
+                if (inventario[row][3].equals("")) {
+                    precio = BigDecimal.ZERO;
+                } else {
+                    precio = this.StringtoBigDecimal(inventario[row][3]);
+                }
+                if (AdminBD.verSiExisteCod(idProducto)) {
+                    model.setValueAt(idProducto, row, 0);
+                    model.setValueAt(cantidad, row, 2);
+                    model.setValueAt(precio, row, 3);
+                    AdminBD.actualizarPrecioProducto(idProducto, precio);
+
+                } else {
+                    DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd");
+                    Date date = new Date();
+                    String fecha = dateFormat.format(date);
+                    String nombre = inventario[row][1];
+                    BigDecimal costo;
+                    if (inventario[row][4].equals("")) {
+                        costo = BigDecimal.ZERO;
+                    } else {
+                        costo = this.StringtoBigDecimal(inventario[row][4]);
+                    }
+                    String categoria = inventario[row][5];
+                    if (categoria.equals("")) {
+                        categoria = "General";
+                    }
+                    int idCategoria = AdminBD.consultarIdCategoriaXNombre(categoria);
+                    AdminBD.crearProducto(idProducto, nombre, precio, costo.intValue(), fecha, "A", "", idCategoria);
+                    model.setValueAt(idProducto, row, 0);
+                    model.setValueAt(cantidad, row, 2);
+
+                }
+            } catch (Exception e) {
+                JOptionPane.showMessageDialog(
+                            null,
+                            "Debe de ingresar un archivo de excel con un formato adecuado "
+                                    + "\nque tenga las columnas especificas de una entrada de mercaderia",
+                            "Alert!", JOptionPane.ERROR_MESSAGE);
+                this.limpiarProductos();
+                this.clearAll();
+                return;
+            }
+        }
+        model.addRow(20);
+        //Vuelve a cargar la informacion para el editor de la primer columna
+        this.cargarSeleccionadorProductos();
+    }
+
+    private void limpiarProductos() {
+        Direct_Control_BD AdminBD = Direct_Control_BD.getInstance();
+        AdminBD.eliminarProductosQueNoTienenInventario();
     }
 
 

@@ -38,6 +38,7 @@ class MyTableModel_FACT extends AbstractTableModel {
     public void removeRow(int i){
         data.remove(i);
         
+        
     }
     @Override
     public int getRowCount() {

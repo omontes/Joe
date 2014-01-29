@@ -860,7 +860,7 @@ public class JPanel_Inventario extends javax.swing.JPanel {
             jPanel_InventarioGeneralLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel_InventarioGeneralLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane5, javax.swing.GroupLayout.DEFAULT_SIZE, 350, Short.MAX_VALUE)
+                .addComponent(jScrollPane5, javax.swing.GroupLayout.DEFAULT_SIZE, 328, Short.MAX_VALUE)
                 .addGap(18, 18, 18)
                 .addGroup(jPanel_InventarioGeneralLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton_CrearProductoInventario)
@@ -920,7 +920,7 @@ public class JPanel_Inventario extends javax.swing.JPanel {
                 .addGroup(jPanel_EntradaMercaderiaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton5)
                     .addComponent(jButton_CrearEntrada))
-                .addContainerGap(47, Short.MAX_VALUE))
+                .addContainerGap(20, Short.MAX_VALUE))
         );
 
         jTabbedPane1.addTab("Entrada de Mercaderia", jPanel_EntradaMercaderia);
@@ -933,7 +933,7 @@ public class JPanel_Inventario extends javax.swing.JPanel {
         );
         jPanel6Layout.setVerticalGroup(
             jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 422, Short.MAX_VALUE)
+            .addGap(0, 395, Short.MAX_VALUE)
         );
 
         jTabbedPane1.addTab("Salida de Mercaderia", jPanel6);
@@ -946,7 +946,7 @@ public class JPanel_Inventario extends javax.swing.JPanel {
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 417, Short.MAX_VALUE)
+            .addGap(0, 395, Short.MAX_VALUE)
         );
 
         jTabbedPane1.addTab("Bodega", jPanel1);
@@ -959,7 +959,7 @@ public class JPanel_Inventario extends javax.swing.JPanel {
         );
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 417, Short.MAX_VALUE)
+            .addGap(0, 395, Short.MAX_VALUE)
         );
 
         jTabbedPane1.addTab("Movimientos", jPanel4);
@@ -976,7 +976,7 @@ public class JPanel_Inventario extends javax.swing.JPanel {
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addComponent(jTabbedPane1)
+                .addComponent(jTabbedPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 423, Short.MAX_VALUE)
                 .addContainerGap())
         );
     }//GEN-END:initComponents
@@ -1512,20 +1512,21 @@ public class JPanel_Inventario extends javax.swing.JPanel {
 
     private void jButton_CrearEntradaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_CrearEntradaActionPerformed
         VentanaDeInicio mVentana= VentanaDeInicio.getInstance();
-        JPanel_CrearEntradaSalidaMercaderia panelCreaFact= new JPanel_CrearEntradaSalidaMercaderia();
-        mVentana.add(panelCreaFact);
-        panelCreaFact.setSize(this.getSize());
-        panelCreaFact.setLocation(this.getLocation());
+        JPanel_CrearEntradaSalidaMercaderia panelCreaEntradaMerca= new JPanel_CrearEntradaSalidaMercaderia();
+        mVentana.add(panelCreaEntradaMerca);
+        panelCreaEntradaMerca.setSize(this.getSize());
+        panelCreaEntradaMerca.setLocation(this.getLocation());
         mVentana.remove(this);
-        panelCreaFact.setVisible(true);
+        panelCreaEntradaMerca.setVisible(true);
         mVentana.revalidate();
         mVentana.repaint();
         mVentana.setTitle("Entrada de Mercaderia");
         Direct_Control_BD AdminBD = Direct_Control_BD.getInstance();
         String numDoc = Integer.toString(AdminBD.ObtenerUltimoidMovimiento() + 1);
-        panelCreaFact.jLabel_NumerodeMovimiento.setText(numDoc);
-        panelCreaFact.personalizarTablaMovimiento();
-        panelCreaFact.agregarListenerRenders();
+        panelCreaEntradaMerca.jLabel_NumerodeMovimiento.setText(numDoc);
+        panelCreaEntradaMerca.personalizarTablaMovimiento();
+        panelCreaEntradaMerca.agregarListenerRenders();
+        panelCreaEntradaMerca.cargarSeleccionadorProductos();
 
     }//GEN-LAST:event_jButton_CrearEntradaActionPerformed
 

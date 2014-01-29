@@ -3398,4 +3398,19 @@ public class Direct_Control_BD {
         }
     }
 
+    public void actualizarPrecioProducto(String idProducto, BigDecimal precio) {
+         try {
+            String actualizarPrecio = this.readSql("../Joe"
+                    + "/src/sql_files/actualizarPrecioProductoInventario.sql");
+            PreparedStatement stm
+                    = this.conection.prepareStatement(actualizarPrecio);
+            stm.setBigDecimal(1, precio);
+            stm.setString(2, idProducto);
+            stm.executeUpdate();
+
+        } catch (Exception e) {
+            System.out.println("Error al Actualizar el precio de un producto en el inventario");
+        }
+    }
+
 }

@@ -841,6 +841,7 @@ public class JPanel_CrearEntradaSalidaMercaderia extends javax.swing.JPanel {
         JFileChooser filechooser= new JFileChooser();
         int value = filechooser.showOpenDialog(null);
         this.cargoArchivo=true;
+        this.jFormattedTextField_Total.setValue(BigDecimal.ZERO);
         if (value == JFileChooser.APPROVE_OPTION) {
                 File file = filechooser.getSelectedFile();
                 String direccion=(String.valueOf(file));
@@ -1203,7 +1204,7 @@ public class JPanel_CrearEntradaSalidaMercaderia extends javax.swing.JPanel {
         //Permite que la primera columna de Codigos se desplace segun lo que
         // haya en la base de datos
         //Si no existen productos en la base que no los carge al editor
-        if (AdminBD.getData().length < 0) {
+        if (AdminBD.getData().length <= 0) {
             return;
         }
         String[] idproductos = this.obtenerFila(AdminBD.getData());
@@ -1214,6 +1215,13 @@ public class JPanel_CrearEntradaSalidaMercaderia extends javax.swing.JPanel {
     
 
     private void guardarMovimiento() {
+        if(this.jTextField_referencia.getText().equals("")){
+        JOptionPane.showMessageDialog(
+                            null,
+                            "Debe de ingresar una referencia de la entrada de mercaderia",
+                            "Alert!", JOptionPane.ERROR_MESSAGE);
+        return;
+        }
         this.crearMovimiento();
         this.guardarProductosMovimiento();
         this.clearAll();
@@ -1234,7 +1242,6 @@ public class JPanel_CrearEntradaSalidaMercaderia extends javax.swing.JPanel {
     private void guardarProductosMovimiento() {
         Direct_Control_BD AdminBD = Direct_Control_BD.getInstance();
         MyTableModel_FACT model = (MyTableModel_FACT) this.jTable_Movimiento.getModel();
-        String lugarMov= this.jComboBox_LugarDeMov.getSelectedItem().toString();
         String[][] infoTablaMov = this.obtenerInfoTablaMovimiento();
         int rows = infoTablaMov.length;
         int idMovimiento = Integer.parseInt(this.jLabel_NumerodeMovimiento.getText());

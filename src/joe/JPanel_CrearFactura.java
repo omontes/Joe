@@ -1233,14 +1233,14 @@ public class JPanel_CrearFactura extends javax.swing.JPanel {
         DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd");
         Date date = new Date();
         String codigo = this.jTextField_codigo.getText();
-        boolean existeProducto = AdminBD.verSiExisteCod(codigo);
+        boolean existeProducto = AdminBD.verSiExisteCod(codigo.toUpperCase());
         if (!existeProducto) {
             BigDecimal bd = new BigDecimal(
                     this.jFormattedTextField_precioProducto.
                     getValue().toString());
-            AdminBD.crearProducto(codigo, this.jTextField_nombre.getText(),
+            AdminBD.crearProducto(codigo.toUpperCase(), this.jTextField_nombre.getText(),
                     bd, 0, dateFormat.format(date), "A", null, 1);
-            AdminBD.insertarEnInventario(this.jTextField_codigo.getText(),
+            AdminBD.insertarEnInventario(codigo.toUpperCase(),
                     1, Integer.parseInt(this.jFormattedTextField_cantidadProducto.getValue()
                             .toString()));
             this.clearCrearProducto();

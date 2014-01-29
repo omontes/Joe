@@ -74,17 +74,6 @@ public class JPanel_Facturacion extends javax.swing.JPanel {
         jLabel9 = new javax.swing.JLabel();
         jFormattedTextField_totalFacturado = new javax.swing.JFormattedTextField();
         jTabbedPane_Creditos = new javax.swing.JTabbedPane();
-        jPanel_Facturas = new javax.swing.JPanel();
-        jButton_Crear = new javax.swing.JButton();
-        jButton_Modificar = new javax.swing.JButton();
-        jButton_Eliminar = new javax.swing.JButton();
-        jButton_Ver = new javax.swing.JButton();
-        jButton_Imprimir = new javax.swing.JButton();
-        jButton_CierreCaja = new javax.swing.JButton();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        jTable_Facturacion = new javax.swing.JTable();
-        jButton1 = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
         jPanel_Apartados = new javax.swing.JPanel();
         jButton_CrearApartado = new javax.swing.JButton();
         jButton_ModificarApartado = new javax.swing.JButton();
@@ -116,6 +105,17 @@ public class JPanel_Facturacion extends javax.swing.JPanel {
         jButton_regresarDev = new javax.swing.JButton();
         jScrollPane5 = new javax.swing.JScrollPane();
         jTable_Devoluciones = new javax.swing.JTable();
+        jPanel_Facturas = new javax.swing.JPanel();
+        jButton_Crear = new javax.swing.JButton();
+        jButton_Modificar = new javax.swing.JButton();
+        jButton_Eliminar = new javax.swing.JButton();
+        jButton_Ver = new javax.swing.JButton();
+        jButton_Imprimir = new javax.swing.JButton();
+        jButton_CierreCaja = new javax.swing.JButton();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        jTable_Facturacion = new javax.swing.JTable();
+        jButton1 = new javax.swing.JButton();
+        jButton3 = new javax.swing.JButton();
 
         jDialog_CrearPago.setMinimumSize(new java.awt.Dimension(424, 450));
         jDialog_CrearPago.setModal(true);
@@ -375,120 +375,6 @@ public class JPanel_Facturacion extends javax.swing.JPanel {
         jTabbedPane_Creditos.setTabPlacement(javax.swing.JTabbedPane.LEFT);
         jTabbedPane_Creditos.setDebugGraphicsOptions(javax.swing.DebugGraphics.NONE_OPTION);
         jTabbedPane_Creditos.setPreferredSize(new java.awt.Dimension(874, 418));
-
-        jPanel_Facturas.setPreferredSize(new java.awt.Dimension(874, 600));
-
-        jButton_Crear.setText("Crear");
-        jButton_Crear.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton_CrearActionPerformed(evt);
-            }
-        });
-
-        jButton_Modificar.setText("Modificar");
-        jButton_Modificar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton_ModificarActionPerformed(evt);
-            }
-        });
-
-        jButton_Eliminar.setText("Eliminar");
-        jButton_Eliminar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton_EliminarActionPerformed(evt);
-            }
-        });
-
-        jButton_Ver.setText("Ver");
-        jButton_Ver.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton_VerActionPerformed(evt);
-            }
-        });
-
-        jButton_Imprimir.setText("Imprimir");
-
-        jButton_CierreCaja.setText("Cierre Caja");
-        jButton_CierreCaja.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton_CierreCajaActionPerformed(evt);
-            }
-        });
-
-        jTable_Facturacion.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {},
-                {},
-                {},
-                {}
-            },
-            new String [] {
-
-            }
-        ));
-        jScrollPane1.setViewportView(jTable_Facturacion);
-
-        jButton1.setText("Regresar");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
-            }
-        });
-
-        jButton3.setText("VerCierreTodos");
-        jButton3.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton3ActionPerformed(evt);
-            }
-        });
-
-        javax.swing.GroupLayout jPanel_FacturasLayout = new javax.swing.GroupLayout(jPanel_Facturas);
-        jPanel_Facturas.setLayout(jPanel_FacturasLayout);
-        jPanel_FacturasLayout.setHorizontalGroup(
-            jPanel_FacturasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel_FacturasLayout.createSequentialGroup()
-                .addGroup(jPanel_FacturasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addGroup(jPanel_FacturasLayout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 701, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel_FacturasLayout.createSequentialGroup()
-                        .addGap(71, 71, 71)
-                        .addComponent(jButton_Crear)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jButton_Modificar)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jButton_Eliminar)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jButton_Ver)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jButton_Imprimir)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jButton_CierreCaja)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jButton1)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jButton3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                .addContainerGap(588, Short.MAX_VALUE))
-        );
-        jPanel_FacturasLayout.setVerticalGroup(
-            jPanel_FacturasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel_FacturasLayout.createSequentialGroup()
-                .addGap(30, 30, 30)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 278, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(jPanel_FacturasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton_Crear)
-                    .addComponent(jButton_Modificar)
-                    .addComponent(jButton_Eliminar)
-                    .addComponent(jButton_Ver)
-                    .addComponent(jButton_Imprimir)
-                    .addComponent(jButton_CierreCaja)
-                    .addComponent(jButton1)
-                    .addComponent(jButton3))
-                .addGap(58, 58, 58))
-        );
-
-        jTabbedPane_Creditos.addTab("Facturacion", jPanel_Facturas);
 
         jButton_CrearApartado.setText("Crear");
         jButton_CrearApartado.addActionListener(new java.awt.event.ActionListener() {
@@ -805,6 +691,120 @@ public class JPanel_Facturacion extends javax.swing.JPanel {
         );
 
         jTabbedPane_Creditos.addTab("Devoluciones", jPanel1);
+
+        jPanel_Facturas.setPreferredSize(new java.awt.Dimension(874, 600));
+
+        jButton_Crear.setText("Crear");
+        jButton_Crear.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton_CrearActionPerformed(evt);
+            }
+        });
+
+        jButton_Modificar.setText("Modificar");
+        jButton_Modificar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton_ModificarActionPerformed(evt);
+            }
+        });
+
+        jButton_Eliminar.setText("Eliminar");
+        jButton_Eliminar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton_EliminarActionPerformed(evt);
+            }
+        });
+
+        jButton_Ver.setText("Ver");
+        jButton_Ver.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton_VerActionPerformed(evt);
+            }
+        });
+
+        jButton_Imprimir.setText("Imprimir");
+
+        jButton_CierreCaja.setText("Cierre Caja");
+        jButton_CierreCaja.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton_CierreCajaActionPerformed(evt);
+            }
+        });
+
+        jTable_Facturacion.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {},
+                {},
+                {},
+                {}
+            },
+            new String [] {
+
+            }
+        ));
+        jScrollPane1.setViewportView(jTable_Facturacion);
+
+        jButton1.setText("Regresar");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+
+        jButton3.setText("VerCierreTodos");
+        jButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton3ActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jPanel_FacturasLayout = new javax.swing.GroupLayout(jPanel_Facturas);
+        jPanel_Facturas.setLayout(jPanel_FacturasLayout);
+        jPanel_FacturasLayout.setHorizontalGroup(
+            jPanel_FacturasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel_FacturasLayout.createSequentialGroup()
+                .addGroup(jPanel_FacturasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addGroup(jPanel_FacturasLayout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 701, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel_FacturasLayout.createSequentialGroup()
+                        .addGap(71, 71, 71)
+                        .addComponent(jButton_Crear)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jButton_Modificar)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jButton_Eliminar)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jButton_Ver)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jButton_Imprimir)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jButton_CierreCaja)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jButton1)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jButton3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                .addContainerGap(588, Short.MAX_VALUE))
+        );
+        jPanel_FacturasLayout.setVerticalGroup(
+            jPanel_FacturasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel_FacturasLayout.createSequentialGroup()
+                .addGap(30, 30, 30)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 278, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(jPanel_FacturasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jButton_Crear)
+                    .addComponent(jButton_Modificar)
+                    .addComponent(jButton_Eliminar)
+                    .addComponent(jButton_Ver)
+                    .addComponent(jButton_Imprimir)
+                    .addComponent(jButton_CierreCaja)
+                    .addComponent(jButton1)
+                    .addComponent(jButton3))
+                .addGap(58, 58, 58))
+        );
+
+        jTabbedPane_Creditos.addTab("Facturacion", jPanel_Facturas);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);

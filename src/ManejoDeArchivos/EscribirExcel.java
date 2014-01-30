@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package joe;
+package ManejoDeArchivos;
 
 
 import java.awt.BorderLayout;
@@ -45,7 +45,7 @@ import jxl.write.biff.RowsExceededException;
  */
 public class EscribirExcel {
 
-    WritableWorkbook workbook;
+    public WritableWorkbook workbook;
     File ArchivoExcel;
 
     private WritableCellFormat timesReport;
@@ -103,6 +103,7 @@ public class EscribirExcel {
      * @param fechaIni
      * @param fechaFin
      * @param tipoDeReporte
+     * @param formato
      * @throws IOException
      * @throws WriteException
      */

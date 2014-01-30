@@ -300,8 +300,6 @@ public class JPanel_VerFactura extends javax.swing.JPanel {
         List<Object[]> data = new ArrayList<Object[]>();      
         //Agrega el modelo a la factura
         Modelo_verFacturas model=new Modelo_verFacturas(columnNames,data);
-        //Agrega 20 filas
-        model.addRow(20);
         this.jTable_Factura.setModel(model);
         //Gana la atencion en el panel
         jTable_Factura.requestFocus();
@@ -322,6 +320,9 @@ public class JPanel_VerFactura extends javax.swing.JPanel {
                
         this.cargarInfoFact();
         this.cargarProductosFact();
+        
+        //Agrega 20 filas
+        model.addRow(20);
       
         
     }
@@ -430,6 +431,7 @@ public class JPanel_VerFactura extends javax.swing.JPanel {
         Object[][] ProductosdeFactura = AdminBD.getData();
         int numFilas = ProductosdeFactura.length;
         for (int row = 0; row < numFilas; row++) {
+            model.addRow(1);
             Object[] producto= ProductosdeFactura[row];
             String codArticulo= producto[0].toString();
             String nombre= producto[1].toString();
@@ -446,15 +448,12 @@ public class JPanel_VerFactura extends javax.swing.JPanel {
     }
 
     void personalizarTablaVerDevoluciones() {
-        Direct_Control_BD AdminBD = Direct_Control_BD.getInstance();
         String[] columnNames = {"Cod. Articulo","Articulo",
             "Cantidad","Precio.Unit",
             "Sub-Total"};
         List<Object[]> data = new ArrayList<Object[]>();      
         //Agrega el modelo a la factura
         Modelo_verFacturas model=new Modelo_verFacturas(columnNames,data);
-        //Agrega 20 filas
-        model.addRow(20);
         this.jTable_Factura.setModel(model);
         //Gana la atencion en el panel
         jTable_Factura.requestFocus();
@@ -472,6 +471,8 @@ public class JPanel_VerFactura extends javax.swing.JPanel {
                 setCellRenderer(new CurrencyRender());
         this.cargarInfoDev();
         this.cargarProductosDevolucion();
+        //Agrega 20 filas
+        model.addRow(20);
     }
 
     private void cargarInfoDev() {
@@ -507,6 +508,7 @@ public class JPanel_VerFactura extends javax.swing.JPanel {
         Object[][] ProductosdeFactura = AdminBD.getData();
         int numFilas = ProductosdeFactura.length;
         for (int row = 0; row < numFilas; row++) {
+            model.addRow(1);
             Object[] producto= ProductosdeFactura[row];
             String codArticulo= producto[0].toString();
             String nombre= producto[1].toString();

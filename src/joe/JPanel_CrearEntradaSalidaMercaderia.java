@@ -98,7 +98,7 @@ public class JPanel_CrearEntradaSalidaMercaderia extends javax.swing.JPanel {
         jLabel7 = new javax.swing.JLabel();
         jTextField_referencia = new javax.swing.JTextField();
         jComboBox_LugarDeMov = new javax.swing.JComboBox();
-        jLabel8 = new javax.swing.JLabel();
+        jLabel_tipoMovimiento = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
         jScrollPane2 = new javax.swing.JScrollPane();
         jTable_Movimiento = new javax.swing.JTable();
@@ -532,7 +532,7 @@ public class JPanel_CrearEntradaSalidaMercaderia extends javax.swing.JPanel {
 
         jComboBox_LugarDeMov.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Inventario General", "Bodega" }));
 
-        jLabel8.setText("Entrada a:");
+        jLabel_tipoMovimiento.setText("Entrada a:");
 
         jButton1.setText("Cargar Archivo Excel");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
@@ -589,7 +589,7 @@ public class JPanel_CrearEntradaSalidaMercaderia extends javax.swing.JPanel {
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addComponent(jLabel_Fecha, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jLabel8)
+                                .addComponent(jLabel_tipoMovimiento)
                                 .addGap(18, 18, 18)
                                 .addComponent(jComboBox_LugarDeMov, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(18, 18, 18)
@@ -635,7 +635,7 @@ public class JPanel_CrearEntradaSalidaMercaderia extends javax.swing.JPanel {
                             .addComponent(jTextField_referencia, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel7)
                             .addComponent(jComboBox_LugarDeMov, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel8)
+                            .addComponent(jLabel_tipoMovimiento)
                             .addComponent(jLabel_Fecha, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel_FechaFact, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -890,7 +890,6 @@ public class JPanel_CrearEntradaSalidaMercaderia extends javax.swing.JPanel {
     javax.swing.JLabel jLabel5;
     javax.swing.JLabel jLabel6;
     javax.swing.JLabel jLabel7;
-    javax.swing.JLabel jLabel8;
     javax.swing.JLabel jLabel_Cantidad;
     javax.swing.JLabel jLabel_CodNoEncontrado;
     javax.swing.JLabel jLabel_Descripcion;
@@ -905,6 +904,7 @@ public class JPanel_CrearEntradaSalidaMercaderia extends javax.swing.JPanel {
     javax.swing.JLabel jLabel_datoFact;
     javax.swing.JLabel jLabel_datoNomb;
     javax.swing.JLabel jLabel_datoPrecio;
+    javax.swing.JLabel jLabel_tipoMovimiento;
     javax.swing.JLayeredPane jLayeredPane_VerProducto;
     javax.swing.JPanel jPanel1;
     javax.swing.JPanel jPanel2;
@@ -1228,6 +1228,7 @@ public class JPanel_CrearEntradaSalidaMercaderia extends javax.swing.JPanel {
     }
 
     private void crearMovimiento() {
+        VentanaDeInicio mVentana= VentanaDeInicio.getInstance();
         Direct_Control_BD AdminBD = Direct_Control_BD.getInstance();
         String detalle= this.jTextField_referencia.getText();
         int idLugarMovimiento=1;
@@ -1236,7 +1237,10 @@ public class JPanel_CrearEntradaSalidaMercaderia extends javax.swing.JPanel {
         
         }
         BigDecimal valorMovimiento = this.corregirDato(this.jFormattedTextField_Total.getText());
-        AdminBD.insertarmovimiento(detalle, 1, idLugarMovimiento, valorMovimiento);
+        if(mVentana.getTitle().equals("Salida de Mercaderia")){
+            AdminBD.insertarmovimiento(detalle,2, idLugarMovimiento, valorMovimiento);
+        }
+        AdminBD.insertarmovimiento(detalle,1, idLugarMovimiento, valorMovimiento);
     }
 
     private void guardarProductosMovimiento() {

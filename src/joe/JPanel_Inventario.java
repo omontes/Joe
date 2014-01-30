@@ -16,6 +16,7 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
+import javax.swing.JTable;
 import javax.swing.table.DefaultTableCellRenderer;
 
 /**
@@ -152,7 +153,7 @@ public class JPanel_Inventario extends javax.swing.JPanel {
         jPanel_EntradaMercaderia = new javax.swing.JPanel();
         jScrollPane3 = new javax.swing.JScrollPane();
         jTable_EntradasMercaderia = new javax.swing.JTable();
-        jButton5 = new javax.swing.JButton();
+        jButton_verEntrada = new javax.swing.JButton();
         jButton_CrearEntrada = new javax.swing.JButton();
         jPanel6 = new javax.swing.JPanel();
         jPanel1 = new javax.swing.JPanel();
@@ -886,7 +887,12 @@ public class JPanel_Inventario extends javax.swing.JPanel {
         ));
         jScrollPane3.setViewportView(jTable_EntradasMercaderia);
 
-        jButton5.setText("Ver Entrada");
+        jButton_verEntrada.setText("Ver Entrada");
+        jButton_verEntrada.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton_verEntradaActionPerformed(evt);
+            }
+        });
 
         jButton_CrearEntrada.setText("Crear Entrada");
         jButton_CrearEntrada.addActionListener(new java.awt.event.ActionListener() {
@@ -908,7 +914,7 @@ public class JPanel_Inventario extends javax.swing.JPanel {
                         .addGap(54, 54, 54)
                         .addComponent(jButton_CrearEntrada)
                         .addGap(27, 27, 27)
-                        .addComponent(jButton5)))
+                        .addComponent(jButton_verEntrada)))
                 .addContainerGap(21, Short.MAX_VALUE))
         );
         jPanel_EntradaMercaderiaLayout.setVerticalGroup(
@@ -918,7 +924,7 @@ public class JPanel_Inventario extends javax.swing.JPanel {
                 .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 295, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(38, 38, 38)
                 .addGroup(jPanel_EntradaMercaderiaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton5)
+                    .addComponent(jButton_verEntrada)
                     .addComponent(jButton_CrearEntrada))
                 .addContainerGap(20, Short.MAX_VALUE))
         );
@@ -1625,13 +1631,16 @@ public class JPanel_Inventario extends javax.swing.JPanel {
 
     }//GEN-LAST:event_jButtonRegresarInventarioActionPerformed
 
+    private void jButton_verEntradaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_verEntradaActionPerformed
+        this.verEntrada(this.jTable_EntradasMercaderia);
+    }//GEN-LAST:event_jButton_verEntradaActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
-    private javax.swing.JButton jButton5;
     private javax.swing.JButton jButtonRegresarInventario;
     private javax.swing.JButton jButton_CrearCategoria;
     private javax.swing.JButton jButton_CrearEntrada;
@@ -1641,6 +1650,7 @@ public class JPanel_Inventario extends javax.swing.JPanel {
     private javax.swing.JButton jButton_EliminarProducto;
     private javax.swing.JButton jButton_EliminarProductoInventario;
     private javax.swing.JButton jButton_ModificarProducto;
+    private javax.swing.JButton jButton_verEntrada;
     private javax.swing.JComboBox jComboBox_CategoriaCrearProducto;
     private javax.swing.JComboBox jComboBox_Categorias;
     private javax.swing.JDialog jDialog_ConfirmacionModificacionProducto;
@@ -1711,4 +1721,28 @@ public class JPanel_Inventario extends javax.swing.JPanel {
     private javax.swing.JTextField jTextField_nombre1;
     private javax.swing.JTextField jTextField_nombreVerProducto;
     // End of variables declaration//GEN-END:variables
+
+    private void verEntrada(JTable table) {
+          int row = table.getSelectedRow();
+            if (row >= 0) {
+                VentanaDeInicio mVentana = VentanaDeInicio.getInstance();
+                JPanel_verEntradaSalidaMercaderia panelVerMovimientoEntradaSalida = new JPanel_verEntradaSalidaMercaderia();
+                mVentana.add(panelVerMovimientoEntradaSalida);
+                panelVerMovimientoEntradaSalida.setSize(this.getSize());
+                panelVerMovimientoEntradaSalida.setLocation(this.getLocation());
+                mVentana.remove(this);
+                panelVerMovimientoEntradaSalida.setVisible(true);
+                mVentana.revalidate();
+                mVentana.repaint();
+                mVentana.setTitle("Ver Entrada de Mercaderia");
+                Modelo_Facturacion model = (Modelo_Facturacion) table.getModel();
+                panelVerMovimientoEntradaSalida.jLabel_NumerodeMovimiento.setText(model.getValueAt(row, 0).toString());
+                panelVerMovimientoEntradaSalida.personalizarTablaVerMovimiento();
+            } else {
+                JOptionPane.showMessageDialog(
+                        null,
+                        "No se selecciono ninguna entrada de mercaderia",
+                        "Alert!", JOptionPane.ERROR_MESSAGE);
+            }
+    }
 }

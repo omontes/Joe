@@ -1046,7 +1046,7 @@
                               <EmptySpace min="-2" pref="54" max="-2" attributes="0"/>
                               <Component id="jButton_CrearEntrada" min="-2" max="-2" attributes="0"/>
                               <EmptySpace min="-2" pref="27" max="-2" attributes="0"/>
-                              <Component id="jButton5" min="-2" max="-2" attributes="0"/>
+                              <Component id="jButton_verEntrada" min="-2" max="-2" attributes="0"/>
                           </Group>
                       </Group>
                       <EmptySpace pref="21" max="32767" attributes="0"/>
@@ -1060,7 +1060,7 @@
                       <Component id="jScrollPane3" min="-2" pref="295" max="-2" attributes="0"/>
                       <EmptySpace min="-2" pref="38" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="jButton5" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="jButton_verEntrada" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="jButton_CrearEntrada" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace pref="20" max="32767" attributes="0"/>
@@ -1091,10 +1091,13 @@
                 </Component>
               </SubComponents>
             </Container>
-            <Component class="javax.swing.JButton" name="jButton5">
+            <Component class="javax.swing.JButton" name="jButton_verEntrada">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Ver Entrada"/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton_verEntradaActionPerformed"/>
+              </Events>
             </Component>
             <Component class="javax.swing.JButton" name="jButton_CrearEntrada">
               <Properties>

@@ -3466,4 +3466,34 @@ public class Direct_Control_BD {
         }
     }
 
+    public void verProductosPorMovimiento(int NumMov) {
+        try {
+            String verProductosPorFactura = this.readSql("../Joe/src/"
+                    + "sql_files/verProductosPorMovimiento.sql");
+            PreparedStatement stm = this.conection.prepareStatement(verProductosPorFactura);
+            stm.setInt(1, NumMov);
+            ResultSet resultset = stm.executeQuery();
+            this.setColumnNames(this.Get_Columnas(resultset));
+            this.setData(this.ResultSet_Array(resultset));
+        } catch (Exception e) {
+            System.out.println(NumMov);
+            System.out.println("Error al obtener los productos del movimiento");
+        }
+    }
+
+    public void verInfoMovimiento(int NumMovimiento) {
+        try {
+            String verInfoMovimiento = this.readSql("../Joe/src/"
+                    + "sql_files/cargarMovimiento.sql");
+            PreparedStatement stm = this.conection.prepareStatement(verInfoMovimiento);
+            stm.setInt(1, NumMovimiento);
+            ResultSet resultset = stm.executeQuery();
+            this.setColumnNames(this.Get_Columnas(resultset));
+            this.setData(this.ResultSet_Array(resultset));
+        } catch (Exception e) {
+            System.out.println(NumMovimiento);
+            System.out.println("Error al obtener la informacion del movimiento");
+        }
+    }
+
 }

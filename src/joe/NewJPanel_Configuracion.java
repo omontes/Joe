@@ -5,6 +5,7 @@
  */
 package joe;
 
+import ManejoDeArchivos.XMLConfiguracion;
 import db_managment.Direct_Control_BD;
 import java.awt.event.KeyEvent;
 import java.util.Vector;
@@ -74,8 +75,8 @@ public class NewJPanel_Configuracion extends javax.swing.JPanel {
         jButton_aceptar = new javax.swing.JButton();
         jButton_cancelar = new javax.swing.JButton();
         jLabel7 = new javax.swing.JLabel();
-        jTextField_ciudad1 = new javax.swing.JTextField();
-        jTextField_ciudad2 = new javax.swing.JTextField();
+        jTextField_ComentarioIni = new javax.swing.JTextField();
+        jTextField_ComentarioFin = new javax.swing.JTextField();
         jLabel8 = new javax.swing.JLabel();
         jLabel11 = new javax.swing.JLabel();
         jDialog_AdmiVend = new javax.swing.JDialog();
@@ -359,7 +360,24 @@ public class NewJPanel_Configuracion extends javax.swing.JPanel {
 
         jLabel5.setText("Correo:");
 
+        jTextField_nombreEmpresa.setText("Mi Empresa");
+
         jLabel6.setText("Ciudad");
+
+        jTextField_Direccion.setText("Canton, Distrito, Barrio");
+
+        jTextField_CedJ.setText("0000000000");
+        jTextField_CedJ.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTextField_CedJActionPerformed(evt);
+            }
+        });
+
+        jTextField_telefono.setText("88888888");
+
+        jTextField_ciudad.setText("Ciudad");
+
+        jTextField_correo.setText("miempresa@gmail.com");
 
         jButton_aceptar.setText("Aceptar");
         jButton_aceptar.addActionListener(new java.awt.event.ActionListener() {
@@ -376,6 +394,10 @@ public class NewJPanel_Configuracion extends javax.swing.JPanel {
         });
 
         jLabel7.setText("Comentarios en Factura:");
+
+        jTextField_ComentarioIni.setText("Mi Empresa Le Saluda");
+
+        jTextField_ComentarioFin.setText("Gracias Por Su Compra");
 
         jLabel8.setText("Inicial:");
 
@@ -419,11 +441,11 @@ public class NewJPanel_Configuracion extends javax.swing.JPanel {
                                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel_infoEmpresaLayout.createSequentialGroup()
                                         .addComponent(jLabel11)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                        .addComponent(jTextField_ciudad2, javax.swing.GroupLayout.PREFERRED_SIZE, 294, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                        .addComponent(jTextField_ComentarioFin, javax.swing.GroupLayout.PREFERRED_SIZE, 294, javax.swing.GroupLayout.PREFERRED_SIZE))
                                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel_infoEmpresaLayout.createSequentialGroup()
                                         .addComponent(jLabel8)
                                         .addGap(18, 18, 18)
-                                        .addComponent(jTextField_ciudad1, javax.swing.GroupLayout.PREFERRED_SIZE, 294, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                        .addComponent(jTextField_ComentarioIni, javax.swing.GroupLayout.PREFERRED_SIZE, 294, javax.swing.GroupLayout.PREFERRED_SIZE))))
                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 41, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGroup(jPanel_infoEmpresaLayout.createSequentialGroup()
                             .addComponent(jButton_aceptar)
@@ -466,11 +488,11 @@ public class NewJPanel_Configuracion extends javax.swing.JPanel {
                 .addComponent(jLabel7)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel_infoEmpresaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jTextField_ciudad1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jTextField_ComentarioIni, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel8))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel_infoEmpresaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jTextField_ciudad2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jTextField_ComentarioFin, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel11))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 72, Short.MAX_VALUE)
                 .addGroup(jPanel_infoEmpresaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -506,10 +528,8 @@ public class NewJPanel_Configuracion extends javax.swing.JPanel {
                     .addGap(0, 0, Short.MAX_VALUE)))
         );
 
-        jDialog_AdmiVend.setMaximumSize(new java.awt.Dimension(520, 365));
         jDialog_AdmiVend.setMinimumSize(new java.awt.Dimension(520, 365));
         jDialog_AdmiVend.setModal(true);
-        jDialog_AdmiVend.setPreferredSize(new java.awt.Dimension(520, 365));
         jDialog_AdmiVend.addWindowListener(new java.awt.event.WindowAdapter() {
             public void windowClosed(java.awt.event.WindowEvent evt) {
                 jDialog_AdmiVendWindowClosed(evt);
@@ -1210,8 +1230,19 @@ public class NewJPanel_Configuracion extends javax.swing.JPanel {
     }//GEN-LAST:event_jPanel_ModifAdmVendComponentShown
 
     private void jButton_aceptarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_aceptarActionPerformed
-       jDialog_configuracion.dispose();
+        XMLConfiguracion xml = XMLConfiguracion.getInstance();
+        xml.crearXML(jTextField_nombreEmpresa.getText(), jTextField_CedJ.
+                getText(),
+                jTextField_Direccion.getText(), jTextField_telefono.getText(),
+                jTextField_ciudad.getText(), jTextField_correo.getText(),
+                jTextField_ComentarioIni.getText(), jTextField_ComentarioFin.
+                getText());
+        jDialog_configuracion.dispose();
     }//GEN-LAST:event_jButton_aceptarActionPerformed
+
+    private void jTextField_CedJActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField_CedJActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextField_CedJActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -1287,10 +1318,10 @@ public class NewJPanel_Configuracion extends javax.swing.JPanel {
     private javax.swing.JTable jTable_Generica_Administrador;
     private javax.swing.JTable jTable_Generica_Vend;
     private javax.swing.JTextField jTextField_CedJ;
+    private javax.swing.JTextField jTextField_ComentarioFin;
+    private javax.swing.JTextField jTextField_ComentarioIni;
     private javax.swing.JTextField jTextField_Direccion;
     private javax.swing.JTextField jTextField_ciudad;
-    private javax.swing.JTextField jTextField_ciudad1;
-    private javax.swing.JTextField jTextField_ciudad2;
     private javax.swing.JTextField jTextField_correo;
     private javax.swing.JTextField jTextField_nombreEmpresa;
     private javax.swing.JTextField jTextField_telefono;

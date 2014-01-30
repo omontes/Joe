@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package joe;
+package ManejoDeArchivos;
 
 
 import java.awt.BorderLayout;
@@ -45,7 +45,7 @@ import jxl.write.biff.RowsExceededException;
  */
 public class EscribirExcel {
 
-    WritableWorkbook workbook;
+    public WritableWorkbook workbook;
     File ArchivoExcel;
 
     private WritableCellFormat timesReport;
@@ -103,6 +103,7 @@ public class EscribirExcel {
      * @param fechaIni
      * @param fechaFin
      * @param tipoDeReporte
+     * @param formato
      * @throws IOException
      * @throws WriteException
      */
@@ -152,7 +153,7 @@ public class EscribirExcel {
 
         //escribir datos de la empresa
         hojaExcel.addCell(new Label(0, 0, infoEmpresa[0], times14));
-        for (int i = 1; i < 4; i++) {//set info de la empresa
+        for (int i = 1; i <= 4; i++) {//set info de la empresa
             hojaExcel.addCell(new Label(0, i, infoEmpresa[i], times10));
         }
         //escribir el rango de fechas

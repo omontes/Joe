@@ -401,12 +401,12 @@
                                           <Group type="102" alignment="1" attributes="0">
                                               <Component id="jLabel11" min="-2" max="-2" attributes="0"/>
                                               <EmptySpace max="32767" attributes="0"/>
-                                              <Component id="jTextField_ciudad2" min="-2" pref="294" max="-2" attributes="0"/>
+                                              <Component id="jTextField_ComentarioFin" min="-2" pref="294" max="-2" attributes="0"/>
                                           </Group>
                                           <Group type="102" alignment="1" attributes="0">
                                               <Component id="jLabel8" min="-2" max="-2" attributes="0"/>
                                               <EmptySpace type="separate" max="-2" attributes="0"/>
-                                              <Component id="jTextField_ciudad1" min="-2" pref="294" max="-2" attributes="0"/>
+                                              <Component id="jTextField_ComentarioIni" min="-2" pref="294" max="-2" attributes="0"/>
                                           </Group>
                                       </Group>
                                   </Group>
@@ -461,12 +461,12 @@
                       <Component id="jLabel7" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="jTextField_ciudad1" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="jTextField_ComentarioIni" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="jLabel8" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace type="separate" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="jTextField_ciudad2" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="jTextField_ComentarioFin" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="jLabel11" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace pref="72" max="32767" attributes="0"/>
@@ -506,6 +506,9 @@
               </Properties>
             </Component>
             <Component class="javax.swing.JTextField" name="jTextField_nombreEmpresa">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Mi Empresa"/>
+              </Properties>
             </Component>
             <Component class="javax.swing.JLabel" name="jLabel6">
               <Properties>
@@ -513,14 +516,32 @@
               </Properties>
             </Component>
             <Component class="javax.swing.JTextField" name="jTextField_Direccion">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Canton, Distrito, Barrio"/>
+              </Properties>
             </Component>
             <Component class="javax.swing.JTextField" name="jTextField_CedJ">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="0000000000"/>
+              </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jTextField_CedJActionPerformed"/>
+              </Events>
             </Component>
             <Component class="javax.swing.JTextField" name="jTextField_telefono">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="88888888"/>
+              </Properties>
             </Component>
             <Component class="javax.swing.JTextField" name="jTextField_ciudad">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Ciudad"/>
+              </Properties>
             </Component>
             <Component class="javax.swing.JTextField" name="jTextField_correo">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="miempresa@gmail.com"/>
+              </Properties>
             </Component>
             <Component class="javax.swing.JButton" name="jButton_aceptar">
               <Properties>
@@ -543,9 +564,15 @@
                 <Property name="text" type="java.lang.String" value="Comentarios en Factura:"/>
               </Properties>
             </Component>
-            <Component class="javax.swing.JTextField" name="jTextField_ciudad1">
+            <Component class="javax.swing.JTextField" name="jTextField_ComentarioIni">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Mi Empresa Le Saluda"/>
+              </Properties>
             </Component>
-            <Component class="javax.swing.JTextField" name="jTextField_ciudad2">
+            <Component class="javax.swing.JTextField" name="jTextField_ComentarioFin">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Gracias Por Su Compra"/>
+              </Properties>
             </Component>
             <Component class="javax.swing.JLabel" name="jLabel8">
               <Properties>
@@ -563,16 +590,10 @@
     </Container>
     <Container class="javax.swing.JDialog" name="jDialog_AdmiVend">
       <Properties>
-        <Property name="maximumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
-          <Dimension value="[520, 365]"/>
-        </Property>
         <Property name="minimumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
           <Dimension value="[520, 365]"/>
         </Property>
         <Property name="modal" type="boolean" value="true"/>
-        <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
-          <Dimension value="[520, 365]"/>
-        </Property>
       </Properties>
       <Events>
         <EventHandler event="windowClosed" listener="java.awt.event.WindowListener" parameters="java.awt.event.WindowEvent" handler="jDialog_AdmiVendWindowClosed"/>

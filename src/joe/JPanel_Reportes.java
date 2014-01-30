@@ -5,8 +5,8 @@
  */
 package joe;
 
-//import com.jxcell.CellException;
-//import datechooser.model.exeptions.IncompatibleDataExeption;
+import ManejoDeArchivos.EscribirExcel;
+import ManejoDeArchivos.XMLConfiguracion;
 import db_managment.Direct_Control_BD;
 import java.awt.event.KeyEvent;
 import java.io.IOException;
@@ -18,6 +18,7 @@ import java.util.logging.Logger;
 import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 import jxl.write.WriteException;
+import org.w3c.dom.Element;
 
 /**
  *
@@ -25,15 +26,23 @@ import jxl.write.WriteException;
  */
 public class JPanel_Reportes extends javax.swing.JPanel {
 
+    private static XMLConfiguracion configuracion;
     private static JPanel_Reportes mPanelInventario = null;
-    DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd-HH-mm-ss-SSS0");//formato fecha act
-    DateFormat dateF1 = new SimpleDateFormat("dd-MM-yyyy");//formato para mostrar
-    DateFormat dateF = new SimpleDateFormat("yyyy-MM-dd");//formato para consultar
+    //formato fecha act
+    DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd-HH-mm-ss-SSS0");
+    //formato para mostrar
+    DateFormat dateF1 = new SimpleDateFormat("dd-MM-yyyy");
+    //formato para consultar
+    DateFormat dateF = new SimpleDateFormat("yyyy-MM-dd");
+    String[] infoEmpresa;
 
     /**
      * Creates new form Reportes
      */
     public JPanel_Reportes() {
+        configuracion = XMLConfiguracion.getInstance();
+        infoEmpresa = configuracion.leerInfoEmpresaXML();
+        
         initComponents();
     }
 
@@ -3842,9 +3851,6 @@ jPanel_VerDevEliminadasPorFechLayout.createParallelGroup(javax.swing.GroupLayout
                     dateF.format(dateChooserCombo_FinClie.getSelectedDate().
                             getTime()), jTextField_Cliente.getText().toString());
 
-            String[] infoEmpresa = {"Joe S.A ", "Oriente pa dentro", "Cartago,"
-                + " CA 20320", "Telefono:2650-11-36, fax:2655-0203"};
-
             Date date = new Date();//hora Actual
             String fechaAct = dateFormat.format(date);
 
@@ -3887,8 +3893,6 @@ jPanel_VerDevEliminadasPorFechLayout.createParallelGroup(javax.swing.GroupLayout
                     dateChooserCombo_IniVent.getSelectedDate().getTime()),
                     dateF.format(dateChooserCombo_FinVent.getSelectedDate().
                             getTime()), concepto);
-            String[] infoEmpresa = {"Joe S.A ", "Oriente pa dentro", "Cartago,"
-                + " CA 20320", "Telefono:2650-11-36, fax:2655-0203"};
 
             Date date = new Date();//hora Actual
             String fechaAct = dateFormat.format(date);
@@ -3964,8 +3968,6 @@ jPanel_VerDevEliminadasPorFechLayout.createParallelGroup(javax.swing.GroupLayout
                         getSelectedItem().toString());
 
             }
-            String[] infoEmpresa = {"Joe S.A ", "Oriente pa dentro", "Cartago,"
-                + " CA 20320", "Telefono:2650-11-36, fax:2655-0203"};
 
             Date date = new Date();//hora Actual
             String fechaAct = dateFormat.format(date);
@@ -4084,8 +4086,7 @@ jPanel_VerDevEliminadasPorFechLayout.createParallelGroup(javax.swing.GroupLayout
                         .toString(), concepto);
             }
 
-            String[] infoEmpresa = {"Joe S.A ", "Oriente pa dentro", "Cartago,"
-                + " CA 20320", "Telefono:2650-11-36, fax:2655-0203"};
+         
 
             Date date = new Date();//hora Actual
             String fechaAct = dateFormat.format(date);
@@ -4151,8 +4152,7 @@ jPanel_VerDevEliminadasPorFechLayout.createParallelGroup(javax.swing.GroupLayout
                                 getSelectedDate().getTime()), "Tarjeta");
 
             }
-            String[] infoEmpresa = {"Joe S.A ", "Oriente pa dentro", "Cartago,"
-                + " CA 20320", "Telefono:2650-11-36, fax:2655-0203"};
+           
 
             Date date = new Date();//hora Actual
             String fechaAct = dateFormat.format(date);
@@ -4192,8 +4192,7 @@ jPanel_VerDevEliminadasPorFechLayout.createParallelGroup(javax.swing.GroupLayout
                     jComboBox_SeleccionarProdVendedor.
                     getSelectedItem().toString());
 
-            String[] infoEmpresa = {"Joe S.A ", "Oriente pa dentro", "Cartago,"
-                + " CA 20320", "Telefono:2650-11-36, fax:2655-0203"};
+           
 
             Date date = new Date();//hora Actual
             String fechaAct = dateFormat.format(date);
@@ -4243,8 +4242,7 @@ jPanel_VerDevEliminadasPorFechLayout.createParallelGroup(javax.swing.GroupLayout
                             getSelectedDate().getTime()),
                     jTextField_VentasProdPorCliente.getText().toString());
 
-            String[] infoEmpresa = {"Joe S.A ", "Oriente pa dentro", "Cartago,"
-                + " CA 20320", "Telefono:2650-11-36, fax:2655-0203"};
+            
 
             Date date = new Date();//hora Actual
             String fechaAct = dateFormat.format(date);
@@ -4286,8 +4284,7 @@ jPanel_VerDevEliminadasPorFechLayout.createParallelGroup(javax.swing.GroupLayout
                 dateChooserCombo_IniEliminadasFact.getSelectedDate().getTime()),
                 dateF.format(dateChooserCombo_FinEliminadasFact.
                         getSelectedDate().getTime()));
-        String[] infoEmpresa = {"Joe S.A ", "Oriente pa dentro", "Cartago,"
-            + " CA 20320", "Telefono:2650-11-36, fax:2655-0203"};
+       
 
         Date date = new Date();//hora Actual
         String fechaAct = dateFormat.format(date);
@@ -4386,8 +4383,7 @@ jPanel_VerDevEliminadasPorFechLayout.createParallelGroup(javax.swing.GroupLayout
     private void jButton_aceptarListaPrecActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_aceptarListaPrecActionPerformed
         Direct_Control_BD AdminBD = Direct_Control_BD.getInstance();
 
-        String[] infoEmpresa = {"Joe S.A ", "Oriente pa dentro", "Cartago,"
-            + " CA 20320", "Telefono:2650-11-36, fax:2655-0203"};
+        
 
         if (jRadioButton_ExcelListaPrec.isSelected()) {//para mostrar en Excel
 
@@ -4471,8 +4467,7 @@ jPanel_VerDevEliminadasPorFechLayout.createParallelGroup(javax.swing.GroupLayout
     private void jButton_aceptarListaCostActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_aceptarListaCostActionPerformed
         Direct_Control_BD AdminBD = Direct_Control_BD.getInstance();
 
-        String[] infoEmpresa = {"Joe S.A ", "Oriente pa dentro", "Cartago,"
-            + " CA 20320", "Telefono:2650-11-36, fax:2655-0203"};
+        
 
         if (jRadioButton_ExcelListaCost.isSelected()) {//para mostrar en Excel
 
@@ -4564,8 +4559,7 @@ jPanel_VerDevEliminadasPorFechLayout.createParallelGroup(javax.swing.GroupLayout
     private void jButton_aceptarListaAgotadosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_aceptarListaAgotadosActionPerformed
         Direct_Control_BD AdminBD = Direct_Control_BD.getInstance();
 
-        String[] infoEmpresa = {"Joe S.A ", "Oriente pa dentro", "Cartago,"
-            + " CA 20320", "Telefono:2650-11-36, fax:2655-0203"};
+        
         String ubicacion = "General";
         if (jRadioButton_ExcelListaAgotados.isSelected()) {//para mostrar en Excel
             if (jRadioButton_bodega.isSelected()) {
@@ -4653,8 +4647,7 @@ jPanel_VerDevEliminadasPorFechLayout.createParallelGroup(javax.swing.GroupLayout
     private void jButton_aceptarListaInvActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_aceptarListaInvActionPerformed
         Direct_Control_BD AdminBD = Direct_Control_BD.getInstance();
 
-        String[] infoEmpresa = {"Joe S.A ", "Oriente pa dentro", "Cartago,"
-            + " CA 20320", "Telefono:2650-11-36, fax:2655-0203"};
+      
         String ubicacion = "General";
         if (jRadioButton_ExcelListaInv.isSelected()) {//para mostrar en Excel
             if (jRadioButton_bodegaInv.isSelected()) {
@@ -4743,8 +4736,7 @@ jPanel_VerDevEliminadasPorFechLayout.createParallelGroup(javax.swing.GroupLayout
     private void jButton_aceptarListaValorInvActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_aceptarListaValorInvActionPerformed
         Direct_Control_BD AdminBD = Direct_Control_BD.getInstance();
 
-        String[] infoEmpresa = {"Joe S.A ", "Oriente pa dentro", "Cartago,"
-            + " CA 20320", "Telefono:2650-11-36, fax:2655-0203"};
+        
         String ubicacion = "General";
         //para mostrar en Excel
         if (jRadioButton_ExcelListaValorInv.isSelected()) {
@@ -4948,8 +4940,7 @@ jPanel_VerDevEliminadasPorFechLayout.createParallelGroup(javax.swing.GroupLayout
                 Logger.getLogger(JPanel_Reportes.class.getName()).
                         log(Level.SEVERE, null, ex);
             }
-            String[] infoEmpresa = {"Joe S.A ", "Oriente pa dentro", "Cartago,"
-                + " CA 20320", "Telefono:2650-11-36, fax:2655-0203"};
+          
 
             for (int i = 0; i < infoFact.length; i++) {
                 AdminBD.verProductosPorFacturaYVersionDeFactura(infoFact[i][1].
@@ -5149,8 +5140,7 @@ jPanel_VerDevEliminadasPorFechLayout.createParallelGroup(javax.swing.GroupLayout
                     dateChooserCombo_IniDevFech.getSelectedDate().getTime()),
                     dateF.format(dateChooserCombo_FinDevFech.getSelectedDate().
                             getTime()));
-            String[] infoEmpresa = {"Joe S.A ", "Oriente pa dentro", "Cartago,"
-                + " CA 20320", "Telefono:2650-11-36, fax:2655-0203"};
+            
 
             Date date = new Date();//hora Actual
             String fechaAct = dateFormat.format(date);
@@ -5197,8 +5187,7 @@ jPanel_VerDevEliminadasPorFechLayout.createParallelGroup(javax.swing.GroupLayout
                 dateChooserCombo_IniEliminadasDev.getSelectedDate().getTime()),
                 dateF.format(dateChooserCombo_FinEliminadasDev.
                         getSelectedDate().getTime()));
-        String[] infoEmpresa = {"Joe S.A ", "Oriente pa dentro", "Cartago,"
-            + " CA 20320", "Telefono:2650-11-36, fax:2655-0203"};
+        
 
         Date date = new Date();//hora Actual
         String fechaAct = dateFormat.format(date);
@@ -5270,8 +5259,7 @@ jPanel_VerDevEliminadasPorFechLayout.createParallelGroup(javax.swing.GroupLayout
                 Logger.getLogger(JPanel_Reportes.class.getName()).
                         log(Level.SEVERE, null, ex);
             }
-            String[] infoEmpresa = {"Joe S.A ", "Oriente pa dentro", "Cartago,"
-                + " CA 20320", "Telefono:2650-11-36, fax:2655-0203"};
+           
 
             for (int i = 0; i < infoFact.length; i++) {
                 //Obtener la devolucion modificada y sus versiones

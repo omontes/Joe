@@ -13,7 +13,10 @@ import java.awt.event.KeyEvent;
 import java.math.BigDecimal;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Date;
+import java.util.List;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
@@ -38,6 +41,7 @@ public class JPanel_Inventario extends javax.swing.JPanel {
         personalizarTablaInventario();
         personalizarTablaEntradaMercaderia();
         personalizarTablaSalidaMercaderia();
+        personalizarTablaVerMovimientos();
          
     }
     
@@ -163,6 +167,11 @@ public class JPanel_Inventario extends javax.swing.JPanel {
         jButton_CrearSalida = new javax.swing.JButton();
         jPanel1 = new javax.swing.JPanel();
         jPanel4 = new javax.swing.JPanel();
+        jScrollPane6 = new javax.swing.JScrollPane();
+        jTable_verMovimientos = new javax.swing.JTable();
+        jLabel13 = new javax.swing.JLabel();
+        jTextField_codProd = new javax.swing.JTextField();
+        jButton5 = new javax.swing.JButton();
 
         jPanel2.setBackground(new java.awt.Color(153, 153, 153));
 
@@ -866,7 +875,7 @@ public class JPanel_Inventario extends javax.swing.JPanel {
             jPanel_InventarioGeneralLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel_InventarioGeneralLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane5, javax.swing.GroupLayout.DEFAULT_SIZE, 328, Short.MAX_VALUE)
+                .addComponent(jScrollPane5, javax.swing.GroupLayout.DEFAULT_SIZE, 330, Short.MAX_VALUE)
                 .addGap(18, 18, 18)
                 .addGroup(jPanel_InventarioGeneralLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton_CrearProductoInventario)
@@ -931,7 +940,7 @@ public class JPanel_Inventario extends javax.swing.JPanel {
                 .addGroup(jPanel_EntradaMercaderiaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton_verEntrada)
                     .addComponent(jButton_CrearEntrada))
-                .addContainerGap(20, Short.MAX_VALUE))
+                .addContainerGap(22, Short.MAX_VALUE))
         );
 
         jTabbedPane1.addTab("Entrada de Mercaderia", jPanel_EntradaMercaderia);
@@ -988,7 +997,7 @@ public class JPanel_Inventario extends javax.swing.JPanel {
                 .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton_verSalida)
                     .addComponent(jButton_CrearSalida))
-                .addContainerGap(38, Short.MAX_VALUE))
+                .addContainerGap(40, Short.MAX_VALUE))
         );
 
         jTabbedPane1.addTab("Salida de Mercaderia", jPanel6);
@@ -1001,20 +1010,63 @@ public class JPanel_Inventario extends javax.swing.JPanel {
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 395, Short.MAX_VALUE)
+            .addGap(0, 397, Short.MAX_VALUE)
         );
 
         jTabbedPane1.addTab("Bodega", jPanel1);
+
+        jTable_verMovimientos.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {},
+                {},
+                {},
+                {}
+            },
+            new String [] {
+
+            }
+        ));
+        jTable_verMovimientos.setCellSelectionEnabled(true);
+        jTable_verMovimientos.setFillsViewportHeight(true);
+        jTable_verMovimientos.setSurrendersFocusOnKeystroke(true);
+        jScrollPane6.setViewportView(jTable_verMovimientos);
+
+        jLabel13.setText("Producto");
+
+        jButton5.setText("Buscar");
+        jButton5.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton5ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
         jPanel4Layout.setHorizontalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 899, Short.MAX_VALUE)
+            .addGroup(jPanel4Layout.createSequentialGroup()
+                .addGap(58, 58, 58)
+                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel4Layout.createSequentialGroup()
+                        .addComponent(jLabel13)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jTextField_codProd, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jButton5))
+                    .addComponent(jScrollPane6, javax.swing.GroupLayout.PREFERRED_SIZE, 775, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(66, Short.MAX_VALUE))
         );
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 395, Short.MAX_VALUE)
+            .addGroup(jPanel4Layout.createSequentialGroup()
+                .addGap(16, 16, 16)
+                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel13)
+                    .addComponent(jTextField_codProd, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButton5))
+                .addGap(26, 26, 26)
+                .addComponent(jScrollPane6, javax.swing.GroupLayout.PREFERRED_SIZE, 241, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(91, Short.MAX_VALUE))
         );
 
         jTabbedPane1.addTab("Movimientos", jPanel4);
@@ -1709,12 +1761,17 @@ public class JPanel_Inventario extends javax.swing.JPanel {
         panelCreaSalidaMerca.cargarSeleccionadorProductos();
     }//GEN-LAST:event_jButton_CrearSalidaActionPerformed
 
+    private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
+        this.verProducto();
+    }//GEN-LAST:event_jButton5ActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
+    private javax.swing.JButton jButton5;
     private javax.swing.JButton jButtonRegresarInventario;
     private javax.swing.JButton jButton_CrearCategoria;
     private javax.swing.JButton jButton_CrearEntrada;
@@ -1740,6 +1797,7 @@ public class JPanel_Inventario extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
+    private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel14;
     private javax.swing.JLabel jLabel15;
     private javax.swing.JLabel jLabel16;
@@ -1773,10 +1831,12 @@ public class JPanel_Inventario extends javax.swing.JPanel {
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JScrollPane jScrollPane4;
     private javax.swing.JScrollPane jScrollPane5;
+    private javax.swing.JScrollPane jScrollPane6;
     private javax.swing.JTabbedPane jTabbedPane1;
     private javax.swing.JTable jTable_EntradasMercaderia;
     private javax.swing.JTable jTable_Inventario;
     private javax.swing.JTable jTable_SalidasMercaderia;
+    private javax.swing.JTable jTable_verMovimientos;
     private javax.swing.JTextArea jTextArea_DescripcionCrearProducto;
     private javax.swing.JTextField jTextField_Cantidad;
     private javax.swing.JTextField jTextField_CategoriaVerProducto;
@@ -1794,6 +1854,7 @@ public class JPanel_Inventario extends javax.swing.JPanel {
     private javax.swing.JTextField jTextField_Precio;
     private javax.swing.JTextField jTextField_Precio1;
     private javax.swing.JTextField jTextField_PrecioVerProducto;
+    private javax.swing.JTextField jTextField_codProd;
     private javax.swing.JTextField jTextField_codigo;
     private javax.swing.JTextField jTextField_nombre;
     private javax.swing.JTextField jTextField_nombre1;
@@ -1841,5 +1902,44 @@ public class JPanel_Inventario extends javax.swing.JPanel {
         centerRenderer.setHorizontalAlignment(JLabel.CENTER);
         this.jTable_SalidasMercaderia.getColumnModel().getColumn(0).setCellRenderer
                 (centerRenderer);
+    }
+
+    private void verProducto() {
+        NewJDialog_Buscador buscador = new NewJDialog_Buscador();
+        buscador.actualizaTablaParaInventario();
+        String id = buscador.getIdProducto();
+        this.jTextField_codProd.setText(id);
+        this.cargarMovimientoPorProd(id);
+        
+        }
+
+    private void personalizarTablaVerMovimientos() {
+       
+        String[] columnNames = {"Fecha", "Detalle",
+            "Tipo Movimiento", "Lugar Movimiento",
+            "Cantidad", "Balance","Precio"};
+        List<Object[]> data = new ArrayList<Object[]>();
+        //Crea la tabla generica para Facturas
+        this.jTable_verMovimientos.setModel(new Modelo_verMovimientos(columnNames,data));
+        //Alinea la primer columna de esta tabla hacia el centro
+        DefaultTableCellRenderer centerRenderer = new DefaultTableCellRenderer
+                ();
+        centerRenderer.setHorizontalAlignment(JLabel.CENTER);
+        this.jTable_SalidasMercaderia.getColumnModel().getColumn(0).setCellRenderer
+                (centerRenderer);
+    }
+
+    private void cargarMovimientoPorProd(String idProd) {
+        Direct_Control_BD AdminBD = Direct_Control_BD.getInstance();
+        Modelo_verMovimientos model= (Modelo_verMovimientos) this.jTable_verMovimientos.getModel();
+        AdminBD.verMovimientoPorProducto(idProd);
+        Object[][] data= AdminBD.getData();
+        ArrayList<Object[]> arrayList = new ArrayList<Object[]>(Arrays.asList(data));
+        model.data=arrayList;
+        model.fireTableDataChanged();
+        model.addRow(20);
+        
+               
+        
     }
 }

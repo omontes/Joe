@@ -153,7 +153,7 @@ public class EscribirExcel {
 
         //escribir datos de la empresa
         hojaExcel.addCell(new Label(0, 0, infoEmpresa[0], times14));
-        for (int i = 1; i < 4; i++) {//set info de la empresa
+        for (int i = 1; i <= 4; i++) {//set info de la empresa
             hojaExcel.addCell(new Label(0, i, infoEmpresa[i], times10));
         }
         //escribir el rango de fechas

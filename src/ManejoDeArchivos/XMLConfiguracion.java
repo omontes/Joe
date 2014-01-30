@@ -130,6 +130,11 @@ public class XMLConfiguracion {
         }
     }
 
+    /**
+     * retorna un string[] con la informacion de la empresa
+     *
+     * @return
+     */
     public static String[] leerInfoEmpresaXML() {
         String[] infoEmpresa = new String[6];
         try {
@@ -159,26 +164,32 @@ public class XMLConfiguracion {
                             item(0).getTextContent();
                     infoEmpresa[2] = eElement.getElementsByTagName("Ciudad").
                             item(0).getTextContent();
-                    infoEmpresa[3] = eElement.
+                    infoEmpresa[3] = "Cedula Juridica " + eElement.
                             getElementsByTagName("CedulaJuridica").
                             item(0).getTextContent();
-                    infoEmpresa[4] = eElement.getElementsByTagName("Telefono").
+                    infoEmpresa[4] = "Telefono " + eElement.getElementsByTagName("Telefono").
                             item(0).getTextContent();
-                    infoEmpresa[5] = eElement.getElementsByTagName("Correo").
+                    infoEmpresa[5] = "Correo " + eElement.getElementsByTagName("Correo").
                             item(0).getTextContent();
 
                 }
             }
 
         } catch (Exception e) {
-            e.printStackTrace();
+
         }
 
         return infoEmpresa;
     }
-
-    public static void leerInfoParaFactura() {
+/**
+ * Retorna un String[] con los comentarios inicial y final de factura 
+ * respectivamente
+ * @return 
+ */
+    public static String[] leerInfoParaFactura() {
+        String[] comentariosFact = new String[2];
         try {
+
             File fXmlFile = new File("Configuracion.xml");
             DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
             DocumentBuilder dBuilder = dbFactory.newDocumentBuilder();
@@ -190,18 +201,21 @@ public class XMLConfiguracion {
 
                 Node nNode = nListFac.item(temp);
 
-                System.out.println("\nCurrent Element :" + nNode.getNodeName());
-
                 if (nNode.getNodeType() == Node.ELEMENT_NODE) {
 
                     Element eElement = (Element) nNode;
 
-                    System.out.println("ComentarioInicial : " + eElement.getElementsByTagName("ComentarioInicial").item(0).getTextContent());
-                    System.out.println("ComentarioFinal : " + eElement.getElementsByTagName("ComentarioFinal").item(0).getTextContent());
+                    comentariosFact[0] = eElement.
+                            getElementsByTagName("ComentarioInicial").item(0).
+                            getTextContent();
+                    comentariosFact[1] = eElement.
+                            getElementsByTagName("ComentarioFinal").
+                            item(0).getTextContent();
 
                 }
             }
         } catch (IOException | ParserConfigurationException | DOMException | SAXException e) {
         }
+        return comentariosFact;
     }
 }

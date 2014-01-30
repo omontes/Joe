@@ -37,6 +37,7 @@ public class JPanel_Inventario extends javax.swing.JPanel {
         initComponents();
         personalizarTablaInventario();
         personalizarTablaEntradaMercaderia();
+        personalizarTablaSalidaMercaderia();
          
     }
     
@@ -156,6 +157,10 @@ public class JPanel_Inventario extends javax.swing.JPanel {
         jButton_verEntrada = new javax.swing.JButton();
         jButton_CrearEntrada = new javax.swing.JButton();
         jPanel6 = new javax.swing.JPanel();
+        jScrollPane4 = new javax.swing.JScrollPane();
+        jTable_SalidasMercaderia = new javax.swing.JTable();
+        jButton_verSalida = new javax.swing.JButton();
+        jButton_CrearSalida = new javax.swing.JButton();
         jPanel1 = new javax.swing.JPanel();
         jPanel4 = new javax.swing.JPanel();
 
@@ -931,15 +936,59 @@ public class JPanel_Inventario extends javax.swing.JPanel {
 
         jTabbedPane1.addTab("Entrada de Mercaderia", jPanel_EntradaMercaderia);
 
+        jTable_SalidasMercaderia.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {},
+                {},
+                {},
+                {}
+            },
+            new String [] {
+
+            }
+        ));
+        jScrollPane4.setViewportView(jTable_SalidasMercaderia);
+
+        jButton_verSalida.setText("Ver Salida");
+        jButton_verSalida.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton_verSalidaActionPerformed(evt);
+            }
+        });
+
+        jButton_CrearSalida.setText("Crear Salida");
+        jButton_CrearSalida.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton_CrearSalidaActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel6Layout = new javax.swing.GroupLayout(jPanel6);
         jPanel6.setLayout(jPanel6Layout);
         jPanel6Layout.setHorizontalGroup(
             jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 899, Short.MAX_VALUE)
+            .addGroup(jPanel6Layout.createSequentialGroup()
+                .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel6Layout.createSequentialGroup()
+                        .addGap(19, 19, 19)
+                        .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 855, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel6Layout.createSequentialGroup()
+                        .addGap(41, 41, 41)
+                        .addComponent(jButton_CrearSalida)
+                        .addGap(27, 27, 27)
+                        .addComponent(jButton_verSalida)))
+                .addContainerGap(25, Short.MAX_VALUE))
         );
         jPanel6Layout.setVerticalGroup(
             jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 395, Short.MAX_VALUE)
+            .addGroup(jPanel6Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 295, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(28, 28, 28)
+                .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jButton_verSalida)
+                    .addComponent(jButton_CrearSalida))
+                .addContainerGap(38, Short.MAX_VALUE))
         );
 
         jTabbedPane1.addTab("Salida de Mercaderia", jPanel6);
@@ -1617,6 +1666,7 @@ public class JPanel_Inventario extends javax.swing.JPanel {
         centerRenderer.setHorizontalAlignment(JLabel.CENTER);
         this.jTable_EntradasMercaderia.getColumnModel().getColumn(0).setCellRenderer
                 (centerRenderer);
+        
     }
     private void jButtonRegresarInventarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonRegresarInventarioActionPerformed
         VentanaDeInicio mVentana= VentanaDeInicio.getInstance();
@@ -1632,8 +1682,32 @@ public class JPanel_Inventario extends javax.swing.JPanel {
     }//GEN-LAST:event_jButtonRegresarInventarioActionPerformed
 
     private void jButton_verEntradaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_verEntradaActionPerformed
-        this.verEntrada(this.jTable_EntradasMercaderia);
+        this.verEntrada(this.jTable_EntradasMercaderia,"Ver Entrada de Mercaderia");
     }//GEN-LAST:event_jButton_verEntradaActionPerformed
+
+    private void jButton_verSalidaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_verSalidaActionPerformed
+         this.verEntrada(this.jTable_SalidasMercaderia,"Ver Salida de Mercaderia");
+    }//GEN-LAST:event_jButton_verSalidaActionPerformed
+
+    private void jButton_CrearSalidaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_CrearSalidaActionPerformed
+        VentanaDeInicio mVentana= VentanaDeInicio.getInstance();
+        JPanel_CrearEntradaSalidaMercaderia panelCreaSalidaMerca= new JPanel_CrearEntradaSalidaMercaderia();
+        mVentana.add(panelCreaSalidaMerca);
+        panelCreaSalidaMerca.setSize(this.getSize());
+        panelCreaSalidaMerca.setLocation(this.getLocation());
+        mVentana.remove(this);
+        panelCreaSalidaMerca.setVisible(true);
+        mVentana.revalidate();
+        mVentana.repaint();
+        mVentana.setTitle("Salida de Mercaderia");
+        Direct_Control_BD AdminBD = Direct_Control_BD.getInstance();
+        String numDoc = Integer.toString(AdminBD.ObtenerUltimoidMovimiento() + 1);
+        panelCreaSalidaMerca.jLabel_NumerodeMovimiento.setText(numDoc);
+        panelCreaSalidaMerca.jLabel_tipoMovimiento.setText("Salida de:");
+        panelCreaSalidaMerca.personalizarTablaMovimiento();
+        panelCreaSalidaMerca.agregarListenerRenders();
+        panelCreaSalidaMerca.cargarSeleccionadorProductos();
+    }//GEN-LAST:event_jButton_CrearSalidaActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -1647,10 +1721,12 @@ public class JPanel_Inventario extends javax.swing.JPanel {
     private javax.swing.JButton jButton_CrearProducto;
     private javax.swing.JButton jButton_CrearProducto1;
     private javax.swing.JButton jButton_CrearProductoInventario;
+    private javax.swing.JButton jButton_CrearSalida;
     private javax.swing.JButton jButton_EliminarProducto;
     private javax.swing.JButton jButton_EliminarProductoInventario;
     private javax.swing.JButton jButton_ModificarProducto;
     private javax.swing.JButton jButton_verEntrada;
+    private javax.swing.JButton jButton_verSalida;
     private javax.swing.JComboBox jComboBox_CategoriaCrearProducto;
     private javax.swing.JComboBox jComboBox_Categorias;
     private javax.swing.JDialog jDialog_ConfirmacionModificacionProducto;
@@ -1695,10 +1771,12 @@ public class JPanel_Inventario extends javax.swing.JPanel {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
+    private javax.swing.JScrollPane jScrollPane4;
     private javax.swing.JScrollPane jScrollPane5;
     private javax.swing.JTabbedPane jTabbedPane1;
     private javax.swing.JTable jTable_EntradasMercaderia;
     private javax.swing.JTable jTable_Inventario;
+    private javax.swing.JTable jTable_SalidasMercaderia;
     private javax.swing.JTextArea jTextArea_DescripcionCrearProducto;
     private javax.swing.JTextField jTextField_Cantidad;
     private javax.swing.JTextField jTextField_CategoriaVerProducto;
@@ -1722,7 +1800,7 @@ public class JPanel_Inventario extends javax.swing.JPanel {
     private javax.swing.JTextField jTextField_nombreVerProducto;
     // End of variables declaration//GEN-END:variables
 
-    private void verEntrada(JTable table) {
+    private void verEntrada(JTable table, String title) {
           int row = table.getSelectedRow();
             if (row >= 0) {
                 VentanaDeInicio mVentana = VentanaDeInicio.getInstance();
@@ -1734,7 +1812,10 @@ public class JPanel_Inventario extends javax.swing.JPanel {
                 panelVerMovimientoEntradaSalida.setVisible(true);
                 mVentana.revalidate();
                 mVentana.repaint();
-                mVentana.setTitle("Ver Entrada de Mercaderia");
+                mVentana.setTitle(title);
+                if(title.equals("Ver Salida de Mercaderia")){
+                    panelVerMovimientoEntradaSalida.jLabel_tipoMov.setText("Salida de:");
+                }
                 Modelo_Facturacion model = (Modelo_Facturacion) table.getModel();
                 panelVerMovimientoEntradaSalida.jLabel_NumerodeMovimiento.setText(model.getValueAt(row, 0).toString());
                 panelVerMovimientoEntradaSalida.personalizarTablaVerMovimiento();
@@ -1744,5 +1825,21 @@ public class JPanel_Inventario extends javax.swing.JPanel {
                         "No se selecciono ninguna entrada de mercaderia",
                         "Alert!", JOptionPane.ERROR_MESSAGE);
             }
+    }
+
+    private void personalizarTablaSalidaMercaderia() {
+        //Realiza la consulta para obtener los creditos
+        Direct_Control_BD AdminBD = Direct_Control_BD.getInstance();
+        AdminBD.verSalidasMercaderia();
+        String[] columnNames = AdminBD.getColumnNames();
+        Object[][] data = AdminBD.getData();
+        //Crea la tabla generica para Facturas
+        this.jTable_SalidasMercaderia.setModel(new Modelo_Facturacion(columnNames,data));
+        //Alinea la primer columna de esta tabla hacia el centro
+        DefaultTableCellRenderer centerRenderer = new DefaultTableCellRenderer
+                ();
+        centerRenderer.setHorizontalAlignment(JLabel.CENTER);
+        this.jTable_SalidasMercaderia.getColumnModel().getColumn(0).setCellRenderer
+                (centerRenderer);
     }
 }

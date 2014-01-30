@@ -46,7 +46,7 @@ public class JPanel_verEntradaSalidaMercaderia extends javax.swing.JPanel {
 
         jLabel_FechaFact = new javax.swing.JLabel();
         jLabel_Fecha = new javax.swing.JLabel();
-        jLabel8 = new javax.swing.JLabel();
+        jLabel_tipoMov = new javax.swing.JLabel();
         jComboBox_LugarDeMov = new javax.swing.JComboBox();
         jLabel7 = new javax.swing.JLabel();
         jTextField_referencia = new javax.swing.JTextField();
@@ -62,7 +62,7 @@ public class JPanel_verEntradaSalidaMercaderia extends javax.swing.JPanel {
 
         jLabel_Fecha.setText("Aqui va la fecha");
 
-        jLabel8.setText("Entrada a:");
+        jLabel_tipoMov.setText("Entrada a:");
 
         jComboBox_LugarDeMov.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Inventario General", "Bodega" }));
 
@@ -130,7 +130,7 @@ public class JPanel_verEntradaSalidaMercaderia extends javax.swing.JPanel {
                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                             .addComponent(jLabel_Fecha, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                            .addComponent(jLabel8)
+                            .addComponent(jLabel_tipoMov)
                             .addGap(18, 18, 18)
                             .addComponent(jComboBox_LugarDeMov, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGap(18, 18, 18)
@@ -170,7 +170,7 @@ public class JPanel_verEntradaSalidaMercaderia extends javax.swing.JPanel {
                                 .addComponent(jTextField_referencia, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addComponent(jLabel7)
                                 .addComponent(jComboBox_LugarDeMov, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(jLabel8)
+                                .addComponent(jLabel_tipoMov)
                                 .addComponent(jLabel_Fecha, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addComponent(jLabel_FechaFact, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -192,11 +192,11 @@ public class JPanel_verEntradaSalidaMercaderia extends javax.swing.JPanel {
     javax.swing.JFormattedTextField jFormattedTextField_Total;
     javax.swing.JLabel jLabel6;
     javax.swing.JLabel jLabel7;
-    javax.swing.JLabel jLabel8;
     javax.swing.JLabel jLabel_Fecha;
     javax.swing.JLabel jLabel_FechaFact;
     javax.swing.JLabel jLabel_NumFacTitle;
     javax.swing.JLabel jLabel_NumerodeMovimiento;
+    javax.swing.JLabel jLabel_tipoMov;
     javax.swing.JScrollPane jScrollPane2;
     javax.swing.JTable jTable_Movimiento;
     javax.swing.JTextField jTextField_referencia;

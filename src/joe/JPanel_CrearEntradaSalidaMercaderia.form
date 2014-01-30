@@ -544,7 +544,7 @@
                               <EmptySpace type="unrelated" max="-2" attributes="0"/>
                               <Component id="jLabel_Fecha" min="-2" pref="102" max="-2" attributes="0"/>
                               <EmptySpace max="-2" attributes="0"/>
-                              <Component id="jLabel8" min="-2" max="-2" attributes="0"/>
+                              <Component id="jLabel_tipoMovimiento" min="-2" max="-2" attributes="0"/>
                               <EmptySpace type="separate" max="-2" attributes="0"/>
                               <Component id="jComboBox_LugarDeMov" min="-2" max="-2" attributes="0"/>
                               <EmptySpace type="separate" max="-2" attributes="0"/>
@@ -600,7 +600,7 @@
                           <Component id="jTextField_referencia" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="jLabel7" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="jComboBox_LugarDeMov" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="jLabel8" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="jLabel_tipoMovimiento" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="jLabel_Fecha" alignment="3" min="-2" pref="20" max="-2" attributes="0"/>
                           <Component id="jLabel_FechaFact" alignment="3" min="-2" pref="20" max="-2" attributes="0"/>
                       </Group>
@@ -743,7 +743,7 @@
         </Property>
       </Properties>
     </Component>
-    <Component class="javax.swing.JLabel" name="jLabel8">
+    <Component class="javax.swing.JLabel" name="jLabel_tipoMovimiento">
       <Properties>
         <Property name="text" type="java.lang.String" value="Entrada a:"/>
       </Properties>

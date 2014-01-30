@@ -3511,7 +3511,7 @@ public class Direct_Control_BD {
 
     public void VerMovimientosPorFechaYLugar(String tipo, String lugar, String fechaIni, String fechaFin) {
         try {
-            System.out.println("tipo "+tipo+" lugar "+lugar);
+            System.out.println("tipo " + tipo + " lugar " + lugar);
             String movimientos = readSql("../Joe/"
                     + "src/sql_files/VerMovimientosPorFechaYLugar.sql");
             PreparedStatement stm = conection.prepareStatement(movimientos);
@@ -3525,6 +3525,22 @@ public class Direct_Control_BD {
 
         } catch (IOException | SQLException e) {
             System.out.println("Error al Ver Movimientos Por Fecha Y Lugar");
+        }
+    }
+
+    public void verMovimientoPorProducto(String idProd) {
+        try {
+            String verMovPorProd = readSql("../Joe/src/"
+                    + "sql_files/verMovimientoPorProd.sql");
+            PreparedStatement stm = this.conection.prepareStatement(verMovPorProd);
+            stm.setString(1, idProd);
+            ResultSet resultset = stm.executeQuery();
+            this.setColumnNames(this.Get_Columnas(resultset));
+            this.setData(this.ResultSet_Array(resultset));
+
+        } catch (Exception e) {
+            System.out.println("Error al ver el movimiento del producto");
+
         }
     }
 

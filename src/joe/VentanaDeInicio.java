@@ -289,7 +289,7 @@ public class VentanaDeInicio extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton_FacturacionActionPerformed
 
     private void jButton_InventarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_InventarioActionPerformed
-        JPanel_Inventario panelInventario = JPanel_Inventario.getInstance();
+        JPanel_Inventario panelInventario = new JPanel_Inventario();
         this.add(panelInventario);
         panelInventario.setSize(jPanel_VentanaPrincipal.getSize());
         panelInventario.setLocation(jPanel_VentanaPrincipal.getLocation());

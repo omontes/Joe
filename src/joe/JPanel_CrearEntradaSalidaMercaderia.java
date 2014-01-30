@@ -1239,6 +1239,7 @@ public class JPanel_CrearEntradaSalidaMercaderia extends javax.swing.JPanel {
         BigDecimal valorMovimiento = this.corregirDato(this.jFormattedTextField_Total.getText());
         if(mVentana.getTitle().equals("Salida de Mercaderia")){
             AdminBD.insertarmovimiento(detalle,2, idLugarMovimiento, valorMovimiento);
+            return;
         }
         AdminBD.insertarmovimiento(detalle,1, idLugarMovimiento, valorMovimiento);
     }
@@ -1307,9 +1308,11 @@ public class JPanel_CrearEntradaSalidaMercaderia extends javax.swing.JPanel {
         panelCreaEntradaSalida.setLocation(this.getLocation());
         mVentana.remove(this);
         panelCreaEntradaSalida.setVisible(true);
+        if(mVentana.getTitle().equals("Salida de Mercaderia")){
+            panelCreaEntradaSalida.jLabel_tipoMovimiento.setText("Salida de:");
+        }
         mVentana.revalidate();
         mVentana.repaint();
-        mVentana.setTitle("Entrada de Mercaderia");
         Direct_Control_BD AdminBD = Direct_Control_BD.getInstance();
         String factura = Integer.toString(AdminBD.ObtenerUltimoidMovimiento() + 1);
         panelCreaEntradaSalida.jLabel_NumerodeMovimiento.setText(factura);

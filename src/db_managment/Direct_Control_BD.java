@@ -3385,7 +3385,7 @@ public class Direct_Control_BD {
 
     public void modificarUsuario(String nombre, String direccion,
             String telefono, String fechaCumpleanos, String clave,
-            String tipoUsuario,String nombreNuevo) {
+            String tipoUsuario, String nombreNuevo) {
         try {
             String PersonaUsuario = this.readSql("../Joe"
                     + "/src/sql_files/modificarUsuario.sql");
@@ -3395,9 +3395,9 @@ public class Direct_Control_BD {
             stm.setString(2, direccion);
             stm.setString(3, telefono);
             stm.setString(4, fechaCumpleanos);
-            stm.setString(5,nombreNuevo);
-            stm.setString(6,nombre);
-            stm.setString(7,tipoUsuario);
+            stm.setString(5, nombreNuevo);
+            stm.setString(6, nombre);
+            stm.setString(7, tipoUsuario);
             stm.executeUpdate();
         } catch (Exception e) {
             System.out.println("Error al modificar el Usuario");
@@ -3442,7 +3442,7 @@ public class Direct_Control_BD {
     }
 
     public void actualizarPrecioProducto(String idProducto, BigDecimal precio) {
-         try {
+        try {
             String actualizarPrecio = this.readSql("../Joe"
                     + "/src/sql_files/actualizarPrecioProductoInventario.sql");
             PreparedStatement stm
@@ -3490,22 +3490,41 @@ public class Direct_Control_BD {
             ResultSet resultset = stm.executeQuery();
             this.setColumnNames(this.Get_Columnas(resultset));
             this.setData(this.ResultSet_Array(resultset));
-        } catch (Exception e) {
+        } catch (IOException | SQLException e) {
             System.out.println(NumMovimiento);
             System.out.println("Error al obtener la informacion del movimiento");
         }
     }
 
     public void verSalidasMercaderia() {
-         try {
+        try {
             String verSalidasMercaderia = readSql("../Joe/src/"
                     + "sql_files/verSalidasMercaderia.sql");
             ResultSet resultset = statement.executeQuery(verSalidasMercaderia);
             this.setColumnNames(this.Get_Columnas(resultset));
             this.setData(this.ResultSet_Array(resultset));
 
-        } catch (Exception e) {
+        } catch (IOException | SQLException e) {
             System.out.println("Error al ver salidas de mercaderia");
+        }
+    }
+
+    public void VerMovimientosPorFechaYLugar(String tipo, String lugar, String fechaIni, String fechaFin) {
+        try {
+            System.out.println("tipo "+tipo+" lugar "+lugar);
+            String movimientos = readSql("../Joe/"
+                    + "src/sql_files/VerMovimientosPorFechaYLugar.sql");
+            PreparedStatement stm = conection.prepareStatement(movimientos);
+            stm.setString(1, tipo);
+            stm.setString(2, lugar);
+            stm.setString(3, fechaIni);
+            stm.setString(4, fechaFin);
+            ResultSet rs = stm.executeQuery();
+            setColumnNames(Get_Columnas(rs));
+            setData2(ResultSet_Array(rs));
+
+        } catch (IOException | SQLException e) {
+            System.out.println("Error al Ver Movimientos Por Fecha Y Lugar");
         }
     }
 

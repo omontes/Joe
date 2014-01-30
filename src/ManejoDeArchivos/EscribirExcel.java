@@ -5,7 +5,6 @@
  */
 package ManejoDeArchivos;
 
-
 import java.awt.BorderLayout;
 import java.io.File;
 import java.io.FileInputStream;
@@ -156,8 +155,10 @@ public class EscribirExcel {
         for (int i = 1; i <= 4; i++) {//set info de la empresa
             hojaExcel.addCell(new Label(0, i, infoEmpresa[i], times10));
         }
+
         //escribir el rango de fechas
-        if (fechaIni != "") {
+        if (fechaIni != "" && tipoDeReporte.
+                contains(" de mercadería en ") != true) {
             hojaExcel.addCell(new Label(2, 5, "Relación de Facturas "
                     + "desde " + fechaIni + " hasta " + fechaFin,
                     times11));
@@ -350,7 +351,17 @@ public class EscribirExcel {
                     "SUM(E11:E" + ultimaFila + ")", timesLines));
             hojaExc.addCell(new jxl.write.Formula(5, ultimaFila + 1,
                     "SUM(F11:F" + ultimaFila + ")", timesLines));
-        } else {
+        }
+        else if(tipoDeReporte.
+                contains(" de mercadería en ")){
+             hojaExc.addCell(new Label(0, ultimaFila + 1, "        Total:",
+                    timesLines));
+            hojaExc.addCell(new jxl.write.Formula(1, ultimaFila + 1,
+                    "COUNT(C11:C" + ultimaFila + ")", timesLines));
+            hojaExc.addCell(new jxl.write.Formula(2, ultimaFila + 1,
+                    "SUM(C11:C" + ultimaFila + ")", timesLines));
+            
+        }else {
             // En caso de Ventas Por Producto o por categoria de Producto
             hojaExc.addCell(new Label(0, ultimaFila + 1,
                     "       Total Facturas:", timesLines));
@@ -379,7 +390,7 @@ public class EscribirExcel {
     public void escribirHojas(String nombreHoja, int pag, String[] infoEmpresa,
             Object[][] datosFact, String[] nombresColum, Object[] infoFact)
             throws IOException, WriteException {
-        workbook.createSheet(nombreHoja+pag, pag);//***crear una hoja***
+        workbook.createSheet(nombreHoja + pag, pag);//***crear una hoja***
         WritableSheet hojaExcel = workbook.getSheet(pag);//obtiene la pagina pag
 
         ///tipos de letra
@@ -419,9 +430,9 @@ public class EscribirExcel {
         }
 
         hojaExcel.mergeCells(3, 1, 4, 1);
-        hojaExcel.addCell(new Label(3, 1, nombreHoja+" Modificada " + infoFact[0]
+        hojaExcel.addCell(new Label(3, 1, nombreHoja + " Modificada " + infoFact[0]
                 .toString(), times11));
-        hojaExcel.addCell(new Label(0, 6, nombreHoja+"   " + infoFact[1]
+        hojaExcel.addCell(new Label(0, 6, nombreHoja + "   " + infoFact[1]
                 .toString(), times11));
         hojaExcel.addCell(new Label(1, 6, "Vendedor: " + infoFact[4]
                 .toString(), times11));

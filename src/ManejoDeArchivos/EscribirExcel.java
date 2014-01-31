@@ -5,38 +5,25 @@
  */
 package ManejoDeArchivos;
 
-import java.awt.BorderLayout;
 import java.io.File;
-import java.io.FileInputStream;
 import java.io.IOException;
-import java.io.InputStream;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Locale;
-import javax.swing.BorderFactory;
-import javax.swing.text.View;
-
-import java.awt.Color;
-import java.io.FileNotFoundException;
-
 import jxl.Workbook;
 import jxl.WorkbookSettings;
 import jxl.format.Alignment;
 import jxl.format.Border;
 import jxl.format.BorderLineStyle;
-import jxl.format.CellFormat;
 import jxl.format.Colour;
-import jxl.format.ScriptStyle;
 import jxl.write.Label;
 import jxl.write.Number;
-import jxl.write.NumberFormats;
 import jxl.write.WritableCellFormat;
 import jxl.write.WritableFont;
 import jxl.write.WritableSheet;
 import jxl.write.WritableWorkbook;
 import jxl.write.WriteException;
-import jxl.write.biff.RowsExceededException;
 
 /**
  *
@@ -55,7 +42,6 @@ public class EscribirExcel {
     private String nombreArchivoExcel;//nombre del archivo excel
     private static EscribirExcel escribir;
     private WritableCellFormat timesLines;
-//    private com.jxcell.View book;
 
     /**
      * asigna el el nombre del archivoExcel
@@ -351,17 +337,54 @@ public class EscribirExcel {
                     "SUM(E11:E" + ultimaFila + ")", timesLines));
             hojaExc.addCell(new jxl.write.Formula(5, ultimaFila + 1,
                     "SUM(F11:F" + ultimaFila + ")", timesLines));
-        }
-        else if(tipoDeReporte.
-                contains(" de mercadería en ")){
-             hojaExc.addCell(new Label(0, ultimaFila + 1, "        Total:",
+        } else if (tipoDeReporte.
+                contains(" de mercadería en ")) {
+            hojaExc.addCell(new Label(0, ultimaFila + 1, "        Total:",
                     timesLines));
             hojaExc.addCell(new jxl.write.Formula(1, ultimaFila + 1,
                     "COUNT(C11:C" + ultimaFila + ")", timesLines));
             hojaExc.addCell(new jxl.write.Formula(2, ultimaFila + 1,
                     "SUM(C11:C" + ultimaFila + ")", timesLines));
-            
-        }else {
+
+        } else if (tipoDeReporte.startsWith("Movimientos del producto ")) {
+
+            hojaExc.addCell(new Number(2, ultimaFila + 7,
+                    sumarColumnas(8, ultimaFila, hojaExc), times10));
+            hojaExc.addCell(new Label(1, ultimaFila + 7, "Cantidad  Entrada:",
+                    times10));
+
+            hojaExc.addCell(new Number(2, ultimaFila + 9,
+                    sumarColumnas(9, ultimaFila, hojaExc), times10));
+            hojaExc.addCell(new Label(1, ultimaFila + 9, "Cantida Salida:",
+                    times10));
+
+            hojaExc.addCell(new Number(2, ultimaFila + 11,
+                    sumarColumnas(8, ultimaFila, hojaExc)
+                    + sumarColumnas(9, ultimaFila, hojaExc), times10));
+            hojaExc.addCell(new Label(1, ultimaFila + 11, "Cantida Total:",
+                    times10));
+
+            hojaExc.addCell(new Number(5, ultimaFila + 7,
+                    sumarColumnas(6, ultimaFila, hojaExc), times10));
+            hojaExc.addCell(new Label(4, ultimaFila + 7, "Valor de Entrada:",
+                    times10));
+
+            hojaExc.addCell(new Number(5, ultimaFila + 9,
+                    sumarColumnas(7, ultimaFila, hojaExc), times10));
+            hojaExc.addCell(new Label(4, ultimaFila + 9, "Valor de Salida:",
+                    times10));
+
+            hojaExc.addCell(new Number(5, ultimaFila + 11,
+                    sumarColumnas(6, ultimaFila, hojaExc)
+                    + sumarColumnas(7, ultimaFila, hojaExc), times10));
+            hojaExc.addCell(new Label(4, ultimaFila + 11, "Valor Total:",
+                    times10));
+
+            hojaExc.removeColumn(6);
+            hojaExc.removeColumn(6);
+            hojaExc.removeColumn(6);
+            hojaExc.removeColumn(6);
+        } else {
             // En caso de Ventas Por Producto o por categoria de Producto
             hojaExc.addCell(new Label(0, ultimaFila + 1,
                     "       Total Facturas:", timesLines));
@@ -373,6 +396,18 @@ public class EscribirExcel {
             hojaExc.addCell(new jxl.write.Formula(7, ultimaFila + 1,
                     "SUM(H11:H" + ultimaFila + ")", timesLines));
         }
+    }
+
+    public double sumarColumnas(int columna, int ultimaFila, WritableSheet hojaExc) {
+
+        double resultado = 0;
+        for (int i = 10; i < ultimaFila; i++) {
+
+            resultado = resultado + Double.parseDouble(hojaExc.
+                    getColumn(columna)[i].getContents().toString());
+        }
+
+        return resultado;
     }
 
     /**

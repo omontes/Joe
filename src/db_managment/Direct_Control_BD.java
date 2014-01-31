@@ -592,7 +592,11 @@ public class Direct_Control_BD {
         }
     }
 
-    public void consultarProducto(String idProducto) {//esta bien
+    /**
+     * Obtener el nombre de un producto
+     * @param idProducto 
+     */
+    public void consultarProducto(String idProducto) {
         try {
             String valorInventario = this.readSql("../Joe/src/"
                     + "sql_files/consultarProducto.sql");
@@ -602,7 +606,7 @@ public class Direct_Control_BD {
             this.setColumnNames(this.Get_Columnas(resultset));
             this.setData(this.ResultSet_Array(resultset));
 
-        } catch (Exception e) {
+        } catch (IOException | SQLException e) {
             System.out.println("Error al obtener el producto");
         }
 
@@ -631,7 +635,7 @@ public class Direct_Control_BD {
             while (rs.next()) {
                 System.out.println(rs.getInt(1));
             }
-        } catch (Exception e) {
+        } catch (IOException | SQLException e) {
             System.out.println("Error al realizar la consulta de "
                     + "cantidadDeProducto");
 
@@ -659,7 +663,7 @@ public class Direct_Control_BD {
                         + "||" + rs.getString(2) + "||" + rs.getInt(3)
                         + rs.getInt(4) + "||" + rs.getString(5));
             }
-        } catch (Exception e) {
+        } catch (IOException | SQLException e) {
             System.out.println("Error al obtener la lista de precios");
 
         }
@@ -3511,7 +3515,7 @@ public class Direct_Control_BD {
 
     public void VerMovimientosPorFechaYLugar(String tipo, String lugar, String fechaIni, String fechaFin) {
         try {
-            System.out.println("tipo " + tipo + " lugar " + lugar);
+
             String movimientos = readSql("../Joe/"
                     + "src/sql_files/VerMovimientosPorFechaYLugar.sql");
             PreparedStatement stm = conection.prepareStatement(movimientos);
@@ -3537,6 +3541,26 @@ public class Direct_Control_BD {
             ResultSet resultset = stm.executeQuery();
             this.setColumnNames(this.Get_Columnas(resultset));
             this.setData(this.ResultSet_Array(resultset));
+
+        } catch (Exception e) {
+            System.out.println("Error al ver el movimiento del producto");
+
+        }
+    }
+
+    public void VerMovimientosProductoYPorFecha(String idProducto, String lugar,
+            String fechaIni, String fechaFin) {
+        try {
+            String verMovPorProd = readSql("../Joe/src/"
+                    + "sql_files/verMovimientoPorProdYFecha.sql");
+            PreparedStatement stm = this.conection.prepareStatement(verMovPorProd);
+            stm.setString(1, idProducto);
+            stm.setString(2, lugar);
+            stm.setString(3, fechaIni);
+            stm.setString(4, fechaFin);
+            ResultSet resultset = stm.executeQuery();
+            this.setColumnNames(this.Get_Columnas(resultset));
+            this.setData2(this.ResultSet_Array(resultset));
 
         } catch (Exception e) {
             System.out.println("Error al ver el movimiento del producto");

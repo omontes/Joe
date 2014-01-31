@@ -864,7 +864,25 @@ public class JPanel_Facturacion extends javax.swing.JPanel {
             BigDecimal precio = this.StringtoBigDecimal(producto[3].toString());
             int idVersion = AdminBD.veridVersionActivaProductoPorCodigo(codArticulo);
             int cantidad= Integer.parseInt(producto[2].toString());
-            this.crearMovimiento(detalle+""+NumFact,precio);
+            this.crearMovimiento(detalle+""+NumFact,precio,1);
+            this.guardaProductoEnMovimiento(codArticulo, idVersion, cantidad, precio);
+            
+            
+            
+            }
+    }
+     private void devolverProductosDev(int NumFact, String detalle) {
+        Direct_Control_BD AdminBD = Direct_Control_BD.getInstance();
+        AdminBD.verProductosPorDevolucion(NumFact);
+        Object[][] ProductosdeDevolucion = AdminBD.getData();
+        int numFilas = ProductosdeDevolucion.length;
+        for (int row = 0; row < numFilas; row++) {
+            Object[] producto= ProductosdeDevolucion[row];
+            String codArticulo= producto[0].toString();
+            BigDecimal precio = this.StringtoBigDecimal(producto[3].toString());
+            int idVersion = AdminBD.veridVersionActivaProductoPorCodigo(codArticulo);
+            int cantidad= Integer.parseInt(producto[2].toString());
+            this.crearMovimiento(detalle+""+NumFact,precio,2);
             this.guardaProductoEnMovimiento(codArticulo, idVersion, cantidad, precio);
             
             
@@ -1414,9 +1432,9 @@ public class JPanel_Facturacion extends javax.swing.JPanel {
         mVentana.add(mVentana.jPanel_VentanaPrincipal);
         mVentana.jPanel_VentanaPrincipal.setVisible(true);
     }
-    private void crearMovimiento(String detalle, BigDecimal precioProd) {
+    private void crearMovimiento(String detalle, BigDecimal precioProd, int movimiento) {
         Direct_Control_BD AdminBD = Direct_Control_BD.getInstance();
-        AdminBD.insertarmovimiento(detalle,1,1,precioProd);
+        AdminBD.insertarmovimiento(detalle,movimiento,1,precioProd);
     }
     private void guardaProductoEnMovimiento(String idProducto, int idVersion, int cantidadMov, BigDecimal PrecioVenta) {
         Direct_Control_BD AdminBD = Direct_Control_BD.getInstance();
@@ -1594,7 +1612,7 @@ public class JPanel_Facturacion extends javax.swing.JPanel {
             if (row >= 0) {
                 Direct_Control_BD AdminBD = Direct_Control_BD.getInstance();
                 int numFact = Integer.parseInt(model.getValueAt(row, 0).toString());
-                this.devolverProductos(numFact,detalle);
+                this.devolverProductosDev(numFact,detalle);
                 int idVersion = AdminBD.verVersionDEDevolucionActiva(numFact);
                 AdminBD.eliminarDevolucion(numFact, idVersion);
 

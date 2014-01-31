@@ -2511,7 +2511,7 @@ public class JPanel_CrearFactura extends javax.swing.JPanel {
             String codArticulo = producto[0].toString();
             int cantidadTotal = AdminBD.verCantidadInvGeneral(codArticulo);
             int cantidad = Integer.parseInt(producto[2].toString());
-            AdminBD.actualizarCantidadInventario(codArticulo, cantidadTotal + cantidad);
+            AdminBD.actualizarCantidadInventario(codArticulo, cantidadTotal - cantidad);
 
         }
     }
@@ -2612,7 +2612,6 @@ public class JPanel_CrearFactura extends javax.swing.JPanel {
                 //System.out.println(idProducto+" "+idVersion+" "+cantidad+" "+idFactura+" "+PrecioVenta+" "+idVersionFacturasProducto);
                 
                 if(tituloVentana.equals("Devolucion")){
-                    this.eliminarMovimiento("Devolucion Num "+""+idFactura);
                     this.crearMovimiento("Devolucion Num "+""+idFactura, PrecioVenta,1);
                     this.guardaProductoEnMovimiento(idProducto, idVersion, cantidad, PrecioVenta);
                 

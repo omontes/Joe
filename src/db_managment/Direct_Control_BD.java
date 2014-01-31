@@ -15,11 +15,9 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javax.swing.JFormattedTextField;
-import javax.swing.JTextField;
+
 
 /**
- *
  * @author Monicaticooo
  */
 public class Direct_Control_BD {
@@ -28,7 +26,6 @@ public class Direct_Control_BD {
     private Statement statement;
     public Object[][] infoFact;
     private String[] NombresColumnas;
-//    private Object[][] infoFactMod;
     private Object[][] Informacion;
     private static Direct_Control_BD AdminBD;
 

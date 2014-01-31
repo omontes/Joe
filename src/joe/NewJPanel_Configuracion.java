@@ -963,11 +963,25 @@ public class NewJPanel_Configuracion extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton_informacionEmpresaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_informacionEmpresaActionPerformed
+
+        XMLConfiguracion infoEmpresa = new XMLConfiguracion();
+        String[] info = infoEmpresa.leerInfoEmpresaXML();
+        if (info != null) {
+            jTextField_nombreEmpresa.setText(info[0]);
+            jTextField_Direccion.setText(info[1]);
+            jTextField_ciudad.setText(info[2]);
+            jTextField_CedJ.setText(info[3]);
+            jTextField_telefono.setText(info[4]);
+            jTextField_correo.setText(info[5]);
+            jTextField_nombreEmpresa.setText(info[0]);
+            String[] Comentariosfact = infoEmpresa.leerInfoParaFactura();
+            jTextField_ComentarioIni.setText(Comentariosfact[0]);
+            jTextField_ComentarioFin.setText(Comentariosfact[1]);
+        }
         jPanel_Usuario.setVisible(false);
         jPanel_infoEmpresa.setVisible(true);
         jDialog_configuracion.setLocation(getLocationOnScreen());
         jPanel_infoEmpresa.setSize(jDialog_configuracion.getSize());
-//        jDialog_configuracion.add(jPanel_Usuario);
         jDialog_configuracion.setTitle("Información de Empresa");
         jDialog_configuracion.setVisible(true);
     }//GEN-LAST:event_jButton_informacionEmpresaActionPerformed

@@ -135,7 +135,7 @@ public class XMLConfiguracion {
      *
      * @return
      */
-    public static String[] leerInfoEmpresaXML() {
+    public  String[] leerInfoEmpresaXML() {
         String[] infoEmpresa = new String[6];
         try {
             File fXmlFile = new File("Configuracion.xml");
@@ -174,19 +174,20 @@ public class XMLConfiguracion {
 
                 }
             }
+            return infoEmpresa;
 
         } catch (Exception e) {
 
         }
 
-        return infoEmpresa;
+        return null;
     }
 /**
  * Retorna un String[] con los comentarios inicial y final de factura 
  * respectivamente
  * @return 
  */
-    public static String[] leerInfoParaFactura() {
+    public String[] leerInfoParaFactura() {
         String[] comentariosFact = new String[2];
         try {
 

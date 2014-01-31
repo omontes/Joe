@@ -3524,4 +3524,18 @@ public class Direct_Control_BD {
         }
     }
 
+    public void eliminarMovimiento(String detalle) {
+         try {
+            String eliminaMov = this.readSql("../Joe"
+                    + "/src/sql_files/eliminarMovimiento.sql");
+            PreparedStatement stm = this.conection.prepareStatement(eliminaMov);
+            stm.setString(1, detalle);
+            stm.executeUpdate();
+
+        } catch (Exception e) {
+            System.out.println("No se pudo eliminar el movimiento");
+
+        }
+    }
+
 }

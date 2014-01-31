@@ -1270,6 +1270,7 @@ public class JPanel_CrearEntradaSalidaMercaderia extends javax.swing.JPanel {
                 int cantidadMov = cantidadB.intValue();
                 String precioSinCorregir = infoTablaMov[i][3];
                 BigDecimal PrecioVenta = this.corregirDato(precioSinCorregir);
+                //System.out.println(idProducto+" "+idVersion+" "+idMovimiento+" "+cantidadMov+" "+PrecioVenta);
                 AdminBD.insertarProductoCantidadMovimiento(idProducto,idVersion,idMovimiento,cantidadMov,PrecioVenta);
                 
 

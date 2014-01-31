@@ -34,13 +34,13 @@ public class JPanel_Reportes extends javax.swing.JPanel {
     DateFormat dateF1 = new SimpleDateFormat("dd-MM-yyyy");
     //formato para consultar
     DateFormat dateF = new SimpleDateFormat("yyyy-MM-dd");
-    String[] infoEmpresa;
+    static String[] infoEmpresa;
 
     /**
      * Creates new form Reportes
      */
     public JPanel_Reportes() {
-        configuracion = XMLConfiguracion.getInstance();
+        configuracion = new XMLConfiguracion();
         infoEmpresa = configuracion.leerInfoEmpresaXML();
 
         initComponents();
@@ -50,7 +50,7 @@ public class JPanel_Reportes extends javax.swing.JPanel {
         if (mPanelInventario == null) {
             mPanelInventario = new JPanel_Reportes();
         }
-
+        infoEmpresa = configuracion.leerInfoEmpresaXML();
         return mPanelInventario;
 
     }
@@ -5679,7 +5679,7 @@ public void actionPerformed(java.awt.event.ActionEvent evt) {
                         dateF1.format(dateChooserCombo_FinDevFech.
                                 getSelectedDate().getTime()),
                         "Devoluciones Por Fechas", "Excel");
-                
+
             } catch (IOException | WriteException ex) {
                 Logger.getLogger(JPanel_Reportes.class.getName()).
                         log(Level.SEVERE, null, ex);

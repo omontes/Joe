@@ -155,7 +155,7 @@ public class Pan_Fact extends javax.swing.JPanel {
         for (int row = 0; row < numFilas; row++) {
             Object[] producto= ProductosdeFactura[row];
             String codArticulo= producto[0].toString();
-            int cantidadTotal = AdminBD.verCantidad(codArticulo);
+            int cantidadTotal = AdminBD.verCantidadInvGeneral(codArticulo);
             int cantidad= Integer.parseInt(producto[2].toString());
             AdminBD.actualizarCantidadInventario(codArticulo,cantidadTotal+cantidad);
             

@@ -5,6 +5,7 @@
 package joe;
 
 import java.io.File;
+import javax.swing.JOptionPane;
 import jxl.Sheet;
 import jxl.Workbook;
 
@@ -35,7 +36,11 @@ public class ReadExcel {
             }
             return lista_inventario;
         } catch (Exception ioe) {
-            System.out.println("error por que el documento no es de excel");
+            JOptionPane.showMessageDialog(
+                            null,
+                            "Debe de ingresar un archivo de excel con un formato adecuado "
+                                    + "\nque tenga las columnas especificas de una entrada de mercaderia",
+                            "Alert!", JOptionPane.ERROR_MESSAGE);
             return null;
         }
 

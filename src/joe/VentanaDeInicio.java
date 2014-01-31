@@ -215,6 +215,11 @@ public class VentanaDeInicio extends javax.swing.JFrame {
         });
 
         jButton_Configuracion.setText("Configuración");
+        jButton_Configuracion.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton_ConfiguracionActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel_VentanaPrincipalLayout = new javax.swing.GroupLayout(jPanel_VentanaPrincipal);
         jPanel_VentanaPrincipal.setLayout(jPanel_VentanaPrincipalLayout);
@@ -284,12 +289,13 @@ public class VentanaDeInicio extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton_FacturacionActionPerformed
 
     private void jButton_InventarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_InventarioActionPerformed
-        JPanel_Inventario panelInventario = JPanel_Inventario.getInstance();
+        JPanel_Inventario panelInventario = new JPanel_Inventario();
         this.add(panelInventario);
         panelInventario.setSize(jPanel_VentanaPrincipal.getSize());
         panelInventario.setLocation(jPanel_VentanaPrincipal.getLocation());
         this.jPanel_VentanaPrincipal.setVisible(false);
         panelInventario.setVisible(true);
+
     }//GEN-LAST:event_jButton_InventarioActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
@@ -358,12 +364,20 @@ public class VentanaDeInicio extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton_aceptarInicioCierreKeyPressed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        NewJPanel_ClienteVendedor panelClienteVendedor =  new NewJPanel_ClienteVendedor();
+        NewJPanel_Clientes panelClienteVendedor = new NewJPanel_Clientes();
         add(panelClienteVendedor);
         panelClienteVendedor.setSize(this.getSize());
         jPanel_VentanaPrincipal.setVisible(false);
         panelClienteVendedor.setVisible(true);
     }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void jButton_ConfiguracionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_ConfiguracionActionPerformed
+        NewJPanel_Configuracion panelConfiguracion = new NewJPanel_Configuracion();
+        add(panelConfiguracion);
+        panelConfiguracion.setSize(this.getSize());
+        jPanel_VentanaPrincipal.setVisible(false);
+        panelConfiguracion.setVisible(true);
+    }//GEN-LAST:event_jButton_ConfiguracionActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -405,9 +419,9 @@ public class VentanaDeInicio extends javax.swing.JFrame {
         Direct_Control_BD AdminBD = Direct_Control_BD.getInstance();
         String fecha = this.jLabel_fechaInicioCaja.getText();
         String Cajero = this.jFormattedTextField_Cajero.getText();
-        
+
         Object montoInicio = this.jFormattedTextField_MontoInicioCaja.getValue();
-        BigDecimal reporteInicio = new BigDecimal(montoInicio!=null?montoInicio.toString():"0");
+        BigDecimal reporteInicio = new BigDecimal(montoInicio != null ? montoInicio.toString() : "0");
         AdminBD.insertarCierreDeCaja(fecha, Cajero, reporteInicio);
     }
 

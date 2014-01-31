@@ -1,3 +1,3 @@
 SELECT idProducto
 FROM producto
-WHERE idProducto=? AND Estado='A';
+WHERE Estado='A' AND idProducto=?;

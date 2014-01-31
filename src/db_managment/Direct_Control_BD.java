@@ -15,11 +15,9 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javax.swing.JFormattedTextField;
-import javax.swing.JTextField;
+
 
 /**
- *
  * @author Monicaticooo
  */
 public class Direct_Control_BD {
@@ -28,7 +26,6 @@ public class Direct_Control_BD {
     private Statement statement;
     public Object[][] infoFact;
     private String[] NombresColumnas;
-//    private Object[][] infoFactMod;
     private Object[][] Informacion;
     private static Direct_Control_BD AdminBD;
 
@@ -592,7 +589,12 @@ public class Direct_Control_BD {
         }
     }
 
-    public void consultarProducto(String idProducto) {//esta bien
+    /**
+     * Obtener el nombre de un producto
+     *
+     * @param idProducto
+     */
+    public void consultarProducto(String idProducto) {
         try {
             String valorInventario = this.readSql("../Joe/src/"
                     + "sql_files/consultarProducto.sql");
@@ -602,7 +604,7 @@ public class Direct_Control_BD {
             this.setColumnNames(this.Get_Columnas(resultset));
             this.setData(this.ResultSet_Array(resultset));
 
-        } catch (Exception e) {
+        } catch (IOException | SQLException e) {
             System.out.println("Error al obtener el producto");
         }
 
@@ -631,7 +633,7 @@ public class Direct_Control_BD {
             while (rs.next()) {
                 System.out.println(rs.getInt(1));
             }
-        } catch (Exception e) {
+        } catch (IOException | SQLException e) {
             System.out.println("Error al realizar la consulta de "
                     + "cantidadDeProducto");
 
@@ -659,7 +661,7 @@ public class Direct_Control_BD {
                         + "||" + rs.getString(2) + "||" + rs.getInt(3)
                         + rs.getInt(4) + "||" + rs.getString(5));
             }
-        } catch (Exception e) {
+        } catch (IOException | SQLException e) {
             System.out.println("Error al obtener la lista de precios");
 
         }
@@ -1037,25 +1039,34 @@ public class Direct_Control_BD {
         }
     }
 
-    //Fecha, Detalle, idTipoMovimiento, CantidadMovida, Balance, idProductoMovimiento,
-    //idLugarMovimiento
-    public void insertarmovimiento(String Fecha, String Detalle, int idTipoMovimiento,
-            int CantidadMovida, int Balance, String idProductoMovimiento, int idLugarMovimiento) {
+    /**
+     * Inserta un movimiento en la base
+     *
+     * @param Fecha
+     * @param Detalle
+     * @param idTipoMovimiento
+     * @param idLugarMovimiento
+     * @param valormovimiento
+     */
+    public void insertarmovimiento(String Detalle, int idTipoMovimiento,
+            int idLugarMovimiento, BigDecimal valormovimiento) {
+
         try {
             String devolucion = this.readSql("../Joe/src/sql_files/"
                     + "insertarMovimiento.sql");
             PreparedStatement stm = this.conection.prepareStatement(devolucion);
-            stm.setString(1, Fecha);
+            DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
+            Date date = new Date();
+            String fecha = dateFormat.format(date);
+            stm.setString(1, fecha);
             stm.setString(2, Detalle);
             stm.setInt(3, idTipoMovimiento);
-            stm.setInt(4, CantidadMovida);
-            stm.setInt(5, Balance);
-            stm.setString(6, idProductoMovimiento);
-            stm.setInt(7, idLugarMovimiento);
+            stm.setInt(4, idLugarMovimiento);
+            stm.setBigDecimal(5, valormovimiento);
             stm.executeUpdate();
 
         } catch (Exception e) {
-            System.out.println("Error al insertar Devoluciones");
+            System.out.println("Error al insertar movimiento");
         }
     }
 
@@ -1551,7 +1562,7 @@ public class Direct_Control_BD {
      * @param idProducto
      * @return
      */
-    public int verCantidad(String idProducto) {
+    public int verCantidadInvGeneral(String idProducto) {
         int cantidad = 0;
         try {
             String verCantidad = this.readSql("../Joe"
@@ -1844,17 +1855,18 @@ public class Direct_Control_BD {
      * @param telefono
      * @param FechaCumpleanos
      */
-    public void insertarCliente(String nombre, String direccion, int idTipoPersona, String telefono, String FechaCumpleanos) {
+    public void insertarCliente(String nombre, String direccion, String telefono, String FechaCumpleanos) {
         try {
             String crearCliente = this.readSql("../Joe/src/sql_files/"
                     + "crearCliente.sql");
             PreparedStatement stm = this.conection.prepareStatement(crearCliente);
             stm.setString(1, nombre);
             stm.setString(2, direccion);
-            stm.setInt(3, idTipoPersona);
-            stm.setString(4, telefono);
-            stm.setString(5, FechaCumpleanos);
+            stm.setString(3, telefono);
+            stm.setString(4, FechaCumpleanos);
             stm.executeUpdate();
+            int idCliente = this.veridCliente(nombre);
+            this.insertarIdCliente(idCliente);
 
         } catch (Exception e) {
             System.out.println("Error al crear cliente");
@@ -3054,7 +3066,7 @@ public class Direct_Control_BD {
      * @param nombre
      */
     public void modificarPersona(String NuevoNombre, String direccion,
-            int tipoPersona, String telefono, String fechaCumple, String cedula,
+            String telefono, String fechaCumple, String cedula,
             String nombre) {
 
         try {
@@ -3067,7 +3079,6 @@ public class Direct_Control_BD {
             stm.setString(4, telefono);
             stm.setString(5, fechaCumple);
             stm.setString(6, nombre);
-            stm.setInt(7, tipoPersona);
             stm.executeUpdate();
         } catch (IOException | SQLException e) {
             System.out.println("Error al actualizar la informacion de persona");
@@ -3086,7 +3097,7 @@ public class Direct_Control_BD {
      * @param nombre
      */
     public void modificarPersona(String NuevoNombre, String direccion,
-            int tipoPersona, String telefono, String cedula,
+            String telefono, String cedula,
             String nombre) {
 
         try {
@@ -3098,7 +3109,6 @@ public class Direct_Control_BD {
             stm.setString(3, cedula);
             stm.setString(4, telefono);
             stm.setString(5, nombre);
-            stm.setInt(6, tipoPersona);
             stm.executeUpdate();
         } catch (IOException | SQLException e) {
             System.out.println("Error al actualizar la informacion de persona");
@@ -3236,6 +3246,336 @@ public class Direct_Control_BD {
         } catch (Exception e) {
             System.out.println("No pertenece al cierre actual esa devolucion");
             return false;
+        }
+    }
+
+    public void consultarAdministradores() {
+        try {
+            String administradores = this.readSql("../Joe/src/"
+                    + "sql_files/ConsultarAdministradores.sql");
+            PreparedStatement stm = this.conection.prepareStatement(administradores);
+            ResultSet resultset = stm.executeQuery();
+            this.setColumnNames(this.Get_Columnas(resultset));
+            this.setData(this.ResultSet_Array(resultset));
+        } catch (Exception e) {
+            System.out.println("Error al Consultar Administradores");
+        }
+
+    }
+
+    public int ObtenerUltimoidMovimiento() {
+        int result = 0;
+        try {
+            String verUltimoIdMov = this.readSql("../Joe/"
+                    + "src/sql_files/ObtenerUltimoidMovimiento.sql");
+            PreparedStatement stm = this.conection.prepareStatement(verUltimoIdMov);
+            ResultSet resultset = stm.executeQuery();
+            //Imprime el resultado obtenido del valor del inventario
+            while (resultset.next()) {
+                result = resultset.getInt(1);
+
+            }
+
+        } catch (Exception e) {
+            System.out.println("Error al obtener el ultimo idMovimientos");
+        }
+        return result;
+    }
+
+    /**
+     * Este metodo permite crear un cliente
+     *
+     * @param idCliente
+     */
+    public void insertarIdCliente(int idCliente) {
+        try {
+            String insertarIdCliente = this.readSql("../Joe"
+                    + "/src/sql_files/crearIdCliente.sql");
+            PreparedStatement stm = this.conection.prepareStatement(insertarIdCliente);
+            stm.setInt(1, idCliente);
+            stm.executeUpdate();
+
+        } catch (Exception e) {
+            System.out.println("No se pudo insertar el cliente");
+
+        }
+    }
+
+    public void insertarProductoCantidadMovimiento(String idProducto, int idVersion, int idMovimiento, int cantidad, BigDecimal PrecioVenta) {
+        try {
+            String insertarProductoCantFact = this.readSql("../Joe/src/sql_files/"
+                    + "insertarProductoCantidadMov.sql");
+            PreparedStatement stm = this.conection.prepareStatement(insertarProductoCantFact);
+            stm.setString(1, idProducto);
+            stm.setInt(2, idVersion);
+            stm.setInt(3, idMovimiento);
+            stm.setInt(4, cantidad);
+            stm.setBigDecimal(5, PrecioVenta);
+            stm.executeUpdate();
+
+        } catch (Exception e) {
+            System.out.println("Error al insertar producto cantidad movimiento");
+        }
+    }
+
+    public int verCantidadBodega(String idProducto) {
+        int cantidad = 0;
+        try {
+            String verCantidad = this.readSql("../Joe"
+                    + "/src/sql_files/verCantidadPorCod_Bodega.sql");
+            PreparedStatement stm = this.conection.prepareStatement(verCantidad);
+            stm.setString(1, idProducto);
+            ResultSet rs = stm.executeQuery();
+            while (rs.next()) {
+                cantidad = rs.getInt("Cantidad");
+            }
+            return cantidad;
+        } catch (Exception e) {
+            System.out.println(cantidad);
+            System.out.println("Error al obtener la cantidad del producto en bodega");
+            return 0;
+        }
+    }
+
+    public void verEntradasMercaderia() {
+        try {
+            String VerEntradasMercaderia = readSql("../Joe/src/"
+                    + "sql_files/verEntradasMercaderia.sql");
+            ResultSet resultset = statement.executeQuery(VerEntradasMercaderia);
+            this.setColumnNames(this.Get_Columnas(resultset));
+            this.setData(this.ResultSet_Array(resultset));
+
+        } catch (Exception e) {
+            System.out.println("Error al ver entradas de mercaderia");
+        }
+    }
+
+    public void eliminarUsuario(String usuario, String tipoUsuario) {
+        try {
+            String Usuario = this.readSql("../Joe"
+                    + "/src/sql_files/eliminarUsuario.sql");
+            PreparedStatement stm = this.conection.prepareStatement(Usuario);
+            stm.setString(1, usuario);
+            stm.setString(2, tipoUsuario);
+            stm.executeUpdate();
+
+        } catch (Exception e) {
+            System.out.println("No se pudo eliminar el usuario");
+
+        }
+    }
+
+    public boolean insertarPersona(String nombre, String direccion,
+            String telefono, String fechaCumpleanos) {
+        try {
+            String PersonaUsuario = this.readSql("../Joe"
+                    + "/src/sql_files/CrearPersona.sql");
+            PreparedStatement stm = this.conection.
+                    prepareStatement(PersonaUsuario);
+            stm.setString(1, nombre);
+            stm.setString(2, direccion);
+            stm.setString(3, telefono);
+            stm.setString(4, fechaCumpleanos);
+            stm.executeUpdate();
+            return true;
+        } catch (Exception e) {
+            System.out.println("Error al crear Usuario");
+
+        }
+        return false;
+    }
+
+    public void modificarUsuario(String nombre, String direccion,
+            String telefono, String fechaCumpleanos, String clave,
+            String tipoUsuario, String nombreNuevo) {
+        try {
+            String PersonaUsuario = this.readSql("../Joe"
+                    + "/src/sql_files/modificarUsuario.sql");
+            PreparedStatement stm = this.conection.
+                    prepareStatement(PersonaUsuario);
+            stm.setString(1, clave);
+            stm.setString(2, direccion);
+            stm.setString(3, telefono);
+            stm.setString(4, fechaCumpleanos);
+            stm.setString(5, nombreNuevo);
+            stm.setString(6, nombre);
+            stm.setString(7, tipoUsuario);
+            stm.executeUpdate();
+        } catch (Exception e) {
+            System.out.println("Error al modificar el Usuario");
+
+        }
+
+    }
+
+    public void insertarUsuario(String tipoUsuario, String clave) {
+        try {
+            String Usuario = this.readSql("../Joe"
+                    + "/src/sql_files/InsertarUsuario.sql");
+            PreparedStatement stm = this.conection.prepareStatement(Usuario);
+            stm.setString(1, tipoUsuario);
+            stm.setString(2, clave);
+            stm.executeUpdate();
+        } catch (Exception e) {
+            System.out.println("Error al insertar Usuario");
+
+        }
+    }
+
+    /**
+     * Obtener la contrasena de un usuario
+     *
+     * @param usuario
+     * @param tipoUsuario
+     */
+    public void ConsultarContrasena(String usuario, String tipoUsuario) {
+        try {
+            String Usuario = this.readSql("../Joe"
+                    + "/src/sql_files/ConsultarUsuario.sql");
+            PreparedStatement stm = this.conection.prepareStatement(Usuario);
+            stm.setString(1, tipoUsuario);
+            stm.setString(2, usuario);
+            ResultSet resultset = stm.executeQuery();
+            this.setData(this.ResultSet_Array(resultset));
+        } catch (Exception e) {
+            System.out.println("No se pudo cosultar la contrasena del usuario");
+
+        }
+    }
+
+    public void actualizarPrecioProducto(String idProducto, BigDecimal precio) {
+        try {
+            String actualizarPrecio = this.readSql("../Joe"
+                    + "/src/sql_files/actualizarPrecioProductoInventario.sql");
+            PreparedStatement stm
+                    = this.conection.prepareStatement(actualizarPrecio);
+            stm.setBigDecimal(1, precio);
+            stm.setString(2, idProducto);
+            stm.executeUpdate();
+
+        } catch (Exception e) {
+            System.out.println("Error al Actualizar el precio de un producto en el inventario");
+        }
+    }
+
+    public void eliminarProductosQueNoTienenInventario() {
+        try {
+            String eliminaProductos = this.readSql("../Joe"
+                    + "/src/sql_files/eliminaProductosSinINV.sql");
+            statement.executeUpdate(eliminaProductos);
+        } catch (Exception e) {
+            System.out.println("Error al eliminar los productos que no tienen ningun inventario");
+        }
+    }
+
+    public void verProductosPorMovimiento(int NumMov) {
+        try {
+            String verProductosPorFactura = this.readSql("../Joe/src/"
+                    + "sql_files/verProductosPorMovimiento.sql");
+            PreparedStatement stm = this.conection.prepareStatement(verProductosPorFactura);
+            stm.setInt(1, NumMov);
+            ResultSet resultset = stm.executeQuery();
+            this.setColumnNames(this.Get_Columnas(resultset));
+            this.setData(this.ResultSet_Array(resultset));
+        } catch (Exception e) {
+            System.out.println(NumMov);
+            System.out.println("Error al obtener los productos del movimiento");
+        }
+    }
+
+    public void verInfoMovimiento(int NumMovimiento) {
+        try {
+            String verInfoMovimiento = this.readSql("../Joe/src/"
+                    + "sql_files/cargarMovimiento.sql");
+            PreparedStatement stm = this.conection.prepareStatement(verInfoMovimiento);
+            stm.setInt(1, NumMovimiento);
+            ResultSet resultset = stm.executeQuery();
+            this.setColumnNames(this.Get_Columnas(resultset));
+            this.setData(this.ResultSet_Array(resultset));
+        } catch (IOException | SQLException e) {
+            System.out.println(NumMovimiento);
+            System.out.println("Error al obtener la informacion del movimiento");
+        }
+    }
+
+    public void verSalidasMercaderia() {
+        try {
+            String verSalidasMercaderia = readSql("../Joe/src/"
+                    + "sql_files/verSalidasMercaderia.sql");
+            ResultSet resultset = statement.executeQuery(verSalidasMercaderia);
+            this.setColumnNames(this.Get_Columnas(resultset));
+            this.setData(this.ResultSet_Array(resultset));
+
+        } catch (IOException | SQLException e) {
+            System.out.println("Error al ver salidas de mercaderia");
+        }
+    }
+
+    public void VerMovimientosPorFechaYLugar(String tipo, String lugar, String fechaIni, String fechaFin) {
+        try {
+
+            String movimientos = readSql("../Joe/"
+                    + "src/sql_files/VerMovimientosPorFechaYLugar.sql");
+            PreparedStatement stm = conection.prepareStatement(movimientos);
+            stm.setString(1, tipo);
+            stm.setString(2, lugar);
+            stm.setString(3, fechaIni);
+            stm.setString(4, fechaFin);
+            ResultSet rs = stm.executeQuery();
+            setColumnNames(Get_Columnas(rs));
+            setData2(ResultSet_Array(rs));
+
+        } catch (IOException | SQLException e) {
+            System.out.println("Error al Ver Movimientos Por Fecha Y Lugar");
+        }
+    }
+
+    public void verMovimientoPorProducto(String idProd) {
+        try {
+            String verMovPorProd = readSql("../Joe/src/"
+                    + "sql_files/verMovimientoPorProd.sql");
+            PreparedStatement stm = this.conection.prepareStatement(verMovPorProd);
+            stm.setString(1, idProd);
+            ResultSet resultset = stm.executeQuery();
+            this.setColumnNames(this.Get_Columnas(resultset));
+            this.setData(this.ResultSet_Array(resultset));
+
+        } catch (Exception e) {
+            System.out.println("Error al ver el movimiento del producto");
+
+        }
+    }
+
+    public void VerMovimientosProductoYPorFecha(String idProducto, String lugar,
+            String fechaIni, String fechaFin) {
+        try {
+            String verMovPorProd = readSql("../Joe/src/"
+                    + "sql_files/verMovimientoPorProdYFecha.sql");
+            PreparedStatement stm = this.conection.prepareStatement(verMovPorProd);
+            stm.setString(1, idProducto);
+            stm.setString(2, lugar);
+            stm.setString(3, fechaIni);
+            stm.setString(4, fechaFin);
+            ResultSet resultset = stm.executeQuery();
+            this.setColumnNames(this.Get_Columnas(resultset));
+            this.setData2(this.ResultSet_Array(resultset));
+
+        } catch (Exception e) {
+            System.out.println("Error al ver el movimiento del producto");
+        }
+    }
+
+    public void eliminarMovimiento(String detalle) {
+        try {
+            String eliminaMov = this.readSql("../Joe"
+                    + "/src/sql_files/eliminarMovimiento.sql");
+            PreparedStatement stm = this.conection.prepareStatement(eliminaMov);
+            stm.setString(1, detalle);
+            stm.executeUpdate();
+
+        } catch (Exception e) {
+            System.out.println("No se pudo eliminar el movimiento");
+
         }
     }
 

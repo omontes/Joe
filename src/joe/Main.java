@@ -5,8 +5,9 @@
  */
 package joe;
 
+
 import db_managment.Direct_Control_BD;
-import java.io.File;
+
 import java.io.IOException;
 import java.net.URISyntaxException;
 import java.security.CodeSource;
@@ -19,7 +20,6 @@ import jxl.write.WriteException;
  */
 public class Main {
 
-    
     /**
      * @param args the command line arguments
      * @throws java.io.IOException
@@ -62,7 +62,7 @@ public class Main {
 
             }
         });
-        
+
     }
 ;
 }

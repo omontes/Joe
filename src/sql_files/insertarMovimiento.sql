@@ -1,2 +1,2 @@
-INSERT INTO monicatico.movimientos (Fecha, Detalle, idTipoMovimiento, CantidadMovida, Balance, idProductoMovimiento, idLugarMovimiento) 
-VALUES (?, ?, ?, ?, ?, ?, ?);
+INSERT INTO monicatico.movimientos (Fecha,Detalle,idTipoMovimiento,idLugarMovimiento,ValorMovimiento) 
+VALUES (?, ?, ?, ?, ?);

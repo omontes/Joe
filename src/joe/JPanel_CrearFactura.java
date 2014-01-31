@@ -894,7 +894,7 @@ public class JPanel_CrearFactura extends javax.swing.JPanel {
             }
         });
 
-        jFormattedTextField_Cliente.setText("Cliente Anonimo");
+        jFormattedTextField_Cliente.setText("Cliente Generico");
         jFormattedTextField_Cliente.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jFormattedTextField_ClienteMouseClicked(evt);
@@ -1083,7 +1083,7 @@ public class JPanel_CrearFactura extends javax.swing.JPanel {
         Direct_Control_BD AdminBD = Direct_Control_BD.getInstance();
         String articulo = AdminBD.verNombreProductoPorCodigo(idProducto);
         BigDecimal PrecioUnitario = AdminBD.verPrecio(idProducto);
-        int cantidad = AdminBD.verCantidad(idProducto);
+        int cantidad = AdminBD.verCantidadInvGeneral(idProducto);
         jLabel_datoCant.setText(Integer.toString(cantidad));
         jLabel_datoFact.setText(jLabel_NumerodeFact.getText());
         jLabel_datoNomb.setText(articulo);
@@ -1233,14 +1233,14 @@ public class JPanel_CrearFactura extends javax.swing.JPanel {
         DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd");
         Date date = new Date();
         String codigo = this.jTextField_codigo.getText();
-        boolean existeProducto = AdminBD.verSiExisteCod(codigo);
+        boolean existeProducto = AdminBD.verSiExisteCod(codigo.toUpperCase());
         if (!existeProducto) {
             BigDecimal bd = new BigDecimal(
                     this.jFormattedTextField_precioProducto.
                     getValue().toString());
-            AdminBD.crearProducto(codigo, this.jTextField_nombre.getText(),
+            AdminBD.crearProducto(codigo.toUpperCase(), this.jTextField_nombre.getText(),
                     bd, 0, dateFormat.format(date), "A", null, 1);
-            AdminBD.insertarEnInventario(this.jTextField_codigo.getText(),
+            AdminBD.insertarEnInventario(codigo.toUpperCase(),
                     1, Integer.parseInt(this.jFormattedTextField_cantidadProducto.getValue()
                             .toString()));
             this.clearCrearProducto();
@@ -1418,6 +1418,8 @@ public class JPanel_CrearFactura extends javax.swing.JPanel {
         int idFactura = Integer.parseInt(this.jLabel_NumerodeFact.getText());
         //Recorre la informacion de la tabla para obtener los datos para 
         //insertar los productos en la factura
+        VentanaDeInicio mVentana = VentanaDeInicio.getInstance();
+        String tituloVentana = mVentana.getTitle();
         for (int i = 0; i < rows; i++) {
             //Si la fila esta vacia
             if (model.getValueAt(i, 0) != "") {
@@ -1440,6 +1442,36 @@ public class JPanel_CrearFactura extends javax.swing.JPanel {
                 //System.out.println(idProducto+" "+idVersion+" "+cantidad+" "+idFactura+" "+PrecioVenta+" "+idVersionFacturasProducto);
                 AdminBD.insertarProductoCantidadFact(idProducto, idVersion,
                         cantidad, idFactura, PrecioVenta, idVersionFacturasProducto);
+                if(tituloVentana.equals("Factura")){
+                    this.crearMovimiento("Fact Num "+""+idFactura, PrecioVenta,2);
+                    this.guardaProductoEnMovimiento(idProducto, idVersion, cantidad, PrecioVenta);
+                }
+                if(tituloVentana.equals("Modifica Factura")){
+                    this.eliminarMovimiento("Fact Num "+""+idFactura);
+                    this.crearMovimiento("Fact Num "+""+idFactura, PrecioVenta,2);
+                    this.guardaProductoEnMovimiento(idProducto, idVersion, cantidad, PrecioVenta);
+                
+                }
+                if(tituloVentana.equals("Apartado")){
+                    this.crearMovimiento("Apartado Num Fact "+""+idFactura, PrecioVenta,2);
+                    this.guardaProductoEnMovimiento(idProducto, idVersion, cantidad, PrecioVenta);
+                }
+                if(tituloVentana.equals("Modifica Apartado")){
+                    this.eliminarMovimiento("Apartado Num Fact "+""+idFactura);
+                    this.crearMovimiento("Apartado Num Fact "+""+idFactura, PrecioVenta,2);
+                    this.guardaProductoEnMovimiento(idProducto, idVersion, cantidad, PrecioVenta);
+                }
+                
+                if(tituloVentana.equals("Credito")){
+                    this.crearMovimiento("Credito Num Fact "+""+idFactura, PrecioVenta,2);
+                    this.guardaProductoEnMovimiento(idProducto, idVersion, cantidad, PrecioVenta);
+                }
+                if(tituloVentana.equals("Modifica Credito")){
+                    this.eliminarMovimiento("Credito Num Fact "+""+idFactura);
+                    this.crearMovimiento("Credito Num Fact "+""+idFactura, PrecioVenta,2);
+                    this.guardaProductoEnMovimiento(idProducto, idVersion, cantidad, PrecioVenta);
+                }
+                
 
             }
         }
@@ -1451,7 +1483,8 @@ public class JPanel_CrearFactura extends javax.swing.JPanel {
      */
     public void guardarFactura() {
         VentanaDeInicio mVentana = VentanaDeInicio.getInstance();
-        if (mVentana.getTitle().equals("Modifica Factura")) {
+        String tituloVentana = mVentana.getTitle();
+        if (tituloVentana.equals("Modifica Factura")) {
             this.devolverProductos();
             this.modificaFactura();
             this.guardarFactura("Cancelada");
@@ -1459,7 +1492,7 @@ public class JPanel_CrearFactura extends javax.swing.JPanel {
             return;
 
         }
-        if (mVentana.getTitle().equals("Modifica Apartado")) {
+        if (tituloVentana.equals("Modifica Apartado")) {
             NewJDialog_PagoApartado pago = new NewJDialog_PagoApartado();
             pago.setVisible(true);
             String fechaVencimiento = pago.getFecha();
@@ -1483,7 +1516,7 @@ public class JPanel_CrearFactura extends javax.swing.JPanel {
             return;
 
         }
-        if (mVentana.getTitle().equals("Apartado")) {
+        if (tituloVentana.equals("Apartado")) {
             NewJDialog_PagoApartado pago = new NewJDialog_PagoApartado();
             pago.setVisible(true);
             String fechaVencimiento = pago.getFecha();
@@ -1507,7 +1540,7 @@ public class JPanel_CrearFactura extends javax.swing.JPanel {
             return;
         }
 
-        if (mVentana.getTitle().equals("Modifica Credito")) {
+        if (tituloVentana.equals("Modifica Credito")) {
             NewJDialog_PagoApartado pago = new NewJDialog_PagoApartado();
             pago.setVisible(true);
             String fechaVencimiento = pago.getFecha();
@@ -1532,7 +1565,7 @@ public class JPanel_CrearFactura extends javax.swing.JPanel {
 
         }
 
-        if (mVentana.getTitle().equals("Credito")) {
+        if (tituloVentana.equals("Credito")) {
             NewJDialog_PagoApartado pago = new NewJDialog_PagoApartado();
             pago.setVisible(true);
             String fechaVencimiento = pago.getFecha();
@@ -1556,15 +1589,14 @@ public class JPanel_CrearFactura extends javax.swing.JPanel {
             return;
         }
 
-        if (mVentana.getTitle().equals("Devolucion")) {
+        if (tituloVentana.equals("Devolucion")) {
             this.guardarDev();
-            this.devolverProductos();
             this.regresar();
             return;
 
         }
-        if (mVentana.getTitle().equals("Modifica Devolucion")) {
-            this.devolverProductos();
+        if (tituloVentana.equals("Modifica Devolucion")) {
+            this.devolverProductosDev();
             this.modificaDevolucion();
             this.guardarDev();
             this.regresar();
@@ -2208,7 +2240,7 @@ public class JPanel_CrearFactura extends javax.swing.JPanel {
         if (fechaCumpleanos.equals("")) {
             fechaCumpleanos = null;
         }
-        AdminBD.insertarCliente(nombre, direccion, 1, telefono, fechaCumpleanos);
+        AdminBD.insertarCliente(nombre, direccion,telefono, fechaCumpleanos);
         this.jFormattedTextField_Cliente.setValue(nombre);
         this.jDialog_CrearCliente.dispose();
     }
@@ -2229,7 +2261,11 @@ public class JPanel_CrearFactura extends javax.swing.JPanel {
         this.crearFactura(concepto);
         this.guardarProductosFactura();
     }
-
+    private void crearMovimiento(String detalle, BigDecimal precioProd, int movimiento) {
+        Direct_Control_BD AdminBD = Direct_Control_BD.getInstance();
+        AdminBD.insertarmovimiento(detalle,movimiento,1,precioProd);
+    }
+     
     /**
      * Imprime la factura.
      *
@@ -2453,15 +2489,29 @@ public class JPanel_CrearFactura extends javax.swing.JPanel {
 
     private void devolverProductos() {
         Direct_Control_BD AdminBD = Direct_Control_BD.getInstance();
+        AdminBD.verProductosPorFactura(Integer.parseInt(this.jLabel_NumerodeFact.getText()));
+        Object[][] ProductosdeFactura = AdminBD.getData();
+        int numFilas = ProductosdeFactura.length;
+        for (int row = 0; row < numFilas; row++) {
+            Object[] producto = ProductosdeFactura[row];
+            String codArticulo = producto[0].toString();
+            int cantidadTotal = AdminBD.verCantidadInvGeneral(codArticulo);
+            int cantidad = Integer.parseInt(producto[2].toString());
+            AdminBD.actualizarCantidadInventario(codArticulo, cantidadTotal + cantidad);
+
+        }
+    }
+     private void devolverProductosDev() {
+        Direct_Control_BD AdminBD = Direct_Control_BD.getInstance();
         AdminBD.verProductosPorDevolucion(Integer.parseInt(this.jLabel_NumerodeFact.getText()));
         Object[][] ProductosdeDevolucion = AdminBD.getData();
         int numFilas = ProductosdeDevolucion.length;
         for (int row = 0; row < numFilas; row++) {
             Object[] producto = ProductosdeDevolucion[row];
             String codArticulo = producto[0].toString();
-            int cantidadTotal = AdminBD.verCantidad(codArticulo);
+            int cantidadTotal = AdminBD.verCantidadInvGeneral(codArticulo);
             int cantidad = Integer.parseInt(producto[2].toString());
-            AdminBD.actualizarCantidadInventario(codArticulo, cantidadTotal + cantidad);
+            AdminBD.actualizarCantidadInventario(codArticulo, cantidadTotal - cantidad);
 
         }
     }
@@ -2537,6 +2587,9 @@ public class JPanel_CrearFactura extends javax.swing.JPanel {
         int idFactura = Integer.parseInt(this.jLabel_NumerodeFact.getText());
         //Recorre la informacion de la tabla para obtener los datos para 
         //insertar los productos en la factura
+        
+        VentanaDeInicio mVentana = VentanaDeInicio.getInstance();
+        String tituloVentana = mVentana.getTitle();
         for (int i = 0; i < rows; i++) {
             //Si la fila esta vacia
             if (model.getValueAt(i, 0) != "") {
@@ -2557,6 +2610,18 @@ public class JPanel_CrearFactura extends javax.swing.JPanel {
                 BigDecimal PrecioVenta = this.corregirDato(precioSinCorregir);
                 int idVersionFacturasProducto = AdminBD.verVersionDEDevolucionActiva(idFactura);
                 //System.out.println(idProducto+" "+idVersion+" "+cantidad+" "+idFactura+" "+PrecioVenta+" "+idVersionFacturasProducto);
+                
+                if(tituloVentana.equals("Devolucion")){
+                    this.crearMovimiento("Devolucion Num "+""+idFactura, PrecioVenta,1);
+                    this.guardaProductoEnMovimiento(idProducto, idVersion, cantidad, PrecioVenta);
+                
+                }
+                if(tituloVentana.equals("Modifica Devolucion")){
+                    this.eliminarMovimiento("Devolucion Num "+""+idFactura);
+                    this.crearMovimiento("Devolucion Num "+""+idFactura, PrecioVenta,1);
+                    this.guardaProductoEnMovimiento(idProducto, idVersion, cantidad, PrecioVenta);
+                
+                }
                 AdminBD.insertarProductoCantidadDev(idProducto, idVersion,
                         cantidad, idFactura, PrecioVenta, idVersionFacturasProducto);
 
@@ -2614,5 +2679,16 @@ public class JPanel_CrearFactura extends javax.swing.JPanel {
         //Hace la devolucion vieja en estado inhabilitada
         Direct_Control_BD AdminBD = Direct_Control_BD.getInstance();
         AdminBD.eliminarDevolucionPorModificacion(Integer.parseInt(this.jLabel_NumerodeFact.getText()));
+    }
+
+    private void guardaProductoEnMovimiento(String idProducto, int idVersion, int cantidadMov, BigDecimal PrecioVenta) {
+        Direct_Control_BD AdminBD = Direct_Control_BD.getInstance();
+        int idMovimiento= AdminBD.ObtenerUltimoidMovimiento();
+        AdminBD.insertarProductoCantidadMovimiento(idProducto,idVersion,idMovimiento,cantidadMov,PrecioVenta);
+    }
+
+    private void eliminarMovimiento(String detalle) {
+        Direct_Control_BD AdminBD = Direct_Control_BD.getInstance();
+        AdminBD.eliminarMovimiento(detalle);
     }
 }

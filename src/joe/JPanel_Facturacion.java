@@ -849,11 +849,11 @@ public class JPanel_Facturacion extends javax.swing.JPanel {
     }//GEN-LAST:event_jButton_CrearActionPerformed
 
     private void jButton_EliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_EliminarActionPerformed
-        this.eliminar(this.jTable_Facturacion);
+        this.eliminar(this.jTable_Facturacion,"Eliminacion Factura");
         this.completarTablaFacturacion();
         
     }//GEN-LAST:event_jButton_EliminarActionPerformed
-    private void devolverProductos(int NumFact) {
+    private void devolverProductos(int NumFact, String detalle) {
         Direct_Control_BD AdminBD = Direct_Control_BD.getInstance();
         AdminBD.verProductosPorFactura(NumFact);
         Object[][] ProductosdeFactura = AdminBD.getData();
@@ -861,9 +861,12 @@ public class JPanel_Facturacion extends javax.swing.JPanel {
         for (int row = 0; row < numFilas; row++) {
             Object[] producto= ProductosdeFactura[row];
             String codArticulo= producto[0].toString();
-            int cantidadTotal = AdminBD.verCantidadInvGeneral(codArticulo);
+            BigDecimal precio = this.StringtoBigDecimal(producto[3].toString());
+            int idVersion = AdminBD.veridVersionActivaProductoPorCodigo(codArticulo);
             int cantidad= Integer.parseInt(producto[2].toString());
-            AdminBD.actualizarCantidadInventario(codArticulo,cantidadTotal+cantidad);
+            this.crearMovimiento(detalle+""+NumFact,precio);
+            this.guardaProductoEnMovimiento(codArticulo, idVersion, cantidad, precio);
+            
             
             
             }
@@ -906,7 +909,7 @@ public class JPanel_Facturacion extends javax.swing.JPanel {
     }//GEN-LAST:event_jButton_ModificarApartadoActionPerformed
 
     private void jButton_EliminaApartadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_EliminaApartadoActionPerformed
-       this.eliminar(this.jTable_Apartados);
+       this.eliminar(this.jTable_Apartados,"Eliminacion Apartado Num");
        this.completarTablaApartados();
     }//GEN-LAST:event_jButton_EliminaApartadoActionPerformed
     
@@ -1080,7 +1083,7 @@ public class JPanel_Facturacion extends javax.swing.JPanel {
     }//GEN-LAST:event_jButton_ModificarCreditoActionPerformed
 
     private void jButton_EliminaCreditoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_EliminaCreditoActionPerformed
-        this.eliminar(this.jTable_Creditos);
+        this.eliminar(this.jTable_Creditos,"Eliminacion Credito Num ");
         this.completarTablaCreditos();
     }//GEN-LAST:event_jButton_EliminaCreditoActionPerformed
 
@@ -1165,7 +1168,7 @@ public class JPanel_Facturacion extends javax.swing.JPanel {
     }//GEN-LAST:event_jButton_ModificarDevActionPerformed
 
     private void jButton_EliminarDevActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_EliminarDevActionPerformed
-        this.eliminarDev(this.jTable_Devoluciones);
+        this.eliminarDev(this.jTable_Devoluciones,"Eliminacion Devolucion Num ");
         this.completarTablaDevoluciones();
     }//GEN-LAST:event_jButton_EliminarDevActionPerformed
 
@@ -1411,8 +1414,17 @@ public class JPanel_Facturacion extends javax.swing.JPanel {
         mVentana.add(mVentana.jPanel_VentanaPrincipal);
         mVentana.jPanel_VentanaPrincipal.setVisible(true);
     }
+    private void crearMovimiento(String detalle, BigDecimal precioProd) {
+        Direct_Control_BD AdminBD = Direct_Control_BD.getInstance();
+        AdminBD.insertarmovimiento(detalle,1,1,precioProd);
+    }
+    private void guardaProductoEnMovimiento(String idProducto, int idVersion, int cantidadMov, BigDecimal PrecioVenta) {
+        Direct_Control_BD AdminBD = Direct_Control_BD.getInstance();
+        int idMovimiento= AdminBD.ObtenerUltimoidMovimiento();
+        AdminBD.insertarProductoCantidadMovimiento(idProducto,idVersion,idMovimiento,cantidadMov,PrecioVenta);
+    }
 
-    private void eliminar(JTable table) {
+    private void eliminar(JTable table, String detalle) {
         Modelo_Facturacion model = (Modelo_Facturacion) table.getModel();
         int row = table.getSelectedRow();
         String factura = model.getValueAt(row, 0).toString();
@@ -1421,7 +1433,7 @@ public class JPanel_Facturacion extends javax.swing.JPanel {
             if (row >= 0) {
                 Direct_Control_BD AdminBD = Direct_Control_BD.getInstance();
                 int numFact = Integer.parseInt(model.getValueAt(row, 0).toString());
-                this.devolverProductos(numFact);
+                this.devolverProductos(numFact,detalle);
                 int idVersion = AdminBD.verVersionDEFacturaActiva(numFact);
                 AdminBD.eliminarFactura(numFact, idVersion);
 
@@ -1573,7 +1585,7 @@ public class JPanel_Facturacion extends javax.swing.JPanel {
 
     }
     
-    private void eliminarDev(JTable table) {
+    private void eliminarDev(JTable table, String detalle) {
         int row = table.getSelectedRow();
         Modelo_Facturacion model = (Modelo_Facturacion) table.getModel();
         String factura = model.getValueAt(row, 0).toString();
@@ -1582,7 +1594,7 @@ public class JPanel_Facturacion extends javax.swing.JPanel {
             if (row >= 0) {
                 Direct_Control_BD AdminBD = Direct_Control_BD.getInstance();
                 int numFact = Integer.parseInt(model.getValueAt(row, 0).toString());
-                this.devolverProductos(numFact);
+                this.devolverProductos(numFact,detalle);
                 int idVersion = AdminBD.verVersionDEDevolucionActiva(numFact);
                 AdminBD.eliminarDevolucion(numFact, idVersion);
 

@@ -594,7 +594,8 @@ public class Direct_Control_BD {
 
     /**
      * Obtener el nombre de un producto
-     * @param idProducto 
+     *
+     * @param idProducto
      */
     public void consultarProducto(String idProducto) {
         try {
@@ -3564,6 +3565,19 @@ public class Direct_Control_BD {
 
         } catch (Exception e) {
             System.out.println("Error al ver el movimiento del producto");
+        }
+    }
+
+    public void eliminarMovimiento(String detalle) {
+        try {
+            String eliminaMov = this.readSql("../Joe"
+                    + "/src/sql_files/eliminarMovimiento.sql");
+            PreparedStatement stm = this.conection.prepareStatement(eliminaMov);
+            stm.setString(1, detalle);
+            stm.executeUpdate();
+
+        } catch (Exception e) {
+            System.out.println("No se pudo eliminar el movimiento");
 
         }
     }

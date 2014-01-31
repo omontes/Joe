@@ -372,11 +372,7 @@ public class VentanaDeInicio extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton_ConfiguracionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_ConfiguracionActionPerformed
-        NewJPanel_Configuracion panelConfiguracion = new NewJPanel_Configuracion();
-        add(panelConfiguracion);
-        panelConfiguracion.setSize(this.getSize());
-        jPanel_VentanaPrincipal.setVisible(false);
-        panelConfiguracion.setVisible(true);
+       
     }//GEN-LAST:event_jButton_ConfiguracionActionPerformed
 
 

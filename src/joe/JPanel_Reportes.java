@@ -42,7 +42,7 @@ public class JPanel_Reportes extends javax.swing.JPanel {
     public JPanel_Reportes() {
         configuracion = XMLConfiguracion.getInstance();
         infoEmpresa = configuracion.leerInfoEmpresaXML();
-        
+
         initComponents();
     }
 
@@ -316,6 +316,24 @@ public class JPanel_Reportes extends javax.swing.JPanel {
         jLabel76 = new javax.swing.JLabel();
         jRadioButton_ExcelEliminadasDev = new javax.swing.JRadioButton();
         jRadioButton_PantallaEliminadasDev = new javax.swing.JRadioButton();
+        jPanel_Movimientos = new javax.swing.JPanel();
+        jLabel77 = new javax.swing.JLabel();
+        jButton_AceptarVerMovimiento = new javax.swing.JButton();
+        jLabel78 = new javax.swing.JLabel();
+        jButton_CancelarVerMovimiento = new javax.swing.JButton();
+        jLabel79 = new javax.swing.JLabel();
+        jLabel80 = new javax.swing.JLabel();
+        dateChooserCombo_IniMovimiento = new datechooser.beans.DateChooserCombo();
+        dateChooserCombo_FinMovimiento = new datechooser.beans.DateChooserCombo();
+        jRadioButton_ExcelMovimiento = new javax.swing.JRadioButton();
+        jRadioButton_PantallaMovimiento = new javax.swing.JRadioButton();
+        jLabel81 = new javax.swing.JLabel();
+        jLabel82 = new javax.swing.JLabel();
+        jRadioButton_EntradaMovimiento = new javax.swing.JRadioButton();
+        jRadioButton_SalidaMovimiento = new javax.swing.JRadioButton();
+        jLabel83 = new javax.swing.JLabel();
+        jRadioButton_InvGeneralMovimiento = new javax.swing.JRadioButton();
+        jRadioButton_BodegaMovimiento = new javax.swing.JRadioButton();
         jButton1 = new javax.swing.JButton();
         jTabbedPane6 = new javax.swing.JTabbedPane();
         jPanel1 = new javax.swing.JPanel();
@@ -1700,7 +1718,6 @@ public void keyTyped(java.awt.event.KeyEvent evt) {
     jRadioButton_PantallaProdVendedor.setText("Pantalla");
 
     buttonGroup1.add(jRadioButton_ExcelProdVendedor);
-    jRadioButton_ExcelProdVendedor.setSelected(true);
     jRadioButton_ExcelProdVendedor.setText("Excel");
 
     jLabel35.setText("Ver en:");
@@ -3527,6 +3544,247 @@ jPanel_VerDevEliminadasPorFechLayout.createParallelGroup(javax.swing.GroupLayout
             .addGap(61, 61, 61))
     );
 
+    jPanel_Movimientos.setMinimumSize(new java.awt.Dimension(585, 360));
+
+    jLabel77.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+    jLabel77.setForeground(new java.awt.Color(0, 51, 51));
+    jLabel77.setText("Ralación De Movimientos ");
+
+    jButton_AceptarVerMovimiento.setForeground(new java.awt.Color(0, 51, 51));
+    jButton_AceptarVerMovimiento.setText("Aceptar");
+    jButton_AceptarVerMovimiento.addActionListener(new java.awt.event.ActionListener() {
+        public void actionPerformed(java.awt.event.ActionEvent evt) {
+            jButton_AceptarVerMovimientoActionPerformed(evt);
+        }
+    });
+
+    jLabel78.setFont(new java.awt.Font("Tahoma", 0, 10)); // NOI18N
+    jLabel78.setForeground(new java.awt.Color(0, 51, 51));
+    jLabel78.setText("Período:");
+
+    jButton_CancelarVerMovimiento.setText("Cancelar");
+    jButton_CancelarVerMovimiento.addActionListener(new java.awt.event.ActionListener() {
+        public void actionPerformed(java.awt.event.ActionEvent evt) {
+            jButton_CancelarVerMovimientoActionPerformed(evt);
+        }
+    });
+
+    jLabel79.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+    jLabel79.setForeground(new java.awt.Color(0, 51, 51));
+    jLabel79.setText("Desde:");
+
+    jLabel80.setText("Hasta:");
+
+    dateChooserCombo_IniMovimiento.setCurrentView(new datechooser.view.appearance.AppearancesList("Grey",
+        new datechooser.view.appearance.ViewAppearance("custom",
+            new datechooser.view.appearance.swing.SwingCellAppearance(new java.awt.Font("Tahoma", java.awt.Font.PLAIN, 11),
+                new java.awt.Color(0, 0, 0),
+                new java.awt.Color(0, 0, 255),
+                false,
+                true,
+                new datechooser.view.appearance.swing.ButtonPainter()),
+            new datechooser.view.appearance.swing.SwingCellAppearance(new java.awt.Font("Tahoma", java.awt.Font.PLAIN, 11),
+                new java.awt.Color(0, 0, 0),
+                new java.awt.Color(0, 0, 255),
+                true,
+                true,
+                new datechooser.view.appearance.swing.ButtonPainter()),
+            new datechooser.view.appearance.swing.SwingCellAppearance(new java.awt.Font("Tahoma", java.awt.Font.PLAIN, 11),
+                new java.awt.Color(0, 0, 255),
+                new java.awt.Color(0, 0, 255),
+                false,
+                true,
+                new datechooser.view.appearance.swing.ButtonPainter()),
+            new datechooser.view.appearance.swing.SwingCellAppearance(new java.awt.Font("Tahoma", java.awt.Font.PLAIN, 11),
+                new java.awt.Color(128, 128, 128),
+                new java.awt.Color(0, 0, 255),
+                false,
+                true,
+                new datechooser.view.appearance.swing.LabelPainter()),
+            new datechooser.view.appearance.swing.SwingCellAppearance(new java.awt.Font("Tahoma", java.awt.Font.PLAIN, 11),
+                new java.awt.Color(0, 0, 0),
+                new java.awt.Color(0, 0, 255),
+                false,
+                true,
+                new datechooser.view.appearance.swing.LabelPainter()),
+            new datechooser.view.appearance.swing.SwingCellAppearance(new java.awt.Font("Tahoma", java.awt.Font.PLAIN, 11),
+                new java.awt.Color(0, 0, 0),
+                new java.awt.Color(255, 0, 0),
+                false,
+                false,
+                new datechooser.view.appearance.swing.ButtonPainter()),
+            (datechooser.view.BackRenderer)null,
+            false,
+            true)));
+dateChooserCombo_IniMovimiento.setCalendarBackground(new java.awt.Color(0, 51, 51));
+dateChooserCombo_IniMovimiento.setNothingAllowed(false);
+dateChooserCombo_IniMovimiento.setMaxDate(dateChooserCombo_FinVent.getSelectedDate());
+dateChooserCombo_IniMovimiento.setBehavior(datechooser.model.multiple.MultyModelBehavior.SELECT_SINGLE);
+
+dateChooserCombo_FinMovimiento.setCurrentView(new datechooser.view.appearance.AppearancesList("Grey",
+    new datechooser.view.appearance.ViewAppearance("custom",
+        new datechooser.view.appearance.swing.SwingCellAppearance(new java.awt.Font("Tahoma", java.awt.Font.PLAIN, 11),
+            new java.awt.Color(0, 0, 0),
+            new java.awt.Color(0, 0, 255),
+            false,
+            true,
+            new datechooser.view.appearance.swing.ButtonPainter()),
+        new datechooser.view.appearance.swing.SwingCellAppearance(new java.awt.Font("Tahoma", java.awt.Font.PLAIN, 11),
+            new java.awt.Color(0, 0, 0),
+            new java.awt.Color(0, 0, 255),
+            true,
+            true,
+            new datechooser.view.appearance.swing.ButtonPainter()),
+        new datechooser.view.appearance.swing.SwingCellAppearance(new java.awt.Font("Tahoma", java.awt.Font.PLAIN, 11),
+            new java.awt.Color(0, 0, 255),
+            new java.awt.Color(0, 0, 255),
+            false,
+            true,
+            new datechooser.view.appearance.swing.ButtonPainter()),
+        new datechooser.view.appearance.swing.SwingCellAppearance(new java.awt.Font("Tahoma", java.awt.Font.PLAIN, 11),
+            new java.awt.Color(128, 128, 128),
+            new java.awt.Color(0, 0, 255),
+            false,
+            true,
+            new datechooser.view.appearance.swing.LabelPainter()),
+        new datechooser.view.appearance.swing.SwingCellAppearance(new java.awt.Font("Tahoma", java.awt.Font.PLAIN, 11),
+            new java.awt.Color(0, 0, 0),
+            new java.awt.Color(0, 0, 255),
+            false,
+            true,
+            new datechooser.view.appearance.swing.LabelPainter()),
+        new datechooser.view.appearance.swing.SwingCellAppearance(new java.awt.Font("Tahoma", java.awt.Font.PLAIN, 11),
+            new java.awt.Color(0, 0, 0),
+            new java.awt.Color(255, 0, 0),
+            false,
+            false,
+            new datechooser.view.appearance.swing.ButtonPainter()),
+        (datechooser.view.BackRenderer)null,
+        false,
+        true)));
+dateChooserCombo_FinMovimiento.setNothingAllowed(false);
+dateChooserCombo_FinMovimiento.setMinDate(dateChooserCombo_IniVent.getSelectedDate());
+dateChooserCombo_FinMovimiento.setBehavior(datechooser.model.multiple.MultyModelBehavior.SELECT_SINGLE);
+
+buttonGroup1.add(jRadioButton_ExcelMovimiento);
+jRadioButton_ExcelMovimiento.setSelected(true);
+jRadioButton_ExcelMovimiento.setText("Excel");
+
+buttonGroup1.add(jRadioButton_PantallaMovimiento);
+jRadioButton_PantallaMovimiento.setText("Pantalla");
+
+jLabel81.setFont(new java.awt.Font("Tahoma", 0, 10)); // NOI18N
+jLabel81.setForeground(new java.awt.Color(0, 51, 51));
+jLabel81.setText("Ver en:");
+
+jLabel82.setFont(new java.awt.Font("Tahoma", 0, 10)); // NOI18N
+jLabel82.setForeground(new java.awt.Color(0, 51, 51));
+jLabel82.setText("Tipo De Movimiento:");
+
+jRadioButton_EntradaMovimiento.setSelected(true);
+jRadioButton_EntradaMovimiento.setText("Entrada");
+
+jRadioButton_SalidaMovimiento.setText("Salida");
+
+jLabel83.setFont(new java.awt.Font("Tahoma", 0, 10)); // NOI18N
+jLabel83.setForeground(new java.awt.Color(0, 51, 51));
+jLabel83.setText("Lugar De Movimiento:");
+
+jRadioButton_InvGeneralMovimiento.setText("Inv. General");
+
+jRadioButton_BodegaMovimiento.setSelected(true);
+jRadioButton_BodegaMovimiento.setText("Bodega");
+
+javax.swing.GroupLayout jPanel_MovimientosLayout = new javax.swing.GroupLayout(jPanel_Movimientos);
+jPanel_Movimientos.setLayout(jPanel_MovimientosLayout);
+jPanel_MovimientosLayout.setHorizontalGroup(
+jPanel_MovimientosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+.addGroup(jPanel_MovimientosLayout.createSequentialGroup()
+    .addContainerGap()
+    .addGroup(jPanel_MovimientosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+        .addComponent(jLabel77, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 242, javax.swing.GroupLayout.PREFERRED_SIZE)
+        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel_MovimientosLayout.createSequentialGroup()
+            .addGap(13, 13, 13)
+            .addGroup(jPanel_MovimientosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jPanel_MovimientosLayout.createSequentialGroup()
+                    .addGroup(jPanel_MovimientosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(jPanel_MovimientosLayout.createSequentialGroup()
+                            .addGap(54, 54, 54)
+                            .addGroup(jPanel_MovimientosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(jRadioButton_ExcelMovimiento)
+                                .addGroup(jPanel_MovimientosLayout.createSequentialGroup()
+                                    .addComponent(jRadioButton_PantallaMovimiento)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(jButton_AceptarVerMovimiento, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGap(26, 26, 26)
+                                    .addComponent(jButton_CancelarVerMovimiento))))
+                        .addComponent(jLabel81))
+                    .addGap(9, 9, 9))
+                .addGroup(jPanel_MovimientosLayout.createSequentialGroup()
+                    .addGroup(jPanel_MovimientosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(jPanel_MovimientosLayout.createSequentialGroup()
+                            .addGap(10, 10, 10)
+                            .addComponent(jLabel79, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGap(5, 5, 5)
+                            .addComponent(dateChooserCombo_IniMovimiento, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGap(18, 18, 18)
+                            .addComponent(jLabel80)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                            .addComponent(dateChooserCombo_FinMovimiento, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(jLabel78)
+                        .addComponent(jLabel82)
+                        .addGroup(jPanel_MovimientosLayout.createSequentialGroup()
+                            .addGap(71, 71, 71)
+                            .addComponent(jRadioButton_EntradaMovimiento)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                            .addComponent(jRadioButton_SalidaMovimiento))
+                        .addComponent(jLabel83)
+                        .addGroup(jPanel_MovimientosLayout.createSequentialGroup()
+                            .addGap(71, 71, 71)
+                            .addComponent(jRadioButton_BodegaMovimiento)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                            .addComponent(jRadioButton_InvGeneralMovimiento)))
+                    .addGap(0, 93, Short.MAX_VALUE)))))
+    .addGap(51, 51, 51))
+    );
+    jPanel_MovimientosLayout.setVerticalGroup(
+        jPanel_MovimientosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        .addGroup(jPanel_MovimientosLayout.createSequentialGroup()
+            .addContainerGap()
+            .addComponent(jLabel77)
+            .addGap(25, 25, 25)
+            .addComponent(jLabel78)
+            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+            .addGroup(jPanel_MovimientosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jPanel_MovimientosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(dateChooserCombo_FinMovimiento, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(dateChooserCombo_IniMovimiento, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jLabel80, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addComponent(jLabel79, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addGap(33, 33, 33)
+            .addComponent(jLabel82)
+            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(jPanel_MovimientosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addComponent(jRadioButton_EntradaMovimiento)
+                .addComponent(jRadioButton_SalidaMovimiento))
+            .addGap(18, 18, 18)
+            .addComponent(jLabel83)
+            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(jPanel_MovimientosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addComponent(jRadioButton_BodegaMovimiento)
+                .addComponent(jRadioButton_InvGeneralMovimiento))
+            .addGap(12, 12, 12)
+            .addComponent(jLabel81)
+            .addGap(7, 7, 7)
+            .addComponent(jRadioButton_ExcelMovimiento)
+            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+            .addGroup(jPanel_MovimientosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addComponent(jRadioButton_PantallaMovimiento)
+                .addComponent(jButton_AceptarVerMovimiento)
+                .addComponent(jButton_CancelarVerMovimiento))
+            .addGap(53, 53, 53))
+    );
+
     setMaximumSize(new java.awt.Dimension(2147483647, 2147483647));
 
     jButton1.setForeground(new java.awt.Color(0, 51, 51));
@@ -3712,6 +3970,7 @@ jPanel_VerDevEliminadasPorFechLayout.createParallelGroup(javax.swing.GroupLayout
     });
 
     jButton_ProductosPorCategoria.setForeground(new java.awt.Color(0, 51, 51));
+    jButton_ProductosPorCategoria.setText("Movimientos Por Producto");
     jButton_ProductosPorCategoria.addActionListener(new java.awt.event.ActionListener() {
         public void actionPerformed(java.awt.event.ActionEvent evt) {
             jButton_ProductosPorCategoriaActionPerformed(evt);
@@ -3818,14 +4077,13 @@ jPanel_VerDevEliminadasPorFechLayout.createParallelGroup(javax.swing.GroupLayout
     this.setLayout(layout);
     layout.setHorizontalGroup(
         layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-        .addGroup(layout.createSequentialGroup()
-            .addContainerGap()
-            .addComponent(jTabbedPane6, javax.swing.GroupLayout.PREFERRED_SIZE, 837, javax.swing.GroupLayout.PREFERRED_SIZE)
-            .addContainerGap(50, Short.MAX_VALUE))
         .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-            .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addContainerGap(810, Short.MAX_VALUE)
             .addComponent(jButton1)
             .addContainerGap())
+        .addGroup(layout.createSequentialGroup()
+            .addComponent(jTabbedPane6, javax.swing.GroupLayout.PREFERRED_SIZE, 837, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addGap(0, 0, Short.MAX_VALUE))
     );
     layout.setVerticalGroup(
         layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -4086,8 +4344,6 @@ jPanel_VerDevEliminadasPorFechLayout.createParallelGroup(javax.swing.GroupLayout
                         .toString(), concepto);
             }
 
-         
-
             Date date = new Date();//hora Actual
             String fechaAct = dateFormat.format(date);
 
@@ -4152,7 +4408,6 @@ jPanel_VerDevEliminadasPorFechLayout.createParallelGroup(javax.swing.GroupLayout
                                 getSelectedDate().getTime()), "Tarjeta");
 
             }
-           
 
             Date date = new Date();//hora Actual
             String fechaAct = dateFormat.format(date);
@@ -4191,8 +4446,6 @@ jPanel_VerDevEliminadasPorFechLayout.createParallelGroup(javax.swing.GroupLayout
                             getSelectedDate().getTime()),
                     jComboBox_SeleccionarProdVendedor.
                     getSelectedItem().toString());
-
-           
 
             Date date = new Date();//hora Actual
             String fechaAct = dateFormat.format(date);
@@ -4242,8 +4495,6 @@ jPanel_VerDevEliminadasPorFechLayout.createParallelGroup(javax.swing.GroupLayout
                             getSelectedDate().getTime()),
                     jTextField_VentasProdPorCliente.getText().toString());
 
-            
-
             Date date = new Date();//hora Actual
             String fechaAct = dateFormat.format(date);
 
@@ -4284,7 +4535,6 @@ jPanel_VerDevEliminadasPorFechLayout.createParallelGroup(javax.swing.GroupLayout
                 dateChooserCombo_IniEliminadasFact.getSelectedDate().getTime()),
                 dateF.format(dateChooserCombo_FinEliminadasFact.
                         getSelectedDate().getTime()));
-       
 
         Date date = new Date();//hora Actual
         String fechaAct = dateFormat.format(date);
@@ -4346,6 +4596,7 @@ jPanel_VerDevEliminadasPorFechLayout.createParallelGroup(javax.swing.GroupLayout
         jPanel_VerProductosAgotados.setVisible(false);
         jPanel_VerProductosEnInventario.setVisible(false);
         jPanel_VerValorDelInventario.setVisible(false);
+        jPanel_Movimientos.setVisible(false);
     }//GEN-LAST:event_jDialog_ReportesInventarioWindowClosing
 
     private void jRadioButton_CategListaPrecActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButton_CategListaPrecActionPerformed
@@ -4382,8 +4633,6 @@ jPanel_VerDevEliminadasPorFechLayout.createParallelGroup(javax.swing.GroupLayout
 
     private void jButton_aceptarListaPrecActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_aceptarListaPrecActionPerformed
         Direct_Control_BD AdminBD = Direct_Control_BD.getInstance();
-
-        
 
         if (jRadioButton_ExcelListaPrec.isSelected()) {//para mostrar en Excel
 
@@ -4466,8 +4715,6 @@ jPanel_VerDevEliminadasPorFechLayout.createParallelGroup(javax.swing.GroupLayout
 
     private void jButton_aceptarListaCostActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_aceptarListaCostActionPerformed
         Direct_Control_BD AdminBD = Direct_Control_BD.getInstance();
-
-        
 
         if (jRadioButton_ExcelListaCost.isSelected()) {//para mostrar en Excel
 
@@ -4559,7 +4806,6 @@ jPanel_VerDevEliminadasPorFechLayout.createParallelGroup(javax.swing.GroupLayout
     private void jButton_aceptarListaAgotadosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_aceptarListaAgotadosActionPerformed
         Direct_Control_BD AdminBD = Direct_Control_BD.getInstance();
 
-        
         String ubicacion = "General";
         if (jRadioButton_ExcelListaAgotados.isSelected()) {//para mostrar en Excel
             if (jRadioButton_bodega.isSelected()) {
@@ -4647,7 +4893,6 @@ jPanel_VerDevEliminadasPorFechLayout.createParallelGroup(javax.swing.GroupLayout
     private void jButton_aceptarListaInvActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_aceptarListaInvActionPerformed
         Direct_Control_BD AdminBD = Direct_Control_BD.getInstance();
 
-      
         String ubicacion = "General";
         if (jRadioButton_ExcelListaInv.isSelected()) {//para mostrar en Excel
             if (jRadioButton_bodegaInv.isSelected()) {
@@ -4736,7 +4981,6 @@ jPanel_VerDevEliminadasPorFechLayout.createParallelGroup(javax.swing.GroupLayout
     private void jButton_aceptarListaValorInvActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_aceptarListaValorInvActionPerformed
         Direct_Control_BD AdminBD = Direct_Control_BD.getInstance();
 
-        
         String ubicacion = "General";
         //para mostrar en Excel
         if (jRadioButton_ExcelListaValorInv.isSelected()) {
@@ -4861,7 +5105,19 @@ jPanel_VerDevEliminadasPorFechLayout.createParallelGroup(javax.swing.GroupLayout
     }//GEN-LAST:event_jButton_ListaDeCostoActionPerformed
 
     private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton7ActionPerformed
-        // TODO add your handling code here:
+        buttonGroup1.add(jRadioButton_ExcelMovimiento);
+        buttonGroup1.add(jRadioButton_PantallaMovimiento);
+        buttonGroup2.add(jRadioButton_EntradaMovimiento);
+        buttonGroup2.add(jRadioButton_SalidaMovimiento);
+        buttonGroup3.add(jRadioButton_BodegaMovimiento);
+        buttonGroup3.add(jRadioButton_InvGeneralMovimiento);
+        jRadioButton_ExcelMovimiento.setSelected(true);
+        jRadioButton_EntradaMovimiento.setVisible(true);
+        jRadioButton_BodegaMovimiento.setVisible(true);
+        jDialog_ReportesInventario.setLocation(getLocationOnScreen());
+        jPanel_Movimientos.setSize(jDialog_ReportesFact.getSize());
+        jDialog_ReportesInventario.add(jPanel_Movimientos);
+        jDialog_ReportesInventario.setVisible(true);
     }//GEN-LAST:event_jButton7ActionPerformed
 
     private void jButton_VerFactModif1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_VerFactModif1ActionPerformed
@@ -4940,7 +5196,6 @@ jPanel_VerDevEliminadasPorFechLayout.createParallelGroup(javax.swing.GroupLayout
                 Logger.getLogger(JPanel_Reportes.class.getName()).
                         log(Level.SEVERE, null, ex);
             }
-          
 
             for (int i = 0; i < infoFact.length; i++) {
                 AdminBD.verProductosPorFacturaYVersionDeFactura(infoFact[i][1].
@@ -5140,7 +5395,6 @@ jPanel_VerDevEliminadasPorFechLayout.createParallelGroup(javax.swing.GroupLayout
                     dateChooserCombo_IniDevFech.getSelectedDate().getTime()),
                     dateF.format(dateChooserCombo_FinDevFech.getSelectedDate().
                             getTime()));
-            
 
             Date date = new Date();//hora Actual
             String fechaAct = dateFormat.format(date);
@@ -5187,7 +5441,6 @@ jPanel_VerDevEliminadasPorFechLayout.createParallelGroup(javax.swing.GroupLayout
                 dateChooserCombo_IniEliminadasDev.getSelectedDate().getTime()),
                 dateF.format(dateChooserCombo_FinEliminadasDev.
                         getSelectedDate().getTime()));
-        
 
         Date date = new Date();//hora Actual
         String fechaAct = dateFormat.format(date);
@@ -5259,7 +5512,6 @@ jPanel_VerDevEliminadasPorFechLayout.createParallelGroup(javax.swing.GroupLayout
                 Logger.getLogger(JPanel_Reportes.class.getName()).
                         log(Level.SEVERE, null, ex);
             }
-           
 
             for (int i = 0; i < infoFact.length; i++) {
                 //Obtener la devolucion modificada y sus versiones
@@ -5294,6 +5546,56 @@ jPanel_VerDevEliminadasPorFechLayout.createParallelGroup(javax.swing.GroupLayout
         }
     }//GEN-LAST:event_jButton2ActionPerformed
 
+    private void jButton_AceptarVerMovimientoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_AceptarVerMovimientoActionPerformed
+        Direct_Control_BD AdminBD = Direct_Control_BD.getInstance();
+
+        if (jRadioButton_ExcelMovimiento.isSelected()) {//para mostrar en Excel
+            String tipo = "Salida";//Tipo de movimineto
+            String lugar = "General";//Ubicacion del mivimiento Inv. General
+            //Tipo de movimineto Entrada
+            if (jRadioButton_EntradaMovimiento.isSelected()) {
+                tipo = "Entrada";
+            }
+            //Ubicacion del mivimiento Bodega
+            if (jRadioButton_BodegaMovimiento.isSelected()) {
+                lugar = "Bodega";
+            } 
+           
+            //Consultar movimientos
+            AdminBD.VerMovimientosPorFechaYLugar(tipo, lugar, dateF.format(
+                    dateChooserCombo_IniMovimiento.getSelectedDate().getTime()),
+                    dateF.format(dateChooserCombo_FinMovimiento.getSelectedDate().
+                            getTime()));
+
+            Date date = new Date();//hora Actual
+            String fechaAct = dateFormat.format(date);
+
+            EscribirExcel archivoExcel = new EscribirExcel();//
+            archivoExcel.setNombreArchivoExcel("Movimientos"
+                    + fechaAct + ".xls");//Nombre del excel "Fisico"
+            try {
+                //escribir excel
+                archivoExcel.escribir(infoEmpresa, AdminBD.getInfoFact(),
+                        AdminBD.getNombresColumnas(),
+                        dateF1.format(
+                                dateChooserCombo_IniMovimiento.getSelectedDate().getTime()),
+                        dateF1.format(dateChooserCombo_FinMovimiento.getSelectedDate().
+                                getTime()),
+                        tipo + " de mercadería en " + lugar, "Excel");
+            } catch (IOException | WriteException ex) {
+                Logger.getLogger(JPanel_Reportes.class.getName()).
+                        log(Level.SEVERE, null, ex);
+            }
+        } else {
+
+        }
+    }//GEN-LAST:event_jButton_AceptarVerMovimientoActionPerformed
+
+    private void jButton_CancelarVerMovimientoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_CancelarVerMovimientoActionPerformed
+        jDialog_ReportesInventario.remove(jPanel_Movimientos);
+        jDialog_ReportesInventario.setVisible(false);
+    }//GEN-LAST:event_jButton_CancelarVerMovimientoActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.ButtonGroup buttonGroup1;
@@ -5304,6 +5606,7 @@ jPanel_VerDevEliminadasPorFechLayout.createParallelGroup(javax.swing.GroupLayout
     private datechooser.beans.DateChooserCombo dateChooserCombo_FinDevFech;
     private datechooser.beans.DateChooserCombo dateChooserCombo_FinEliminadasDev;
     private datechooser.beans.DateChooserCombo dateChooserCombo_FinEliminadasFact;
+    private datechooser.beans.DateChooserCombo dateChooserCombo_FinMovimiento;
     private datechooser.beans.DateChooserCombo dateChooserCombo_FinProd;
     private datechooser.beans.DateChooserCombo dateChooserCombo_FinProdCliente;
     private datechooser.beans.DateChooserCombo dateChooserCombo_FinProdVendedor;
@@ -5314,6 +5617,7 @@ jPanel_VerDevEliminadasPorFechLayout.createParallelGroup(javax.swing.GroupLayout
     private datechooser.beans.DateChooserCombo dateChooserCombo_IniDevFech;
     private datechooser.beans.DateChooserCombo dateChooserCombo_IniEliminadasDev;
     private datechooser.beans.DateChooserCombo dateChooserCombo_IniEliminadasFact;
+    private datechooser.beans.DateChooserCombo dateChooserCombo_IniMovimiento;
     private datechooser.beans.DateChooserCombo dateChooserCombo_IniProd;
     private datechooser.beans.DateChooserCombo dateChooserCombo_IniProdCliente;
     private datechooser.beans.DateChooserCombo dateChooserCombo_IniProdVendedor;
@@ -5339,6 +5643,7 @@ jPanel_VerDevEliminadasPorFechLayout.createParallelGroup(javax.swing.GroupLayout
     private javax.swing.JButton jButton_AceptarVerDevEliminadas;
     private javax.swing.JButton jButton_AceptarVerDevFech;
     private javax.swing.JButton jButton_AceptarVerFactEliminadas;
+    private javax.swing.JButton jButton_AceptarVerMovimiento;
     private javax.swing.JButton jButton_AceptarVerVentasPorFech;
     private javax.swing.JButton jButton_AceptarVerVentasPorProd;
     private javax.swing.JButton jButton_AceptarVerVentasPorTermino;
@@ -5361,6 +5666,7 @@ jPanel_VerDevEliminadasPorFechLayout.createParallelGroup(javax.swing.GroupLayout
     private javax.swing.JButton jButton_CancelarVerFactPorProd;
     private javax.swing.JButton jButton_CancelarVerFactPorTermino;
     private javax.swing.JButton jButton_CancelarVerFactVendedor;
+    private javax.swing.JButton jButton_CancelarVerMovimiento;
     private javax.swing.JButton jButton_CancelarVerVentasProdCliente;
     private javax.swing.JButton jButton_CancelarVerVentasProdVendedor;
     private javax.swing.JButton jButton_DevolucionesEliminadas;
@@ -5464,7 +5770,14 @@ jPanel_VerDevEliminadasPorFechLayout.createParallelGroup(javax.swing.GroupLayout
     private javax.swing.JLabel jLabel74;
     private javax.swing.JLabel jLabel75;
     private javax.swing.JLabel jLabel76;
+    private javax.swing.JLabel jLabel77;
+    private javax.swing.JLabel jLabel78;
+    private javax.swing.JLabel jLabel79;
     private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel jLabel80;
+    private javax.swing.JLabel jLabel81;
+    private javax.swing.JLabel jLabel82;
+    private javax.swing.JLabel jLabel83;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JLabel jLabel_Cliente;
     private javax.swing.JLabel jLabel_Cliente1;
@@ -5483,6 +5796,7 @@ jPanel_VerDevEliminadasPorFechLayout.createParallelGroup(javax.swing.GroupLayout
     private javax.swing.JLabel jLabel_hastaListaValorInv;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel3;
+    private javax.swing.JPanel jPanel_Movimientos;
     private javax.swing.JPanel jPanel_VentasPorCliente;
     private javax.swing.JPanel jPanel_VentasPorVendedor;
     private javax.swing.JPanel jPanel_VentasProductosPorCliente;
@@ -5500,6 +5814,7 @@ jPanel_VerDevEliminadasPorFechLayout.createParallelGroup(javax.swing.GroupLayout
     private javax.swing.JPanel jPanel_VerVentasPorTermino;
     private javax.swing.JRadioButton jRadioButton_ApartadoVend;
     private javax.swing.JRadioButton jRadioButton_ApartadoVentasFecha;
+    private javax.swing.JRadioButton jRadioButton_BodegaMovimiento;
     private javax.swing.JRadioButton jRadioButton_CanceladoVend;
     private javax.swing.JRadioButton jRadioButton_CanceladoVentasFecha;
     private javax.swing.JRadioButton jRadioButton_CategAgotados;
@@ -5515,6 +5830,7 @@ jPanel_VerDevEliminadasPorFechLayout.createParallelGroup(javax.swing.GroupLayout
     private javax.swing.JRadioButton jRadioButton_CreditoVend;
     private javax.swing.JRadioButton jRadioButton_CreditoVentasFecha;
     private javax.swing.JRadioButton jRadioButton_Efectivo;
+    private javax.swing.JRadioButton jRadioButton_EntradaMovimiento;
     private javax.swing.JRadioButton jRadioButton_Excel;
     private javax.swing.JRadioButton jRadioButton_ExcelClien;
     private javax.swing.JRadioButton jRadioButton_ExcelDevFech;
@@ -5525,11 +5841,13 @@ jPanel_VerDevEliminadasPorFechLayout.createParallelGroup(javax.swing.GroupLayout
     private javax.swing.JRadioButton jRadioButton_ExcelListaInv;
     private javax.swing.JRadioButton jRadioButton_ExcelListaPrec;
     private javax.swing.JRadioButton jRadioButton_ExcelListaValorInv;
+    private javax.swing.JRadioButton jRadioButton_ExcelMovimiento;
     private javax.swing.JRadioButton jRadioButton_ExcelProd;
     private javax.swing.JRadioButton jRadioButton_ExcelProdCliente;
     private javax.swing.JRadioButton jRadioButton_ExcelProdVendedor;
     private javax.swing.JRadioButton jRadioButton_ExcelTermino;
     private javax.swing.JRadioButton jRadioButton_ExcelVendedor;
+    private javax.swing.JRadioButton jRadioButton_InvGeneralMovimiento;
     private javax.swing.JRadioButton jRadioButton_NombAgotados;
     private javax.swing.JRadioButton jRadioButton_NombInv;
     private javax.swing.JRadioButton jRadioButton_NombListaPrec;
@@ -5540,6 +5858,7 @@ jPanel_VerDevEliminadasPorFechLayout.createParallelGroup(javax.swing.GroupLayout
     private javax.swing.JRadioButton jRadioButton_PantallaDevFech;
     private javax.swing.JRadioButton jRadioButton_PantallaEliminadasDev;
     private javax.swing.JRadioButton jRadioButton_PantallaEliminadasFact;
+    private javax.swing.JRadioButton jRadioButton_PantallaMovimiento;
     private javax.swing.JRadioButton jRadioButton_PantallaProd;
     private javax.swing.JRadioButton jRadioButton_PantallaProdCliente;
     private javax.swing.JRadioButton jRadioButton_PantallaProdVendedor;
@@ -5547,6 +5866,7 @@ jPanel_VerDevEliminadasPorFechLayout.createParallelGroup(javax.swing.GroupLayout
     private javax.swing.JRadioButton jRadioButton_PantallaVendedor;
     private javax.swing.JRadioButton jRadioButton_PorCategoria;
     private javax.swing.JRadioButton jRadioButton_PorCodigo;
+    private javax.swing.JRadioButton jRadioButton_SalidaMovimiento;
     private javax.swing.JRadioButton jRadioButton_Tarjeta;
     private javax.swing.JRadioButton jRadioButton_bodega;
     private javax.swing.JRadioButton jRadioButton_bodegaInv;

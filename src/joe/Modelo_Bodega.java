@@ -3,6 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
+
 package joe;
 
 import java.math.BigDecimal;
@@ -11,20 +12,18 @@ import java.util.Arrays;
 import java.util.List;
 import javax.swing.table.AbstractTableModel;
 
-
 /**
  *
  * @author Oscar Montes
  */
-class Modelo_verMovimientos extends AbstractTableModel {
-
+public class Modelo_Bodega extends AbstractTableModel {
     private String[] columnNames;
     public List<Object[]> data;
-
-    public Modelo_verMovimientos(String[] columnNames, Object[][] data) {
-        this.columnNames = columnNames;
-        this.data = new ArrayList<Object[]>(Arrays.asList(data));    }
-
+    Modelo_Bodega(String[] columnNames, Object[][] data) {
+        this.columnNames=columnNames;
+        this.data=new ArrayList<Object[]>(Arrays.asList(data));
+    }
+    
     /**
      *
      * @param i
@@ -33,7 +32,7 @@ class Modelo_verMovimientos extends AbstractTableModel {
         int current = data.size();
         int end = current + i;
         for (int j = current; j < end; j++) {
-            data.add(new Object[]{"", "", "", "", "", "", ""});
+            data.add(new Object[]{"", "", "", "", "", ""});
 
         }
     }
@@ -74,8 +73,7 @@ class Modelo_verMovimientos extends AbstractTableModel {
      * Les agrega el tipo de clase a cada columna
      */
     public Class getColumnClass(int c) {
-        if(c==6){return BigDecimal.class;}
-        return String.class;
+       return String.class;
     }
 
     @Override
@@ -103,4 +101,7 @@ class Modelo_verMovimientos extends AbstractTableModel {
 
     }
 
+
+
+    
 }

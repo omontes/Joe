@@ -3580,4 +3580,16 @@ public class Direct_Control_BD {
         }
     }
 
+    public void verBodega() {
+         try {
+            String verBodega = this.readSql("../Joe/src/sql_files/"
+                    + "consultarBodega.sql");
+            ResultSet rs = statement.executeQuery(verBodega);
+            this.setColumnNames(this.Get_Columnas(rs));
+            this.setData(this.ResultSet_Array(rs));
+        } catch (Exception e) {
+            System.out.println("Error al obtener la bodega");
+        }
+    }
+
 }

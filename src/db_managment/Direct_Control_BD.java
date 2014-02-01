@@ -1064,6 +1064,7 @@ public class Direct_Control_BD {
             stm.setInt(4, idLugarMovimiento);
             stm.setBigDecimal(5, valormovimiento);
             stm.executeUpdate();
+        
 
         } catch (Exception e) {
             System.out.println("Error al insertar movimiento");

@@ -172,6 +172,14 @@ public class JPanel_Inventario extends javax.swing.JPanel {
         jLabel13 = new javax.swing.JLabel();
         jTextField_codProd = new javax.swing.JTextField();
         jButton5 = new javax.swing.JButton();
+        jLabel18 = new javax.swing.JLabel();
+        jLabel19 = new javax.swing.JLabel();
+        jLabel20 = new javax.swing.JLabel();
+        jLabel21 = new javax.swing.JLabel();
+        jLabel_descripcionProd = new javax.swing.JLabel();
+        jLabel_cantBodegaProd = new javax.swing.JLabel();
+        jLabel_cantInvGeneral = new javax.swing.JLabel();
+        jLabel_precioVenta = new javax.swing.JLabel();
 
         jPanel2.setBackground(new java.awt.Color(153, 153, 153));
 
@@ -1033,6 +1041,12 @@ public class JPanel_Inventario extends javax.swing.JPanel {
 
         jLabel13.setText("Producto");
 
+        jTextField_codProd.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                jTextField_codProdKeyPressed(evt);
+            }
+        });
+
         jButton5.setText("Buscar");
         jButton5.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -1040,21 +1054,54 @@ public class JPanel_Inventario extends javax.swing.JPanel {
             }
         });
 
+        jLabel18.setText("Descripcion:");
+
+        jLabel19.setText("Cantidad Bodega:");
+
+        jLabel20.setText("Cantidad Inv General:");
+
+        jLabel21.setText("Precio Venta:");
+
+        jLabel_descripcionProd.setBackground(new java.awt.Color(153, 153, 153));
+        jLabel_descripcionProd.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+
+        jLabel_cantBodegaProd.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+
+        jLabel_cantInvGeneral.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+
+        jLabel_precioVenta.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
         jPanel4Layout.setHorizontalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel4Layout.createSequentialGroup()
                 .addGap(58, 58, 58)
-                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addGroup(jPanel4Layout.createSequentialGroup()
+                        .addComponent(jLabel18)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jLabel_descripcionProd, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jLabel19)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jLabel_cantBodegaProd, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(jLabel20)
+                        .addGap(18, 18, 18)
+                        .addComponent(jLabel_cantInvGeneral, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(jLabel21)
+                        .addGap(28, 28, 28)
+                        .addComponent(jLabel_precioVenta, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(jPanel4Layout.createSequentialGroup()
                         .addComponent(jLabel13)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jTextField_codProd, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(jButton5))
-                    .addComponent(jScrollPane6, javax.swing.GroupLayout.PREFERRED_SIZE, 775, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(66, Short.MAX_VALUE))
+                    .addComponent(jScrollPane6, javax.swing.GroupLayout.PREFERRED_SIZE, 785, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(56, Short.MAX_VALUE))
         );
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -1064,9 +1111,23 @@ public class JPanel_Inventario extends javax.swing.JPanel {
                     .addComponent(jLabel13)
                     .addComponent(jTextField_codProd, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jButton5))
-                .addGap(26, 26, 26)
-                .addComponent(jScrollPane6, javax.swing.GroupLayout.PREFERRED_SIZE, 241, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(91, Short.MAX_VALUE))
+                .addGap(18, 18, 18)
+                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel_precioVenta, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jLabel_descripcionProd, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGroup(jPanel4Layout.createSequentialGroup()
+                            .addGap(0, 1, Short.MAX_VALUE)
+                            .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                .addComponent(jLabel18)
+                                .addComponent(jLabel19)
+                                .addComponent(jLabel20, javax.swing.GroupLayout.PREFERRED_SIZE, 14, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(jLabel21)
+                                .addComponent(jLabel_cantBodegaProd, javax.swing.GroupLayout.PREFERRED_SIZE, 14, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(jLabel_cantInvGeneral, javax.swing.GroupLayout.PREFERRED_SIZE, 14, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                .addGap(18, 18, 18)
+                .addComponent(jScrollPane6, javax.swing.GroupLayout.DEFAULT_SIZE, 261, Short.MAX_VALUE)
+                .addGap(44, 44, 44))
         );
 
         jTabbedPane1.addTab("Movimientos", jPanel4);
@@ -1765,6 +1826,13 @@ public class JPanel_Inventario extends javax.swing.JPanel {
         this.verProducto();
     }//GEN-LAST:event_jButton5ActionPerformed
 
+    private void jTextField_codProdKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField_codProdKeyPressed
+        if(evt.getKeyChar()== KeyEvent.VK_ENTER){
+             this.cargarMovimientoPorProd(this.jTextField_codProd.getText());
+        
+        }
+    }//GEN-LAST:event_jTextField_codProdKeyPressed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
@@ -1802,7 +1870,11 @@ public class JPanel_Inventario extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel15;
     private javax.swing.JLabel jLabel16;
     private javax.swing.JLabel jLabel17;
+    private javax.swing.JLabel jLabel18;
+    private javax.swing.JLabel jLabel19;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel20;
+    private javax.swing.JLabel jLabel21;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
@@ -1818,6 +1890,10 @@ public class JPanel_Inventario extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel_Nombre2;
     private javax.swing.JLabel jLabel_Precio;
     private javax.swing.JLabel jLabel_Precio2;
+    private javax.swing.JLabel jLabel_cantBodegaProd;
+    private javax.swing.JLabel jLabel_cantInvGeneral;
+    private javax.swing.JLabel jLabel_descripcionProd;
+    private javax.swing.JLabel jLabel_precioVenta;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
@@ -1930,6 +2006,7 @@ public class JPanel_Inventario extends javax.swing.JPanel {
     }
 
     private void cargarMovimientoPorProd(String idProd) {
+        this.cargarInfoProductoMovimiento(idProd);
         Direct_Control_BD AdminBD = Direct_Control_BD.getInstance();
         Modelo_verMovimientos model= (Modelo_verMovimientos) this.jTable_verMovimientos.getModel();
         AdminBD.verMovimientoPorProducto(idProd);
@@ -1941,5 +2018,17 @@ public class JPanel_Inventario extends javax.swing.JPanel {
         
                
         
+    }
+
+    private void cargarInfoProductoMovimiento(String idProd) {
+        Direct_Control_BD AdminBD = Direct_Control_BD.getInstance();
+        String descripcion=AdminBD.verDescripcion(idProd);
+        int CantidadBodega= AdminBD.verCantidadBodega(idProd);
+        int CantidadInvGeneral = AdminBD.verCantidadInvGeneral(idProd);
+        BigDecimal PrecioVenta = AdminBD.verPrecio(idProd);
+        this.jLabel_descripcionProd.setText(descripcion);
+        this.jLabel_cantBodegaProd.setText(Integer.toString(CantidadBodega));
+        this.jLabel_cantInvGeneral.setText(Integer.toString(CantidadInvGeneral));
+        this.jLabel_precioVenta.setText(PrecioVenta.toString());
     }
 }

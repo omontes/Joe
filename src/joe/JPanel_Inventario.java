@@ -26,7 +26,7 @@ import javax.swing.table.DefaultTableCellRenderer;
  *
  * @author edward
  */
-public class JPanel_Inventario extends javax.swing.JPanel {
+public final class JPanel_Inventario extends javax.swing.JPanel {
 
     /**
      * Creates new form JPanel_Inventario
@@ -42,6 +42,7 @@ public class JPanel_Inventario extends javax.swing.JPanel {
         personalizarTablaEntradaMercaderia();
         personalizarTablaSalidaMercaderia();
         personalizarTablaVerMovimientos();
+        personalizarTablaBodega();
          
     }
     
@@ -166,12 +167,23 @@ public class JPanel_Inventario extends javax.swing.JPanel {
         jButton_verSalida = new javax.swing.JButton();
         jButton_CrearSalida = new javax.swing.JButton();
         jPanel1 = new javax.swing.JPanel();
+        jScrollPane7 = new javax.swing.JScrollPane();
+        jTable_verBodega = new javax.swing.JTable();
+        jButton_verProdBodega = new javax.swing.JButton();
         jPanel4 = new javax.swing.JPanel();
         jScrollPane6 = new javax.swing.JScrollPane();
         jTable_verMovimientos = new javax.swing.JTable();
         jLabel13 = new javax.swing.JLabel();
         jTextField_codProd = new javax.swing.JTextField();
         jButton5 = new javax.swing.JButton();
+        jLabel18 = new javax.swing.JLabel();
+        jLabel19 = new javax.swing.JLabel();
+        jLabel20 = new javax.swing.JLabel();
+        jLabel21 = new javax.swing.JLabel();
+        jLabel_descripcionProd = new javax.swing.JLabel();
+        jLabel_cantBodegaProd = new javax.swing.JLabel();
+        jLabel_cantInvGeneral = new javax.swing.JLabel();
+        jLabel_precioVenta = new javax.swing.JLabel();
 
         jPanel2.setBackground(new java.awt.Color(153, 153, 153));
 
@@ -841,6 +853,7 @@ public class JPanel_Inventario extends javax.swing.JPanel {
 
             }
         ));
+        jTable_Inventario.setFillsViewportHeight(true);
         jScrollPane5.setViewportView(jTable_Inventario);
 
         jButton4.setText("Ver Producto");
@@ -855,35 +868,34 @@ public class JPanel_Inventario extends javax.swing.JPanel {
         jPanel_InventarioGeneralLayout.setHorizontalGroup(
             jPanel_InventarioGeneralLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel_InventarioGeneralLayout.createSequentialGroup()
-                .addGap(83, 83, 83)
-                .addComponent(jButton4)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jButton_CrearProductoInventario, javax.swing.GroupLayout.PREFERRED_SIZE, 129, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jButton_EliminarProductoInventario, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jButton_ModificarProducto, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jButtonRegresarInventario, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(37, 37, 37))
-            .addGroup(jPanel_InventarioGeneralLayout.createSequentialGroup()
                 .addGap(52, 52, 52)
-                .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 834, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(13, Short.MAX_VALUE))
+                .addGroup(jPanel_InventarioGeneralLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(jPanel_InventarioGeneralLayout.createSequentialGroup()
+                        .addComponent(jButton4)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jButton_CrearProductoInventario, javax.swing.GroupLayout.PREFERRED_SIZE, 129, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jButton_EliminarProductoInventario, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jButton_ModificarProducto, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(264, 264, 264)
+                        .addComponent(jButtonRegresarInventario, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 781, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(66, Short.MAX_VALUE))
         );
         jPanel_InventarioGeneralLayout.setVerticalGroup(
             jPanel_InventarioGeneralLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel_InventarioGeneralLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane5, javax.swing.GroupLayout.DEFAULT_SIZE, 330, Short.MAX_VALUE)
+                .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 311, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addGroup(jPanel_InventarioGeneralLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jButton4)
                     .addComponent(jButton_CrearProductoInventario)
                     .addComponent(jButton_EliminarProductoInventario)
                     .addComponent(jButton_ModificarProducto)
-                    .addComponent(jButtonRegresarInventario, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton4))
-                .addGap(14, 14, 14))
+                    .addComponent(jButtonRegresarInventario, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(36, Short.MAX_VALUE))
         );
 
         jTabbedPane1.addTab("Inventario", jPanel_InventarioGeneral);
@@ -1002,15 +1014,50 @@ public class JPanel_Inventario extends javax.swing.JPanel {
 
         jTabbedPane1.addTab("Salida de Mercaderia", jPanel6);
 
+        jTable_verBodega.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {},
+                {},
+                {},
+                {}
+            },
+            new String [] {
+
+            }
+        ));
+        jTable_verBodega.setFillsViewportHeight(true);
+        jTable_verBodega.setRowSelectionAllowed(true);
+        jScrollPane7.setViewportView(jTable_verBodega);
+
+        jButton_verProdBodega.setText("Ver Producto");
+        jButton_verProdBodega.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton_verProdBodegaActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 899, Short.MAX_VALUE)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(40, 40, 40)
+                        .addComponent(jScrollPane7, javax.swing.GroupLayout.PREFERRED_SIZE, 785, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(59, 59, 59)
+                        .addComponent(jButton_verProdBodega)))
+                .addContainerGap(74, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 397, Short.MAX_VALUE)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(37, 37, 37)
+                .addComponent(jScrollPane7, javax.swing.GroupLayout.DEFAULT_SIZE, 261, Short.MAX_VALUE)
+                .addGap(32, 32, 32)
+                .addComponent(jButton_verProdBodega)
+                .addGap(42, 42, 42))
         );
 
         jTabbedPane1.addTab("Bodega", jPanel1);
@@ -1033,6 +1080,12 @@ public class JPanel_Inventario extends javax.swing.JPanel {
 
         jLabel13.setText("Producto");
 
+        jTextField_codProd.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                jTextField_codProdKeyPressed(evt);
+            }
+        });
+
         jButton5.setText("Buscar");
         jButton5.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -1040,21 +1093,54 @@ public class JPanel_Inventario extends javax.swing.JPanel {
             }
         });
 
+        jLabel18.setText("Descripcion:");
+
+        jLabel19.setText("Cantidad Bodega:");
+
+        jLabel20.setText("Cantidad Inv General:");
+
+        jLabel21.setText("Precio Venta:");
+
+        jLabel_descripcionProd.setBackground(new java.awt.Color(153, 153, 153));
+        jLabel_descripcionProd.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+
+        jLabel_cantBodegaProd.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+
+        jLabel_cantInvGeneral.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+
+        jLabel_precioVenta.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
         jPanel4Layout.setHorizontalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel4Layout.createSequentialGroup()
                 .addGap(58, 58, 58)
-                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addGroup(jPanel4Layout.createSequentialGroup()
+                        .addComponent(jLabel18)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jLabel_descripcionProd, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jLabel19)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jLabel_cantBodegaProd, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(jLabel20)
+                        .addGap(18, 18, 18)
+                        .addComponent(jLabel_cantInvGeneral, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(jLabel21)
+                        .addGap(28, 28, 28)
+                        .addComponent(jLabel_precioVenta, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(jPanel4Layout.createSequentialGroup()
                         .addComponent(jLabel13)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jTextField_codProd, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(jButton5))
-                    .addComponent(jScrollPane6, javax.swing.GroupLayout.PREFERRED_SIZE, 775, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(66, Short.MAX_VALUE))
+                    .addComponent(jScrollPane6, javax.swing.GroupLayout.PREFERRED_SIZE, 785, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(56, Short.MAX_VALUE))
         );
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -1064,9 +1150,22 @@ public class JPanel_Inventario extends javax.swing.JPanel {
                     .addComponent(jLabel13)
                     .addComponent(jTextField_codProd, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jButton5))
-                .addGap(26, 26, 26)
-                .addComponent(jScrollPane6, javax.swing.GroupLayout.PREFERRED_SIZE, 241, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(91, Short.MAX_VALUE))
+                .addGap(18, 18, 18)
+                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel_precioVenta, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jLabel_descripcionProd, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(jPanel4Layout.createSequentialGroup()
+                        .addGap(0, 1, Short.MAX_VALUE)
+                        .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel19, javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jLabel20, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 14, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel21, javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jLabel_cantBodegaProd, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 14, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel_cantInvGeneral, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 14, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel18))))
+                .addGap(18, 18, 18)
+                .addComponent(jScrollPane6, javax.swing.GroupLayout.DEFAULT_SIZE, 261, Short.MAX_VALUE)
+                .addGap(44, 44, 44))
         );
 
         jTabbedPane1.addTab("Movimientos", jPanel4);
@@ -1083,7 +1182,7 @@ public class JPanel_Inventario extends javax.swing.JPanel {
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addComponent(jTabbedPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 423, Short.MAX_VALUE)
+                .addComponent(jTabbedPane1)
                 .addContainerGap())
         );
     }//GEN-END:initComponents
@@ -1765,6 +1864,17 @@ public class JPanel_Inventario extends javax.swing.JPanel {
         this.verProducto();
     }//GEN-LAST:event_jButton5ActionPerformed
 
+    private void jTextField_codProdKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField_codProdKeyPressed
+        if(evt.getKeyChar()== KeyEvent.VK_ENTER){
+             this.cargarMovimientoPorProd(this.jTextField_codProd.getText());
+        
+        }
+    }//GEN-LAST:event_jTextField_codProdKeyPressed
+
+    private void jButton_verProdBodegaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_verProdBodegaActionPerformed
+        this.verProdBodega();
+    }//GEN-LAST:event_jButton_verProdBodegaActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
@@ -1783,6 +1893,7 @@ public class JPanel_Inventario extends javax.swing.JPanel {
     private javax.swing.JButton jButton_EliminarProductoInventario;
     private javax.swing.JButton jButton_ModificarProducto;
     private javax.swing.JButton jButton_verEntrada;
+    private javax.swing.JButton jButton_verProdBodega;
     private javax.swing.JButton jButton_verSalida;
     private javax.swing.JComboBox jComboBox_CategoriaCrearProducto;
     private javax.swing.JComboBox jComboBox_Categorias;
@@ -1802,7 +1913,11 @@ public class JPanel_Inventario extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel15;
     private javax.swing.JLabel jLabel16;
     private javax.swing.JLabel jLabel17;
+    private javax.swing.JLabel jLabel18;
+    private javax.swing.JLabel jLabel19;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel20;
+    private javax.swing.JLabel jLabel21;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
@@ -1818,6 +1933,10 @@ public class JPanel_Inventario extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel_Nombre2;
     private javax.swing.JLabel jLabel_Precio;
     private javax.swing.JLabel jLabel_Precio2;
+    private javax.swing.JLabel jLabel_cantBodegaProd;
+    private javax.swing.JLabel jLabel_cantInvGeneral;
+    private javax.swing.JLabel jLabel_descripcionProd;
+    private javax.swing.JLabel jLabel_precioVenta;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
@@ -1832,10 +1951,12 @@ public class JPanel_Inventario extends javax.swing.JPanel {
     private javax.swing.JScrollPane jScrollPane4;
     private javax.swing.JScrollPane jScrollPane5;
     private javax.swing.JScrollPane jScrollPane6;
+    private javax.swing.JScrollPane jScrollPane7;
     private javax.swing.JTabbedPane jTabbedPane1;
     private javax.swing.JTable jTable_EntradasMercaderia;
     private javax.swing.JTable jTable_Inventario;
     private javax.swing.JTable jTable_SalidasMercaderia;
+    private javax.swing.JTable jTable_verBodega;
     private javax.swing.JTable jTable_verMovimientos;
     private javax.swing.JTextArea jTextArea_DescripcionCrearProducto;
     private javax.swing.JTextField jTextField_Cantidad;
@@ -1918,9 +2039,8 @@ public class JPanel_Inventario extends javax.swing.JPanel {
         String[] columnNames = {"Fecha", "Detalle",
             "Tipo Movimiento", "Lugar Movimiento",
             "Cantidad", "Balance","Precio"};
-        List<Object[]> data = new ArrayList<Object[]>();
         //Crea la tabla generica para Facturas
-        this.jTable_verMovimientos.setModel(new Modelo_verMovimientos(columnNames,data));
+        this.jTable_verMovimientos.setModel(new Modelo_verMovimientos(columnNames,new Object[0][0]));
         //Alinea la primer columna de esta tabla hacia el centro
         DefaultTableCellRenderer centerRenderer = new DefaultTableCellRenderer
                 ();
@@ -1930,6 +2050,7 @@ public class JPanel_Inventario extends javax.swing.JPanel {
     }
 
     private void cargarMovimientoPorProd(String idProd) {
+        this.cargarInfoProductoMovimiento(idProd);
         Direct_Control_BD AdminBD = Direct_Control_BD.getInstance();
         Modelo_verMovimientos model= (Modelo_verMovimientos) this.jTable_verMovimientos.getModel();
         AdminBD.verMovimientoPorProducto(idProd);
@@ -1942,4 +2063,54 @@ public class JPanel_Inventario extends javax.swing.JPanel {
                
         
     }
+
+    private void cargarInfoProductoMovimiento(String idProd) {
+        Direct_Control_BD AdminBD = Direct_Control_BD.getInstance();
+        String descripcion=AdminBD.verDescripcion(idProd);
+        int CantidadBodega= AdminBD.verCantidadBodega(idProd);
+        int CantidadInvGeneral = AdminBD.verCantidadInvGeneral(idProd);
+        BigDecimal PrecioVenta = AdminBD.verPrecio(idProd);
+        this.jLabel_descripcionProd.setText(descripcion);
+        this.jLabel_cantBodegaProd.setText(Integer.toString(CantidadBodega));
+        this.jLabel_cantInvGeneral.setText(Integer.toString(CantidadInvGeneral));
+        this.jLabel_precioVenta.setText(PrecioVenta.toString());
+    }
+
+    private void personalizarTablaBodega() {
+        Direct_Control_BD AdministradorBD= Direct_Control_BD.getInstance();
+        AdministradorBD.verBodega();
+        String[] columnNames = {"Cod Producto", "Descripcion",
+            "Cantidad", "Precio",
+            "Costo", "Categoria"};
+        Object[][] data = AdministradorBD.getData();
+        //Crea la tabla generica para Facturas
+        this.jTable_verBodega.setModel(new Modelo_Bodega(columnNames,data));
+        //Alinea la primer columna de esta tabla hacia el centro
+        DefaultTableCellRenderer centerRenderer = new DefaultTableCellRenderer
+                ();
+        centerRenderer.setHorizontalAlignment(JLabel.CENTER );
+        this.jTable_Inventario.getColumnModel().getColumn(0).setCellRenderer
+                (centerRenderer);
+        Modelo_Bodega model =(Modelo_Bodega)this.jTable_verBodega.getModel();
+        model.addRow(20);
+}
+
+    private void verProdBodega() {
+        Modelo_Bodega model = (Modelo_Bodega) this.jTable_verBodega.getModel();
+        int row = this.jTable_verBodega.getSelectedRow();
+        if(row>0){
+            String idProducto = model.getValueAt(row, 0).toString();
+            this.jDialog_ConfirmacionVerProducto.setSize(200, 100);
+            JPanel_Inventario mPanel = JPanel_Inventario.getInstance();
+            this.jDialog_ConfirmacionVerProducto.setLocation(mPanel.getLocation());
+            this.jTextField_IdProductoModificar1.setText(idProducto);
+            this.jDialog_ConfirmacionVerProducto.setVisible(true);}
+        else{
+            JOptionPane.showMessageDialog(
+                null,
+                "No se selecciono ningun producto",
+                "Alert!", JOptionPane.ERROR_MESSAGE);
+        }
+    }
+    
 }

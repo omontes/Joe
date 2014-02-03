@@ -1064,6 +1064,7 @@ public class Direct_Control_BD {
             stm.setInt(4, idLugarMovimiento);
             stm.setBigDecimal(5, valormovimiento);
             stm.executeUpdate();
+        
 
         } catch (Exception e) {
             System.out.println("Error al insertar movimiento");
@@ -3576,6 +3577,18 @@ public class Direct_Control_BD {
         } catch (Exception e) {
             System.out.println("No se pudo eliminar el movimiento");
 
+        }
+    }
+
+    public void verBodega() {
+         try {
+            String verBodega = this.readSql("../Joe/src/sql_files/"
+                    + "consultarBodega.sql");
+            ResultSet rs = statement.executeQuery(verBodega);
+            this.setColumnNames(this.Get_Columnas(rs));
+            this.setData(this.ResultSet_Array(rs));
+        } catch (Exception e) {
+            System.out.println("Error al obtener la bodega");
         }
     }
 

@@ -569,7 +569,7 @@ public class JPanel_CrearEntradaSalidaMercaderia extends javax.swing.JPanel {
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                        .addGap(203, 203, 203)
+                        .addGap(247, 247, 247)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(jButton_aceptarMovimiento, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -1249,7 +1249,7 @@ public class JPanel_CrearEntradaSalidaMercaderia extends javax.swing.JPanel {
         MyTableModel_FACT model = (MyTableModel_FACT) this.jTable_Movimiento.getModel();
         String[][] infoTablaMov = this.obtenerInfoTablaMovimiento();
         int rows = infoTablaMov.length;
-        int idMovimiento = Integer.parseInt(this.jLabel_NumerodeMovimiento.getText());
+        int idMovimiento = AdminBD.ObtenerUltimoidMovimiento();
         //Recorre la informacion de la tabla para obtener los datos para 
         //insertar los productos en el movimiento
         for (int i = 0; i < rows; i++) {

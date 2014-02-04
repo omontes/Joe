@@ -17,10 +17,16 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
+import java.util.Vector;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
+import javax.swing.JTextField;
+import javax.swing.RowSorter;
+import javax.swing.SortOrder;
 import javax.swing.table.DefaultTableCellRenderer;
+import javax.swing.table.TableModel;
+import javax.swing.table.TableRowSorter;
 
 /**
  *
@@ -72,6 +78,8 @@ public final class JPanel_Inventario extends javax.swing.JPanel {
         centerRenderer.setHorizontalAlignment(JLabel.CENTER );
         this.jTable_Inventario.getColumnModel().getColumn(0).setCellRenderer
                 (centerRenderer);
+        this.agregarBuscador(this.jTable_Inventario,this.jTextField_busqueda,0);
+        
 }
     /**
      * This method is called from within the constructor to initialize the form.
@@ -156,6 +164,9 @@ public final class JPanel_Inventario extends javax.swing.JPanel {
         jScrollPane5 = new javax.swing.JScrollPane();
         jTable_Inventario = new javax.swing.JTable();
         jButton4 = new javax.swing.JButton();
+        jComboBox_categoriaBusqueda = new javax.swing.JComboBox();
+        jLabel22 = new javax.swing.JLabel();
+        jTextField_busqueda = new javax.swing.JTextField();
         jPanel_EntradaMercaderia = new javax.swing.JPanel();
         jScrollPane3 = new javax.swing.JScrollPane();
         jTable_EntradasMercaderia = new javax.swing.JTable();
@@ -863,31 +874,52 @@ public final class JPanel_Inventario extends javax.swing.JPanel {
             }
         });
 
+        jComboBox_categoriaBusqueda.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Codigo", "Descripcion", "Cantidad", "Precio" }));
+        jComboBox_categoriaBusqueda.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jComboBox_categoriaBusquedaActionPerformed(evt);
+            }
+        });
+
+        jLabel22.setText("Busqueda :");
+
         javax.swing.GroupLayout jPanel_InventarioGeneralLayout = new javax.swing.GroupLayout(jPanel_InventarioGeneral);
         jPanel_InventarioGeneral.setLayout(jPanel_InventarioGeneralLayout);
         jPanel_InventarioGeneralLayout.setHorizontalGroup(
             jPanel_InventarioGeneralLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel_InventarioGeneralLayout.createSequentialGroup()
                 .addGap(52, 52, 52)
-                .addGroup(jPanel_InventarioGeneralLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                .addGroup(jPanel_InventarioGeneralLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel_InventarioGeneralLayout.createSequentialGroup()
-                        .addComponent(jButton4)
+                        .addComponent(jLabel22)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jButton_CrearProductoInventario, javax.swing.GroupLayout.PREFERRED_SIZE, 129, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jTextField_busqueda, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jButton_EliminarProductoInventario, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jButton_ModificarProducto, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(264, 264, 264)
-                        .addComponent(jButtonRegresarInventario, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 781, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(jComboBox_categoriaBusqueda, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel_InventarioGeneralLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                        .addGroup(jPanel_InventarioGeneralLayout.createSequentialGroup()
+                            .addComponent(jButton4)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                            .addComponent(jButton_CrearProductoInventario, javax.swing.GroupLayout.PREFERRED_SIZE, 129, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                            .addComponent(jButton_EliminarProductoInventario, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                            .addComponent(jButton_ModificarProducto, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGap(264, 264, 264)
+                            .addComponent(jButtonRegresarInventario, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 781, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(66, Short.MAX_VALUE))
         );
         jPanel_InventarioGeneralLayout.setVerticalGroup(
             jPanel_InventarioGeneralLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel_InventarioGeneralLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 311, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(27, 27, 27)
+                .addGroup(jPanel_InventarioGeneralLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jComboBox_categoriaBusqueda, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel22)
+                    .addComponent(jTextField_busqueda, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 257, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addGroup(jPanel_InventarioGeneralLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton4)
@@ -1026,7 +1058,6 @@ public final class JPanel_Inventario extends javax.swing.JPanel {
             }
         ));
         jTable_verBodega.setFillsViewportHeight(true);
-        jTable_verBodega.setRowSelectionAllowed(true);
         jScrollPane7.setViewportView(jTable_verBodega);
 
         jButton_verProdBodega.setText("Ver Producto");
@@ -1875,6 +1906,12 @@ public final class JPanel_Inventario extends javax.swing.JPanel {
         this.verProdBodega();
     }//GEN-LAST:event_jButton_verProdBodegaActionPerformed
 
+    private void jComboBox_categoriaBusquedaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox_categoriaBusquedaActionPerformed
+        this.agregarBuscador(this.jTable_Inventario,this.jTextField_busqueda,this.jComboBox_categoriaBusqueda.getSelectedIndex());
+        this.jTextField_busqueda.setText("");
+        this.jTextField_busqueda.requestFocusInWindow();
+    }//GEN-LAST:event_jComboBox_categoriaBusquedaActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
@@ -1897,6 +1934,7 @@ public final class JPanel_Inventario extends javax.swing.JPanel {
     private javax.swing.JButton jButton_verSalida;
     private javax.swing.JComboBox jComboBox_CategoriaCrearProducto;
     private javax.swing.JComboBox jComboBox_Categorias;
+    private javax.swing.JComboBox jComboBox_categoriaBusqueda;
     private javax.swing.JDialog jDialog_ConfirmacionModificacionProducto;
     private javax.swing.JDialog jDialog_ConfirmacionVerProducto;
     private javax.swing.JDialog jDialog_CrearCategoria;
@@ -1918,6 +1956,7 @@ public final class JPanel_Inventario extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel20;
     private javax.swing.JLabel jLabel21;
+    private javax.swing.JLabel jLabel22;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
@@ -1975,6 +2014,7 @@ public final class JPanel_Inventario extends javax.swing.JPanel {
     private javax.swing.JTextField jTextField_Precio;
     private javax.swing.JTextField jTextField_Precio1;
     private javax.swing.JTextField jTextField_PrecioVerProducto;
+    private javax.swing.JTextField jTextField_busqueda;
     private javax.swing.JTextField jTextField_codProd;
     private javax.swing.JTextField jTextField_codigo;
     private javax.swing.JTextField jTextField_nombre;
@@ -2111,6 +2151,19 @@ public final class JPanel_Inventario extends javax.swing.JPanel {
                 "No se selecciono ningun producto",
                 "Alert!", JOptionPane.ERROR_MESSAGE);
         }
+    }
+
+    private void agregarBuscador(JTable table, JTextField textfield, int columna) {
+         //Crea el ordenador para la tabla generica
+        TableRowSorter<TableModel> ordenador = new TableRowSorter<TableModel>
+                (table.getModel());
+        table.setRowSorter(ordenador);
+        Vector<RowSorter.SortKey> qq = new Vector<RowSorter.SortKey>();
+        qq.add(new RowSorter.SortKey(0,SortOrder.ASCENDING));
+        ordenador.setSortKeys(qq);
+        /**Agrega el listener al JtextField del buscador **/
+        textfield.getDocument().addDocumentListener(new
+                ListenerBuscador(textfield,ordenador,columna));
     }
     
 }

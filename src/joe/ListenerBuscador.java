@@ -20,10 +20,21 @@ import javax.swing.table.TableRowSorter;
 public class ListenerBuscador implements DocumentListener {
     JTextField buscador;
     TableRowSorter<TableModel> ordenador;
+    int columna;
+    boolean busquetodos = true;
     
     public ListenerBuscador(JTextField buscador,TableRowSorter<TableModel> ordenador){
         this.buscador=buscador;
         this.ordenador=ordenador;
+        
+        
+    }
+    
+    public ListenerBuscador(JTextField buscador,TableRowSorter<TableModel> ordenador,int columna){
+        this.buscador=buscador;
+        this.ordenador=ordenador;
+        this.columna=columna;
+        this.busquetodos = false;
         
     }
 
@@ -51,7 +62,12 @@ public class ListenerBuscador implements DocumentListener {
             else
             {
                 try{
-                    this.ordenador.setRowFilter(RowFilter.regexFilter("(?i)" + text));
+                    if(busquetodos){
+                    this.ordenador.setRowFilter(RowFilter.regexFilter("(?i)" + text));}
+                    else{
+                        this.ordenador.setRowFilter(RowFilter.regexFilter("(?i)" + text,columna));
+                    
+                    }
                     
                 }catch(PatternSyntaxException e) {
                     System.out.println("un error de sintaxis");

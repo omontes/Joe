@@ -78,7 +78,7 @@ public final class JPanel_Inventario extends javax.swing.JPanel {
         centerRenderer.setHorizontalAlignment(JLabel.CENTER );
         this.jTable_Inventario.getColumnModel().getColumn(0).setCellRenderer
                 (centerRenderer);
-        this.agregarBuscador(this.jTable_Inventario,this.jTextField_busqueda,0);
+        this.agregarBuscador(this.jTable_Inventario,this.jTextField_busquedaInventario,0);
         
 }
     /**
@@ -164,9 +164,9 @@ public final class JPanel_Inventario extends javax.swing.JPanel {
         jScrollPane5 = new javax.swing.JScrollPane();
         jTable_Inventario = new javax.swing.JTable();
         jButton4 = new javax.swing.JButton();
-        jComboBox_categoriaBusqueda = new javax.swing.JComboBox();
+        jComboBox_categoriaBusquedaInventario = new javax.swing.JComboBox();
         jLabel22 = new javax.swing.JLabel();
-        jTextField_busqueda = new javax.swing.JTextField();
+        jTextField_busquedaInventario = new javax.swing.JTextField();
         jPanel_EntradaMercaderia = new javax.swing.JPanel();
         jScrollPane3 = new javax.swing.JScrollPane();
         jTable_EntradasMercaderia = new javax.swing.JTable();
@@ -181,6 +181,9 @@ public final class JPanel_Inventario extends javax.swing.JPanel {
         jScrollPane7 = new javax.swing.JScrollPane();
         jTable_verBodega = new javax.swing.JTable();
         jButton_verProdBodega = new javax.swing.JButton();
+        jLabel23 = new javax.swing.JLabel();
+        jTextField_busquedaBodega = new javax.swing.JTextField();
+        jComboBox_categoriaBusquedaBodega = new javax.swing.JComboBox();
         jPanel4 = new javax.swing.JPanel();
         jScrollPane6 = new javax.swing.JScrollPane();
         jTable_verMovimientos = new javax.swing.JTable();
@@ -874,10 +877,10 @@ public final class JPanel_Inventario extends javax.swing.JPanel {
             }
         });
 
-        jComboBox_categoriaBusqueda.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Codigo", "Descripcion", "Cantidad", "Precio" }));
-        jComboBox_categoriaBusqueda.addActionListener(new java.awt.event.ActionListener() {
+        jComboBox_categoriaBusquedaInventario.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Codigo", "Descripcion", "Cantidad", "Precio" }));
+        jComboBox_categoriaBusquedaInventario.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jComboBox_categoriaBusquedaActionPerformed(evt);
+                jComboBox_categoriaBusquedaInventarioActionPerformed(evt);
             }
         });
 
@@ -893,9 +896,9 @@ public final class JPanel_Inventario extends javax.swing.JPanel {
                     .addGroup(jPanel_InventarioGeneralLayout.createSequentialGroup()
                         .addComponent(jLabel22)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jTextField_busqueda, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jTextField_busquedaInventario, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jComboBox_categoriaBusqueda, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(jComboBox_categoriaBusquedaInventario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel_InventarioGeneralLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                         .addGroup(jPanel_InventarioGeneralLayout.createSequentialGroup()
                             .addComponent(jButton4)
@@ -915,9 +918,9 @@ public final class JPanel_Inventario extends javax.swing.JPanel {
             .addGroup(jPanel_InventarioGeneralLayout.createSequentialGroup()
                 .addGap(27, 27, 27)
                 .addGroup(jPanel_InventarioGeneralLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jComboBox_categoriaBusqueda, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jComboBox_categoriaBusquedaInventario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel22)
-                    .addComponent(jTextField_busqueda, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jTextField_busquedaInventario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 257, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
@@ -1067,6 +1070,15 @@ public final class JPanel_Inventario extends javax.swing.JPanel {
             }
         });
 
+        jLabel23.setText("Busqueda :");
+
+        jComboBox_categoriaBusquedaBodega.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Codigo", "Descripcion", "Cantidad", "Precio" }));
+        jComboBox_categoriaBusquedaBodega.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jComboBox_categoriaBusquedaBodegaActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -1074,19 +1086,31 @@ public final class JPanel_Inventario extends javax.swing.JPanel {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(40, 40, 40)
-                        .addComponent(jScrollPane7, javax.swing.GroupLayout.PREFERRED_SIZE, 785, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(59, 59, 59)
-                        .addComponent(jButton_verProdBodega)))
-                .addContainerGap(74, Short.MAX_VALUE))
+                        .addComponent(jButton_verProdBodega))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(46, 46, 46)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(jLabel23)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jTextField_busquedaBodega, javax.swing.GroupLayout.PREFERRED_SIZE, 119, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jComboBox_categoriaBusquedaBodega, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jScrollPane7, javax.swing.GroupLayout.PREFERRED_SIZE, 785, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addContainerGap(68, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(37, 37, 37)
-                .addComponent(jScrollPane7, javax.swing.GroupLayout.DEFAULT_SIZE, 261, Short.MAX_VALUE)
-                .addGap(32, 32, 32)
+                .addGap(23, 23, 23)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel23)
+                    .addComponent(jTextField_busquedaBodega, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jComboBox_categoriaBusquedaBodega, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addComponent(jScrollPane7, javax.swing.GroupLayout.DEFAULT_SIZE, 258, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jButton_verProdBodega)
                 .addGap(42, 42, 42))
         );
@@ -1906,11 +1930,17 @@ public final class JPanel_Inventario extends javax.swing.JPanel {
         this.verProdBodega();
     }//GEN-LAST:event_jButton_verProdBodegaActionPerformed
 
-    private void jComboBox_categoriaBusquedaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox_categoriaBusquedaActionPerformed
-        this.agregarBuscador(this.jTable_Inventario,this.jTextField_busqueda,this.jComboBox_categoriaBusqueda.getSelectedIndex());
-        this.jTextField_busqueda.setText("");
-        this.jTextField_busqueda.requestFocusInWindow();
-    }//GEN-LAST:event_jComboBox_categoriaBusquedaActionPerformed
+    private void jComboBox_categoriaBusquedaInventarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox_categoriaBusquedaInventarioActionPerformed
+        this.agregarBuscador(this.jTable_Inventario,this.jTextField_busquedaInventario,this.jComboBox_categoriaBusquedaInventario.getSelectedIndex());
+        this.jTextField_busquedaInventario.setText("");
+        this.jTextField_busquedaInventario.requestFocusInWindow();
+    }//GEN-LAST:event_jComboBox_categoriaBusquedaInventarioActionPerformed
+
+    private void jComboBox_categoriaBusquedaBodegaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox_categoriaBusquedaBodegaActionPerformed
+        this.agregarBuscador(this.jTable_verBodega,this.jTextField_busquedaBodega,this.jComboBox_categoriaBusquedaBodega.getSelectedIndex());
+        this.jTextField_busquedaBodega.setText("");
+        this.jTextField_busquedaBodega.requestFocusInWindow();
+    }//GEN-LAST:event_jComboBox_categoriaBusquedaBodegaActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -1934,7 +1964,8 @@ public final class JPanel_Inventario extends javax.swing.JPanel {
     private javax.swing.JButton jButton_verSalida;
     private javax.swing.JComboBox jComboBox_CategoriaCrearProducto;
     private javax.swing.JComboBox jComboBox_Categorias;
-    private javax.swing.JComboBox jComboBox_categoriaBusqueda;
+    private javax.swing.JComboBox jComboBox_categoriaBusquedaBodega;
+    private javax.swing.JComboBox jComboBox_categoriaBusquedaInventario;
     private javax.swing.JDialog jDialog_ConfirmacionModificacionProducto;
     private javax.swing.JDialog jDialog_ConfirmacionVerProducto;
     private javax.swing.JDialog jDialog_CrearCategoria;
@@ -1957,6 +1988,7 @@ public final class JPanel_Inventario extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel20;
     private javax.swing.JLabel jLabel21;
     private javax.swing.JLabel jLabel22;
+    private javax.swing.JLabel jLabel23;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
@@ -2014,7 +2046,8 @@ public final class JPanel_Inventario extends javax.swing.JPanel {
     private javax.swing.JTextField jTextField_Precio;
     private javax.swing.JTextField jTextField_Precio1;
     private javax.swing.JTextField jTextField_PrecioVerProducto;
-    private javax.swing.JTextField jTextField_busqueda;
+    private javax.swing.JTextField jTextField_busquedaBodega;
+    private javax.swing.JTextField jTextField_busquedaInventario;
     private javax.swing.JTextField jTextField_codProd;
     private javax.swing.JTextField jTextField_codigo;
     private javax.swing.JTextField jTextField_nombre;
@@ -2132,7 +2165,9 @@ public final class JPanel_Inventario extends javax.swing.JPanel {
         this.jTable_Inventario.getColumnModel().getColumn(0).setCellRenderer
                 (centerRenderer);
         Modelo_Bodega model =(Modelo_Bodega)this.jTable_verBodega.getModel();
-        model.addRow(20);
+        //model.addRow(20);
+        
+        this.agregarBuscador(this.jTable_verBodega,this.jTextField_busquedaBodega,0);
 }
 
     private void verProdBodega() {

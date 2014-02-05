@@ -23,7 +23,7 @@ public class Imprimir {
      */
     public void imprimirListaEtiquetas(String[][] etiquetas, String[] infoEmpresa) {
         establecerLosValoresEtiqueta(etiquetas[0][0], etiquetas[0][1], Integer.parseInt(etiquetas[0][2]),
-                etiquetas[0][3], infoEmpresa[0], infoEmpresa[4]);
+                etiquetas[0][3], infoEmpresa[0], infoEmpresa[1]);
 
         C.imprimir(etiquetas);
 

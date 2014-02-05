@@ -886,7 +886,7 @@ public class JPanel_CrearEntradaSalidaMercaderia extends javax.swing.JPanel {
         String[][] etiquetas = this.obtenerInfoTablaMovimientoParaEtiquetas();
         Imprimir etqt = new Imprimir();
         XMLConfiguracion empresa = XMLConfiguracion.getInstance();
-        String[] infoEmpresa = empresa.leerInfoEmpresaXML();
+        String[] infoEmpresa = empresa. NombreTelefonoEmpresa();
         etqt.imprimirListaEtiquetas(etiquetas, infoEmpresa);
 
     }//GEN-LAST:event_jButton_generarEtiquetasActionPerformed

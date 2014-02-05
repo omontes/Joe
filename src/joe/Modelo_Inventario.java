@@ -49,7 +49,7 @@ public class Modelo_Inventario extends AbstractTableModel{
      * Les agrega el tipo de clase a cada columna
      */
     public Class getColumnClass(int c) {
-            return getValueAt(0, c).getClass();
+            return String.class;
         }
     
     @Override

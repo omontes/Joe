@@ -159,7 +159,7 @@ public class DYMOLabelPrintConnector implements Printable {
                 g.drawString(nombreProducto, 20 + ((176 - (nombreProducto.
                         length() * 5)) / 2), 55);
 
-                g.drawString(precio, 20 + ((176 - (precio.
+                g.drawString("¢"+precio, 20 + ((176 - (precio.
                         length() * 5)) / 2), 66);
 
                 Barcode barcode = null;
@@ -209,6 +209,7 @@ public class DYMOLabelPrintConnector implements Printable {
 
 //                g = null;
                 PosMatr = PosMatr + 1;
+                System.out.println(etiquetas.length);
                 if (PosMatr < etiquetas.length) {
                     setCodigo(etiquetas[PosMatr][0]);
 //                    setNombreEmpresa(etiquetas[PosMatr][1]);

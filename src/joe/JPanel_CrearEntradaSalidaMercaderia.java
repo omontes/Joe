@@ -3,9 +3,10 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package joe;
 
+import Etiquetas.Imprimir;
+import ManejoDeArchivos.XMLConfiguracion;
 import db_managment.Direct_Control_BD;
 import java.awt.Toolkit;
 import java.awt.event.KeyEvent;
@@ -30,8 +31,6 @@ import javax.swing.table.DefaultTableCellRenderer;
 import jzebra.PrintRaw;
 import jzebra.PrintServiceMatcher;
 
-
-
 /**
  *
  * @author Oscar Montes
@@ -41,10 +40,11 @@ public class JPanel_CrearEntradaSalidaMercaderia extends javax.swing.JPanel {
     /**
      * Creates new form JPanel_CrearEntradaSalidaMercaderia
      */
-    boolean cargoArchivo=false;
+    boolean cargoArchivo = false;
+
     public JPanel_CrearEntradaSalidaMercaderia() {
         initComponents();
-        
+
     }
 
     /**
@@ -697,7 +697,7 @@ public class JPanel_CrearEntradaSalidaMercaderia extends javax.swing.JPanel {
     }//GEN-LAST:event_jButton_EliminaFilaActionPerformed
 
     private void jButton_RegresarFactActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_RegresarFactActionPerformed
-        if(cargoArchivo){
+        if (cargoArchivo) {
             this.limpiarProductos();
         }
         this.regresar();
@@ -722,13 +722,12 @@ public class JPanel_CrearEntradaSalidaMercaderia extends javax.swing.JPanel {
     private void jButton_guardaImprimeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_guardaImprimeActionPerformed
         this.guardarMovimiento();
         this.imprimirMovimiento(
-                this.jTable_Movimiento,this.jLabel_NumerodeMovimiento.getText(),
+                this.jTable_Movimiento, this.jLabel_NumerodeMovimiento.getText(),
                 this.jLabel_Fecha.getText(),
                 this.jComboBox_LugarDeMov.getSelectedItem().toString(),
                 this.jFormattedTextField_Total.getText(),
                 this.jTextField_referencia.getText());
-        
-        
+
 
     }//GEN-LAST:event_jButton_guardaImprimeActionPerformed
 
@@ -859,19 +858,19 @@ public class JPanel_CrearEntradaSalidaMercaderia extends javax.swing.JPanel {
     }//GEN-LAST:event_jTextField_busqueProductoKeyPressed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        JFileChooser filechooser= new JFileChooser();
+        JFileChooser filechooser = new JFileChooser();
         int value = filechooser.showOpenDialog(null);
-        this.cargoArchivo=true;
+        this.cargoArchivo = true;
         this.jFormattedTextField_Total.setValue(BigDecimal.ZERO);
         if (value == JFileChooser.APPROVE_OPTION) {
-                File file = filechooser.getSelectedFile();
-                String direccion=(String.valueOf(file));
-                try{
-                this.cargarMovimiento(direccion);}
-                catch(Exception e){
-                    this.clearAll();
-                }
-               
+            File file = filechooser.getSelectedFile();
+            String direccion = (String.valueOf(file));
+            try {
+                this.cargarMovimiento(direccion);
+            } catch (Exception e) {
+                this.clearAll();
+            }
+
         }
     }//GEN-LAST:event_jButton1ActionPerformed
 
@@ -884,7 +883,12 @@ public class JPanel_CrearEntradaSalidaMercaderia extends javax.swing.JPanel {
 
     private void jButton_generarEtiquetasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_generarEtiquetasActionPerformed
         //Contiene: Cod,Nombre,Cantidad,Precio del producto
-        String[][] etiquetas=this.obtenerInfoTablaMovimientoParaEtiquetas();
+        String[][] etiquetas = this.obtenerInfoTablaMovimientoParaEtiquetas();
+        Imprimir etqt = new Imprimir();
+        XMLConfiguracion empresa = XMLConfiguracion.getInstance();
+        String[] infoEmpresa = empresa.leerInfoEmpresaXML();
+        etqt.imprimirListaEtiquetas(etiquetas, infoEmpresa);
+
     }//GEN-LAST:event_jButton_generarEtiquetasActionPerformed
 
 
@@ -956,7 +960,8 @@ public class JPanel_CrearEntradaSalidaMercaderia extends javax.swing.JPanel {
         this.jDialog_CrearProducto.setVisible(true);
 
     }
-     /**
+
+    /**
      * Este metodo permite mostrar toda la informacion del producto
      *
      * @param idProducto
@@ -982,10 +987,10 @@ public class JPanel_CrearEntradaSalidaMercaderia extends javax.swing.JPanel {
         jDialog_VerProducto.setVisible(true);
 
     }
-    
+
     /**
-     * Este metodo es para poder eliminar una fila de la tabla de 
-     * crear movimiento
+     * Este metodo es para poder eliminar una fila de la tabla de crear
+     * movimiento
      */
     private void eliminarFila() {
         MyTableModel_FACT model = (MyTableModel_FACT) jTable_Movimiento.getModel();
@@ -1020,8 +1025,8 @@ public class JPanel_CrearEntradaSalidaMercaderia extends javax.swing.JPanel {
 
         }
     }
-    
-     private void regresar() {
+
+    private void regresar() {
         VentanaDeInicio miVentana = VentanaDeInicio.getInstance();
         JPanel_Inventario panelInventario = new JPanel_Inventario();
         panelInventario.setSize(this.getSize());
@@ -1033,8 +1038,8 @@ public class JPanel_CrearEntradaSalidaMercaderia extends javax.swing.JPanel {
         miVentana.revalidate();
         miVentana.repaint();
     }
-     
-     /**
+
+    /**
      * Este metodo permite que vuelva a la tabla y seleciones la fila donde
      * quedo o la siguiente en la tabla movimiento
      *
@@ -1083,16 +1088,16 @@ public class JPanel_CrearEntradaSalidaMercaderia extends javax.swing.JPanel {
             this.jButton_CancelarCrearProducto.transferFocus();
         }
     }
-    
-      private void clearCrearProducto() {
+
+    private void clearCrearProducto() {
         this.jTextField_codigo.setText("");
         this.jTextField_nombre.setText("");
         this.jFormattedTextField_cantidadProducto.setText("0");
         this.jFormattedTextField_precioProducto.setText("0.00");
 
     }
-      
-      /**
+
+    /**
      * Permite buscar el producto cuando el usuario presiona el boton buscar
      * producto en crear movimiento(Entrada o Salida de Mercaderia)
      */
@@ -1112,6 +1117,7 @@ public class JPanel_CrearEntradaSalidaMercaderia extends javax.swing.JPanel {
         this.jButton_BusqueProducto.transferFocus();
         this.jButton_CancelaBusquedaProducto.transferFocus();
     }
+
     /**
      * Este metodo permite personalizar la tabla de crear Movimiento
      */
@@ -1128,7 +1134,6 @@ public class JPanel_CrearEntradaSalidaMercaderia extends javax.swing.JPanel {
         //Agrega 20 filas
         model.addRow(20);
         this.jTable_Movimiento.setModel(model);
-       
 
     }
 
@@ -1152,6 +1157,7 @@ public class JPanel_CrearEntradaSalidaMercaderia extends javax.swing.JPanel {
         }
         return string;
     }
+
     /**
      * Este metodo permite corregir el dato que tiene el signo de C y ademas que
      * puede tener comas ya que el tipo Decimal en la base solo puede tener
@@ -1173,6 +1179,7 @@ public class JPanel_CrearEntradaSalidaMercaderia extends javax.swing.JPanel {
         return DatoCorregido;
 
     }
+
     /**
      * Este metodo convierte un string que es un decimal a bigdecimal
      *
@@ -1203,7 +1210,7 @@ public class JPanel_CrearEntradaSalidaMercaderia extends javax.swing.JPanel {
         this.jTable_Movimiento.getModel().addTableModelListener(
                 new MyTableModelListener_FACT(this.jTable_Movimiento, "",
                         this.jFormattedTextField_Total, AdminBD));
-        
+
         //Costumisando Precio y Cantidad (Solo van a permitir numeros)
         DefaultTableCellRenderer rightRenderer = new DefaultTableCellRenderer();
         rightRenderer.setHorizontalAlignment(JLabel.RIGHT);
@@ -1222,9 +1229,8 @@ public class JPanel_CrearEntradaSalidaMercaderia extends javax.swing.JPanel {
         //ingresan datos*****
         this.jTable_Movimiento.setSurrendersFocusOnKeystroke(true);
 
-      
+    }
 
-    }   
     public void cargarSeleccionadorProductos() {
         Direct_Control_BD AdminBD = Direct_Control_BD.getInstance();
         AdminBD.verCodigos();
@@ -1239,15 +1245,14 @@ public class JPanel_CrearEntradaSalidaMercaderia extends javax.swing.JPanel {
                 setCellEditor(new SeleccionadorEditor(idproductos, jTable_Movimiento));
 
     }
-    
 
     private void guardarMovimiento() {
-        if(this.jTextField_referencia.getText().equals("")){
-        JOptionPane.showMessageDialog(
-                            null,
-                            "Debe de ingresar una referencia de la entrada de mercaderia",
-                            "Alert!", JOptionPane.ERROR_MESSAGE);
-        return;
+        if (this.jTextField_referencia.getText().equals("")) {
+            JOptionPane.showMessageDialog(
+                    null,
+                    "Debe de ingresar una referencia de la entrada de mercaderia",
+                    "Alert!", JOptionPane.ERROR_MESSAGE);
+            return;
         }
         this.crearMovimiento();
         this.guardarProductosMovimiento();
@@ -1255,20 +1260,20 @@ public class JPanel_CrearEntradaSalidaMercaderia extends javax.swing.JPanel {
     }
 
     private void crearMovimiento() {
-        VentanaDeInicio mVentana= VentanaDeInicio.getInstance();
+        VentanaDeInicio mVentana = VentanaDeInicio.getInstance();
         Direct_Control_BD AdminBD = Direct_Control_BD.getInstance();
-        String detalle= this.jTextField_referencia.getText();
-        int idLugarMovimiento=1;
-        if(this.jComboBox_LugarDeMov.getSelectedItem().toString().equals("Bodega")){
-               idLugarMovimiento=2;
-        
+        String detalle = this.jTextField_referencia.getText();
+        int idLugarMovimiento = 1;
+        if (this.jComboBox_LugarDeMov.getSelectedItem().toString().equals("Bodega")) {
+            idLugarMovimiento = 2;
+
         }
         BigDecimal valorMovimiento = this.corregirDato(this.jFormattedTextField_Total.getText());
-        if(mVentana.getTitle().equals("Salida de Mercaderia")){
-            AdminBD.insertarmovimiento(detalle,2, idLugarMovimiento, valorMovimiento);
+        if (mVentana.getTitle().equals("Salida de Mercaderia")) {
+            AdminBD.insertarmovimiento(detalle, 2, idLugarMovimiento, valorMovimiento);
             return;
         }
-        AdminBD.insertarmovimiento(detalle,1, idLugarMovimiento, valorMovimiento);
+        AdminBD.insertarmovimiento(detalle, 1, idLugarMovimiento, valorMovimiento);
     }
 
     private void guardarProductosMovimiento() {
@@ -1298,12 +1303,12 @@ public class JPanel_CrearEntradaSalidaMercaderia extends javax.swing.JPanel {
                 String precioSinCorregir = infoTablaMov[i][3];
                 BigDecimal PrecioVenta = this.corregirDato(precioSinCorregir);
                 //System.out.println(idProducto+" "+idVersion+" "+idMovimiento+" "+cantidadMov+" "+PrecioVenta);
-                AdminBD.insertarProductoCantidadMovimiento(idProducto,idVersion,idMovimiento,cantidadMov,PrecioVenta);
-                
+                AdminBD.insertarProductoCantidadMovimiento(idProducto, idVersion, idMovimiento, cantidadMov, PrecioVenta);
 
             }
         }
     }
+
     /**
      * Este metodo devuelve toda la informacion de la tabla de crear movimiento
      *
@@ -1326,9 +1331,8 @@ public class JPanel_CrearEntradaSalidaMercaderia extends javax.swing.JPanel {
         return infoTablaFactura;
     }
 
-
     private void clearAll() {
-        
+
         VentanaDeInicio mVentana = VentanaDeInicio.getInstance();
         JPanel_CrearEntradaSalidaMercaderia panelCreaEntradaSalida = new JPanel_CrearEntradaSalidaMercaderia();
         mVentana.add(panelCreaEntradaSalida);
@@ -1336,7 +1340,7 @@ public class JPanel_CrearEntradaSalidaMercaderia extends javax.swing.JPanel {
         panelCreaEntradaSalida.setLocation(this.getLocation());
         mVentana.remove(this);
         panelCreaEntradaSalida.setVisible(true);
-        if(mVentana.getTitle().equals("Salida de Mercaderia")){
+        if (mVentana.getTitle().equals("Salida de Mercaderia")) {
             panelCreaEntradaSalida.jLabel_tipoMovimiento.setText("Salida de:");
         }
         mVentana.revalidate();
@@ -1347,9 +1351,8 @@ public class JPanel_CrearEntradaSalidaMercaderia extends javax.swing.JPanel {
         panelCreaEntradaSalida.personalizarTablaMovimiento();
         panelCreaEntradaSalida.agregarListenerRenders();
         panelCreaEntradaSalida.cargarSeleccionadorProductos();
-    
+
     }
- 
 
     private void cargarMovimiento(String direccion) {
         Direct_Control_BD AdminBD = Direct_Control_BD.getInstance();
@@ -1412,10 +1415,10 @@ public class JPanel_CrearEntradaSalidaMercaderia extends javax.swing.JPanel {
                 }
             } catch (Exception e) {
                 JOptionPane.showMessageDialog(
-                            null,
-                            "Debe de ingresar un archivo de excel con un formato adecuado "
-                                    + "\nque tenga las columnas especificas de una entrada de mercaderia",
-                            "Alert!", JOptionPane.ERROR_MESSAGE);
+                        null,
+                        "Debe de ingresar un archivo de excel con un formato adecuado "
+                        + "\nque tenga las columnas especificas de una entrada de mercaderia",
+                        "Alert!", JOptionPane.ERROR_MESSAGE);
                 this.limpiarProductos();
                 this.clearAll();
                 return;
@@ -1431,7 +1434,7 @@ public class JPanel_CrearEntradaSalidaMercaderia extends javax.swing.JPanel {
         AdminBD.eliminarProductosQueNoTienenInventario();
     }
 
- private void imprimirMovimiento(JTable table,String numEntrada, String date, String lugarEntrada, String totalEntrada, String referencia) {
+    private void imprimirMovimiento(JTable table, String numEntrada, String date, String lugarEntrada, String totalEntrada, String referencia) {
         try {
             String rawCmds = "FIRST NAME";
             String printer = "Generic / Text Only (Copy 3)"; // debe tener 
@@ -1442,7 +1445,6 @@ public class JPanel_CrearEntradaSalidaMercaderia extends javax.swing.JPanel {
                 PrintRaw p = new PrintRaw(ps, rawCmds);
                 p.clear();
                 p.append("\u001B\u0040"); //reset printer 
-              
 
                 p.append("\u001B" + "\u0061" + "\u0001" + "\r");//*** Centrado
                 p.append("Boutique Francini\r\n");
@@ -1450,10 +1452,8 @@ public class JPanel_CrearEntradaSalidaMercaderia extends javax.swing.JPanel {
                 p.append("Tel:228826962,pulgamontes@gmail.com\r\n");
                 p.append("Resolucion nro. 234252 del 2003-89\r\n");
                 p.append("\u001B" + "\u0064" + "\u0001" + "\r");//*** 1lineas
-           
+
                 p.append("\u001B" + "\u0061" + "\u0000" + "\r");//Quita Centrado
-                
-             
 
                 String fecha = " Fecha     :  " + date + "";
                 //p.append("----------------------------------------\r\n");
@@ -1462,7 +1462,7 @@ public class JPanel_CrearEntradaSalidaMercaderia extends javax.swing.JPanel {
                 p.append(this.fill(" Num Mov   :  " + numEntrada + "", fechamov.length(), " ") + "\r\n");
                 p.append(this.fill(" Lugar     :  " + lugarEntrada + "", fechamov.length(), " ") + "\r\n");
                 p.append(this.fill(" Referencia:  " + referencia + "", fechamov.length(), " ") + "\r\n");
-           
+
                 //Agrega 1 linea vacia
                 p.append("\u001B" + "\u0064" + "\u0001" + "\r");
                 p.append("CANT. \t DESCRIPCION \t      TOTAL\r\n");
@@ -1485,23 +1485,22 @@ public class JPanel_CrearEntradaSalidaMercaderia extends javax.swing.JPanel {
 
                 }
 
-             
                 p.append("\u001B" + "\u0061" + "\u0002" + "\r");//*** Derecha
                 p.append("\u001B" + "\u0064" + "\u0003" + "\r");//*** 1lineas
                 String subto = " T O T A L : \t " + totalEntrada + "";
                 String subtoCantidad = this.fill(subto, 35, " ");
                 p.append(subtoCantidad + "\r\n");
-                
-               
+
                 p.append("\u001B\u0040");//reset printer
                 p.append("\u001B" + "\u0064" + "\u0008" + "\r");//*** 10lineas**/
                 p.append("\u001D" + "\u0056" + "\u0001" + "\r");//*** CutPaper
-                
-               p.print();
+
+                p.print();
 
             } else {
                 System.err.println("No encontro ninguna impresora");
-                return ;    }
+                return;
+            }
 
         } catch (Exception e) {
             e.printStackTrace();
@@ -1530,24 +1529,20 @@ public class JPanel_CrearEntradaSalidaMercaderia extends javax.swing.JPanel {
     private String[][] obtenerInfoTablaMovimientoParaEtiquetas() {
         MyTableModel_FACT model = (MyTableModel_FACT) this.jTable_Movimiento.getModel();
         int filas = model.getRowCount();
-        String[][] infoTablaFactura = new String[filas][4];
+        String[][] infoTablaFactura = new String[filas - 20][4];
         for (int i = 0; i < filas; i++) {
             for (int j = 0; j < 4; j++) {
                 if (model.getValueAt(i, j) != null) {
                     String om = model.getValueAt(i, j).toString();
                     if (om.trim().length() != 0) {
                         infoTablaFactura[i][j] = om;
-                        
+
                     }
                 }
             }
-            
-            
+
         }
         return infoTablaFactura;
     }
-    
-
-
 
 }

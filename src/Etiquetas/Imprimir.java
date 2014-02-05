@@ -14,17 +14,18 @@ public class Imprimir {
     DYMOLabelPrintConnector C = new DYMOLabelPrintConnector();
 
     /**
-     * Envia a imprimir una matriz de etiquetas
-     * Orden de etiqueta: Codigo,NombreProducto,CantidadEtiquetas,Precio.
-     * Orden infoEmpresa: NombreEmpresa,telefono
-     * @param etiquetas 
-     * @param infoEmpresa 
+     * Envia a imprimir una matriz de etiquetas Orden de etiqueta:
+     * Codigo,NombreProducto,CantidadEtiquetas,Precio. Orden infoEmpresa:
+     * NombreEmpresa,telefono
+     *
+     * @param etiquetas
+     * @param infoEmpresa
      */
-    public void imprimirListaEtiquetas(String[][] etiquetas,String[] infoEmpresa) {
-            establecerLosValoresEtiqueta(etiquetas[0][0], etiquetas[0][1], Integer.parseInt(etiquetas[0][2]),
-                    etiquetas[0][3], infoEmpresa[0], infoEmpresa[1]);
-      
-             C.imprimir(etiquetas);
+    public void imprimirListaEtiquetas(String[][] etiquetas, String[] infoEmpresa) {
+        establecerLosValoresEtiqueta(etiquetas[0][0], etiquetas[0][1], Integer.parseInt(etiquetas[0][2]),
+                etiquetas[0][3], infoEmpresa[0], infoEmpresa[4]);
+
+        C.imprimir(etiquetas);
 
     }
 

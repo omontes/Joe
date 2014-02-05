@@ -987,7 +987,7 @@ public final class JPanel_Inventario extends javax.swing.JPanel {
                 .addGroup(jPanel_EntradaMercaderiaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton_verEntrada)
                     .addComponent(jButton_CrearEntrada))
-                .addContainerGap(22, Short.MAX_VALUE))
+                .addContainerGap(20, Short.MAX_VALUE))
         );
 
         jTabbedPane1.addTab("Entrada de Mercaderia", jPanel_EntradaMercaderia);
@@ -2200,5 +2200,7 @@ public final class JPanel_Inventario extends javax.swing.JPanel {
         textfield.getDocument().addDocumentListener(new
                 ListenerBuscador(textfield,ordenador,columna));
     }
+
+
     
 }

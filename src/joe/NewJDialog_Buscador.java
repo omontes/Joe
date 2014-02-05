@@ -27,6 +27,9 @@ public class NewJDialog_Buscador extends javax.swing.JDialog {
     private String Cliente;
     private String idProducto;
     private String Categoria;
+    private String nombreProducto;
+    private String precioProducto;
+
     public JPanel_CrearFactura panel;
 
     public NewJDialog_Buscador() {
@@ -119,10 +122,11 @@ public class NewJDialog_Buscador extends javax.swing.JDialog {
 
         try {
             setIdProducto(jTable_Generica.getValueAt(this.jTable_Generica.getSelectedRow(), 0).toString());
+            setNombreProducto(jTable_Generica.getValueAt(this.jTable_Generica.getSelectedRow(), 1).toString());
             setCliente(jTable_Generica.getValueAt(this.jTable_Generica.getSelectedRow(), 0).toString());
             setIdFactura(jTable_Generica.getValueAt(this.jTable_Generica.getSelectedRow(), 1).toString());
             setCatgeria(jTable_Generica.getValueAt(this.jTable_Generica.getSelectedRow(), 1).toString());
-
+            setPrecioProducto(jTable_Generica.getValueAt(this.jTable_Generica.getSelectedRow(), 3).toString());
         } catch (Exception e) {
         }
         this.dispose();
@@ -176,11 +180,23 @@ public class NewJDialog_Buscador extends javax.swing.JDialog {
         return idProducto;
     }
 
+    public String getNombreProducto() {
+        return nombreProducto;
+    }
+
+    public String getPrecioProducto() {
+        return precioProducto;
+    }
+
     /**
      * @param idProducto the idProducto to set
      */
     public void setIdProducto(String idProducto) {
         this.idProducto = idProducto;
+    }
+
+    private void setPrecioProducto(String precio) {
+        precioProducto = precio;
     }
 
     void actualizaTablaParaClientes() {
@@ -249,6 +265,7 @@ public class NewJDialog_Buscador extends javax.swing.JDialog {
         this.TextField_Buscador.getDocument().addDocumentListener(new ListenerBuscador(this.TextField_Buscador, ordenador));
 
     }
+
     public void actualizaTablaParaDevolucionesModificadas() {
         Direct_Control_BD AdminBD = Direct_Control_BD.getInstance();
         AdminBD.ObtenerDevModificadasOriginales();
@@ -299,6 +316,10 @@ public class NewJDialog_Buscador extends javax.swing.JDialog {
 
     public void setCatgeria(String categoria) {
         Categoria = categoria;
+    }
+
+    private void setNombreProducto(String nombreProd) {
+        nombreProducto = nombreProd;
     }
 
 }

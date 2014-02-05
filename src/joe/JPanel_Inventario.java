@@ -113,6 +113,7 @@ public final class JPanel_Inventario extends javax.swing.JPanel {
         jLabel12 = new javax.swing.JLabel();
         jTextField_CostoCrearProducto = new javax.swing.JTextField();
         jTextArea_DescripcionCrearProducto = new javax.swing.JTextField();
+        jButton6 = new javax.swing.JButton();
         jDialog_EliminarProducto = new javax.swing.JDialog();
         jButton_EliminarProducto = new javax.swing.JButton();
         jTextField_IdProducto = new javax.swing.JTextField();
@@ -204,6 +205,8 @@ public final class JPanel_Inventario extends javax.swing.JPanel {
         jLabel_cantInvGeneral = new javax.swing.JLabel();
         jLabel_precioVenta = new javax.swing.JLabel();
 
+        jDialog_CrearProducto.setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+
         jPanel2.setBackground(new java.awt.Color(153, 153, 153));
 
         jTextField_codigo.addKeyListener(new java.awt.event.KeyAdapter() {
@@ -236,6 +239,7 @@ public final class JPanel_Inventario extends javax.swing.JPanel {
 
         jLabel4.setText("Cantidad del Producto");
 
+        jTextField_Cantidad.setText("0");
         jTextField_Cantidad.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 jTextField_CantidadKeyPressed(evt);
@@ -286,6 +290,13 @@ public final class JPanel_Inventario extends javax.swing.JPanel {
             }
         });
 
+        jButton6.setText("Cancelar");
+        jButton6.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton6ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
@@ -321,7 +332,9 @@ public final class JPanel_Inventario extends javax.swing.JPanel {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jButton_CrearProducto)
-                .addGap(59, 59, 59))
+                .addGap(18, 18, 18)
+                .addComponent(jButton6)
+                .addGap(71, 71, 71))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -355,7 +368,9 @@ public final class JPanel_Inventario extends javax.swing.JPanel {
                     .addComponent(jLabel11)
                     .addComponent(jTextArea_DescripcionCrearProducto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(27, 27, 27)
-                .addComponent(jButton_CrearProducto)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jButton_CrearProducto)
+                    .addComponent(jButton6))
                 .addContainerGap(98, Short.MAX_VALUE))
         );
 
@@ -1233,12 +1248,41 @@ public final class JPanel_Inventario extends javax.swing.JPanel {
             //int costo, String fechaCreacion, String estado, String Descripcion,
             //int idCategoria
     private void jButton_CrearProductoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_CrearProductoActionPerformed
-        VentanaDeInicio miVentana = VentanaDeInicio.getInstance();
         Direct_Control_BD AdminBD = Direct_Control_BD.getInstance();
         DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd");
         Date date = new Date();
         BigDecimal Precio = this.StringtoBigDecimal(this.jTextField_Precio.getText().toString());
         String codigo = this.jTextField_codigo.getText();
+        if(codigo.equals("")){
+            
+             JOptionPane.showMessageDialog(
+                    null,
+                    "Por favor ingrese un codigo",
+                    "Alert!", JOptionPane.ERROR_MESSAGE);
+             return;
+        
+        }
+        if(this.jTextField_nombre.getText().equals("")){
+            
+             JOptionPane.showMessageDialog(
+                    null,
+                    "Por favor ingrese un nombre para el producto",
+                    "Alert!", JOptionPane.ERROR_MESSAGE);
+             return;
+        
+        }
+        if(AdminBD.verSiExisteCod(codigo)){
+            JOptionPane.showMessageDialog(
+                    null,
+                    "Por favor ingrese un codigo diferente para el producto.\n"
+                            + "Ya existe ese codigo para otro producto",
+                    "Alert!", JOptionPane.ERROR_MESSAGE);
+            this.jTextField_codigo.setText("");
+            this.jTextField_codigo.requestFocusInWindow();
+             return;
+        
+        }
+        
         try {
             int idCategoria = AdminBD.consultarIdCategoriaXNombre(this.jComboBox_CategoriaCrearProducto.getSelectedItem().toString());
             String Descripcion = this.jTextArea_DescripcionCrearProducto.getText();
@@ -1246,10 +1290,12 @@ public final class JPanel_Inventario extends javax.swing.JPanel {
             BigDecimal Costo = this.StringtoBigDecimal(this.jTextField_CostoCrearProducto.getText());
             AdminBD.crearProducto(codigo, Nombre, Precio, Costo, dateFormat.format(date), "A", Descripcion, idCategoria);
             AdminBD.insertarEnInventario(this.jTextField_codigo.getText(), 1, Integer.parseInt(this.jTextField_Cantidad.getText()));
-            this.jTextField_Cantidad.setText("");
-            this.jTextField_Precio.setText("");
+            this.jTextField_Cantidad.setText("0");
+            this.jTextField_Precio.setText("0.00");
+            this.jTextField_CostoCrearProducto.setText("0.00");
             this.jTextField_codigo.setText("");
             this.jTextField_nombre.setText("");
+            this.jTextArea_DescripcionCrearProducto.setText("");
             this.jDialog_CrearProducto.dispose();
             personalizarTablaInventario();
 
@@ -1285,33 +1331,24 @@ public final class JPanel_Inventario extends javax.swing.JPanel {
     private void jTextField_IdProductoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField_IdProductoActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jTextField_IdProductoActionPerformed
-
-   // String idProducto, String nombre,
-     //       int precio, int idCategoria, int costo, String Descripcion
-                    
+       
     private void jButton_CrearProducto1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_CrearProducto1ActionPerformed
-        
-       //Nombre=?,Precio=?, idCategoriaProd=?, Costo=?, Descripcion=?
-       try{
-       Direct_Control_BD mBD= Direct_Control_BD.getInstance();
-       BigDecimal Precio= this.StringtoBigDecimal(this.jTextField_Precio1.getText());
-       BigDecimal Costo = this.StringtoBigDecimal(this.jTextField_Costo.getText());
-        int IdCategoria = mBD.consultarIdCategoriaXNombre(this.jComboBox_Categorias.getSelectedItem().toString());
-         mBD.modificarProducto(this.jTextField_CodigoProducto.getText(),
-                 this.jTextField_nombre1.getText(),Precio
-                ,
-               IdCategoria
-               ,Costo,
-               this.jTextField_Descripcion.getText());
-         
-         this.jDialog_ModificarProducto.dispose();
-         personalizarTablaInventario();
-       }
-       catch (NumberFormatException exc) 
-         { 
-             JOptionPane.showOptionDialog(this, "El precio no es valido", "Error Producto", 
-           JOptionPane.ERROR_MESSAGE, JOptionPane.ERROR_MESSAGE, null, new Object[]{" Cancelar "},"Cancelar");
-         }
+        try {
+            Direct_Control_BD mBD = Direct_Control_BD.getInstance();
+            BigDecimal Precio = this.StringtoBigDecimal(this.jTextField_Precio1.getText());
+            BigDecimal Costo = this.StringtoBigDecimal(this.jTextField_Costo.getText());
+            int IdCategoria = mBD.consultarIdCategoriaXNombre(this.jComboBox_Categorias.getSelectedItem().toString());
+            mBD.modificarProducto(this.jTextField_CodigoProducto.getText(),
+                    this.jTextField_nombre1.getText(), Precio,
+                    IdCategoria, Costo,
+                    this.jTextField_Descripcion.getText());
+
+            this.jDialog_ModificarProducto.dispose();
+            personalizarTablaInventario();
+        } catch (NumberFormatException exc) {
+            JOptionPane.showOptionDialog(this, "El precio no es valido", "Error Producto",
+                    JOptionPane.ERROR_MESSAGE, JOptionPane.ERROR_MESSAGE, null, new Object[]{" Cancelar "}, "Cancelar");
+        }
     }//GEN-LAST:event_jButton_CrearProducto1ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
@@ -1900,6 +1937,16 @@ public final class JPanel_Inventario extends javax.swing.JPanel {
         }
     }//GEN-LAST:event_jTextField_DescripcionKeyTyped
 
+    private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
+        this.jTextField_Cantidad.setText("0");
+        this.jTextField_Precio.setText("0.00");
+        this.jTextField_CostoCrearProducto.setText("0.00");
+        this.jTextField_codigo.setText("");
+        this.jTextField_nombre.setText("");
+        this.jTextArea_DescripcionCrearProducto.setText("");
+        this.jDialog_CrearProducto.dispose();
+    }//GEN-LAST:event_jButton6ActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
@@ -1907,6 +1954,7 @@ public final class JPanel_Inventario extends javax.swing.JPanel {
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
     private javax.swing.JButton jButton5;
+    private javax.swing.JButton jButton6;
     private javax.swing.JButton jButtonRegresarInventario;
     private javax.swing.JButton jButton_CrearCategoria;
     private javax.swing.JButton jButton_CrearEntrada;

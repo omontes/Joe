@@ -375,6 +375,7 @@ public class JPanel_verEntradaSalidaMercaderia extends javax.swing.JPanel {
                 Modelo_verFacturas dtm = (Modelo_verFacturas) table.getModel();
                 int nRow = dtm.getRowCount();
                 for (int i = 0; i < nRow; i++) {
+                    
                     String Producto = dtm.getValueAt(i, 1).toString();
                     if (!Producto.equals("")) {
                         String cantidad = dtm.getValueAt(i, 2).toString();

@@ -198,7 +198,8 @@ public class XMLConfiguracion {
         try {
 
             File fXmlFile = new File("Configuracion.xml");
-            DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
+            DocumentBuilderFactory dbFactory = DocumentBuilderFactory.
+                    newInstance();
             DocumentBuilder dBuilder = dbFactory.newDocumentBuilder();
             Document doc = dBuilder.parse(fXmlFile);
 

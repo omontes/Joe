@@ -5,13 +5,10 @@
  */
 package joe;
 
-import Etiquetas.Imprimir;
 import db_managment.Direct_Control_BD;
-
 import java.io.IOException;
 import java.net.URISyntaxException;
-import java.security.CodeSource;
-import javax.swing.JOptionPane;
+import javax.swing.JDialog;
 import jxl.write.WriteException;
 
 /**
@@ -62,7 +59,10 @@ public class Main {
 
             }
         });
-
+        
+       // Dialog_generarEtiquetas g = new Dialog_generarEtiquetas(null, true);
+        
+        
     }
 ;
 }

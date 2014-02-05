@@ -113,8 +113,7 @@ public class DYMOLabelPrintConnector implements Printable {
             PrintService[] printService = PrinterJob.lookupPrintServices();
 
             for (int i = 0; i < printService.length; i++) {
-                System.out.println(printService[i].getName());
-
+                
                 if (printService[i].getName().compareTo(PRINTERNAME) == 0) {
                     try {
                         printerJob.setPrintService(printService[i]);

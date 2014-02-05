@@ -1867,6 +1867,7 @@ public class Direct_Control_BD {
             stm.setString(4, FechaCumpleanos);
             stm.executeUpdate();
             int idCliente = this.veridCliente(nombre);
+            System.out.println(idCliente);
             this.insertarIdCliente(idCliente);
 
         } catch (Exception e) {

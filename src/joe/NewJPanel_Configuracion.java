@@ -965,17 +965,19 @@ public class NewJPanel_Configuracion extends javax.swing.JPanel {
     private void jButton_informacionEmpresaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_informacionEmpresaActionPerformed
         XMLConfiguracion infoEmpresa = new XMLConfiguracion();
         String[] info = infoEmpresa.leerInfoEmpresaXML();
-        if (info[0] != null) {
-            jTextField_nombreEmpresa.setText(info[0]);
-            jTextField_Direccion.setText(info[1]);
-            jTextField_ciudad.setText(info[2]);
-            jTextField_CedJ.setText(info[3]);
-            jTextField_telefono.setText(info[4]);
-            jTextField_correo.setText(info[5]);
-            jTextField_nombreEmpresa.setText(info[0]);
-            String[] Comentariosfact = infoEmpresa.leerInfoParaFactura();
-            jTextField_ComentarioIni.setText(Comentariosfact[0]);
-            jTextField_ComentarioFin.setText(Comentariosfact[1]);
+        if (info != null) {
+            if (info[0] != null) {
+                jTextField_nombreEmpresa.setText(info[0]);
+                jTextField_Direccion.setText(info[1]);
+                jTextField_ciudad.setText(info[2]);
+                jTextField_CedJ.setText(info[3]);
+                jTextField_telefono.setText(info[4]);
+                jTextField_correo.setText(info[5]);
+                jTextField_nombreEmpresa.setText(info[0]);
+                String[] Comentariosfact = infoEmpresa.leerInfoParaFactura();
+                jTextField_ComentarioIni.setText(Comentariosfact[0]);
+                jTextField_ComentarioFin.setText(Comentariosfact[1]);
+            }
         }
 
         jPanel_Usuario.setVisible(false);

@@ -5,7 +5,7 @@
  */
 package joe;
 
-
+import Etiquetas.Imprimir;
 import db_managment.Direct_Control_BD;
 
 import java.io.IOException;

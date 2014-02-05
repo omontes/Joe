@@ -2302,7 +2302,7 @@ public class JPanel_CrearFactura extends javax.swing.JPanel {
                 p.append("San Jose, Costa Rica\r\n");
                 p.append("Tel:228826962,pulgamontes@gmail.com\r\n");
                 p.append("Resolucion nro. 234252 del 2003-89\r\n");
-                p.append("\u001B" + "\u0064" + "\u0001" + "\r");//*** 3lineas
+                p.append("\u001B" + "\u0064" + "\u0001" + "\r");//*** 1lineas
                 /**
                  * *******************************************************
                  */

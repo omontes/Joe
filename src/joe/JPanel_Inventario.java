@@ -12,12 +12,17 @@ import java.awt.Toolkit;
 import java.awt.event.KeyEvent;
 import java.math.BigDecimal;
 import java.text.DateFormat;
+import java.text.DecimalFormat;
+import java.text.NumberFormat;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
 import java.util.Vector;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
@@ -27,6 +32,8 @@ import javax.swing.SortOrder;
 import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.TableModel;
 import javax.swing.table.TableRowSorter;
+import javax.swing.text.AbstractDocument;
+import javax.swing.text.DocumentFilter;
 
 /**
  *
@@ -103,11 +110,9 @@ public final class JPanel_Inventario extends javax.swing.JPanel {
         jLabel10 = new javax.swing.JLabel();
         jComboBox_CategoriaCrearProducto = new javax.swing.JComboBox();
         jLabel11 = new javax.swing.JLabel();
-        jScrollPane2 = new javax.swing.JScrollPane();
-        jTextArea_DescripcionCrearProducto = new javax.swing.JTextArea();
         jLabel12 = new javax.swing.JLabel();
         jTextField_CostoCrearProducto = new javax.swing.JTextField();
-        jFormattedTextField1 = new javax.swing.JFormattedTextField();
+        jTextArea_DescripcionCrearProducto = new javax.swing.JTextField();
         jDialog_EliminarProducto = new javax.swing.JDialog();
         jButton_EliminarProducto = new javax.swing.JButton();
         jTextField_IdProducto = new javax.swing.JTextField();
@@ -220,6 +225,7 @@ public final class JPanel_Inventario extends javax.swing.JPanel {
 
         jLabel3.setText("Precio del Producto");
 
+        jTextField_Precio.setText("0.00");
         jTextField_Precio.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 jTextField_PrecioKeyPressed(evt);
@@ -263,15 +269,6 @@ public final class JPanel_Inventario extends javax.swing.JPanel {
 
         jLabel11.setText("Descripcion");
 
-        jTextArea_DescripcionCrearProducto.setColumns(20);
-        jTextArea_DescripcionCrearProducto.setRows(5);
-        jTextArea_DescripcionCrearProducto.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyTyped(java.awt.event.KeyEvent evt) {
-                jTextArea_DescripcionCrearProductoKeyTyped(evt);
-            }
-        });
-        jScrollPane2.setViewportView(jTextArea_DescripcionCrearProducto);
-
         jLabel12.setText("Costo");
 
         jTextField_CostoCrearProducto.addKeyListener(new java.awt.event.KeyAdapter() {
@@ -283,15 +280,24 @@ public final class JPanel_Inventario extends javax.swing.JPanel {
             }
         });
 
-        jFormattedTextField1.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter()));
+        jTextArea_DescripcionCrearProducto.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                jTextArea_DescripcionCrearProductoKeyTyped(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(118, 118, 118)
+                .addGap(98, 98, 98)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addComponent(jLabel11)
+                        .addGap(56, 56, 56)
+                        .addComponent(jTextArea_DescripcionCrearProducto)
+                        .addGap(22, 22, 22))
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
@@ -301,27 +307,21 @@ public final class JPanel_Inventario extends javax.swing.JPanel {
                                 .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                             .addComponent(jLabel10)
                             .addComponent(jLabel12))
-                        .addGap(18, 18, 18)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jComboBox_CategoriaCrearProducto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jTextField_CostoCrearProducto)
-                            .addGroup(jPanel2Layout.createSequentialGroup()
-                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jTextField_Precio)
-                                    .addComponent(jTextField_Cantidad)
-                                    .addComponent(jTextField_codigo)
-                                    .addComponent(jTextField_nombre))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jFormattedTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
-                        .addComponent(jButton_CrearProducto)
-                        .addGap(117, 117, 117))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                        .addComponent(jLabel11)
-                        .addGap(18, 18, 18)
-                        .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 252, Short.MAX_VALUE)))
-                .addContainerGap())
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(jTextField_CostoCrearProducto, javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jTextField_Precio, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 192, Short.MAX_VALUE)
+                                    .addComponent(jTextField_Cantidad, javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jTextField_codigo, javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jTextField_nombre, javax.swing.GroupLayout.Alignment.LEADING))
+                                .addGap(22, 22, 22))))))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jButton_CrearProducto)
+                .addGap(72, 72, 72))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -334,15 +334,10 @@ public final class JPanel_Inventario extends javax.swing.JPanel {
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
                     .addComponent(jTextField_nombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGap(18, 18, 18)
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel3)
-                            .addComponent(jTextField_Precio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGap(4, 4, 4)
-                        .addComponent(jFormattedTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(18, 18, 18)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel3)
+                    .addComponent(jTextField_Precio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel4)
@@ -355,16 +350,13 @@ public final class JPanel_Inventario extends javax.swing.JPanel {
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel12)
                     .addComponent(jTextField_CostoCrearProducto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(27, 27, 27)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addComponent(jLabel11)
-                        .addGap(0, 0, Short.MAX_VALUE))
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 7, Short.MAX_VALUE)
-                        .addComponent(jButton_CrearProducto)))
-                .addContainerGap())
+                .addGap(24, 24, 24)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel11)
+                    .addComponent(jTextArea_DescripcionCrearProducto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(31, 31, 31)
+                .addComponent(jButton_CrearProducto)
+                .addContainerGap(63, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout jDialog_CrearProductoLayout = new javax.swing.GroupLayout(jDialog_CrearProducto.getContentPane());
@@ -1273,7 +1265,7 @@ public final class JPanel_Inventario extends javax.swing.JPanel {
       int idCategoria = AdminBD.consultarIdCategoriaXNombre(this.jComboBox_CategoriaCrearProducto.getSelectedItem().toString());
       String Descripcion=this.jTextArea_DescripcionCrearProducto.getText();
       String Nombre=this.jTextField_nombre.getText();
-      int Costo= Integer.parseInt(this.jTextField_CostoCrearProducto.getText());
+      BigDecimal Costo= this.StringtoBigDecimal(this.jTextField_CostoCrearProducto.getText());
       AdminBD.crearProducto(codigo,Nombre,bd,Costo
                 ,dateFormat.format(date),"A",Descripcion
                 ,idCategoria);
@@ -1491,12 +1483,12 @@ public final class JPanel_Inventario extends javax.swing.JPanel {
             evt.consume();
 
         }
-      int limite=13;
+      /**int limite=13;
       if (jTextField_Precio.getText().length()== limite)
            {
      evt.consume();
      Toolkit.getDefaultToolkit().beep();
-           }
+           }**/
       
       if(KeyEvent.VK_ENTER==evt.getKeyChar()){
             this.jTextField_Precio.transferFocus();
@@ -1513,15 +1505,7 @@ public final class JPanel_Inventario extends javax.swing.JPanel {
             evt.consume();
 
         }
-        
-        int limite=9;
-      if (jTextField_CostoCrearProducto.getText().length()>= limite)
-           {
-     evt.consume();
-     Toolkit.getDefaultToolkit().beep();
-           }
-      
-      if(KeyEvent.VK_ENTER==evt.getKeyChar()){
+        if(KeyEvent.VK_ENTER==evt.getKeyChar()){
             this.jTextField_CostoCrearProducto.transferFocus();
             
         
@@ -1537,12 +1521,11 @@ public final class JPanel_Inventario extends javax.swing.JPanel {
 
         }
         
-        int limite=9;
-      if (jTextField_Cantidad.getText().length()== limite)
-           {
-     evt.consume();
-     Toolkit.getDefaultToolkit().beep();
-           }
+        int limite = 10;
+        if (jTextField_Cantidad.getText().length() == limite) {
+            evt.consume();
+            Toolkit.getDefaultToolkit().beep();
+        }
       if(KeyEvent.VK_ENTER==evt.getKeyChar()){
             this.jTextField_Cantidad.transferFocus();
             
@@ -1631,7 +1614,7 @@ public final class JPanel_Inventario extends javax.swing.JPanel {
     }//GEN-LAST:event_jTextField_CostoKeyPressed
 
     private void jTextField_codigoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField_codigoKeyTyped
-        int limite = 40;
+        int limite = 11;
         if (jTextField_codigo.getText().length() >= limite) {
             evt.consume();
             Toolkit.getDefaultToolkit().beep();
@@ -1647,7 +1630,7 @@ public final class JPanel_Inventario extends javax.swing.JPanel {
     }//GEN-LAST:event_jTextField_codigoKeyTyped
 
     private void jTextField_nombreKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField_nombreKeyTyped
-        int limite = 45;
+        int limite = 25;
         if (jTextField_nombre.getText().length() >= limite) {
             evt.consume();
             Toolkit.getDefaultToolkit().beep();
@@ -1657,24 +1640,8 @@ public final class JPanel_Inventario extends javax.swing.JPanel {
             this.jTextField_nombre.transferFocus();
 
         }
-           
-    }//GEN-LAST:event_jTextField_nombreKeyTyped
-
-    private void jTextArea_DescripcionCrearProductoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextArea_DescripcionCrearProductoKeyTyped
-        int limite=30;
-        if (jTextArea_DescripcionCrearProducto.getText().length()>=limite)
-           {
-     evt.consume();
-     Toolkit.getDefaultToolkit().beep();
-           }
-      
-      if(KeyEvent.VK_ENTER==evt.getKeyChar()){
-            this.jTextArea_DescripcionCrearProducto.transferFocus();
             
-        
-        }
-      
-    }//GEN-LAST:event_jTextArea_DescripcionCrearProductoKeyTyped
+    }//GEN-LAST:event_jTextField_nombreKeyTyped
 
     private void jTextField_CodigoProductoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField_CodigoProductoKeyTyped
        int limite=30;
@@ -1854,6 +1821,11 @@ public final class JPanel_Inventario extends javax.swing.JPanel {
         }
 
         this.jComboBox_CategoriaCrearProducto.setSelectedItem("Sin Categoria");
+        //Para que solo acepte 10 enteros y 2 decimales despues del punto
+        DocumentFilter onlyNumberFilter = new MyFilter();
+        ((AbstractDocument)this.jTextField_Precio.getDocument()).setDocumentFilter(onlyNumberFilter);
+        ((AbstractDocument)this.jTextField_CostoCrearProducto.getDocument()).setDocumentFilter(onlyNumberFilter);
+        
 
     }//GEN-LAST:event_jButton_CrearProductoInventarioActionPerformed
 
@@ -1958,6 +1930,19 @@ public final class JPanel_Inventario extends javax.swing.JPanel {
         this.jTextField_busquedaBodega.requestFocusInWindow();
     }//GEN-LAST:event_jComboBox_categoriaBusquedaBodegaActionPerformed
 
+    private void jTextArea_DescripcionCrearProductoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextArea_DescripcionCrearProductoKeyTyped
+        int limite = 40;
+        if (jTextArea_DescripcionCrearProducto.getText().length() >= limite) {
+            evt.consume();
+            Toolkit.getDefaultToolkit().beep();
+        }
+
+        if (KeyEvent.VK_ENTER == evt.getKeyChar()) {
+            this.jTextArea_DescripcionCrearProducto.transferFocus();
+
+        }
+    }//GEN-LAST:event_jTextArea_DescripcionCrearProductoKeyTyped
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
@@ -1989,7 +1974,6 @@ public final class JPanel_Inventario extends javax.swing.JPanel {
     private javax.swing.JDialog jDialog_EliminarProducto;
     private javax.swing.JDialog jDialog_ModificarProducto;
     private javax.swing.JDialog jDialog_VerProducto;
-    private javax.swing.JFormattedTextField jFormattedTextField1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
@@ -2034,7 +2018,6 @@ public final class JPanel_Inventario extends javax.swing.JPanel {
     private javax.swing.JPanel jPanel_EntradaMercaderia;
     private javax.swing.JPanel jPanel_InventarioGeneral;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JScrollPane jScrollPane4;
     private javax.swing.JScrollPane jScrollPane5;
@@ -2046,7 +2029,7 @@ public final class JPanel_Inventario extends javax.swing.JPanel {
     private javax.swing.JTable jTable_SalidasMercaderia;
     private javax.swing.JTable jTable_verBodega;
     private javax.swing.JTable jTable_verMovimientos;
-    private javax.swing.JTextArea jTextArea_DescripcionCrearProducto;
+    private javax.swing.JTextField jTextArea_DescripcionCrearProducto;
     private javax.swing.JTextField jTextField_Cantidad;
     private javax.swing.JTextField jTextField_CategoriaVerProducto;
     private javax.swing.JTextField jTextField_CodigoProducto;
@@ -2216,6 +2199,25 @@ public final class JPanel_Inventario extends javax.swing.JPanel {
         /**Agrega el listener al JtextField del buscador **/
         textfield.getDocument().addDocumentListener(new
                 ListenerBuscador(textfield,ordenador,columna));
+    }
+    
+     /**
+     * Este metodo convierte un string que es un decimal a bigdecimal
+     *
+     * @param numero
+     * @return
+     */
+    private BigDecimal StringtoBigDecimal(String numero) {
+        DecimalFormat decimalfC = (DecimalFormat) NumberFormat.getInstance();
+        decimalfC.setParseBigDecimal(true);
+        BigDecimal numeroCorregido = null;
+        try {
+            numeroCorregido = (BigDecimal) decimalfC.parseObject(numero);
+        } catch (ParseException ex) {
+            Logger.getLogger(JPanel_VerFactura.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return numeroCorregido;
+
     }
 
 

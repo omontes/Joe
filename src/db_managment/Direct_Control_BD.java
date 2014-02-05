@@ -11,10 +11,14 @@ import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.text.DateFormat;
+import java.text.DecimalFormat;
+import java.text.NumberFormat;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import joe.JPanel_VerFactura;
 
 
 /**
@@ -336,7 +340,7 @@ public class Direct_Control_BD {
         String nombre = Producto[1];
         int Cantidad = Integer.parseInt(Producto[2]);
         BigDecimal Precio = new BigDecimal(Producto[3]);
-        int Costo = Integer.parseInt(Producto[4]);
+        BigDecimal Costo = this.StringtoBigDecimal(Producto[4].toString());
         DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd");
         Date date = new Date();
         String fecha = dateFormat.format(date);
@@ -361,7 +365,7 @@ public class Direct_Control_BD {
      * @param idCategoria
      */
     public void crearProducto(String idProducto, String nombre, BigDecimal precio,
-            int costo, String fechaCreacion, String estado, String Descripcion,
+            BigDecimal costo, String fechaCreacion, String estado, String Descripcion,
             int idCategoria) {//revisado +
         try {
             String CrearProducto = this.readSql("../Joe/src/"
@@ -370,7 +374,7 @@ public class Direct_Control_BD {
             stm.setString(1, idProducto);
             stm.setString(2, nombre);
             stm.setDouble(3, precio.doubleValue());
-            stm.setInt(4, costo);
+            stm.setBigDecimal(4, costo);
             stm.setString(5, fechaCreacion);
             stm.setString(6, estado);
             stm.setString(7, Descripcion);
@@ -3591,6 +3595,25 @@ public class Direct_Control_BD {
         } catch (Exception e) {
             System.out.println("Error al obtener la bodega");
         }
+    }
+    
+     /**
+     * Este metodo convierte un string que es un decimal a bigdecimal
+     *
+     * @param numero
+     * @return
+     */
+    private BigDecimal StringtoBigDecimal(String numero) {
+        DecimalFormat decimalfC = (DecimalFormat) NumberFormat.getInstance();
+        decimalfC.setParseBigDecimal(true);
+        BigDecimal numeroCorregido = null;
+        try {
+            numeroCorregido = (BigDecimal) decimalfC.parseObject(numero);
+        } catch (ParseException ex) {
+            Logger.getLogger(JPanel_VerFactura.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return numeroCorregido;
+
     }
 
 }

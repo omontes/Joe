@@ -1067,7 +1067,7 @@ public class JPanel_CrearEntradaSalidaMercaderia extends javax.swing.JPanel {
                     this.jFormattedTextField_precioProducto.
                     getValue().toString());
             AdminBD.crearProducto(codigo, this.jTextField_nombre.getText(),
-                    bd, 0, dateFormat.format(date), "A", null, 1);
+                    bd, BigDecimal.ZERO, dateFormat.format(date), "A", null, 1);
             AdminBD.insertarEnInventario(this.jTextField_codigo.getText(),
                     1, Integer.parseInt(this.jFormattedTextField_cantidadProducto.getValue()
                             .toString()));
@@ -1408,7 +1408,7 @@ public class JPanel_CrearEntradaSalidaMercaderia extends javax.swing.JPanel {
                         categoria = "General";
                     }
                     int idCategoria = AdminBD.consultarIdCategoriaXNombre(categoria);
-                    AdminBD.crearProducto(idProducto, nombre, precio, costo.intValue(), fecha, "A", "", idCategoria);
+                    AdminBD.crearProducto(idProducto, nombre, precio, costo, fecha, "A", "", idCategoria);
                     model.setValueAt(idProducto, row, 0);
                     model.setValueAt(cantidad, row, 2);
 

@@ -64,10 +64,9 @@ public class Pan_VerFactura extends javax.swing.JPanel {
         jLabel16 = new javax.swing.JLabel();
         jFormattedTextField_Cliente = new javax.swing.JFormattedTextField();
         jLabel_NumerodeFact = new javax.swing.JLabel();
+        jLabel1 = new javax.swing.JLabel();
         jTextField_tipopago = new javax.swing.JTextField();
         jTextField_Vendedor = new javax.swing.JTextField();
-        jSeparator1 = new javax.swing.JSeparator();
-        jSeparator2 = new javax.swing.JSeparator();
         jLabel2 = new javax.swing.JLabel();
 
         setOpaque(false);
@@ -98,8 +97,9 @@ public class Pan_VerFactura extends javax.swing.JPanel {
         jFormattedTextField_SubTotal.setText("0.00");
         add(jFormattedTextField_SubTotal, new org.netbeans.lib.awtextra.AbsoluteConstraints(570, 380, 214, -1));
 
+        jLabel_Fecha.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         jLabel_Fecha.setText("Aqui va la fecha");
-        add(jLabel_Fecha, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 30, 170, 20));
+        add(jLabel_Fecha, new org.netbeans.lib.awtextra.AbsoluteConstraints(620, 30, 170, 20));
 
         jLabel6.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel6.setText("SubTotal");
@@ -117,8 +117,9 @@ public class Pan_VerFactura extends javax.swing.JPanel {
         jLabel8.setText("%");
         add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 420, -1, -1));
 
+        jLabel10.setForeground(new java.awt.Color(255, 255, 255));
         jLabel10.setText("Tipo de Pago");
-        add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 10, -1, 20));
+        add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 5, -1, 20));
 
         jTextField_Detalle.setEditable(false);
         add(jTextField_Detalle, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 400, 400, 20));
@@ -143,39 +144,40 @@ public class Pan_VerFactura extends javax.swing.JPanel {
         add(jFormattedTextField_Total, new org.netbeans.lib.awtextra.AbsoluteConstraints(570, 440, 214, -1));
 
         jLabel9.setText("Vendedor");
-        add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 10, -1, 20));
+        add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 430, -1, 20));
 
+        jLabel16.setForeground(new java.awt.Color(255, 255, 255));
         jLabel16.setText("Cliente");
-        add(jLabel16, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 10, 43, 20));
+        add(jLabel16, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 5, 43, 20));
 
         jFormattedTextField_Cliente.setEditable(false);
         jFormattedTextField_Cliente.setHorizontalAlignment(javax.swing.JTextField.LEFT);
         jFormattedTextField_Cliente.setText("Cliente Anonimo");
-        add(jFormattedTextField_Cliente, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 10, 106, -1));
+        add(jFormattedTextField_Cliente, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 5, 106, 22));
 
-        jLabel_NumerodeFact.setFont(new java.awt.Font("Arial", 0, 16)); // NOI18N
-        jLabel_NumerodeFact.setForeground(new java.awt.Color(0, 51, 51));
+        jLabel_NumerodeFact.setFont(new java.awt.Font("Arial", 1, 16)); // NOI18N
+        jLabel_NumerodeFact.setForeground(new java.awt.Color(255, 255, 255));
         jLabel_NumerodeFact.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         jLabel_NumerodeFact.setText("Num");
-        add(jLabel_NumerodeFact, new org.netbeans.lib.awtextra.AbsoluteConstraints(722, 10, 70, -1));
+        jLabel_NumerodeFact.setToolTipText("Número de factura");
+        add(jLabel_NumerodeFact, new org.netbeans.lib.awtextra.AbsoluteConstraints(542, 5, 250, -1));
+
+        jLabel1.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel1.setText("Ver Factura");
+        add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 5, -1, -1));
 
         jTextField_tipopago.setEditable(false);
         jTextField_tipopago.setHorizontalAlignment(javax.swing.JTextField.LEFT);
         jTextField_tipopago.setText("Efectivo");
-        add(jTextField_tipopago, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 10, 70, -1));
+        add(jTextField_tipopago, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 5, 70, 22));
 
         jTextField_Vendedor.setEditable(false);
         jTextField_Vendedor.setHorizontalAlignment(javax.swing.JTextField.LEFT);
         jTextField_Vendedor.setText("Vendedor");
-        add(jTextField_Vendedor, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 10, 116, -1));
+        add(jTextField_Vendedor, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 430, 116, -1));
 
-        jSeparator1.setOrientation(javax.swing.SwingConstants.VERTICAL);
-        add(jSeparator1, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 10, 10, 20));
-
-        jSeparator2.setOrientation(javax.swing.SwingConstants.VERTICAL);
-        add(jSeparator2, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 10, 10, 20));
-
-        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/System/Images/Panel 1/VFPanel.jpg"))); // NOI18N
+        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/System/Images/Panel 1/panelVF.png"))); // NOI18N
         add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
     }// </editor-fold>//GEN-END:initComponents
  /**
@@ -262,6 +264,7 @@ public class Pan_VerFactura extends javax.swing.JPanel {
     javax.swing.JFormattedTextField jFormattedTextField_SubTotal;
     javax.swing.JFormattedTextField jFormattedTextField_Total;
     javax.swing.JFormattedTextField jFormattedTextField_desc;
+    javax.swing.JLabel jLabel1;
     javax.swing.JLabel jLabel10;
     javax.swing.JLabel jLabel11;
     javax.swing.JLabel jLabel12;
@@ -274,8 +277,6 @@ public class Pan_VerFactura extends javax.swing.JPanel {
     javax.swing.JLabel jLabel_Fecha;
     javax.swing.JLabel jLabel_NumerodeFact;
     javax.swing.JScrollPane jScrollPane2;
-    javax.swing.JSeparator jSeparator1;
-    javax.swing.JSeparator jSeparator2;
     javax.swing.JTable jTable_Factura;
     javax.swing.JTextField jTextField_Detalle;
     javax.swing.JTextField jTextField_Vendedor;

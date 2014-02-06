@@ -88,7 +88,6 @@ public class JF_Facturacion extends javax.swing.JFrame {
         _instance = this;
         
         initComponents();
-        
         _panelManager = new PanelManager(jLayeredPane1);
         startComponents();
         labUsuario.setText(pUser + " - " + pPosition);
@@ -113,9 +112,11 @@ public class JF_Facturacion extends javax.swing.JFrame {
         bttApart = new javax.swing.JLabel();
         bttFact = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
+        bkColor = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Nombre de la empresa - Facturación");
+        setBackground(new java.awt.Color(51, 255, 102));
         setUndecorated(true);
         setResizable(false);
         addWindowListener(new java.awt.event.WindowAdapter() {
@@ -139,7 +140,7 @@ public class JF_Facturacion extends javax.swing.JFrame {
             }
         });
         jLayeredPane1.add(bttAtras);
-        bttAtras.setBounds(720, 475, 79, 26);
+        bttAtras.setBounds(726, 471, 79, 29);
 
         bttCred.setIcon(new javax.swing.ImageIcon(getClass().getResource("/System/Images/Panel 1/bttDaCreditos.png"))); // NOI18N
         bttCred.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
@@ -181,11 +182,18 @@ public class JF_Facturacion extends javax.swing.JFrame {
         jLayeredPane1.add(bttFact);
         bttFact.setBounds(0, 10, 165, 32);
 
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/System/Images/Panel 1/Panel 1 prev.jpg"))); // NOI18N
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/System/Images/Panel 1/panelF.png"))); // NOI18N
         jLayeredPane1.add(jLabel1);
         jLabel1.setBounds(0, 0, 800, 500);
 
         getContentPane().add(jLayeredPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 800, 500));
+
+        bkColor.setBackground(new java.awt.Color(153, 153, 153));
+        bkColor.setMaximumSize(new java.awt.Dimension(2147483647, 2147483647));
+        bkColor.setMinimumSize(new java.awt.Dimension(800, 500));
+        bkColor.setOpaque(true);
+        bkColor.setPreferredSize(new java.awt.Dimension(800, 500));
+        getContentPane().add(bkColor, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, 500));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -260,6 +268,7 @@ public class JF_Facturacion extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel bkColor;
     private javax.swing.JLabel bttApart;
     private javax.swing.JLabel bttAtras;
     private javax.swing.JLabel bttCred;

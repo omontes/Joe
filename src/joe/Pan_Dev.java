@@ -43,52 +43,17 @@ public class Pan_Dev extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jButton_CrearDev = new javax.swing.JButton();
-        jButton_ModificarDev = new javax.swing.JButton();
-        jButton_EliminarDev = new javax.swing.JButton();
-        jButton_VerDev = new javax.swing.JButton();
-        jButton_Imprimir1 = new javax.swing.JButton();
         jScrollPane5 = new javax.swing.JScrollPane();
         jTable_Devoluciones = new javax.swing.JTable();
+        jLabel1 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
+        jLabel4 = new javax.swing.JLabel();
+        jLabel5 = new javax.swing.JLabel();
 
         setMinimumSize(new java.awt.Dimension(760, 400));
         setOpaque(false);
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
-        jButton_CrearDev.setText("Crear");
-        jButton_CrearDev.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton_CrearDevActionPerformed(evt);
-            }
-        });
-        add(jButton_CrearDev, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 370, -1, -1));
-
-        jButton_ModificarDev.setText("Modificar");
-        jButton_ModificarDev.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton_ModificarDevActionPerformed(evt);
-            }
-        });
-        add(jButton_ModificarDev, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 370, -1, -1));
-
-        jButton_EliminarDev.setText("Eliminar");
-        jButton_EliminarDev.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton_EliminarDevActionPerformed(evt);
-            }
-        });
-        add(jButton_EliminarDev, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 370, -1, -1));
-
-        jButton_VerDev.setText("Ver");
-        jButton_VerDev.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton_VerDevActionPerformed(evt);
-            }
-        });
-        add(jButton_VerDev, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 370, -1, -1));
-
-        jButton_Imprimir1.setText("Imprimir");
-        add(jButton_Imprimir1, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 370, -1, -1));
 
         jTable_Devoluciones.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -103,7 +68,51 @@ public class Pan_Dev extends javax.swing.JPanel {
         ));
         jScrollPane5.setViewportView(jTable_Devoluciones);
 
-        add(jScrollPane5, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 760, 360));
+        add(jScrollPane5, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 760, 350));
+
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/System/Images/Panel 1/addBtt.png"))); // NOI18N
+        jLabel1.setToolTipText("Crear nueva factura");
+        jLabel1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jLabel1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabel1MouseClicked(evt);
+            }
+        });
+        add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 360, -1, -1));
+
+        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/System/Images/Panel 1/editBtt.png"))); // NOI18N
+        jLabel2.setToolTipText("Editar factura seleccionada");
+        jLabel2.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jLabel2.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabel2MouseClicked(evt);
+            }
+        });
+        add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 360, -1, -1));
+
+        jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/System/Images/Panel 1/trashBtt.png"))); // NOI18N
+        jLabel3.setToolTipText("Borrar factura seleccionada");
+        jLabel3.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jLabel3.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabel3MouseClicked(evt);
+            }
+        });
+        add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 360, -1, -1));
+
+        jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/System/Images/Panel 1/watchBtt.png"))); // NOI18N
+        jLabel4.setToolTipText("Ver factura seleccionada");
+        jLabel4.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jLabel4.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabel4MouseClicked(evt);
+            }
+        });
+        add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 360, -1, -1));
+
+        jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/System/Images/Panel 1/printBtt.png"))); // NOI18N
+        jLabel5.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 360, -1, -1));
     }// </editor-fold>//GEN-END:initComponents
     private void devolverProductos(int NumFact, String detalle) {
         Direct_Control_BD AdminBD = Direct_Control_BD.getInstance();
@@ -141,7 +150,7 @@ public class Pan_Dev extends javax.swing.JPanel {
             
             }
     }    
-    private void jButton_CrearDevActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_CrearDevActionPerformed
+    private void jLabel1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel1MouseClicked
         //****************** INTERFAZ ***************************************
 
         Pan_NuevaFactura panelNuevaFact = new Pan_NuevaFactura(Pan_NuevaFactura.DEVOLUCION_CALL);
@@ -156,20 +165,20 @@ public class Pan_Dev extends javax.swing.JPanel {
         panelNuevaFact.personalizarTablaFactura();
         panelNuevaFact.agregarListenerRenders();
         panelNuevaFact.jFormattedTextField_Cliente.setText("Cliente Generico");
-    }//GEN-LAST:event_jButton_CrearDevActionPerformed
+    }//GEN-LAST:event_jLabel1MouseClicked
 
-    private void jButton_ModificarDevActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_ModificarDevActionPerformed
-         this.modificarDev(this.jTable_Devoluciones,"Modifica Devolucion");
-    }//GEN-LAST:event_jButton_ModificarDevActionPerformed
+    private void jLabel2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel2MouseClicked
+        this.modificarDev(this.jTable_Devoluciones,"Modifica Devolucion");
+    }//GEN-LAST:event_jLabel2MouseClicked
 
-    private void jButton_EliminarDevActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_EliminarDevActionPerformed
+    private void jLabel3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel3MouseClicked
         this.eliminarDev(this.jTable_Devoluciones,"Eliminacion Devolucion Num ");
         this.completarTablaDevoluciones();
-    }//GEN-LAST:event_jButton_EliminarDevActionPerformed
+    }//GEN-LAST:event_jLabel3MouseClicked
 
-    private void jButton_VerDevActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_VerDevActionPerformed
+    private void jLabel4MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel4MouseClicked
         this.verDevoluciones(this.jTable_Devoluciones);
-    }//GEN-LAST:event_jButton_VerDevActionPerformed
+    }//GEN-LAST:event_jLabel4MouseClicked
    
     public void verFacturas(JTable table){
         int row = table.getSelectedRow();
@@ -235,11 +244,11 @@ public class Pan_Dev extends javax.swing.JPanel {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    javax.swing.JButton jButton_CrearDev;
-    javax.swing.JButton jButton_EliminarDev;
-    javax.swing.JButton jButton_Imprimir1;
-    javax.swing.JButton jButton_ModificarDev;
-    javax.swing.JButton jButton_VerDev;
+    javax.swing.JLabel jLabel1;
+    javax.swing.JLabel jLabel2;
+    javax.swing.JLabel jLabel3;
+    javax.swing.JLabel jLabel4;
+    javax.swing.JLabel jLabel5;
     javax.swing.JScrollPane jScrollPane5;
     javax.swing.JTable jTable_Devoluciones;
     // End of variables declaration//GEN-END:variables

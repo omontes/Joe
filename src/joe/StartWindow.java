@@ -68,6 +68,8 @@ public class StartWindow extends javax.swing.JFrame {
     private void initComponents() {
 
         jLayeredPane1 = new javax.swing.JLayeredPane();
+        jTextField1 = new javax.swing.JTextField();
+        jPasswordField1 = new javax.swing.JPasswordField();
         bttExit = new javax.swing.JLabel();
         bttFact = new javax.swing.JLabel();
         bkgBase = new javax.swing.JLabel();
@@ -83,6 +85,10 @@ public class StartWindow extends javax.swing.JFrame {
         getContentPane().setLayout(null);
 
         jLayeredPane1.setPreferredSize(new java.awt.Dimension(800, 500));
+        jLayeredPane1.add(jTextField1);
+        jTextField1.setBounds(620, 200, 150, 30);
+        jLayeredPane1.add(jPasswordField1);
+        jPasswordField1.setBounds(620, 260, 150, 30);
 
         bttExit.setIcon(new javax.swing.ImageIcon(getClass().getResource("/System/Images/PanelInicio/bttExitUnt.png"))); // NOI18N
         bttExit.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
@@ -201,6 +207,8 @@ public class StartWindow extends javax.swing.JFrame {
     private javax.swing.JLabel bttExit;
     private javax.swing.JLabel bttFact;
     private javax.swing.JLayeredPane jLayeredPane1;
+    private javax.swing.JPasswordField jPasswordField1;
+    private javax.swing.JTextField jTextField1;
     private javax.swing.JLabel lbCompanyName;
     // End of variables declaration//GEN-END:variables
 }

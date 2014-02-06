@@ -7,6 +7,8 @@
 package joe;
 
 import db_managment.Direct_Control_BD;
+import java.awt.Toolkit;
+import java.awt.event.KeyEvent;
 import java.math.BigDecimal;
 import java.text.DecimalFormat;
 import java.text.NumberFormat;
@@ -22,14 +24,14 @@ import javax.swing.table.DefaultTableCellRenderer;
  *
  * @author Oscar Montes
  */
-public class Pan_Fact extends javax.swing.JPanel {
+public class Pan_Dev extends javax.swing.JPanel {
 
     /**
      * Creates new form JPanel_Facturacion
      */
-    public Pan_Fact() {
+    public Pan_Dev() {
         initComponents();
-        completarTablaFacturacion();
+        completarTablaDevoluciones();
     }
 
     /**
@@ -41,57 +43,54 @@ public class Pan_Fact extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jButton_Crear = new javax.swing.JButton();
-        jButton_Eliminar = new javax.swing.JButton();
-        jButton_Ver = new javax.swing.JButton();
-        jButton_Imprimir = new javax.swing.JButton();
-        jButton_CierreCaja = new javax.swing.JButton();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        jTable_Facturacion = new javax.swing.JTable();
-        jButton3 = new javax.swing.JButton();
-        jButton1 = new javax.swing.JButton();
+        jButton_CrearDev = new javax.swing.JButton();
+        jButton_ModificarDev = new javax.swing.JButton();
+        jButton_EliminarDev = new javax.swing.JButton();
+        jButton_VerDev = new javax.swing.JButton();
+        jButton_Imprimir1 = new javax.swing.JButton();
+        jScrollPane5 = new javax.swing.JScrollPane();
+        jTable_Devoluciones = new javax.swing.JTable();
 
         setMinimumSize(new java.awt.Dimension(760, 400));
         setOpaque(false);
-        setPreferredSize(new java.awt.Dimension(760, 400));
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jButton_Crear.setText("Crear");
-        jButton_Crear.addActionListener(new java.awt.event.ActionListener() {
+        jButton_CrearDev.setText("Crear");
+        jButton_CrearDev.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton_CrearActionPerformed(evt);
+                jButton_CrearDevActionPerformed(evt);
             }
         });
-        add(jButton_Crear, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 370, -1, -1));
+        add(jButton_CrearDev, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 370, -1, -1));
 
-        jButton_Eliminar.setText("Eliminar");
-        jButton_Eliminar.addActionListener(new java.awt.event.ActionListener() {
+        jButton_ModificarDev.setText("Modificar");
+        jButton_ModificarDev.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton_EliminarActionPerformed(evt);
+                jButton_ModificarDevActionPerformed(evt);
             }
         });
-        add(jButton_Eliminar, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 370, -1, -1));
+        add(jButton_ModificarDev, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 370, -1, -1));
 
-        jButton_Ver.setText("Ver");
-        jButton_Ver.addActionListener(new java.awt.event.ActionListener() {
+        jButton_EliminarDev.setText("Eliminar");
+        jButton_EliminarDev.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton_VerActionPerformed(evt);
+                jButton_EliminarDevActionPerformed(evt);
             }
         });
-        add(jButton_Ver, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 370, -1, -1));
+        add(jButton_EliminarDev, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 370, -1, -1));
 
-        jButton_Imprimir.setText("Imprimir");
-        add(jButton_Imprimir, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 370, -1, -1));
-
-        jButton_CierreCaja.setText("Cierre Caja");
-        jButton_CierreCaja.addActionListener(new java.awt.event.ActionListener() {
+        jButton_VerDev.setText("Ver");
+        jButton_VerDev.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton_CierreCajaActionPerformed(evt);
+                jButton_VerDevActionPerformed(evt);
             }
         });
-        add(jButton_CierreCaja, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 370, -1, -1));
+        add(jButton_VerDev, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 370, -1, -1));
 
-        jTable_Facturacion.setModel(new javax.swing.table.DefaultTableModel(
+        jButton_Imprimir1.setText("Imprimir");
+        add(jButton_Imprimir1, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 370, -1, -1));
+
+        jTable_Devoluciones.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {},
                 {},
@@ -102,33 +101,11 @@ public class Pan_Fact extends javax.swing.JPanel {
 
             }
         ));
-        jScrollPane1.setViewportView(jTable_Facturacion);
+        jScrollPane5.setViewportView(jTable_Devoluciones);
 
-        add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 760, 360));
-
-        jButton3.setText("Ver Cierres");
-        jButton3.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton3ActionPerformed(evt);
-            }
-        });
-        add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(660, 370, -1, -1));
-
-        jButton1.setText("Modificar");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
-            }
-        });
-        add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 370, -1, -1));
+        add(jScrollPane5, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 760, 360));
     }// </editor-fold>//GEN-END:initComponents
-
-    private void jButton_EliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_EliminarActionPerformed
-        this.eliminar(this.jTable_Facturacion);
-        this.completarTablaFacturacion();
-        
-    }//GEN-LAST:event_jButton_EliminarActionPerformed
-    private void devolverProductos(int NumFact) {
+    private void devolverProductos(int NumFact, String detalle) {
         Direct_Control_BD AdminBD = Direct_Control_BD.getInstance();
         AdminBD.verProductosPorFactura(NumFact);
         Object[][] ProductosdeFactura = AdminBD.getData();
@@ -136,103 +113,87 @@ public class Pan_Fact extends javax.swing.JPanel {
         for (int row = 0; row < numFilas; row++) {
             Object[] producto= ProductosdeFactura[row];
             String codArticulo= producto[0].toString();
-            int cantidadTotal = AdminBD.verCantidadInvGeneral(codArticulo);
+            BigDecimal precio = this.StringtoBigDecimal(producto[3].toString());
+            int idVersion = AdminBD.veridVersionActivaProductoPorCodigo(codArticulo);
             int cantidad= Integer.parseInt(producto[2].toString());
-            AdminBD.actualizarCantidadInventario(codArticulo,cantidadTotal+cantidad);
+            this.crearMovimiento(detalle+""+NumFact,precio,1);
+            this.guardaProductoEnMovimiento(codArticulo, idVersion, cantidad, precio);
+            
             
             
             }
     }
-    private void jButton_VerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_VerActionPerformed
-      this.verFacturas(this.jTable_Facturacion);
-    }//GEN-LAST:event_jButton_VerActionPerformed
-    
-    private void jButton_CierreCajaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_CierreCajaActionPerformed
-        NewJDialog_VerCierre vercierre = new NewJDialog_VerCierre(this);
-        vercierre.setVisible(true);
-        
-        
-       
-    }//GEN-LAST:event_jButton_CierreCajaActionPerformed
-
-    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-        VentanaDeInicio mVentana= VentanaDeInicio.getInstance();
-        JPanel_VerCierresCaja panelVerCierres= new JPanel_VerCierresCaja();
-        mVentana.add(panelVerCierres);
-        panelVerCierres.setSize(this.getSize());
-        panelVerCierres.setLocation(this.getLocation());
-        mVentana.remove(this);
-        panelVerCierres.setVisible(true);
-        mVentana.revalidate();
-        mVentana.repaint();
-        mVentana.setTitle("Cierres de Caja");
-        panelVerCierres.completarTablaVerCierres();
-        
-    }//GEN-LAST:event_jButton3ActionPerformed
-
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        this.modificar(this.jTable_Facturacion, Pan_NuevaFactura.MOD_FACT_CALL);
-    }//GEN-LAST:event_jButton1ActionPerformed
-
-    private void jButton_CrearActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_CrearActionPerformed
+     private void devolverProductosDev(int NumFact, String detalle) {
+        Direct_Control_BD AdminBD = Direct_Control_BD.getInstance();
+        AdminBD.verProductosPorDevolucion(NumFact);
+        Object[][] ProductosdeDevolucion = AdminBD.getData();
+        int numFilas = ProductosdeDevolucion.length;
+        for (int row = 0; row < numFilas; row++) {
+            Object[] producto= ProductosdeDevolucion[row];
+            String codArticulo= producto[0].toString();
+            BigDecimal precio = this.StringtoBigDecimal(producto[3].toString());
+            int idVersion = AdminBD.veridVersionActivaProductoPorCodigo(codArticulo);
+            int cantidad= Integer.parseInt(producto[2].toString());
+            this.crearMovimiento(detalle+""+NumFact,precio,2);
+            this.guardaProductoEnMovimiento(codArticulo, idVersion, cantidad, precio);
+            
+            
+            
+            }
+    }    
+    private void jButton_CrearDevActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_CrearDevActionPerformed
         //****************** INTERFAZ ***************************************
 
-        Pan_NuevaFactura panelNuevaFact = new Pan_NuevaFactura(Pan_NuevaFactura.FACTURACION_CALL);
+        Pan_NuevaFactura panelNuevaFact = new Pan_NuevaFactura(Pan_NuevaFactura.DEVOLUCION_CALL);
 
         JF_Facturacion.getInstance().getPanelManager().showPanel(panelNuevaFact, 800, 474, 0, 0);
 
         //*******************************************************************
-
+                
         Direct_Control_BD AdminBD = Direct_Control_BD.getInstance();
-        String factura = Integer.toString(AdminBD.ObtenerUltimoidFact() + 1);
+        String factura = Integer.toString(AdminBD.ObtenerUltimoidDev() + 1);
         panelNuevaFact.jLabel_NumerodeFact.setText(factura);
         panelNuevaFact.personalizarTablaFactura();
         panelNuevaFact.agregarListenerRenders();
         panelNuevaFact.jFormattedTextField_Cliente.setText("Cliente Generico");
+    }//GEN-LAST:event_jButton_CrearDevActionPerformed
 
-    }//GEN-LAST:event_jButton_CrearActionPerformed
+    private void jButton_ModificarDevActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_ModificarDevActionPerformed
+         this.modificarDev(this.jTable_Devoluciones,"Modifica Devolucion");
+    }//GEN-LAST:event_jButton_ModificarDevActionPerformed
+
+    private void jButton_EliminarDevActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_EliminarDevActionPerformed
+        this.eliminarDev(this.jTable_Devoluciones,"Eliminacion Devolucion Num ");
+        this.completarTablaDevoluciones();
+    }//GEN-LAST:event_jButton_EliminarDevActionPerformed
+
+    private void jButton_VerDevActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_VerDevActionPerformed
+        this.verDevoluciones(this.jTable_Devoluciones);
+    }//GEN-LAST:event_jButton_VerDevActionPerformed
    
-    
-    /**
-     * Actualiza la tabla que se ve en facturacion (Obtiene el total vendido
-     * por cada factura y solo muestra las ultimas 100 facturas)**/
-    public void completarTablaFacturacion() {
-        
-        //Realiza la consulta para obtener las facturas
-        Direct_Control_BD AdminBD = Direct_Control_BD.getInstance();
-        AdminBD.verFacturas();
-        String[] columnNames = AdminBD.getColumnNames();
-        Object[][] data = AdminBD.getData();
-        //Crea la tabla generica para Facturas
-        this.jTable_Facturacion.setModel(new Modelo_Facturacion(columnNames,data));
-        //Alinea la primer columna de esta tabla hacia el centro
-        DefaultTableCellRenderer centerRenderer = new DefaultTableCellRenderer
-                ();
-        centerRenderer.setHorizontalAlignment(JLabel.CENTER );
-        this.jTable_Facturacion.getColumnModel().getColumn(0).setCellRenderer
-                (centerRenderer);
-    }
-   
-        public void verFacturas(JTable table){
-            int row = table.getSelectedRow();
-            if (row >= 0) {
-                //***********************INTERFAZ***************************************
-                
-                Pan_VerFactura panelVerFact = new Pan_VerFactura();
-                JF_Facturacion.getInstance().getPanelManager().showPanel(panelVerFact, 800, 474, 0, 0);
-                
-                //**********************************************************************
-                
-                Modelo_Facturacion model = (Modelo_Facturacion) table.getModel();
-                panelVerFact.jLabel_NumerodeFact.setText(model.getValueAt(row, 0).toString());
-                panelVerFact.personalizarTablaVerFactura();
-            } else {
-                JOptionPane.showMessageDialog(
-                        null,
-                        "No se selecciono ninguna factura",
-                        "Alert!", JOptionPane.ERROR_MESSAGE);
-            }
+    public void verFacturas(JTable table){
+        int row = table.getSelectedRow();
+        if (row >= 0) {
+            VentanaDeInicio mVentana = VentanaDeInicio.getInstance();
+            JPanel_VerFactura panelVerFact = new JPanel_VerFactura();
+            mVentana.add(panelVerFact);
+            panelVerFact.setSize(this.getSize());
+            panelVerFact.setLocation(this.getLocation());
+            mVentana.remove(this);
+            panelVerFact.setVisible(true);
+            mVentana.revalidate();
+            mVentana.repaint();
+            mVentana.setTitle("Ver Factura");
+            Modelo_Facturacion model = (Modelo_Facturacion) table.getModel();
+            panelVerFact.jLabel_NumerodeFact.setText(model.getValueAt(row, 0).toString());
+            panelVerFact.personalizarTablaVerFactura();
+        } else {
+            JOptionPane.showMessageDialog(
+                    null,
+                    "No se selecciono ninguna factura",
+                    "Alert!", JOptionPane.ERROR_MESSAGE);
         }
+    }
         
         /**
      * Este metodo permite corregir el dato que tiene el signo de C y ademas
@@ -242,17 +203,17 @@ public class Pan_Fact extends javax.swing.JPanel {
      * @return 
      */
     private BigDecimal corregirDato(String Dato){
-            String datoAcorregir = Dato.replace("C", "");
-            DecimalFormat decimalformat = (DecimalFormat) NumberFormat.getInstance();
-            decimalformat.setParseBigDecimal(true);
-            BigDecimal DatoCorregido = null;
-            try {
-                DatoCorregido = (BigDecimal) decimalformat.parseObject(datoAcorregir);
-            } catch (ParseException ex) {
-                Logger.getLogger(MyTableModelListener_FACT.class.getName()).log(Level.SEVERE, null, ex);
-            }
-            return DatoCorregido;
-    
+        String datoAcorregir = Dato.replace("C", "");
+        DecimalFormat decimalformat = (DecimalFormat) NumberFormat.getInstance();
+        decimalformat.setParseBigDecimal(true);
+        BigDecimal DatoCorregido = null;
+        try {
+            DatoCorregido = (BigDecimal) decimalformat.parseObject(datoAcorregir);
+        } catch (ParseException ex) {
+            Logger.getLogger(MyTableModelListener_FACT.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return DatoCorregido;
+
     }
     
      /**
@@ -274,15 +235,13 @@ public class Pan_Fact extends javax.swing.JPanel {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    javax.swing.JButton jButton1;
-    javax.swing.JButton jButton3;
-    javax.swing.JButton jButton_CierreCaja;
-    javax.swing.JButton jButton_Crear;
-    javax.swing.JButton jButton_Eliminar;
-    javax.swing.JButton jButton_Imprimir;
-    javax.swing.JButton jButton_Ver;
-    javax.swing.JScrollPane jScrollPane1;
-    javax.swing.JTable jTable_Facturacion;
+    javax.swing.JButton jButton_CrearDev;
+    javax.swing.JButton jButton_EliminarDev;
+    javax.swing.JButton jButton_Imprimir1;
+    javax.swing.JButton jButton_ModificarDev;
+    javax.swing.JButton jButton_VerDev;
+    javax.swing.JScrollPane jScrollPane5;
+    javax.swing.JTable jTable_Devoluciones;
     // End of variables declaration//GEN-END:variables
 
     private void crearPago(int idFactura, BigDecimal montoDePago, String tipopago) {
@@ -292,8 +251,18 @@ public class Pan_Fact extends javax.swing.JPanel {
         AdminBD.insertarPago(montoDePago,idFactura,idVersionFacturasProducto,tipopago);
 
     }
+    
+    private void crearMovimiento(String detalle, BigDecimal precioProd, int movimiento) {
+        Direct_Control_BD AdminBD = Direct_Control_BD.getInstance();
+        AdminBD.insertarmovimiento(detalle,movimiento,1,precioProd);
+    }
+    private void guardaProductoEnMovimiento(String idProducto, int idVersion, int cantidadMov, BigDecimal PrecioVenta) {
+        Direct_Control_BD AdminBD = Direct_Control_BD.getInstance();
+        int idMovimiento= AdminBD.ObtenerUltimoidMovimiento();
+        AdminBD.insertarProductoCantidadMovimiento(idProducto,idVersion,idMovimiento,cantidadMov,PrecioVenta);
+    }
 
-    private void eliminar(JTable table) {
+    private void eliminar(JTable table, String detalle) {
         Modelo_Facturacion model = (Modelo_Facturacion) table.getModel();
         int row = table.getSelectedRow();
         String factura = model.getValueAt(row, 0).toString();
@@ -302,7 +271,7 @@ public class Pan_Fact extends javax.swing.JPanel {
             if (row >= 0) {
                 Direct_Control_BD AdminBD = Direct_Control_BD.getInstance();
                 int numFact = Integer.parseInt(model.getValueAt(row, 0).toString());
-                this.devolverProductos(numFact);
+                this.devolverProductos(numFact,detalle);
                 int idVersion = AdminBD.verVersionDEFacturaActiva(numFact);
                 AdminBD.eliminarFactura(numFact, idVersion);
 
@@ -321,56 +290,69 @@ public class Pan_Fact extends javax.swing.JPanel {
         }
 
     }
-    
-    private void modificar(JTable table, int pCallType) {
+    private void modificar(JTable table,String tituloVentana) {
         
         int row = table.getSelectedRow();
-        
-        if (row < 0) {
-            JOptionPane.showMessageDialog(
-                    null,
-                    "No se selecciono ninguna factura",
-                    "Alert!", JOptionPane.ERROR_MESSAGE);
-            return;
-        }
-        
         Modelo_Facturacion model = (Modelo_Facturacion) table.getModel();
         String factura = model.getValueAt(row, 0).toString();
         boolean SiSepuedeModificar = this.verificarCierreFacts(Integer.parseInt(factura));
         if (SiSepuedeModificar) {
-            
-            Pan_NuevaFactura panelModFact = new Pan_NuevaFactura(pCallType);
-            
-            JF_Facturacion.getInstance().getPanelManager().showPanel(panelModFact, 800, 474, 0, 0);
-            
-            
-            panelModFact.personalizarTablaFactura();
-            panelModFact.jLabel_NumerodeFact.setText(factura);
-            panelModFact.cargarInfoFact();
-            panelModFact.cargarProductosFact((MyTableModel_FACT) panelModFact.jTable_Factura.getModel());
-            panelModFact.agregarListenerRenders();
-            
-        } else {
+            if (row >= 0) {
+                VentanaDeInicio mVentana = VentanaDeInicio.getInstance();
+                JPanel_CrearFactura panelCreaFact = new JPanel_CrearFactura();
+                mVentana.add(panelCreaFact);
+                panelCreaFact.setSize(this.getSize());
+                panelCreaFact.setLocation(this.getLocation());
+                mVentana.remove(this);
+                panelCreaFact.setVisible(true);
+                mVentana.revalidate();
+                mVentana.repaint();
+                mVentana.setTitle(tituloVentana);
+                panelCreaFact.personalizarTablaFactura();
+                panelCreaFact.jLabel_NumerodeFact.setText(factura);
+                panelCreaFact.cargarInfoFact();
+                panelCreaFact.cargarProductosFact((MyTableModel_FACT) panelCreaFact.jTable_Factura.getModel());
+                panelCreaFact.agregarListenerRenders();
+            } else {
+                JOptionPane.showMessageDialog(
+                        null,
+                        "No se selecciono ninguna factura",
+                        "Alert!", JOptionPane.ERROR_MESSAGE);
+
+            }
+        }
+        else {
                 JOptionPane.showMessageDialog(
                         null,
                         "Esta factura no se puede modificar porque ya pertence a un cierre de caja",
-                        "Alert!", JOptionPane.ERROR_MESSAGE);
-        }
+                        "Alert!", JOptionPane.ERROR_MESSAGE);}
     }
-    
+
+    void completarTablaDevoluciones() {
+        //Realiza la consulta para obtener los creditos
+        Direct_Control_BD AdminBD = Direct_Control_BD.getInstance();
+        AdminBD.verDevoluciones();
+        String[] columnNames = AdminBD.getColumnNames();
+        Object[][] data = AdminBD.getData();
+        //Crea la tabla generica para Facturas
+        this.jTable_Devoluciones.setModel(new Modelo_Facturacion(columnNames,data));
+        //Alinea la primer columna de esta tabla hacia el centro
+        DefaultTableCellRenderer centerRenderer = new DefaultTableCellRenderer
+                ();
+        centerRenderer.setHorizontalAlignment(JLabel.CENTER);
+        this.jTable_Devoluciones.getColumnModel().getColumn(0).setCellRenderer
+                (centerRenderer);
+    }
+
     private void verDevoluciones(JTable table) {
          int row = table.getSelectedRow();
             if (row >= 0) {
-                VentanaDeInicio mVentana = VentanaDeInicio.getInstance();
-                JPanel_VerFactura panelVerFact = new JPanel_VerFactura();
-                mVentana.add(panelVerFact);
-                panelVerFact.setSize(this.getSize());
-                panelVerFact.setLocation(this.getLocation());
-                mVentana.remove(this);
-                panelVerFact.setVisible(true);
-                mVentana.revalidate();
-                mVentana.repaint();
-                mVentana.setTitle("Ver Devolucion");
+                //***********************INTERFAZ***************************************
+                
+                Pan_VerFactura panelVerFact = new Pan_VerFactura();
+                JF_Facturacion.getInstance().getPanelManager().showPanel(panelVerFact, 800, 474, 0, 0);
+                
+                //**********************************************************************
                 Modelo_Facturacion model = (Modelo_Facturacion) table.getModel();
                 panelVerFact.jLabel_NumerodeFact.setText(model.getValueAt(row, 0).toString());
                 panelVerFact.personalizarTablaVerDevoluciones();
@@ -421,7 +403,7 @@ public class Pan_Fact extends javax.swing.JPanel {
 
     }
     
-    private void eliminarDev(JTable table) {
+    private void eliminarDev(JTable table, String detalle) {
         int row = table.getSelectedRow();
         Modelo_Facturacion model = (Modelo_Facturacion) table.getModel();
         String factura = model.getValueAt(row, 0).toString();
@@ -430,7 +412,7 @@ public class Pan_Fact extends javax.swing.JPanel {
             if (row >= 0) {
                 Direct_Control_BD AdminBD = Direct_Control_BD.getInstance();
                 int numFact = Integer.parseInt(model.getValueAt(row, 0).toString());
-                this.devolverProductos(numFact);
+                this.devolverProductosDev(numFact,detalle);
                 int idVersion = AdminBD.verVersionDEDevolucionActiva(numFact);
                 AdminBD.eliminarDevolucion(numFact, idVersion);
 

@@ -16,6 +16,8 @@ import java.awt.Dimension;
 public class StartWindow extends javax.swing.JFrame {
 
     private static StartWindow _instance = null;
+    private static int _posX;
+    private static int _posY;
     
     /**
      * Creates new form StartWindow
@@ -35,13 +37,19 @@ public class StartWindow extends javax.swing.JFrame {
         this.setSize(screenSize);
         this.setLocation(0, 0);
         bkColor.setSize(screenSize);
-        
-        jLayeredPane1.setLocation(
-                this.getWidth()/2-jLayeredPane1.getWidth()/2, 
-                this.getHeight()/2-jLayeredPane1.getHeight()/2);
-        
+        _posX = this.getWidth()/2-jLayeredPane1.getWidth()/2;
+        _posY = this.getHeight()/2-jLayeredPane1.getHeight()/2;
+        jLayeredPane1.setLocation(_posX, _posY);       
     }
 
+    public static int getPosX(){
+        return _posX;
+    }
+    
+    public static int getPosY(){
+        return _posY;
+    }
+    
     public void enableMe(){
         this.setEnabled(true);
     }

@@ -38,7 +38,7 @@ public class MyFilter extends DocumentFilter
     }
     public boolean containsOnlyNumbers(String text)
     {   
-        Pattern pattern = Pattern.compile("\\d{0,10}(\\.\\d{0,2})?");
+        Pattern pattern = Pattern.compile("\\d{0,8}(\\.\\d{0,2})?");
         Matcher matcher = pattern.matcher(text);
         boolean isMatch = matcher.matches();
         return isMatch;

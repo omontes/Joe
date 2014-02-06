@@ -880,7 +880,7 @@ public class Direct_Control_BD {
     }
 
     public void modificarProducto(String idProducto, String nombre,
-            BigDecimal precio, int idCategoria, int costo, String Descripcion) {//esta bien
+            BigDecimal precio, int idCategoria, BigDecimal costo, String Descripcion) {//esta bien
         try {
             String ModificarProducto = this.readSql("../Joe"
                     + "/src/sql_files/ModificarProducto2.sql");
@@ -889,7 +889,7 @@ public class Direct_Control_BD {
             stm.setString(1, nombre);
             stm.setBigDecimal(2, precio);
             stm.setInt(3, idCategoria);
-            stm.setInt(4, costo);
+            stm.setBigDecimal(4, costo);
             stm.setString(5, Descripcion);
             stm.setString(6, idProducto);
 

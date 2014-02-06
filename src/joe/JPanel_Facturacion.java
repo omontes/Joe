@@ -1199,7 +1199,7 @@ public class JPanel_Facturacion extends javax.swing.JPanel {
     }//GEN-LAST:event_jButton_regresarDevActionPerformed
 
     private void jButton_CierreCajaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_CierreCajaActionPerformed
-        NewJDialog_VerCierre vercierre = new NewJDialog_VerCierre(this);
+        Dialog_VerCierre vercierre = new Dialog_VerCierre(this);
         vercierre.setVisible(true);
         
         
@@ -1208,7 +1208,7 @@ public class JPanel_Facturacion extends javax.swing.JPanel {
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         VentanaDeInicio mVentana= VentanaDeInicio.getInstance();
-        JPanel_VerCierresCaja panelVerCierres= new JPanel_VerCierresCaja();
+        Pan_VerCierresCaja panelVerCierres= new Pan_VerCierresCaja();
         mVentana.add(panelVerCierres);
         panelVerCierres.setSize(this.getSize());
         panelVerCierres.setLocation(this.getLocation());

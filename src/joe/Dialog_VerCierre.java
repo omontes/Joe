@@ -25,13 +25,13 @@ import javax.swing.JPanel;
  *
  * @author Oscar Montes
  */
-public class NewJDialog_VerCierre extends javax.swing.JDialog {
+public class Dialog_VerCierre extends javax.swing.JDialog {
 
     /**
      * Creates new form NewJDialog_VerCierre
      */
     JPanel parent;
-    public NewJDialog_VerCierre(JPanel parent) {
+    public Dialog_VerCierre(JPanel parent) {
             this.parent=parent;
             initComponents();
             setLocationRelativeTo(null);
@@ -58,8 +58,10 @@ public class NewJDialog_VerCierre extends javax.swing.JDialog {
         jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setUndecorated(true);
 
         jPanel3.setBackground(new java.awt.Color(153, 153, 153));
+        jPanel3.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
         jLabel7.setForeground(new java.awt.Color(255, 255, 255));
         jLabel7.setText("Total Tarjeta Reportado");
@@ -197,16 +199,11 @@ public class NewJDialog_VerCierre extends javax.swing.JDialog {
               BigDecimal totalcont = this.StringtoBigDecimal(this.jFormattedTextField_totalContadoReportado.getText());
               BigDecimal totaltarj = this.StringtoBigDecimal(this.jFormattedTextField_totalTarjetaReportado.getText());
               BigDecimal totalvent = this.StringtoBigDecimal(this.jFormattedTextField_totalVentaReportado.getText());
-              VentanaDeInicio mVentana = VentanaDeInicio.getInstance();
-              JPanel_CerrarCaja panelCreaCerrarCaja = new JPanel_CerrarCaja();
-              mVentana.add(panelCreaCerrarCaja);
-              panelCreaCerrarCaja.setSize(parent.getSize());
-              panelCreaCerrarCaja.setLocation(parent.getLocation());
-              mVentana.remove(parent);
-              panelCreaCerrarCaja.setVisible(true);
-              mVentana.revalidate();
-              mVentana.repaint();
-              mVentana.setTitle("Cierre De Caja");
+              
+              
+              Pan_CerrarCaja panelCreaCerrarCaja = new Pan_CerrarCaja();
+              JF_Facturacion.getInstance().getPanelManager().showPanel(panelCreaCerrarCaja, 800, 471, 0, 0);
+              
               Direct_Control_BD AdminBD = Direct_Control_BD.getInstance();
               int idCierreVigente = AdminBD.obtenerultimoidCierre();
               String fechaInicio = AdminBD.obtenerFechaInicioCierre(idCierreVigente);

@@ -74,22 +74,25 @@ public class Pan_Cred extends javax.swing.JPanel {
         jFormattedTextField_totalFacturado = new javax.swing.JFormattedTextField();
         jLabel10 = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
-        jButton_CrearCredito = new javax.swing.JButton();
-        jButton_ModificarCredito = new javax.swing.JButton();
-        jButton_EliminaCredito = new javax.swing.JButton();
-        jButton_VerCredito = new javax.swing.JButton();
-        jButton_ImprimirCredito = new javax.swing.JButton();
-        jButton_AbonoCredito = new javax.swing.JButton();
-        jButton_verPagosCredito = new javax.swing.JButton();
+        jLabel17 = new javax.swing.JLabel();
         jScrollPane4 = new javax.swing.JScrollPane();
         jTable_Creditos = new javax.swing.JTable();
+        jLabel5 = new javax.swing.JLabel();
+        jLabel11 = new javax.swing.JLabel();
+        jLabel12 = new javax.swing.JLabel();
+        jLabel13 = new javax.swing.JLabel();
+        jLabel14 = new javax.swing.JLabel();
+        jLabel15 = new javax.swing.JLabel();
+        jLabel16 = new javax.swing.JLabel();
 
-        jDialog_CrearPago.setMinimumSize(new java.awt.Dimension(424, 450));
+        jDialog_CrearPago.setMinimumSize(new java.awt.Dimension(340, 385));
         jDialog_CrearPago.setModal(true);
+        jDialog_CrearPago.setUndecorated(true);
         jDialog_CrearPago.setResizable(false);
         jDialog_CrearPago.setLocationRelativeTo(null);
 
         jPanel2.setBackground(new java.awt.Color(153, 153, 153));
+        jPanel2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
@@ -199,14 +202,17 @@ public class Pan_Cred extends javax.swing.JPanel {
         jDialog_CrearPago.getContentPane().setLayout(jDialog_CrearPagoLayout);
         jDialog_CrearPagoLayout.setHorizontalGroup(
             jDialog_CrearPagoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 338, Short.MAX_VALUE)
+            .addComponent(jPanel2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 340, Short.MAX_VALUE)
         );
         jDialog_CrearPagoLayout.setVerticalGroup(
             jDialog_CrearPagoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, 385, Short.MAX_VALUE)
         );
 
-        jDialog_VerPagos.setMinimumSize(new java.awt.Dimension(340, 390));
+        jDialog_VerPagos.setBackground(new java.awt.Color(102, 102, 102));
+        jDialog_VerPagos.setMinimumSize(new java.awt.Dimension(330, 370));
+        jDialog_VerPagos.setUndecorated(true);
+        jDialog_VerPagos.setPreferredSize(new java.awt.Dimension(330, 370));
         jDialog_VerPagos.setResizable(false);
         jDialog_VerPagos.getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
         jDialog_VerPagos.setLocationRelativeTo(null);
@@ -224,31 +230,33 @@ public class Pan_Cred extends javax.swing.JPanel {
         ));
         jScrollPane3.setViewportView(jTable_VerPagos);
 
-        jDialog_VerPagos.getContentPane().add(jScrollPane3, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 57, 308, 196));
+        jDialog_VerPagos.getContentPane().add(jScrollPane3, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 57, 310, 196));
 
         jLabel_numFactVerPagos.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        jLabel_numFactVerPagos.setForeground(new java.awt.Color(255, 255, 255));
         jLabel_numFactVerPagos.setText("705");
         jDialog_VerPagos.getContentPane().add(jLabel_numFactVerPagos, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 10, 120, 40));
 
         jLabel8.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jLabel8.setText("Saldo Pendiente");
-        jDialog_VerPagos.getContentPane().add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 300, -1, -1));
+        jDialog_VerPagos.getContentPane().add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 300, -1, 30));
 
         jFormattedTextField_saldoPendiente.setEditable(false);
         jFormattedTextField_saldoPendiente.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(new java.text.DecimalFormat("C#,##0.00"))));
         jFormattedTextField_saldoPendiente.setText("0.00");
-        jDialog_VerPagos.getContentPane().add(jFormattedTextField_saldoPendiente, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 300, 126, -1));
+        jDialog_VerPagos.getContentPane().add(jFormattedTextField_saldoPendiente, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 300, 160, 30));
 
         jLabel9.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jLabel9.setText("Total Facturado");
-        jDialog_VerPagos.getContentPane().add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 270, 126, -1));
+        jDialog_VerPagos.getContentPane().add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 260, 126, 30));
 
         jFormattedTextField_totalFacturado.setEditable(false);
         jFormattedTextField_totalFacturado.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(new java.text.DecimalFormat("C#,##0.00"))));
         jFormattedTextField_totalFacturado.setText("0.00");
-        jDialog_VerPagos.getContentPane().add(jFormattedTextField_totalFacturado, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 270, 126, -1));
+        jDialog_VerPagos.getContentPane().add(jFormattedTextField_totalFacturado, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 260, 160, 30));
 
         jLabel10.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        jLabel10.setForeground(new java.awt.Color(255, 255, 255));
         jLabel10.setText("Pagos a la factura #");
         jDialog_VerPagos.getContentPane().add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 17, -1, -1));
 
@@ -258,63 +266,19 @@ public class Pan_Cred extends javax.swing.JPanel {
                 jButton1ActionPerformed(evt);
             }
         });
-        jDialog_VerPagos.getContentPane().add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 330, -1, -1));
+        jDialog_VerPagos.getContentPane().add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 340, -1, -1));
+
+        jLabel17.setBackground(new java.awt.Color(153, 153, 153));
+        jLabel17.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel17.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        jLabel17.setOpaque(true);
+        jLabel17.setPreferredSize(new java.awt.Dimension(330, 365));
+        jDialog_VerPagos.getContentPane().add(jLabel17, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 330, 370));
 
         setMinimumSize(new java.awt.Dimension(760, 400));
         setOpaque(false);
         setPreferredSize(new java.awt.Dimension(760, 400));
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
-        jButton_CrearCredito.setText("Crear");
-        jButton_CrearCredito.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton_CrearCreditoActionPerformed(evt);
-            }
-        });
-        add(jButton_CrearCredito, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 370, -1, -1));
-
-        jButton_ModificarCredito.setText("Modificar");
-        jButton_ModificarCredito.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton_ModificarCreditoActionPerformed(evt);
-            }
-        });
-        add(jButton_ModificarCredito, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 370, -1, -1));
-
-        jButton_EliminaCredito.setText("Eliminar");
-        jButton_EliminaCredito.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton_EliminaCreditoActionPerformed(evt);
-            }
-        });
-        add(jButton_EliminaCredito, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 370, -1, -1));
-
-        jButton_VerCredito.setText("Ver");
-        jButton_VerCredito.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton_VerCreditoActionPerformed(evt);
-            }
-        });
-        add(jButton_VerCredito, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 370, -1, -1));
-
-        jButton_ImprimirCredito.setText("Imprimir");
-        add(jButton_ImprimirCredito, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 370, -1, -1));
-
-        jButton_AbonoCredito.setText("Abonos");
-        jButton_AbonoCredito.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton_AbonoCreditoActionPerformed(evt);
-            }
-        });
-        add(jButton_AbonoCredito, new org.netbeans.lib.awtextra.AbsoluteConstraints(590, 370, -1, -1));
-
-        jButton_verPagosCredito.setText("Ver Pagos");
-        jButton_verPagosCredito.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton_verPagosCreditoActionPerformed(evt);
-            }
-        });
-        add(jButton_verPagosCredito, new org.netbeans.lib.awtextra.AbsoluteConstraints(670, 370, -1, -1));
 
         jTable_Creditos.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -329,7 +293,71 @@ public class Pan_Cred extends javax.swing.JPanel {
         ));
         jScrollPane4.setViewportView(jTable_Creditos);
 
-        add(jScrollPane4, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 760, 360));
+        add(jScrollPane4, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 760, 350));
+
+        jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/System/Images/Panel 1/addBtt.png"))); // NOI18N
+        jLabel5.setToolTipText("Crear nueva factura");
+        jLabel5.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jLabel5.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabel5MouseClicked(evt);
+            }
+        });
+        add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 360, -1, -1));
+
+        jLabel11.setIcon(new javax.swing.ImageIcon(getClass().getResource("/System/Images/Panel 1/editBtt.png"))); // NOI18N
+        jLabel11.setToolTipText("Editar factura seleccionada");
+        jLabel11.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jLabel11.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabel11MouseClicked(evt);
+            }
+        });
+        add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 360, -1, -1));
+
+        jLabel12.setIcon(new javax.swing.ImageIcon(getClass().getResource("/System/Images/Panel 1/trashBtt.png"))); // NOI18N
+        jLabel12.setToolTipText("Borrar factura seleccionada");
+        jLabel12.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jLabel12.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabel12MouseClicked(evt);
+            }
+        });
+        add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 360, -1, -1));
+
+        jLabel13.setIcon(new javax.swing.ImageIcon(getClass().getResource("/System/Images/Panel 1/watchBtt.png"))); // NOI18N
+        jLabel13.setToolTipText("Ver factura seleccionada");
+        jLabel13.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jLabel13.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabel13MouseClicked(evt);
+            }
+        });
+        add(jLabel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 360, -1, -1));
+
+        jLabel14.setIcon(new javax.swing.ImageIcon(getClass().getResource("/System/Images/Panel 1/printBtt.png"))); // NOI18N
+        jLabel14.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        add(jLabel14, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 360, -1, -1));
+
+        jLabel15.setIcon(new javax.swing.ImageIcon(getClass().getResource("/System/Images/Panel 1/bagBtt.png"))); // NOI18N
+        jLabel15.setToolTipText("Realizar pago sobre la factura seleccionada");
+        jLabel15.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jLabel15.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabel15MouseClicked(evt);
+            }
+        });
+        add(jLabel15, new org.netbeans.lib.awtextra.AbsoluteConstraints(710, 360, -1, -1));
+
+        jLabel16.setIcon(new javax.swing.ImageIcon(getClass().getResource("/System/Images/Panel 1/listBtt.png"))); // NOI18N
+        jLabel16.setToolTipText("Ver pagos sobre la factura seleccionada");
+        jLabel16.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jLabel16.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabel16MouseClicked(evt);
+            }
+        });
+        add(jLabel16, new org.netbeans.lib.awtextra.AbsoluteConstraints(640, 360, -1, -1));
     }// </editor-fold>//GEN-END:initComponents
     private void devolverProductos(int NumFact, String detalle) {
         Direct_Control_BD AdminBD = Direct_Control_BD.getInstance();
@@ -454,7 +482,11 @@ public class Pan_Cred extends javax.swing.JPanel {
         }
     }//GEN-LAST:event_jButton_AceptarPagoKeyPressed
 
-    private void jButton_CrearCreditoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_CrearCreditoActionPerformed
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        jDialog_VerPagos.dispose();
+    }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jLabel5MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel5MouseClicked
         //****************** INTERFAZ ***************************************
 
         Pan_NuevaFactura panelNuevaFact = new Pan_NuevaFactura(Pan_NuevaFactura.CREDITO_CALL);
@@ -469,23 +501,23 @@ public class Pan_Cred extends javax.swing.JPanel {
         panelNuevaFact.personalizarTablaFactura();
         panelNuevaFact.agregarListenerRenders();
         panelNuevaFact.jFormattedTextField_Cliente.setText("Cliente Generico");
-    }//GEN-LAST:event_jButton_CrearCreditoActionPerformed
+    }//GEN-LAST:event_jLabel5MouseClicked
 
-    private void jButton_ModificarCreditoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_ModificarCreditoActionPerformed
+    private void jLabel11MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel11MouseClicked
         this.modificar(this.jTable_Creditos,"Modifica Credito");
-    }//GEN-LAST:event_jButton_ModificarCreditoActionPerformed
+    }//GEN-LAST:event_jLabel11MouseClicked
 
-    private void jButton_EliminaCreditoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_EliminaCreditoActionPerformed
+    private void jLabel12MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel12MouseClicked
         this.eliminar(this.jTable_Creditos,"Eliminacion Credito Num ");
         this.completarTablaCreditos();
-    }//GEN-LAST:event_jButton_EliminaCreditoActionPerformed
+    }//GEN-LAST:event_jLabel12MouseClicked
 
-    private void jButton_VerCreditoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_VerCreditoActionPerformed
+    private void jLabel13MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel13MouseClicked
         this.verFacturas(this.jTable_Creditos);
-    }//GEN-LAST:event_jButton_VerCreditoActionPerformed
+    }//GEN-LAST:event_jLabel13MouseClicked
 
-    private void jButton_AbonoCreditoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_AbonoCreditoActionPerformed
-         Modelo_Facturacion model = (Modelo_Facturacion) this.jTable_Creditos.getModel();
+    private void jLabel15MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel15MouseClicked
+        Modelo_Facturacion model = (Modelo_Facturacion) this.jTable_Creditos.getModel();
         BigDecimal saldo = this.StringtoBigDecimal
         (this.jTable_Creditos.getValueAt
         (this.jTable_Creditos.getSelectedRow(),1).toString());
@@ -512,13 +544,13 @@ public class Pan_Cred extends javax.swing.JPanel {
                         "Alert!", JOptionPane.ERROR_MESSAGE);
         
         }
-    }//GEN-LAST:event_jButton_AbonoCreditoActionPerformed
+    }//GEN-LAST:event_jLabel15MouseClicked
 
-    private void jButton_verPagosCreditoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_verPagosCreditoActionPerformed
+    private void jLabel16MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel16MouseClicked
         Direct_Control_BD AdminBD = Direct_Control_BD.getInstance();
         Modelo_Facturacion model = (Modelo_Facturacion) this.jTable_Creditos.getModel();
         int idFact = Integer.parseInt
-        (model.getValueAt(this.jTable_Creditos.getSelectedRow(),0).toString());
+            (model.getValueAt(this.jTable_Creditos.getSelectedRow(),0).toString());
         //Carga los datos a la tabla de ver pagos
         this.cargarVerPagos(idFact);
         // Obtiene la informacion de la factura, total facturado y 
@@ -531,11 +563,7 @@ public class Pan_Cred extends javax.swing.JPanel {
         this.jFormattedTextField_totalFacturado.setValue(TotalFacturado);
         this.jFormattedTextField_saldoPendiente.setValue(Saldo);
         this.jDialog_VerPagos.setVisible(true);
-    }//GEN-LAST:event_jButton_verPagosCreditoActionPerformed
-
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        jDialog_VerPagos.dispose();
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_jLabel16MouseClicked
     
     public void verFacturas(JTable table){
         int row = table.getSelectedRow();
@@ -600,15 +628,8 @@ public class Pan_Cred extends javax.swing.JPanel {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     javax.swing.JButton jButton1;
-    javax.swing.JButton jButton_AbonoCredito;
     javax.swing.JButton jButton_AceptarPago;
     javax.swing.JButton jButton_CancelarPago;
-    javax.swing.JButton jButton_CrearCredito;
-    javax.swing.JButton jButton_EliminaCredito;
-    javax.swing.JButton jButton_ImprimirCredito;
-    javax.swing.JButton jButton_ModificarCredito;
-    javax.swing.JButton jButton_VerCredito;
-    javax.swing.JButton jButton_verPagosCredito;
     javax.swing.JComboBox jComboBox_TipodePago;
     javax.swing.JDialog jDialog_CrearPago;
     javax.swing.JDialog jDialog_VerPagos;
@@ -620,9 +641,17 @@ public class Pan_Cred extends javax.swing.JPanel {
     javax.swing.JFormattedTextField jFormattedTextField_totalFacturado;
     javax.swing.JLabel jLabel1;
     javax.swing.JLabel jLabel10;
+    javax.swing.JLabel jLabel11;
+    javax.swing.JLabel jLabel12;
+    javax.swing.JLabel jLabel13;
+    javax.swing.JLabel jLabel14;
+    javax.swing.JLabel jLabel15;
+    javax.swing.JLabel jLabel16;
+    javax.swing.JLabel jLabel17;
     javax.swing.JLabel jLabel2;
     javax.swing.JLabel jLabel3;
     javax.swing.JLabel jLabel4;
+    javax.swing.JLabel jLabel5;
     javax.swing.JLabel jLabel6;
     javax.swing.JLabel jLabel7;
     javax.swing.JLabel jLabel8;

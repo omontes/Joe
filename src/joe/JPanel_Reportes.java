@@ -5821,7 +5821,7 @@ public void actionPerformed(java.awt.event.ActionEvent evt) {
 
         if (jRadioButton_ExcelMovimiento.isSelected()) {//para mostrar en Excel
             String tipo = "Salida";//Tipo de movimineto
-            String lugar = "General";//Ubicacion del mivimiento Inv. General
+            String lugar = "Inventario General";//Ubicacion del mivimiento Inv. General
             //Tipo de movimineto Entrada
             if (jRadioButton_EntradaMovimiento.isSelected()) {
                 tipo = "Entrada";
@@ -5871,7 +5871,8 @@ public void actionPerformed(java.awt.event.ActionEvent evt) {
 
         if (jRadioButton_ExcelMovimientoProd.isSelected()) {//para mostrar en Excel
 
-            String lugar = "General";//Ubicacion del mivimiento Inv. General
+            //Ubicacion del mivimiento Inv. General
+            String lugar = "Inventario General";
 
             //Ubicacion del mivimiento Bodega
             if (jRadioButton_BodegaMovimientoProd.isSelected()) {

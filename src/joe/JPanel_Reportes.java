@@ -19,7 +19,6 @@ import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 import jxl.write.WriteException;
 
-
 /**
  *
  * @author Jason
@@ -5576,7 +5575,8 @@ public void actionPerformed(java.awt.event.ActionEvent evt) {
         jRadioButton_ExcelEliminadasFact.setSelected(true);
         jDialog_ReportesFact.setLocation(getLocationOnScreen());
         jPanel_VerFacturasEliminadasPorFech.setVisible(true);
-        jPanel_VerFacturasEliminadasPorFech.setSize(jDialog_ReportesFact.getSize());
+        jPanel_VerFacturasEliminadasPorFech.setSize(jDialog_ReportesFact.
+                getSize());
         jDialog_ReportesFact.add(jPanel_VerFacturasEliminadasPorFech);
         jDialog_ReportesFact.setVisible(true);
     }//GEN-LAST:event_jButton6ActionPerformed
@@ -5848,8 +5848,10 @@ public void actionPerformed(java.awt.event.ActionEvent evt) {
                 archivoExcel.escribir(infoEmpresa, AdminBD.getInfoFact(),
                         AdminBD.getNombresColumnas(),
                         dateF1.format(
-                                dateChooserCombo_IniMovimiento.getSelectedDate().getTime()),
-                        dateF1.format(dateChooserCombo_FinMovimiento.getSelectedDate().
+                                dateChooserCombo_IniMovimiento.
+                                getSelectedDate().getTime()),
+                        dateF1.format(dateChooserCombo_FinMovimiento.
+                                getSelectedDate().
                                 getTime()),
                         tipo + " de mercadería en " + lugar, "Excel");
             } catch (IOException | WriteException ex) {
@@ -5882,35 +5884,45 @@ public void actionPerformed(java.awt.event.ActionEvent evt) {
             //Consultar nombre producto dado el idProducto
             AdminBD.consultarProducto(jTextField_MovProd.getText().toString());
 
-            //Consultar movimientos por producto
-            AdminBD.VerMovimientosProductoYPorFecha(jTextField_MovProd.getText()
-                    .toString(), lugar, dateF.format(
-                            dateChooserCombo_IniMovimientoProd.
-                            getSelectedDate().getTime()),
-                    dateF.format(dateChooserCombo_FinMovimientoProd.
-                            getSelectedDate().getTime()));
-
-            Date date = new Date();//hora Actual
-            String fechaAct = dateFormat.format(date);
-
-            EscribirExcel archivoExcel = new EscribirExcel();//
-            archivoExcel.setNombreArchivoExcel("MovimientosPorProducto"
-                    + fechaAct + ".xls");//Nombre del excel "Fisico"
             try {
-                //escribir excel
-                archivoExcel.escribir(infoEmpresa, AdminBD.getInfoFact(),
-                        AdminBD.getNombresColumnas(),
-                        dateF1.format(
-                                dateChooserCombo_IniMovimientoProd.getSelectedDate().getTime()),
-                        dateF1.format(dateChooserCombo_FinMovimientoProd.getSelectedDate().
-                                getTime()),
-                        "Movimientos del producto " + AdminBD.getData()[0][0].toString() + " en " + lugar, "Excel");
-            } catch (IOException | WriteException ex) {
-                Logger.getLogger(JPanel_Reportes.class.getName()).
-                        log(Level.SEVERE, null, ex);
-            }
-        } else {
+                //Consultar movimientos por producto
+                AdminBD.
+                        VerMovimientosProductoYPorFecha(jTextField_MovProd.
+                                getText()
+                                .toString(), lugar, dateF.format(
+                                        dateChooserCombo_IniMovimientoProd.
+                                        getSelectedDate().getTime()),
+                                dateF.format(dateChooserCombo_FinMovimientoProd.
+                                        getSelectedDate().getTime()));
 
+                Date date = new Date();//hora Actual
+                String fechaAct = dateFormat.format(date);
+
+                EscribirExcel archivoExcel = new EscribirExcel();//
+                archivoExcel.setNombreArchivoExcel("MovimientosPorProducto"
+                        + fechaAct + ".xls");//Nombre del excel "Fisico"
+                try {
+                    //escribir excel
+                    archivoExcel.escribir(infoEmpresa, AdminBD.getInfoFact(),
+                            AdminBD.getNombresColumnas(),
+                            dateF1.format(
+                                    dateChooserCombo_IniMovimientoProd.
+                                    getSelectedDate().getTime()),
+                            dateF1.format(dateChooserCombo_FinMovimientoProd.
+                                    getSelectedDate().
+                                    getTime()),
+                            "Movimientos del producto " + AdminBD.
+                            getData()[0][0].
+                            toString() + " en " + lugar, "Excel");
+                } catch (IOException | WriteException ex) {
+                }
+            } catch (Exception e) {
+                JOptionPane.showMessageDialog(
+                        null,
+                        "Producto no existe",
+                        "Advertencia", JOptionPane.ERROR_MESSAGE);
+
+            }
         }
     }//GEN-LAST:event_jButton_AceptarVerMovimientoProdActionPerformed
 

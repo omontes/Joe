@@ -600,14 +600,13 @@ public class Direct_Control_BD {
      */
     public void consultarProducto(String idProducto) {
         try {
-            String valorInventario = this.readSql("../Joe/src/"
+            String valorInventario = readSql("../Joe/src/"
                     + "sql_files/consultarProducto.sql");
-            PreparedStatement stm = this.conection.prepareStatement(valorInventario);
+            PreparedStatement stm = conection.prepareStatement(valorInventario);
             stm.setString(1, idProducto);
             ResultSet resultset = stm.executeQuery();
-            this.setColumnNames(this.Get_Columnas(resultset));
-            this.setData(this.ResultSet_Array(resultset));
-
+            setColumnNames(Get_Columnas(resultset));
+            setData(ResultSet_Array(resultset));
         } catch (IOException | SQLException e) {
             System.out.println("Error al obtener el producto");
         }

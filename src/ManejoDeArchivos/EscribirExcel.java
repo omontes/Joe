@@ -143,12 +143,13 @@ public class EscribirExcel {
         }
 
         //escribir el rango de fechas
-        if (fechaIni != "" && tipoDeReporte.
+        if (!"".equals(fechaIni) && tipoDeReporte.
                 contains(" de mercadería en ") != true) {
-            hojaExcel.addCell(new Label(2, 5, "Relación de Facturas "
+            hojaExcel.addCell(new Label(2, 5, " Rango de Fechas "
                     + "desde " + fechaIni + " hasta " + fechaFin,
                     times11));
         }
+
         //poner fecha actual
         DateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
         Date date = new Date();
@@ -224,6 +225,7 @@ public class EscribirExcel {
                             Double.parseDouble(datosFact[fila][col].
                                     toString()), times10));
                 } catch (NumberFormatException | WriteException e) {
+
                     hojaExcel.addCell(new Label(col, fil,
                             datosFact[fila][col].toString(), times10));
 

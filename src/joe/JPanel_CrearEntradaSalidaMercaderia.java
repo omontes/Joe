@@ -1461,6 +1461,8 @@ public class JPanel_CrearEntradaSalidaMercaderia extends javax.swing.JPanel {
                 return;
             }
         }
+        this.jTable_Movimiento.revalidate();
+        this.jTable_Movimiento.repaint();
         model.addRow(20);
         //Vuelve a cargar la informacion para el editor de la primer columna
         this.cargarSeleccionadorProductos();

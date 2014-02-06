@@ -5,13 +5,9 @@
  */
 package joe;
 
-
 import db_managment.Direct_Control_BD;
-
 import java.io.IOException;
 import java.net.URISyntaxException;
-import java.security.CodeSource;
-import javax.swing.JOptionPane;
 import jxl.write.WriteException;
 
 /**
@@ -24,6 +20,7 @@ public class Main {
      * @param args the command line arguments
      * @throws java.io.IOException
      * @throws jxl.write.WriteException
+     * @throws java.net.URISyntaxException
      */
     public static void main(String args[]) throws IOException, WriteException, URISyntaxException {
 //        Backupdbtosql();
@@ -55,6 +52,7 @@ public class Main {
         Direct_Control_BD AdminBD = Direct_Control_BD.getInstance();
 
         java.awt.EventQueue.invokeLater(new Runnable() {
+            @Override
             public void run() {
                 //Centra Main_Window en la pantalla del monitor
                 VentanaDeInicio miVentana = VentanaDeInicio.getInstance();
@@ -62,7 +60,10 @@ public class Main {
 
             }
         });
-
+        
+       // Dialog_generarEtiquetas g = new Dialog_generarEtiquetas(null, true);
+        
+        
     }
 ;
 }

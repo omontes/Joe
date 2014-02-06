@@ -18,8 +18,12 @@ import java.util.Date;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.print.PrintService;
 import javax.swing.JLabel;
+import javax.swing.JTable;
 import javax.swing.table.DefaultTableCellRenderer;
+import jzebra.PrintRaw;
+import jzebra.PrintServiceMatcher;
 
 
 
@@ -57,6 +61,7 @@ public class JPanel_verEntradaSalidaMercaderia extends javax.swing.JPanel {
         jLabel6 = new javax.swing.JLabel();
         jFormattedTextField_Total = new javax.swing.JFormattedTextField();
         jButton_RegresarFact = new javax.swing.JButton();
+        jButton1 = new javax.swing.JButton();
 
         jLabel_FechaFact.setText("Fecha");
 
@@ -105,6 +110,13 @@ public class JPanel_verEntradaSalidaMercaderia extends javax.swing.JPanel {
             }
         });
 
+        jButton1.setText("Imprimir");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
@@ -114,7 +126,9 @@ public class JPanel_verEntradaSalidaMercaderia extends javax.swing.JPanel {
                 .addComponent(jLabel_NumerodeMovimiento)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(458, Short.MAX_VALUE)
+                .addGap(104, 104, 104)
+                .addComponent(jButton1)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 283, Short.MAX_VALUE)
                 .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jFormattedTextField_Total, javax.swing.GroupLayout.PREFERRED_SIZE, 315, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -137,14 +151,13 @@ public class JPanel_verEntradaSalidaMercaderia extends javax.swing.JPanel {
                             .addComponent(jLabel7)
                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                             .addComponent(jTextField_referencia, javax.swing.GroupLayout.PREFERRED_SIZE, 306, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                                .addGap(193, 193, 193)
-                                .addComponent(jButton_RegresarFact, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(0, 0, Short.MAX_VALUE))
-                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                                .addGap(42, 42, 42)
-                                .addComponent(jScrollPane2))))
+                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                            .addGap(193, 193, 193)
+                            .addComponent(jButton_RegresarFact, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGap(0, 0, Short.MAX_VALUE))
+                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                            .addGap(42, 42, 42)
+                            .addComponent(jScrollPane2)))
                     .addContainerGap()))
         );
         layout.setVerticalGroup(
@@ -152,11 +165,12 @@ public class JPanel_verEntradaSalidaMercaderia extends javax.swing.JPanel {
             .addGroup(layout.createSequentialGroup()
                 .addGap(33, 33, 33)
                 .addComponent(jLabel_NumerodeMovimiento)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 279, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 278, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jFormattedTextField_Total, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(31, 31, 31))
+                    .addComponent(jFormattedTextField_Total, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButton1))
+                .addGap(29, 29, 29))
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(layout.createSequentialGroup()
                     .addContainerGap()
@@ -185,8 +199,22 @@ public class JPanel_verEntradaSalidaMercaderia extends javax.swing.JPanel {
         this.regresar();
     }//GEN-LAST:event_jButton_RegresarFactActionPerformed
 
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+         this.imprimirMovimiento(
+                this.jTable_Movimiento,this.jLabel_NumerodeMovimiento.getText(),
+                this.jLabel_Fecha.getText(),
+                this.jComboBox_LugarDeMov.getSelectedItem().toString(),
+                this.jFormattedTextField_Total.getText(),
+                this.jTextField_referencia.getText());
+        
+        
+
+                                                       
+    }//GEN-LAST:event_jButton1ActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    javax.swing.JButton jButton1;
     javax.swing.JButton jButton_RegresarFact;
     javax.swing.JComboBox jComboBox_LugarDeMov;
     javax.swing.JFormattedTextField jFormattedTextField_Total;
@@ -303,4 +331,102 @@ public class JPanel_verEntradaSalidaMercaderia extends javax.swing.JPanel {
         return numeroCorregido;
 
     }
+
+    private void imprimirMovimiento(JTable table,String numEntrada, String date, String lugarEntrada, String totalEntrada, String referencia) {
+        try {
+            String rawCmds = "FIRST NAME";
+            String printer = "Generic / Text Only (Copy 3)"; // debe tener 
+            //el mismo nombre que la impresora 
+            PrintService ps = PrintServiceMatcher.findPrinter(printer);
+            if (ps != null) {
+
+                PrintRaw p = new PrintRaw(ps, rawCmds);
+                p.clear();
+                p.append("\u001B\u0040"); //reset printer 
+              
+
+                p.append("\u001B" + "\u0061" + "\u0001" + "\r");//*** Centrado
+                p.append("Boutique Francini\r\n");
+                p.append("San Jose, Costa Rica\r\n");
+                p.append("Tel:228826962,pulgamontes@gmail.com\r\n");
+                p.append("Resolucion nro. 234252 del 2003-89\r\n");
+                p.append("\u001B" + "\u0064" + "\u0001" + "\r");//*** 1lineas
+           
+                p.append("\u001B" + "\u0061" + "\u0000" + "\r");//Quita Centrado
+                
+             
+
+                String fecha = " Fecha     :  " + date + "";
+                //p.append("----------------------------------------\r\n");
+                String fechamov = this.fill(fecha, 17, " ");
+                p.append(fechamov + "\r\n");
+                p.append(this.fill(" Num Mov   :  " + numEntrada + "", fechamov.length(), " ") + "\r\n");
+                p.append(this.fill(" Lugar     :  " + lugarEntrada + "", fechamov.length(), " ") + "\r\n");
+                p.append(this.fill(" Referencia:  " + referencia + "", fechamov.length(), " ") + "\r\n");
+           
+                //Agrega 1 linea vacia
+                p.append("\u001B" + "\u0064" + "\u0001" + "\r");
+                p.append("CANT. \t DESCRIPCION \t      TOTAL\r\n");
+                p.append("----  ----------------       ------\r\n");
+
+                /**
+                 * ********************************************************
+                 */
+                Modelo_verFacturas dtm = (Modelo_verFacturas) table.getModel();
+                int nRow = dtm.getRowCount();
+                for (int i = 0; i < nRow; i++) {
+                    
+                    String Producto = dtm.getValueAt(i, 1).toString();
+                    if (!Producto.equals("")) {
+                        String cantidad = dtm.getValueAt(i, 2).toString();
+                        String subtotal = dtm.getValueAt(i, 4).toString();
+                        p.append("" + Producto + "   \r\n");
+                        p.append("" + cantidad + "                           "
+                                + "" + subtotal + "   \r\n");
+                    }
+
+                }
+
+             
+                p.append("\u001B" + "\u0061" + "\u0002" + "\r");//*** Derecha
+                p.append("\u001B" + "\u0064" + "\u0003" + "\r");//*** 1lineas
+                String subto = " T O T A L : \t " + totalEntrada + "";
+                String subtoCantidad = this.fill(subto, 35, " ");
+                p.append(subtoCantidad + "\r\n");
+                
+               
+                p.append("\u001B\u0040");//reset printer
+                p.append("\u001B" + "\u0064" + "\u0008" + "\r");//*** 10lineas**/
+                p.append("\u001D" + "\u0056" + "\u0001" + "\r");//*** CutPaper
+                
+               p.print();
+
+            } else {
+                System.err.println("No encontro ninguna impresora");
+                return ;    }
+
+        } catch (Exception e) {
+            e.printStackTrace();
+            return;
+        }
+    }
+    
+    public String fill(int length, String with) {
+        StringBuilder sb = new StringBuilder(length);
+        while (sb.length() < length) {
+            sb.append(with);
+        }
+        return sb.toString();
+    }
+
+    public String fill(String value, int length, String with) {
+
+        StringBuilder result = new StringBuilder(length);
+        result.append(value);
+        result.append(fill(Math.max(0, length - value.length()), with));
+
+        return result.toString();
+
+    }
+    
 }

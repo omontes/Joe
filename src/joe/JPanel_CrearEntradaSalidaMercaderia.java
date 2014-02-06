@@ -3,9 +3,10 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package joe;
 
+import Etiquetas.Imprimir;
+import ManejoDeArchivos.XMLConfiguracion;
 import db_managment.Direct_Control_BD;
 import java.awt.Toolkit;
 import java.awt.event.KeyEvent;
@@ -21,12 +22,14 @@ import java.util.Date;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.print.PrintService;
 import javax.swing.JFileChooser;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
+import javax.swing.JTable;
 import javax.swing.table.DefaultTableCellRenderer;
-
-
+import jzebra.PrintRaw;
+import jzebra.PrintServiceMatcher;
 
 /**
  *
@@ -37,10 +40,11 @@ public class JPanel_CrearEntradaSalidaMercaderia extends javax.swing.JPanel {
     /**
      * Creates new form JPanel_CrearEntradaSalidaMercaderia
      */
-    boolean cargoArchivo=false;
+    boolean cargoArchivo = false;
+
     public JPanel_CrearEntradaSalidaMercaderia() {
         initComponents();
-        
+
     }
 
     /**
@@ -96,12 +100,13 @@ public class JPanel_CrearEntradaSalidaMercaderia extends javax.swing.JPanel {
         jLabel_NumerodeMovimiento = new javax.swing.JLabel();
         jButton_guardaImprime = new javax.swing.JButton();
         jLabel7 = new javax.swing.JLabel();
-        jTextField_referencia = new javax.swing.JTextField();
         jComboBox_LugarDeMov = new javax.swing.JComboBox();
         jLabel_tipoMovimiento = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
         jScrollPane2 = new javax.swing.JScrollPane();
         jTable_Movimiento = new javax.swing.JTable();
+        jTextField_referencia = new javax.swing.JFormattedTextField();
+        jButton_generarEtiquetas = new javax.swing.JButton();
 
         jPanel2.setBackground(new java.awt.Color(153, 153, 153));
 
@@ -562,52 +567,66 @@ public class JPanel_CrearEntradaSalidaMercaderia extends javax.swing.JPanel {
         });
         jScrollPane2.setViewportView(jTable_Movimiento);
 
+        try {
+            jTextField_referencia.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("****************************************************************************************************************")));
+        } catch (java.text.ParseException ex) {
+            ex.printStackTrace();
+        }
+        jTextField_referencia.setText("");
+        jTextField_referencia.setFocusCycleRoot(true);
+
+        jButton_generarEtiquetas.setText("Generar Etiquetas");
+        jButton_generarEtiquetas.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton_generarEtiquetasActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                        .addGap(247, 247, 247)
+                .addContainerGap(20, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addComponent(jButton_CreaProducto, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jButton_VerProducto, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jButton_EliminaFila, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jButton_BuscarProducto, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jButton1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel_NumerodeMovimiento, javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel_NumFacTitle, javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jButton_generarEtiquetas, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 738, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jLabel_FechaFact, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jLabel_Fecha, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(jLabel_tipoMovimiento, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jComboBox_LugarDeMov, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(29, 29, 29)
+                                .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 69, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(jTextField_referencia, javax.swing.GroupLayout.PREFERRED_SIZE, 276, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(148, 148, 148)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jButton_RegresarFact, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(jButton_aceptarMovimiento, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(jButton_guardaImprime)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(jFormattedTextField_Total, javax.swing.GroupLayout.PREFERRED_SIZE, 315, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(jButton_guardaImprime, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jButton_RegresarFact, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLabel_NumFacTitle)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(jLabel_FechaFact, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(jLabel_Fecha, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jLabel_tipoMovimiento)
-                                .addGap(18, 18, 18)
-                                .addComponent(jComboBox_LugarDeMov, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18)
-                                .addComponent(jLabel7)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jTextField_referencia, javax.swing.GroupLayout.PREFERRED_SIZE, 306, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                        .addComponent(jButton_CreaProducto)
-                                        .addComponent(jButton_VerProducto, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addComponent(jButton_EliminaFila, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addComponent(jButton_BuscarProducto, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jLabel_NumerodeMovimiento))
-                                .addGap(18, 18, 18)
-                                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 730, javax.swing.GroupLayout.PREFERRED_SIZE)))))
-                .addContainerGap(37, Short.MAX_VALUE))
+                                .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jFormattedTextField_Total, javax.swing.GroupLayout.PREFERRED_SIZE, 311, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -628,30 +647,31 @@ public class JPanel_CrearEntradaSalidaMercaderia extends javax.swing.JPanel {
                         .addComponent(jButton_BuscarProducto)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(jButton1)
-                        .addGap(63, 63, 63))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jButton_generarEtiquetas)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 26, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(28, 28, 28)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jTextField_referencia, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel7)
                             .addComponent(jComboBox_LugarDeMov, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel_tipoMovimiento)
                             .addComponent(jLabel_Fecha, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel_FechaFact, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jLabel_FechaFact, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jTextField_referencia, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jButton_aceptarMovimiento)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jButton_RegresarFact))
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(jFormattedTextField_Total, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jButton_guardaImprime)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jFormattedTextField_Total, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jButton_aceptarMovimiento)
+                        .addComponent(jButton_guardaImprime)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jButton_RegresarFact)
+                .addContainerGap(31, Short.MAX_VALUE))
         );
     }//GEN-END:initComponents
 
@@ -682,7 +702,7 @@ public class JPanel_CrearEntradaSalidaMercaderia extends javax.swing.JPanel {
     }//GEN-LAST:event_jButton_EliminaFilaActionPerformed
 
     private void jButton_RegresarFactActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_RegresarFactActionPerformed
-        if(cargoArchivo){
+        if (cargoArchivo) {
             this.limpiarProductos();
         }
         this.regresar();
@@ -706,8 +726,13 @@ public class JPanel_CrearEntradaSalidaMercaderia extends javax.swing.JPanel {
 
     private void jButton_guardaImprimeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_guardaImprimeActionPerformed
         this.guardarMovimiento();
-        
-        
+        this.imprimirMovimiento(
+                this.jTable_Movimiento, this.jLabel_NumerodeMovimiento.getText(),
+                this.jLabel_Fecha.getText(),
+                this.jComboBox_LugarDeMov.getSelectedItem().toString(),
+                this.jFormattedTextField_Total.getText(),
+                this.jTextField_referencia.getText());
+
 
     }//GEN-LAST:event_jButton_guardaImprimeActionPerformed
 
@@ -838,19 +863,19 @@ public class JPanel_CrearEntradaSalidaMercaderia extends javax.swing.JPanel {
     }//GEN-LAST:event_jTextField_busqueProductoKeyPressed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        JFileChooser filechooser= new JFileChooser();
+        JFileChooser filechooser = new JFileChooser();
         int value = filechooser.showOpenDialog(null);
-        this.cargoArchivo=true;
+        this.cargoArchivo = true;
         this.jFormattedTextField_Total.setValue(BigDecimal.ZERO);
         if (value == JFileChooser.APPROVE_OPTION) {
-                File file = filechooser.getSelectedFile();
-                String direccion=(String.valueOf(file));
-                try{
-                this.cargarMovimiento(direccion);}
-                catch(Exception e){
-                    this.clearAll();
-                }
-               
+            File file = filechooser.getSelectedFile();
+            String direccion = (String.valueOf(file));
+            try {
+                this.cargarMovimiento(direccion);
+            } catch (Exception e) {
+                this.clearAll();
+            }
+
         }
     }//GEN-LAST:event_jButton1ActionPerformed
 
@@ -860,6 +885,16 @@ public class JPanel_CrearEntradaSalidaMercaderia extends javax.swing.JPanel {
             this.eliminarFila();
         }
     }//GEN-LAST:event_jTable_MovimientoKeyPressed
+
+    private void jButton_generarEtiquetasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_generarEtiquetasActionPerformed
+        //Contiene: Cod,Nombre,Cantidad,Precio del producto
+        String[][] etiquetas = this.obtenerInfoTablaMovimientoParaEtiquetas();
+        Imprimir etqt = new Imprimir();
+        XMLConfiguracion empresa = XMLConfiguracion.getInstance();
+        String[] infoEmpresa = empresa. NombreTelefonoEmpresa();
+        etqt.imprimirListaEtiquetas(etiquetas, infoEmpresa);
+
+    }//GEN-LAST:event_jButton_generarEtiquetasActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -875,6 +910,7 @@ public class JPanel_CrearEntradaSalidaMercaderia extends javax.swing.JPanel {
     javax.swing.JButton jButton_RegresarFact;
     javax.swing.JButton jButton_VerProducto;
     javax.swing.JButton jButton_aceptarMovimiento;
+    javax.swing.JButton jButton_generarEtiquetas;
     javax.swing.JButton jButton_guardaImprime;
     javax.swing.JComboBox jComboBox_LugarDeMov;
     javax.swing.JDialog jDialog_BuscarProductoPorCod;
@@ -913,7 +949,7 @@ public class JPanel_CrearEntradaSalidaMercaderia extends javax.swing.JPanel {
     javax.swing.JTextField jTextField_busqueProducto;
     javax.swing.JTextField jTextField_codigo;
     javax.swing.JTextField jTextField_nombre;
-    javax.swing.JTextField jTextField_referencia;
+    javax.swing.JFormattedTextField jTextField_referencia;
     // End of variables declaration//GEN-END:variables
     private void creacionProductoPanel() {
         //En caso de que quiera crear un producto mientras se este editando
@@ -929,7 +965,8 @@ public class JPanel_CrearEntradaSalidaMercaderia extends javax.swing.JPanel {
         this.jDialog_CrearProducto.setVisible(true);
 
     }
-     /**
+
+    /**
      * Este metodo permite mostrar toda la informacion del producto
      *
      * @param idProducto
@@ -955,10 +992,10 @@ public class JPanel_CrearEntradaSalidaMercaderia extends javax.swing.JPanel {
         jDialog_VerProducto.setVisible(true);
 
     }
-    
+
     /**
-     * Este metodo es para poder eliminar una fila de la tabla de 
-     * crear movimiento
+     * Este metodo es para poder eliminar una fila de la tabla de crear
+     * movimiento
      */
     private void eliminarFila() {
         MyTableModel_FACT model = (MyTableModel_FACT) jTable_Movimiento.getModel();
@@ -993,8 +1030,8 @@ public class JPanel_CrearEntradaSalidaMercaderia extends javax.swing.JPanel {
 
         }
     }
-    
-     private void regresar() {
+
+    private void regresar() {
         VentanaDeInicio miVentana = VentanaDeInicio.getInstance();
         JPanel_Inventario panelInventario = new JPanel_Inventario();
         panelInventario.setSize(this.getSize());
@@ -1006,8 +1043,8 @@ public class JPanel_CrearEntradaSalidaMercaderia extends javax.swing.JPanel {
         miVentana.revalidate();
         miVentana.repaint();
     }
-     
-     /**
+
+    /**
      * Este metodo permite que vuelva a la tabla y seleciones la fila donde
      * quedo o la siguiente en la tabla movimiento
      *
@@ -1035,7 +1072,7 @@ public class JPanel_CrearEntradaSalidaMercaderia extends javax.swing.JPanel {
                     this.jFormattedTextField_precioProducto.
                     getValue().toString());
             AdminBD.crearProducto(codigo, this.jTextField_nombre.getText(),
-                    bd, 0, dateFormat.format(date), "A", null, 1);
+                    bd, BigDecimal.ZERO, dateFormat.format(date), "A", null, 1);
             AdminBD.insertarEnInventario(this.jTextField_codigo.getText(),
                     1, Integer.parseInt(this.jFormattedTextField_cantidadProducto.getValue()
                             .toString()));
@@ -1056,16 +1093,16 @@ public class JPanel_CrearEntradaSalidaMercaderia extends javax.swing.JPanel {
             this.jButton_CancelarCrearProducto.transferFocus();
         }
     }
-    
-      private void clearCrearProducto() {
+
+    private void clearCrearProducto() {
         this.jTextField_codigo.setText("");
         this.jTextField_nombre.setText("");
         this.jFormattedTextField_cantidadProducto.setText("0");
         this.jFormattedTextField_precioProducto.setText("0.00");
 
     }
-      
-      /**
+
+    /**
      * Permite buscar el producto cuando el usuario presiona el boton buscar
      * producto en crear movimiento(Entrada o Salida de Mercaderia)
      */
@@ -1085,6 +1122,7 @@ public class JPanel_CrearEntradaSalidaMercaderia extends javax.swing.JPanel {
         this.jButton_BusqueProducto.transferFocus();
         this.jButton_CancelaBusquedaProducto.transferFocus();
     }
+
     /**
      * Este metodo permite personalizar la tabla de crear Movimiento
      */
@@ -1101,7 +1139,6 @@ public class JPanel_CrearEntradaSalidaMercaderia extends javax.swing.JPanel {
         //Agrega 20 filas
         model.addRow(20);
         this.jTable_Movimiento.setModel(model);
-       
 
     }
 
@@ -1125,6 +1162,7 @@ public class JPanel_CrearEntradaSalidaMercaderia extends javax.swing.JPanel {
         }
         return string;
     }
+
     /**
      * Este metodo permite corregir el dato que tiene el signo de C y ademas que
      * puede tener comas ya que el tipo Decimal en la base solo puede tener
@@ -1146,6 +1184,7 @@ public class JPanel_CrearEntradaSalidaMercaderia extends javax.swing.JPanel {
         return DatoCorregido;
 
     }
+
     /**
      * Este metodo convierte un string que es un decimal a bigdecimal
      *
@@ -1176,7 +1215,7 @@ public class JPanel_CrearEntradaSalidaMercaderia extends javax.swing.JPanel {
         this.jTable_Movimiento.getModel().addTableModelListener(
                 new MyTableModelListener_FACT(this.jTable_Movimiento, "",
                         this.jFormattedTextField_Total, AdminBD));
-        
+
         //Costumisando Precio y Cantidad (Solo van a permitir numeros)
         DefaultTableCellRenderer rightRenderer = new DefaultTableCellRenderer();
         rightRenderer.setHorizontalAlignment(JLabel.RIGHT);
@@ -1195,9 +1234,8 @@ public class JPanel_CrearEntradaSalidaMercaderia extends javax.swing.JPanel {
         //ingresan datos*****
         this.jTable_Movimiento.setSurrendersFocusOnKeystroke(true);
 
-      
+    }
 
-    }   
     public void cargarSeleccionadorProductos() {
         Direct_Control_BD AdminBD = Direct_Control_BD.getInstance();
         AdminBD.verCodigos();
@@ -1212,15 +1250,15 @@ public class JPanel_CrearEntradaSalidaMercaderia extends javax.swing.JPanel {
                 setCellEditor(new SeleccionadorEditor(idproductos, jTable_Movimiento));
 
     }
-    
 
     private void guardarMovimiento() {
-        if(this.jTextField_referencia.getText().equals("")){
-        JOptionPane.showMessageDialog(
-                            null,
-                            "Debe de ingresar una referencia de la entrada de mercaderia",
-                            "Alert!", JOptionPane.ERROR_MESSAGE);
-        return;
+        System.out.println(this.jTextField_referencia.getText());
+        if (this.jTextField_referencia.getText().equals("")) {
+            JOptionPane.showMessageDialog(
+                    null,
+                    "Debe de ingresar una referencia de la entrada de mercaderia",
+                    "Alert!", JOptionPane.ERROR_MESSAGE);
+            return;
         }
         this.crearMovimiento();
         this.guardarProductosMovimiento();
@@ -1228,20 +1266,20 @@ public class JPanel_CrearEntradaSalidaMercaderia extends javax.swing.JPanel {
     }
 
     private void crearMovimiento() {
-        VentanaDeInicio mVentana= VentanaDeInicio.getInstance();
+        VentanaDeInicio mVentana = VentanaDeInicio.getInstance();
         Direct_Control_BD AdminBD = Direct_Control_BD.getInstance();
-        String detalle= this.jTextField_referencia.getText();
-        int idLugarMovimiento=1;
-        if(this.jComboBox_LugarDeMov.getSelectedItem().toString().equals("Bodega")){
-               idLugarMovimiento=2;
-        
+        String detalle = this.jTextField_referencia.getText();
+        int idLugarMovimiento = 1;
+        if (this.jComboBox_LugarDeMov.getSelectedItem().toString().equals("Bodega")) {
+            idLugarMovimiento = 2;
+
         }
         BigDecimal valorMovimiento = this.corregirDato(this.jFormattedTextField_Total.getText());
-        if(mVentana.getTitle().equals("Salida de Mercaderia")){
-            AdminBD.insertarmovimiento(detalle,2, idLugarMovimiento, valorMovimiento);
+        if (mVentana.getTitle().equals("Salida de Mercaderia")) {
+            AdminBD.insertarmovimiento(detalle, 2, idLugarMovimiento, valorMovimiento);
             return;
         }
-        AdminBD.insertarmovimiento(detalle,1, idLugarMovimiento, valorMovimiento);
+        AdminBD.insertarmovimiento(detalle, 1, idLugarMovimiento, valorMovimiento);
     }
 
     private void guardarProductosMovimiento() {
@@ -1271,12 +1309,12 @@ public class JPanel_CrearEntradaSalidaMercaderia extends javax.swing.JPanel {
                 String precioSinCorregir = infoTablaMov[i][3];
                 BigDecimal PrecioVenta = this.corregirDato(precioSinCorregir);
                 //System.out.println(idProducto+" "+idVersion+" "+idMovimiento+" "+cantidadMov+" "+PrecioVenta);
-                AdminBD.insertarProductoCantidadMovimiento(idProducto,idVersion,idMovimiento,cantidadMov,PrecioVenta);
-                
+                AdminBD.insertarProductoCantidadMovimiento(idProducto, idVersion, idMovimiento, cantidadMov, PrecioVenta);
 
             }
         }
     }
+
     /**
      * Este metodo devuelve toda la informacion de la tabla de crear movimiento
      *
@@ -1299,9 +1337,8 @@ public class JPanel_CrearEntradaSalidaMercaderia extends javax.swing.JPanel {
         return infoTablaFactura;
     }
 
-
     private void clearAll() {
-        
+
         VentanaDeInicio mVentana = VentanaDeInicio.getInstance();
         JPanel_CrearEntradaSalidaMercaderia panelCreaEntradaSalida = new JPanel_CrearEntradaSalidaMercaderia();
         mVentana.add(panelCreaEntradaSalida);
@@ -1309,7 +1346,7 @@ public class JPanel_CrearEntradaSalidaMercaderia extends javax.swing.JPanel {
         panelCreaEntradaSalida.setLocation(this.getLocation());
         mVentana.remove(this);
         panelCreaEntradaSalida.setVisible(true);
-        if(mVentana.getTitle().equals("Salida de Mercaderia")){
+        if (mVentana.getTitle().equals("Salida de Mercaderia")) {
             panelCreaEntradaSalida.jLabel_tipoMovimiento.setText("Salida de:");
         }
         mVentana.revalidate();
@@ -1320,9 +1357,8 @@ public class JPanel_CrearEntradaSalidaMercaderia extends javax.swing.JPanel {
         panelCreaEntradaSalida.personalizarTablaMovimiento();
         panelCreaEntradaSalida.agregarListenerRenders();
         panelCreaEntradaSalida.cargarSeleccionadorProductos();
-    
+
     }
- 
 
     private void cargarMovimiento(String direccion) {
         Direct_Control_BD AdminBD = Direct_Control_BD.getInstance();
@@ -1378,17 +1414,17 @@ public class JPanel_CrearEntradaSalidaMercaderia extends javax.swing.JPanel {
                         categoria = "General";
                     }
                     int idCategoria = AdminBD.consultarIdCategoriaXNombre(categoria);
-                    AdminBD.crearProducto(idProducto, nombre, precio, costo.intValue(), fecha, "A", "", idCategoria);
+                    AdminBD.crearProducto(idProducto, nombre, precio, costo, fecha, "A", "", idCategoria);
                     model.setValueAt(idProducto, row, 0);
                     model.setValueAt(cantidad, row, 2);
 
                 }
             } catch (Exception e) {
                 JOptionPane.showMessageDialog(
-                            null,
-                            "Debe de ingresar un archivo de excel con un formato adecuado "
-                                    + "\nque tenga las columnas especificas de una entrada de mercaderia",
-                            "Alert!", JOptionPane.ERROR_MESSAGE);
+                        null,
+                        "Debe de ingresar un archivo de excel con un formato adecuado "
+                        + "\nque tenga las columnas especificas de una entrada de mercaderia",
+                        "Alert!", JOptionPane.ERROR_MESSAGE);
                 this.limpiarProductos();
                 this.clearAll();
                 return;
@@ -1404,6 +1440,115 @@ public class JPanel_CrearEntradaSalidaMercaderia extends javax.swing.JPanel {
         AdminBD.eliminarProductosQueNoTienenInventario();
     }
 
+    private void imprimirMovimiento(JTable table, String numEntrada, String date, String lugarEntrada, String totalEntrada, String referencia) {
+        try {
+            String rawCmds = "FIRST NAME";
+            String printer = "Generic / Text Only (Copy 3)"; // debe tener 
+            //el mismo nombre que la impresora 
+            PrintService ps = PrintServiceMatcher.findPrinter(printer);
+            if (ps != null) {
 
+                PrintRaw p = new PrintRaw(ps, rawCmds);
+                p.clear();
+                p.append("\u001B\u0040"); //reset printer 
+
+                p.append("\u001B" + "\u0061" + "\u0001" + "\r");//*** Centrado
+                p.append("Boutique Francini\r\n");
+                p.append("San Jose, Costa Rica\r\n");
+                p.append("Tel:228826962,pulgamontes@gmail.com\r\n");
+                p.append("Resolucion nro. 234252 del 2003-89\r\n");
+                p.append("\u001B" + "\u0064" + "\u0001" + "\r");//*** 1lineas
+
+                p.append("\u001B" + "\u0061" + "\u0000" + "\r");//Quita Centrado
+
+                String fecha = " Fecha     :  " + date + "";
+                //p.append("----------------------------------------\r\n");
+                String fechamov = this.fill(fecha, 17, " ");
+                p.append(fechamov + "\r\n");
+                p.append(this.fill(" Num Mov   :  " + numEntrada + "", fechamov.length(), " ") + "\r\n");
+                p.append(this.fill(" Lugar     :  " + lugarEntrada + "", fechamov.length(), " ") + "\r\n");
+                p.append(this.fill(" Referencia:  " + referencia + "", fechamov.length(), " ") + "\r\n");
+
+                //Agrega 1 linea vacia
+                p.append("\u001B" + "\u0064" + "\u0001" + "\r");
+                p.append("CANT. \t DESCRIPCION \t      TOTAL\r\n");
+                p.append("----  ----------------       ------\r\n");
+
+                /**
+                 * ********************************************************
+                 */
+                MyTableModel_FACT dtm = (MyTableModel_FACT) table.getModel();
+                int nRow = dtm.getRowCount();
+                for (int i = 0; i < nRow; i++) {
+                    String Producto = dtm.getValueAt(i, 1).toString();
+                    if (!Producto.equals("")) {
+                        String cantidad = dtm.getValueAt(i, 2).toString();
+                        String subtotal = dtm.getValueAt(i, 4).toString();
+                        p.append("" + Producto + "   \r\n");
+                        p.append("" + cantidad + "                           "
+                                + "" + subtotal + "   \r\n");
+                    }
+
+                }
+
+                p.append("\u001B" + "\u0061" + "\u0002" + "\r");//*** Derecha
+                p.append("\u001B" + "\u0064" + "\u0003" + "\r");//*** 1lineas
+                String subto = " T O T A L : \t " + totalEntrada + "";
+                String subtoCantidad = this.fill(subto, 35, " ");
+                p.append(subtoCantidad + "\r\n");
+
+                p.append("\u001B\u0040");//reset printer
+                p.append("\u001B" + "\u0064" + "\u0008" + "\r");//*** 10lineas**/
+                p.append("\u001D" + "\u0056" + "\u0001" + "\r");//*** CutPaper
+
+                p.print();
+
+            } else {
+                System.err.println("No encontro ninguna impresora");
+                return;
+            }
+
+        } catch (Exception e) {
+            e.printStackTrace();
+            return;
+        }
+    }
+
+    public String fill(int length, String with) {
+        StringBuilder sb = new StringBuilder(length);
+        while (sb.length() < length) {
+            sb.append(with);
+        }
+        return sb.toString();
+    }
+
+    public String fill(String value, int length, String with) {
+
+        StringBuilder result = new StringBuilder(length);
+        result.append(value);
+        result.append(fill(Math.max(0, length - value.length()), with));
+
+        return result.toString();
+
+    }
+
+    private String[][] obtenerInfoTablaMovimientoParaEtiquetas() {
+        MyTableModel_FACT model = (MyTableModel_FACT) this.jTable_Movimiento.getModel();
+        int filas = model.getRowCount();
+        String[][] infoTablaFactura = new String[filas - 20][4];
+        for (int i = 0; i < filas; i++) {
+            for (int j = 0; j < 4; j++) {
+                if (model.getValueAt(i, j) != null) {
+                    String om = model.getValueAt(i, j).toString();
+                    if (om.trim().length() != 0) {
+                        infoTablaFactura[i][j] = om;
+
+                    }
+                }
+            }
+
+        }
+        return infoTablaFactura;
+    }
 
 }

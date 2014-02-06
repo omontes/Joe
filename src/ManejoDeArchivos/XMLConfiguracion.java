@@ -121,7 +121,8 @@ public class XMLConfiguracion {
                     newInstance();
             Transformer transformer = transformerFactory.newTransformer();
             DOMSource source = new DOMSource(doc);
-            StreamResult result = new StreamResult(new File("Configuracion.xml"));
+            StreamResult result
+                    = new StreamResult(new File("Configuracion.xml"));
 
             transformer.transform(source, result);
 
@@ -135,7 +136,7 @@ public class XMLConfiguracion {
      *
      * @return
      */
-    public  String[] leerInfoEmpresaXML() {
+    public String[] leerInfoEmpresaXML() {
         String[] infoEmpresa = new String[6];
         try {
             File fXmlFile = new File("Configuracion.xml");
@@ -167,32 +168,38 @@ public class XMLConfiguracion {
                     infoEmpresa[3] = "Cedula Juridica " + eElement.
                             getElementsByTagName("CedulaJuridica").
                             item(0).getTextContent();
-                    infoEmpresa[4] = "Telefono " + eElement.getElementsByTagName("Telefono").
+                    infoEmpresa[4] = "Telefono " + eElement.
+                            getElementsByTagName("Telefono").
                             item(0).getTextContent();
-                    infoEmpresa[5] = "Correo " + eElement.getElementsByTagName("Correo").
+                    infoEmpresa[5] = "Correo " + eElement.
+                            getElementsByTagName("Correo").
                             item(0).getTextContent();
 
                 }
             }
             return infoEmpresa;
 
-        } catch (Exception e) {
+        } catch (ParserConfigurationException | SAXException | IOException |
+                DOMException e) {
 
         }
 
         return null;
     }
-/**
- * Retorna un String[] con los comentarios inicial y final de factura 
- * respectivamente
- * @return 
- */
+
+    /**
+     * Retorna un String[] con los comentarios inicial y final de factura
+     * respectivamente
+     *
+     * @return
+     */
     public String[] leerInfoParaFactura() {
         String[] comentariosFact = new String[2];
         try {
 
             File fXmlFile = new File("Configuracion.xml");
-            DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
+            DocumentBuilderFactory dbFactory = DocumentBuilderFactory.
+                    newInstance();
             DocumentBuilder dBuilder = dbFactory.newDocumentBuilder();
             Document doc = dBuilder.parse(fXmlFile);
 
@@ -215,8 +222,51 @@ public class XMLConfiguracion {
 
                 }
             }
-        } catch (IOException | ParserConfigurationException | DOMException | SAXException e) {
+        } catch (IOException | ParserConfigurationException | DOMException |
+                SAXException e) {
         }
         return comentariosFact;
+    }
+
+    /**
+     * Obtener el nombre la empresa y el telefono.
+     *
+     * @return
+     */
+    public String[] NombreTelefonoEmpresa() {
+        String[] infoEmpresa = {"", ""};
+        try {
+            File fXmlFile = new File("Configuracion.xml");
+            DocumentBuilderFactory dbFactory = DocumentBuilderFactory.
+                    newInstance();
+            DocumentBuilder dBuilder = dbFactory.newDocumentBuilder();
+            Document doc = dBuilder.parse(fXmlFile);
+
+            doc.getDocumentElement().normalize();
+
+            NodeList nList = doc.getElementsByTagName("Empresa");
+
+            for (int temp = 0; temp < nList.getLength(); temp++) {
+
+                Node nNode = nList.item(temp);
+
+                if (nNode.getNodeType() == Node.ELEMENT_NODE) {
+
+                    Element eElement = (Element) nNode;
+
+                    infoEmpresa[0] = eElement.
+                            getElementsByTagName("NombreEmpresa").item(0).
+                            getTextContent();
+                    infoEmpresa[1] = eElement.getElementsByTagName("Telefono").
+                            item(0).getTextContent();
+                }
+            }
+
+        } catch (ParserConfigurationException | SAXException | IOException |
+                DOMException e) {
+
+        }
+
+        return infoEmpresa;
     }
 }

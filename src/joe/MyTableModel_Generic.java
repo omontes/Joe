@@ -50,9 +50,7 @@ public class MyTableModel_Generic extends AbstractTableModel {
      * Les agrega el tipo de clase a cada columna
      */
     public Class getColumnClass(int c) {
-        if(c==3){
-        return Date.class;
-        }
+        
             return String.class;
         }
     @Override

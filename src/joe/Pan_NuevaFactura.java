@@ -1206,7 +1206,7 @@ public class Pan_NuevaFactura extends javax.swing.JPanel {
                     this.jFormattedTextField_precioProducto.
                     getValue().toString());
             AdminBD.crearProducto(codigo, this.jTextField_nombre.getText(),
-                    bd, 0, dateFormat.format(date), "A", null, 1);
+                    bd, BigDecimal.ZERO, dateFormat.format(date), "A", null, 1);
             AdminBD.insertarEnInventario(this.jTextField_codigo.getText(),
                     1, Integer.parseInt(this.jFormattedTextField_cantidadProducto.getValue()
                             .toString()));

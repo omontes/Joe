@@ -55,11 +55,14 @@
                               </Group>
                               <EmptySpace max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="0" attributes="0">
-                                  <Component id="jComboBox_CategoriaCrearProducto" min="-2" max="-2" attributes="0"/>
+                                  <Group type="102" attributes="0">
+                                      <Component id="jComboBox_CategoriaCrearProducto" min="-2" max="-2" attributes="0"/>
+                                      <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                                  </Group>
                                   <Group type="102" alignment="1" attributes="0">
                                       <Group type="103" groupAlignment="1" attributes="0">
-                                          <Component id="jTextField_CostoCrearProducto" alignment="0" max="32767" attributes="0"/>
-                                          <Component id="jTextField_Precio" alignment="0" pref="258" max="32767" attributes="0"/>
+                                          <Component id="jTextField_Precio" alignment="0" max="32767" attributes="0"/>
+                                          <Component id="jTextField_CostoCrearProducto" alignment="0" pref="258" max="32767" attributes="0"/>
                                           <Component id="jTextField_Cantidad" alignment="0" max="32767" attributes="0"/>
                                           <Component id="jTextField_codigo" alignment="0" max="32767" attributes="0"/>
                                           <Component id="jTextField_nombre" alignment="0" max="32767" attributes="0"/>
@@ -153,15 +156,6 @@
                 <Property name="text" type="java.lang.String" value="Precio del Producto"/>
               </Properties>
             </Component>
-            <Component class="javax.swing.JTextField" name="jTextField_Precio">
-              <Properties>
-                <Property name="text" type="java.lang.String" value="0.00"/>
-              </Properties>
-              <Events>
-                <EventHandler event="keyPressed" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="jTextField_PrecioKeyPressed"/>
-                <EventHandler event="keyTyped" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="jTextField_PrecioKeyTyped"/>
-              </Events>
-            </Component>
             <Component class="javax.swing.JLabel" name="jLabel4">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Cantidad del Producto"/>
@@ -238,6 +232,19 @@
               </Properties>
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton6ActionPerformed"/>
+              </Events>
+            </Component>
+            <Component class="javax.swing.JFormattedTextField" name="jTextField_Precio">
+              <Properties>
+                <Property name="formatterFactory" type="javax.swing.JFormattedTextField$AbstractFormatterFactory" editor="org.netbeans.modules.form.editors.AbstractFormatterFactoryEditor">
+                  <Format format="#,##0.00" subtype="-1" type="0"/>
+                </Property>
+                <Property name="text" type="java.lang.String" value="0.00"/>
+              </Properties>
+              <Events>
+                <EventHandler event="focusGained" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="jTextField_PrecioFocusGained"/>
+                <EventHandler event="keyPressed" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="jTextField_PrecioKeyPressed"/>
+                <EventHandler event="keyTyped" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="jTextField_PrecioKeyTyped"/>
               </Events>
             </Component>
           </SubComponents>
@@ -913,8 +920,8 @@
                               <EmptySpace max="-2" attributes="0"/>
                               <Component id="jComboBox_categoriaBusquedaInventario" min="-2" max="-2" attributes="0"/>
                           </Group>
-                          <Group type="103" groupAlignment="1" attributes="0">
-                              <Group type="102" attributes="0">
+                          <Group type="103" alignment="0" groupAlignment="1" max="-2" attributes="0">
+                              <Group type="102" alignment="0" attributes="0">
                                   <Component id="jButton4" min="-2" max="-2" attributes="0"/>
                                   <EmptySpace max="-2" attributes="0"/>
                                   <Component id="jButton_CrearProductoInventario" min="-2" pref="129" max="-2" attributes="0"/>
@@ -922,13 +929,15 @@
                                   <Component id="jButton_EliminarProductoInventario" min="-2" pref="85" max="-2" attributes="0"/>
                                   <EmptySpace max="-2" attributes="0"/>
                                   <Component id="jButton_ModificarProducto" min="-2" pref="95" max="-2" attributes="0"/>
-                                  <EmptySpace min="-2" pref="264" max="-2" attributes="0"/>
+                                  <EmptySpace max="-2" attributes="0"/>
+                                  <Component id="jButton7" min="-2" max="-2" attributes="0"/>
+                                  <EmptySpace max="32767" attributes="0"/>
                                   <Component id="jButtonRegresarInventario" min="-2" pref="95" max="-2" attributes="0"/>
                               </Group>
-                              <Component id="jScrollPane5" min="-2" pref="781" max="-2" attributes="0"/>
+                              <Component id="jScrollPane5" alignment="0" min="-2" pref="755" max="-2" attributes="0"/>
                           </Group>
                       </Group>
-                      <EmptySpace pref="66" max="32767" attributes="0"/>
+                      <EmptySpace pref="92" max="32767" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
@@ -950,6 +959,7 @@
                           <Component id="jButton_EliminarProductoInventario" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="jButton_ModificarProducto" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="jButtonRegresarInventario" alignment="3" min="-2" pref="24" max="-2" attributes="0"/>
+                          <Component id="jButton7" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace pref="36" max="32767" attributes="0"/>
                   </Group>
@@ -1044,6 +1054,14 @@
             </Component>
             <Component class="javax.swing.JTextField" name="jTextField_busquedaInventario">
             </Component>
+            <Component class="javax.swing.JButton" name="jButton7">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Generar Etiquetas"/>
+              </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton7ActionPerformed"/>
+              </Events>
+            </Component>
           </SubComponents>
         </Container>
         <Container class="javax.swing.JPanel" name="jPanel_EntradaMercaderia">
@@ -1060,18 +1078,18 @@
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" attributes="0">
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Group type="102" alignment="0" attributes="0">
-                              <EmptySpace min="-2" pref="23" max="-2" attributes="0"/>
-                              <Component id="jScrollPane3" min="-2" pref="855" max="-2" attributes="0"/>
-                          </Group>
-                          <Group type="102" alignment="0" attributes="0">
+                          <Group type="102" attributes="0">
                               <EmptySpace min="-2" pref="54" max="-2" attributes="0"/>
                               <Component id="jButton_CrearEntrada" min="-2" max="-2" attributes="0"/>
                               <EmptySpace min="-2" pref="27" max="-2" attributes="0"/>
                               <Component id="jButton_verEntrada" min="-2" max="-2" attributes="0"/>
                           </Group>
+                          <Group type="102" alignment="0" attributes="0">
+                              <EmptySpace min="-2" pref="23" max="-2" attributes="0"/>
+                              <Component id="jScrollPane3" min="-2" pref="786" max="-2" attributes="0"/>
+                          </Group>
                       </Group>
-                      <EmptySpace pref="21" max="32767" attributes="0"/>
+                      <EmptySpace pref="90" max="32767" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
@@ -1106,6 +1124,7 @@
                     <Property name="columnModel" type="javax.swing.table.TableColumnModel" editor="org.netbeans.modules.form.editors2.TableColumnModelEditor">
                       <TableColumnModel selectionModel="0"/>
                     </Property>
+                    <Property name="fillsViewportHeight" type="boolean" value="true"/>
                     <Property name="tableHeader" type="javax.swing.table.JTableHeader" editor="org.netbeans.modules.form.editors2.JTableHeaderEditor">
                       <TableHeader reorderingAllowed="true" resizingAllowed="true"/>
                     </Property>
@@ -1145,18 +1164,18 @@
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" attributes="0">
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Group type="102" alignment="0" attributes="0">
-                              <EmptySpace min="-2" pref="19" max="-2" attributes="0"/>
-                              <Component id="jScrollPane4" min="-2" pref="855" max="-2" attributes="0"/>
-                          </Group>
-                          <Group type="102" alignment="0" attributes="0">
+                          <Group type="102" attributes="0">
                               <EmptySpace min="-2" pref="41" max="-2" attributes="0"/>
                               <Component id="jButton_CrearSalida" min="-2" max="-2" attributes="0"/>
                               <EmptySpace min="-2" pref="27" max="-2" attributes="0"/>
                               <Component id="jButton_verSalida" min="-2" max="-2" attributes="0"/>
                           </Group>
+                          <Group type="102" alignment="0" attributes="0">
+                              <EmptySpace min="-2" pref="19" max="-2" attributes="0"/>
+                              <Component id="jScrollPane4" min="-2" pref="782" max="-2" attributes="0"/>
+                          </Group>
                       </Group>
-                      <EmptySpace pref="25" max="32767" attributes="0"/>
+                      <EmptySpace pref="98" max="32767" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
@@ -1170,7 +1189,7 @@
                           <Component id="jButton_verSalida" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="jButton_CrearSalida" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
-                      <EmptySpace pref="40" max="32767" attributes="0"/>
+                      <EmptySpace pref="38" max="32767" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
@@ -1191,6 +1210,7 @@
                     <Property name="columnModel" type="javax.swing.table.TableColumnModel" editor="org.netbeans.modules.form.editors2.TableColumnModelEditor">
                       <TableColumnModel selectionModel="0"/>
                     </Property>
+                    <Property name="fillsViewportHeight" type="boolean" value="true"/>
                     <Property name="tableHeader" type="javax.swing.table.JTableHeader" editor="org.netbeans.modules.form.editors2.JTableHeaderEditor">
                       <TableHeader reorderingAllowed="true" resizingAllowed="true"/>
                     </Property>
@@ -1237,6 +1257,7 @@
                           <Group type="102" alignment="0" attributes="0">
                               <EmptySpace min="-2" pref="46" max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="0" attributes="0">
+                                  <Component id="jScrollPane7" min="-2" pref="768" max="-2" attributes="0"/>
                                   <Group type="102" attributes="0">
                                       <Component id="jLabel23" min="-2" max="-2" attributes="0"/>
                                       <EmptySpace max="-2" attributes="0"/>
@@ -1244,11 +1265,10 @@
                                       <EmptySpace max="-2" attributes="0"/>
                                       <Component id="jComboBox_categoriaBusquedaBodega" min="-2" max="-2" attributes="0"/>
                                   </Group>
-                                  <Component id="jScrollPane7" min="-2" pref="785" max="-2" attributes="0"/>
                               </Group>
                           </Group>
                       </Group>
-                      <EmptySpace pref="68" max="32767" attributes="0"/>
+                      <EmptySpace pref="85" max="32767" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>

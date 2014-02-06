@@ -1945,7 +1945,7 @@ public class JPanel_CrearFactura extends javax.swing.JPanel {
                 this.jFormattedTextField_Cliente.getText(),
                 this.jComboBox_Vendedores.getSelectedItem().toString(),
                 this.jComboBox_CategoriaTipoPago.getSelectedItem().toString());
-        this.clearAll();
+        //this.clearAll();
 
 
     }//GEN-LAST:event_jButton_guardaImprimeActionPerformed

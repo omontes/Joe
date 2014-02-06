@@ -105,8 +105,8 @@ public class JPanel_CrearEntradaSalidaMercaderia extends javax.swing.JPanel {
         jButton1 = new javax.swing.JButton();
         jScrollPane2 = new javax.swing.JScrollPane();
         jTable_Movimiento = new javax.swing.JTable();
-        jTextField_referencia = new javax.swing.JFormattedTextField();
         jButton_generarEtiquetas = new javax.swing.JButton();
+        jTextField_referencia = new javax.swing.JTextField();
 
         jPanel2.setBackground(new java.awt.Color(153, 153, 153));
 
@@ -567,18 +567,16 @@ public class JPanel_CrearEntradaSalidaMercaderia extends javax.swing.JPanel {
         });
         jScrollPane2.setViewportView(jTable_Movimiento);
 
-        try {
-            jTextField_referencia.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("****************************************************************************************************************")));
-        } catch (java.text.ParseException ex) {
-            ex.printStackTrace();
-        }
-        jTextField_referencia.setText("");
-        jTextField_referencia.setFocusCycleRoot(true);
-
         jButton_generarEtiquetas.setText("Generar Etiquetas");
         jButton_generarEtiquetas.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton_generarEtiquetasActionPerformed(evt);
+            }
+        });
+
+        jTextField_referencia.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                jTextField_referenciaKeyTyped(evt);
             }
         });
 
@@ -612,8 +610,8 @@ public class JPanel_CrearEntradaSalidaMercaderia extends javax.swing.JPanel {
                                 .addComponent(jComboBox_LugarDeMov, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(29, 29, 29)
                                 .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 69, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(jTextField_referencia, javax.swing.GroupLayout.PREFERRED_SIZE, 276, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jTextField_referencia, javax.swing.GroupLayout.PREFERRED_SIZE, 283, javax.swing.GroupLayout.PREFERRED_SIZE))))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(148, 148, 148)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -896,6 +894,15 @@ public class JPanel_CrearEntradaSalidaMercaderia extends javax.swing.JPanel {
 
     }//GEN-LAST:event_jButton_generarEtiquetasActionPerformed
 
+    private void jTextField_referenciaKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField_referenciaKeyTyped
+        int limite = 80;
+        if (this.jTextField_referencia.getText().length() >= limite) {
+            evt.consume();
+            Toolkit.getDefaultToolkit().beep();
+
+        }
+    }//GEN-LAST:event_jTextField_referenciaKeyTyped
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     javax.swing.JButton jButton1;
@@ -949,7 +956,7 @@ public class JPanel_CrearEntradaSalidaMercaderia extends javax.swing.JPanel {
     javax.swing.JTextField jTextField_busqueProducto;
     javax.swing.JTextField jTextField_codigo;
     javax.swing.JTextField jTextField_nombre;
-    javax.swing.JFormattedTextField jTextField_referencia;
+    javax.swing.JTextField jTextField_referencia;
     // End of variables declaration//GEN-END:variables
     private void creacionProductoPanel() {
         //En caso de que quiera crear un producto mientras se este editando
@@ -1252,7 +1259,6 @@ public class JPanel_CrearEntradaSalidaMercaderia extends javax.swing.JPanel {
     }
 
     private void guardarMovimiento() {
-        System.out.println(this.jTextField_referencia.getText());
         if (this.jTextField_referencia.getText().equals("")) {
             JOptionPane.showMessageDialog(
                     null,

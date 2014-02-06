@@ -723,13 +723,14 @@ public class JPanel_CrearEntradaSalidaMercaderia extends javax.swing.JPanel {
     }//GEN-LAST:event_jButton_BuscarProductoActionPerformed
 
     private void jButton_guardaImprimeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_guardaImprimeActionPerformed
-        this.guardarMovimiento();
-        this.imprimirMovimiento(
-                this.jTable_Movimiento, this.jLabel_NumerodeMovimiento.getText(),
-                this.jLabel_Fecha.getText(),
-                this.jComboBox_LugarDeMov.getSelectedItem().toString(),
-                this.jFormattedTextField_Total.getText(),
-                this.jTextField_referencia.getText());
+        if (this.guardarMovimiento()) {
+            this.imprimirMovimiento(
+                    this.jTable_Movimiento, this.jLabel_NumerodeMovimiento.getText(),
+                    this.jLabel_Fecha.getText(),
+                    this.jComboBox_LugarDeMov.getSelectedItem().toString(),
+                    this.jFormattedTextField_Total.getText(),
+                    this.jTextField_referencia.getText());
+        }
 
 
     }//GEN-LAST:event_jButton_guardaImprimeActionPerformed
@@ -1144,7 +1145,7 @@ public class JPanel_CrearEntradaSalidaMercaderia extends javax.swing.JPanel {
         //Agrega el modelo a la factura
         MyTableModel_FACT model = new MyTableModel_FACT(columnNames, data);
         //Agrega 20 filas
-        model.addRow(20);
+        model.addRow(1);
         this.jTable_Movimiento.setModel(model);
 
     }
@@ -1258,17 +1259,25 @@ public class JPanel_CrearEntradaSalidaMercaderia extends javax.swing.JPanel {
 
     }
 
-    private void guardarMovimiento() {
+    private boolean guardarMovimiento() {
         if (this.jTextField_referencia.getText().equals("")) {
             JOptionPane.showMessageDialog(
                     null,
                     "Debe de ingresar una referencia de la entrada de mercaderia",
                     "Alert!", JOptionPane.ERROR_MESSAGE);
-            return;
+            return false;
+        }
+        if(this.jTable_Movimiento.getValueAt(0,0).equals("")){
+            JOptionPane.showMessageDialog(
+                    null,
+                    "Debe de ingresar algun producto",
+                    "Alert!", JOptionPane.ERROR_MESSAGE);
+            return false;
         }
         this.crearMovimiento();
         this.guardarProductosMovimiento();
         this.clearAll();
+        return true;
     }
 
     private void crearMovimiento() {
@@ -1298,7 +1307,7 @@ public class JPanel_CrearEntradaSalidaMercaderia extends javax.swing.JPanel {
         //insertar los productos en el movimiento
         for (int i = 0; i < rows; i++) {
             //Si la fila esta vacia
-            if (model.getValueAt(i, 0) != "") {
+            if (!model.getValueAt(i, 0).equals("")) {
                 String idProducto = infoTablaMov[i][0];
                 int idVersion = AdminBD.veridVersionActivaProductoPorCodigo(idProducto);
                 String CantidadSinCorregir = infoTablaMov[i][2].toString();

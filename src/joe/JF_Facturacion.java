@@ -19,6 +19,9 @@ public class JF_Facturacion extends javax.swing.JFrame {
     public static final int DEV_PANEL = 3;
     
     private Pan_Fact _panFact;
+    private Pan_Cred _panCred;
+    private Pan_Dev _panDev;
+    private Pan_Apart _panApart;
     
     private int _activePanel;
     private final PanelManager _panelManager;
@@ -30,8 +33,38 @@ public class JF_Facturacion extends javax.swing.JFrame {
         _panFact = new Pan_Fact();
         _panFact.setSize(760, 400);
         _panFact.setLocation(20, 60);
-        
         _panelManager.showPanel(_panFact);
+        
+        _panCred = new Pan_Cred();
+        _panCred.setSize(760, 400);
+        _panCred.setLocation(20, 60);
+        _panelManager.addPanelToPane(_panCred);
+        
+        _panDev = new Pan_Dev();
+        _panDev.setSize(760, 400);
+        _panDev.setLocation(20, 60);
+        _panelManager.addPanelToPane(_panDev);
+        
+        _panApart = new Pan_Apart();
+        _panApart.setSize(760, 400);
+        _panApart.setLocation(20, 60);
+        _panelManager.addPanelToPane(_panApart);
+    }
+    
+    public void refreshActiveTable(){
+        refreshPanelTable(_activePanel);
+    }
+    
+    public void refreshPanelTable(int pPanel){
+        if (pPanel == FACT_PANEL){
+            _panFact.completarTablaFacturacion();
+        } else if (pPanel == APART_PANEL){
+            _panApart.completarTablaApartados();
+        } else if (pPanel == DEV_PANEL){
+            _panDev.completarTablaDevoluciones();
+        } else if (pPanel == CRED_PANEL){
+            _panCred.completarTablaCreditos();
+        }
     }
     
     public static JF_Facturacion getInstance(){
@@ -59,7 +92,7 @@ public class JF_Facturacion extends javax.swing.JFrame {
         _panelManager = new PanelManager(jLayeredPane1);
         startComponents();
         labUsuario.setText(pUser + " - " + pPosition);
-        setLocationRelativeTo(null);
+        setLocation(StartWindow.getPosX(), StartWindow.getPosY());
         _activePanel = FACT_PANEL;        
     }
 
@@ -83,6 +116,7 @@ public class JF_Facturacion extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Nombre de la empresa - Facturación");
+        setUndecorated(true);
         setResizable(false);
         addWindowListener(new java.awt.event.WindowAdapter() {
             public void windowClosing(java.awt.event.WindowEvent evt) {
@@ -196,7 +230,8 @@ public class JF_Facturacion extends javax.swing.JFrame {
         StartWindow.getInstance().enableMe();
     }//GEN-LAST:event_formWindowClosing
 
-    public void changeTab(int pPanel){
+    
+    private void changeTab(int pPanel){
         //Quitar pestaña activa
         if (_activePanel == FACT_PANEL){
             bttFact.setIcon(new javax.swing.ImageIcon(getClass().getResource("/System/Images/Panel 1/bttDaFacturacion.png")));
@@ -208,15 +243,19 @@ public class JF_Facturacion extends javax.swing.JFrame {
             bttDev.setIcon(new javax.swing.ImageIcon(getClass().getResource("/System/Images/Panel 1/bttDaDevoluciones.png")));
         }
         
-        //Activar pestaña correcta
+        //Activar pestaña correcta y cambiar panel
         if (pPanel == FACT_PANEL){
             bttFact.setIcon(new javax.swing.ImageIcon(getClass().getResource("/System/Images/Panel 1/bttActFacturacion.png")));
+            _panelManager.changeStartPanel(_panFact);
         } else if (pPanel == CRED_PANEL){
             bttCred.setIcon(new javax.swing.ImageIcon(getClass().getResource("/System/Images/Panel 1/bttActCreditos.png")));
+            _panelManager.changeStartPanel(_panCred);
         } else if (pPanel == APART_PANEL){
             bttApart.setIcon(new javax.swing.ImageIcon(getClass().getResource("/System/Images/Panel 1/bttActApartados.png")));
+            _panelManager.changeStartPanel(_panApart);
         } else {
             bttDev.setIcon(new javax.swing.ImageIcon(getClass().getResource("/System/Images/Panel 1/bttActDevoluciones.png")));
+            _panelManager.changeStartPanel(_panDev);
         }
     }
 

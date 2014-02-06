@@ -5150,7 +5150,7 @@ public void actionPerformed(java.awt.event.ActionEvent evt) {
     private void jButton_aceptarListaInvActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_aceptarListaInvActionPerformed
         Direct_Control_BD AdminBD = Direct_Control_BD.getInstance();
 
-        String ubicacion = "General";
+        String ubicacion = "Inventario General";
         if (jRadioButton_ExcelListaInv.isSelected()) {//para mostrar en Excel
             if (jRadioButton_bodegaInv.isSelected()) {
                 ubicacion = "Bodega";

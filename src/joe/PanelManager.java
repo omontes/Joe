@@ -41,6 +41,17 @@ public class PanelManager {
         showPanel(pPanel);
     }
     
+    public void addPanelToPane(JPanel pPanel){
+        _layeredPane.add(pPanel, 1);
+        pPanel.setVisible(false);
+    }
+    
+    public void changeStartPanel(JPanel pPanel){
+        _stack.pop().setVisible(false);
+        _stack.push(pPanel);
+        pPanel.setVisible(true);
+    }
+    
     public Object back(){
         JPanel lastPanel = _stack.pop();
         lastPanel.setVisible(false);

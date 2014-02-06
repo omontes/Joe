@@ -4,23 +4,22 @@
  * and open the template in the editor.
  */
 package joe;
-//////////////////////////////
 
 import db_managment.Direct_Control_BD;
 import java.awt.event.KeyEvent;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.Date;
+import java.util.GregorianCalendar;
 import java.util.Vector;
-import java.util.logging.Level;
-import java.util.logging.Logger;
+
 import javax.swing.RowSorter;
 import javax.swing.SortOrder;
 
 import javax.swing.table.TableModel;
 import javax.swing.table.TableRowSorter;
-//////////////////////////
 
 /**
  *
@@ -39,7 +38,7 @@ public class NewJPanel_Clientes extends javax.swing.JPanel {
     public NewJPanel_Clientes() {
         initComponents();
         AdminBD = Direct_Control_BD.getInstance();
-        this.actualizaTablaParaClientes();
+        actualizaTablaParaClientes();
     }
 
     /**
@@ -60,9 +59,9 @@ public class NewJPanel_Clientes extends javax.swing.JPanel {
         jFormattedTextField_nombreClteVend = new javax.swing.JFormattedTextField();
         jFormattedTextField_telefonoClteVend = new javax.swing.JFormattedTextField();
         jFormattedTextField_direccionClteVend = new javax.swing.JFormattedTextField();
-        jFormattedTextField_fechaCumpleClteVend = new javax.swing.JFormattedTextField();
         jButton_CrearCliente = new javax.swing.JButton();
         jButton_CancelarCrearCliente = new javax.swing.JButton();
+        dateChooserCombo_CumpCrearCliente = new datechooser.beans.DateChooserCombo();
         jPanel_VerClte = new javax.swing.JPanel();
         jLabel_nombreCliente4 = new javax.swing.JLabel();
         jLabel_telefonoCliente4 = new javax.swing.JLabel();
@@ -83,12 +82,12 @@ public class NewJPanel_Clientes extends javax.swing.JPanel {
         jLabel_FechaCumpleanos6 = new javax.swing.JLabel();
         jFormattedTextField_ModfnombreClteVend = new javax.swing.JFormattedTextField();
         jFormattedTextField_ModfdireccionClteVend = new javax.swing.JFormattedTextField();
-        jFormattedTextField_ModffechaCumpleClteVend = new javax.swing.JFormattedTextField();
         jButton_ModifCliente = new javax.swing.JButton();
         jButton_CancelarModifiCliente = new javax.swing.JButton();
         jFormattedTextField_ModfCedulaClteVend = new javax.swing.JFormattedTextField();
         jLabel_FechaCumpleanos7 = new javax.swing.JLabel();
         jFormattedTextField_ModftelefonoClteVend = new javax.swing.JFormattedTextField();
+        dateChooserCombo_CumpModifCliente = new datechooser.beans.DateChooserCombo();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable_Generica = new javax.swing.JTable();
         jButton_CrearClteVend = new javax.swing.JButton();
@@ -138,12 +137,6 @@ public class NewJPanel_Clientes extends javax.swing.JPanel {
             }
         });
 
-        jFormattedTextField_fechaCumpleClteVend.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyPressed(java.awt.event.KeyEvent evt) {
-                jFormattedTextField_fechaCumpleClteVendKeyPressed(evt);
-            }
-        });
-
         jButton_CrearCliente.setText("Aceptar");
         jButton_CrearCliente.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -163,416 +156,500 @@ public class NewJPanel_Clientes extends javax.swing.JPanel {
             }
         });
 
-        javax.swing.GroupLayout jPanel_CrearClienteLayout = new javax.swing.GroupLayout(jPanel_CrearCliente);
-        jPanel_CrearCliente.setLayout(jPanel_CrearClienteLayout);
-        jPanel_CrearClienteLayout.setHorizontalGroup(
-            jPanel_CrearClienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel_CrearClienteLayout.createSequentialGroup()
-                .addGap(20, 20, 20)
-                .addGroup(jPanel_CrearClienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jLabel_telefonoCliente3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jLabel_nombreCliente3)
-                    .addComponent(jLabel_direccionCliente3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jLabel_FechaCumpleanos3))
-                .addGap(18, 18, 18)
-                .addGroup(jPanel_CrearClienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jFormattedTextField_nombreClteVend)
-                    .addComponent(jFormattedTextField_telefonoClteVend)
-                    .addComponent(jFormattedTextField_direccionClteVend)
-                    .addComponent(jFormattedTextField_fechaCumpleClteVend, javax.swing.GroupLayout.PREFERRED_SIZE, 168, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(169, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel_CrearClienteLayout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jButton_CrearCliente)
-                .addGap(27, 27, 27)
+        dateChooserCombo_CumpCrearCliente.setCurrentView(new datechooser.view.appearance.AppearancesList("Grey",
+            new datechooser.view.appearance.ViewAppearance("custom",
+                new datechooser.view.appearance.swing.SwingCellAppearance(new java.awt.Font("Tahoma", java.awt.Font.PLAIN, 11),
+                    new java.awt.Color(0, 0, 0),
+                    new java.awt.Color(0, 0, 255),
+                    false,
+                    true,
+                    new datechooser.view.appearance.swing.ButtonPainter()),
+                new datechooser.view.appearance.swing.SwingCellAppearance(new java.awt.Font("Tahoma", java.awt.Font.PLAIN, 11),
+                    new java.awt.Color(0, 0, 0),
+                    new java.awt.Color(0, 0, 255),
+                    true,
+                    true,
+                    new datechooser.view.appearance.swing.ButtonPainter()),
+                new datechooser.view.appearance.swing.SwingCellAppearance(new java.awt.Font("Tahoma", java.awt.Font.PLAIN, 11),
+                    new java.awt.Color(0, 0, 255),
+                    new java.awt.Color(0, 0, 255),
+                    false,
+                    true,
+                    new datechooser.view.appearance.swing.ButtonPainter()),
+                new datechooser.view.appearance.swing.SwingCellAppearance(new java.awt.Font("Tahoma", java.awt.Font.PLAIN, 11),
+                    new java.awt.Color(128, 128, 128),
+                    new java.awt.Color(0, 0, 255),
+                    false,
+                    true,
+                    new datechooser.view.appearance.swing.LabelPainter()),
+                new datechooser.view.appearance.swing.SwingCellAppearance(new java.awt.Font("Tahoma", java.awt.Font.PLAIN, 11),
+                    new java.awt.Color(0, 0, 0),
+                    new java.awt.Color(0, 0, 255),
+                    false,
+                    true,
+                    new datechooser.view.appearance.swing.LabelPainter()),
+                new datechooser.view.appearance.swing.SwingCellAppearance(new java.awt.Font("Tahoma", java.awt.Font.PLAIN, 11),
+                    new java.awt.Color(0, 0, 0),
+                    new java.awt.Color(255, 0, 0),
+                    false,
+                    false,
+                    new datechooser.view.appearance.swing.ButtonPainter()),
+                (datechooser.view.BackRenderer)null,
+                false,
+                true)));
+    dateChooserCombo_CumpCrearCliente.setCalendarBackground(new java.awt.Color(0, 51, 51));
+    dateChooserCombo_CumpCrearCliente.setNothingAllowed(false);
+    dateChooserCombo_CumpCrearCliente.setBehavior(datechooser.model.multiple.MultyModelBehavior.SELECT_SINGLE);
+
+    javax.swing.GroupLayout jPanel_CrearClienteLayout = new javax.swing.GroupLayout(jPanel_CrearCliente);
+    jPanel_CrearCliente.setLayout(jPanel_CrearClienteLayout);
+    jPanel_CrearClienteLayout.setHorizontalGroup(
+        jPanel_CrearClienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel_CrearClienteLayout.createSequentialGroup()
+            .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jButton_CrearCliente)
+            .addGap(27, 27, 27)
+            .addComponent(jButton_CancelarCrearCliente)
+            .addGap(18, 18, 18))
+        .addGroup(jPanel_CrearClienteLayout.createSequentialGroup()
+            .addGap(20, 20, 20)
+            .addGroup(jPanel_CrearClienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                .addComponent(jLabel_telefonoCliente3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jLabel_nombreCliente3)
+                .addComponent(jLabel_direccionCliente3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jLabel_FechaCumpleanos3))
+            .addGap(18, 18, 18)
+            .addGroup(jPanel_CrearClienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                .addComponent(dateChooserCombo_CumpCrearCliente, javax.swing.GroupLayout.DEFAULT_SIZE, 168, Short.MAX_VALUE)
+                .addComponent(jFormattedTextField_nombreClteVend)
+                .addComponent(jFormattedTextField_telefonoClteVend)
+                .addComponent(jFormattedTextField_direccionClteVend))
+            .addContainerGap(169, Short.MAX_VALUE))
+    );
+    jPanel_CrearClienteLayout.setVerticalGroup(
+        jPanel_CrearClienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        .addGroup(jPanel_CrearClienteLayout.createSequentialGroup()
+            .addGap(24, 24, 24)
+            .addGroup(jPanel_CrearClienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addComponent(jLabel_nombreCliente3)
+                .addComponent(jFormattedTextField_nombreClteVend, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+            .addGroup(jPanel_CrearClienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addComponent(jLabel_telefonoCliente3)
+                .addComponent(jFormattedTextField_telefonoClteVend, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addGap(10, 10, 10)
+            .addGroup(jPanel_CrearClienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addComponent(jLabel_direccionCliente3)
+                .addComponent(jFormattedTextField_direccionClteVend, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addGap(18, 18, 18)
+            .addGroup(jPanel_CrearClienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addComponent(jLabel_FechaCumpleanos3)
+                .addComponent(dateChooserCombo_CumpCrearCliente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 95, Short.MAX_VALUE)
+            .addGroup(jPanel_CrearClienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                 .addComponent(jButton_CancelarCrearCliente)
-                .addGap(18, 18, 18))
-        );
-        jPanel_CrearClienteLayout.setVerticalGroup(
-            jPanel_CrearClienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel_CrearClienteLayout.createSequentialGroup()
-                .addGap(24, 24, 24)
-                .addGroup(jPanel_CrearClienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel_nombreCliente3)
-                    .addComponent(jFormattedTextField_nombreClteVend, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(jPanel_CrearClienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel_telefonoCliente3)
-                    .addComponent(jFormattedTextField_telefonoClteVend, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(10, 10, 10)
-                .addGroup(jPanel_CrearClienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel_direccionCliente3)
-                    .addComponent(jFormattedTextField_direccionClteVend, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(jPanel_CrearClienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel_FechaCumpleanos3)
-                    .addComponent(jFormattedTextField_fechaCumpleClteVend, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 95, Short.MAX_VALUE)
-                .addGroup(jPanel_CrearClienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton_CancelarCrearCliente)
-                    .addComponent(jButton_CrearCliente))
-                .addGap(19, 19, 19))
-        );
+                .addComponent(jButton_CrearCliente))
+            .addGap(19, 19, 19))
+    );
 
-        jPanel_VerClte.setMaximumSize(new java.awt.Dimension(480, 280));
-        jPanel_VerClte.setMinimumSize(new java.awt.Dimension(480, 280));
+    jPanel_VerClte.setMaximumSize(new java.awt.Dimension(480, 280));
+    jPanel_VerClte.setMinimumSize(new java.awt.Dimension(480, 280));
 
-        jLabel_nombreCliente4.setText("Nombre del Cliente");
+    jLabel_nombreCliente4.setText("Nombre del Cliente");
 
-        jLabel_telefonoCliente4.setText("Telefono");
+    jLabel_telefonoCliente4.setText("Telefono");
 
-        jLabel_direccionCliente4.setText("Direccion");
+    jLabel_direccionCliente4.setText("Direccion");
 
-        jLabel_FechaCumpleanos4.setText("Fecha de Cumpleaños");
+    jLabel_FechaCumpleanos4.setText("Fecha de Cumpleaños");
 
-        jButton_CrearCliente1.setText("Aceptar");
-        jButton_CrearCliente1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton_CrearCliente1ActionPerformed(evt);
-            }
-        });
-        jButton_CrearCliente1.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyPressed(java.awt.event.KeyEvent evt) {
-                jButton_CrearCliente1KeyPressed(evt);
-            }
-        });
+    jButton_CrearCliente1.setText("Aceptar");
+    jButton_CrearCliente1.addActionListener(new java.awt.event.ActionListener() {
+        public void actionPerformed(java.awt.event.ActionEvent evt) {
+            jButton_CrearCliente1ActionPerformed(evt);
+        }
+    });
+    jButton_CrearCliente1.addKeyListener(new java.awt.event.KeyAdapter() {
+        public void keyPressed(java.awt.event.KeyEvent evt) {
+            jButton_CrearCliente1KeyPressed(evt);
+        }
+    });
 
-        jButton_CancelarCrearCliente1.setText("Cancelar");
-        jButton_CancelarCrearCliente1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton_CancelarCrearCliente1ActionPerformed(evt);
-            }
-        });
+    jButton_CancelarCrearCliente1.setText("Cancelar");
+    jButton_CancelarCrearCliente1.addActionListener(new java.awt.event.ActionListener() {
+        public void actionPerformed(java.awt.event.ActionEvent evt) {
+            jButton_CancelarCrearCliente1ActionPerformed(evt);
+        }
+    });
 
-        jLabel_DirreVerClteVend.setBackground(new java.awt.Color(0, 51, 51));
+    jLabel_DirreVerClteVend.setBackground(new java.awt.Color(0, 51, 51));
 
-        jLabel_FechaCVerClteVend.setBackground(new java.awt.Color(0, 51, 51));
+    jLabel_FechaCVerClteVend.setBackground(new java.awt.Color(0, 51, 51));
 
-        jLabel_TeleVerClteVend.setBackground(new java.awt.Color(0, 51, 51));
+    jLabel_TeleVerClteVend.setBackground(new java.awt.Color(0, 51, 51));
 
-        jLabel_NombreVerClteVend.setBackground(new java.awt.Color(0, 51, 51));
+    jLabel_NombreVerClteVend.setBackground(new java.awt.Color(0, 51, 51));
 
-        jLabel_FechaCumpleanos5.setText("Cedula");
+    jLabel_FechaCumpleanos5.setText("Cedula");
 
-        jLabel_CedCVerClteVend.setBackground(new java.awt.Color(0, 51, 51));
+    jLabel_CedCVerClteVend.setBackground(new java.awt.Color(0, 51, 51));
 
-        javax.swing.GroupLayout jPanel_VerClteLayout = new javax.swing.GroupLayout(jPanel_VerClte);
-        jPanel_VerClte.setLayout(jPanel_VerClteLayout);
-        jPanel_VerClteLayout.setHorizontalGroup(
-            jPanel_VerClteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel_VerClteLayout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jButton_CrearCliente1)
-                .addGap(27, 27, 27)
+    javax.swing.GroupLayout jPanel_VerClteLayout = new javax.swing.GroupLayout(jPanel_VerClte);
+    jPanel_VerClte.setLayout(jPanel_VerClteLayout);
+    jPanel_VerClteLayout.setHorizontalGroup(
+        jPanel_VerClteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel_VerClteLayout.createSequentialGroup()
+            .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jButton_CrearCliente1)
+            .addGap(27, 27, 27)
+            .addComponent(jButton_CancelarCrearCliente1)
+            .addGap(18, 18, 18))
+        .addGroup(jPanel_VerClteLayout.createSequentialGroup()
+            .addContainerGap()
+            .addGroup(jPanel_VerClteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                .addComponent(jLabel_FechaCumpleanos5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jLabel_telefonoCliente4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jLabel_nombreCliente4)
+                .addComponent(jLabel_direccionCliente4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jLabel_FechaCumpleanos4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+            .addGroup(jPanel_VerClteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addComponent(jLabel_DirreVerClteVend, javax.swing.GroupLayout.PREFERRED_SIZE, 168, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jLabel_TeleVerClteVend, javax.swing.GroupLayout.PREFERRED_SIZE, 168, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jLabel_FechaCVerClteVend, javax.swing.GroupLayout.PREFERRED_SIZE, 168, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jLabel_NombreVerClteVend, javax.swing.GroupLayout.PREFERRED_SIZE, 168, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jLabel_CedCVerClteVend, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 168, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addContainerGap(191, Short.MAX_VALUE))
+    );
+    jPanel_VerClteLayout.setVerticalGroup(
+        jPanel_VerClteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        .addGroup(jPanel_VerClteLayout.createSequentialGroup()
+            .addContainerGap(38, Short.MAX_VALUE)
+            .addGroup(jPanel_VerClteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addComponent(jLabel_nombreCliente4)
+                .addComponent(jLabel_NombreVerClteVend, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addGap(25, 25, 25)
+            .addGroup(jPanel_VerClteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addComponent(jLabel_telefonoCliente4)
+                .addComponent(jLabel_TeleVerClteVend, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addGap(28, 28, 28)
+            .addGroup(jPanel_VerClteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addComponent(jLabel_direccionCliente4)
+                .addComponent(jLabel_DirreVerClteVend, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addGap(28, 28, 28)
+            .addGroup(jPanel_VerClteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addComponent(jLabel_FechaCumpleanos4)
+                .addComponent(jLabel_FechaCVerClteVend, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addGap(28, 28, 28)
+            .addGroup(jPanel_VerClteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addComponent(jLabel_FechaCumpleanos5)
+                .addComponent(jLabel_CedCVerClteVend, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+            .addGroup(jPanel_VerClteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                 .addComponent(jButton_CancelarCrearCliente1)
-                .addGap(18, 18, 18))
-            .addGroup(jPanel_VerClteLayout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(jPanel_VerClteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jLabel_FechaCumpleanos5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jLabel_telefonoCliente4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jLabel_nombreCliente4)
-                    .addComponent(jLabel_direccionCliente4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jLabel_FechaCumpleanos4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel_VerClteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel_DirreVerClteVend, javax.swing.GroupLayout.PREFERRED_SIZE, 168, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel_TeleVerClteVend, javax.swing.GroupLayout.PREFERRED_SIZE, 168, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel_FechaCVerClteVend, javax.swing.GroupLayout.PREFERRED_SIZE, 168, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel_NombreVerClteVend, javax.swing.GroupLayout.PREFERRED_SIZE, 168, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel_CedCVerClteVend, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 168, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(191, Short.MAX_VALUE))
-        );
-        jPanel_VerClteLayout.setVerticalGroup(
-            jPanel_VerClteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel_VerClteLayout.createSequentialGroup()
-                .addContainerGap(38, Short.MAX_VALUE)
-                .addGroup(jPanel_VerClteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel_nombreCliente4)
-                    .addComponent(jLabel_NombreVerClteVend, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(25, 25, 25)
-                .addGroup(jPanel_VerClteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel_telefonoCliente4)
-                    .addComponent(jLabel_TeleVerClteVend, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(28, 28, 28)
-                .addGroup(jPanel_VerClteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel_direccionCliente4)
-                    .addComponent(jLabel_DirreVerClteVend, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(28, 28, 28)
-                .addGroup(jPanel_VerClteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel_FechaCumpleanos4)
-                    .addComponent(jLabel_FechaCVerClteVend, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(28, 28, 28)
-                .addGroup(jPanel_VerClteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel_FechaCumpleanos5)
-                    .addComponent(jLabel_CedCVerClteVend, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(jPanel_VerClteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton_CancelarCrearCliente1)
-                    .addComponent(jButton_CrearCliente1))
-                .addGap(19, 19, 19))
-        );
+                .addComponent(jButton_CrearCliente1))
+            .addGap(19, 19, 19))
+    );
 
-        jPanel_ModifCliente.setMaximumSize(new java.awt.Dimension(480, 280));
-        jPanel_ModifCliente.setMinimumSize(new java.awt.Dimension(480, 280));
+    jPanel_ModifCliente.setMaximumSize(new java.awt.Dimension(480, 280));
+    jPanel_ModifCliente.setMinimumSize(new java.awt.Dimension(480, 280));
 
-        jLabel_nombreCliente5.setText("Nombre del Cliente");
+    jLabel_nombreCliente5.setText("Nombre del Cliente");
 
-        jLabel_telefonoCliente5.setText("Telefono");
+    jLabel_telefonoCliente5.setText("Telefono");
 
-        jLabel_direccionCliente5.setText("Direccion");
+    jLabel_direccionCliente5.setText("Direccion");
 
-        jLabel_FechaCumpleanos6.setText("Fecha de Cumpleanos");
+    jLabel_FechaCumpleanos6.setText("Fecha de Cumpleanos");
 
-        jFormattedTextField_ModfnombreClteVend.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyPressed(java.awt.event.KeyEvent evt) {
-                jFormattedTextField_ModfnombreClteVendKeyPressed(evt);
-            }
-        });
+    jFormattedTextField_ModfnombreClteVend.addKeyListener(new java.awt.event.KeyAdapter() {
+        public void keyPressed(java.awt.event.KeyEvent evt) {
+            jFormattedTextField_ModfnombreClteVendKeyPressed(evt);
+        }
+    });
 
-        jFormattedTextField_ModfdireccionClteVend.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyPressed(java.awt.event.KeyEvent evt) {
-                jFormattedTextField_ModfdireccionClteVendKeyPressed(evt);
-            }
-        });
+    jFormattedTextField_ModfdireccionClteVend.addKeyListener(new java.awt.event.KeyAdapter() {
+        public void keyPressed(java.awt.event.KeyEvent evt) {
+            jFormattedTextField_ModfdireccionClteVendKeyPressed(evt);
+        }
+    });
 
-        jFormattedTextField_ModffechaCumpleClteVend.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.DateFormatter()));
-        jFormattedTextField_ModffechaCumpleClteVend.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyPressed(java.awt.event.KeyEvent evt) {
-                jFormattedTextField_ModffechaCumpleClteVendKeyPressed(evt);
-            }
-        });
+    jButton_ModifCliente.setText("Aceptar");
+    jButton_ModifCliente.addActionListener(new java.awt.event.ActionListener() {
+        public void actionPerformed(java.awt.event.ActionEvent evt) {
+            jButton_ModifClienteActionPerformed(evt);
+        }
+    });
+    jButton_ModifCliente.addKeyListener(new java.awt.event.KeyAdapter() {
+        public void keyPressed(java.awt.event.KeyEvent evt) {
+            jButton_ModifClienteKeyPressed(evt);
+        }
+    });
 
-        jButton_ModifCliente.setText("Aceptar");
-        jButton_ModifCliente.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton_ModifClienteActionPerformed(evt);
-            }
-        });
-        jButton_ModifCliente.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyPressed(java.awt.event.KeyEvent evt) {
-                jButton_ModifClienteKeyPressed(evt);
-            }
-        });
+    jButton_CancelarModifiCliente.setText("Cancelar");
+    jButton_CancelarModifiCliente.addActionListener(new java.awt.event.ActionListener() {
+        public void actionPerformed(java.awt.event.ActionEvent evt) {
+            jButton_CancelarModifiClienteActionPerformed(evt);
+        }
+    });
 
-        jButton_CancelarModifiCliente.setText("Cancelar");
-        jButton_CancelarModifiCliente.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton_CancelarModifiClienteActionPerformed(evt);
-            }
-        });
+    jFormattedTextField_ModfCedulaClteVend.addKeyListener(new java.awt.event.KeyAdapter() {
+        public void keyPressed(java.awt.event.KeyEvent evt) {
+            jFormattedTextField_ModfCedulaClteVendKeyPressed(evt);
+        }
+    });
 
-        jFormattedTextField_ModfCedulaClteVend.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyPressed(java.awt.event.KeyEvent evt) {
-                jFormattedTextField_ModfCedulaClteVendKeyPressed(evt);
-            }
-        });
+    jLabel_FechaCumpleanos7.setText("Cedula");
 
-        jLabel_FechaCumpleanos7.setText("Cedula");
+    jFormattedTextField_ModftelefonoClteVend.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(new java.text.DecimalFormat("#0"))));
+    jFormattedTextField_ModftelefonoClteVend.addKeyListener(new java.awt.event.KeyAdapter() {
+        public void keyPressed(java.awt.event.KeyEvent evt) {
+            jFormattedTextField_ModftelefonoClteVendKeyPressed(evt);
+        }
+    });
 
-        jFormattedTextField_ModftelefonoClteVend.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(new java.text.DecimalFormat("#0"))));
-        jFormattedTextField_ModftelefonoClteVend.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyPressed(java.awt.event.KeyEvent evt) {
-                jFormattedTextField_ModftelefonoClteVendKeyPressed(evt);
-            }
-        });
+    dateChooserCombo_CumpModifCliente.setCurrentView(new datechooser.view.appearance.AppearancesList("Grey",
+        new datechooser.view.appearance.ViewAppearance("custom",
+            new datechooser.view.appearance.swing.SwingCellAppearance(new java.awt.Font("Tahoma", java.awt.Font.PLAIN, 11),
+                new java.awt.Color(0, 0, 0),
+                new java.awt.Color(0, 0, 255),
+                false,
+                true,
+                new datechooser.view.appearance.swing.ButtonPainter()),
+            new datechooser.view.appearance.swing.SwingCellAppearance(new java.awt.Font("Tahoma", java.awt.Font.PLAIN, 11),
+                new java.awt.Color(0, 0, 0),
+                new java.awt.Color(0, 0, 255),
+                true,
+                true,
+                new datechooser.view.appearance.swing.ButtonPainter()),
+            new datechooser.view.appearance.swing.SwingCellAppearance(new java.awt.Font("Tahoma", java.awt.Font.PLAIN, 11),
+                new java.awt.Color(0, 0, 255),
+                new java.awt.Color(0, 0, 255),
+                false,
+                true,
+                new datechooser.view.appearance.swing.ButtonPainter()),
+            new datechooser.view.appearance.swing.SwingCellAppearance(new java.awt.Font("Tahoma", java.awt.Font.PLAIN, 11),
+                new java.awt.Color(128, 128, 128),
+                new java.awt.Color(0, 0, 255),
+                false,
+                true,
+                new datechooser.view.appearance.swing.LabelPainter()),
+            new datechooser.view.appearance.swing.SwingCellAppearance(new java.awt.Font("Tahoma", java.awt.Font.PLAIN, 11),
+                new java.awt.Color(0, 0, 0),
+                new java.awt.Color(0, 0, 255),
+                false,
+                true,
+                new datechooser.view.appearance.swing.LabelPainter()),
+            new datechooser.view.appearance.swing.SwingCellAppearance(new java.awt.Font("Tahoma", java.awt.Font.PLAIN, 11),
+                new java.awt.Color(0, 0, 0),
+                new java.awt.Color(255, 0, 0),
+                false,
+                false,
+                new datechooser.view.appearance.swing.ButtonPainter()),
+            (datechooser.view.BackRenderer)null,
+            false,
+            true)));
+dateChooserCombo_CumpModifCliente.setCalendarBackground(new java.awt.Color(0, 51, 51));
+dateChooserCombo_CumpModifCliente.setNothingAllowed(false);
+dateChooserCombo_CumpModifCliente.setBehavior(datechooser.model.multiple.MultyModelBehavior.SELECT_SINGLE);
 
-        javax.swing.GroupLayout jPanel_ModifClienteLayout = new javax.swing.GroupLayout(jPanel_ModifCliente);
-        jPanel_ModifCliente.setLayout(jPanel_ModifClienteLayout);
-        jPanel_ModifClienteLayout.setHorizontalGroup(
-            jPanel_ModifClienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel_ModifClienteLayout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jButton_ModifCliente)
-                .addGap(27, 27, 27)
-                .addComponent(jButton_CancelarModifiCliente)
-                .addGap(18, 18, 18))
+javax.swing.GroupLayout jPanel_ModifClienteLayout = new javax.swing.GroupLayout(jPanel_ModifCliente);
+jPanel_ModifCliente.setLayout(jPanel_ModifClienteLayout);
+jPanel_ModifClienteLayout.setHorizontalGroup(
+    jPanel_ModifClienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel_ModifClienteLayout.createSequentialGroup()
+        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        .addComponent(jButton_ModifCliente)
+        .addGap(27, 27, 27)
+        .addComponent(jButton_CancelarModifiCliente)
+        .addGap(18, 18, 18))
+    .addGroup(jPanel_ModifClienteLayout.createSequentialGroup()
+        .addGap(20, 20, 20)
+        .addGroup(jPanel_ModifClienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+            .addComponent(jLabel_FechaCumpleanos7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jLabel_telefonoCliente5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jLabel_nombreCliente5)
+            .addComponent(jLabel_direccionCliente5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jLabel_FechaCumpleanos6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        .addGroup(jPanel_ModifClienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel_ModifClienteLayout.createSequentialGroup()
-                .addGap(20, 20, 20)
+                .addGap(18, 18, 18)
                 .addGroup(jPanel_ModifClienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jLabel_FechaCumpleanos7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jLabel_telefonoCliente5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jLabel_nombreCliente5)
-                    .addComponent(jLabel_direccionCliente5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jLabel_FechaCumpleanos6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addGroup(jPanel_ModifClienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel_ModifClienteLayout.createSequentialGroup()
-                        .addGap(18, 18, 18)
-                        .addGroup(jPanel_ModifClienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jFormattedTextField_ModfnombreClteVend)
-                            .addComponent(jFormattedTextField_ModfdireccionClteVend)
-                            .addComponent(jFormattedTextField_ModffechaCumpleClteVend, javax.swing.GroupLayout.PREFERRED_SIZE, 168, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jFormattedTextField_ModftelefonoClteVend)))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel_ModifClienteLayout.createSequentialGroup()
-                        .addGap(5, 5, 5)
-                        .addComponent(jFormattedTextField_ModfCedulaClteVend, javax.swing.GroupLayout.PREFERRED_SIZE, 168, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(169, Short.MAX_VALUE))
-        );
-        jPanel_ModifClienteLayout.setVerticalGroup(
-            jPanel_ModifClienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel_ModifClienteLayout.createSequentialGroup()
-                .addGap(24, 24, 24)
-                .addGroup(jPanel_ModifClienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel_nombreCliente5)
-                    .addComponent(jFormattedTextField_ModfnombreClteVend, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(jPanel_ModifClienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel_telefonoCliente5)
-                    .addComponent(jFormattedTextField_ModftelefonoClteVend, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(10, 10, 10)
-                .addGroup(jPanel_ModifClienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel_direccionCliente5)
-                    .addComponent(jFormattedTextField_ModfdireccionClteVend, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(jPanel_ModifClienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel_FechaCumpleanos6)
-                    .addComponent(jFormattedTextField_ModffechaCumpleClteVend, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(jPanel_ModifClienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel_FechaCumpleanos7)
-                    .addComponent(jFormattedTextField_ModfCedulaClteVend, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 57, Short.MAX_VALUE)
-                .addGroup(jPanel_ModifClienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton_CancelarModifiCliente)
-                    .addComponent(jButton_ModifCliente))
-                .addGap(19, 19, 19))
-        );
+                    .addComponent(jFormattedTextField_ModfnombreClteVend, javax.swing.GroupLayout.DEFAULT_SIZE, 168, Short.MAX_VALUE)
+                    .addComponent(jFormattedTextField_ModfdireccionClteVend)
+                    .addComponent(jFormattedTextField_ModftelefonoClteVend)))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel_ModifClienteLayout.createSequentialGroup()
+                .addGap(5, 5, 5)
+                .addGroup(jPanel_ModifClienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(dateChooserCombo_CumpModifCliente, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jFormattedTextField_ModfCedulaClteVend, javax.swing.GroupLayout.DEFAULT_SIZE, 168, Short.MAX_VALUE))))
+        .addContainerGap(169, Short.MAX_VALUE))
+    );
+    jPanel_ModifClienteLayout.setVerticalGroup(
+        jPanel_ModifClienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        .addGroup(jPanel_ModifClienteLayout.createSequentialGroup()
+            .addGap(24, 24, 24)
+            .addGroup(jPanel_ModifClienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addComponent(jLabel_nombreCliente5)
+                .addComponent(jFormattedTextField_ModfnombreClteVend, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+            .addGroup(jPanel_ModifClienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addComponent(jLabel_telefonoCliente5)
+                .addComponent(jFormattedTextField_ModftelefonoClteVend, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addGap(10, 10, 10)
+            .addGroup(jPanel_ModifClienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addComponent(jLabel_direccionCliente5)
+                .addComponent(jFormattedTextField_ModfdireccionClteVend, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addGap(18, 18, 18)
+            .addGroup(jPanel_ModifClienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addComponent(jLabel_FechaCumpleanos6)
+                .addComponent(dateChooserCombo_CumpModifCliente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addGap(18, 18, 18)
+            .addGroup(jPanel_ModifClienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addComponent(jLabel_FechaCumpleanos7)
+                .addComponent(jFormattedTextField_ModfCedulaClteVend, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 57, Short.MAX_VALUE)
+            .addGroup(jPanel_ModifClienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addComponent(jButton_CancelarModifiCliente)
+                .addComponent(jButton_ModifCliente))
+            .addGap(19, 19, 19))
+    );
 
-        javax.swing.GroupLayout jDialog_CrearClteLayout = new javax.swing.GroupLayout(jDialog_CrearClte.getContentPane());
-        jDialog_CrearClte.getContentPane().setLayout(jDialog_CrearClteLayout);
-        jDialog_CrearClteLayout.setHorizontalGroup(
-            jDialog_CrearClteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel_CrearCliente, javax.swing.GroupLayout.DEFAULT_SIZE, 520, Short.MAX_VALUE)
-            .addGroup(jDialog_CrearClteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(jDialog_CrearClteLayout.createSequentialGroup()
-                    .addContainerGap()
-                    .addComponent(jPanel_VerClte, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addContainerGap()))
-            .addGroup(jDialog_CrearClteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(jDialog_CrearClteLayout.createSequentialGroup()
-                    .addContainerGap()
-                    .addComponent(jPanel_ModifCliente, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addContainerGap()))
-        );
-        jDialog_CrearClteLayout.setVerticalGroup(
-            jDialog_CrearClteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel_CrearCliente, javax.swing.GroupLayout.DEFAULT_SIZE, 365, Short.MAX_VALUE)
-            .addGroup(jDialog_CrearClteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(jDialog_CrearClteLayout.createSequentialGroup()
-                    .addContainerGap()
-                    .addComponent(jPanel_VerClte, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addContainerGap()))
-            .addGroup(jDialog_CrearClteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(jDialog_CrearClteLayout.createSequentialGroup()
-                    .addContainerGap()
-                    .addComponent(jPanel_ModifCliente, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addGap(32, 32, 32)))
-        );
-
-        setMaximumSize(new java.awt.Dimension(897, 477));
-        setMinimumSize(new java.awt.Dimension(897, 477));
-
-        jTable_Generica.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-
-            },
-            new String [] {
-
-            }
-        ));
-        jTable_Generica.setFillsViewportHeight(true);
-        jTable_Generica.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jTable_GenericaMouseClicked(evt);
-            }
-        });
-        jScrollPane1.setViewportView(jTable_Generica);
-
-        jButton_CrearClteVend.setText("Crear");
-        jButton_CrearClteVend.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton_CrearClteVendActionPerformed(evt);
-            }
-        });
-
-        jButton_ModifClteVend.setText("Modificar");
-        jButton_ModifClteVend.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton_ModifClteVendActionPerformed(evt);
-            }
-        });
-
-        jButton_VerClteVend.setText("Ver");
-        jButton_VerClteVend.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton_VerClteVendActionPerformed(evt);
-            }
-        });
-
-        jButton1.setText("Regresar");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
-            }
-        });
-
-        jLabel1.setText("Buscar");
-
-        jLabel2.setText("Clientes");
-
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
-        this.setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(21, 21, 21)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 124, Short.MAX_VALUE)
-                        .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 86, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap(934, Short.MAX_VALUE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 965, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(jButton_CrearClteVend, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jButton_ModifClteVend, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jButton_VerClteVend, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(125, 125, 125)
-                        .addComponent(jLabel1)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(TextField_Buscador, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jButton1)
-                        .addGap(63, 63, 63))))
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
+    javax.swing.GroupLayout jDialog_CrearClteLayout = new javax.swing.GroupLayout(jDialog_CrearClte.getContentPane());
+    jDialog_CrearClte.getContentPane().setLayout(jDialog_CrearClteLayout);
+    jDialog_CrearClteLayout.setHorizontalGroup(
+        jDialog_CrearClteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        .addComponent(jPanel_CrearCliente, javax.swing.GroupLayout.DEFAULT_SIZE, 520, Short.MAX_VALUE)
+        .addGroup(jDialog_CrearClteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jDialog_CrearClteLayout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 308, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(40, 40, 40)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jButton_ModifClteVend, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jButton_CrearClteVend, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jButton_VerClteVend, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addComponent(jPanel_VerClte, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap()))
+        .addGroup(jDialog_CrearClteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jDialog_CrearClteLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jPanel_ModifCliente, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap()))
+    );
+    jDialog_CrearClteLayout.setVerticalGroup(
+        jDialog_CrearClteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        .addComponent(jPanel_CrearCliente, javax.swing.GroupLayout.DEFAULT_SIZE, 365, Short.MAX_VALUE)
+        .addGroup(jDialog_CrearClteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jDialog_CrearClteLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jPanel_VerClte, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap()))
+        .addGroup(jDialog_CrearClteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jDialog_CrearClteLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jPanel_ModifCliente, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGap(32, 32, 32)))
+    );
+
+    setMaximumSize(new java.awt.Dimension(897, 477));
+    setMinimumSize(new java.awt.Dimension(897, 477));
+
+    jTable_Generica.setModel(new javax.swing.table.DefaultTableModel(
+        new Object [][] {
+
+        },
+        new String [] {
+
+        }
+    ));
+    jTable_Generica.setFillsViewportHeight(true);
+    jTable_Generica.addMouseListener(new java.awt.event.MouseAdapter() {
+        public void mouseClicked(java.awt.event.MouseEvent evt) {
+            jTable_GenericaMouseClicked(evt);
+        }
+    });
+    jScrollPane1.setViewportView(jTable_Generica);
+
+    jButton_CrearClteVend.setText("Crear");
+    jButton_CrearClteVend.addActionListener(new java.awt.event.ActionListener() {
+        public void actionPerformed(java.awt.event.ActionEvent evt) {
+            jButton_CrearClteVendActionPerformed(evt);
+        }
+    });
+
+    jButton_ModifClteVend.setText("Modificar");
+    jButton_ModifClteVend.addActionListener(new java.awt.event.ActionListener() {
+        public void actionPerformed(java.awt.event.ActionEvent evt) {
+            jButton_ModifClteVendActionPerformed(evt);
+        }
+    });
+
+    jButton_VerClteVend.setText("Ver");
+    jButton_VerClteVend.addActionListener(new java.awt.event.ActionListener() {
+        public void actionPerformed(java.awt.event.ActionEvent evt) {
+            jButton_VerClteVendActionPerformed(evt);
+        }
+    });
+
+    jButton1.setText("Regresar");
+    jButton1.addActionListener(new java.awt.event.ActionListener() {
+        public void actionPerformed(java.awt.event.ActionEvent evt) {
+            jButton1ActionPerformed(evt);
+        }
+    });
+
+    jLabel1.setText("Buscar");
+
+    jLabel2.setText("Clientes");
+
+    javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
+    this.setLayout(layout);
+    layout.setHorizontalGroup(
+        layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        .addGroup(layout.createSequentialGroup()
+            .addGap(21, 21, 21)
+            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(layout.createSequentialGroup()
+                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 124, Short.MAX_VALUE)
+                    .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 86, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addContainerGap(934, Short.MAX_VALUE))
+                .addGroup(layout.createSequentialGroup()
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 965, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                    .addComponent(jButton_CrearClteVend, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGap(18, 18, 18)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addComponent(jButton_ModifClteVend, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jButton_VerClteVend, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGap(125, 125, 125)
+                    .addComponent(jLabel1)
+                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                    .addComponent(TextField_Buscador, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jButton1)
+                    .addGap(63, 63, 63))))
+    );
+    layout.setVerticalGroup(
+        layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        .addGroup(layout.createSequentialGroup()
+            .addContainerGap()
+            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                .addGroup(layout.createSequentialGroup()
+                    .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGap(18, 18, 18)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 308, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGap(40, 40, 40)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                        .addGroup(layout.createSequentialGroup()
                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(jLabel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(TextField_Buscador, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jButton1)
-                        .addGap(5, 5, 5)))
-                .addContainerGap(56, Short.MAX_VALUE))
-        );
+                                .addComponent(jButton_ModifClteVend, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(jButton_CrearClteVend, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                            .addComponent(jButton_VerClteVend, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(TextField_Buscador, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addGroup(layout.createSequentialGroup()
+                    .addComponent(jButton1)
+                    .addGap(5, 5, 5)))
+            .addContainerGap(56, Short.MAX_VALUE))
+    );
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton_ModifClteVendActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_ModifClteVendActionPerformed
@@ -601,13 +678,6 @@ public class NewJPanel_Clientes extends javax.swing.JPanel {
             this.jFormattedTextField_direccionClteVend.transferFocus();
         }
     }//GEN-LAST:event_jFormattedTextField_direccionClteVendKeyPressed
-
-    private void jFormattedTextField_fechaCumpleClteVendKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jFormattedTextField_fechaCumpleClteVendKeyPressed
-        if (evt.getKeyChar() == KeyEvent.VK_ENTER) {
-            this.jFormattedTextField_fechaCumpleClteVend.transferFocus();
-
-        }
-    }//GEN-LAST:event_jFormattedTextField_fechaCumpleClteVendKeyPressed
 
     private void jButton_CrearClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_CrearClienteActionPerformed
         crearPersona();
@@ -676,10 +746,6 @@ public class NewJPanel_Clientes extends javax.swing.JPanel {
         // TODO add your handling code here:
     }//GEN-LAST:event_jFormattedTextField_ModfdireccionClteVendKeyPressed
 
-    private void jFormattedTextField_ModffechaCumpleClteVendKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jFormattedTextField_ModffechaCumpleClteVendKeyPressed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jFormattedTextField_ModffechaCumpleClteVendKeyPressed
-
     private void jButton_ModifClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_ModifClienteActionPerformed
 
         modificarPersona(data[0][0].toString());
@@ -705,12 +771,14 @@ public class NewJPanel_Clientes extends javax.swing.JPanel {
     }//GEN-LAST:event_jFormattedTextField_ModftelefonoClteVendKeyPressed
 
     private void jDialog_CrearClteWindowClosed(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_jDialog_CrearClteWindowClosed
-        jFormattedTextField_ModffechaCumpleClteVend.setText("");
+
     }//GEN-LAST:event_jDialog_CrearClteWindowClosed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTextField TextField_Buscador;
+    private datechooser.beans.DateChooserCombo dateChooserCombo_CumpCrearCliente;
+    private datechooser.beans.DateChooserCombo dateChooserCombo_CumpModifCliente;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton_CancelarCrearCliente;
     private javax.swing.JButton jButton_CancelarCrearCliente1;
@@ -724,11 +792,9 @@ public class NewJPanel_Clientes extends javax.swing.JPanel {
     private javax.swing.JDialog jDialog_CrearClte;
     private javax.swing.JFormattedTextField jFormattedTextField_ModfCedulaClteVend;
     private javax.swing.JFormattedTextField jFormattedTextField_ModfdireccionClteVend;
-    private javax.swing.JFormattedTextField jFormattedTextField_ModffechaCumpleClteVend;
     private javax.swing.JFormattedTextField jFormattedTextField_ModfnombreClteVend;
     private javax.swing.JFormattedTextField jFormattedTextField_ModftelefonoClteVend;
     private javax.swing.JFormattedTextField jFormattedTextField_direccionClteVend;
-    private javax.swing.JFormattedTextField jFormattedTextField_fechaCumpleClteVend;
     private javax.swing.JFormattedTextField jFormattedTextField_nombreClteVend;
     private javax.swing.JFormattedTextField jFormattedTextField_telefonoClteVend;
     private javax.swing.JLabel jLabel1;
@@ -804,7 +870,9 @@ public class NewJPanel_Clientes extends javax.swing.JPanel {
         String nombre = this.jFormattedTextField_nombreClteVend.getText();
         String direccion = this.jFormattedTextField_direccionClteVend.getText();
         String telefono = this.jFormattedTextField_telefonoClteVend.getText();
-        String fechaCumpleanos = this.jFormattedTextField_fechaCumpleClteVend.getText();
+        String fechaCumpleanos = dateFormatIng.format(
+                dateChooserCombo_CumpCrearCliente.getSelectedDate().
+                getTime());
         if (fechaCumpleanos.equals("")) {
             fechaCumpleanos = null;
         }
@@ -838,12 +906,18 @@ public class NewJPanel_Clientes extends javax.swing.JPanel {
         jFormattedTextField_ModfdireccionClteVend.setText(data[0][1].toString());
         jFormattedTextField_ModftelefonoClteVend.setText(data[0][2].toString());
 //        jFormattedTextField_ModfCedulaClteVend.setText(data[0][4].toString());
-        try {
-            String fecha = dateFormat.format(data[0][3]);
-            jFormattedTextField_ModffechaCumpleClteVend.setText(fecha);
 
-        } catch (Exception e) {
-            jFormattedTextField_ModffechaCumpleClteVend.setText("");
+        Calendar calendar = new GregorianCalendar();
+        try {
+            //Establecer fecha de cumpleanos
+            Date date = dateFormat.parse(data[0][3].toString());
+            calendar.setTime(date);
+            dateChooserCombo_CumpModifCliente.setSelectedDate(calendar);
+
+        } catch (ParseException e) {
+            //Si la fecha es nula pone fecha actual
+            calendar.setTime(new Date());
+            dateChooserCombo_CumpModifCliente.setSelectedDate(calendar);
         }
 
     }
@@ -855,15 +929,18 @@ public class NewJPanel_Clientes extends javax.swing.JPanel {
      * @param nombre
      */
     private void modificarPersona(String nombre) {
-        String fecha = "";
-        try {//convertir de formato yyyy/MM/dd a dd/MM/yyyy
-            Date date = new SimpleDateFormat("dd/MM/yyyy").
-                    parse(jFormattedTextField_ModffechaCumpleClteVend.
-                            getText().toString());
-            fecha = new SimpleDateFormat("yyyy/MM/dd").format(date);
-
-        } catch (ParseException ex) {
-        }
+//        String fecha = "";
+//        try {//convertir de formato yyyy/MM/dd a dd/MM/yyyy
+//            Date date = new SimpleDateFormat("dd/MM/yyyy").
+//                    parse(jFormattedTextField_ModffechaCumpleClteVend.
+//                            getText().toString());
+//            fecha = new SimpleDateFormat("yyyy/MM/dd").format(date);
+//
+//        } catch (ParseException ex) {
+//        }
+        String fecha = dateFormatIng.format(
+                dateChooserCombo_CumpModifCliente.getSelectedDate().
+                getTime());
         if ("".equals(fecha)) {// si la fecha es vacia, no la actualiza
             AdminBD.modificarPersona(jFormattedTextField_ModfnombreClteVend.
                     getText().toString(), jFormattedTextField_ModfdireccionClteVend.getText().toString(),

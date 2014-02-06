@@ -103,7 +103,6 @@ public final class JPanel_Inventario extends javax.swing.JPanel {
         jLabel2 = new javax.swing.JLabel();
         jTextField_nombre = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
-        jTextField_Precio = new javax.swing.JTextField();
         jLabel4 = new javax.swing.JLabel();
         jTextField_Cantidad = new javax.swing.JTextField();
         jButton_CrearProducto = new javax.swing.JButton();
@@ -114,6 +113,7 @@ public final class JPanel_Inventario extends javax.swing.JPanel {
         jTextField_CostoCrearProducto = new javax.swing.JTextField();
         jTextArea_DescripcionCrearProducto = new javax.swing.JTextField();
         jButton6 = new javax.swing.JButton();
+        jTextField_Precio = new javax.swing.JFormattedTextField();
         jDialog_EliminarProducto = new javax.swing.JDialog();
         jButton_EliminarProducto = new javax.swing.JButton();
         jTextField_IdProducto = new javax.swing.JTextField();
@@ -173,6 +173,7 @@ public final class JPanel_Inventario extends javax.swing.JPanel {
         jComboBox_categoriaBusquedaInventario = new javax.swing.JComboBox();
         jLabel22 = new javax.swing.JLabel();
         jTextField_busquedaInventario = new javax.swing.JTextField();
+        jButton7 = new javax.swing.JButton();
         jPanel_EntradaMercaderia = new javax.swing.JPanel();
         jScrollPane3 = new javax.swing.JScrollPane();
         jTable_EntradasMercaderia = new javax.swing.JTable();
@@ -226,16 +227,6 @@ public final class JPanel_Inventario extends javax.swing.JPanel {
         });
 
         jLabel3.setText("Precio del Producto");
-
-        jTextField_Precio.setText("0.00");
-        jTextField_Precio.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyPressed(java.awt.event.KeyEvent evt) {
-                jTextField_PrecioKeyPressed(evt);
-            }
-            public void keyTyped(java.awt.event.KeyEvent evt) {
-                jTextField_PrecioKeyTyped(evt);
-            }
-        });
 
         jLabel4.setText("Cantidad del Producto");
 
@@ -297,6 +288,22 @@ public final class JPanel_Inventario extends javax.swing.JPanel {
             }
         });
 
+        jTextField_Precio.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(new java.text.DecimalFormat("#,##0.00"))));
+        jTextField_Precio.setText("0.00");
+        jTextField_Precio.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                jTextField_PrecioFocusGained(evt);
+            }
+        });
+        jTextField_Precio.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                jTextField_PrecioKeyPressed(evt);
+            }
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                jTextField_PrecioKeyTyped(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
@@ -320,11 +327,13 @@ public final class JPanel_Inventario extends javax.swing.JPanel {
                             .addComponent(jLabel12))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jComboBox_CategoriaCrearProducto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(jPanel2Layout.createSequentialGroup()
+                                .addComponent(jComboBox_CategoriaCrearProducto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(0, 0, Short.MAX_VALUE))
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
                                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(jTextField_CostoCrearProducto, javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jTextField_Precio, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 258, Short.MAX_VALUE)
+                                    .addComponent(jTextField_Precio, javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jTextField_CostoCrearProducto, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 258, Short.MAX_VALUE)
                                     .addComponent(jTextField_Cantidad, javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jTextField_codigo, javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jTextField_nombre, javax.swing.GroupLayout.Alignment.LEADING))
@@ -889,6 +898,13 @@ public final class JPanel_Inventario extends javax.swing.JPanel {
 
         jLabel22.setText("Busqueda :");
 
+        jButton7.setText("Generar Etiquetas");
+        jButton7.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton7ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel_InventarioGeneralLayout = new javax.swing.GroupLayout(jPanel_InventarioGeneral);
         jPanel_InventarioGeneral.setLayout(jPanel_InventarioGeneralLayout);
         jPanel_InventarioGeneralLayout.setHorizontalGroup(
@@ -902,8 +918,8 @@ public final class JPanel_Inventario extends javax.swing.JPanel {
                         .addComponent(jTextField_busquedaInventario, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jComboBox_categoriaBusquedaInventario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel_InventarioGeneralLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                        .addGroup(jPanel_InventarioGeneralLayout.createSequentialGroup()
+                    .addGroup(jPanel_InventarioGeneralLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel_InventarioGeneralLayout.createSequentialGroup()
                             .addComponent(jButton4)
                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                             .addComponent(jButton_CrearProductoInventario, javax.swing.GroupLayout.PREFERRED_SIZE, 129, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -911,10 +927,12 @@ public final class JPanel_Inventario extends javax.swing.JPanel {
                             .addComponent(jButton_EliminarProductoInventario, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                             .addComponent(jButton_ModificarProducto, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGap(264, 264, 264)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                            .addComponent(jButton7)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(jButtonRegresarInventario, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 781, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(66, Short.MAX_VALUE))
+                        .addComponent(jScrollPane5, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 755, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(92, Short.MAX_VALUE))
         );
         jPanel_InventarioGeneralLayout.setVerticalGroup(
             jPanel_InventarioGeneralLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -932,7 +950,8 @@ public final class JPanel_Inventario extends javax.swing.JPanel {
                     .addComponent(jButton_CrearProductoInventario)
                     .addComponent(jButton_EliminarProductoInventario)
                     .addComponent(jButton_ModificarProducto)
-                    .addComponent(jButtonRegresarInventario, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jButtonRegresarInventario, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButton7))
                 .addContainerGap(36, Short.MAX_VALUE))
         );
 
@@ -1477,26 +1496,6 @@ public final class JPanel_Inventario extends javax.swing.JPanel {
        }
     }//GEN-LAST:event_jButton3ActionPerformed
 
-    private void jTextField_PrecioKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField_PrecioKeyTyped
-        int tecla = evt.getKeyChar();
-        if (tecla == KeyEvent.VK_COMMA) {
-            return;
-        }
-        if (tecla == KeyEvent.VK_PERIOD) {
-            return;
-        }
-        if (!Character.isDigit(tecla) & !Character.isISOControl(evt.getKeyChar())) {
-            Toolkit.getDefaultToolkit().beep();
-            evt.consume();
-
-        }
-
-        if (KeyEvent.VK_ENTER == evt.getKeyChar()) {
-            this.jTextField_Precio.transferFocus();
-
-        }
-    }//GEN-LAST:event_jTextField_PrecioKeyTyped
-
     private void jTextField_CostoCrearProductoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField_CostoCrearProductoKeyTyped
         int tecla= evt.getKeyChar();
         
@@ -1541,11 +1540,6 @@ public final class JPanel_Inventario extends javax.swing.JPanel {
        
         
     }//GEN-LAST:event_jTextField_CantidadKeyTyped
-
-    private void jTextField_PrecioKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField_PrecioKeyPressed
-        if(evt.isControlDown()){
-        evt.consume();}
-    }//GEN-LAST:event_jTextField_PrecioKeyPressed
 
     private void jTextField_CantidadKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField_CantidadKeyPressed
         if(evt.isControlDown()){
@@ -1724,109 +1718,6 @@ public final class JPanel_Inventario extends javax.swing.JPanel {
             this.jButton1.doClick();
         }
     }//GEN-LAST:event_jButton1KeyPressed
-
-    private void jButton_CrearEntradaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_CrearEntradaActionPerformed
-        VentanaDeInicio mVentana= VentanaDeInicio.getInstance();
-        JPanel_CrearEntradaSalidaMercaderia panelCreaEntradaMerca= new JPanel_CrearEntradaSalidaMercaderia();
-        mVentana.add(panelCreaEntradaMerca);
-        panelCreaEntradaMerca.setSize(this.getSize());
-        panelCreaEntradaMerca.setLocation(this.getLocation());
-        mVentana.remove(this);
-        panelCreaEntradaMerca.setVisible(true);
-        mVentana.revalidate();
-        mVentana.repaint();
-        mVentana.setTitle("Entrada de Mercaderia");
-        Direct_Control_BD AdminBD = Direct_Control_BD.getInstance();
-        String numDoc = Integer.toString(AdminBD.ObtenerUltimoidMovimiento() + 1);
-        panelCreaEntradaMerca.jLabel_NumerodeMovimiento.setText(numDoc);
-        panelCreaEntradaMerca.personalizarTablaMovimiento();
-        panelCreaEntradaMerca.agregarListenerRenders();
-        panelCreaEntradaMerca.cargarSeleccionadorProductos();
-
-    }//GEN-LAST:event_jButton_CrearEntradaActionPerformed
-
-    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
-
-       
-        int row = this.jTable_Inventario.getSelectedRow();
-        if(row>=0){
-            String idProducto = this.jTable_Inventario.getValueAt(row, 0).toString();
-            this.jDialog_ConfirmacionVerProducto.setSize(200, 100);
-            JPanel_Inventario mPanel = JPanel_Inventario.getInstance();
-            this.jDialog_ConfirmacionVerProducto.setLocation(mPanel.getLocation());
-            this.jTextField_IdProductoModificar1.setText(idProducto);
-            this.jDialog_ConfirmacionVerProducto.setVisible(true);}
-        else{
-            JOptionPane.showMessageDialog(
-                null,
-                "No se selecciono ningun producto",
-                "Alert!", JOptionPane.ERROR_MESSAGE);
-        }
-
-    }//GEN-LAST:event_jButton4ActionPerformed
-
-    private void jButton_EliminarProductoInventarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_EliminarProductoInventarioActionPerformed
-        
-        int row = this.jTable_Inventario.getSelectedRow();
-
-        if (row >= 0) {
-        this.jDialog_EliminarProducto.setSize(200,200);
-        JPanel_Inventario mPanel= JPanel_Inventario.getInstance();
-        this.jTextField_IdProducto.setText(this.jTable_Inventario.getValueAt(row, 0).toString());
-        this.jDialog_EliminarProducto.setLocation(mPanel.getLocation());
-        this.jDialog_EliminarProducto.setVisible(true);}
-        else {
-            JOptionPane.showMessageDialog(
-                null,
-                "No se selecciono ningun producto",
-                "Alert!", JOptionPane.ERROR_MESSAGE);
-        }
-
-    }//GEN-LAST:event_jButton_EliminarProductoInventarioActionPerformed
-
-    private void jButton_CrearProductoInventarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_CrearProductoInventarioActionPerformed
-        this.jDialog_CrearProducto.setSize(510,500);
-        this.jDialog_CrearProducto.setVisible(true);
-
-        Direct_Control_BD mBD= Direct_Control_BD.getInstance();
-        mBD.consultarCategorias();
-        String[] columnNames = mBD.getColumnNames();
-        Object[][] data = mBD.getData();
-
-        columnNames = mBD.getColumnNames();
-        data = mBD.getData();
-
-        this.jComboBox_CategoriaCrearProducto.removeAllItems();
-        for(int i=0; i<data.length; i++){
-            this.jComboBox_CategoriaCrearProducto.addItem(data[i][1]);
-        }
-
-        this.jComboBox_CategoriaCrearProducto.setSelectedItem("Sin Categoria");
-        //Para que solo acepte 10 enteros y 2 decimales despues del punto
-        DocumentFilter onlyNumberFilter = new MyFilter();
-        ((AbstractDocument)this.jTextField_Precio.getDocument()).setDocumentFilter(onlyNumberFilter);
-        ((AbstractDocument)this.jTextField_CostoCrearProducto.getDocument()).setDocumentFilter(onlyNumberFilter);
-        
-
-    }//GEN-LAST:event_jButton_CrearProductoInventarioActionPerformed
-
-    private void jButton_ModificarProductoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_ModificarProductoActionPerformed
-        int row = this.jTable_Inventario.getSelectedRow();
-
-        if (row >= 0) {
-            String idProducto = this.jTable_Inventario.getValueAt(row, 0).toString();
-            this.jDialog_ConfirmacionModificacionProducto.setSize(200, 100);
-            JPanel_Inventario mPanel = JPanel_Inventario.getInstance();
-            this.jDialog_ConfirmacionModificacionProducto.setLocation(mPanel.getLocation());
-            this.jTextField_IdProductoModificar.setText(idProducto);
-            this.jDialog_ConfirmacionModificacionProducto.setVisible(true);
-        } else {
-            JOptionPane.showMessageDialog(
-                null,
-                "No se selecciono ningun producto",
-                "Alert!", JOptionPane.ERROR_MESSAGE);
-        }
-    }//GEN-LAST:event_jButton_ModificarProductoActionPerformed
     public void personalizarTablaEntradaMercaderia(){
      //Realiza la consulta para obtener los creditos
         Direct_Control_BD AdminBD = Direct_Control_BD.getInstance();
@@ -1843,74 +1734,6 @@ public final class JPanel_Inventario extends javax.swing.JPanel {
                 (centerRenderer);
         
     }
-    private void jButtonRegresarInventarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonRegresarInventarioActionPerformed
-        VentanaDeInicio mVentana= VentanaDeInicio.getInstance();
-        mVentana.remove(this);
-        mVentana.revalidate();
-        mVentana.repaint();
-        mVentana.setTitle("Joe ");
-        mVentana.add(mVentana.jPanel_VentanaPrincipal);
-        mVentana.jPanel_VentanaPrincipal.setVisible(true);
-        mVentana.jPanel_VentanaPrincipal.setSize(this.getSize());
-        mVentana.jPanel_VentanaPrincipal.setLocation(this.getLocation());
-
-    }//GEN-LAST:event_jButtonRegresarInventarioActionPerformed
-
-    private void jButton_verEntradaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_verEntradaActionPerformed
-        this.verEntrada(this.jTable_EntradasMercaderia,"Ver Entrada de Mercaderia");
-    }//GEN-LAST:event_jButton_verEntradaActionPerformed
-
-    private void jButton_verSalidaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_verSalidaActionPerformed
-         this.verEntrada(this.jTable_SalidasMercaderia,"Ver Salida de Mercaderia");
-    }//GEN-LAST:event_jButton_verSalidaActionPerformed
-
-    private void jButton_CrearSalidaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_CrearSalidaActionPerformed
-        VentanaDeInicio mVentana= VentanaDeInicio.getInstance();
-        JPanel_CrearEntradaSalidaMercaderia panelCreaSalidaMerca= new JPanel_CrearEntradaSalidaMercaderia();
-        mVentana.add(panelCreaSalidaMerca);
-        panelCreaSalidaMerca.setSize(this.getSize());
-        panelCreaSalidaMerca.setLocation(this.getLocation());
-        mVentana.remove(this);
-        panelCreaSalidaMerca.setVisible(true);
-        mVentana.revalidate();
-        mVentana.repaint();
-        mVentana.setTitle("Salida de Mercaderia");
-        Direct_Control_BD AdminBD = Direct_Control_BD.getInstance();
-        String numDoc = Integer.toString(AdminBD.ObtenerUltimoidMovimiento() + 1);
-        panelCreaSalidaMerca.jLabel_NumerodeMovimiento.setText(numDoc);
-        panelCreaSalidaMerca.jLabel_tipoMovimiento.setText("Salida de:");
-        panelCreaSalidaMerca.personalizarTablaMovimiento();
-        panelCreaSalidaMerca.agregarListenerRenders();
-        panelCreaSalidaMerca.cargarSeleccionadorProductos();
-    }//GEN-LAST:event_jButton_CrearSalidaActionPerformed
-
-    private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
-        this.verProducto();
-    }//GEN-LAST:event_jButton5ActionPerformed
-
-    private void jTextField_codProdKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField_codProdKeyPressed
-        if(evt.getKeyChar()== KeyEvent.VK_ENTER){
-             this.cargarMovimientoPorProd(this.jTextField_codProd.getText());
-        
-        }
-    }//GEN-LAST:event_jTextField_codProdKeyPressed
-
-    private void jButton_verProdBodegaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_verProdBodegaActionPerformed
-        this.verProdBodega();
-    }//GEN-LAST:event_jButton_verProdBodegaActionPerformed
-
-    private void jComboBox_categoriaBusquedaInventarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox_categoriaBusquedaInventarioActionPerformed
-        this.agregarBuscador(this.jTable_Inventario,this.jTextField_busquedaInventario,this.jComboBox_categoriaBusquedaInventario.getSelectedIndex());
-        this.jTextField_busquedaInventario.setText("");
-        this.jTextField_busquedaInventario.requestFocusInWindow();
-    }//GEN-LAST:event_jComboBox_categoriaBusquedaInventarioActionPerformed
-
-    private void jComboBox_categoriaBusquedaBodegaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox_categoriaBusquedaBodegaActionPerformed
-        this.agregarBuscador(this.jTable_verBodega,this.jTextField_busquedaBodega,this.jComboBox_categoriaBusquedaBodega.getSelectedIndex());
-        this.jTextField_busquedaBodega.setText("");
-        this.jTextField_busquedaBodega.requestFocusInWindow();
-    }//GEN-LAST:event_jComboBox_categoriaBusquedaBodegaActionPerformed
-
     private void jTextArea_DescripcionCrearProductoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextArea_DescripcionCrearProductoKeyTyped
         int limite = 30;
         if (jTextArea_DescripcionCrearProducto.getText().length() >= limite) {
@@ -1947,6 +1770,206 @@ public final class JPanel_Inventario extends javax.swing.JPanel {
         this.jDialog_CrearProducto.dispose();
     }//GEN-LAST:event_jButton6ActionPerformed
 
+    private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
+        this.verProducto();
+    }//GEN-LAST:event_jButton5ActionPerformed
+
+    private void jTextField_codProdKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField_codProdKeyPressed
+        if(evt.getKeyChar()== KeyEvent.VK_ENTER){
+            this.cargarMovimientoPorProd(this.jTextField_codProd.getText());
+
+        }
+    }//GEN-LAST:event_jTextField_codProdKeyPressed
+
+    private void jComboBox_categoriaBusquedaBodegaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox_categoriaBusquedaBodegaActionPerformed
+        this.agregarBuscador(this.jTable_verBodega,this.jTextField_busquedaBodega,this.jComboBox_categoriaBusquedaBodega.getSelectedIndex());
+        this.jTextField_busquedaBodega.setText("");
+        this.jTextField_busquedaBodega.requestFocusInWindow();
+    }//GEN-LAST:event_jComboBox_categoriaBusquedaBodegaActionPerformed
+
+    private void jButton_verProdBodegaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_verProdBodegaActionPerformed
+        this.verProdBodega();
+    }//GEN-LAST:event_jButton_verProdBodegaActionPerformed
+
+    private void jButton_CrearSalidaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_CrearSalidaActionPerformed
+        VentanaDeInicio mVentana= VentanaDeInicio.getInstance();
+        JPanel_CrearEntradaSalidaMercaderia panelCreaSalidaMerca= new JPanel_CrearEntradaSalidaMercaderia();
+        mVentana.add(panelCreaSalidaMerca);
+        panelCreaSalidaMerca.setSize(this.getSize());
+        panelCreaSalidaMerca.setLocation(this.getLocation());
+        mVentana.remove(this);
+        panelCreaSalidaMerca.setVisible(true);
+        mVentana.revalidate();
+        mVentana.repaint();
+        mVentana.setTitle("Salida de Mercaderia");
+        Direct_Control_BD AdminBD = Direct_Control_BD.getInstance();
+        String numDoc = Integer.toString(AdminBD.ObtenerUltimoidMovimiento() + 1);
+        panelCreaSalidaMerca.jLabel_NumerodeMovimiento.setText(numDoc);
+        panelCreaSalidaMerca.jLabel_tipoMovimiento.setText("Salida de:");
+        panelCreaSalidaMerca.personalizarTablaMovimiento();
+        panelCreaSalidaMerca.agregarListenerRenders();
+        panelCreaSalidaMerca.cargarSeleccionadorProductos();
+    }//GEN-LAST:event_jButton_CrearSalidaActionPerformed
+
+    private void jButton_verSalidaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_verSalidaActionPerformed
+        this.verEntrada(this.jTable_SalidasMercaderia,"Ver Salida de Mercaderia");
+    }//GEN-LAST:event_jButton_verSalidaActionPerformed
+
+    private void jButton_CrearEntradaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_CrearEntradaActionPerformed
+        VentanaDeInicio mVentana= VentanaDeInicio.getInstance();
+        JPanel_CrearEntradaSalidaMercaderia panelCreaEntradaMerca= new JPanel_CrearEntradaSalidaMercaderia();
+        mVentana.add(panelCreaEntradaMerca);
+        panelCreaEntradaMerca.setSize(this.getSize());
+        panelCreaEntradaMerca.setLocation(this.getLocation());
+        mVentana.remove(this);
+        panelCreaEntradaMerca.setVisible(true);
+        mVentana.revalidate();
+        mVentana.repaint();
+        mVentana.setTitle("Entrada de Mercaderia");
+        Direct_Control_BD AdminBD = Direct_Control_BD.getInstance();
+        String numDoc = Integer.toString(AdminBD.ObtenerUltimoidMovimiento() + 1);
+        panelCreaEntradaMerca.jLabel_NumerodeMovimiento.setText(numDoc);
+        panelCreaEntradaMerca.personalizarTablaMovimiento();
+        panelCreaEntradaMerca.agregarListenerRenders();
+        panelCreaEntradaMerca.cargarSeleccionadorProductos();
+    }//GEN-LAST:event_jButton_CrearEntradaActionPerformed
+
+    private void jButton_verEntradaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_verEntradaActionPerformed
+        this.verEntrada(this.jTable_EntradasMercaderia,"Ver Entrada de Mercaderia");
+    }//GEN-LAST:event_jButton_verEntradaActionPerformed
+
+    private void jComboBox_categoriaBusquedaInventarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox_categoriaBusquedaInventarioActionPerformed
+        this.agregarBuscador(this.jTable_Inventario,this.jTextField_busquedaInventario,this.jComboBox_categoriaBusquedaInventario.getSelectedIndex());
+        this.jTextField_busquedaInventario.setText("");
+        this.jTextField_busquedaInventario.requestFocusInWindow();
+    }//GEN-LAST:event_jComboBox_categoriaBusquedaInventarioActionPerformed
+
+    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
+
+        int row = this.jTable_Inventario.getSelectedRow();
+        if(row>=0){
+            String idProducto = this.jTable_Inventario.getValueAt(row, 0).toString();
+            this.jDialog_ConfirmacionVerProducto.setSize(200, 100);
+            JPanel_Inventario mPanel = JPanel_Inventario.getInstance();
+            this.jDialog_ConfirmacionVerProducto.setLocation(mPanel.getLocation());
+            this.jTextField_IdProductoModificar1.setText(idProducto);
+            this.jDialog_ConfirmacionVerProducto.setVisible(true);}
+        else{
+            JOptionPane.showMessageDialog(
+                null,
+                "No se selecciono ningun producto",
+                "Alert!", JOptionPane.ERROR_MESSAGE);
+        }
+    }//GEN-LAST:event_jButton4ActionPerformed
+
+    private void jButton_EliminarProductoInventarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_EliminarProductoInventarioActionPerformed
+
+        int row = this.jTable_Inventario.getSelectedRow();
+
+        if (row >= 0) {
+            this.jDialog_EliminarProducto.setSize(200,200);
+            JPanel_Inventario mPanel= JPanel_Inventario.getInstance();
+            this.jTextField_IdProducto.setText(this.jTable_Inventario.getValueAt(row, 0).toString());
+            this.jDialog_EliminarProducto.setLocation(mPanel.getLocation());
+            this.jDialog_EliminarProducto.setVisible(true);}
+        else {
+            JOptionPane.showMessageDialog(
+                null,
+                "No se selecciono ningun producto",
+                "Alert!", JOptionPane.ERROR_MESSAGE);
+        }
+    }//GEN-LAST:event_jButton_EliminarProductoInventarioActionPerformed
+
+    private void jButton_CrearProductoInventarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_CrearProductoInventarioActionPerformed
+        this.jDialog_CrearProducto.setSize(510,500);
+        this.jDialog_CrearProducto.setVisible(true);
+
+        Direct_Control_BD mBD= Direct_Control_BD.getInstance();
+        mBD.consultarCategorias();
+        String[] columnNames = mBD.getColumnNames();
+        Object[][] data = mBD.getData();
+
+        columnNames = mBD.getColumnNames();
+        data = mBD.getData();
+
+        this.jComboBox_CategoriaCrearProducto.removeAllItems();
+        for(int i=0; i<data.length; i++){
+            this.jComboBox_CategoriaCrearProducto.addItem(data[i][1]);
+        }
+
+        this.jComboBox_CategoriaCrearProducto.setSelectedItem("Sin Categoria");
+        //Para que solo acepte 10 enteros y 2 decimales despues del punto
+        DocumentFilter onlyNumberFilter = new MyFilter();
+        ((AbstractDocument)this.jTextField_Precio.getDocument()).setDocumentFilter(onlyNumberFilter);
+        ((AbstractDocument)this.jTextField_CostoCrearProducto.getDocument()).setDocumentFilter(onlyNumberFilter);
+
+    }//GEN-LAST:event_jButton_CrearProductoInventarioActionPerformed
+
+    private void jButton_ModificarProductoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_ModificarProductoActionPerformed
+        int row = this.jTable_Inventario.getSelectedRow();
+
+        if (row >= 0) {
+            String idProducto = this.jTable_Inventario.getValueAt(row, 0).toString();
+            this.jDialog_ConfirmacionModificacionProducto.setSize(200, 100);
+            JPanel_Inventario mPanel = JPanel_Inventario.getInstance();
+            this.jDialog_ConfirmacionModificacionProducto.setLocation(mPanel.getLocation());
+            this.jTextField_IdProductoModificar.setText(idProducto);
+            this.jDialog_ConfirmacionModificacionProducto.setVisible(true);
+        } else {
+            JOptionPane.showMessageDialog(
+                null,
+                "No se selecciono ningun producto",
+                "Alert!", JOptionPane.ERROR_MESSAGE);
+        }
+    }//GEN-LAST:event_jButton_ModificarProductoActionPerformed
+
+    private void jButtonRegresarInventarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonRegresarInventarioActionPerformed
+        VentanaDeInicio mVentana= VentanaDeInicio.getInstance();
+        mVentana.remove(this);
+        mVentana.revalidate();
+        mVentana.repaint();
+        mVentana.setTitle("Joe ");
+        mVentana.add(mVentana.jPanel_VentanaPrincipal);
+        mVentana.jPanel_VentanaPrincipal.setVisible(true);
+        mVentana.jPanel_VentanaPrincipal.setSize(this.getSize());
+        mVentana.jPanel_VentanaPrincipal.setLocation(this.getLocation());
+    }//GEN-LAST:event_jButtonRegresarInventarioActionPerformed
+
+    private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton7ActionPerformed
+         Dialog_generarEtiquetas etiquetas = new Dialog_generarEtiquetas(null,true);
+       
+    }//GEN-LAST:event_jButton7ActionPerformed
+
+    private void jTextField_PrecioFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTextField_PrecioFocusGained
+        this.jTextField_Precio.selectAll();
+    }//GEN-LAST:event_jTextField_PrecioFocusGained
+
+    private void jTextField_PrecioKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField_PrecioKeyPressed
+        if (evt.isControlDown()) {
+            evt.consume();
+        }
+    }//GEN-LAST:event_jTextField_PrecioKeyPressed
+
+    private void jTextField_PrecioKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField_PrecioKeyTyped
+        int tecla = evt.getKeyChar();
+        if (tecla == KeyEvent.VK_COMMA) {
+            return;
+        }
+        if (tecla == KeyEvent.VK_PERIOD) {
+            return;
+        }
+        if (!Character.isDigit(tecla) & !Character.isISOControl(evt.getKeyChar())) {
+            Toolkit.getDefaultToolkit().beep();
+            evt.consume();
+
+        }
+
+        if (KeyEvent.VK_ENTER == evt.getKeyChar()) {
+            this.jTextField_Precio.transferFocus();
+
+        }
+    }//GEN-LAST:event_jTextField_PrecioKeyTyped
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
@@ -1955,6 +1978,7 @@ public final class JPanel_Inventario extends javax.swing.JPanel {
     private javax.swing.JButton jButton4;
     private javax.swing.JButton jButton5;
     private javax.swing.JButton jButton6;
+    private javax.swing.JButton jButton7;
     private javax.swing.JButton jButtonRegresarInventario;
     private javax.swing.JButton jButton_CrearCategoria;
     private javax.swing.JButton jButton_CrearEntrada;
@@ -2047,7 +2071,7 @@ public final class JPanel_Inventario extends javax.swing.JPanel {
     private javax.swing.JTextField jTextField_IdProductoModificar;
     private javax.swing.JTextField jTextField_IdProductoModificar1;
     private javax.swing.JTextField jTextField_NombreCategoria;
-    private javax.swing.JTextField jTextField_Precio;
+    private javax.swing.JFormattedTextField jTextField_Precio;
     private javax.swing.JTextField jTextField_Precio1;
     private javax.swing.JTextField jTextField_PrecioVerProducto;
     private javax.swing.JTextField jTextField_busquedaBodega;

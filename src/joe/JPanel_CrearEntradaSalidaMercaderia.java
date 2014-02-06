@@ -28,6 +28,8 @@ import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableCellRenderer;
+import javax.swing.text.AbstractDocument;
+import javax.swing.text.DocumentFilter;
 import jzebra.PrintRaw;
 import jzebra.PrintServiceMatcher;
 
@@ -111,8 +113,8 @@ public class JPanel_CrearEntradaSalidaMercaderia extends javax.swing.JPanel {
         jPanel2.setBackground(new java.awt.Color(153, 153, 153));
 
         jTextField_codigo.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyPressed(java.awt.event.KeyEvent evt) {
-                jTextField_codigoKeyPressed(evt);
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                jTextField_codigoKeyTyped(evt);
             }
         });
 
@@ -121,8 +123,8 @@ public class JPanel_CrearEntradaSalidaMercaderia extends javax.swing.JPanel {
         jLabel2.setText("Nombre del Producto");
 
         jTextField_nombre.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyPressed(java.awt.event.KeyEvent evt) {
-                jTextField_nombreKeyPressed(evt);
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                jTextField_nombreKeyTyped(evt);
             }
         });
 
@@ -737,21 +739,6 @@ public class JPanel_CrearEntradaSalidaMercaderia extends javax.swing.JPanel {
 
     }//GEN-LAST:event_jButton_guardaImprimeActionPerformed
 
-    private void jTextField_codigoKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField_codigoKeyPressed
-        //Se presiono enter en el textfield de codigo por lo tanto tiene que
-        // hacer que se haga focus el que sigue
-        if (evt.getKeyCode() == 10) {
-            this.jTextField_codigo.transferFocus();
-
-        }
-    }//GEN-LAST:event_jTextField_codigoKeyPressed
-
-    private void jTextField_nombreKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField_nombreKeyPressed
-        if (evt.getKeyCode() == 10) {
-            this.jTextField_nombre.transferFocus();
-        }
-    }//GEN-LAST:event_jTextField_nombreKeyPressed
-
     private void jButton_CrearProductoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_CrearProductoActionPerformed
         this.CrearProducto();
         this.clearCrearProducto();
@@ -782,17 +769,13 @@ public class JPanel_CrearEntradaSalidaMercaderia extends javax.swing.JPanel {
     }//GEN-LAST:event_jFormattedTextField_precioProductoFocusGained
 
     private void jFormattedTextField_precioProductoKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jFormattedTextField_precioProductoKeyPressed
-        if (evt.getKeyCode() == 10) {
-            this.jFormattedTextField_precioProducto.transferFocus();
-
-        }
         if (evt.isControlDown()) {
             evt.consume();
         }
     }//GEN-LAST:event_jFormattedTextField_precioProductoKeyPressed
 
     private void jFormattedTextField_precioProductoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jFormattedTextField_precioProductoKeyTyped
-        int tecla = evt.getKeyChar();
+       int tecla = evt.getKeyChar();
         if (tecla == KeyEvent.VK_COMMA) {
             return;
         }
@@ -804,6 +787,11 @@ public class JPanel_CrearEntradaSalidaMercaderia extends javax.swing.JPanel {
             evt.consume();
 
         }
+
+        if (KeyEvent.VK_ENTER == evt.getKeyChar()) {
+            this.jFormattedTextField_precioProducto.transferFocus();
+
+        }
     }//GEN-LAST:event_jFormattedTextField_precioProductoKeyTyped
 
     private void jFormattedTextField_cantidadProductoFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jFormattedTextField_cantidadProductoFocusGained
@@ -811,10 +799,6 @@ public class JPanel_CrearEntradaSalidaMercaderia extends javax.swing.JPanel {
     }//GEN-LAST:event_jFormattedTextField_cantidadProductoFocusGained
 
     private void jFormattedTextField_cantidadProductoKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jFormattedTextField_cantidadProductoKeyPressed
-        if (evt.getKeyCode() == 10) {
-            this.jFormattedTextField_cantidadProducto.transferFocus();
-
-        }
         if (evt.isControlDown()) {
             evt.consume();
         }
@@ -822,9 +806,20 @@ public class JPanel_CrearEntradaSalidaMercaderia extends javax.swing.JPanel {
 
     private void jFormattedTextField_cantidadProductoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jFormattedTextField_cantidadProductoKeyTyped
         int tecla = evt.getKeyChar();
+
         if (!Character.isDigit(tecla) & !Character.isISOControl(evt.getKeyChar())) {
             Toolkit.getDefaultToolkit().beep();
             evt.consume();
+
+        }
+
+        int limite = 10;
+        if (jFormattedTextField_cantidadProducto.getText().length() == limite) {
+            evt.consume();
+            Toolkit.getDefaultToolkit().beep();
+        }
+        if (KeyEvent.VK_ENTER == evt.getKeyChar()) {
+            this.jFormattedTextField_cantidadProducto.transferFocus();
 
         }
     }//GEN-LAST:event_jFormattedTextField_cantidadProductoKeyTyped
@@ -868,8 +863,9 @@ public class JPanel_CrearEntradaSalidaMercaderia extends javax.swing.JPanel {
         JFileChooser filechooser = new JFileChooser();
         int value = filechooser.showOpenDialog(null);
         this.cargoArchivo = true;
-        this.jFormattedTextField_Total.setValue(BigDecimal.ZERO);
+        
         if (value == JFileChooser.APPROVE_OPTION) {
+            this.jFormattedTextField_Total.setValue(BigDecimal.ZERO);
             File file = filechooser.getSelectedFile();
             String direccion = (String.valueOf(file));
             try {
@@ -890,11 +886,24 @@ public class JPanel_CrearEntradaSalidaMercaderia extends javax.swing.JPanel {
 
     private void jButton_generarEtiquetasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_generarEtiquetasActionPerformed
         //Contiene: Cod,Nombre,Cantidad,Precio del producto
+        if (jTable_Movimiento.isEditing()) {
+            jTable_Movimiento.getCellEditor().cancelCellEditing();
+
+        }
+        if (this.jTable_Movimiento.getValueAt(0, 0).equals("")) {
+            JOptionPane.showMessageDialog(
+                    null,
+                    "No hay productos para generar etiquetas",
+                    "Alert!", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+
         String[][] etiquetas = this.obtenerInfoTablaMovimientoParaEtiquetas();
         Imprimir etqt = new Imprimir();
         XMLConfiguracion empresa = XMLConfiguracion.getInstance();
-        String[] infoEmpresa = empresa. NombreTelefonoEmpresa();
+        String[] infoEmpresa = empresa.NombreTelefonoEmpresa();
         etqt.imprimirListaEtiquetas(etiquetas, infoEmpresa);
+
 
     }//GEN-LAST:event_jButton_generarEtiquetasActionPerformed
 
@@ -906,6 +915,35 @@ public class JPanel_CrearEntradaSalidaMercaderia extends javax.swing.JPanel {
 
         }
     }//GEN-LAST:event_jTextField_referenciaKeyTyped
+
+    private void jTextField_codigoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField_codigoKeyTyped
+        int limite = 11;
+        if (jTextField_codigo.getText().length() >= limite) {
+            evt.consume();
+            Toolkit.getDefaultToolkit().beep();
+
+        }
+        if (Character.isLowerCase(evt.getKeyChar())) {
+            evt.setKeyChar(Character.toUpperCase(evt.getKeyChar()));
+        }
+        if (KeyEvent.VK_ENTER == evt.getKeyChar()) {
+            this.jTextField_codigo.transferFocus();
+
+        }
+    }//GEN-LAST:event_jTextField_codigoKeyTyped
+
+    private void jTextField_nombreKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField_nombreKeyTyped
+        int limite = 30;
+        if (jTextField_nombre.getText().length() >= limite) {
+            evt.consume();
+            Toolkit.getDefaultToolkit().beep();
+
+        }
+        if (KeyEvent.VK_ENTER == evt.getKeyChar()) {
+            this.jTextField_nombre.transferFocus();
+
+        }
+    }//GEN-LAST:event_jTextField_nombreKeyTyped
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -970,7 +1008,8 @@ public class JPanel_CrearEntradaSalidaMercaderia extends javax.swing.JPanel {
             this.jDialog_CrearProducto.setVisible(true);
             return;
         }
-
+        DocumentFilter onlyNumberFilter = new MyFilter();
+        ((AbstractDocument)this.jFormattedTextField_precioProducto.getDocument()).setDocumentFilter(onlyNumberFilter);
         //Llama a la ventana para crear el producto
         this.jDialog_CrearProducto.setSize(500, 300);
         this.jDialog_CrearProducto.setVisible(true);

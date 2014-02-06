@@ -675,6 +675,7 @@ public class JPanel_CrearEntradaSalidaMercaderia extends javax.swing.JPanel {
 
     private void jButton_CreaProductoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_CreaProductoActionPerformed
         this.creacionProductoPanel();
+         
     }//GEN-LAST:event_jButton_CreaProductoActionPerformed
 
     private void jButton_VerProductoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_VerProductoActionPerformed
@@ -719,6 +720,7 @@ public class JPanel_CrearEntradaSalidaMercaderia extends javax.swing.JPanel {
         MyTableModel_FACT model = (MyTableModel_FACT) jTable_Movimiento.getModel();
         int row = this.jTable_Movimiento.getSelectedRow();
         model.setValueAt(id, row, 0);
+        model.addRow(1);
         this.setFocusTablaMovimiento(1);
     }//GEN-LAST:event_jButton_BuscarProductoActionPerformed
 
@@ -753,6 +755,7 @@ public class JPanel_CrearEntradaSalidaMercaderia extends javax.swing.JPanel {
     private void jButton_CrearProductoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_CrearProductoActionPerformed
         this.CrearProducto();
         this.clearCrearProducto();
+       
     }//GEN-LAST:event_jButton_CrearProductoActionPerformed
 
     private void jButton_CrearProductoKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jButton_CrearProductoKeyPressed
@@ -1010,32 +1013,43 @@ public class JPanel_CrearEntradaSalidaMercaderia extends javax.swing.JPanel {
         int row = jTable_Movimiento.getSelectedRow();
         ///Si se esta escribiendo en la celda para el editor y luego elimina la
         // fila
-        if (jTable_Movimiento.isEditing()) {
-            jTable_Movimiento.getCellEditor().cancelCellEditing();
-            jTable_Movimiento.revalidate();
-            jTable_Movimiento.repaint();
-            jTable_Movimiento.requestFocus();
+        if (!model.data.isEmpty()) {
+            if (jTable_Movimiento.isEditing()) {
+                jTable_Movimiento.getCellEditor().cancelCellEditing();
+                jTable_Movimiento.revalidate();
+                jTable_Movimiento.repaint();
+                jTable_Movimiento.requestFocus();
 
+            }
+            String subTotal = model.getValueAt(row, 4).toString();
+            if (subTotal != "") {
+                //Elimina un producto ya ingresado y actualiza el total
+                BigDecimal subtotal = new BigDecimal(subTotal);
+                model.removeRow(row);
+                BigDecimal totalFact = this.corregirDato(
+                        this.jFormattedTextField_Total.getText());
+                this.jFormattedTextField_Total.setValue(
+                        totalFact.subtract(subtotal));
+                jTable_Movimiento.changeSelection(row-1,0,false, false);
+                jTable_Movimiento.revalidate();
+                jTable_Movimiento.repaint();
+                jTable_Movimiento.requestFocus();
+                
+                
+            } else { //Si es vacio el subtotal significa que no tiene que actualizar
+                // el subtotal
+                model.removeRow(row);
+                
+                jTable_Movimiento.changeSelection(row-1,0,false, false);
+                jTable_Movimiento.revalidate();
+                jTable_Movimiento.repaint();
+                jTable_Movimiento.requestFocus();
+                
+
+            }
         }
-        String subTotal = model.getValueAt(row, 4).toString();
-        if (subTotal != "") {
-            //Elimina un producto ya ingresado y actualiza el total
-            BigDecimal subtotal = new BigDecimal(subTotal);
-            model.removeRow(row);
-            BigDecimal totalFact = this.corregirDato(
-                    this.jFormattedTextField_Total.getText());
-            this.jFormattedTextField_Total.setValue(
-                    totalFact.subtract(subtotal));
-            jTable_Movimiento.revalidate();
-            jTable_Movimiento.repaint();
-            jTable_Movimiento.requestFocus();
-        } else { //Si es vacio el subtotal significa que no tiene que actualizar
-            // el subtotal
-            model.removeRow(row);
-            jTable_Movimiento.revalidate();
-            jTable_Movimiento.repaint();
-            jTable_Movimiento.requestFocus();
-
+        if (model.data.isEmpty()){
+            model.addRow(1);
         }
     }
 
@@ -1059,11 +1073,12 @@ public class JPanel_CrearEntradaSalidaMercaderia extends javax.swing.JPanel {
      * @param cantidad
      */
     private void setFocusTablaMovimiento(int cantidad) {
-        jTable_Movimiento.revalidate();
-        jTable_Movimiento.repaint();
+        
         jTable_Movimiento.changeSelection(jTable_Movimiento.getSelectedRow()
                 + cantidad, jTable_Movimiento.getSelectedColumn(), false, false);
         jTable_Movimiento.requestFocus();
+        jTable_Movimiento.revalidate();
+        jTable_Movimiento.repaint();
     }
 
     /**
@@ -1090,6 +1105,7 @@ public class JPanel_CrearEntradaSalidaMercaderia extends javax.swing.JPanel {
             model.setValueAt(codigo, jTable_Movimiento.getSelectedRow(), 0);
             //Vuelve a cargar la informacion para el editor de la primer columna
             this.cargarSeleccionadorProductos();
+            model.addRow(1);
             this.setFocusTablaMovimiento(1);
         } else {
             JOptionPane.showMessageDialog(

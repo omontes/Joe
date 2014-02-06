@@ -10,6 +10,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import javax.swing.table.AbstractTableModel;
+import jxl.write.DateTime;
 
 
 /**
@@ -74,6 +75,9 @@ class Modelo_verMovimientos extends AbstractTableModel {
      * Les agrega el tipo de clase a cada columna
      */
     public Class getColumnClass(int c) {
+        if(c==0){
+            return DateTime.class;
+        }
         if(c==6){return BigDecimal.class;}
         return String.class;
     }

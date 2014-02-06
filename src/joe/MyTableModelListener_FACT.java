@@ -123,8 +123,8 @@ public class MyTableModelListener_FACT implements TableModelListener {
 
               }
               table.revalidate();
-              table.clearSelection();
-              table.changeSelection(row, column, false, false);
+              table.repaint();
+              table.changeSelection(row,0, false, false);
               table.requestFocus();
               return;
           }

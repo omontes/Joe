@@ -1,5 +1,6 @@
 SELECT M.`Fecha`,M.`Detalle`,T.`Nombre` AS Tipo,
-PCM.`Balance`,PCM.`PrecioMov` AS Precio,PCM.`CantidadMovida`,
+IF(PCM.`Balance`is NULL,PCM.`CantidadMovida`,PCM.`Balance`) AS Balance,
+PCM.`PrecioMov` AS Precio,PCM.`CantidadMovida`,
 IF(T.`Nombre`="Entrada", PCM.`PrecioMov`, 0) AS PrecioEntrada,
 IF(T.`Nombre`="Salida", PCM.`PrecioMov`, 0) AS PrecioSalida,
 IF(T.`Nombre`="Entrada",PCM.`CantidadMovida`,0) AS CantidadEntrada,

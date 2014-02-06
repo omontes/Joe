@@ -105,8 +105,8 @@ public class JPanel_CrearEntradaSalidaMercaderia extends javax.swing.JPanel {
         jButton1 = new javax.swing.JButton();
         jScrollPane2 = new javax.swing.JScrollPane();
         jTable_Movimiento = new javax.swing.JTable();
-        jTextField_referencia = new javax.swing.JFormattedTextField();
         jButton_generarEtiquetas = new javax.swing.JButton();
+        jTextField_referencia = new javax.swing.JTextField();
 
         jPanel2.setBackground(new java.awt.Color(153, 153, 153));
 
@@ -567,18 +567,16 @@ public class JPanel_CrearEntradaSalidaMercaderia extends javax.swing.JPanel {
         });
         jScrollPane2.setViewportView(jTable_Movimiento);
 
-        try {
-            jTextField_referencia.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("****************************************************************************************************************")));
-        } catch (java.text.ParseException ex) {
-            ex.printStackTrace();
-        }
-        jTextField_referencia.setText("");
-        jTextField_referencia.setFocusCycleRoot(true);
-
         jButton_generarEtiquetas.setText("Generar Etiquetas");
         jButton_generarEtiquetas.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton_generarEtiquetasActionPerformed(evt);
+            }
+        });
+
+        jTextField_referencia.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                jTextField_referenciaKeyTyped(evt);
             }
         });
 
@@ -612,8 +610,8 @@ public class JPanel_CrearEntradaSalidaMercaderia extends javax.swing.JPanel {
                                 .addComponent(jComboBox_LugarDeMov, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(29, 29, 29)
                                 .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 69, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(jTextField_referencia, javax.swing.GroupLayout.PREFERRED_SIZE, 276, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jTextField_referencia, javax.swing.GroupLayout.PREFERRED_SIZE, 283, javax.swing.GroupLayout.PREFERRED_SIZE))))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(148, 148, 148)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -677,6 +675,7 @@ public class JPanel_CrearEntradaSalidaMercaderia extends javax.swing.JPanel {
 
     private void jButton_CreaProductoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_CreaProductoActionPerformed
         this.creacionProductoPanel();
+         
     }//GEN-LAST:event_jButton_CreaProductoActionPerformed
 
     private void jButton_VerProductoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_VerProductoActionPerformed
@@ -721,17 +720,19 @@ public class JPanel_CrearEntradaSalidaMercaderia extends javax.swing.JPanel {
         MyTableModel_FACT model = (MyTableModel_FACT) jTable_Movimiento.getModel();
         int row = this.jTable_Movimiento.getSelectedRow();
         model.setValueAt(id, row, 0);
+        model.addRow(1);
         this.setFocusTablaMovimiento(1);
     }//GEN-LAST:event_jButton_BuscarProductoActionPerformed
 
     private void jButton_guardaImprimeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_guardaImprimeActionPerformed
-        this.guardarMovimiento();
-        this.imprimirMovimiento(
-                this.jTable_Movimiento, this.jLabel_NumerodeMovimiento.getText(),
-                this.jLabel_Fecha.getText(),
-                this.jComboBox_LugarDeMov.getSelectedItem().toString(),
-                this.jFormattedTextField_Total.getText(),
-                this.jTextField_referencia.getText());
+        if (this.guardarMovimiento()) {
+            this.imprimirMovimiento(
+                    this.jTable_Movimiento, this.jLabel_NumerodeMovimiento.getText(),
+                    this.jLabel_Fecha.getText(),
+                    this.jComboBox_LugarDeMov.getSelectedItem().toString(),
+                    this.jFormattedTextField_Total.getText(),
+                    this.jTextField_referencia.getText());
+        }
 
 
     }//GEN-LAST:event_jButton_guardaImprimeActionPerformed
@@ -754,6 +755,7 @@ public class JPanel_CrearEntradaSalidaMercaderia extends javax.swing.JPanel {
     private void jButton_CrearProductoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_CrearProductoActionPerformed
         this.CrearProducto();
         this.clearCrearProducto();
+       
     }//GEN-LAST:event_jButton_CrearProductoActionPerformed
 
     private void jButton_CrearProductoKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jButton_CrearProductoKeyPressed
@@ -896,6 +898,15 @@ public class JPanel_CrearEntradaSalidaMercaderia extends javax.swing.JPanel {
 
     }//GEN-LAST:event_jButton_generarEtiquetasActionPerformed
 
+    private void jTextField_referenciaKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField_referenciaKeyTyped
+        int limite = 80;
+        if (this.jTextField_referencia.getText().length() >= limite) {
+            evt.consume();
+            Toolkit.getDefaultToolkit().beep();
+
+        }
+    }//GEN-LAST:event_jTextField_referenciaKeyTyped
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     javax.swing.JButton jButton1;
@@ -949,7 +960,7 @@ public class JPanel_CrearEntradaSalidaMercaderia extends javax.swing.JPanel {
     javax.swing.JTextField jTextField_busqueProducto;
     javax.swing.JTextField jTextField_codigo;
     javax.swing.JTextField jTextField_nombre;
-    javax.swing.JFormattedTextField jTextField_referencia;
+    javax.swing.JTextField jTextField_referencia;
     // End of variables declaration//GEN-END:variables
     private void creacionProductoPanel() {
         //En caso de que quiera crear un producto mientras se este editando
@@ -1002,32 +1013,43 @@ public class JPanel_CrearEntradaSalidaMercaderia extends javax.swing.JPanel {
         int row = jTable_Movimiento.getSelectedRow();
         ///Si se esta escribiendo en la celda para el editor y luego elimina la
         // fila
-        if (jTable_Movimiento.isEditing()) {
-            jTable_Movimiento.getCellEditor().cancelCellEditing();
-            jTable_Movimiento.revalidate();
-            jTable_Movimiento.repaint();
-            jTable_Movimiento.requestFocus();
+        if (!model.data.isEmpty()) {
+            if (jTable_Movimiento.isEditing()) {
+                jTable_Movimiento.getCellEditor().cancelCellEditing();
+                jTable_Movimiento.revalidate();
+                jTable_Movimiento.repaint();
+                jTable_Movimiento.requestFocus();
 
+            }
+            String subTotal = model.getValueAt(row, 4).toString();
+            if (subTotal != "") {
+                //Elimina un producto ya ingresado y actualiza el total
+                BigDecimal subtotal = new BigDecimal(subTotal);
+                model.removeRow(row);
+                BigDecimal totalFact = this.corregirDato(
+                        this.jFormattedTextField_Total.getText());
+                this.jFormattedTextField_Total.setValue(
+                        totalFact.subtract(subtotal));
+                jTable_Movimiento.changeSelection(row-1,0,false, false);
+                jTable_Movimiento.revalidate();
+                jTable_Movimiento.repaint();
+                jTable_Movimiento.requestFocus();
+                
+                
+            } else { //Si es vacio el subtotal significa que no tiene que actualizar
+                // el subtotal
+                model.removeRow(row);
+                
+                jTable_Movimiento.changeSelection(row-1,0,false, false);
+                jTable_Movimiento.revalidate();
+                jTable_Movimiento.repaint();
+                jTable_Movimiento.requestFocus();
+                
+
+            }
         }
-        String subTotal = model.getValueAt(row, 4).toString();
-        if (subTotal != "") {
-            //Elimina un producto ya ingresado y actualiza el total
-            BigDecimal subtotal = new BigDecimal(subTotal);
-            model.removeRow(row);
-            BigDecimal totalFact = this.corregirDato(
-                    this.jFormattedTextField_Total.getText());
-            this.jFormattedTextField_Total.setValue(
-                    totalFact.subtract(subtotal));
-            jTable_Movimiento.revalidate();
-            jTable_Movimiento.repaint();
-            jTable_Movimiento.requestFocus();
-        } else { //Si es vacio el subtotal significa que no tiene que actualizar
-            // el subtotal
-            model.removeRow(row);
-            jTable_Movimiento.revalidate();
-            jTable_Movimiento.repaint();
-            jTable_Movimiento.requestFocus();
-
+        if (model.data.isEmpty()){
+            model.addRow(1);
         }
     }
 
@@ -1051,11 +1073,12 @@ public class JPanel_CrearEntradaSalidaMercaderia extends javax.swing.JPanel {
      * @param cantidad
      */
     private void setFocusTablaMovimiento(int cantidad) {
-        jTable_Movimiento.revalidate();
-        jTable_Movimiento.repaint();
+        
         jTable_Movimiento.changeSelection(jTable_Movimiento.getSelectedRow()
                 + cantidad, jTable_Movimiento.getSelectedColumn(), false, false);
         jTable_Movimiento.requestFocus();
+        jTable_Movimiento.revalidate();
+        jTable_Movimiento.repaint();
     }
 
     /**
@@ -1082,6 +1105,7 @@ public class JPanel_CrearEntradaSalidaMercaderia extends javax.swing.JPanel {
             model.setValueAt(codigo, jTable_Movimiento.getSelectedRow(), 0);
             //Vuelve a cargar la informacion para el editor de la primer columna
             this.cargarSeleccionadorProductos();
+            model.addRow(1);
             this.setFocusTablaMovimiento(1);
         } else {
             JOptionPane.showMessageDialog(
@@ -1137,7 +1161,7 @@ public class JPanel_CrearEntradaSalidaMercaderia extends javax.swing.JPanel {
         //Agrega el modelo a la factura
         MyTableModel_FACT model = new MyTableModel_FACT(columnNames, data);
         //Agrega 20 filas
-        model.addRow(20);
+        model.addRow(1);
         this.jTable_Movimiento.setModel(model);
 
     }
@@ -1251,18 +1275,25 @@ public class JPanel_CrearEntradaSalidaMercaderia extends javax.swing.JPanel {
 
     }
 
-    private void guardarMovimiento() {
-        System.out.println(this.jTextField_referencia.getText());
+    private boolean guardarMovimiento() {
         if (this.jTextField_referencia.getText().equals("")) {
             JOptionPane.showMessageDialog(
                     null,
                     "Debe de ingresar una referencia de la entrada de mercaderia",
                     "Alert!", JOptionPane.ERROR_MESSAGE);
-            return;
+            return false;
+        }
+        if(this.jTable_Movimiento.getValueAt(0,0).equals("")){
+            JOptionPane.showMessageDialog(
+                    null,
+                    "Debe de ingresar algun producto",
+                    "Alert!", JOptionPane.ERROR_MESSAGE);
+            return false;
         }
         this.crearMovimiento();
         this.guardarProductosMovimiento();
         this.clearAll();
+        return true;
     }
 
     private void crearMovimiento() {
@@ -1292,7 +1323,7 @@ public class JPanel_CrearEntradaSalidaMercaderia extends javax.swing.JPanel {
         //insertar los productos en el movimiento
         for (int i = 0; i < rows; i++) {
             //Si la fila esta vacia
-            if (model.getValueAt(i, 0) != "") {
+            if (!model.getValueAt(i, 0).equals("")) {
                 String idProducto = infoTablaMov[i][0];
                 int idVersion = AdminBD.veridVersionActivaProductoPorCodigo(idProducto);
                 String CantidadSinCorregir = infoTablaMov[i][2].toString();
@@ -1430,6 +1461,8 @@ public class JPanel_CrearEntradaSalidaMercaderia extends javax.swing.JPanel {
                 return;
             }
         }
+        this.jTable_Movimiento.revalidate();
+        this.jTable_Movimiento.repaint();
         model.addRow(20);
         //Vuelve a cargar la informacion para el editor de la primer columna
         this.cargarSeleccionadorProductos();

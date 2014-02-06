@@ -1124,20 +1124,40 @@ public class JPanel_CrearEntradaSalidaMercaderia extends javax.swing.JPanel {
      * Este metodo crea un producto en movimiento
      */
     private void CrearProducto() {
+        
+        
         Direct_Control_BD AdminBD = Direct_Control_BD.getInstance();
         DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd");
         Date date = new Date();
         String codigo = this.jTextField_codigo.getText();
+        
+        if(codigo.equals("")){
+            
+             JOptionPane.showMessageDialog(
+                    null,
+                    "Por favor ingrese un codigo",
+                    "Alert!", JOptionPane.ERROR_MESSAGE);
+             return;
+        
+        }
+        if(this.jTextField_nombre.getText().equals("")){
+            
+             JOptionPane.showMessageDialog(
+                    null,
+                    "Por favor ingrese un nombre para el producto",
+                    "Alert!", JOptionPane.ERROR_MESSAGE);
+             return;
+        
+        }
         boolean existeProducto = AdminBD.verSiExisteCod(codigo);
         if (!existeProducto) {
-            BigDecimal bd = new BigDecimal(
+            BigDecimal bd = this.StringtoBigDecimal(
                     this.jFormattedTextField_precioProducto.
-                    getValue().toString());
+                    getText());
             AdminBD.crearProducto(codigo, this.jTextField_nombre.getText(),
                     bd, BigDecimal.ZERO, dateFormat.format(date), "A", null, 1);
             AdminBD.insertarEnInventario(this.jTextField_codigo.getText(),
-                    1, Integer.parseInt(this.jFormattedTextField_cantidadProducto.getValue()
-                            .toString()));
+                    1, Integer.parseInt(this.jFormattedTextField_cantidadProducto.getText()));
             this.clearCrearProducto();
             this.jDialog_CrearProducto.dispose();
             MyTableModel_FACT model = (MyTableModel_FACT) jTable_Movimiento.getModel();

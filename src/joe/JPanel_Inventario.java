@@ -968,6 +968,7 @@ public final class JPanel_Inventario extends javax.swing.JPanel {
 
             }
         ));
+        jTable_EntradasMercaderia.setFillsViewportHeight(true);
         jScrollPane3.setViewportView(jTable_EntradasMercaderia);
 
         jButton_verEntrada.setText("Ver Entrada");
@@ -991,14 +992,14 @@ public final class JPanel_Inventario extends javax.swing.JPanel {
             .addGroup(jPanel_EntradaMercaderiaLayout.createSequentialGroup()
                 .addGroup(jPanel_EntradaMercaderiaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel_EntradaMercaderiaLayout.createSequentialGroup()
-                        .addGap(23, 23, 23)
-                        .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 855, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel_EntradaMercaderiaLayout.createSequentialGroup()
                         .addGap(54, 54, 54)
                         .addComponent(jButton_CrearEntrada)
                         .addGap(27, 27, 27)
-                        .addComponent(jButton_verEntrada)))
-                .addContainerGap(21, Short.MAX_VALUE))
+                        .addComponent(jButton_verEntrada))
+                    .addGroup(jPanel_EntradaMercaderiaLayout.createSequentialGroup()
+                        .addGap(23, 23, 23)
+                        .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 786, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(90, Short.MAX_VALUE))
         );
         jPanel_EntradaMercaderiaLayout.setVerticalGroup(
             jPanel_EntradaMercaderiaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -1025,6 +1026,7 @@ public final class JPanel_Inventario extends javax.swing.JPanel {
 
             }
         ));
+        jTable_SalidasMercaderia.setFillsViewportHeight(true);
         jScrollPane4.setViewportView(jTable_SalidasMercaderia);
 
         jButton_verSalida.setText("Ver Salida");
@@ -1048,14 +1050,14 @@ public final class JPanel_Inventario extends javax.swing.JPanel {
             .addGroup(jPanel6Layout.createSequentialGroup()
                 .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel6Layout.createSequentialGroup()
-                        .addGap(19, 19, 19)
-                        .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 855, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel6Layout.createSequentialGroup()
                         .addGap(41, 41, 41)
                         .addComponent(jButton_CrearSalida)
                         .addGap(27, 27, 27)
-                        .addComponent(jButton_verSalida)))
-                .addContainerGap(25, Short.MAX_VALUE))
+                        .addComponent(jButton_verSalida))
+                    .addGroup(jPanel6Layout.createSequentialGroup()
+                        .addGap(19, 19, 19)
+                        .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 782, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(98, Short.MAX_VALUE))
         );
         jPanel6Layout.setVerticalGroup(
             jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -1066,7 +1068,7 @@ public final class JPanel_Inventario extends javax.swing.JPanel {
                 .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton_verSalida)
                     .addComponent(jButton_CrearSalida))
-                .addContainerGap(40, Short.MAX_VALUE))
+                .addContainerGap(38, Short.MAX_VALUE))
         );
 
         jTabbedPane1.addTab("Salida de Mercaderia", jPanel6);
@@ -1113,14 +1115,14 @@ public final class JPanel_Inventario extends javax.swing.JPanel {
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(46, 46, 46)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jScrollPane7, javax.swing.GroupLayout.PREFERRED_SIZE, 768, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addComponent(jLabel23)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(jTextField_busquedaBodega, javax.swing.GroupLayout.PREFERRED_SIZE, 119, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jComboBox_categoriaBusquedaBodega, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(jScrollPane7, javax.swing.GroupLayout.PREFERRED_SIZE, 785, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addContainerGap(68, Short.MAX_VALUE))
+                                .addComponent(jComboBox_categoriaBusquedaBodega, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                .addContainerGap(85, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -2158,6 +2160,13 @@ public final class JPanel_Inventario extends javax.swing.JPanel {
         Object[][] data= AdminBD.getData();
         ArrayList<Object[]> arrayList = new ArrayList<Object[]>(Arrays.asList(data));
         model.data=arrayList;
+        
+        RowSorter<Modelo_verMovimientos> sorter= new TableRowSorter<Modelo_verMovimientos>(model);
+        this.jTable_verMovimientos.setRowSorter(sorter);
+        List<RowSorter.SortKey> sortKeys = new ArrayList<RowSorter.SortKey>();
+        sortKeys.add(new RowSorter.SortKey(0, SortOrder.ASCENDING));
+        sorter.setSortKeys(sortKeys);
+        
         model.fireTableDataChanged();
         model.addRow(20);
         

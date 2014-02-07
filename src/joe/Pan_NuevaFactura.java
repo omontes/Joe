@@ -479,12 +479,12 @@ public class Pan_NuevaFactura extends javax.swing.JPanel {
                 .addContainerGap()
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel3Layout.createSequentialGroup()
                                 .addComponent(jLabel14, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addGap(18, 18, 18)
-                                .addComponent(jFormattedTextField_descUnitario, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel3Layout.createSequentialGroup()
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(jFormattedTextField_descUnitario, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(jPanel3Layout.createSequentialGroup()
                                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jLabel_DescripcionDescUnitario, javax.swing.GroupLayout.PREFERRED_SIZE, 144, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(jLabel13, javax.swing.GroupLayout.PREFERRED_SIZE, 129, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -763,7 +763,7 @@ public class Pan_NuevaFactura extends javax.swing.JPanel {
             }
         });
         jLayeredPane1.add(jLabel22);
-        jLabel22.setBounds(505, 5, 20, 20);
+        jLabel22.setBounds(520, 10, 20, 20);
 
         jSeparator3.setOrientation(javax.swing.SwingConstants.VERTICAL);
         jLayeredPane1.add(jSeparator3);
@@ -806,7 +806,7 @@ public class Pan_NuevaFactura extends javax.swing.JPanel {
         jLabel16.setForeground(new java.awt.Color(255, 255, 255));
         jLabel16.setText("Cliente");
         jLayeredPane1.add(jLabel16);
-        jLabel16.setBounds(370, 5, 50, 20);
+        jLabel16.setBounds(350, 0, 60, 30);
 
         jComboBox_Vendedores.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
         jComboBox_Vendedores.addKeyListener(new java.awt.event.KeyAdapter() {
@@ -818,7 +818,7 @@ public class Pan_NuevaFactura extends javax.swing.JPanel {
         jComboBox_Vendedores.setBounds(670, 380, 20, 20);
 
         jFormattedTextField_Cliente.setHorizontalAlignment(javax.swing.JTextField.LEFT);
-        jFormattedTextField_Cliente.setText("Cliente Anonimo");
+        jFormattedTextField_Cliente.setText("Cliente Generico");
         jFormattedTextField_Cliente.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jFormattedTextField_ClienteMouseClicked(evt);
@@ -835,7 +835,7 @@ public class Pan_NuevaFactura extends javax.swing.JPanel {
             }
         });
         jLayeredPane1.add(jFormattedTextField_Cliente);
-        jFormattedTextField_Cliente.setBounds(410, 5, 90, 22);
+        jFormattedTextField_Cliente.setBounds(390, 10, 100, 20);
 
         jLabel_NumerodeFact.setFont(new java.awt.Font("Arial", 1, 16)); // NOI18N
         jLabel_NumerodeFact.setForeground(new java.awt.Color(255, 255, 255));
@@ -1834,9 +1834,16 @@ public class Pan_NuevaFactura extends javax.swing.JPanel {
     }//GEN-LAST:event_discBttMouseClicked
 
     private void searchBttMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_searchBttMouseClicked
+        if (jTable_Factura.isEditing()) {
+            jTable_Factura.getCellEditor().cancelCellEditing();
+
+        }
         NewJDialog_Buscador buscador = new NewJDialog_Buscador();
         buscador.actualizaTablaParaInventario();
         String id = buscador.getIdProducto();
+        if(id==null){
+            return;
+        }
         MyTableModel_FACT model = (MyTableModel_FACT) jTable_Factura.getModel();
         int row = this.jTable_Factura.getSelectedRow();
         model.setValueAt(id, row, 0);

@@ -213,6 +213,7 @@ public class JPanel_Reportes extends javax.swing.JPanel {
         jButton_CancelarListaPrec = new javax.swing.JButton();
         jTextField_hastaListaPrec = new javax.swing.JTextField();
         filler1 = new javax.swing.Box.Filler(new java.awt.Dimension(0, 0), new java.awt.Dimension(0, 0), new java.awt.Dimension(32767, 0));
+        jRadioButton_TodosListaPrecio = new javax.swing.JRadioButton();
         jDialog_ReportesInventario = new javax.swing.JDialog();
         jPanel_VerListaDeCostos = new javax.swing.JPanel();
         jLabel51 = new javax.swing.JLabel();
@@ -231,6 +232,7 @@ public class JPanel_Reportes extends javax.swing.JPanel {
         jButton_CancelarListaCost = new javax.swing.JButton();
         jTextField_hastaListaCost = new javax.swing.JTextField();
         filler2 = new javax.swing.Box.Filler(new java.awt.Dimension(0, 0), new java.awt.Dimension(0, 0), new java.awt.Dimension(32767, 0));
+        jRadioButton_TodosListaCostos = new javax.swing.JRadioButton();
         jPanel_VerProductosAgotados = new javax.swing.JPanel();
         jLabel58 = new javax.swing.JLabel();
         jLabel59 = new javax.swing.JLabel();
@@ -2324,6 +2326,13 @@ jPanel_VerFacturasEliminadasPorFechLayout.createParallelGroup(javax.swing.GroupL
     jTextField_hastaListaPrec.setForeground(new java.awt.Color(0, 51, 51));
     jTextField_hastaListaPrec.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
 
+    jRadioButton_TodosListaPrecio.setText("Todos");
+    jRadioButton_TodosListaPrecio.addActionListener(new java.awt.event.ActionListener() {
+        public void actionPerformed(java.awt.event.ActionEvent evt) {
+            jRadioButton_TodosListaPrecioActionPerformed(evt);
+        }
+    });
+
     javax.swing.GroupLayout jPanel_VerListaDePreciosLayout = new javax.swing.GroupLayout(jPanel_VerListaDePrecios);
     jPanel_VerListaDePrecios.setLayout(jPanel_VerListaDePreciosLayout);
     jPanel_VerListaDePreciosLayout.setHorizontalGroup(
@@ -2372,7 +2381,10 @@ jPanel_VerFacturasEliminadasPorFechLayout.createParallelGroup(javax.swing.GroupL
                     .addComponent(jLabel_hastaListaPrec, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                     .addComponent(jTextField_hastaListaPrec, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addComponent(jRadioButton_CategListaPrec))
+                .addGroup(jPanel_VerListaDePreciosLayout.createSequentialGroup()
+                    .addComponent(jRadioButton_CategListaPrec)
+                    .addGap(18, 18, 18)
+                    .addComponent(jRadioButton_TodosListaPrecio)))
             .addGap(0, 177, Short.MAX_VALUE))
     );
 
@@ -2391,7 +2403,8 @@ jPanel_VerFacturasEliminadasPorFechLayout.createParallelGroup(javax.swing.GroupL
                 .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel_VerListaDePreciosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jRadioButton_CodListaPrec)
                     .addComponent(jRadioButton_NombListaPrec)
-                    .addComponent(jRadioButton_CategListaPrec)))
+                    .addComponent(jRadioButton_CategListaPrec)
+                    .addComponent(jRadioButton_TodosListaPrecio)))
             .addGap(27, 27, 27)
             .addGroup(jPanel_VerListaDePreciosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                 .addComponent(jTextField_IniListaPrec, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -2520,6 +2533,13 @@ jPanel_VerFacturasEliminadasPorFechLayout.createParallelGroup(javax.swing.GroupL
     jTextField_hastaListaCost.setForeground(new java.awt.Color(0, 51, 51));
     jTextField_hastaListaCost.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
 
+    jRadioButton_TodosListaCostos.setText("Todos");
+    jRadioButton_TodosListaCostos.addActionListener(new java.awt.event.ActionListener() {
+        public void actionPerformed(java.awt.event.ActionEvent evt) {
+            jRadioButton_TodosListaCostosActionPerformed(evt);
+        }
+    });
+
     javax.swing.GroupLayout jPanel_VerListaDeCostosLayout = new javax.swing.GroupLayout(jPanel_VerListaDeCostos);
     jPanel_VerListaDeCostos.setLayout(jPanel_VerListaDeCostosLayout);
     jPanel_VerListaDeCostosLayout.setHorizontalGroup(
@@ -2563,7 +2583,10 @@ jPanel_VerFacturasEliminadasPorFechLayout.createParallelGroup(javax.swing.GroupL
                     .addComponent(jLabel_hastaListaCost, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                     .addComponent(jTextField_hastaListaCost, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addComponent(jRadioButton_CategListaCost))
+                .addGroup(jPanel_VerListaDeCostosLayout.createSequentialGroup()
+                    .addComponent(jRadioButton_CategListaCost)
+                    .addGap(18, 18, 18)
+                    .addComponent(jRadioButton_TodosListaCostos)))
             .addGap(0, 177, Short.MAX_VALUE))
         .addGroup(jPanel_VerListaDeCostosLayout.createSequentialGroup()
             .addContainerGap()
@@ -2583,7 +2606,8 @@ jPanel_VerFacturasEliminadasPorFechLayout.createParallelGroup(javax.swing.GroupL
                 .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel_VerListaDeCostosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jRadioButton_CodListaCost)
                     .addComponent(jRadioButton_NombreListaCost)
-                    .addComponent(jRadioButton_CategListaCost)))
+                    .addComponent(jRadioButton_CategListaCost)
+                    .addComponent(jRadioButton_TodosListaCostos)))
             .addGap(27, 27, 27)
             .addGroup(jPanel_VerListaDeCostosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                 .addComponent(jTextField_IniListaCost, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -4894,27 +4918,31 @@ public void actionPerformed(java.awt.event.ActionEvent evt) {
     }//GEN-LAST:event_jDialog_ReportesInventarioWindowClosing
 
     private void jRadioButton_CategListaPrecActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButton_CategListaPrecActionPerformed
+        jLabel_InicListaPrec.setVisible(true);
+        jLabel_hastaListaPrec.setVisible(false);
         jLabel_InicListaPrec.setText("Categoria:");
         jButton_BuscarListaPrec.setVisible(true);
-        jLabel_hastaListaPrec.setVisible(false);
         jTextField_hastaListaPrec.setVisible(false);
+        jTextField_IniListaPrec.setVisible(true);
     }//GEN-LAST:event_jRadioButton_CategListaPrecActionPerformed
 
     private void jRadioButton_NombListaPrecActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButton_NombListaPrecActionPerformed
-        jLabel_InicListaPrec.setText("Inicia en:");
-        jButton_BuscarListaPrec.setVisible(false);
         jLabel_InicListaPrec.setVisible(true);
         jLabel_hastaListaPrec.setVisible(true);
+        jLabel_InicListaPrec.setText("Inicia en:");
+        jButton_BuscarListaPrec.setVisible(false);
         jTextField_hastaListaPrec.setVisible(true);
+        jTextField_IniListaPrec.setVisible(true);
         jTextField_IniListaPrec.setText("");
     }//GEN-LAST:event_jRadioButton_NombListaPrecActionPerformed
 
     private void jRadioButton_CodListaPrecActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButton_CodListaPrecActionPerformed
-        jLabel_InicListaPrec.setText("Inicia en:");
-        jButton_BuscarListaPrec.setVisible(false);
         jLabel_InicListaPrec.setVisible(true);
         jLabel_hastaListaPrec.setVisible(true);
+        jLabel_InicListaPrec.setText("Inicia en:");
+        jButton_BuscarListaPrec.setVisible(false);
         jTextField_hastaListaPrec.setVisible(true);
+        jTextField_IniListaPrec.setVisible(true);
         jTextField_IniListaPrec.setText("");
     }//GEN-LAST:event_jRadioButton_CodListaPrecActionPerformed
 
@@ -4942,6 +4970,10 @@ public void actionPerformed(java.awt.event.ActionEvent evt) {
                 AdminBD.VerProductosPorNombre(jTextField_IniListaPrec.getText().
                         toString(), jTextField_hastaListaPrec.getText().
                         toString());
+
+            }// Ver todos los productos 
+            else if (jRadioButton_TodosListaPrecio.isSelected()) {
+                AdminBD.VerTodosProductos();
 
             } else {
                 //Ver productos por Categoria
@@ -4976,28 +5008,32 @@ public void actionPerformed(java.awt.event.ActionEvent evt) {
     }//GEN-LAST:event_jButton_CancelarListaPrecActionPerformed
 
     private void jRadioButton_CodListaCostActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButton_CodListaCostActionPerformed
+        jLabel_hastaListaCost.setVisible(true);
+        jLabel_InicListaCost.setVisible(true);
         jLabel_InicListaCost.setText("Inicia en:");
         jButton_BuscarListaCost.setVisible(false);
-        jLabel_InicListaCost.setVisible(true);
-        jLabel_hastaListaCost.setVisible(true);
         jTextField_hastaListaCost.setVisible(true);
+        jTextField_IniListaCost.setVisible(true);
         jTextField_IniListaCost.setText("");
     }//GEN-LAST:event_jRadioButton_CodListaCostActionPerformed
 
     private void jRadioButton_NombreListaCostActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButton_NombreListaCostActionPerformed
+        jLabel_hastaListaCost.setVisible(true);
+        jLabel_InicListaCost.setVisible(true);
         jLabel_InicListaCost.setText("Inicia en:");
         jButton_BuscarListaCost.setVisible(false);
-        jLabel_InicListaCost.setVisible(true);
-        jLabel_hastaListaCost.setVisible(true);
         jTextField_hastaListaCost.setVisible(true);
+        jTextField_IniListaCost.setVisible(true);
         jTextField_IniListaCost.setText("");
     }//GEN-LAST:event_jRadioButton_NombreListaCostActionPerformed
 
     private void jRadioButton_CategListaCostActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButton_CategListaCostActionPerformed
+        jLabel_InicListaCost.setVisible(true);
         jLabel_InicListaCost.setText("Categoria:");
         jButton_BuscarListaCost.setVisible(true);
         jLabel_hastaListaCost.setVisible(false);
         jTextField_hastaListaCost.setVisible(false);
+        jTextField_IniListaCost.setVisible(true);
     }//GEN-LAST:event_jRadioButton_CategListaCostActionPerformed
 
     private void jButton_BuscarListaCostActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_BuscarListaCostActionPerformed
@@ -5026,6 +5062,9 @@ public void actionPerformed(java.awt.event.ActionEvent evt) {
                         toString(), jTextField_hastaListaCost.
                         getText().toString());
 
+            } // ver todos los productos
+            else if (jRadioButton_TodosListaCostos.isSelected()) {
+                AdminBD.VerCostoPrecioTodosProductos();
             } else {
                 //Ver productos por Categoria
                 AdminBD.VerCostoPrecioProductosPorCategoria(
@@ -5311,11 +5350,10 @@ public void actionPerformed(java.awt.event.ActionEvent evt) {
                         getText().toString(), jTextField_hastaListaValorInv.
                         getText().toString(), ubicacion);
 
-            } 
-            //Ver valor total de Inventario General o Bedega
-            else if(jRadioButton_TodosValorInv.isSelected()){
-             AdminBD.ValorDeInvPorUbicacion(ubicacion);
-            }else {
+            } //Ver valor total de Inventario General o Bedega
+            else if (jRadioButton_TodosValorInv.isSelected()) {
+                AdminBD.ValorDeInvPorUbicacion(ubicacion);
+            } else {
                 //Ver productos por Categoria
                 AdminBD.ValorDeInvPorCategoriaProd(jTextField_IniListaValorInv.
                         getText().toString(), ubicacion);
@@ -5408,6 +5446,7 @@ public void actionPerformed(java.awt.event.ActionEvent evt) {
         buttonGroup1.add(jRadioButton_ExcelListaCost);
         buttonGroup1.add(jRadioButton_pantallaListaCost);
         buttonGroup2.add(jRadioButton_CategListaCost);
+        buttonGroup2.add(jRadioButton_TodosListaCostos);
         buttonGroup2.add(jRadioButton_CodListaCost);
         buttonGroup2.add(jRadioButton_NombreListaCost);
         jLabel_InicListaCost.setText("Inicia en:");
@@ -5486,12 +5525,12 @@ public void actionPerformed(java.awt.event.ActionEvent evt) {
     }//GEN-LAST:event_jButton_ProductosAgotadosActionPerformed
 
     private void jButton_ListaDePrecioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_ListaDePrecioActionPerformed
-        jButton_aceptarListaPrec.setIcon(new ImageIcon(""));//poner imagen
         buttonGroup1.add(jRadioButton_ExcelListaPrec);
         buttonGroup1.add(jRadioButton_pantallaListaPrec);
         buttonGroup2.add(jRadioButton_CategListaPrec);
         buttonGroup2.add(jRadioButton_CodListaPrec);
         buttonGroup2.add(jRadioButton_NombListaPrec);
+        buttonGroup2.add(jRadioButton_TodosListaPrecio);
         jLabel_InicListaPrec.setText("Inicia en:");
         jLabel_hastaListaPrec.setVisible(true);
         jTextField_hastaListaPrec.setVisible(true);
@@ -6030,6 +6069,22 @@ public void actionPerformed(java.awt.event.ActionEvent evt) {
         jTextField_IniListaValorInv.setVisible(false);
     }//GEN-LAST:event_jRadioButton_TodosValorInvActionPerformed
 
+    private void jRadioButton_TodosListaCostosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButton_TodosListaCostosActionPerformed
+        jLabel_InicListaCost.setVisible(false);
+        jLabel_hastaListaCost.setVisible(false);
+        jButton_BuscarListaCost.setVisible(false);
+        jTextField_hastaListaCost.setVisible(false);
+        jTextField_IniListaCost.setVisible(false);
+    }//GEN-LAST:event_jRadioButton_TodosListaCostosActionPerformed
+
+    private void jRadioButton_TodosListaPrecioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButton_TodosListaPrecioActionPerformed
+        jLabel_InicListaPrec.setVisible(false);
+        jLabel_hastaListaPrec.setVisible(false);
+        jButton_BuscarListaPrec.setVisible(false);
+        jTextField_hastaListaPrec.setVisible(false);
+        jTextField_IniListaPrec.setVisible(false);
+    }//GEN-LAST:event_jRadioButton_TodosListaPrecioActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.ButtonGroup buttonGroup1;
@@ -6321,6 +6376,8 @@ public void actionPerformed(java.awt.event.ActionEvent evt) {
     private javax.swing.JRadioButton jRadioButton_Tarjeta;
     private javax.swing.JRadioButton jRadioButton_TodosAgot;
     private javax.swing.JRadioButton jRadioButton_TodosInv;
+    private javax.swing.JRadioButton jRadioButton_TodosListaCostos;
+    private javax.swing.JRadioButton jRadioButton_TodosListaPrecio;
     private javax.swing.JRadioButton jRadioButton_TodosValorInv;
     private javax.swing.JRadioButton jRadioButton_bodega;
     private javax.swing.JRadioButton jRadioButton_bodegaInv;

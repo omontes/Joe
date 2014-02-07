@@ -3656,7 +3656,8 @@ public class Direct_Control_BD {
 
     /**
      * Obtener valor de Inv General o Bodega
-     * @param ubicacion 
+     *
+     * @param ubicacion
      */
     public void ValorDeInvPorUbicacion(String ubicacion) {
         try {
@@ -3669,7 +3670,40 @@ public class Direct_Control_BD {
             this.setData2(ResultSet_Array(resultset));
 
         } catch (IOException | SQLException e) {
-            System.out.println("Error al obtener Valor De "+ ubicacion);
+            System.out.println("Error al obtener Valor De " + ubicacion);
         }
     }
+
+    /**
+     * Obtener lista de costos de todos los productos
+     */
+    public void VerCostoPrecioTodosProductos() {
+        try {
+            String Productos = this.readSql("../Joe/src/"
+                    + "sql_files/VerCostoPrecioTodosProductos.sql");
+            PreparedStatement stm = this.conection.prepareStatement(Productos);
+            ResultSet resultset = stm.executeQuery();
+            this.setColumnNames(Get_Columnas(resultset));
+            this.setData2(ResultSet_Array(resultset));
+        } catch (IOException | SQLException e) {
+            System.out.println("Error al obtener costos de todos los productos");
+        }
+    }
+
+    /**
+     * Ver todos los productos
+     */
+    public void VerTodosProductos() {
+        try {
+            String Productos = this.readSql("../Joe/src/"
+                    + "sql_files/VerTodosProductos.sql");
+            PreparedStatement stm = this.conection.prepareStatement(Productos);
+                      ResultSet resultset = stm.executeQuery();
+            this.setColumnNames(Get_Columnas(resultset));
+            this.setData2(ResultSet_Array(resultset));
+        } catch (IOException | SQLException e) {
+            System.out.println("Error al obtener todos los productos");
+        }
+    }
+
 }

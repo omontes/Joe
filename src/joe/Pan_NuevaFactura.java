@@ -1819,8 +1819,9 @@ public class Pan_NuevaFactura extends javax.swing.JPanel {
         String idProducto = model.getValueAt(row, 0).toString();
         //obtiene el id del
         //producto seleccionado para VerProducto
-        String precioSinCorregir = model.getValueAt(row, 3).toString();
+       
         if (!"".equals(idProducto)) {//verifica que se quiere ver un producto
+            String precioSinCorregir = model.getValueAt(row, 3).toString();
             BigDecimal PrecioCorregido = this.corregirDato(precioSinCorregir);
             this.aplicarDescAlProducto(idProducto, PrecioCorregido);
         } else {

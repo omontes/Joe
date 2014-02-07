@@ -27,6 +27,9 @@ public class Pan_Fact extends javax.swing.JPanel {
     /**
      * Creates new form JPanel_Facturacion
      */
+    public static String detalleEliminacionFact= "Elimacion Fact";
+    public static String clienteGenerico="Cliente Generico";
+    public static String mensajeNoSeleccion="No se ha seleccionado ninguna factura";
     public Pan_Fact() {
         initComponents();
         completarTablaFacturacion();
@@ -146,15 +149,45 @@ public class Pan_Fact extends javax.swing.JPanel {
             int cantidadTotal = AdminBD.verCantidadInvGeneral(codArticulo);
             int cantidad= Integer.parseInt(producto[2].toString());
             AdminBD.actualizarCantidadInventario(codArticulo,cantidadTotal+cantidad);
+            BigDecimal precio = this.StringtoBigDecimal(producto[3].toString());
+            int idVersion = AdminBD.veridVersionActivaProductoPorCodigo(codArticulo);
+            this.crearMovimiento(detalleEliminacionFact+" "+NumFact,precio,1);
+            this.guardaProductoEnMovimiento(codArticulo, idVersion, cantidad, precio);
+            
             
             
             }
-    }    
+    }
+    private void crearMovimiento(String detalle, BigDecimal precioProd, int movimiento) {
+        Direct_Control_BD AdminBD = Direct_Control_BD.getInstance();
+        AdminBD.insertarmovimiento(detalle,movimiento,1,precioProd);
+    }
+    private void guardaProductoEnMovimiento(String idProducto, int idVersion, int cantidadMov, BigDecimal PrecioVenta) {
+        Direct_Control_BD AdminBD = Direct_Control_BD.getInstance();
+        int idMovimiento= AdminBD.ObtenerUltimoidMovimiento();
+        AdminBD.insertarProductoCantidadMovimiento(idProducto,idVersion,idMovimiento,cantidadMov,PrecioVenta);
+    }
+     /**
+     * Este metodo convierte un string que es un decimal a bigdecimal
+     * @param numero
+     * @return 
+     */
+    private BigDecimal StringtoBigDecimal(String numero){
+        DecimalFormat decimalfC = (DecimalFormat) NumberFormat.getInstance();
+        decimalfC.setParseBigDecimal(true);
+        BigDecimal numeroCorregido = null;
+        try {
+            numeroCorregido = (BigDecimal) decimalfC.parseObject(numero);
+        } catch (ParseException ex) {
+            Logger.getLogger(JPanel_VerFactura.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return numeroCorregido;
+    
+    }
     private void jLabel1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel1MouseClicked
         //****************** INTERFAZ ***************************************
 
         Pan_NuevaFactura panelNuevaFact = new Pan_NuevaFactura(Pan_NuevaFactura.FACTURACION_CALL);
-
         JF_Facturacion.getInstance().getPanelManager().showPanel(panelNuevaFact, 800, 474, 0, 0);
 
         //*******************************************************************
@@ -164,7 +197,7 @@ public class Pan_Fact extends javax.swing.JPanel {
         panelNuevaFact.jLabel_NumerodeFact.setText(factura);
         panelNuevaFact.personalizarTablaFactura();
         panelNuevaFact.agregarListenerRenders();
-        panelNuevaFact.jFormattedTextField_Cliente.setText("Cliente Generico");
+        panelNuevaFact.jFormattedTextField_Cliente.setText(clienteGenerico);
     }//GEN-LAST:event_jLabel1MouseClicked
 
     private void jLabel2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel2MouseClicked
@@ -231,50 +264,12 @@ public class Pan_Fact extends javax.swing.JPanel {
             } else {
                 JOptionPane.showMessageDialog(
                         null,
-                        "No se selecciono ninguna factura",
+                        mensajeNoSeleccion,
                         "Alert!", JOptionPane.ERROR_MESSAGE);
             }
         }
         
-        /**
-     * Este metodo permite corregir el dato que tiene el signo de C y ademas
-     * que puede tener comas ya que el tipo Decimal en la base solo
-     * puede tener puntos y no comas.
-     * @param Dato
-     * @return 
-     */
-    private BigDecimal corregirDato(String Dato){
-            String datoAcorregir = Dato.replace("C", "");
-            DecimalFormat decimalformat = (DecimalFormat) NumberFormat.getInstance();
-            decimalformat.setParseBigDecimal(true);
-            BigDecimal DatoCorregido = null;
-            try {
-                DatoCorregido = (BigDecimal) decimalformat.parseObject(datoAcorregir);
-            } catch (ParseException ex) {
-                Logger.getLogger(MyTableModelListener_FACT.class.getName()).log(Level.SEVERE, null, ex);
-            }
-            return DatoCorregido;
-    
-    }
-    
-     /**
-     * Este metodo convierte un string que es un decimal a bigdecimal
-     * @param numero
-     * @return 
-     */
-    private BigDecimal StringtoBigDecimal(String numero){
-        DecimalFormat decimalfC = (DecimalFormat) NumberFormat.getInstance();
-        decimalfC.setParseBigDecimal(true);
-        BigDecimal numeroCorregido = null;
-        try {
-            numeroCorregido = (BigDecimal) decimalfC.parseObject(numero);
-        } catch (ParseException ex) {
-            Logger.getLogger(JPanel_VerFactura.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        return numeroCorregido;
-    
-    }
-
+     
     // Variables declaration - do not modify//GEN-BEGIN:variables
     javax.swing.JLabel jLabel1;
     javax.swing.JLabel jLabel2;
@@ -287,42 +282,39 @@ public class Pan_Fact extends javax.swing.JPanel {
     javax.swing.JTable jTable_Facturacion;
     // End of variables declaration//GEN-END:variables
 
-    private void crearPago(int idFactura, BigDecimal montoDePago, String tipopago) {
-       
-        Direct_Control_BD AdminBD = Direct_Control_BD.getInstance();
-        int idVersionFacturasProducto = AdminBD.verVersionDEFacturaActiva(idFactura);
-        AdminBD.insertarPago(montoDePago,idFactura,idVersionFacturasProducto,tipopago);
-
-    }
-
+    
     private void eliminar(JTable table) {
-        Modelo_Facturacion model = (Modelo_Facturacion) table.getModel();
+        
         int row = table.getSelectedRow();
-        String factura = model.getValueAt(row, 0).toString();
-        boolean SiSepuedeEliminar = this.verificarCierreFacts(Integer.parseInt(factura));
-        if (SiSepuedeEliminar) {
-            if (row >= 0) {
-                Direct_Control_BD AdminBD = Direct_Control_BD.getInstance();
-                int numFact = Integer.parseInt(model.getValueAt(row, 0).toString());
-                this.devolverProductos(numFact);
-                int idVersion = AdminBD.verVersionDEFacturaActiva(numFact);
-                AdminBD.eliminarFactura(numFact, idVersion);
+        if (row < 0) {
 
-            } else {
-                JOptionPane.showMessageDialog(
-                        null,
-                        "No se selecciono ninguna factura",
-                        "Alert!", JOptionPane.ERROR_MESSAGE);
-
-            }
-        } else {
             JOptionPane.showMessageDialog(
                     null,
-                    "Esta factura no se puede eliminar porque ya pertence a un cierre de caja",
+                    mensajeNoSeleccion,
+                    "Alert!", JOptionPane.ERROR_MESSAGE);
+            return;
+
+        }
+        String factura = table.getValueAt(row, 0).toString();
+        boolean SiSepuedeEliminar = this.verificarCierreFacts(Integer.parseInt(factura));
+        if (SiSepuedeEliminar) {
+
+            Direct_Control_BD AdminBD = Direct_Control_BD.getInstance();
+            int numFact = Integer.parseInt(table.getValueAt(row, 0).toString());
+            this.devolverProductos(numFact);
+            int idVersion = AdminBD.verVersionDEFacturaActiva(numFact);
+            AdminBD.eliminarFactura(numFact, idVersion);
+        } 
+        else {
+            JOptionPane.showMessageDialog(
+                    null,
+                    "Esta factura no se puede eliminar porque "
+                            + "ya pertence a un cierre de caja",
                     "Alert!", JOptionPane.ERROR_MESSAGE);
         }
-
     }
+
+    
     
     private void modificar(JTable table, int pCallType) {
         
@@ -331,7 +323,7 @@ public class Pan_Fact extends javax.swing.JPanel {
         if (row < 0) {
             JOptionPane.showMessageDialog(
                     null,
-                    "No se selecciono ninguna factura",
+                    mensajeNoSeleccion,
                     "Alert!", JOptionPane.ERROR_MESSAGE);
             return;
         }
@@ -360,97 +352,7 @@ public class Pan_Fact extends javax.swing.JPanel {
         }
     }
     
-    private void verDevoluciones(JTable table) {
-         int row = table.getSelectedRow();
-            if (row >= 0) {
-                VentanaDeInicio mVentana = VentanaDeInicio.getInstance();
-                JPanel_VerFactura panelVerFact = new JPanel_VerFactura();
-                mVentana.add(panelVerFact);
-                panelVerFact.setSize(this.getSize());
-                panelVerFact.setLocation(this.getLocation());
-                mVentana.remove(this);
-                panelVerFact.setVisible(true);
-                mVentana.revalidate();
-                mVentana.repaint();
-                mVentana.setTitle("Ver Devolucion");
-                Modelo_Facturacion model = (Modelo_Facturacion) table.getModel();
-                panelVerFact.jLabel_NumerodeFact.setText(model.getValueAt(row, 0).toString());
-                panelVerFact.personalizarTablaVerDevoluciones();
-            } else {
-                JOptionPane.showMessageDialog(
-                        null,
-                        "No se selecciono ninguna devolucion",
-                        "Alert!", JOptionPane.ERROR_MESSAGE);
-            }
-        }
-
-    private void modificarDev(JTable table, String titulo) {
-        int row = table.getSelectedRow();
-        Modelo_Facturacion model = (Modelo_Facturacion) table.getModel();
-        String factura = model.getValueAt(row, 0).toString();
-        boolean SiSepuedeModificar = this.verificarCierreDevs(Integer.parseInt(factura));
-        if (SiSepuedeModificar) {
-            if (row >= 0) {
-                VentanaDeInicio mVentana = VentanaDeInicio.getInstance();
-                JPanel_CrearFactura panelCreaFact = new JPanel_CrearFactura();
-                mVentana.add(panelCreaFact);
-                panelCreaFact.setSize(this.getSize());
-                panelCreaFact.setLocation(this.getLocation());
-                mVentana.remove(this);
-                panelCreaFact.setVisible(true);
-                mVentana.revalidate();
-                mVentana.repaint();
-                mVentana.setTitle(titulo);
-                panelCreaFact.personalizarTablaFactura();
-                panelCreaFact.jLabel_NumerodeFact.setText(factura);
-                panelCreaFact.cargarInfoDev();
-                panelCreaFact.cargarProductosDevolucion();
-                panelCreaFact.agregarListenerRenders();
-            } else {
-                JOptionPane.showMessageDialog(
-                        null,
-                        "No se selecciono ninguna devolucion",
-                        "Alert!", JOptionPane.ERROR_MESSAGE);
-
-            }
-        } else {
-            JOptionPane.showMessageDialog(
-                    null,
-                    "No se puede modificar la devolucion porque ya pertenece a un cierre de caja",
-                    "Alert!", JOptionPane.ERROR_MESSAGE);
-
-        }
-
-    }
     
-    private void eliminarDev(JTable table) {
-        int row = table.getSelectedRow();
-        Modelo_Facturacion model = (Modelo_Facturacion) table.getModel();
-        String factura = model.getValueAt(row, 0).toString();
-        boolean SiSepuedeModificar = this.verificarCierreDevs(Integer.parseInt(factura));
-        if (SiSepuedeModificar) {
-            if (row >= 0) {
-                Direct_Control_BD AdminBD = Direct_Control_BD.getInstance();
-                int numFact = Integer.parseInt(model.getValueAt(row, 0).toString());
-                this.devolverProductos(numFact);
-                int idVersion = AdminBD.verVersionDEDevolucionActiva(numFact);
-                AdminBD.eliminarDevolucion(numFact, idVersion);
-
-            } else {
-                JOptionPane.showMessageDialog(
-                        null,
-                        "No se selecciono ninguna devolucion",
-                        "Alert!", JOptionPane.ERROR_MESSAGE);
-
-            }
-        } else {
-            JOptionPane.showMessageDialog(
-                    null,
-                    "No se puede eliminar una devolucion que pertence a un cierre de caja",
-                    "Alert!", JOptionPane.ERROR_MESSAGE);
-
-        }
-    }
 
     private boolean verificarCierreFacts(int idFact) {
         Direct_Control_BD AdminBD = Direct_Control_BD.getInstance();
@@ -460,12 +362,6 @@ public class Pan_Fact extends javax.swing.JPanel {
         return Sisepuede;
     }
 
-    private boolean verificarCierreDevs(int idDev) {
-        Direct_Control_BD AdminBD = Direct_Control_BD.getInstance();
-        int idCierreVigente= AdminBD.obtenerultimoidCierre();
-        String fechaInicio = AdminBD.obtenerFechaInicioCierre(idCierreVigente);
-        boolean Sisepuede = AdminBD.verificarDevCierre(fechaInicio,idDev);
-        return Sisepuede;
-    }
+   
     
 }

@@ -1309,8 +1309,9 @@ public final class JPanel_Inventario extends javax.swing.JPanel {
             String Descripcion = this.jTextArea_DescripcionCrearProducto.getText();
             String Nombre = this.jTextField_nombre.getText();
             BigDecimal Costo = this.StringtoBigDecimal(this.jTextField_CostoCrearProducto.getText());
+            int cantidad=Integer.parseInt(this.jTextField_Cantidad.getText());
             AdminBD.crearProducto(codigo, Nombre, Precio, Costo, dateFormat.format(date), "A", Descripcion, idCategoria);
-            AdminBD.insertarEnInventario(this.jTextField_codigo.getText(), 1, Integer.parseInt(this.jTextField_Cantidad.getText()));
+            AdminBD.insertarEnInventario(this.jTextField_codigo.getText(), 1,cantidad);
             this.jTextField_Cantidad.setText("0");
             this.jTextField_Precio.setText("0.00");
             this.jTextField_CostoCrearProducto.setText("0.00");
@@ -1318,6 +1319,9 @@ public final class JPanel_Inventario extends javax.swing.JPanel {
             this.jTextField_nombre.setText("");
             this.jTextArea_DescripcionCrearProducto.setText("");
             this.jDialog_CrearProducto.dispose();
+            this.crearMovimiento("Creacion Producto",Precio,1);
+            int idVersion= AdminBD.veridVersionActivaProductoPorCodigo(codigo);
+            this.guardaProductoEnMovimiento(codigo, idVersion, cantidad, Precio);
             personalizarTablaInventario();
 
         } catch (NumberFormatException exc) {
@@ -2255,6 +2259,17 @@ public final class JPanel_Inventario extends javax.swing.JPanel {
         }
         return numeroCorregido;
 
+    }
+    
+    private void crearMovimiento(String detalle, BigDecimal precioProd, int movimiento) {
+        Direct_Control_BD AdminBD = Direct_Control_BD.getInstance();
+        AdminBD.insertarmovimiento(detalle,movimiento,1,precioProd);
+    }
+    
+    private void guardaProductoEnMovimiento(String idProducto, int idVersion, int cantidadMov, BigDecimal PrecioVenta) {
+        Direct_Control_BD AdminBD = Direct_Control_BD.getInstance();
+        int idMovimiento= AdminBD.ObtenerUltimoidMovimiento();
+        AdminBD.insertarProductoCantidadMovimiento(idProducto,idVersion,idMovimiento,cantidadMov,PrecioVenta);
     }
 
 

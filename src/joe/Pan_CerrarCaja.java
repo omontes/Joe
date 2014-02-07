@@ -173,8 +173,9 @@ public class Pan_CerrarCaja extends javax.swing.JPanel {
         jLabel13.setText("Cerrar Caja");
         add(jLabel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 5, -1, -1));
 
-        saveBtt.setIcon(new javax.swing.ImageIcon(getClass().getResource("/System/Images/Panel 1/saveBtt.png"))); // NOI18N
+        saveBtt.setIcon(new javax.swing.ImageIcon(getClass().getResource("/System/Images/Buttons/saveBtt.png"))); // NOI18N
         saveBtt.setToolTipText("Aceptar y guardar cierre de caja");
+        saveBtt.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         saveBtt.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 saveBttMouseClicked(evt);
@@ -208,7 +209,7 @@ public class Pan_CerrarCaja extends javax.swing.JPanel {
         add(jLabel_detalle, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 410, 472, -1));
 
         jLabel12.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
-        jLabel12.setIcon(new javax.swing.ImageIcon(getClass().getResource("/System/Images/Panel 1/panelVF.png"))); // NOI18N
+        jLabel12.setIcon(new javax.swing.ImageIcon(getClass().getResource("/System/Images/Panel1/panelVF.png"))); // NOI18N
         add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
     }// </editor-fold>//GEN-END:initComponents
 

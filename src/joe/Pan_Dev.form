@@ -51,11 +51,11 @@
     <Component class="javax.swing.JLabel" name="jLabel1">
       <Properties>
         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-          <Image iconType="3" name="/System/Images/Panel 1/addBtt.png"/>
+          <Image iconType="3" name="/System/Images/Buttons/addBtt.png"/>
         </Property>
         <Property name="toolTipText" type="java.lang.String" value="Crear nueva factura"/>
         <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
-          <Color id="Default Cursor"/>
+          <Color id="Cursor de Mano"/>
         </Property>
       </Properties>
       <Events>
@@ -70,11 +70,11 @@
     <Component class="javax.swing.JLabel" name="jLabel2">
       <Properties>
         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-          <Image iconType="3" name="/System/Images/Panel 1/editBtt.png"/>
+          <Image iconType="3" name="/System/Images/Buttons/editBtt.png"/>
         </Property>
         <Property name="toolTipText" type="java.lang.String" value="Editar factura seleccionada"/>
         <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
-          <Color id="Default Cursor"/>
+          <Color id="Cursor de Mano"/>
         </Property>
       </Properties>
       <Events>
@@ -89,11 +89,11 @@
     <Component class="javax.swing.JLabel" name="jLabel3">
       <Properties>
         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-          <Image iconType="3" name="/System/Images/Panel 1/trashBtt.png"/>
+          <Image iconType="3" name="/System/Images/Buttons/trashBtt.png"/>
         </Property>
         <Property name="toolTipText" type="java.lang.String" value="Borrar factura seleccionada"/>
         <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
-          <Color id="Default Cursor"/>
+          <Color id="Cursor de Mano"/>
         </Property>
       </Properties>
       <Events>
@@ -108,11 +108,11 @@
     <Component class="javax.swing.JLabel" name="jLabel4">
       <Properties>
         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-          <Image iconType="3" name="/System/Images/Panel 1/watchBtt.png"/>
+          <Image iconType="3" name="/System/Images/Buttons/watchBtt.png"/>
         </Property>
         <Property name="toolTipText" type="java.lang.String" value="Ver factura seleccionada"/>
         <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
-          <Color id="Default Cursor"/>
+          <Color id="Cursor de Mano"/>
         </Property>
       </Properties>
       <Events>
@@ -127,10 +127,10 @@
     <Component class="javax.swing.JLabel" name="jLabel5">
       <Properties>
         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-          <Image iconType="3" name="/System/Images/Panel 1/printBtt.png"/>
+          <Image iconType="3" name="/System/Images/Buttons/printBtt.png"/>
         </Property>
         <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
-          <Color id="Default Cursor"/>
+          <Color id="Cursor de Mano"/>
         </Property>
       </Properties>
       <Constraints>

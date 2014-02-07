@@ -719,6 +719,9 @@ public class JPanel_CrearEntradaSalidaMercaderia extends javax.swing.JPanel {
         NewJDialog_Buscador buscador = new NewJDialog_Buscador();
         buscador.actualizaTablaParaInventario();
         String id = buscador.getIdProducto();
+        if(id==null){
+            return;
+        }
         MyTableModel_FACT model = (MyTableModel_FACT) jTable_Movimiento.getModel();
         int row = this.jTable_Movimiento.getSelectedRow();
         model.setValueAt(id, row, 0);
@@ -1151,13 +1154,20 @@ public class JPanel_CrearEntradaSalidaMercaderia extends javax.swing.JPanel {
         }
         boolean existeProducto = AdminBD.verSiExisteCod(codigo);
         if (!existeProducto) {
-            BigDecimal bd = this.StringtoBigDecimal(
+            BigDecimal precio_Producto = this.StringtoBigDecimal(
                     this.jFormattedTextField_precioProducto.
                     getText());
+            int cantidad=Integer.parseInt(this.jFormattedTextField_cantidadProducto.getText());
             AdminBD.crearProducto(codigo, this.jTextField_nombre.getText(),
-                    bd, BigDecimal.ZERO, dateFormat.format(date), "A", null, 1);
-            AdminBD.insertarEnInventario(this.jTextField_codigo.getText(),
-                    1, Integer.parseInt(this.jFormattedTextField_cantidadProducto.getText()));
+                    precio_Producto, BigDecimal.ZERO, dateFormat.format(date), "A", null, 1);
+            
+            
+            
+            this.crearMovimiento("Creacion Producto",precio_Producto,1);
+            int idVersion= AdminBD.veridVersionActivaProductoPorCodigo(codigo);
+            this.guardaProductoEnMovimiento(codigo, idVersion, cantidad, precio_Producto);
+            
+            
             this.clearCrearProducto();
             this.jDialog_CrearProducto.dispose();
             MyTableModel_FACT model = (MyTableModel_FACT) jTable_Movimiento.getModel();
@@ -1641,6 +1651,17 @@ public class JPanel_CrearEntradaSalidaMercaderia extends javax.swing.JPanel {
 
         }
         return infoTablaFactura;
+    }
+    
+     private void crearMovimiento(String detalle, BigDecimal precioProd, int movimiento) {
+        Direct_Control_BD AdminBD = Direct_Control_BD.getInstance();
+        AdminBD.insertarmovimiento(detalle,movimiento,1,precioProd);
+    }
+    
+    private void guardaProductoEnMovimiento(String idProducto, int idVersion, int cantidadMov, BigDecimal PrecioVenta) {
+        Direct_Control_BD AdminBD = Direct_Control_BD.getInstance();
+        int idMovimiento= AdminBD.ObtenerUltimoidMovimiento();
+        AdminBD.insertarProductoCantidadMovimiento(idProducto,idVersion,idMovimiento,cantidadMov,PrecioVenta);
     }
 
 }

@@ -185,27 +185,11 @@ public class EscribirExcel {
             try {
                 Runtime.getRuntime().exec("rundll32 url.dll,FileProtocolHandler "
                         + nombreArchivoExcel);
-            } catch (Exception e) {
+            } catch (IOException e) {
                 System.out.println("Error al abrir el archivo "
                         + nombreArchivoExcel + "\n" + e.getMessage());
             }
-        } else if (formato.equals("Pant")) {//ver en pantalla
-//            try {
-//                NewDialog_Pantalla pantalla = new NewDialog_Pantalla(null, true);                
-//                book = new com.jxcell.View();
-//                book.setBorder(BorderFactory.createEmptyBorder());
-//
-//                InputStream in = new FileInputStream(nombreArchivoExcel);
-//                book.read(in);
-//
-//                pantalla.add(book, BorderLayout.CENTER);
-//                book.setSize(pantalla.getSize());
-//                pantalla.setVisible(true);
-//
-//            } catch (FileNotFoundException e) {
-//                System.out.println("error");
-//            }
-        }
+        } 
     }
 
     /**

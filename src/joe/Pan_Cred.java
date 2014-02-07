@@ -23,15 +23,20 @@ import javax.swing.JOptionPane;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableCellRenderer;
 
+
 /**
  *
  * @author Oscar Montes
  */
 public class Pan_Cred extends javax.swing.JPanel {
-
+    
+    public static String detalleEliminacionCred= "Eliminacion Cred";
+    public static String clienteGenerico="Cliente Generico";
+    public static String mensajeNoSeleccion="No se ha seleccionado ningun credito";
     /**
      * Creates new form JPanel_Facturacion
      */
+    
     public Pan_Cred() {
         initComponents();
         completarTablaCreditos();
@@ -359,7 +364,7 @@ public class Pan_Cred extends javax.swing.JPanel {
         });
         add(jLabel16, new org.netbeans.lib.awtextra.AbsoluteConstraints(640, 360, -1, -1));
     }// </editor-fold>//GEN-END:initComponents
-    private void devolverProductos(int NumFact, String detalle) {
+    private void devolverProductos(int NumFact) {
         Direct_Control_BD AdminBD = Direct_Control_BD.getInstance();
         AdminBD.verProductosPorFactura(NumFact);
         Object[][] ProductosdeFactura = AdminBD.getData();
@@ -370,31 +375,15 @@ public class Pan_Cred extends javax.swing.JPanel {
             BigDecimal precio = this.StringtoBigDecimal(producto[3].toString());
             int idVersion = AdminBD.veridVersionActivaProductoPorCodigo(codArticulo);
             int cantidad= Integer.parseInt(producto[2].toString());
-            this.crearMovimiento(detalle+""+NumFact,precio,1);
+            this.crearMovimiento(detalleEliminacionCred+" "+NumFact,precio,1);
             this.guardaProductoEnMovimiento(codArticulo, idVersion, cantidad, precio);
             
             
             
             }
     }
-     private void devolverProductosDev(int NumFact, String detalle) {
-        Direct_Control_BD AdminBD = Direct_Control_BD.getInstance();
-        AdminBD.verProductosPorDevolucion(NumFact);
-        Object[][] ProductosdeDevolucion = AdminBD.getData();
-        int numFilas = ProductosdeDevolucion.length;
-        for (int row = 0; row < numFilas; row++) {
-            Object[] producto= ProductosdeDevolucion[row];
-            String codArticulo= producto[0].toString();
-            BigDecimal precio = this.StringtoBigDecimal(producto[3].toString());
-            int idVersion = AdminBD.veridVersionActivaProductoPorCodigo(codArticulo);
-            int cantidad= Integer.parseInt(producto[2].toString());
-            this.crearMovimiento(detalle+""+NumFact,precio,2);
-            this.guardaProductoEnMovimiento(codArticulo, idVersion, cantidad, precio);
-            
-            
-            
-            }
-    }    
+   
+       
     private void jButton_AceptarPagoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_AceptarPagoActionPerformed
         BigDecimal montoDePago = this.StringtoBigDecimal(this.jFormattedTextField_Abono.getText());
         if(montoDePago.compareTo(new BigDecimal("0.00"))>0){
@@ -500,15 +489,15 @@ public class Pan_Cred extends javax.swing.JPanel {
         panelNuevaFact.jLabel_NumerodeFact.setText(factura);
         panelNuevaFact.personalizarTablaFactura();
         panelNuevaFact.agregarListenerRenders();
-        panelNuevaFact.jFormattedTextField_Cliente.setText("Cliente Generico");
+        panelNuevaFact.jFormattedTextField_Cliente.setText(clienteGenerico);
     }//GEN-LAST:event_jLabel5MouseClicked
 
     private void jLabel11MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel11MouseClicked
-        this.modificar(this.jTable_Creditos,"Modifica Credito");
+        this.modificar(this.jTable_Creditos,Pan_NuevaFactura.MOD_CRED_CALL);
     }//GEN-LAST:event_jLabel11MouseClicked
 
     private void jLabel12MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel12MouseClicked
-        this.eliminar(this.jTable_Creditos,"Eliminacion Credito Num ");
+        this.eliminar(this.jTable_Creditos);
         this.completarTablaCreditos();
     }//GEN-LAST:event_jLabel12MouseClicked
 
@@ -517,7 +506,14 @@ public class Pan_Cred extends javax.swing.JPanel {
     }//GEN-LAST:event_jLabel13MouseClicked
 
     private void jLabel15MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel15MouseClicked
-        Modelo_Facturacion model = (Modelo_Facturacion) this.jTable_Creditos.getModel();
+        int row = this.jTable_Creditos.getSelectedRow();
+        if (row < 0) {
+            JOptionPane.showMessageDialog(
+                    null,
+                    mensajeNoSeleccion,
+                    "Alert!", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
         BigDecimal saldo = this.StringtoBigDecimal
         (this.jTable_Creditos.getValueAt
         (this.jTable_Creditos.getSelectedRow(),1).toString());
@@ -527,7 +523,7 @@ public class Pan_Cred extends javax.swing.JPanel {
             this.jLabel_fechaDePago.setText(dateFormat.format(date));
             Direct_Control_BD AdminBD = Direct_Control_BD.getInstance();
 
-            int idFact = Integer.parseInt(model.getValueAt(this.jTable_Creditos.getSelectedRow(), 0).toString());
+            int idFact = Integer.parseInt(this.jTable_Creditos.getValueAt(row, 0).toString());
             AdminBD.verInfoFacturaCredito(idFact);
             this.jLabel_numFact.setText(Integer.toString(idFact));
             Object[][] InfoApartados = AdminBD.getData();
@@ -540,7 +536,7 @@ public class Pan_Cred extends javax.swing.JPanel {
         else{
             JOptionPane.showMessageDialog(
                         null,
-                        "Esta factura ya esta paga",
+                        "Este credito ya esta pago",
                         "Alert!", JOptionPane.ERROR_MESSAGE);
         
         }
@@ -548,9 +544,16 @@ public class Pan_Cred extends javax.swing.JPanel {
 
     private void jLabel16MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel16MouseClicked
         Direct_Control_BD AdminBD = Direct_Control_BD.getInstance();
-        Modelo_Facturacion model = (Modelo_Facturacion) this.jTable_Creditos.getModel();
+        int row=this.jTable_Creditos.getSelectedRow();
+        if(row<0){
+            JOptionPane.showMessageDialog(
+                        null,
+                        mensajeNoSeleccion,
+                        "Alert!", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
         int idFact = Integer.parseInt
-            (model.getValueAt(this.jTable_Creditos.getSelectedRow(),0).toString());
+            (this.jTable_Creditos.getValueAt(row,0).toString());
         //Carga los datos a la tabla de ver pagos
         this.cargarVerPagos(idFact);
         // Obtiene la informacion de la factura, total facturado y 
@@ -576,13 +579,12 @@ public class Pan_Cred extends javax.swing.JPanel {
                 
             //**********************************************************************
             
-            Modelo_Facturacion model = (Modelo_Facturacion) table.getModel();
-            panelVerFact.jLabel_NumerodeFact.setText(model.getValueAt(row, 0).toString());
+            panelVerFact.jLabel_NumerodeFact.setText(table.getValueAt(row, 0).toString());
             panelVerFact.personalizarTablaVerFactura();
         } else {
             JOptionPane.showMessageDialog(
                     null,
-                    "No se selecciono ninguna factura",
+                    mensajeNoSeleccion,
                     "Alert!", JOptionPane.ERROR_MESSAGE);
         }
     }
@@ -706,70 +708,68 @@ public class Pan_Cred extends javax.swing.JPanel {
         AdminBD.insertarProductoCantidadMovimiento(idProducto,idVersion,idMovimiento,cantidadMov,PrecioVenta);
     }
 
-    private void eliminar(JTable table, String detalle) {
-        Modelo_Facturacion model = (Modelo_Facturacion) table.getModel();
-        int row = table.getSelectedRow();
-        String factura = model.getValueAt(row, 0).toString();
+    private void eliminar(JTable table) {
+          int row = table.getSelectedRow();
+        if (row <0){
+
+            JOptionPane.showMessageDialog(
+                    null,
+                    mensajeNoSeleccion,
+                    "Alert!", JOptionPane.ERROR_MESSAGE);
+            return;
+
+        }
+           
+        String factura = table.getValueAt(row, 0).toString();
         boolean SiSepuedeEliminar = this.verificarCierreFacts(Integer.parseInt(factura));
         if (SiSepuedeEliminar) {
-            if (row >= 0) {
-                Direct_Control_BD AdminBD = Direct_Control_BD.getInstance();
-                int numFact = Integer.parseInt(model.getValueAt(row, 0).toString());
-                this.devolverProductos(numFact,detalle);
-                int idVersion = AdminBD.verVersionDEFacturaActiva(numFact);
-                AdminBD.eliminarFactura(numFact, idVersion);
 
-            } else {
-                JOptionPane.showMessageDialog(
-                        null,
-                        "No se selecciono ninguna factura",
-                        "Alert!", JOptionPane.ERROR_MESSAGE);
+            Direct_Control_BD AdminBD = Direct_Control_BD.getInstance();
+            int numFact = Integer.parseInt(table.getValueAt(row, 0).toString());
+            this.devolverProductos(numFact);
+            int idVersion = AdminBD.verVersionDEFacturaActiva(numFact);
+            AdminBD.eliminarFactura(numFact, idVersion);
 
-            }
         } else {
             JOptionPane.showMessageDialog(
                     null,
-                    "Esta factura no se puede eliminar porque ya pertence a un cierre de caja",
+                    "Este credito no se puede eliminar porque ya pertence a un cierre de caja",
                     "Alert!", JOptionPane.ERROR_MESSAGE);
         }
 
     }
-    private void modificar(JTable table,String tituloVentana) {
+    private void modificar(JTable table, int pCallType) {
         
         int row = table.getSelectedRow();
-        Modelo_Facturacion model = (Modelo_Facturacion) table.getModel();
-        String factura = model.getValueAt(row, 0).toString();
+        if (row < 0) {
+
+            JOptionPane.showMessageDialog(
+                    null,
+                    mensajeNoSeleccion,
+                    "Alert!", JOptionPane.ERROR_MESSAGE);
+            return;
+
+        }
+        String factura = table.getValueAt(row, 0).toString();
         boolean SiSepuedeModificar = this.verificarCierreFacts(Integer.parseInt(factura));
         if (SiSepuedeModificar) {
-            if (row >= 0) {
-                VentanaDeInicio mVentana = VentanaDeInicio.getInstance();
-                JPanel_CrearFactura panelCreaFact = new JPanel_CrearFactura();
-                mVentana.add(panelCreaFact);
-                panelCreaFact.setSize(this.getSize());
-                panelCreaFact.setLocation(this.getLocation());
-                mVentana.remove(this);
-                panelCreaFact.setVisible(true);
-                mVentana.revalidate();
-                mVentana.repaint();
-                mVentana.setTitle(tituloVentana);
-                panelCreaFact.personalizarTablaFactura();
-                panelCreaFact.jLabel_NumerodeFact.setText(factura);
-                panelCreaFact.cargarInfoFact();
-                panelCreaFact.cargarProductosFact((MyTableModel_FACT) panelCreaFact.jTable_Factura.getModel());
-                panelCreaFact.agregarListenerRenders();
-            } else {
-                JOptionPane.showMessageDialog(
-                        null,
-                        "No se selecciono ninguna factura",
-                        "Alert!", JOptionPane.ERROR_MESSAGE);
 
-            }
+            Pan_NuevaFactura panelModCredt = new Pan_NuevaFactura(pCallType);
+
+            JF_Facturacion.getInstance().getPanelManager().showPanel(panelModCredt, 800, 474, 0, 0);
+
+            panelModCredt.personalizarTablaFactura();
+            panelModCredt.jLabel_NumerodeFact.setText(factura);
+            panelModCredt.cargarInfoFact();
+            panelModCredt.cargarProductosFact((MyTableModel_FACT) panelModCredt.jTable_Factura.getModel());
+            panelModCredt.agregarListenerRenders();
+
+        } else {
+            JOptionPane.showMessageDialog(
+                    null,
+                    "Este credito no se puede modificar porque ya pertence a un cierre de caja",
+                    "Alert!", JOptionPane.ERROR_MESSAGE);
         }
-        else {
-                JOptionPane.showMessageDialog(
-                        null,
-                        "Esta factura no se puede modificar porque ya pertence a un cierre de caja",
-                        "Alert!", JOptionPane.ERROR_MESSAGE);}
     }
 
     void completarTablaCreditos() {

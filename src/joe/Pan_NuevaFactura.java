@@ -1951,12 +1951,12 @@ public class Pan_NuevaFactura extends javax.swing.JPanel {
         Direct_Control_BD AdminBD = Direct_Control_BD.getInstance();
         String[] columnNames = {"Cod. Articulo", "Articulo",
             "Cantidad", "Precio.Unit",
-            "Sub Total"};
+            "Sub-Total"};
         List<Object[]> data = new ArrayList<Object[]>();
         //Agrega el modelo a la factura
         MyTableModel_FACT model = new MyTableModel_FACT(columnNames, data);
         //Agrega 20 filas
-        model.addRow(1);
+        model.addRow(20);
         this.jTable_Factura.setModel(model);
         AdminBD.verVendedores();
         /**

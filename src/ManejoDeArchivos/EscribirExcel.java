@@ -189,7 +189,7 @@ public class EscribirExcel {
                 System.out.println("Error al abrir el archivo "
                         + nombreArchivoExcel + "\n" + e.getMessage());
             }
-        } 
+        }
     }
 
     /**
@@ -379,11 +379,21 @@ public class EscribirExcel {
                     "COUNT(B11:B" + ultimaFila + ")", timesLines));
             hojaExc.addCell(new jxl.write.Formula(5, ultimaFila + 1,
                     "SUM(F11:F" + ultimaFila + ")", timesLines));
-            hojaExc.addCell(new jxl.write.Formula(7, ultimaFila + 1,
-                    "SUM(H11:H" + ultimaFila + ")", timesLines));
+
+            hojaExc.addCell(new Number(7, ultimaFila + 1,
+                    multiplicarColmunasYSumarResultado(5, 7,
+                            ultimaFila, hojaExc), timesLines));
         }
     }
 
+    /**
+     * Suma columnas, del una hoja excel WritableSheet.
+     *
+     * @param columna
+     * @param ultimaFila
+     * @param hojaExc
+     * @return
+     */
     public double sumarColumnas(int columna, int ultimaFila, WritableSheet hojaExc) {
 
         double resultado = 0;
@@ -397,7 +407,30 @@ public class EscribirExcel {
     }
 
     /**
-     * \permite agregar mas hojas a el archivo de excel existente
+     * Multiplica dos columnas y retorna la suma de dicha multiplicacion
+     *
+     * @param col1
+     * @param col2
+     * @param ultimaFila
+     * @param hojaExc
+     * @return
+     */
+    public double multiplicarColmunasYSumarResultado(
+            int col1, int col2, int ultimaFila, WritableSheet hojaExc) {
+
+        double resultado = 0;
+        for (int i = 10; i < ultimaFila; i++) {
+
+            resultado = resultado + (Double.parseDouble(hojaExc.
+                    getColumn(col1)[i].getContents().toString()) * Double.parseDouble(hojaExc.
+                            getColumn(col2)[i].getContents().toString()));
+        }
+
+        return resultado;
+    }
+
+    /**
+     * Permite agregar mas hojas a el archivo de excel existente
      *
      * @param nombreHoja
      * @param pag

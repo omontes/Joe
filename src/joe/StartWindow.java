@@ -68,6 +68,7 @@ public class StartWindow extends javax.swing.JFrame {
     private void initComponents() {
 
         jLayeredPane1 = new javax.swing.JLayeredPane();
+        jLabel1 = new javax.swing.JLabel();
         jTextField1 = new javax.swing.JTextField();
         jPasswordField1 = new javax.swing.JPasswordField();
         bttExit = new javax.swing.JLabel();
@@ -85,6 +86,10 @@ public class StartWindow extends javax.swing.JFrame {
         getContentPane().setLayout(null);
 
         jLayeredPane1.setPreferredSize(new java.awt.Dimension(800, 500));
+
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/System/Images/PanelInicio/logOutImg.jpg"))); // NOI18N
+        jLayeredPane1.add(jLabel1);
+        jLabel1.setBounds(625, 40, 131, 135);
         jLayeredPane1.add(jTextField1);
         jTextField1.setBounds(620, 200, 150, 30);
         jLayeredPane1.add(jPasswordField1);
@@ -206,6 +211,7 @@ public class StartWindow extends javax.swing.JFrame {
     private javax.swing.JLabel bkgImage;
     private javax.swing.JLabel bttExit;
     private javax.swing.JLabel bttFact;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JLayeredPane jLayeredPane1;
     private javax.swing.JPasswordField jPasswordField1;
     private javax.swing.JTextField jTextField1;

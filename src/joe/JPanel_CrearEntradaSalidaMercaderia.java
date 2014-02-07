@@ -719,6 +719,9 @@ public class JPanel_CrearEntradaSalidaMercaderia extends javax.swing.JPanel {
         NewJDialog_Buscador buscador = new NewJDialog_Buscador();
         buscador.actualizaTablaParaInventario();
         String id = buscador.getIdProducto();
+        if(id==null){
+            return;
+        }
         MyTableModel_FACT model = (MyTableModel_FACT) jTable_Movimiento.getModel();
         int row = this.jTable_Movimiento.getSelectedRow();
         model.setValueAt(id, row, 0);

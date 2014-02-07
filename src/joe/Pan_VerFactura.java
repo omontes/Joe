@@ -122,7 +122,7 @@ public class Pan_VerFactura extends javax.swing.JPanel {
         add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 5, -1, 20));
 
         jTextField_Detalle.setEditable(false);
-        add(jTextField_Detalle, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 400, 400, 20));
+        add(jTextField_Detalle, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 400, 400, 30));
 
         jLabel11.setText("Detalle de Factura:");
         add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 380, -1, -1));
@@ -144,7 +144,7 @@ public class Pan_VerFactura extends javax.swing.JPanel {
         add(jFormattedTextField_Total, new org.netbeans.lib.awtextra.AbsoluteConstraints(570, 440, 214, -1));
 
         jLabel9.setText("Vendedor");
-        add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 430, -1, 20));
+        add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 440, 60, 22));
 
         jLabel16.setForeground(new java.awt.Color(255, 255, 255));
         jLabel16.setText("Cliente");
@@ -153,7 +153,7 @@ public class Pan_VerFactura extends javax.swing.JPanel {
         jFormattedTextField_Cliente.setEditable(false);
         jFormattedTextField_Cliente.setHorizontalAlignment(javax.swing.JTextField.LEFT);
         jFormattedTextField_Cliente.setText("Cliente Anonimo");
-        add(jFormattedTextField_Cliente, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 5, 106, 22));
+        add(jFormattedTextField_Cliente, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 5, 120, 22));
 
         jLabel_NumerodeFact.setFont(new java.awt.Font("Arial", 1, 16)); // NOI18N
         jLabel_NumerodeFact.setForeground(new java.awt.Color(255, 255, 255));
@@ -175,9 +175,9 @@ public class Pan_VerFactura extends javax.swing.JPanel {
         jTextField_Vendedor.setEditable(false);
         jTextField_Vendedor.setHorizontalAlignment(javax.swing.JTextField.LEFT);
         jTextField_Vendedor.setText("Vendedor");
-        add(jTextField_Vendedor, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 430, 116, -1));
+        add(jTextField_Vendedor, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 440, 190, 22));
 
-        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/System/Images/Panel 1/panelVF.png"))); // NOI18N
+        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/System/Images/Panel1/panelVF.png"))); // NOI18N
         add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
     }// </editor-fold>//GEN-END:initComponents
  /**

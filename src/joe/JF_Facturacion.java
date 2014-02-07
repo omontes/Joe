@@ -132,7 +132,7 @@ public class JF_Facturacion extends javax.swing.JFrame {
         jLayeredPane1.add(labUsuario);
         labUsuario.setBounds(80, 480, 590, 15);
 
-        bttAtras.setIcon(new javax.swing.ImageIcon(getClass().getResource("/System/Images/Panel 1/atras.png"))); // NOI18N
+        bttAtras.setIcon(new javax.swing.ImageIcon(getClass().getResource("/System/Images/Buttons/atras.png"))); // NOI18N
         bttAtras.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         bttAtras.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -142,7 +142,7 @@ public class JF_Facturacion extends javax.swing.JFrame {
         jLayeredPane1.add(bttAtras);
         bttAtras.setBounds(726, 471, 79, 29);
 
-        bttCred.setIcon(new javax.swing.ImageIcon(getClass().getResource("/System/Images/Panel 1/bttDaCreditos.png"))); // NOI18N
+        bttCred.setIcon(new javax.swing.ImageIcon(getClass().getResource("/System/Images/Panel1/bttDaCreditos.png"))); // NOI18N
         bttCred.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         bttCred.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -152,7 +152,7 @@ public class JF_Facturacion extends javax.swing.JFrame {
         jLayeredPane1.add(bttCred);
         bttCred.setBounds(310, 10, 132, 32);
 
-        bttDev.setIcon(new javax.swing.ImageIcon(getClass().getResource("/System/Images/Panel 1/bttDaDevoluciones.png"))); // NOI18N
+        bttDev.setIcon(new javax.swing.ImageIcon(getClass().getResource("/System/Images/Panel1/bttDaDevoluciones.png"))); // NOI18N
         bttDev.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         bttDev.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -162,7 +162,7 @@ public class JF_Facturacion extends javax.swing.JFrame {
         jLayeredPane1.add(bttDev);
         bttDev.setBounds(440, 11, 179, 32);
 
-        bttApart.setIcon(new javax.swing.ImageIcon(getClass().getResource("/System/Images/Panel 1/bttDaApartados.png"))); // NOI18N
+        bttApart.setIcon(new javax.swing.ImageIcon(getClass().getResource("/System/Images/Panel1/bttDaApartados.png"))); // NOI18N
         bttApart.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         bttApart.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -172,7 +172,7 @@ public class JF_Facturacion extends javax.swing.JFrame {
         jLayeredPane1.add(bttApart);
         bttApart.setBounds(165, 11, 147, 31);
 
-        bttFact.setIcon(new javax.swing.ImageIcon(getClass().getResource("/System/Images/Panel 1/bttActFacturacion.png"))); // NOI18N
+        bttFact.setIcon(new javax.swing.ImageIcon(getClass().getResource("/System/Images/Panel1/bttActFacturacion.png"))); // NOI18N
         bttFact.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         bttFact.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -182,7 +182,7 @@ public class JF_Facturacion extends javax.swing.JFrame {
         jLayeredPane1.add(bttFact);
         bttFact.setBounds(0, 10, 165, 32);
 
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/System/Images/Panel 1/panelF.png"))); // NOI18N
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/System/Images/Panel1/panelF.png"))); // NOI18N
         jLayeredPane1.add(jLabel1);
         jLabel1.setBounds(0, 0, 800, 500);
 
@@ -242,27 +242,27 @@ public class JF_Facturacion extends javax.swing.JFrame {
     private void changeTab(int pPanel){
         //Quitar pestaña activa
         if (_activePanel == FACT_PANEL){
-            bttFact.setIcon(new javax.swing.ImageIcon(getClass().getResource("/System/Images/Panel 1/bttDaFacturacion.png")));
+            bttFact.setIcon(new javax.swing.ImageIcon(getClass().getResource("/System/Images/Panel1/bttDaFacturacion.png")));
         } else if (_activePanel == CRED_PANEL){
-            bttCred.setIcon(new javax.swing.ImageIcon(getClass().getResource("/System/Images/Panel 1/bttDaCreditos.png")));
+            bttCred.setIcon(new javax.swing.ImageIcon(getClass().getResource("/System/Images/Panel1/bttDaCreditos.png")));
         } else if (_activePanel == APART_PANEL){
-            bttApart.setIcon(new javax.swing.ImageIcon(getClass().getResource("/System/Images/Panel 1/bttDaApartados.png")));
+            bttApart.setIcon(new javax.swing.ImageIcon(getClass().getResource("/System/Images/Panel1/bttDaApartados.png")));
         } else {
-            bttDev.setIcon(new javax.swing.ImageIcon(getClass().getResource("/System/Images/Panel 1/bttDaDevoluciones.png")));
+            bttDev.setIcon(new javax.swing.ImageIcon(getClass().getResource("/System/Images/Panel1/bttDaDevoluciones.png")));
         }
         
         //Activar pestaña correcta y cambiar panel
         if (pPanel == FACT_PANEL){
-            bttFact.setIcon(new javax.swing.ImageIcon(getClass().getResource("/System/Images/Panel 1/bttActFacturacion.png")));
+            bttFact.setIcon(new javax.swing.ImageIcon(getClass().getResource("/System/Images/Panel1/bttActFacturacion.png")));
             _panelManager.changeStartPanel(_panFact);
         } else if (pPanel == CRED_PANEL){
-            bttCred.setIcon(new javax.swing.ImageIcon(getClass().getResource("/System/Images/Panel 1/bttActCreditos.png")));
+            bttCred.setIcon(new javax.swing.ImageIcon(getClass().getResource("/System/Images/Panel1/bttActCreditos.png")));
             _panelManager.changeStartPanel(_panCred);
         } else if (pPanel == APART_PANEL){
-            bttApart.setIcon(new javax.swing.ImageIcon(getClass().getResource("/System/Images/Panel 1/bttActApartados.png")));
+            bttApart.setIcon(new javax.swing.ImageIcon(getClass().getResource("/System/Images/Panel1/bttActApartados.png")));
             _panelManager.changeStartPanel(_panApart);
         } else {
-            bttDev.setIcon(new javax.swing.ImageIcon(getClass().getResource("/System/Images/Panel 1/bttActDevoluciones.png")));
+            bttDev.setIcon(new javax.swing.ImageIcon(getClass().getResource("/System/Images/Panel1/bttActDevoluciones.png")));
             _panelManager.changeStartPanel(_panDev);
         }
     }

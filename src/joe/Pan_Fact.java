@@ -74,7 +74,7 @@ public class Pan_Fact extends javax.swing.JPanel {
 
         add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 760, 350));
 
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/System/Images/Panel 1/addBtt.png"))); // NOI18N
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/System/Images/Buttons/addBtt.png"))); // NOI18N
         jLabel1.setToolTipText("Crear nueva factura");
         jLabel1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jLabel1.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -84,7 +84,7 @@ public class Pan_Fact extends javax.swing.JPanel {
         });
         add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 360, -1, -1));
 
-        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/System/Images/Panel 1/editBtt.png"))); // NOI18N
+        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/System/Images/Buttons/editBtt.png"))); // NOI18N
         jLabel2.setToolTipText("Editar factura seleccionada");
         jLabel2.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jLabel2.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -94,7 +94,7 @@ public class Pan_Fact extends javax.swing.JPanel {
         });
         add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 360, -1, -1));
 
-        jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/System/Images/Panel 1/trashBtt.png"))); // NOI18N
+        jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/System/Images/Buttons/trashBtt.png"))); // NOI18N
         jLabel3.setToolTipText("Borrar factura seleccionada");
         jLabel3.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jLabel3.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -104,7 +104,7 @@ public class Pan_Fact extends javax.swing.JPanel {
         });
         add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 360, -1, -1));
 
-        jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/System/Images/Panel 1/watchBtt.png"))); // NOI18N
+        jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/System/Images/Buttons/watchBtt.png"))); // NOI18N
         jLabel4.setToolTipText("Ver factura seleccionada");
         jLabel4.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jLabel4.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -114,11 +114,11 @@ public class Pan_Fact extends javax.swing.JPanel {
         });
         add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 360, -1, -1));
 
-        jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/System/Images/Panel 1/printBtt.png"))); // NOI18N
+        jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/System/Images/Buttons/printBtt.png"))); // NOI18N
         jLabel5.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 360, -1, -1));
 
-        jLabel6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/System/Images/Panel 1/regBtt.png"))); // NOI18N
+        jLabel6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/System/Images/Buttons/regBtt.png"))); // NOI18N
         jLabel6.setToolTipText("Realizar cierre de caja");
         jLabel6.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jLabel6.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -128,7 +128,7 @@ public class Pan_Fact extends javax.swing.JPanel {
         });
         add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(710, 360, -1, -1));
 
-        jLabel7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/System/Images/Panel 1/listBtt.png"))); // NOI18N
+        jLabel7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/System/Images/Buttons/listBtt.png"))); // NOI18N
         jLabel7.setToolTipText("Ver cierres de caja");
         jLabel7.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jLabel7.addMouseListener(new java.awt.event.MouseAdapter() {

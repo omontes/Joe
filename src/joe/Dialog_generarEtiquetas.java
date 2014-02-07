@@ -124,7 +124,7 @@ public class Dialog_generarEtiquetas extends java.awt.Dialog {
                                     .addComponent(jFormattedTextField_Precio)
                                     .addComponent(jSpinner_Cantidad, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)))
                             .addComponent(jButton_BuscarProducto, javax.swing.GroupLayout.Alignment.LEADING))))
-                .addContainerGap(97, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
                 .addGap(0, 0, Short.MAX_VALUE)
                 .addComponent(jButton_Generar)

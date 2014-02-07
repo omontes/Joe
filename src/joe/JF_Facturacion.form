@@ -64,7 +64,7 @@
         <Component class="javax.swing.JLabel" name="bttAtras">
           <Properties>
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="3" name="/System/Images/Panel 1/atras.png"/>
+              <Image iconType="3" name="/System/Images/Buttons/atras.png"/>
             </Property>
             <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
               <Color id="Cursor de Mano"/>
@@ -82,7 +82,7 @@
         <Component class="javax.swing.JLabel" name="bttCred">
           <Properties>
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="3" name="/System/Images/Panel 1/bttDaCreditos.png"/>
+              <Image iconType="3" name="/System/Images/Panel1/bttDaCreditos.png"/>
             </Property>
             <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
               <Color id="Cursor de Mano"/>
@@ -100,7 +100,7 @@
         <Component class="javax.swing.JLabel" name="bttDev">
           <Properties>
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="3" name="/System/Images/Panel 1/bttDaDevoluciones.png"/>
+              <Image iconType="3" name="/System/Images/Panel1/bttDaDevoluciones.png"/>
             </Property>
             <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
               <Color id="Cursor de Mano"/>
@@ -118,7 +118,7 @@
         <Component class="javax.swing.JLabel" name="bttApart">
           <Properties>
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="3" name="/System/Images/Panel 1/bttDaApartados.png"/>
+              <Image iconType="3" name="/System/Images/Panel1/bttDaApartados.png"/>
             </Property>
             <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
               <Color id="Cursor de Mano"/>
@@ -136,7 +136,7 @@
         <Component class="javax.swing.JLabel" name="bttFact">
           <Properties>
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="3" name="/System/Images/Panel 1/bttActFacturacion.png"/>
+              <Image iconType="3" name="/System/Images/Panel1/bttActFacturacion.png"/>
             </Property>
             <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
               <Color id="Cursor de Mano"/>
@@ -154,7 +154,7 @@
         <Component class="javax.swing.JLabel" name="jLabel1">
           <Properties>
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="3" name="/System/Images/Panel 1/panelF.png"/>
+              <Image iconType="3" name="/System/Images/Panel1/panelF.png"/>
             </Property>
           </Properties>
           <Constraints>

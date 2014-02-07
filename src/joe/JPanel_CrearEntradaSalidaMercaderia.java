@@ -1157,8 +1157,7 @@ public class JPanel_CrearEntradaSalidaMercaderia extends javax.swing.JPanel {
             int cantidad=Integer.parseInt(this.jFormattedTextField_cantidadProducto.getText());
             AdminBD.crearProducto(codigo, this.jTextField_nombre.getText(),
                     precio_Producto, BigDecimal.ZERO, dateFormat.format(date), "A", null, 1);
-            AdminBD.insertarEnInventario(this.jTextField_codigo.getText(),
-                    1,cantidad);
+            
             
             
             this.crearMovimiento("Creacion Producto",precio_Producto,1);

@@ -1028,32 +1028,39 @@ public class Pan_NuevaFactura extends javax.swing.JPanel {
         int row = jTable_Factura.getSelectedRow();
         ///Si se esta escribiendo en la celda para el editor y luego elimina la
         // fila
-        if (jTable_Factura.isEditing()) {
-            jTable_Factura.getCellEditor().cancelCellEditing();
-            jTable_Factura.revalidate();
-            jTable_Factura.repaint();
-            jTable_Factura.requestFocus();
+        if (!model.data.isEmpty()) {
+            if (jTable_Factura.isEditing()) {
+                jTable_Factura.getCellEditor().cancelCellEditing();
+                jTable_Factura.revalidate();
+                jTable_Factura.repaint();
+                jTable_Factura.requestFocus();
 
+            }
+            String subTotal = model.getValueAt(row, 4).toString();
+            if (subTotal != "") {
+                //Elimina un producto ya ingresado y actualiza el total
+                BigDecimal subtotal = new BigDecimal(subTotal);
+                model.removeRow(row);
+                BigDecimal totalFact = this.corregirDato(
+                        this.jFormattedTextField_SubTotal.getText());
+                this.jFormattedTextField_SubTotal.setValue(
+                        totalFact.subtract(subtotal));
+                jTable_Factura.changeSelection(row-1,0,false, false);
+                jTable_Factura.revalidate();
+                jTable_Factura.repaint();
+                jTable_Factura.requestFocus();
+            } else { //Si es vacio el subtotal significa que no tiene que actualizar
+                // el subtotal
+                model.removeRow(row);
+                jTable_Factura.changeSelection(row-1,0,false, false);
+                jTable_Factura.revalidate();
+                jTable_Factura.repaint();
+                jTable_Factura.requestFocus();
+
+            }
         }
-        String subTotal = model.getValueAt(row, 4).toString();
-        if (subTotal != "") {
-            //Elimina un producto ya ingresado y actualiza el total
-            BigDecimal subtotal = new BigDecimal(subTotal);
-            model.removeRow(row);
-            BigDecimal totalFact = this.corregirDato(
-                    this.jFormattedTextField_SubTotal.getText());
-            this.jFormattedTextField_SubTotal.setValue(
-                    totalFact.subtract(subtotal));
-            jTable_Factura.revalidate();
-            jTable_Factura.repaint();
-            jTable_Factura.requestFocus();
-        } else { //Si es vacio el subtotal significa que no tiene que actualizar
-            // el subtotal
-            model.removeRow(row);
-            jTable_Factura.revalidate();
-            jTable_Factura.repaint();
-            jTable_Factura.requestFocus();
-
+        if (model.data.isEmpty()){
+            model.addRow(1);
         }
     }    /**
      * Este metodo permite que se actualice el campo del total y la rebaja
@@ -1956,7 +1963,7 @@ public class Pan_NuevaFactura extends javax.swing.JPanel {
         //Agrega el modelo a la factura
         MyTableModel_FACT model = new MyTableModel_FACT(columnNames, data);
         //Agrega 20 filas
-        model.addRow(20);
+        model.addRow(1);
         this.jTable_Factura.setModel(model);
         AdminBD.verVendedores();
         /**

@@ -20,7 +20,6 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import joe.JPanel_VerFactura;
 
-
 /**
  * @author Monicaticooo
  */
@@ -77,31 +76,29 @@ public class Direct_Control_BD {
 
     }
 
-    /**
-     * Obtiene todos los productos que estan agotados en el lugar del inventario
-     * elegido
-     */
-    public void verProductosAgotados(String UbicacionInv) {//esta bien
-        try {
-            String verProductosAgotados = this.readSql("../Joe/src/"
-                    + "sql_files/"
-                    + "verProductosAgotados.sql");
-            PreparedStatement stm = this.conection.prepareStatement(verProductosAgotados);
-            stm.setString(1, UbicacionInv);
-            ResultSet resultset = stm.executeQuery();
-            //Imprime el resultado obtenido de ver productos agotados
-            while (resultset.next()) {
-                System.out.println(resultset.getString(1)
-                        + "||" + resultset.getString(2) + "||"
-                        + resultset.getInt(3));
-            }
-
-        } catch (Exception e) {
-            System.out.println("Error al obtener los productos agotados");
-        }
-
-    }
-
+//    /**
+//     * Obtiene todos los productos que estan agotados en ubicacion
+//     */
+//    public void verProductosAgotados(String UbicacionInv) {//esta bien
+//        try {
+//            String verProductosAgotados = this.readSql("../Joe/src/"
+//                    + "sql_files/"
+//                    + "verProductosAgotados.sql");
+//            PreparedStatement stm = this.conection.prepareStatement(verProductosAgotados);
+//            stm.setString(1, UbicacionInv);
+//            ResultSet resultset = stm.executeQuery();
+//            //Imprime el resultado obtenido de ver productos agotados
+//            while (resultset.next()) {
+//                System.out.println(resultset.getString(1)
+//                        + "||" + resultset.getString(2) + "||"
+//                        + resultset.getInt(3));
+//            }
+//
+//        } catch (Exception e) {
+//            System.out.println("Error al obtener los productos agotados");
+//        }
+//
+//    }
     /**
      * @param idCLiente Este metodo da como resultados todas las ventas hechas a
      * un determinado cliente
@@ -1067,7 +1064,6 @@ public class Direct_Control_BD {
             stm.setInt(4, idLugarMovimiento);
             stm.setBigDecimal(5, valormovimiento);
             stm.executeUpdate();
-        
 
         } catch (Exception e) {
             System.out.println("Error al insertar movimiento");
@@ -2502,9 +2498,9 @@ public class Direct_Control_BD {
             this.setColumnNames(Get_Columnas(resultset));
             this.setData2(ResultSet_Array(resultset));
 
-        } catch (Exception e) {
-            System.out.println("Error al obtener costos productos "
-                    + "por rango de codigo");
+        } catch (IOException | SQLException e) {
+            System.out.println("Error al obtener los productos agotados"
+                    + " por rango de codigo");
         }
     }
 
@@ -3584,7 +3580,7 @@ public class Direct_Control_BD {
     }
 
     public void verBodega() {
-         try {
+        try {
             String verBodega = this.readSql("../Joe/src/sql_files/"
                     + "consultarBodega.sql");
             ResultSet rs = statement.executeQuery(verBodega);
@@ -3594,8 +3590,8 @@ public class Direct_Control_BD {
             System.out.println("Error al obtener la bodega");
         }
     }
-    
-     /**
+
+    /**
      * Este metodo convierte un string que es un decimal a bigdecimal
      *
      * @param numero
@@ -3612,6 +3608,102 @@ public class Direct_Control_BD {
         }
         return numeroCorregido;
 
+    }
+
+    /**
+     * Ver todos los productos en Inv General o Bodega
+     *
+     * @param ubicacion
+     */
+    public void verTodosLosProductos(String ubicacion) {
+        try {
+            String Productos = this.readSql("../Joe/src/"
+                    + "sql_files/VerTodosLosProductosPorUbicacion.sql");
+            PreparedStatement stm = this.conection.prepareStatement(Productos);
+            stm.setString(1, ubicacion);
+            ResultSet resultset = stm.executeQuery();
+            this.setColumnNames(Get_Columnas(resultset));
+            this.setData2(ResultSet_Array(resultset));
+
+        } catch (IOException | SQLException e) {
+            System.out.println("Error al obtener lista productos en "
+                    + ubicacion);
+        }
+
+    }
+
+    /**
+     * Ver todos los productos agotados en ubicacion
+     *
+     * @param ubicacion
+     */
+    public void VerProductosAgotadosPorUbicacion(String ubicacion) {
+        try {
+            String ProductosAgotados = this.readSql("../Joe/src/"
+                    + "sql_files/verProductosAgotadosPorUbicacion.sql");
+            PreparedStatement stm = this.conection.
+                    prepareStatement(ProductosAgotados);
+            stm.setString(1, ubicacion);
+            ResultSet resultset = stm.executeQuery();
+            this.setColumnNames(Get_Columnas(resultset));
+            this.setData2(ResultSet_Array(resultset));
+
+        } catch (IOException | SQLException e) {
+            System.out.println("Error al obtener los productos agotados en "
+                    + ubicacion);
+        }
+    }
+
+    /**
+     * Obtener valor de Inv General o Bodega
+     *
+     * @param ubicacion
+     */
+    public void ValorDeInvPorUbicacion(String ubicacion) {
+        try {
+            String Productos = this.readSql("../Joe/src/"
+                    + "sql_files/VerValorDeInvPorUbicacion.sql");
+            PreparedStatement stm = this.conection.prepareStatement(Productos);
+            stm.setString(1, ubicacion);
+            ResultSet resultset = stm.executeQuery();
+            this.setColumnNames(Get_Columnas(resultset));
+            this.setData2(ResultSet_Array(resultset));
+
+        } catch (IOException | SQLException e) {
+            System.out.println("Error al obtener Valor De " + ubicacion);
+        }
+    }
+
+    /**
+     * Obtener lista de costos de todos los productos
+     */
+    public void VerCostoPrecioTodosProductos() {
+        try {
+            String Productos = this.readSql("../Joe/src/"
+                    + "sql_files/VerCostoPrecioTodosProductos.sql");
+            PreparedStatement stm = this.conection.prepareStatement(Productos);
+            ResultSet resultset = stm.executeQuery();
+            this.setColumnNames(Get_Columnas(resultset));
+            this.setData2(ResultSet_Array(resultset));
+        } catch (IOException | SQLException e) {
+            System.out.println("Error al obtener costos de todos los productos");
+        }
+    }
+
+    /**
+     * Ver todos los productos
+     */
+    public void VerTodosProductos() {
+        try {
+            String Productos = this.readSql("../Joe/src/"
+                    + "sql_files/VerTodosProductos.sql");
+            PreparedStatement stm = this.conection.prepareStatement(Productos);
+                      ResultSet resultset = stm.executeQuery();
+            this.setColumnNames(Get_Columnas(resultset));
+            this.setData2(ResultSet_Array(resultset));
+        } catch (IOException | SQLException e) {
+            System.out.println("Error al obtener todos los productos");
+        }
     }
 
 }

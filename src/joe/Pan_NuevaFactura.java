@@ -1010,7 +1010,7 @@ public class Pan_NuevaFactura extends javax.swing.JPanel {
         jLabel_datoPrecio.setText(PrecioUnitario.toString());
         String detalle = AdminBD.verDetalle(idProducto);
         //Si en la base el detalle es null
-        System.out.println("DETALLE = " + (detalle==null?"null":"".equals(detalle)?"vacío":detalle.toString()));
+        //System.out.println("DETALLE = " + (detalle==null?"null":"".equals(detalle)?"vacío":detalle.toString()));
         if (detalle == null) {
             jLabel_datoDescrip.setText("Este producto no tiene ningún detalle");
         } else {
@@ -1028,32 +1028,39 @@ public class Pan_NuevaFactura extends javax.swing.JPanel {
         int row = jTable_Factura.getSelectedRow();
         ///Si se esta escribiendo en la celda para el editor y luego elimina la
         // fila
-        if (jTable_Factura.isEditing()) {
-            jTable_Factura.getCellEditor().cancelCellEditing();
-            jTable_Factura.revalidate();
-            jTable_Factura.repaint();
-            jTable_Factura.requestFocus();
+        if (!model.data.isEmpty()) {
+            if (jTable_Factura.isEditing()) {
+                jTable_Factura.getCellEditor().cancelCellEditing();
+                jTable_Factura.revalidate();
+                jTable_Factura.repaint();
+                jTable_Factura.requestFocus();
 
+            }
+            String subTotal = model.getValueAt(row, 4).toString();
+            if (subTotal != "") {
+                //Elimina un producto ya ingresado y actualiza el total
+                BigDecimal subtotal = new BigDecimal(subTotal);
+                model.removeRow(row);
+                BigDecimal totalFact = this.corregirDato(
+                        this.jFormattedTextField_SubTotal.getText());
+                this.jFormattedTextField_SubTotal.setValue(
+                        totalFact.subtract(subtotal));
+                jTable_Factura.changeSelection(row-1,0,false, false);
+                jTable_Factura.revalidate();
+                jTable_Factura.repaint();
+                jTable_Factura.requestFocus();
+            } else { //Si es vacio el subtotal significa que no tiene que actualizar
+                // el subtotal
+                model.removeRow(row);
+                jTable_Factura.changeSelection(row-1,0,false, false);
+                jTable_Factura.revalidate();
+                jTable_Factura.repaint();
+                jTable_Factura.requestFocus();
+
+            }
         }
-        String subTotal = model.getValueAt(row, 4).toString();
-        if (subTotal != "") {
-            //Elimina un producto ya ingresado y actualiza el total
-            BigDecimal subtotal = new BigDecimal(subTotal);
-            model.removeRow(row);
-            BigDecimal totalFact = this.corregirDato(
-                    this.jFormattedTextField_SubTotal.getText());
-            this.jFormattedTextField_SubTotal.setValue(
-                    totalFact.subtract(subtotal));
-            jTable_Factura.revalidate();
-            jTable_Factura.repaint();
-            jTable_Factura.requestFocus();
-        } else { //Si es vacio el subtotal significa que no tiene que actualizar
-            // el subtotal
-            model.removeRow(row);
-            jTable_Factura.revalidate();
-            jTable_Factura.repaint();
-            jTable_Factura.requestFocus();
-
+        if (model.data.isEmpty()){
+            model.addRow(1);
         }
     }    /**
      * Este metodo permite que se actualice el campo del total y la rebaja
@@ -1092,22 +1099,46 @@ public class Pan_NuevaFactura extends javax.swing.JPanel {
         DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd");
         Date date = new Date();
         String codigo = this.jTextField_codigo.getText();
+        
+        
+        if(codigo.equals("")){
+            
+             JOptionPane.showMessageDialog(
+                    null,
+                    "Por favor ingrese un codigo",
+                    "Alert!", JOptionPane.ERROR_MESSAGE);
+             return;
+        
+        }
+        if(this.jTextField_nombre.getText().equals("")){
+            
+             JOptionPane.showMessageDialog(
+                    null,
+                    "Por favor ingrese un nombre para el producto",
+                    "Alert!", JOptionPane.ERROR_MESSAGE);
+             return;
+        
+        }
         boolean existeProducto = AdminBD.verSiExisteCod(codigo);
         if (!existeProducto) {
-            BigDecimal bd = new BigDecimal(
-                    this.jFormattedTextField_precioProducto.
-                    getValue().toString());
+            BigDecimal precio_Producto = this.StringtoBigDecimal(this.jFormattedTextField_precioProducto.getText());
+            int cantidad=Integer.parseInt(this.jFormattedTextField_cantidadProducto.getText()); 
+           
             AdminBD.crearProducto(codigo, this.jTextField_nombre.getText(),
-                    bd, BigDecimal.ZERO, dateFormat.format(date), "A", null, 1);
-            AdminBD.insertarEnInventario(this.jTextField_codigo.getText(),
-                    1, Integer.parseInt(this.jFormattedTextField_cantidadProducto.getValue()
-                            .toString()));
+                    precio_Producto, BigDecimal.ZERO, dateFormat.format(date), "A", null, 1);
+           
+            this.crearMovimiento("Creacion Producto",precio_Producto,1);
+            int idVersion= AdminBD.veridVersionActivaProductoPorCodigo(codigo);
+            this.guardaProductoEnMovimiento(codigo, idVersion, cantidad, precio_Producto);
+            
             this.clearCrearProducto();
             this.jDialog_CrearProducto.dispose();
             MyTableModel_FACT model = (MyTableModel_FACT) jTable_Factura.getModel();
             model.setValueAt(codigo, jTable_Factura.getSelectedRow(), 0);
             //Vuelve a cargar la informacion para el editor de la primer columna
             this.cargarSeleccionadorProductos();
+            
+            model.addRow(1);
             this.setFocusTablaFact(1);
         } else {
             JOptionPane.showMessageDialog(
@@ -1788,12 +1819,17 @@ public class Pan_NuevaFactura extends javax.swing.JPanel {
         String idProducto = model.getValueAt(row, 0).toString();
         //obtiene el id del
         //producto seleccionado para VerProducto
-        String precioSinCorregir = model.getValueAt(row, 3).toString();
+       
         if (!"".equals(idProducto)) {//verifica que se quiere ver un producto
+            String precioSinCorregir = model.getValueAt(row, 3).toString();
             BigDecimal PrecioCorregido = this.corregirDato(precioSinCorregir);
             this.aplicarDescAlProducto(idProducto, PrecioCorregido);
         } else {
-            System.out.println("Porfavor Seleccione un producto");
+            JOptionPane.showMessageDialog(
+                    null,
+                    "Porfavor seleccione un producto",
+                    "Alert!", JOptionPane.ERROR_MESSAGE);
+            return;
         }
     }//GEN-LAST:event_discBttMouseClicked
 
@@ -1804,6 +1840,7 @@ public class Pan_NuevaFactura extends javax.swing.JPanel {
         MyTableModel_FACT model = (MyTableModel_FACT) jTable_Factura.getModel();
         int row = this.jTable_Factura.getSelectedRow();
         model.setValueAt(id, row, 0);
+        model.addRow(1);
         this.setFocusTablaFact(1);
     }//GEN-LAST:event_searchBttMouseClicked
 
@@ -1956,7 +1993,7 @@ public class Pan_NuevaFactura extends javax.swing.JPanel {
         //Agrega el modelo a la factura
         MyTableModel_FACT model = new MyTableModel_FACT(columnNames, data);
         //Agrega 20 filas
-        model.addRow(20);
+        model.addRow(1);
         this.jTable_Factura.setModel(model);
         AdminBD.verVendedores();
         /**
@@ -2558,5 +2595,17 @@ public class Pan_NuevaFactura extends javax.swing.JPanel {
         //Hace la devolucion vieja en estado inhabilitada
         Direct_Control_BD AdminBD = Direct_Control_BD.getInstance();
         AdminBD.eliminarDevolucionPorModificacion(Integer.parseInt(this.jLabel_NumerodeFact.getText()));
+    }
+    
+    
+    private void crearMovimiento(String detalle, BigDecimal precioProd, int movimiento) {
+        Direct_Control_BD AdminBD = Direct_Control_BD.getInstance();
+        AdminBD.insertarmovimiento(detalle, movimiento, 1, precioProd);
+    }
+
+    private void guardaProductoEnMovimiento(String idProducto, int idVersion, int cantidadMov, BigDecimal PrecioVenta) {
+        Direct_Control_BD AdminBD = Direct_Control_BD.getInstance();
+        int idMovimiento = AdminBD.ObtenerUltimoidMovimiento();
+        AdminBD.insertarProductoCantidadMovimiento(idProducto, idVersion, idMovimiento, cantidadMov, PrecioVenta);
     }
 }

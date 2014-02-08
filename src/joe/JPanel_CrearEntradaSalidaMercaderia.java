@@ -744,7 +744,7 @@ public class JPanel_CrearEntradaSalidaMercaderia extends javax.swing.JPanel {
 
     private void jButton_CrearProductoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_CrearProductoActionPerformed
         this.CrearProducto();
-        this.clearCrearProducto();
+        
        
     }//GEN-LAST:event_jButton_CrearProductoActionPerformed
 
@@ -816,7 +816,7 @@ public class JPanel_CrearEntradaSalidaMercaderia extends javax.swing.JPanel {
 
         }
 
-        int limite = 10;
+        int limite = 9;
         if (jFormattedTextField_cantidadProducto.getText().length() == limite) {
             evt.consume();
             Toolkit.getDefaultToolkit().beep();
@@ -1140,6 +1140,7 @@ public class JPanel_CrearEntradaSalidaMercaderia extends javax.swing.JPanel {
                     null,
                     "Por favor ingrese un codigo",
                     "Alert!", JOptionPane.ERROR_MESSAGE);
+             this.jTextField_codigo.requestFocusInWindow();
              return;
         
         }
@@ -1149,6 +1150,7 @@ public class JPanel_CrearEntradaSalidaMercaderia extends javax.swing.JPanel {
                     null,
                     "Por favor ingrese un nombre para el producto",
                     "Alert!", JOptionPane.ERROR_MESSAGE);
+             this.jTextField_nombre.requestFocusInWindow();
              return;
         
         }
@@ -1173,6 +1175,7 @@ public class JPanel_CrearEntradaSalidaMercaderia extends javax.swing.JPanel {
             MyTableModel_FACT model = (MyTableModel_FACT) jTable_Movimiento.getModel();
             model.setValueAt(codigo, jTable_Movimiento.getSelectedRow(), 0);
             //Vuelve a cargar la informacion para el editor de la primer columna
+            this.clearCrearProducto();
             this.cargarSeleccionadorProductos();
             model.addRow(1);
             this.setFocusTablaMovimiento(1);

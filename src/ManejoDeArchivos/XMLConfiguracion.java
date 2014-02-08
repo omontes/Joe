@@ -6,11 +6,16 @@
 package ManejoDeArchivos;
 
 import java.io.File;
+import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.OutputStream;
+import java.io.StringWriter;
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
+import javax.xml.transform.OutputKeys;
 import javax.xml.transform.Transformer;
+import javax.xml.transform.TransformerConfigurationException;
 import javax.xml.transform.TransformerException;
 import javax.xml.transform.TransformerFactory;
 import javax.xml.transform.dom.DOMSource;
@@ -18,6 +23,7 @@ import javax.xml.transform.stream.StreamResult;
 import org.w3c.dom.DOMException;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
+import org.w3c.dom.NamedNodeMap;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 import org.xml.sax.SAXException;
@@ -55,10 +61,11 @@ public class XMLConfiguracion {
      * @param correo
      * @param comentarioInicial
      * @param comentarioFinal
+     * @param Usuario
      */
     public static void crearXML(String nombreEmpresa, String cedulaJuridica,
             String dirrecion, String telefono, String ciudad, String correo,
-            String comentarioInicial, String comentarioFinal) {
+            String comentarioInicial, String comentarioFinal, String Usuario) {
         try {
 
             DocumentBuilderFactory docFactory = DocumentBuilderFactory.
@@ -115,6 +122,15 @@ public class XMLConfiguracion {
             Element ComentarioFin = doc.createElement("ComentarioFinal");
             ComentarioFin.appendChild(doc.createTextNode(comentarioFinal));
             Factura.appendChild(ComentarioFin);
+
+            // Agregar informacion de Usuario Actual
+            Element UsuarioAct = doc.createElement("Usuario");
+            rootElement.appendChild(UsuarioAct);
+
+            //Agregar Usuario Actual
+            Element UsuarioActual = doc.createElement("UsuarioActual");
+            UsuarioActual.appendChild(doc.createTextNode(Usuario));
+            UsuarioAct.appendChild(UsuarioActual);
 
             // escribir los datos en el documento xml
             TransformerFactory transformerFactory = TransformerFactory.
@@ -269,4 +285,89 @@ public class XMLConfiguracion {
 
         return infoEmpresa;
     }
+
+    /**
+     * Permite obtener el usuario actual
+     * @return 
+     */
+    public String ObtenerUsuario() {
+        String usuario = "";
+        try {
+            File fXmlFile = new File("Configuracion.xml");
+            DocumentBuilderFactory dbFactory = DocumentBuilderFactory.
+                    newInstance();
+            DocumentBuilder dBuilder = dbFactory.newDocumentBuilder();
+            Document doc = dBuilder.parse(fXmlFile);
+
+            doc.getDocumentElement().normalize();
+
+            NodeList nList = doc.getElementsByTagName("Usuario");
+
+            for (int temp = 0; temp < nList.getLength(); temp++) {
+
+                Node nNode = nList.item(temp);
+
+                if (nNode.getNodeType() == Node.ELEMENT_NODE) {
+
+                    Element eElement = (Element) nNode;
+
+                    usuario = eElement.
+                            getElementsByTagName("UsuarioActual").item(0).
+                            getTextContent();
+                }
+            }
+        } catch (ParserConfigurationException | SAXException | IOException 
+                | DOMException e) {
+        }
+        return usuario;
+    }
+
+    /**
+     * Permite actualizar xml(en este caso el usuarioActual)(hacer mas generico)
+     * @param nuevoUsuario 
+     */
+    public void establecerUsuario(String nuevoUsuario) {
+
+        String filePath = "Configuracion.xml";
+        File xmlFile = new File(filePath);
+        DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
+        DocumentBuilder dBuilder;
+        try {
+            dBuilder = dbFactory.newDocumentBuilder();
+            Document doc = dBuilder.parse(xmlFile);
+            doc.getDocumentElement().normalize();
+
+            //Para actualizar usuario(Se podria hacer mas generico, (no tiempo))
+            NodeList usuarios = doc.getElementsByTagName("Usuario");
+
+            for (int temp = 0; temp < usuarios.getLength(); temp++) {
+
+                Node nNode = usuarios.item(temp);
+
+                if (nNode.getNodeType() == Node.ELEMENT_NODE) {
+
+                    Element eElement = (Element) nNode;
+
+                    eElement.getElementsByTagName("UsuarioActual").item(0).
+                            setTextContent(nuevoUsuario);
+                }
+            }
+            ///////////////////////////////////////////////////////////////////
+
+            //escribir las actualizaciones en xml
+            doc.getDocumentElement().normalize();
+            TransformerFactory transformerFactory = TransformerFactory.newInstance();
+            Transformer transformer = transformerFactory.newTransformer();
+            DOMSource source = new DOMSource(doc);
+            StreamResult result = new StreamResult(new File("Configuracion.xml"));
+            //transformer.setOutputProperty(OutputKeys.INDENT, "yes");
+            transformer.transform(source, result);
+            // System.out.println("XML file updated successfully");
+
+        } catch (SAXException | ParserConfigurationException | IOException |
+                TransformerException e1) {
+            System.out.println("Error al actualizar xml");
+        }
+    }
+
 }

@@ -1324,12 +1324,13 @@ jPanel_ModifAdmVendLayout.setHorizontalGroup(
 
     private void jButton_aceptarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_aceptarActionPerformed
         XMLConfiguracion xml = new XMLConfiguracion();
+
         xml.crearXML(jTextField_nombreEmpresa.getText(), jTextField_CedJ.
                 getText(),
                 jTextField_Direccion.getText(), jTextField_telefono.getText(),
                 jTextField_ciudad.getText(), jTextField_correo.getText(),
                 jTextField_ComentarioIni.getText(), jTextField_ComentarioFin.
-                getText());
+                getText(), xml.ObtenerUsuario());
         jDialog_configuracion.dispose();
     }//GEN-LAST:event_jButton_aceptarActionPerformed
 

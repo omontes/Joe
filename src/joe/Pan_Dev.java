@@ -281,8 +281,8 @@ public class Pan_Dev extends javax.swing.JPanel {
 
             panelModDev.personalizarTablaFactura();
             panelModDev.jLabel_NumerodeFact.setText(factura);
-            panelModDev.cargarInfoFact();
-            panelModDev.cargarProductosFact((MyTableModel_FACT) panelModDev.jTable_Factura.getModel());
+            panelModDev.cargarInfoDev();
+            panelModDev.cargarProductosDevolucion();
             panelModDev.agregarListenerRenders();
         }
         else {

@@ -23,18 +23,53 @@ public class JF_Inventario extends javax.swing.JFrame {
     private int _activeTab;
     private PanelManager _panelManager;
     
+    private Pan_Inventario _panInventario;
+    private Pan_Entradas _panEntradas;
+    private Pan_Salidas _panSalidas;
+    private Pan_Bodega _panBodega;
+    private Pan_Movimientos _panMovimientos;
             
             
     /**
      * Creates new form JF_Inventario
      */
     public JF_Inventario() {
+        _instance = this;       
+        
         initComponents();
         setLocation(StartWindow.getPosX(), StartWindow.getPosY());
+        _panelManager = new PanelManager(jLayeredPane1);
+        
+        startComponents();
         
         _activeTab = 0;
-        _panelManager = new PanelManager(jLayeredPane1);
-        _instance = this;       
+    }
+    
+    private void startComponents(){
+        _panInventario = new Pan_Inventario();
+        _panInventario.setSize(760, 400);
+        _panInventario.setLocation(20, 60);
+        _panelManager.showPanel(_panInventario);
+        
+        _panSalidas = new Pan_Salidas();
+        _panSalidas.setSize(760, 400);
+        _panSalidas.setLocation(20, 60);
+        _panelManager.addPanelToPane(_panSalidas);
+        
+        _panEntradas = new Pan_Entradas();
+        _panEntradas.setSize(760, 400);
+        _panEntradas.setLocation(20, 60);
+        _panelManager.addPanelToPane(_panEntradas);
+        
+        _panBodega = new Pan_Bodega();
+        _panBodega.setSize(760, 400);
+        _panBodega.setLocation(20, 60);
+        _panelManager.addPanelToPane(_panBodega);
+        
+        _panMovimientos = new Pan_Movimientos();
+        _panMovimientos.setSize(760, 400);
+        _panMovimientos.setLocation(20, 60);
+        _panelManager.addPanelToPane(_panMovimientos);
     }
     
     public static JF_Inventario getInstance(){
@@ -62,14 +97,19 @@ public class JF_Inventario extends javax.swing.JFrame {
         //Activar pestaña
         if (pTab == INVENTARIO){
             bttInventario.setIcon(new javax.swing.ImageIcon(getClass().getResource("/System/Images/Panel2/inventarioBttAct.png")));
+            _panelManager.changeStartPanel(_panInventario);
         } else if (pTab == ENTRADAS){
             bttEntradas.setIcon(new javax.swing.ImageIcon(getClass().getResource("/System/Images/Panel2/entradasBttAct.png")));
+            _panelManager.changeStartPanel(_panEntradas);
         } else if (pTab == SALIDAS){
             bttSalidas.setIcon(new javax.swing.ImageIcon(getClass().getResource("/System/Images/Panel2/salidasBttAct.png")));
+            _panelManager.changeStartPanel(_panSalidas);
         } else if (pTab == BODEGA){
             bttBodega.setIcon(new javax.swing.ImageIcon(getClass().getResource("/System/Images/Panel2/bodegaBttAct.png")));
+            _panelManager.changeStartPanel(_panBodega);
         } else if (pTab == MOVIMIENTOS){
             bttMovimientos.setIcon(new javax.swing.ImageIcon(getClass().getResource("/System/Images/Panel2/movimientosBttAct.png")));
+            _panelManager.changeStartPanel(_panMovimientos);
         }
     }
     
@@ -95,14 +135,13 @@ public class JF_Inventario extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setUndecorated(true);
+        setResizable(false);
         addWindowListener(new java.awt.event.WindowAdapter() {
             public void windowClosing(java.awt.event.WindowEvent evt) {
                 formWindowClosing(evt);
             }
         });
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
-        jLayeredPane1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         bttInventario.setIcon(new javax.swing.ImageIcon(getClass().getResource("/System/Images/Panel2/inventarioBttAct.png"))); // NOI18N
         bttInventario.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
@@ -111,7 +150,8 @@ public class JF_Inventario extends javax.swing.JFrame {
                 bttInventarioMouseClicked(evt);
             }
         });
-        jLayeredPane1.add(bttInventario, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 11, -1, -1));
+        jLayeredPane1.add(bttInventario);
+        bttInventario.setBounds(0, 11, 143, 31);
 
         bttEntradas.setIcon(new javax.swing.ImageIcon(getClass().getResource("/System/Images/Panel2/entradasBttDct.png"))); // NOI18N
         bttEntradas.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
@@ -120,7 +160,8 @@ public class JF_Inventario extends javax.swing.JFrame {
                 bttEntradasMouseClicked(evt);
             }
         });
-        jLayeredPane1.add(bttEntradas, new org.netbeans.lib.awtextra.AbsoluteConstraints(144, 11, -1, -1));
+        jLayeredPane1.add(bttEntradas);
+        bttEntradas.setBounds(144, 11, 130, 31);
 
         bttSalidas.setIcon(new javax.swing.ImageIcon(getClass().getResource("/System/Images/Panel2/salidasBttDct.png"))); // NOI18N
         bttSalidas.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
@@ -129,7 +170,8 @@ public class JF_Inventario extends javax.swing.JFrame {
                 bttSalidasMouseClicked(evt);
             }
         });
-        jLayeredPane1.add(bttSalidas, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 11, -1, -1));
+        jLayeredPane1.add(bttSalidas);
+        bttSalidas.setBounds(270, 11, 123, 31);
 
         bttBodega.setIcon(new javax.swing.ImageIcon(getClass().getResource("/System/Images/Panel2/bodegaBttDct.png"))); // NOI18N
         bttBodega.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
@@ -138,7 +180,8 @@ public class JF_Inventario extends javax.swing.JFrame {
                 bttBodegaMouseClicked(evt);
             }
         });
-        jLayeredPane1.add(bttBodega, new org.netbeans.lib.awtextra.AbsoluteConstraints(392, 11, -1, -1));
+        jLayeredPane1.add(bttBodega);
+        bttBodega.setBounds(392, 11, 120, 31);
 
         bttMovimientos.setIcon(new javax.swing.ImageIcon(getClass().getResource("/System/Images/Panel2/movimientosBttDct.png"))); // NOI18N
         bttMovimientos.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
@@ -147,12 +190,14 @@ public class JF_Inventario extends javax.swing.JFrame {
                 bttMovimientosMouseClicked(evt);
             }
         });
-        jLayeredPane1.add(bttMovimientos, new org.netbeans.lib.awtextra.AbsoluteConstraints(512, 11, -1, -1));
+        jLayeredPane1.add(bttMovimientos);
+        bttMovimientos.setBounds(512, 11, 172, 31);
 
         labUsuario.setFont(new java.awt.Font("Calibri", 2, 14)); // NOI18N
         labUsuario.setForeground(new java.awt.Color(255, 255, 255));
         labUsuario.setText("Nombre de Usuario Aquí - Cargo");
-        jLayeredPane1.add(labUsuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 480, 630, -1));
+        jLayeredPane1.add(labUsuario);
+        labUsuario.setBounds(80, 480, 630, 17);
 
         back.setIcon(new javax.swing.ImageIcon(getClass().getResource("/System/Images/Buttons/atras.png"))); // NOI18N
         back.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
@@ -161,10 +206,12 @@ public class JF_Inventario extends javax.swing.JFrame {
                 backMouseClicked(evt);
             }
         });
-        jLayeredPane1.add(back, new org.netbeans.lib.awtextra.AbsoluteConstraints(725, 471, -1, -1));
+        jLayeredPane1.add(back);
+        back.setBounds(725, 471, 65, 29);
 
         bk.setIcon(new javax.swing.ImageIcon(getClass().getResource("/System/Images/Panel2/panel2.png"))); // NOI18N
-        jLayeredPane1.add(bk, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
+        jLayeredPane1.add(bk);
+        bk.setBounds(0, 0, 800, 500);
 
         getContentPane().add(jLayeredPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 800, 500));
 
@@ -216,6 +263,7 @@ public class JF_Inventario extends javax.swing.JFrame {
     private void backMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_backMouseClicked
         Object newPanel = _panelManager.back();
         if (newPanel == null){
+            StartWindow.getInstance().enableMe();
             this.dispose();            
         }
     }//GEN-LAST:event_backMouseClicked

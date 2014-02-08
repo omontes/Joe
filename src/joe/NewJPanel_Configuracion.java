@@ -1331,6 +1331,7 @@ jPanel_ModifAdmVendLayout.setHorizontalGroup(
                 jTextField_ciudad.getText(), jTextField_correo.getText(),
                 jTextField_ComentarioIni.getText(), jTextField_ComentarioFin.
                 getText(), xml.ObtenerUsuario());
+
         jDialog_configuracion.dispose();
     }//GEN-LAST:event_jButton_aceptarActionPerformed
 
@@ -1578,4 +1579,5 @@ jPanel_ModifAdmVendLayout.setHorizontalGroup(
         jLabel_FechaCVerAdmVend.setText("");
 
     }
+
 }

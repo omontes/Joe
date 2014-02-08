@@ -1,4 +1,5 @@
-SELECT  Dev.`Fecha`,Dev.`idDevolucion` AS DevFact,C.`Nombre` AS Cliente,V.`Nombre` 
+SELECT date_format(Dev.`Fecha`,'%d/%m/%Y %r') AS Fecha,
+ Dev.`idDevolucion` AS DevFact,C.`Nombre` AS Cliente,V.`Nombre` 
 AS Vendedor,Dev.`TotalFacturado`
 FROM devolucion AS Dev, persona AS V, persona AS C
 WHERE Dev.`idClienteDev` = C.`idPersona` AND Dev.`idVendedorDev` = V.`idPersona` 

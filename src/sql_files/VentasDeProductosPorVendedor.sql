@@ -5,4 +5,4 @@ WHERE V.`Nombre`=? AND F.`idFactura` = PCF.`idFactura`
 AND F.`Estado`="A" AND F.`idVendedor`=V.`idPersona` 
 AND P.`idProducto`=PCF.`idProductoFact` AND SUBSTRING(F.Fecha,1,10)  BETWEEN ? AND ?
 AND F.`idVersionFactura` = PCF.`idVersionFacturasProducto`
-GROUP BY P.`idProducto`; 
+GROUP BY P.`idProducto`,PCF.`idProductoCantidadFact`;

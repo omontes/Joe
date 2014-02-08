@@ -1,17 +1,1 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?><Configuracion>
-<Empresa>
-<NombreEmpresa>Mi Empresa</NombreEmpresa>
-<CedulaJuridica>Cedula Juridica Cedula Juridica Cedula Juridica Cedula Juridica 0000000000</CedulaJuridica>
-<Dirrecion>Canton, Distrito, Barrio</Dirrecion>
-<Telefono>Telefono Telefono Telefono Telefono 88888888</Telefono>
-<Correo>Correo Correo Correo Correo miempresa@gmail.com</Correo>
-<Ciudad>Ciudad</Ciudad>
-</Empresa>
-<Factura>
-<ComentarioInicial>Mi Empresa Le Saluda</ComentarioInicial>
-<ComentarioFinal>Gracias Por Su Compra</ComentarioFinal>
-</Factura>
-<Usuario>
-<UsuarioActual>Jose525</UsuarioActual>
-</Usuario>
-</Configuracion>
+<?xml version="1.0" encoding="UTF-8" standalone="no"?><Configuracion><Empresa><NombreEmpresa>Mi Empresa</NombreEmpresa><CedulaJuridica>000000000</CedulaJuridica><Dirrecion>Canton, Distrito, Barrio</Dirrecion><Telefono>88888888</Telefono><Correo>miempresa@gmail.com</Correo><Ciudad>Ciudad</Ciudad></Empresa><Factura><ComentarioInicial>Mi Empresa Le Saluda</ComentarioInicial><ComentarioFinal>Gracias Por Su Compra</ComentarioFinal></Factura><Usuario><UsuarioActual>Pedro</UsuarioActual></Usuario></Configuracion>

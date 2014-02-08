@@ -290,8 +290,11 @@ public class EscribirExcel {
                     timesLines));
             hojaExc.addCell(new jxl.write.Formula(2, ultimaFila + 1,
                     "SUM(C11:C" + ultimaFila + ")", timesLines));
-            hojaExc.addCell(new jxl.write.Formula(3, ultimaFila + 1,
-                    "SUM(D11:D" + ultimaFila + ")", timesLines));
+            hojaExc.addCell(new Number(3, ultimaFila + 1,
+                     multiplicarColmunasYSumarResultado(2, 3,
+                            ultimaFila, hojaExc), timesLines));
+//            hojaExc.addCell(new jxl.write.Formula(3, ultimaFila + 1,
+//                    "SUM(D11:D" + ultimaFila + ")", timesLines));
 
         } else if (tipoDeReporte.startsWith("Lista De Precio")
                 || tipoDeReporte.startsWith("Lista De Costo")) {

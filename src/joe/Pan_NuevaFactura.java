@@ -43,7 +43,13 @@ public class Pan_NuevaFactura extends javax.swing.JPanel {
     public static final int MOD_CRED_CALL    = 6;
     public static final int MOD_APART_CALL   = 7;
     
+    public static final String CONCEPT_FACTURA ="Cancelada";
+    public static final String CONCEPT_APARTADO ="Apartado";
+    public static final String CONCEPT_CREDITO= "Credito";
+    public static final String CONCEPT_DEVOLUCION="Devolucion";
     public int _callType;
+     
+    
     
     /**
      * Creates new form NewJPanel
@@ -1308,15 +1314,7 @@ public class Pan_NuevaFactura extends javax.swing.JPanel {
                 String idProducto = infoTablaFact[i][0];
                 int idVersion = AdminBD.veridVersionActivaProductoPorCodigo(idProducto);
                 String CantidadSinCorregir = infoTablaFact[i][2].toString();
-                DecimalFormat decimalfC = (DecimalFormat) NumberFormat.getInstance();
-                decimalfC.setParseBigDecimal(true);
-                BigDecimal cantidadB = null;
-                try {
-                    cantidadB = (BigDecimal) decimalfC.parseObject(CantidadSinCorregir);
-                } catch (ParseException ex) {
-                    Logger.getLogger(MyTableModelListener_FACT.class.
-                            getName()).log(Level.SEVERE, null, ex);
-                }
+                BigDecimal cantidadB = this.StringtoBigDecimal(CantidadSinCorregir);
                 int cantidad = cantidadB.intValue();
                 String precioSinCorregir = infoTablaFact[i][3];
                 BigDecimal PrecioVenta = this.corregirDato(precioSinCorregir);
@@ -1324,18 +1322,50 @@ public class Pan_NuevaFactura extends javax.swing.JPanel {
                 //System.out.println(idProducto+" "+idVersion+" "+cantidad+" "+idFactura+" "+PrecioVenta+" "+idVersionFacturasProducto);
                 AdminBD.insertarProductoCantidadFact(idProducto, idVersion,
                         cantidad, idFactura, PrecioVenta, idVersionFacturasProducto);
+                
+                if (_callType == FACTURACION_CALL) {
+
+                    this.crearMovimiento("Fact Num " + "" + idFactura, PrecioVenta, 2);
+                    this.guardaProductoEnMovimiento(idProducto, idVersion, cantidad, PrecioVenta);
+                }
+                if(_callType == MOD_FACT_CALL){
+                    this.eliminarMovimiento("Fact Num "+""+idFactura);
+                    this.crearMovimiento("Fact Num "+""+idFactura, PrecioVenta,2);
+                    this.guardaProductoEnMovimiento(idProducto, idVersion, cantidad, PrecioVenta);
+                
+                }
+                if(_callType == APARTADO_CALL){
+                    this.crearMovimiento("Apartado Num Fact "+""+idFactura, PrecioVenta,2);
+                    this.guardaProductoEnMovimiento(idProducto, idVersion, cantidad, PrecioVenta);
+                }
+                if(_callType == MOD_APART_CALL){
+                    this.eliminarMovimiento("Apartado Num Fact "+""+idFactura);
+                    this.crearMovimiento("Apartado Num Fact "+""+idFactura, PrecioVenta,2);
+                    this.guardaProductoEnMovimiento(idProducto, idVersion, cantidad, PrecioVenta);
+                }
+                
+                if(_callType == CREDITO_CALL){
+                    this.crearMovimiento("Credito Num Fact "+""+idFactura, PrecioVenta,2);
+                    this.guardaProductoEnMovimiento(idProducto, idVersion, cantidad, PrecioVenta);
+                }
+                if(_callType == MOD_CRED_CALL){
+                    this.eliminarMovimiento("Credito Num Fact "+""+idFactura);
+                    this.crearMovimiento("Credito Num Fact "+""+idFactura, PrecioVenta,2);
+                    this.guardaProductoEnMovimiento(idProducto, idVersion, cantidad, PrecioVenta);
+                }
+                
 
             }
         }
     }
 
-    private void modFactSave(){
+    private boolean modFactSave(){
         this.devolverProductos();
         this.modificaFactura();
-        this.guardarFactura("Cancelada");
+        return this.guardarFactura(CONCEPT_FACTURA);
     }
     
-    private void modApartSave(){
+    private boolean modApartSave(){
         NewJDialog_PagoApartado pago = new NewJDialog_PagoApartado();
         pago.setVisible(true);
         String fechaVencimiento = pago.getFecha();
@@ -1345,19 +1375,26 @@ public class Pan_NuevaFactura extends javax.swing.JPanel {
             if (montodePago.compareTo(saldo) < 0) {
                 this.devolverProductos();
                 this.modificaFactura();
-                this.guardarFactura("Apartado");
+                this.guardarFactura(CONCEPT_APARTADO);
                 this.crearApartado(montodePago, fechaVencimiento);
+                return true;
                 
             } else {
                 JOptionPane.showMessageDialog(
                         null,
                         "Debe de ingresar un pago inferior al saldo porfavor",
                         "Alert!", JOptionPane.ERROR_MESSAGE);
+                return false;
             }
         }
+        JOptionPane.showMessageDialog(
+                        null,
+                        "Debe de ingresar un pago porfavor",
+                        "Alert!", JOptionPane.ERROR_MESSAGE);
+        return false;
     }
     
-    private void apartSave(){
+    private boolean apartSave(){
         NewJDialog_PagoApartado pago = new NewJDialog_PagoApartado();
         pago.setVisible(true);
         String fechaVencimiento = pago.getFecha();
@@ -1366,19 +1403,26 @@ public class Pan_NuevaFactura extends javax.swing.JPanel {
             BigDecimal saldo = this.corregirDato(this.jFormattedTextField_Total.getValue().toString());
             if (montodePago.compareTo(saldo) < 0) {
 
-                this.guardarFactura("Apartado");
+                this.guardarFactura(CONCEPT_APARTADO);
                 this.crearApartado(montodePago, fechaVencimiento);
+                return true;
 
             } else {
                 JOptionPane.showMessageDialog(
                         null,
                         "Debe de ingresar un pago inferior al saldo porfavor",
                         "Alert!", JOptionPane.ERROR_MESSAGE);
+                return false;
             }
         }
+         JOptionPane.showMessageDialog(
+                        null,
+                        "Debe de ingresar un pago porfavor",
+                        "Alert!", JOptionPane.ERROR_MESSAGE);
+         return false;
     }
     
-    private void modCredSave(){
+    private boolean modCredSave(){
         NewJDialog_PagoApartado pago = new NewJDialog_PagoApartado();
         pago.setVisible(true);
         String fechaVencimiento = pago.getFecha();
@@ -1388,18 +1432,25 @@ public class Pan_NuevaFactura extends javax.swing.JPanel {
             if (montodePago.compareTo(saldo) < 0) {
                 this.devolverProductos();
                 this.modificaFactura();
-                this.guardarFactura("Credito");
+                this.guardarFactura(CONCEPT_CREDITO);
                 this.crearApartado(montodePago, fechaVencimiento);
+                return true;
             } else {
                 JOptionPane.showMessageDialog(
                         null,
                         "Debe de ingresar un pago inferior al saldo porfavor",
                         "Alert!", JOptionPane.ERROR_MESSAGE);
+                return false;
             }
         }
+         JOptionPane.showMessageDialog(
+                        null,
+                        "Debe de ingresar un pago porfavor",
+                        "Alert!", JOptionPane.ERROR_MESSAGE);
+         return false;
     }
     
-    private void credSave(){
+    private boolean credSave(){
         NewJDialog_PagoApartado pago = new NewJDialog_PagoApartado();
         pago.setVisible(true);
         String fechaVencimiento = pago.getFecha();
@@ -1408,68 +1459,139 @@ public class Pan_NuevaFactura extends javax.swing.JPanel {
             BigDecimal saldo = this.corregirDato(this.jFormattedTextField_Total.getValue().toString());
             if (montodePago.compareTo(saldo) < 0) {
 
-                this.guardarFactura("Credito");
+                this.guardarFactura(CONCEPT_CREDITO);
                 this.crearApartado(montodePago, fechaVencimiento);
+                return true;
 
             } else {
                 JOptionPane.showMessageDialog(
                         null,
                         "Debe de ingresar un pago inferior al saldo porfavor",
                         "Alert!", JOptionPane.ERROR_MESSAGE);
+                return false;
             }
         }
+        JOptionPane.showMessageDialog(
+                        null,
+                        "Debe de ingresar un pago porfavor",
+                        "Alert!", JOptionPane.ERROR_MESSAGE);
+                return false;
     }
     
-    private void devSave(){
-        this.guardarDev();
-        this.devolverProductos();
+    private boolean devSave(){
+         if (jTable_Factura.getValueAt(0, 0).equals("")) {
+            JOptionPane.showMessageDialog(
+                    null,
+                    "No se puede guardar devoluciones"
+                    + " si no tienen ningun producto",
+                    "Alert!", JOptionPane.ERROR_MESSAGE);
+            return false;
+        }
+        if(this.guardarDev()){
+            this.devolverProductos();
+            return true;
+                    }
+        return false;
     }
     
-    private void modDevSave(){
+    private boolean modDevSave(){
+        if (jTable_Factura.getValueAt(0, 0).equals("")) {
+            JOptionPane.showMessageDialog(
+                    null,
+                    "No se puede guardar devoluciones"
+                    + " si no tienen ningun producto",
+                    "Alert!", JOptionPane.ERROR_MESSAGE);
+            return false;
+        }
         this.devolverProductos();
         this.modificaDevolucion();
-        this.guardarDev();
+        return this.guardarDev();
     }
     
-    private void factSave(){
-        this.guardarFactura("Cancelada");
+    private boolean factSave(){
+        return this.guardarFactura(CONCEPT_FACTURA);
     }
     
     /**
      * Se encarga de guardar las facturas de acuerdo a la accion es decir si es
      * un apartado, una factura o un credito.
      */
-    public void guardarFactura() {
+    public boolean guardarFactura() {
+        if (jTable_Factura.getValueAt(0, 0).equals("")) {
+            JOptionPane.showMessageDialog(
+                    null,
+                    "No se puede guardar facturas"
+                    + " si no tienen ningun producto",
+                    "Alert!", JOptionPane.ERROR_MESSAGE);
+            return false;
+        }
+        
         if (_callType == FACTURACION_CALL){
-            factSave();
+            if (factSave()) {
+                this.regresar();
+                return true;
+            }
+            return false;
             
-        } else if (_callType == MOD_FACT_CALL) {
-            modFactSave();
+        } 
+        else if (_callType == MOD_FACT_CALL) {
+            if(modFactSave()){
+            this.regresar();
+                return true;
+            }
+            return false;
+        }
+        
             
-        } else if (_callType == MOD_APART_CALL) {
-            modApartSave();
+        else if (_callType == MOD_APART_CALL) {
+            if(modApartSave()){
+            this.regresar();
+                return true;
+            }
+            return false;
             
         } else if (_callType == APARTADO_CALL) {
-            apartSave();
+            if(apartSave()){
+            this.regresar();
+                return true;
+            }
+            return false;
         
         } else if (_callType == MOD_CRED_CALL) {
-            modCredSave();
+            if(modCredSave()){
+            this.regresar();
+                return true;
+            }
+            return false;
             
         } else if (_callType == CREDITO_CALL) {
-            credSave();
+            if(credSave()){
+            this.regresar();
+                return true;
+            }
+            return false;
             
         } else if (_callType == DEVOLUCION_CALL) {
-            devSave();
+            if(devSave()){
+            this.regresar();
+                return true;
+            }
+            return false;
 
         } else if (_callType == MOD_DEV_CALL) {
-            modDevSave();
+            if(modDevSave()){
+            this.regresar();
+                return true;
+            }
+            return false;
             
         } else {
             System.out.println("ERROR AL GUARDAR FACTURA. CODIGO DE LLAMADO INCORRECTO");
-        }        
+            return false;
+        }
+       
+       
         
-        JF_Facturacion.getInstance().refreshActiveTable();
-        JF_Facturacion.getInstance().getPanelManager().back();
         
     }    
     
@@ -1850,8 +1972,8 @@ public class Pan_NuevaFactura extends javax.swing.JPanel {
     }//GEN-LAST:event_saveBttMouseClicked
 
     private void printBttMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_printBttMouseClicked
-        this.guardarFactura();
-        boolean impresion = this.imprimir(this.jLabel_NumerodeFact.getText(),
+        if(this.guardarFactura()){
+                this.imprimir(this.jLabel_NumerodeFact.getText(),
                 this.jLabel_Fecha.getText(),
                 this.jFormattedTextField_Total.getText(),
                 this.jFormattedTextField_SubTotal.getText(),
@@ -1859,7 +1981,7 @@ public class Pan_NuevaFactura extends javax.swing.JPanel {
                 this.jFormattedTextField_DescuentoTotal.getText(),
                 this.jFormattedTextField_Cliente.getText(),
                 this.jComboBox_Vendedores.getSelectedItem().toString(),
-                this.jComboBox_CategoriaTipoPago.getSelectedItem().toString());
+                this.jComboBox_CategoriaTipoPago.getSelectedItem().toString());}
     }//GEN-LAST:event_printBttMouseClicked
 
     private void addBttMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_addBttMouseEntered
@@ -2224,21 +2346,14 @@ public class Pan_NuevaFactura extends javax.swing.JPanel {
         this.jDialog_CrearCliente.dispose();
     }
 
-    private void guardarFactura(String concepto) {
+    private boolean guardarFactura(String concepto) {
         if (jTable_Factura.isEditing()) {
             jTable_Factura.getCellEditor().cancelCellEditing();
 
         }
-        if (jTable_Factura.getValueAt(0, 0).equals("")) {
-            JOptionPane.showMessageDialog(
-                    null,
-                    "No se puede guardar facturas"
-                    + " si no tienen ningun producto",
-                    "Alert!", JOptionPane.ERROR_MESSAGE);
-            return;
-        }
         this.crearFactura(concepto);
         this.guardarProductosFactura();
+        return true;
     }
 
     /**
@@ -2498,21 +2613,14 @@ public class Pan_NuevaFactura extends javax.swing.JPanel {
         AdminBD.insertarPago(montoDePago, idFactura, idVersionFacturasProducto,tipopago);
     }
 
-    private void guardarDev() {
+    private boolean guardarDev() {
         if (jTable_Factura.isEditing()) {
             jTable_Factura.getCellEditor().cancelCellEditing();
 
         }
-        if (jTable_Factura.getValueAt(0, 0).equals("")) {
-            JOptionPane.showMessageDialog(
-                    null,
-                    "No se puede guardar facturas"
-                    + " si no tienen ningun producto",
-                    "Alert!", JOptionPane.ERROR_MESSAGE);
-            return;
-        }
         this.crearDev();
         this.guardarProductosDev();
+        return true;
     }
 
     private void crearDev() {
@@ -2538,7 +2646,7 @@ public class Pan_NuevaFactura extends javax.swing.JPanel {
         }
         //System.out.println(idFactura+" "+descuento+" "+tipoPago+" "+idCliente+" "+idVendedor+" "+detalle+" "+totalFact+" ");
         AdminBD.crearDevolucion(idFactura, descuento, tipoPago, idCliente, idVendedor,
-                "Devolucion", detalle, totalFact, "A");
+                CONCEPT_DEVOLUCION, detalle, totalFact, "A");
     }
 
     private void guardarProductosDev() {
@@ -2555,21 +2663,26 @@ public class Pan_NuevaFactura extends javax.swing.JPanel {
                 String idProducto = infoTablaFact[i][0];
                 int idVersion = AdminBD.veridVersionActivaProductoPorCodigo(idProducto);
                 String CantidadSinCorregir = infoTablaFact[i][2].toString();
-                DecimalFormat decimalfC = (DecimalFormat) NumberFormat.getInstance();
-                decimalfC.setParseBigDecimal(true);
-                BigDecimal cantidadB = null;
-                try {
-                    cantidadB = (BigDecimal) decimalfC.parseObject(CantidadSinCorregir);
-                } catch (ParseException ex) {
-                    Logger.getLogger(MyTableModelListener_FACT.class.
-                            getName()).log(Level.SEVERE, null, ex);
-                }
+                BigDecimal cantidadB = this.StringtoBigDecimal(CantidadSinCorregir);
                 int cantidad = cantidadB.intValue();
                 String precioSinCorregir = infoTablaFact[i][3];
                 BigDecimal PrecioVenta = this.corregirDato(precioSinCorregir);
                 int idVersionFacturasProducto = AdminBD.verVersionDEDevolucionActiva(idFactura);
                 //System.out.println(idProducto+" "+idVersion+" "+cantidad+" "+idFactura+" "+PrecioVenta+" "+idVersionFacturasProducto);
-                AdminBD.insertarProductoCantidadDev(idProducto, idVersion,
+                
+                if(_callType == DEVOLUCION_CALL){
+                    this.crearMovimiento("Devolucion Num "+""+idFactura, PrecioVenta,1);
+                    this.guardaProductoEnMovimiento(idProducto, idVersion, cantidad, PrecioVenta);
+                
+                }
+                if(_callType == MOD_DEV_CALL){
+                    this.eliminarMovimiento("Devolucion Num "+""+idFactura);
+                    this.crearMovimiento("Devolucion Num "+""+idFactura, PrecioVenta,1);
+                    this.guardaProductoEnMovimiento(idProducto, idVersion, cantidad, PrecioVenta);
+                
+                }
+                
+                 AdminBD.insertarProductoCantidadDev(idProducto, idVersion,
                         cantidad, idFactura, PrecioVenta, idVersionFacturasProducto);
 
             }
@@ -2638,5 +2751,15 @@ public class Pan_NuevaFactura extends javax.swing.JPanel {
         Direct_Control_BD AdminBD = Direct_Control_BD.getInstance();
         int idMovimiento = AdminBD.ObtenerUltimoidMovimiento();
         AdminBD.insertarProductoCantidadMovimiento(idProducto, idVersion, idMovimiento, cantidadMov, PrecioVenta);
+    }
+
+    private void eliminarMovimiento(String detalle) {
+        Direct_Control_BD AdminBD = Direct_Control_BD.getInstance();
+        AdminBD.eliminarMovimiento(detalle);
+    }
+
+    private void regresar() {
+        JF_Facturacion.getInstance().refreshActiveTable();
+        JF_Facturacion.getInstance().getPanelManager().back();
     }
 }

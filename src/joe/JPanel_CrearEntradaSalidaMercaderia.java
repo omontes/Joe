@@ -1640,7 +1640,7 @@ public class JPanel_CrearEntradaSalidaMercaderia extends javax.swing.JPanel {
     private String[][] obtenerInfoTablaMovimientoParaEtiquetas() {
         MyTableModel_FACT model = (MyTableModel_FACT) this.jTable_Movimiento.getModel();
         int filas = model.getRowCount();
-        String[][] infoTablaFactura = new String[filas - 20][4];
+        String[][] infoTablaFactura = new String[filas][4];
         for (int i = 0; i < filas; i++) {
             for (int j = 0; j < 4; j++) {
                 if (model.getValueAt(i, j) != null) {

@@ -113,7 +113,7 @@ public class DYMOLabelPrintConnector implements Printable {
             PrintService[] printService = PrinterJob.lookupPrintServices();
 
             for (int i = 0; i < printService.length; i++) {
-                
+
                 if (printService[i].getName().compareTo(PRINTERNAME) == 0) {
                     try {
                         printerJob.setPrintService(printService[i]);
@@ -158,7 +158,7 @@ public class DYMOLabelPrintConnector implements Printable {
                 g.drawString(nombreProducto, 20 + ((176 - (nombreProducto.
                         length() * 5)) / 2), 55);
 
-                g.drawString("¢"+precio, 20 + ((176 - (precio.
+                g.drawString("¢" + precio, 20 + ((176 - (precio.
                         length() * 5)) / 2), 66);
 
                 Barcode barcode = null;
@@ -206,16 +206,16 @@ public class DYMOLabelPrintConnector implements Printable {
                 return PAGE_EXISTS;
             } else {
 
-//                g = null;
                 PosMatr = PosMatr + 1;
-                System.out.println(etiquetas.length);
-                if (PosMatr < etiquetas.length) {
+               
+              
+//                while (etiquetas[PosMatr][0] == null && PosMatr < etiquetas.length) {
+//                    PosMatr++;
+//                }
+                if (PosMatr < etiquetas.length ){//&& etiquetas[PosMatr][0] != null) {
                     setCodigo(etiquetas[PosMatr][0]);
-//                    setNombreEmpresa(etiquetas[PosMatr][1]);
                     setNombreProducto(etiquetas[PosMatr][1]);
                     setPrecio(etiquetas[PosMatr][3]);
-//                    setTelefono(etiquetas[PosMatr][4]);
-
                     setCantidad(Integer.parseInt(etiquetas[PosMatr][2])
                             + pageIndex);
                     return PAGE_EXISTS;

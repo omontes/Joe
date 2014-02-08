@@ -73,6 +73,7 @@ public class StartWindow extends javax.swing.JFrame {
         jPasswordField1 = new javax.swing.JPasswordField();
         bttExit = new javax.swing.JLabel();
         bttFact = new javax.swing.JLabel();
+        bttInv = new javax.swing.JLabel();
         bkgBase = new javax.swing.JLabel();
         lbCompanyName = new javax.swing.JLabel();
         bkgImage = new javax.swing.JLabel();
@@ -120,6 +121,16 @@ public class StartWindow extends javax.swing.JFrame {
         });
         jLayeredPane1.add(bttFact);
         bttFact.setBounds(11, 362, 150, 124);
+
+        bttInv.setIcon(new javax.swing.ImageIcon(getClass().getResource("/System/Images/PanelInicio/bttInventario.png"))); // NOI18N
+        bttInv.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        bttInv.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                bttInvMouseClicked(evt);
+            }
+        });
+        jLayeredPane1.add(bttInv);
+        bttInv.setBounds(385, 362, 150, 124);
 
         bkgBase.setIcon(new javax.swing.ImageIcon(getClass().getResource("/System/Images/PanelInicio/panelInicio.png"))); // NOI18N
         jLayeredPane1.add(bkgBase);
@@ -170,6 +181,15 @@ public class StartWindow extends javax.swing.JFrame {
         bttExit.setIcon(new javax.swing.ImageIcon(getClass().getResource("/System/Images/PanelInicio/bttExitUnt.png")));
     }//GEN-LAST:event_bttExitMouseExited
 
+    private void bttInvMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bttInvMouseClicked
+        java.awt.EventQueue.invokeLater(new Runnable() {
+            public void run() {
+                new JF_Inventario().setVisible(true);
+            }
+        });
+        this.setEnabled(false);
+    }//GEN-LAST:event_bttInvMouseClicked
+
     /**
      * @param args the command line arguments
      */
@@ -211,6 +231,7 @@ public class StartWindow extends javax.swing.JFrame {
     private javax.swing.JLabel bkgImage;
     private javax.swing.JLabel bttExit;
     private javax.swing.JLabel bttFact;
+    private javax.swing.JLabel bttInv;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLayeredPane jLayeredPane1;
     private javax.swing.JPasswordField jPasswordField1;

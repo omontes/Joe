@@ -5,10 +5,12 @@
  */
 package joe;
 
+import ManejoDeArchivos.XMLConfiguracion;
 import db_managment.Direct_Control_BD;
 import java.io.IOException;
 import java.net.URISyntaxException;
 import jxl.write.WriteException;
+import org.xml.sax.SAXException;
 
 /**
  *
@@ -22,7 +24,7 @@ public class Main {
      * @throws jxl.write.WriteException
      * @throws java.net.URISyntaxException
      */
-    public static void main(String args[]) throws IOException, WriteException, URISyntaxException {
+    public static void main(String args[]) throws IOException, WriteException, URISyntaxException, SAXException {
 //        Backupdbtosql();
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
@@ -60,9 +62,8 @@ public class Main {
 
             }
         });
-        
-       // Dialog_generarEtiquetas g = new Dialog_generarEtiquetas(null, true);
-        
+
+        // Dialog_generarEtiquetas g = new Dialog_generarEtiquetas(null, true);
         
     }
 ;

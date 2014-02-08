@@ -3698,12 +3698,39 @@ public class Direct_Control_BD {
             String Productos = this.readSql("../Joe/src/"
                     + "sql_files/VerTodosProductos.sql");
             PreparedStatement stm = this.conection.prepareStatement(Productos);
-                      ResultSet resultset = stm.executeQuery();
+            ResultSet resultset = stm.executeQuery();
             this.setColumnNames(Get_Columnas(resultset));
             this.setData2(ResultSet_Array(resultset));
         } catch (IOException | SQLException e) {
             System.out.println("Error al obtener todos los productos");
         }
+    }
+
+    /**
+     * Retorna 0 si el usuario no existe Retorna 1 si el usuario es
+     * administrador Retorna 2 si el usuario es vendedor
+     *
+     * @param nombreUsuario
+     * @param contrasena
+     * @return
+     */
+    public int verificarUsuario(String nombreUsuario, String contrasena) {
+        try {
+            String Productos = readSql("../Joe/src/"
+                    + "sql_files/VerificarUsuario.sql");
+            PreparedStatement stm = conection.prepareStatement(Productos);
+            stm.setString(1, nombreUsuario);
+            stm.setString(2, contrasena);
+            ResultSet resultset = stm.executeQuery();
+            while (resultset.next()) {
+                return resultset.getInt(1);
+               
+            }
+        } catch (IOException | SQLException e) {
+            System.out.println("Error al verificar tipo de usuario");
+        }
+
+        return 0;
     }
 
 }

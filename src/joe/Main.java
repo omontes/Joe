@@ -63,8 +63,8 @@ public class Main {
             }
         });
 
-        // Dialog_generarEtiquetas g = new Dialog_generarEtiquetas(null, true);
-        
+      
+              
     }
 ;
 }

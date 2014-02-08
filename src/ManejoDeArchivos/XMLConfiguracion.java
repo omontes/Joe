@@ -181,13 +181,13 @@ public class XMLConfiguracion {
                             item(0).getTextContent();
                     infoEmpresa[2] = eElement.getElementsByTagName("Ciudad").
                             item(0).getTextContent();
-                    infoEmpresa[3] = "Cedula Juridica " + eElement.
+                    infoEmpresa[3] = eElement.
                             getElementsByTagName("CedulaJuridica").
                             item(0).getTextContent();
-                    infoEmpresa[4] = "Telefono " + eElement.
+                    infoEmpresa[4] =  eElement.
                             getElementsByTagName("Telefono").
                             item(0).getTextContent();
-                    infoEmpresa[5] = "Correo " + eElement.
+                    infoEmpresa[5] =  eElement.
                             getElementsByTagName("Correo").
                             item(0).getTextContent();
 
@@ -288,7 +288,8 @@ public class XMLConfiguracion {
 
     /**
      * Permite obtener el usuario actual
-     * @return 
+     *
+     * @return
      */
     public String ObtenerUsuario() {
         String usuario = "";
@@ -316,15 +317,15 @@ public class XMLConfiguracion {
                             getTextContent();
                 }
             }
-        } catch (ParserConfigurationException | SAXException | IOException 
-                | DOMException e) {
+        } catch (ParserConfigurationException | SAXException | IOException | DOMException e) {
         }
         return usuario;
     }
 
     /**
      * Permite actualizar xml(en este caso el usuarioActual)(hacer mas generico)
-     * @param nuevoUsuario 
+     *
+     * @param nuevoUsuario
      */
     public void establecerUsuario(String nuevoUsuario) {
 
@@ -360,9 +361,7 @@ public class XMLConfiguracion {
             Transformer transformer = transformerFactory.newTransformer();
             DOMSource source = new DOMSource(doc);
             StreamResult result = new StreamResult(new File("Configuracion.xml"));
-            //transformer.setOutputProperty(OutputKeys.INDENT, "yes");
             transformer.transform(source, result);
-            // System.out.println("XML file updated successfully");
 
         } catch (SAXException | ParserConfigurationException | IOException |
                 TransformerException e1) {

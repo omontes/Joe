@@ -1,4 +1,4 @@
-SELECT  F.`Fecha`,F.`idFactura` AS NumFact,C.`Nombre` AS Cliente,V.`Nombre` 
+SELECT date_format(F.`Fecha`,'%d/%m/%Y %r') AS Fecha,F.`idFactura` AS NumFact,C.`Nombre` AS Cliente,V.`Nombre` 
 AS Vendedor,F.`TotalFacturado`
 FROM factura AS F, persona AS V, persona AS C
 WHERE F.`idCliente` = C.`idPersona` AND F.`idVendedor` = V.`idPersona` 

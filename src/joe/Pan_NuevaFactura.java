@@ -48,6 +48,9 @@ public class Pan_NuevaFactura extends javax.swing.JPanel {
     public static final String CONCEPT_CREDITO= "Credito";
     public static final String CONCEPT_DEVOLUCION="Devolucion";
     public int _callType;
+    public static final String DETALLE_FACT= "Fact Num ";
+    public static final String DETALLE_APART="Apartado Num Fact ";
+    public static final String DETALLE_CRED="Credito Num Fact ";
      
     
     
@@ -1325,32 +1328,32 @@ public class Pan_NuevaFactura extends javax.swing.JPanel {
                 
                 if (_callType == FACTURACION_CALL) {
 
-                    this.crearMovimiento("Fact Num " + "" + idFactura, PrecioVenta, 2);
+                    this.crearMovimiento(DETALLE_FACT+""+idFactura, PrecioVenta, 2);
                     this.guardaProductoEnMovimiento(idProducto, idVersion, cantidad, PrecioVenta);
                 }
                 if(_callType == MOD_FACT_CALL){
-                    this.eliminarMovimiento("Fact Num "+""+idFactura);
-                    this.crearMovimiento("Fact Num "+""+idFactura, PrecioVenta,2);
+                    this.eliminarMovimiento(DETALLE_FACT+""+idFactura);
+                    this.crearMovimiento(DETALLE_FACT+""+idFactura, PrecioVenta,2);
                     this.guardaProductoEnMovimiento(idProducto, idVersion, cantidad, PrecioVenta);
                 
                 }
                 if(_callType == APARTADO_CALL){
-                    this.crearMovimiento("Apartado Num Fact "+""+idFactura, PrecioVenta,2);
+                    this.crearMovimiento(DETALLE_APART+""+idFactura, PrecioVenta,2);
                     this.guardaProductoEnMovimiento(idProducto, idVersion, cantidad, PrecioVenta);
                 }
                 if(_callType == MOD_APART_CALL){
-                    this.eliminarMovimiento("Apartado Num Fact "+""+idFactura);
-                    this.crearMovimiento("Apartado Num Fact "+""+idFactura, PrecioVenta,2);
+                    this.eliminarMovimiento(DETALLE_APART+""+idFactura);
+                    this.crearMovimiento(DETALLE_APART+""+idFactura, PrecioVenta,2);
                     this.guardaProductoEnMovimiento(idProducto, idVersion, cantidad, PrecioVenta);
                 }
                 
                 if(_callType == CREDITO_CALL){
-                    this.crearMovimiento("Credito Num Fact "+""+idFactura, PrecioVenta,2);
+                    this.crearMovimiento(DETALLE_CRED+""+idFactura, PrecioVenta,2);
                     this.guardaProductoEnMovimiento(idProducto, idVersion, cantidad, PrecioVenta);
                 }
                 if(_callType == MOD_CRED_CALL){
-                    this.eliminarMovimiento("Credito Num Fact "+""+idFactura);
-                    this.crearMovimiento("Credito Num Fact "+""+idFactura, PrecioVenta,2);
+                    this.eliminarMovimiento(DETALLE_CRED+""+idFactura);
+                    this.crearMovimiento(DETALLE_CRED+""+idFactura, PrecioVenta,2);
                     this.guardaProductoEnMovimiento(idProducto, idVersion, cantidad, PrecioVenta);
                 }
                 
@@ -1387,10 +1390,6 @@ public class Pan_NuevaFactura extends javax.swing.JPanel {
                 return false;
             }
         }
-        JOptionPane.showMessageDialog(
-                        null,
-                        "Debe de ingresar un pago porfavor",
-                        "Alert!", JOptionPane.ERROR_MESSAGE);
         return false;
     }
     
@@ -1400,7 +1399,7 @@ public class Pan_NuevaFactura extends javax.swing.JPanel {
         String fechaVencimiento = pago.getFecha();
         BigDecimal montodePago = pago.getMontoDePago();
         if (montodePago != null) {
-            BigDecimal saldo = this.corregirDato(this.jFormattedTextField_Total.getValue().toString());
+            BigDecimal saldo = this.corregirDato(this.jFormattedTextField_Total.getText());
             if (montodePago.compareTo(saldo) < 0) {
 
                 this.guardarFactura(CONCEPT_APARTADO);
@@ -1415,11 +1414,7 @@ public class Pan_NuevaFactura extends javax.swing.JPanel {
                 return false;
             }
         }
-         JOptionPane.showMessageDialog(
-                        null,
-                        "Debe de ingresar un pago porfavor",
-                        "Alert!", JOptionPane.ERROR_MESSAGE);
-         return false;
+        return false;
     }
     
     private boolean modCredSave(){
@@ -1428,7 +1423,7 @@ public class Pan_NuevaFactura extends javax.swing.JPanel {
         String fechaVencimiento = pago.getFecha();
         BigDecimal montodePago = pago.getMontoDePago();
         if (montodePago != null) {
-            BigDecimal saldo = this.corregirDato(this.jFormattedTextField_Total.getValue().toString());
+            BigDecimal saldo = this.corregirDato(this.jFormattedTextField_Total.getText());
             if (montodePago.compareTo(saldo) < 0) {
                 this.devolverProductos();
                 this.modificaFactura();
@@ -1443,11 +1438,7 @@ public class Pan_NuevaFactura extends javax.swing.JPanel {
                 return false;
             }
         }
-         JOptionPane.showMessageDialog(
-                        null,
-                        "Debe de ingresar un pago porfavor",
-                        "Alert!", JOptionPane.ERROR_MESSAGE);
-         return false;
+        return false;
     }
     
     private boolean credSave(){
@@ -1456,7 +1447,7 @@ public class Pan_NuevaFactura extends javax.swing.JPanel {
         String fechaVencimiento = pago.getFecha();
         BigDecimal montodePago = pago.getMontoDePago();
         if (montodePago != null) {
-            BigDecimal saldo = this.corregirDato(this.jFormattedTextField_Total.getValue().toString());
+            BigDecimal saldo = this.corregirDato(this.jFormattedTextField_Total.getText());
             if (montodePago.compareTo(saldo) < 0) {
 
                 this.guardarFactura(CONCEPT_CREDITO);
@@ -1471,38 +1462,17 @@ public class Pan_NuevaFactura extends javax.swing.JPanel {
                 return false;
             }
         }
-        JOptionPane.showMessageDialog(
-                        null,
-                        "Debe de ingresar un pago porfavor",
-                        "Alert!", JOptionPane.ERROR_MESSAGE);
-                return false;
+        return false;
     }
     
     private boolean devSave(){
-         if (jTable_Factura.getValueAt(0, 0).equals("")) {
-            JOptionPane.showMessageDialog(
-                    null,
-                    "No se puede guardar devoluciones"
-                    + " si no tienen ningun producto",
-                    "Alert!", JOptionPane.ERROR_MESSAGE);
-            return false;
-        }
         if(this.guardarDev()){
-            this.devolverProductos();
             return true;
                     }
         return false;
     }
     
     private boolean modDevSave(){
-        if (jTable_Factura.getValueAt(0, 0).equals("")) {
-            JOptionPane.showMessageDialog(
-                    null,
-                    "No se puede guardar devoluciones"
-                    + " si no tienen ningun producto",
-                    "Alert!", JOptionPane.ERROR_MESSAGE);
-            return false;
-        }
         this.devolverProductos();
         this.modificaDevolucion();
         return this.guardarDev();
@@ -2288,16 +2258,9 @@ public class Pan_NuevaFactura extends javax.swing.JPanel {
         String detalle = this.jTextField_Detalle.getText();
         String totalFacturaSinCorregir = this.jFormattedTextField_Total.getText();
         BigDecimal totalFact = this.corregirDato(totalFacturaSinCorregir);
-        String DescuentoSinCorregir = this.jFormattedTextField_desc.getText();
-        DecimalFormat decimaldesc = (DecimalFormat) NumberFormat.getInstance();
-        decimaldesc.setParseBigDecimal(true);
-        BigDecimal descuento = null;
-        try {
-            descuento = (BigDecimal) decimaldesc.parseObject(DescuentoSinCorregir);
-        } catch (ParseException ex) {
-            Logger.getLogger(MyTableModelListener_FACT.class.getName()).
-                    log(Level.SEVERE, null, ex);
-        }
+        String DescuentoSinCorregir =this.jFormattedTextField_desc.getText();
+        BigDecimal descuento = this.StringtoBigDecimal(DescuentoSinCorregir);
+        
         //System.out.println(idFactura+" "+descuento+" "+tipoPago+" "+idCliente+" "+idVendedor+" "+detalle+" "+totalFact+" ");
         AdminBD.crearFactura(idFactura, descuento, tipoPago, idCliente, idVendedor,
                 concepto, detalle, totalFact, "A");

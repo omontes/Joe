@@ -6,16 +6,11 @@
 package ManejoDeArchivos;
 
 import java.io.File;
-import java.io.FileOutputStream;
 import java.io.IOException;
-import java.io.OutputStream;
-import java.io.StringWriter;
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
-import javax.xml.transform.OutputKeys;
 import javax.xml.transform.Transformer;
-import javax.xml.transform.TransformerConfigurationException;
 import javax.xml.transform.TransformerException;
 import javax.xml.transform.TransformerFactory;
 import javax.xml.transform.dom.DOMSource;
@@ -23,7 +18,6 @@ import javax.xml.transform.stream.StreamResult;
 import org.w3c.dom.DOMException;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
-import org.w3c.dom.NamedNodeMap;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 import org.xml.sax.SAXException;
@@ -62,10 +56,12 @@ public class XMLConfiguracion {
      * @param comentarioInicial
      * @param comentarioFinal
      * @param Usuario
+     * @param rutaImagen
      */
     public static void crearXML(String nombreEmpresa, String cedulaJuridica,
             String dirrecion, String telefono, String ciudad, String correo,
-            String comentarioInicial, String comentarioFinal, String Usuario) {
+            String comentarioInicial, String comentarioFinal, String Usuario,
+            String rutaImagen) {
         try {
 
             DocumentBuilderFactory docFactory = DocumentBuilderFactory.
@@ -132,6 +128,15 @@ public class XMLConfiguracion {
             UsuarioActual.appendChild(doc.createTextNode(Usuario));
             UsuarioAct.appendChild(UsuarioActual);
 
+            // Agregar informacion de Usuario Actual
+            Element Imagen = doc.createElement("Imagen");
+            rootElement.appendChild(Imagen);
+
+            //Agregar Usuario Actual
+            Element RutaImagen = doc.createElement("RutaImagen");
+            RutaImagen.appendChild(doc.createTextNode(rutaImagen));
+            Imagen.appendChild(RutaImagen);
+
             // escribir los datos en el documento xml
             TransformerFactory transformerFactory = TransformerFactory.
                     newInstance();
@@ -184,10 +189,10 @@ public class XMLConfiguracion {
                     infoEmpresa[3] = eElement.
                             getElementsByTagName("CedulaJuridica").
                             item(0).getTextContent();
-                    infoEmpresa[4] =  eElement.
+                    infoEmpresa[4] = eElement.
                             getElementsByTagName("Telefono").
                             item(0).getTextContent();
-                    infoEmpresa[5] =  eElement.
+                    infoEmpresa[5] = eElement.
                             getElementsByTagName("Correo").
                             item(0).getTextContent();
 
@@ -211,36 +216,10 @@ public class XMLConfiguracion {
      */
     public String[] leerInfoParaFactura() {
         String[] comentariosFact = new String[2];
-        try {
-
-            File fXmlFile = new File("Configuracion.xml");
-            DocumentBuilderFactory dbFactory = DocumentBuilderFactory.
-                    newInstance();
-            DocumentBuilder dBuilder = dbFactory.newDocumentBuilder();
-            Document doc = dBuilder.parse(fXmlFile);
-
-            doc.getDocumentElement().normalize();
-            NodeList nListFac = doc.getElementsByTagName("Factura");
-            for (int temp = 0; temp < nListFac.getLength(); temp++) {
-
-                Node nNode = nListFac.item(temp);
-
-                if (nNode.getNodeType() == Node.ELEMENT_NODE) {
-
-                    Element eElement = (Element) nNode;
-
-                    comentariosFact[0] = eElement.
-                            getElementsByTagName("ComentarioInicial").item(0).
-                            getTextContent();
-                    comentariosFact[1] = eElement.
-                            getElementsByTagName("ComentarioFinal").
-                            item(0).getTextContent();
-
-                }
-            }
-        } catch (IOException | ParserConfigurationException | DOMException |
-                SAXException e) {
-        }
+        comentariosFact[0] = obtenerValorDeElemeto("Factura",
+                "ComentarioInicial");
+        comentariosFact[1] = obtenerValorDeElemeto("Factura",
+                "ComentarioFinal");
         return comentariosFact;
     }
 
@@ -250,38 +229,11 @@ public class XMLConfiguracion {
      * @return
      */
     public String[] NombreTelefonoEmpresa() {
-        String[] infoEmpresa = {"", ""};
-        try {
-            File fXmlFile = new File("Configuracion.xml");
-            DocumentBuilderFactory dbFactory = DocumentBuilderFactory.
-                    newInstance();
-            DocumentBuilder dBuilder = dbFactory.newDocumentBuilder();
-            Document doc = dBuilder.parse(fXmlFile);
-
-            doc.getDocumentElement().normalize();
-
-            NodeList nList = doc.getElementsByTagName("Empresa");
-
-            for (int temp = 0; temp < nList.getLength(); temp++) {
-
-                Node nNode = nList.item(temp);
-
-                if (nNode.getNodeType() == Node.ELEMENT_NODE) {
-
-                    Element eElement = (Element) nNode;
-
-                    infoEmpresa[0] = eElement.
-                            getElementsByTagName("NombreEmpresa").item(0).
-                            getTextContent();
-                    infoEmpresa[1] = eElement.getElementsByTagName("Telefono").
-                            item(0).getTextContent();
-                }
-            }
-
-        } catch (ParserConfigurationException | SAXException | IOException |
-                DOMException e) {
-
-        }
+        String[] infoEmpresa = new String[2];
+        infoEmpresa[0] = obtenerValorDeElemeto("Empresa",
+                "NombreEmpresa");
+        infoEmpresa[1] = obtenerValorDeElemeto("Empresa",
+                "Telefono");
 
         return infoEmpresa;
     }
@@ -292,43 +244,36 @@ public class XMLConfiguracion {
      * @return
      */
     public String ObtenerUsuario() {
-        String usuario = "";
-        try {
-            File fXmlFile = new File("Configuracion.xml");
-            DocumentBuilderFactory dbFactory = DocumentBuilderFactory.
-                    newInstance();
-            DocumentBuilder dBuilder = dbFactory.newDocumentBuilder();
-            Document doc = dBuilder.parse(fXmlFile);
-
-            doc.getDocumentElement().normalize();
-
-            NodeList nList = doc.getElementsByTagName("Usuario");
-
-            for (int temp = 0; temp < nList.getLength(); temp++) {
-
-                Node nNode = nList.item(temp);
-
-                if (nNode.getNodeType() == Node.ELEMENT_NODE) {
-
-                    Element eElement = (Element) nNode;
-
-                    usuario = eElement.
-                            getElementsByTagName("UsuarioActual").item(0).
-                            getTextContent();
-                }
-            }
-        } catch (ParserConfigurationException | SAXException | IOException | DOMException e) {
-        }
-        return usuario;
+        return obtenerValorDeElemeto("Usuario", "UsuarioActual");
     }
 
     /**
-     * Permite actualizar xml(en este caso el usuarioActual)(hacer mas generico)
+     * Permite actualizar el elemento Usuario Actual.
      *
      * @param nuevoUsuario
      */
     public void establecerUsuario(String nuevoUsuario) {
+        actualizarContenidoElemento("Usuario", "UsuarioActual", nuevoUsuario);
+    }
 
+    /**
+     * obtener ruta de la imagen
+     *
+     * @return
+     */
+    public String obtenerRutaImagen() {
+        return obtenerValorDeElemeto("Imagen", "RutaImagen");
+    }
+
+    /**
+     * Actualizar el contenido de un elemento
+     *
+     * @param elementoPadre
+     * @param elemento
+     * @param nuevoValor
+     */
+    public void actualizarContenidoElemento(String elementoPadre,
+            String elemento, String nuevoValor) {
         String filePath = "Configuracion.xml";
         File xmlFile = new File(filePath);
         DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
@@ -338,35 +283,83 @@ public class XMLConfiguracion {
             Document doc = dBuilder.parse(xmlFile);
             doc.getDocumentElement().normalize();
 
-            //Para actualizar usuario(Se podria hacer mas generico, (no tiempo))
-            NodeList usuarios = doc.getElementsByTagName("Usuario");
+            NodeList elementPadre = doc.getElementsByTagName(elementoPadre);
 
-            for (int temp = 0; temp < usuarios.getLength(); temp++) {
+            for (int temp = 0; temp < elementPadre.getLength(); temp++) {
 
-                Node nNode = usuarios.item(temp);
+                Node nNode = elementPadre.item(temp);
 
                 if (nNode.getNodeType() == Node.ELEMENT_NODE) {
 
                     Element eElement = (Element) nNode;
 
-                    eElement.getElementsByTagName("UsuarioActual").item(0).
-                            setTextContent(nuevoUsuario);
+                    eElement.getElementsByTagName(elemento).item(0).
+                            setTextContent(nuevoValor);
                 }
             }
-            ///////////////////////////////////////////////////////////////////
 
             //escribir las actualizaciones en xml
             doc.getDocumentElement().normalize();
-            TransformerFactory transformerFactory = TransformerFactory.newInstance();
+            TransformerFactory transformerFactory = TransformerFactory.
+                    newInstance();
             Transformer transformer = transformerFactory.newTransformer();
             DOMSource source = new DOMSource(doc);
-            StreamResult result = new StreamResult(new File("Configuracion.xml"));
+            StreamResult result = new StreamResult(
+                    new File("Configuracion.xml"));
             transformer.transform(source, result);
 
         } catch (SAXException | ParserConfigurationException | IOException |
                 TransformerException e1) {
             System.out.println("Error al actualizar xml");
         }
+
     }
 
+    /**
+     * Actualizar Ruta de la imagen.
+     *
+     * @param nuevoValor
+     */
+    public void establecerRutaImagen(String nuevoValor) {
+        actualizarContenidoElemento("Imagen", "RutaImagen", nuevoValor);
+    }
+
+    /**
+     * Permite obtener el valor de un elemento.
+     *
+     * @param elementoPadre
+     * @param elemento
+     * @return
+     */
+    private String obtenerValorDeElemeto(String elementoPadre, String elemento) {
+        String valor = "";
+        try {
+            File fXmlFile = new File("Configuracion.xml");
+            DocumentBuilderFactory dbFactory = DocumentBuilderFactory.
+                    newInstance();
+            DocumentBuilder dBuilder = dbFactory.newDocumentBuilder();
+            Document doc = dBuilder.parse(fXmlFile);
+
+            doc.getDocumentElement().normalize();
+
+            NodeList nList = doc.getElementsByTagName(elementoPadre);
+
+            for (int temp = 0; temp < nList.getLength(); temp++) {
+
+                Node nNode = nList.item(temp);
+
+                if (nNode.getNodeType() == Node.ELEMENT_NODE) {
+
+                    Element eElement = (Element) nNode;
+
+                    valor = eElement.
+                            getElementsByTagName(elemento).item(0).
+                            getTextContent();
+                }
+            }
+        } catch (ParserConfigurationException | SAXException | IOException |
+                DOMException e) {
+        }
+        return valor;
+    }
 }

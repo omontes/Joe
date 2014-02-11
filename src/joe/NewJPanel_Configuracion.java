@@ -1330,7 +1330,7 @@ jPanel_ModifAdmVendLayout.setHorizontalGroup(
                 jTextField_Direccion.getText(), jTextField_telefono.getText(),
                 jTextField_ciudad.getText(), jTextField_correo.getText(),
                 jTextField_ComentarioIni.getText(), jTextField_ComentarioFin.
-                getText(), xml.ObtenerUsuario());
+                getText(), xml.ObtenerUsuario(),xml.obtenerRutaImagen());
 
         jDialog_configuracion.dispose();
     }//GEN-LAST:event_jButton_aceptarActionPerformed

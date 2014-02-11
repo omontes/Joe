@@ -207,12 +207,14 @@ public class DYMOLabelPrintConnector implements Printable {
             } else {
 
                 PosMatr = PosMatr + 1;
-               
-              
-//                while (etiquetas[PosMatr][0] == null && PosMatr < etiquetas.length) {
-//                    PosMatr++;
-//                }
-                if (PosMatr < etiquetas.length ){//&& etiquetas[PosMatr][0] != null) {
+                try {
+                    while (etiquetas[PosMatr][0] == null && PosMatr < etiquetas.length) {
+
+                        PosMatr++;
+                    }
+                } catch (Exception e) {
+                }
+                if (PosMatr < etiquetas.length) {//&& etiquetas[PosMatr][0] != null) {
                     setCodigo(etiquetas[PosMatr][0]);
                     setNombreProducto(etiquetas[PosMatr][1]);
                     setPrecio(etiquetas[PosMatr][3]);

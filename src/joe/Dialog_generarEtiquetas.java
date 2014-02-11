@@ -7,6 +7,7 @@ package joe;
 
 import Etiquetas.Imprimir;
 import ManejoDeArchivos.XMLConfiguracion;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -205,17 +206,23 @@ public class Dialog_generarEtiquetas extends java.awt.Dialog {
     }//GEN-LAST:event_jButton_CancelarActionPerformed
 
     private void jButton_GenerarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_GenerarActionPerformed
-//Contiene: Cod,Nombre,Cantidad,Precio 
-        String[][] etiquetas = {{jFormattedTextField_Codigo.getText().trim(),
-            jTextField_NombreProd.getText().trim(),
-            jSpinner_Cantidad.getValue().toString(),
-            jFormattedTextField_Precio.getText().trim()}};
-        Imprimir etqt = new Imprimir();
-        XMLConfiguracion empresa = XMLConfiguracion.getInstance();
-        String[] infoEmpresa = empresa.NombreTelefonoEmpresa();
-        etqt.imprimirListaEtiquetas(etiquetas, infoEmpresa);
-        setVisible(false);
-        dispose();
+        if ("".equals(jFormattedTextField_Codigo.getText().trim())) {
+            JOptionPane.showMessageDialog(
+                    null,
+                    "Por favor ingrese un código",
+                    "Mensaje", JOptionPane.ERROR_MESSAGE);
+        } else {
+            String[][] etiquetas = {{jFormattedTextField_Codigo.getText().trim(),
+                jTextField_NombreProd.getText().trim(),
+                jSpinner_Cantidad.getValue().toString(),
+                jFormattedTextField_Precio.getText().trim()}};
+            Imprimir etqt = new Imprimir();
+            XMLConfiguracion empresa = XMLConfiguracion.getInstance();
+            String[] infoEmpresa = empresa.NombreTelefonoEmpresa();
+            etqt.imprimirListaEtiquetas(etiquetas, infoEmpresa);
+            setVisible(false);
+            dispose();
+        }
     }//GEN-LAST:event_jButton_GenerarActionPerformed
 
 

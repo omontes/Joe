@@ -124,16 +124,14 @@ public void personalizarTablaEntradaMercaderia(){
     }
     private void bttAddMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bttAddMouseClicked
         
-        VentanaDeInicio mVentana= VentanaDeInicio.getInstance();
-        JPanel_CrearEntradaSalidaMercaderia panelCreaEntradaMerca= new JPanel_CrearEntradaSalidaMercaderia();
-        mVentana.add(panelCreaEntradaMerca);
-        panelCreaEntradaMerca.setSize(this.getSize());
-        panelCreaEntradaMerca.setLocation(this.getLocation());
-        mVentana.remove(this);
-        panelCreaEntradaMerca.setVisible(true);
-        mVentana.revalidate();
-        mVentana.repaint();
-        mVentana.setTitle("Entrada de Mercaderia");
+        
+        Pan_CrearEntradaSalida panelCreaEntradaMerca = new Pan_CrearEntradaSalida(Pan_CrearEntradaSalida.ENTRADA);
+        
+        //--------------- INTERFAZ ----------------------------------
+        
+        JF_Inventario.getInstance().getPanelManager().showPanel(panelCreaEntradaMerca, 800, 474, 0, 0);
+        
+        //-----------------------------------------------------------
         
         Direct_Control_BD AdminBD = Direct_Control_BD.getInstance();
         String numDoc = Integer.toString(AdminBD.ObtenerUltimoidMovimiento() + 1);

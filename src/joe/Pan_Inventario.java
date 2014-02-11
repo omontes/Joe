@@ -186,6 +186,7 @@ public final class Pan_Inventario extends javax.swing.JPanel {
         jDialog_CrearProducto.setUndecorated(true);
         jDialog_CrearProducto.setResizable(false);
         jDialog_CrearProducto.setLocationRelativeTo(null);
+        jDialog_CrearProducto.setSize(390, 358);
 
         jPanel2.setBackground(new java.awt.Color(153, 153, 153));
         jPanel2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
@@ -390,6 +391,7 @@ public final class Pan_Inventario extends javax.swing.JPanel {
         jDialog_EliminarProducto.setResizable(false);
         jDialog_EliminarProducto.setLocationRelativeTo(null);
         jDialog_EliminarProducto.getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        jDialog_EliminarProducto.setSize(240, 110);
 
         jPanel1.setBackground(new java.awt.Color(153, 153, 153));
         jPanel1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
@@ -430,6 +432,7 @@ public final class Pan_Inventario extends javax.swing.JPanel {
         });
         jDialog_ModificarProducto.getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
         jDialog_ModificarProducto.setLocationRelativeTo(null);
+        jDialog_ModificarProducto.setSize(440, 270);
 
         jPanel3.setBackground(new java.awt.Color(153, 153, 153));
         jPanel3.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
@@ -542,6 +545,7 @@ public final class Pan_Inventario extends javax.swing.JPanel {
         jDialog_ConfirmacionModificacionProducto.setResizable(false);
         jDialog_ConfirmacionModificacionProducto.getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
         jDialog_ConfirmacionModificacionProducto.setLocationRelativeTo(null);
+        jDialog_ConfirmacionModificacionProducto.setSize(240, 110);
 
         jPanel4.setBackground(new java.awt.Color(153, 153, 153));
         jPanel4.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
@@ -582,6 +586,7 @@ public final class Pan_Inventario extends javax.swing.JPanel {
         jDialog_CrearCategoria.setResizable(false);
         jDialog_CrearCategoria.getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
         jDialog_CrearCategoria.setLocationRelativeTo(null);
+        jDialog_CrearCategoria.setSize(270, 120);
 
         jPanel6.setBackground(new java.awt.Color(153, 153, 153));
         jPanel6.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
@@ -619,6 +624,7 @@ public final class Pan_Inventario extends javax.swing.JPanel {
         jDialog_VerProducto.setResizable(false);
         jDialog_VerProducto.getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
         jDialog_VerProducto.setLocationRelativeTo(null);
+        jDialog_VerProducto.setSize(310, 280);
 
         jPanel5.setBackground(new java.awt.Color(153, 153, 153));
         jPanel5.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
@@ -675,6 +681,7 @@ public final class Pan_Inventario extends javax.swing.JPanel {
         jDialog_ConfirmacionVerProducto.setResizable(false);
         jDialog_ConfirmacionVerProducto.getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
         jDialog_ConfirmacionVerProducto.setLocationRelativeTo(null);
+        jDialog_ConfirmacionVerProducto.setSize(250, 110);
 
         jPanel7.setBackground(new java.awt.Color(153, 153, 153));
         jPanel7.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
@@ -743,11 +750,12 @@ public final class Pan_Inventario extends javax.swing.JPanel {
                 jComboBox_categoriaBusquedaInventarioActionPerformed(evt);
             }
         });
-        add(jComboBox_categoriaBusquedaInventario, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 0, -1, -1));
+        add(jComboBox_categoriaBusquedaInventario, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 0, -1, -1));
 
+        jLabel22.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jLabel22.setText("Busqueda :");
         add(jLabel22, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 0, -1, 20));
-        add(jTextField_busquedaInventario, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 0, 116, -1));
+        add(jTextField_busquedaInventario, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 0, 116, -1));
 
         bttAdd.setIcon(new javax.swing.ImageIcon(getClass().getResource("/System/Images/Buttons/addBtt.png"))); // NOI18N
         bttAdd.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
@@ -769,6 +777,11 @@ public final class Pan_Inventario extends javax.swing.JPanel {
 
         bttEdit.setIcon(new javax.swing.ImageIcon(getClass().getResource("/System/Images/Buttons/editBtt.png"))); // NOI18N
         bttEdit.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        bttEdit.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                bttEditMouseClicked(evt);
+            }
+        });
         add(bttEdit, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 360, -1, -1));
 
         bttErase.setIcon(new javax.swing.ImageIcon(getClass().getResource("/System/Images/Buttons/trashBtt.png"))); // NOI18N
@@ -1381,6 +1394,29 @@ public final class Pan_Inventario extends javax.swing.JPanel {
     private void jLabel28MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel28MouseClicked
         Dialog_generarEtiquetas etiquetas = new Dialog_generarEtiquetas(null,true);
     }//GEN-LAST:event_jLabel28MouseClicked
+
+    private void bttEditMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bttEditMouseClicked
+        this.jDialog_CrearProducto.setVisible(true);
+
+        Direct_Control_BD mBD= Direct_Control_BD.getInstance();
+        mBD.consultarCategorias();
+        String[] columnNames = mBD.getColumnNames();
+        Object[][] data = mBD.getData();
+
+        columnNames = mBD.getColumnNames();
+        data = mBD.getData();
+
+        this.jComboBox_CategoriaCrearProducto.removeAllItems();
+        for(int i=0; i<data.length; i++){
+            this.jComboBox_CategoriaCrearProducto.addItem(data[i][1]);
+        }
+
+        this.jComboBox_CategoriaCrearProducto.setSelectedItem("Sin Categoria");
+        //Para que solo acepte 10 enteros y 2 decimales despues del punto
+        DocumentFilter onlyNumberFilter = new MyFilter();
+        ((AbstractDocument)this.jTextField_Precio.getDocument()).setDocumentFilter(onlyNumberFilter);
+        ((AbstractDocument)this.jTextField_CostoCrearProducto.getDocument()).setDocumentFilter(onlyNumberFilter);
+    }//GEN-LAST:event_bttEditMouseClicked
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

@@ -31,7 +31,7 @@ public class PanelManager {
     public void showPanel(JPanel pPanel){
         if (_stack.getTop() != null) _stack.getTop().getPanel().setVisible(false);
         _stack.push(pPanel);
-        _layeredPane.add(pPanel, 1);
+        _layeredPane.add(pPanel, 0);
         pPanel.setVisible(true);
     }
     

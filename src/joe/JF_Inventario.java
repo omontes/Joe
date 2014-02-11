@@ -45,6 +45,20 @@ public class JF_Inventario extends javax.swing.JFrame {
         _activeTab = 0;
     }
     
+    public void refreshActiveTable(){
+        if (_activeTab == INVENTARIO){
+            _panInventario.personalizarTablaInventario();
+        } else if (_activeTab == ENTRADAS){
+            _panEntradas.personalizarTablaEntradaMercaderia();
+        } else if (_activeTab == SALIDAS){
+            _panSalidas.personalizarTablaSalidaMercaderia();
+        } else if (_activeTab == BODEGA){
+            _panBodega.personalizarTablaBodega();
+        } else {
+            _panMovimientos.personalizarTablaVerMovimientos();
+        }
+    }
+    
     private void startComponents(){
         _panInventario = new Pan_Inventario();
         _panInventario.setSize(760, 400);

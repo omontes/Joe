@@ -105,6 +105,7 @@ public final class Pan_Movimientos extends javax.swing.JPanel {
 
         add(jScrollPane6, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 110, 760, 290));
 
+        jLabel13.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jLabel13.setText("Producto");
         add(jLabel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 0, -1, 20));
 
@@ -113,32 +114,38 @@ public final class Pan_Movimientos extends javax.swing.JPanel {
                 jTextField_codProdKeyPressed(evt);
             }
         });
-        add(jTextField_codProd, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 0, 95, -1));
+        add(jTextField_codProd, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 0, 95, -1));
 
+        jLabel18.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jLabel18.setText("Descripcion:");
         add(jLabel18, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 80, -1, 20));
 
+        jLabel19.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jLabel19.setText("Cantidad Bodega:");
         add(jLabel19, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 40, -1, 20));
 
+        jLabel20.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jLabel20.setText("Cantidad Inv General:");
-        add(jLabel20, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 40, -1, 20));
+        add(jLabel20, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 40, -1, 20));
 
+        jLabel21.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jLabel21.setText("Precio Venta:");
-        add(jLabel21, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 40, -1, 20));
+        add(jLabel21, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 40, -1, 20));
 
         jLabel_descripcionProd.setBackground(new java.awt.Color(153, 153, 153));
-        jLabel_descripcionProd.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        add(jLabel_descripcionProd, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 80, 490, 20));
+        jLabel_descripcionProd.setText("lorem ipsum");
+        jLabel_descripcionProd.setToolTipText("");
+        add(jLabel_descripcionProd, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 80, 490, 20));
 
-        jLabel_cantBodegaProd.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        add(jLabel_cantBodegaProd, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 40, 70, 20));
+        jLabel_cantBodegaProd.setText("##");
+        add(jLabel_cantBodegaProd, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 40, 70, 20));
 
-        jLabel_cantInvGeneral.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        add(jLabel_cantInvGeneral, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 40, 70, 20));
+        jLabel_cantInvGeneral.setText("##");
+        add(jLabel_cantInvGeneral, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 40, 70, 20));
 
-        jLabel_precioVenta.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        add(jLabel_precioVenta, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 40, 110, 20));
+        jLabel_precioVenta.setText("##");
+        jLabel_precioVenta.setToolTipText("");
+        add(jLabel_precioVenta, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 40, 110, 20));
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/System/Images/Buttons/searchLttBlckBtt.png"))); // NOI18N
         jLabel1.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -146,7 +153,7 @@ public final class Pan_Movimientos extends javax.swing.JPanel {
                 jLabel1MouseClicked(evt);
             }
         });
-        add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 0, -1, -1));
+        add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 0, -1, -1));
     }// </editor-fold>//GEN-END:initComponents
     
     private void jTextField_codProdKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField_codProdKeyPressed
@@ -213,7 +220,7 @@ public final class Pan_Movimientos extends javax.swing.JPanel {
         
         }
 
-    private void personalizarTablaVerMovimientos() {
+    public void personalizarTablaVerMovimientos() {
        
         String[] columnNames = {"Fecha", "Detalle",
             "Tipo Movimiento", "Lugar Movimiento",

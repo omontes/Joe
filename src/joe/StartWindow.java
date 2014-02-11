@@ -6,8 +6,12 @@
 
 package joe;
 
+import ManejoDeArchivos.XMLConfiguracion;
+import db_managment.Direct_Control_BD;
 import java.awt.Toolkit;
 import java.awt.Dimension;
+import javax.swing.JDialog;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -69,11 +73,12 @@ public class StartWindow extends javax.swing.JFrame {
 
         jLayeredPane1 = new javax.swing.JLayeredPane();
         jLabel1 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
-        jPasswordField1 = new javax.swing.JPasswordField();
+        fieldUsser = new javax.swing.JTextField();
+        fieldPassword = new javax.swing.JPasswordField();
         bttExit = new javax.swing.JLabel();
         bttFact = new javax.swing.JLabel();
         bttInv = new javax.swing.JLabel();
+        bttLogin = new javax.swing.JLabel();
         bkgBase = new javax.swing.JLabel();
         lbCompanyName = new javax.swing.JLabel();
         bkgImage = new javax.swing.JLabel();
@@ -91,10 +96,10 @@ public class StartWindow extends javax.swing.JFrame {
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/System/Images/PanelInicio/logOutImg.jpg"))); // NOI18N
         jLayeredPane1.add(jLabel1);
         jLabel1.setBounds(625, 40, 131, 135);
-        jLayeredPane1.add(jTextField1);
-        jTextField1.setBounds(620, 200, 150, 30);
-        jLayeredPane1.add(jPasswordField1);
-        jPasswordField1.setBounds(620, 260, 150, 30);
+        jLayeredPane1.add(fieldUsser);
+        fieldUsser.setBounds(620, 200, 150, 30);
+        jLayeredPane1.add(fieldPassword);
+        fieldPassword.setBounds(620, 260, 150, 30);
 
         bttExit.setIcon(new javax.swing.ImageIcon(getClass().getResource("/System/Images/PanelInicio/bttExitUnt.png"))); // NOI18N
         bttExit.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
@@ -131,6 +136,15 @@ public class StartWindow extends javax.swing.JFrame {
         });
         jLayeredPane1.add(bttInv);
         bttInv.setBounds(385, 362, 150, 124);
+
+        bttLogin.setIcon(new javax.swing.ImageIcon(getClass().getResource("/System/Images/PanelInicio/loginBtt.png"))); // NOI18N
+        bttLogin.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                bttLoginMouseClicked(evt);
+            }
+        });
+        jLayeredPane1.add(bttLogin);
+        bttLogin.setBounds(710, 300, 57, 24);
 
         bkgBase.setIcon(new javax.swing.ImageIcon(getClass().getResource("/System/Images/PanelInicio/panelInicio.png"))); // NOI18N
         jLayeredPane1.add(bkgBase);
@@ -190,6 +204,51 @@ public class StartWindow extends javax.swing.JFrame {
         this.setEnabled(false);
     }//GEN-LAST:event_bttInvMouseClicked
 
+    private void bttLoginMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bttLoginMouseClicked
+        String usser = fieldUsser.getText();
+        String pass = new String(fieldPassword.getPassword());
+        
+        if (usser.isEmpty()){
+            JOptionPane.showMessageDialog(
+                    jLayeredPane1, 
+                    "Por favor digite su usuario", 
+                    "¡Atención!", 
+                    JOptionPane.WARNING_MESSAGE);
+        } else if (pass.isEmpty()){
+            JOptionPane.showMessageDialog(
+                    jLayeredPane1, 
+                    "Por favor digite su contraseña", 
+                    "¡Atención!", 
+                    JOptionPane.WARNING_MESSAGE);
+        } else {
+            
+            Direct_Control_BD base = db_managment.Direct_Control_BD.getInstance();
+            int authentique = base.verificarUsuario(usser, pass);
+            if (authentique == 0){
+                JOptionPane.showMessageDialog(
+                    jLayeredPane1, 
+                    "No se ha podido ingresar. Por favor revise su usuario y contraseña", 
+                    "¡Error!", 
+                    JOptionPane.ERROR_MESSAGE);
+            } else{
+                JOptionPane.showMessageDialog(
+                    jLayeredPane1, 
+                    "Bienvenido "+usser, 
+                    "¡Hola!", 
+                    JOptionPane.INFORMATION_MESSAGE);
+                XMLConfiguracion xml = ManejoDeArchivos.XMLConfiguracion.getInstance();
+                xml.establecerUsuario(usser);
+                if (authentique == 1){
+                    // ES ADMIN
+                } else {
+                    //ES VENDEDOR
+                }
+            }
+        }
+        
+        
+    }//GEN-LAST:event_bttLoginMouseClicked
+
     /**
      * @param args the command line arguments
      */
@@ -232,10 +291,11 @@ public class StartWindow extends javax.swing.JFrame {
     private javax.swing.JLabel bttExit;
     private javax.swing.JLabel bttFact;
     private javax.swing.JLabel bttInv;
+    private javax.swing.JLabel bttLogin;
+    private javax.swing.JPasswordField fieldPassword;
+    private javax.swing.JTextField fieldUsser;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLayeredPane jLayeredPane1;
-    private javax.swing.JPasswordField jPasswordField1;
-    private javax.swing.JTextField jTextField1;
     private javax.swing.JLabel lbCompanyName;
     // End of variables declaration//GEN-END:variables
 }

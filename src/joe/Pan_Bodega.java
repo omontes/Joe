@@ -91,9 +91,14 @@ public final class Pan_Bodega extends javax.swing.JPanel {
         jLabel17 = new javax.swing.JLabel();
         jTextField_DescripcionVerProducto = new javax.swing.JTextField();
         jTextField_CategoriaVerProducto = new javax.swing.JTextField();
+        jLabel25 = new javax.swing.JLabel();
+        jButton4 = new javax.swing.JButton();
         jDialog_ConfirmacionVerProducto = new javax.swing.JDialog();
+        jPanel7 = new javax.swing.JPanel();
+        jLabel26 = new javax.swing.JLabel();
         jTextField_IdProductoModificar1 = new javax.swing.JTextField();
         jButton3 = new javax.swing.JButton();
+        jLabel27 = new javax.swing.JLabel();
         jScrollPane7 = new javax.swing.JScrollPane();
         jTable_verBodega = new javax.swing.JTable();
         jLabel23 = new javax.swing.JLabel();
@@ -101,109 +106,77 @@ public final class Pan_Bodega extends javax.swing.JPanel {
         jComboBox_categoriaBusquedaBodega = new javax.swing.JComboBox();
         bttWatch = new javax.swing.JLabel();
 
+        jDialog_VerProducto.setUndecorated(true);
+        jDialog_VerProducto.setResizable(false);
+        jDialog_VerProducto.getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        jDialog_VerProducto.setLocationRelativeTo(null);
+        jDialog_VerProducto.setSize(310, 280);
+
         jPanel5.setBackground(new java.awt.Color(153, 153, 153));
+        jPanel5.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        jPanel5.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        jPanel5.add(jTextField_CodigoVerProducto, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 50, 210, -1));
 
+        jLabel_Codigo2.setForeground(new java.awt.Color(255, 255, 255));
         jLabel_Codigo2.setText("Codigo");
+        jPanel5.add(jLabel_Codigo2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 50, -1, 20));
 
+        jLabel_Nombre2.setForeground(new java.awt.Color(255, 255, 255));
         jLabel_Nombre2.setText("Nombre");
+        jPanel5.add(jLabel_Nombre2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 80, -1, 20));
+        jPanel5.add(jTextField_nombreVerProducto, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 80, 210, -1));
 
+        jLabel_Precio2.setForeground(new java.awt.Color(255, 255, 255));
         jLabel_Precio2.setText("Precio");
+        jPanel5.add(jLabel_Precio2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 110, 56, 20));
+        jPanel5.add(jTextField_PrecioVerProducto, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 110, 210, -1));
+        jPanel5.add(jTextField_CostoVerProducto, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 140, 210, -1));
+        jPanel5.add(jLabel14, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 153, -1, -1));
 
+        jLabel_Costo2.setForeground(new java.awt.Color(255, 255, 255));
         jLabel_Costo2.setText("Costo");
+        jPanel5.add(jLabel_Costo2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 140, -1, 20));
 
+        jLabel15.setForeground(new java.awt.Color(255, 255, 255));
         jLabel15.setText("Categoria");
+        jPanel5.add(jLabel15, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 170, -1, 20));
+        jPanel5.add(jLabel16, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 202, -1, -1));
 
+        jLabel17.setForeground(new java.awt.Color(255, 255, 255));
         jLabel17.setText("Descripcion");
+        jPanel5.add(jLabel17, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 200, -1, 20));
+        jPanel5.add(jTextField_DescripcionVerProducto, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 200, 212, 20));
+        jPanel5.add(jTextField_CategoriaVerProducto, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 170, 210, -1));
 
-        javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
-        jPanel5.setLayout(jPanel5Layout);
-        jPanel5Layout.setHorizontalGroup(
-            jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel5Layout.createSequentialGroup()
-                .addGap(150, 150, 150)
-                .addComponent(jLabel14)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(jPanel5Layout.createSequentialGroup()
-                .addGap(104, 104, 104)
-                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel5Layout.createSequentialGroup()
-                        .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                .addComponent(jLabel_Nombre2)
-                                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel_Precio2, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jLabel_Costo2))
-                                .addComponent(jLabel_Codigo2, javax.swing.GroupLayout.Alignment.LEADING))
-                            .addComponent(jLabel15))
-                        .addGap(18, 18, 18)
-                        .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jTextField_PrecioVerProducto)
-                            .addComponent(jTextField_CostoVerProducto)
-                            .addComponent(jTextField_CodigoVerProducto)
-                            .addComponent(jTextField_nombreVerProducto)
-                            .addComponent(jTextField_CategoriaVerProducto))
-                        .addGap(75, 75, 75))
-                    .addGroup(jPanel5Layout.createSequentialGroup()
-                        .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel17)
-                            .addGroup(jPanel5Layout.createSequentialGroup()
-                                .addGap(90, 90, 90)
-                                .addComponent(jTextField_DescripcionVerProducto, javax.swing.GroupLayout.PREFERRED_SIZE, 212, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jLabel16)))
-                        .addGap(0, 11, Short.MAX_VALUE))))
-        );
-        jPanel5Layout.setVerticalGroup(
-            jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel5Layout.createSequentialGroup()
-                .addGap(27, 27, 27)
-                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jTextField_CodigoVerProducto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel_Codigo2))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jTextField_nombreVerProducto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel_Nombre2))
-                .addGap(18, 18, 18)
-                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel_Precio2)
-                    .addComponent(jTextField_PrecioVerProducto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jTextField_CostoVerProducto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel_Costo2))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jLabel14)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel15)
-                    .addComponent(jTextField_CategoriaVerProducto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addComponent(jLabel16)
-                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel5Layout.createSequentialGroup()
-                        .addGap(9, 9, 9)
-                        .addComponent(jLabel17))
-                    .addGroup(jPanel5Layout.createSequentialGroup()
-                        .addGap(4, 4, 4)
-                        .addComponent(jTextField_DescripcionVerProducto, javax.swing.GroupLayout.PREFERRED_SIZE, 69, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(36, Short.MAX_VALUE))
-        );
+        jLabel25.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        jLabel25.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel25.setText("Ver Producto");
+        jPanel5.add(jLabel25, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, -1, -1));
 
-        javax.swing.GroupLayout jDialog_VerProductoLayout = new javax.swing.GroupLayout(jDialog_VerProducto.getContentPane());
-        jDialog_VerProducto.getContentPane().setLayout(jDialog_VerProductoLayout);
-        jDialog_VerProductoLayout.setHorizontalGroup(
-            jDialog_VerProductoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jDialog_VerProductoLayout.createSequentialGroup()
-                .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 1, Short.MAX_VALUE))
-        );
-        jDialog_VerProductoLayout.setVerticalGroup(
-            jDialog_VerProductoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-        );
+        jButton4.setText("Aceptar");
+        jButton4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton4ActionPerformed(evt);
+            }
+        });
+        jPanel5.add(jButton4, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 240, -1, -1));
 
-        jTextField_IdProductoModificar1.setText("idProducto");
+        jDialog_VerProducto.getContentPane().add(jPanel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 310, 280));
+
+        jDialog_ConfirmacionVerProducto.setUndecorated(true);
+        jDialog_ConfirmacionVerProducto.setResizable(false);
+        jDialog_ConfirmacionVerProducto.getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        jDialog_ConfirmacionVerProducto.setLocationRelativeTo(null);
+        jDialog_ConfirmacionVerProducto.setSize(250, 110);
+
+        jPanel7.setBackground(new java.awt.Color(153, 153, 153));
+        jPanel7.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        jPanel7.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jLabel26.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel26.setText("ID del producto");
+        jPanel7.add(jLabel26, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 40, -1, 20));
+
         jTextField_IdProductoModificar1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jTextField_IdProductoModificar1ActionPerformed(evt);
@@ -214,6 +187,7 @@ public final class Pan_Bodega extends javax.swing.JPanel {
                 jTextField_IdProductoModificar1KeyPressed(evt);
             }
         });
+        jPanel7.add(jTextField_IdProductoModificar1, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 40, 140, -1));
 
         jButton3.setText("Aceptar");
         jButton3.addActionListener(new java.awt.event.ActionListener() {
@@ -226,29 +200,14 @@ public final class Pan_Bodega extends javax.swing.JPanel {
                 jButton3KeyPressed(evt);
             }
         });
+        jPanel7.add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 70, 80, -1));
 
-        javax.swing.GroupLayout jDialog_ConfirmacionVerProductoLayout = new javax.swing.GroupLayout(jDialog_ConfirmacionVerProducto.getContentPane());
-        jDialog_ConfirmacionVerProducto.getContentPane().setLayout(jDialog_ConfirmacionVerProductoLayout);
-        jDialog_ConfirmacionVerProductoLayout.setHorizontalGroup(
-            jDialog_ConfirmacionVerProductoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jDialog_ConfirmacionVerProductoLayout.createSequentialGroup()
-                .addGap(42, 42, 42)
-                .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(31, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jDialog_ConfirmacionVerProductoLayout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jTextField_IdProductoModificar1, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(21, 21, 21))
-        );
-        jDialog_ConfirmacionVerProductoLayout.setVerticalGroup(
-            jDialog_ConfirmacionVerProductoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jDialog_ConfirmacionVerProductoLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jTextField_IdProductoModificar1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jButton3)
-                .addContainerGap(24, Short.MAX_VALUE))
-        );
+        jLabel27.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        jLabel27.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel27.setText("Ver Producto");
+        jPanel7.add(jLabel27, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, -1, -1));
+
+        jDialog_ConfirmacionVerProducto.getContentPane().add(jPanel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 250, 110));
 
         setMinimumSize(new java.awt.Dimension(760, 400));
         setOpaque(false);
@@ -293,68 +252,6 @@ public final class Pan_Bodega extends javax.swing.JPanel {
         add(bttWatch, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 360, -1, -1));
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jTextField_IdProductoModificar1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField_IdProductoModificar1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField_IdProductoModificar1ActionPerformed
-
-    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-        
-        
-        this.jDialog_ConfirmacionVerProducto.dispose();
-        
-       
-       Direct_Control_BD mBD= Direct_Control_BD.getInstance();
-       mBD.consultarProducto(this.jTextField_IdProductoModificar1.getText());
-       String[] columnNames = mBD.getColumnNames();
-       Object[][] data = mBD.getData();
-       
-       if(data.length==0){
-           JOptionPane.showOptionDialog(this, "El producto no existe", "Error Producto", 
-           JOptionPane.ERROR_MESSAGE, JOptionPane.ERROR_MESSAGE, null, new Object[]{" Cancelar "},"Cancelar"); 
-       }
-       else{
-           
-       this.jDialog_VerProducto.setSize(430,400);
-       Pan_Bodega mPanel= Pan_Bodega.getInstance();
-       this.jDialog_VerProducto.setLocation(mPanel.getLocation());
-       this.jDialog_VerProducto.setVisible(true); 
-       
-       this.jTextField_nombreVerProducto.setText(data[0][0].toString());
-       this.jTextField_nombreVerProducto.disable();
-       this.jTextField_PrecioVerProducto.setText(data[0][1].toString());
-       this.jTextField_PrecioVerProducto.disable();
-       this.jTextField_CostoVerProducto.setText(data[0][2].toString());
-       this.jTextField_CostoVerProducto.disable();
-       
-       String NombreCategoria = mBD.consultarNombreCategoriaXid(Integer.parseInt(data[0][3].toString()));
-        if (data[0][4] != null) {
-                this.jTextField_DescripcionVerProducto.setText(data[0][4].toString());
-            }
-        else{this.jTextField_DescripcionVerProducto.setText("No tiene descripcion");}
-       
-       this.jTextField_DescripcionVerProducto.disable();
-       this.jTextField_CodigoVerProducto.setText(data[0][5].toString());
-       this.jTextField_CodigoVerProducto.disable();
-       
-       this.jTextField_CategoriaVerProducto.setText(NombreCategoria);
-       this.jTextField_CategoriaVerProducto.disable();
-       
-       
-       }
-    }//GEN-LAST:event_jButton3ActionPerformed
-
-    private void jTextField_IdProductoModificar1KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField_IdProductoModificar1KeyPressed
-        if(evt.getKeyChar()== KeyEvent.VK_ENTER){
-            this.jTextField_IdProductoModificar1.transferFocus();
-        }
-    }//GEN-LAST:event_jTextField_IdProductoModificar1KeyPressed
-
-    private void jButton3KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jButton3KeyPressed
-        if(evt.getKeyChar()== KeyEvent.VK_ENTER){
-            this.jButton3.doClick();
-        }
-    }//GEN-LAST:event_jButton3KeyPressed
-
     private void jComboBox_categoriaBusquedaBodegaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox_categoriaBusquedaBodegaActionPerformed
         this.agregarBuscador(this.jTable_verBodega,this.jTextField_busquedaBodega,this.jComboBox_categoriaBusquedaBodega.getSelectedIndex());
         this.jTextField_busquedaBodega.setText("");
@@ -365,10 +262,72 @@ public final class Pan_Bodega extends javax.swing.JPanel {
         this.verProdBodega();
     }//GEN-LAST:event_bttWatchMouseClicked
 
+    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
+        jDialog_VerProducto.dispose();
+    }//GEN-LAST:event_jButton4ActionPerformed
+
+    private void jTextField_IdProductoModificar1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField_IdProductoModificar1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextField_IdProductoModificar1ActionPerformed
+
+    private void jTextField_IdProductoModificar1KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField_IdProductoModificar1KeyPressed
+        if(evt.getKeyChar()== KeyEvent.VK_ENTER){
+            this.jTextField_IdProductoModificar1.transferFocus();
+        }
+    }//GEN-LAST:event_jTextField_IdProductoModificar1KeyPressed
+
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+
+        this.jDialog_ConfirmacionVerProducto.dispose();
+
+        Direct_Control_BD mBD= Direct_Control_BD.getInstance();
+        mBD.consultarProducto(this.jTextField_IdProductoModificar1.getText());
+        String[] columnNames = mBD.getColumnNames();
+        Object[][] data = mBD.getData();
+
+        if(data.length==0){
+            JOptionPane.showOptionDialog(this, "El producto no existe", "Error Producto",
+                JOptionPane.ERROR_MESSAGE, JOptionPane.ERROR_MESSAGE, null, new Object[]{" Cancelar "},"Cancelar");
+        }
+        else{
+
+            Pan_Inventario mPanel= Pan_Inventario.getInstance();
+            this.jDialog_VerProducto.setVisible(true);
+
+            this.jTextField_nombreVerProducto.setText(data[0][0].toString());
+            this.jTextField_nombreVerProducto.disable();
+            this.jTextField_PrecioVerProducto.setText(data[0][1].toString());
+            this.jTextField_PrecioVerProducto.disable();
+            this.jTextField_CostoVerProducto.setText(data[0][2].toString());
+            this.jTextField_CostoVerProducto.disable();
+
+            String NombreCategoria = mBD.consultarNombreCategoriaXid(Integer.parseInt(data[0][3].toString()));
+            if (data[0][4] != null) {
+                this.jTextField_DescripcionVerProducto.setText(data[0][4].toString());
+            }
+            else{this.jTextField_DescripcionVerProducto.setText("No tiene descripcion");}
+
+            this.jTextField_DescripcionVerProducto.disable();
+            this.jTextField_CodigoVerProducto.setText(data[0][5].toString());
+            this.jTextField_CodigoVerProducto.disable();
+
+            this.jTextField_CategoriaVerProducto.setText(NombreCategoria);
+            this.jTextField_CategoriaVerProducto.disable();
+
+        }
+    }//GEN-LAST:event_jButton3ActionPerformed
+
+    private void jButton3KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jButton3KeyPressed
+        if(evt.getKeyChar()== KeyEvent.VK_ENTER){
+            this.jButton3.doClick();
+        }
+    }//GEN-LAST:event_jButton3KeyPressed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel bttWatch;
     private javax.swing.JButton jButton3;
+    private javax.swing.JButton jButton4;
     private javax.swing.JComboBox jComboBox_categoriaBusquedaBodega;
     private javax.swing.JDialog jDialog_ConfirmacionVerProducto;
     private javax.swing.JDialog jDialog_VerProducto;
@@ -377,11 +336,15 @@ public final class Pan_Bodega extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel16;
     private javax.swing.JLabel jLabel17;
     private javax.swing.JLabel jLabel23;
+    private javax.swing.JLabel jLabel25;
+    private javax.swing.JLabel jLabel26;
+    private javax.swing.JLabel jLabel27;
     private javax.swing.JLabel jLabel_Codigo2;
     private javax.swing.JLabel jLabel_Costo2;
     private javax.swing.JLabel jLabel_Nombre2;
     private javax.swing.JLabel jLabel_Precio2;
     private javax.swing.JPanel jPanel5;
+    private javax.swing.JPanel jPanel7;
     private javax.swing.JScrollPane jScrollPane7;
     private javax.swing.JTable jTable_verBodega;
     private javax.swing.JTextField jTextField_CategoriaVerProducto;
@@ -421,7 +384,7 @@ public final class Pan_Bodega extends javax.swing.JPanel {
             }
     }
     
-    private void personalizarTablaBodega() {
+    public void personalizarTablaBodega() {
         Direct_Control_BD AdministradorBD= Direct_Control_BD.getInstance();
         AdministradorBD.verBodega();
         String[] columnNames = {"Cod Producto", "Descripcion",

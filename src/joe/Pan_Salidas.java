@@ -66,6 +66,7 @@ public final class Pan_Salidas extends javax.swing.JPanel {
         
     }
     
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -121,16 +122,13 @@ public final class Pan_Salidas extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
            
     private void bttAddMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bttAddMouseClicked
-        VentanaDeInicio mVentana= VentanaDeInicio.getInstance();
-        JPanel_CrearEntradaSalidaMercaderia panelCreaSalidaMerca= new JPanel_CrearEntradaSalidaMercaderia();
-        mVentana.add(panelCreaSalidaMerca);
-        panelCreaSalidaMerca.setSize(this.getSize());
-        panelCreaSalidaMerca.setLocation(this.getLocation());
-        mVentana.remove(this);
-        panelCreaSalidaMerca.setVisible(true);
-        mVentana.revalidate();
-        mVentana.repaint();
-        mVentana.setTitle("Salida de Mercaderia");
+        Pan_CrearEntradaSalida panelCreaSalidaMerca = new Pan_CrearEntradaSalida(Pan_CrearEntradaSalida.ENTRADA);
+        
+        //--------------- INTERFAZ ----------------------------------
+        JF_Inventario.getInstance().getPanelManager().showPanel(panelCreaSalidaMerca, 800, 474, 0, 0);
+        
+        //-----------------------------------------------------------
+        
         Direct_Control_BD AdminBD = Direct_Control_BD.getInstance();
         String numDoc = Integer.toString(AdminBD.ObtenerUltimoidMovimiento() + 1);
         panelCreaSalidaMerca.jLabel_NumerodeMovimiento.setText(numDoc);
@@ -179,7 +177,7 @@ public final class Pan_Salidas extends javax.swing.JPanel {
             }
     }
 
-    private void personalizarTablaSalidaMercaderia() {
+    public void personalizarTablaSalidaMercaderia() {
         //Realiza la consulta para obtener los creditos
         Direct_Control_BD AdminBD = Direct_Control_BD.getInstance();
         AdminBD.verSalidasMercaderia();

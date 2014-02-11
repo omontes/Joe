@@ -11,6 +11,7 @@ import java.util.Date;
 import java.util.List;
 import javax.swing.event.TableModelListener;
 import javax.swing.table.AbstractTableModel;
+import jxl.write.DateTime;
 
 /**
  *
@@ -72,7 +73,17 @@ public class Modelo_CierreCaja extends AbstractTableModel {
     public Class getColumnClass(int c) {
                 
             //System.out.println(getValueAt(0, c).getClass());
-            return getValueAt(0, c).getClass();
+        if(c==0){
+            return DateTime.class;
+        }
+        if(c==3 | c==2){
+            return Integer.class;
+        }
+        if(c==4){
+            return BigDecimal.class;
+        
+        }
+        return String.class;
         }
     @Override
      public void setValueAt(Object value, int row, int col) {

@@ -33,13 +33,25 @@ import jzebra.PrintServiceMatcher;
  */
 public class Pan_VerEntradaSalida extends javax.swing.JPanel {
 
+    public static final int ENTRADA_CALL = 0;
+    public static final int SALIDA_CALL = 1;
+    
+    
     /**
      * Creates new form JPanel_verEntradaSalidaMercaderia
      */
-    public Pan_VerEntradaSalida() {
+    public Pan_VerEntradaSalida(int pCallType) {
         initComponents();
+        setTittle(pCallType);
     }
 
+    private void setTittle(int pCallType){
+        if (pCallType == ENTRADA_CALL){
+            labDescrip.setText("Entrada");
+        } else {
+            labDescrip.setText("Salida");
+        }
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -60,7 +72,7 @@ public class Pan_VerEntradaSalida extends javax.swing.JPanel {
         jLabel6 = new javax.swing.JLabel();
         jFormattedTextField_Total = new javax.swing.JFormattedTextField();
         bttPrint = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
+        labDescrip = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
 
         setMinimumSize(new java.awt.Dimension(800, 471));
@@ -126,10 +138,10 @@ public class Pan_VerEntradaSalida extends javax.swing.JPanel {
         });
         add(bttPrint, new org.netbeans.lib.awtextra.AbsoluteConstraints(730, 420, -1, -1));
 
-        jLabel2.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        jLabel2.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel2.setText("Descripcion");
-        add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 5, 130, -1));
+        labDescrip.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        labDescrip.setForeground(new java.awt.Color(255, 255, 255));
+        labDescrip.setText("Descripcion");
+        add(labDescrip, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 5, 130, -1));
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/System/Images/Panel1/panelVF.png"))); // NOI18N
         add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
@@ -150,7 +162,6 @@ public class Pan_VerEntradaSalida extends javax.swing.JPanel {
     javax.swing.JComboBox jComboBox_LugarDeMov;
     javax.swing.JFormattedTextField jFormattedTextField_Total;
     javax.swing.JLabel jLabel1;
-    javax.swing.JLabel jLabel2;
     javax.swing.JLabel jLabel6;
     javax.swing.JLabel jLabel7;
     javax.swing.JLabel jLabel_Fecha;
@@ -159,21 +170,10 @@ public class Pan_VerEntradaSalida extends javax.swing.JPanel {
     javax.swing.JScrollPane jScrollPane2;
     javax.swing.JTable jTable_Movimiento;
     javax.swing.JTextField jTextField_referencia;
+    javax.swing.JLabel labDescrip;
     // End of variables declaration//GEN-END:variables
 
-    private void regresar() {
-        VentanaDeInicio miVentana = VentanaDeInicio.getInstance();
-        JPanel_Inventario panelInventario = new JPanel_Inventario();
-        panelInventario.setSize(this.getSize());
-        panelInventario.setLocation(this.getLocation());
-        miVentana.remove(this);
-        miVentana.add(panelInventario);
-        miVentana.setTitle("Inventario");
-        panelInventario.setVisible(true);
-        miVentana.revalidate();
-        miVentana.repaint();
-    }
-    
+   
     public void personalizarTablaVerMovimiento() {
         String[] columnNames = {"Cod. Articulo", "Articulo",
             "Cantidad", "Precio.Unit",

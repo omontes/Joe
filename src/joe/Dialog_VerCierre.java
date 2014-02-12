@@ -286,6 +286,7 @@ public class Dialog_VerCierre extends javax.swing.JDialog {
 
     private void jFormattedTextField_totalTarjetaReportadoPropertyChange(java.beans.PropertyChangeEvent evt) {//GEN-FIRST:event_jFormattedTextField_totalTarjetaReportadoPropertyChange
         if (evt.getPropertyName().equals("value")) {
+            if(evt.getNewValue()!=null){
             String text = evt.getNewValue().toString();
             BigDecimal totaltarj = this.StringtoBigDecimal(text);
             if(evt.getOldValue()!=null){
@@ -298,13 +299,14 @@ public class Dialog_VerCierre extends javax.swing.JDialog {
             BigDecimal total = this.StringtoBigDecimal(this.jFormattedTextField_totalVentaReportado.getText());
             this.jFormattedTextField_totalVentaReportado.setValue(total.add(totaltarj));
             
-                
+            }
         }
         
     }//GEN-LAST:event_jFormattedTextField_totalTarjetaReportadoPropertyChange
 
     private void jFormattedTextField_totalContadoReportadoPropertyChange(java.beans.PropertyChangeEvent evt) {//GEN-FIRST:event_jFormattedTextField_totalContadoReportadoPropertyChange
          if (evt.getPropertyName().equals("value")) {
+            if(evt.getNewValue()!=null){
             String text = evt.getNewValue().toString();
             BigDecimal totalcont = this.StringtoBigDecimal(text);
             if(evt.getOldValue()!=null){
@@ -317,7 +319,7 @@ public class Dialog_VerCierre extends javax.swing.JDialog {
              BigDecimal total = this.StringtoBigDecimal(this.jFormattedTextField_totalVentaReportado.getText());
              this.jFormattedTextField_totalVentaReportado.setValue(total.add(totalcont));
                 
-        }
+        }}
     }//GEN-LAST:event_jFormattedTextField_totalContadoReportadoPropertyChange
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

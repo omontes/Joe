@@ -479,9 +479,9 @@ public class Pan_Cred extends javax.swing.JPanel {
             int idFact = Integer.parseInt(this.jTable_Creditos.getValueAt(row, 0).toString());
             AdminBD.verInfoFacturaCredito(idFact);
             this.jLabel_numFact.setText(Integer.toString(idFact));
-            Object[][] InfoApartados = AdminBD.getData();
-            BigDecimal Saldo = this.StringtoBigDecimal(InfoApartados[0][0].toString());
-            BigDecimal TotalFacturado = this.StringtoBigDecimal(InfoApartados[0][1].toString());
+            Object[][] InfoCreditos = AdminBD.getData();
+            BigDecimal Saldo = this.StringtoBigDecimal(InfoCreditos[0][0].toString());
+            BigDecimal TotalFacturado = this.StringtoBigDecimal(InfoCreditos[0][1].toString());
             this.jFormattedTextField_Total.setValue(TotalFacturado);
             this.jFormattedTextField_TotalPagado.setValue(Saldo);
             this.jFormattedTextField_Saldo.setValue(Saldo);

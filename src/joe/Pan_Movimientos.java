@@ -46,6 +46,11 @@ public final class Pan_Movimientos extends javax.swing.JPanel {
     public Pan_Movimientos() {
         initComponents();
         personalizarTablaVerMovimientos();         
+        
+        jLabel_cantBodegaProd.setText("");
+        jLabel_cantInvGeneral.setText("");
+        jLabel_descripcionProd.setText("");
+        jLabel_precioVenta.setText("");
     }
     
     public static Pan_Movimientos getInstance(){

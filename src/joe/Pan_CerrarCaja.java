@@ -121,12 +121,12 @@ public class Pan_CerrarCaja extends javax.swing.JPanel {
         add(jFormattedTextField_totalContado, new org.netbeans.lib.awtextra.AbsoluteConstraints(570, 290, 151, -1));
 
         jLabel6.setText("Total Venta");
-        add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 350, 128, -1));
+        add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 350, 128, 20));
 
         jFormattedTextField_totalVenta.setEditable(false);
         jFormattedTextField_totalVenta.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(new java.text.DecimalFormat("C#,##0.00"))));
         jFormattedTextField_totalVenta.setText("0.00");
-        add(jFormattedTextField_totalVenta, new org.netbeans.lib.awtextra.AbsoluteConstraints(570, 340, 151, -1));
+        add(jFormattedTextField_totalVenta, new org.netbeans.lib.awtextra.AbsoluteConstraints(570, 350, 151, -1));
 
         jFormattedTextField_totalTarjeta.setEditable(false);
         jFormattedTextField_totalTarjeta.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(new java.text.DecimalFormat("C#,##0.00"))));
@@ -149,24 +149,24 @@ public class Pan_CerrarCaja extends javax.swing.JPanel {
         add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 100, 769, 175));
 
         jLabel7.setText("Total Venta + Monto Caja");
-        add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 370, 142, -1));
+        add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 380, 142, 20));
 
         jFormattedTextField_totalVentaConCaja.setEditable(false);
         jFormattedTextField_totalVentaConCaja.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(new java.text.DecimalFormat("C#,##0.00"))));
         jFormattedTextField_totalVentaConCaja.setText("0.00");
-        add(jFormattedTextField_totalVentaConCaja, new org.netbeans.lib.awtextra.AbsoluteConstraints(570, 370, 151, -1));
+        add(jFormattedTextField_totalVentaConCaja, new org.netbeans.lib.awtextra.AbsoluteConstraints(570, 380, 151, -1));
 
         jLabel8.setText("Total Contado Reportado");
-        add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 290, -1, -1));
+        add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 290, -1, 20));
 
         jLabel9.setText("Total Tarjeta  Reportado");
-        add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 320, -1, -1));
+        add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 320, -1, 20));
 
         jLabel10.setText("Total Venta Reportado");
-        add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 350, -1, -1));
+        add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 350, -1, 20));
 
         jLabel11.setText("Total Venta + Monto Caja");
-        add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 370, -1, -1));
+        add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 380, -1, 20));
 
         jLabel13.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jLabel13.setForeground(new java.awt.Color(255, 255, 255));
@@ -179,6 +179,12 @@ public class Pan_CerrarCaja extends javax.swing.JPanel {
         saveBtt.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 saveBttMouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                saveBttMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                saveBttMouseExited(evt);
             }
         });
         add(saveBtt, new org.netbeans.lib.awtextra.AbsoluteConstraints(740, 420, -1, -1));
@@ -197,16 +203,16 @@ public class Pan_CerrarCaja extends javax.swing.JPanel {
         jFormattedTextField_totalVentaReportado.setEditable(false);
         jFormattedTextField_totalVentaReportado.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(new java.text.DecimalFormat("C#,##0.00"))));
         jFormattedTextField_totalVentaReportado.setText("0.00");
-        add(jFormattedTextField_totalVentaReportado, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 340, 136, -1));
+        add(jFormattedTextField_totalVentaReportado, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 350, 136, -1));
 
         jFormattedTextField_totalVentaCajaReportado.setEditable(false);
         jFormattedTextField_totalVentaCajaReportado.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(new java.text.DecimalFormat("C#,##0.00"))));
         jFormattedTextField_totalVentaCajaReportado.setText("0.00");
-        add(jFormattedTextField_totalVentaCajaReportado, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 370, 136, -1));
+        add(jFormattedTextField_totalVentaCajaReportado, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 380, 136, -1));
 
         jLabel_detalle.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel_detalle.setText("Todo esta perfecto");
-        add(jLabel_detalle, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 410, 472, -1));
+        add(jLabel_detalle, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 420, 472, -1));
 
         jLabel12.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jLabel12.setIcon(new javax.swing.ImageIcon(getClass().getResource("/System/Images/Panel1/panelVF.png"))); // NOI18N
@@ -228,6 +234,14 @@ public class Pan_CerrarCaja extends javax.swing.JPanel {
 
         JF_Facturacion.getInstance().getPanelManager().back();
     }//GEN-LAST:event_saveBttMouseClicked
+
+    private void saveBttMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_saveBttMouseEntered
+        saveBtt.setIcon(new javax.swing.ImageIcon(getClass().getResource("/System/Images/Buttons/saveBttOvr.png")));
+    }//GEN-LAST:event_saveBttMouseEntered
+
+    private void saveBttMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_saveBttMouseExited
+        saveBtt.setIcon(new javax.swing.ImageIcon(getClass().getResource("/System/Images/Buttons/saveBtt.png")));
+    }//GEN-LAST:event_saveBttMouseExited
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

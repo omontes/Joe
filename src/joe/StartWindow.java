@@ -95,7 +95,6 @@ public class StartWindow extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         panActiveUsser = new javax.swing.JPanel();
         labActiveName = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
         panLoggedoutUsser = new javax.swing.JPanel();
         fieldUsser = new javax.swing.JTextField();
         fieldPassword = new javax.swing.JPasswordField();
@@ -121,18 +120,16 @@ public class StartWindow extends javax.swing.JFrame {
         jLayeredPane1.add(jLabel1);
         jLabel1.setBounds(625, 40, 131, 135);
 
+        panActiveUsser.setBackground(new java.awt.Color(236, 233, 233));
         panActiveUsser.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        labActiveName.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        labActiveName.setFont(new java.awt.Font("Monotype Corsiva", 1, 20)); // NOI18N
         labActiveName.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         labActiveName.setText("Nombre activo");
-        panActiveUsser.add(labActiveName, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 40, -1, -1));
-
-        jLabel3.setText("Usuario:");
-        panActiveUsser.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 10, -1, -1));
+        panActiveUsser.add(labActiveName, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 180, 40));
 
         jLayeredPane1.add(panActiveUsser);
-        panActiveUsser.setBounds(300, 180, 190, 150);
+        panActiveUsser.setBounds(380, 180, 190, 150);
 
         panLoggedoutUsser.setOpaque(false);
         panLoggedoutUsser.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -337,7 +334,6 @@ public class StartWindow extends javax.swing.JFrame {
     private javax.swing.JPasswordField fieldPassword;
     private javax.swing.JTextField fieldUsser;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel3;
     private javax.swing.JLayeredPane jLayeredPane1;
     private javax.swing.JLabel labActiveName;
     private javax.swing.JLabel lbCompanyName;

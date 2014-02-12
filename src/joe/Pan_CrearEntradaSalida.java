@@ -480,6 +480,7 @@ public class Pan_CrearEntradaSalida extends javax.swing.JPanel {
             .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
 
+        setOpaque(false);
         setPreferredSize(new java.awt.Dimension(800, 474));
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 

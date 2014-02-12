@@ -142,7 +142,7 @@ public void personalizarTablaEntradaMercaderia(){
     }//GEN-LAST:event_bttAddMouseClicked
 
     private void bttWatchMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bttWatchMouseClicked
-        this.verEntrada(this.jTable_EntradasMercaderia,"Ver Entrada de Mercaderia");
+        this.verEntrada(this.jTable_EntradasMercaderia);
     }//GEN-LAST:event_bttWatchMouseClicked
 
 //String idProducto, String nombre, int precio,
@@ -156,23 +156,18 @@ public void personalizarTablaEntradaMercaderia(){
     private javax.swing.JTable jTable_EntradasMercaderia;
     // End of variables declaration//GEN-END:variables
 
-    private void verEntrada(JTable table, String title) {
+    private void verEntrada(JTable table) {
           int row = table.getSelectedRow();
             if (row >= 0) {
                 
-                VentanaDeInicio mVentana = VentanaDeInicio.getInstance();
-                JPanel_verEntradaSalidaMercaderia panelVerMovimientoEntradaSalida = new JPanel_verEntradaSalidaMercaderia();
-                mVentana.add(panelVerMovimientoEntradaSalida);
-                panelVerMovimientoEntradaSalida.setSize(this.getSize());
-                panelVerMovimientoEntradaSalida.setLocation(this.getLocation());
-                mVentana.remove(this);
-                panelVerMovimientoEntradaSalida.setVisible(true);
-                mVentana.revalidate();
-                mVentana.repaint();
-                mVentana.setTitle(title);
-                if(title.equals("Ver Salida de Mercaderia")){
-                    panelVerMovimientoEntradaSalida.jLabel_tipoMov.setText("Salida de:");
-                }
+                Pan_VerEntradaSalida panelVerMovimientoEntradaSalida = 
+                        new Pan_VerEntradaSalida(Pan_VerEntradaSalida.ENTRADA_CALL);
+                
+                //-----------------INTERFAZ----------------------
+                JF_Inventario.getInstance().getPanelManager().showPanel(
+                        panelVerMovimientoEntradaSalida, 800, 471, 0, 0);
+                //-----------------------------------------------------
+                
                 Modelo_Facturacion model = (Modelo_Facturacion) table.getModel();
                 panelVerMovimientoEntradaSalida.jLabel_NumerodeMovimiento.setText(model.getValueAt(row, 0).toString());
                 panelVerMovimientoEntradaSalida.personalizarTablaVerMovimiento();

@@ -140,7 +140,7 @@ public final class Pan_Salidas extends javax.swing.JPanel {
     }//GEN-LAST:event_bttAddMouseClicked
 
     private void jLabel13MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel13MouseClicked
-        this.verSalida(this.jTable_SalidasMercaderia,"Ver Salida de Mercaderia");
+        this.verSalida(this.jTable_SalidasMercaderia);
     }//GEN-LAST:event_jLabel13MouseClicked
 
 
@@ -151,29 +151,25 @@ public final class Pan_Salidas extends javax.swing.JPanel {
     private javax.swing.JTable jTable_SalidasMercaderia;
     // End of variables declaration//GEN-END:variables
 
-    private void verSalida(JTable table, String title) {
+    private void verSalida(JTable table) {
           int row = table.getSelectedRow();
             if (row >= 0) {
-                VentanaDeInicio mVentana = VentanaDeInicio.getInstance();
-                JPanel_verEntradaSalidaMercaderia panelVerMovimientoEntradaSalida = new JPanel_verEntradaSalidaMercaderia();
-                mVentana.add(panelVerMovimientoEntradaSalida);
-                panelVerMovimientoEntradaSalida.setSize(this.getSize());
-                panelVerMovimientoEntradaSalida.setLocation(this.getLocation());
-                mVentana.remove(this);
-                panelVerMovimientoEntradaSalida.setVisible(true);
-                mVentana.revalidate();
-                mVentana.repaint();
-                mVentana.setTitle(title);
-                if(title.equals("Ver Salida de Mercaderia")){
-                    panelVerMovimientoEntradaSalida.jLabel_tipoMov.setText("Salida de:");
-                }
+                Pan_VerEntradaSalida panelVerMovimientoEntradaSalida = 
+                        new Pan_VerEntradaSalida(Pan_VerEntradaSalida.SALIDA_CALL);
+                
+                //-----------------INTERFAZ----------------------
+                JF_Inventario.getInstance().getPanelManager().showPanel(
+                        panelVerMovimientoEntradaSalida, 800, 471, 0, 0);
+                //-----------------------------------------------------
+                
+                
                 Modelo_Facturacion model = (Modelo_Facturacion) table.getModel();
                 panelVerMovimientoEntradaSalida.jLabel_NumerodeMovimiento.setText(model.getValueAt(row, 0).toString());
                 panelVerMovimientoEntradaSalida.personalizarTablaVerMovimiento();
             } else {
                 JOptionPane.showMessageDialog(
                         null,
-                        "No se selecciono ninguna entrada de mercaderia",
+                        "No se selecciono ninguna salida de mercaderia",
                         "Alert!", JOptionPane.ERROR_MESSAGE);
             }
     }

@@ -49,7 +49,6 @@ public class Pan_VerEntradaSalida extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jLabel_FechaFact = new javax.swing.JLabel();
         jLabel_Fecha = new javax.swing.JLabel();
         jLabel_tipoMov = new javax.swing.JLabel();
         jComboBox_LugarDeMov = new javax.swing.JComboBox();
@@ -57,24 +56,31 @@ public class Pan_VerEntradaSalida extends javax.swing.JPanel {
         jTextField_referencia = new javax.swing.JTextField();
         jScrollPane2 = new javax.swing.JScrollPane();
         jTable_Movimiento = new javax.swing.JTable();
-        jLabel_NumFacTitle = new javax.swing.JLabel();
         jLabel_NumerodeMovimiento = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
         jFormattedTextField_Total = new javax.swing.JFormattedTextField();
-        jButton_RegresarFact = new javax.swing.JButton();
-        jButton1 = new javax.swing.JButton();
+        bttPrint = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
+        jLabel1 = new javax.swing.JLabel();
 
+        setMinimumSize(new java.awt.Dimension(800, 471));
         setOpaque(false);
-
-        jLabel_FechaFact.setText("Fecha");
+        setPreferredSize(new java.awt.Dimension(800, 471));
+        setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel_Fecha.setText("Aqui va la fecha");
+        add(jLabel_Fecha, new org.netbeans.lib.awtextra.AbsoluteConstraints(690, 40, 102, 20));
 
+        jLabel_tipoMov.setForeground(new java.awt.Color(255, 255, 255));
         jLabel_tipoMov.setText("Entrada a:");
+        add(jLabel_tipoMov, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 5, -1, 20));
 
         jComboBox_LugarDeMov.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Inventario General", "Bodega" }));
+        add(jComboBox_LugarDeMov, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 5, -1, -1));
 
         jLabel7.setText("Referencia");
+        add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 40, -1, 20));
+        add(jTextField_referencia, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 40, 306, -1));
 
         jTable_Movimiento.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -92,140 +98,62 @@ public class Pan_VerEntradaSalida extends javax.swing.JPanel {
         jTable_Movimiento.setSurrendersFocusOnKeystroke(true);
         jScrollPane2.setViewportView(jTable_Movimiento);
 
-        jLabel_NumFacTitle.setText("Numero Doc");
+        add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 70, 780, 340));
 
-        jLabel_NumerodeMovimiento.setFont(new java.awt.Font("Arial", 0, 16)); // NOI18N
-        jLabel_NumerodeMovimiento.setForeground(new java.awt.Color(0, 51, 51));
+        jLabel_NumerodeMovimiento.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
+        jLabel_NumerodeMovimiento.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel_NumerodeMovimiento.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         jLabel_NumerodeMovimiento.setText("Num");
+        add(jLabel_NumerodeMovimiento, new org.netbeans.lib.awtextra.AbsoluteConstraints(583, 5, 210, -1));
 
-        jLabel6.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel6.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLabel6.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         jLabel6.setText("Total");
+        add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 420, 60, 40));
 
         jFormattedTextField_Total.setEditable(false);
         jFormattedTextField_Total.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(new java.text.DecimalFormat("C#,##0.00;(C#,##0.00)"))));
         jFormattedTextField_Total.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         jFormattedTextField_Total.setText("0.00");
+        jFormattedTextField_Total.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
+        add(jFormattedTextField_Total, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 420, 315, 40));
 
-        jButton_RegresarFact.setText("Regresar");
-        jButton_RegresarFact.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton_RegresarFactActionPerformed(evt);
+        bttPrint.setIcon(new javax.swing.ImageIcon(getClass().getResource("/System/Images/Buttons/printBtt.png"))); // NOI18N
+        bttPrint.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                bttPrintMouseClicked(evt);
             }
         });
+        add(bttPrint, new org.netbeans.lib.awtextra.AbsoluteConstraints(730, 420, -1, -1));
 
-        jButton1.setText("Imprimir");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
-            }
-        });
+        jLabel2.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        jLabel2.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel2.setText("Descripcion");
+        add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 5, 130, -1));
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
-        this.setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jLabel_NumerodeMovimiento)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(104, 104, 104)
-                .addComponent(jButton1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 283, Short.MAX_VALUE)
-                .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jFormattedTextField_Total, javax.swing.GroupLayout.PREFERRED_SIZE, 315, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(17, 17, 17))
-            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(layout.createSequentialGroup()
-                    .addContainerGap()
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                            .addComponent(jLabel_NumFacTitle)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 76, Short.MAX_VALUE)
-                            .addComponent(jLabel_FechaFact, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                            .addComponent(jLabel_Fecha, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                            .addComponent(jLabel_tipoMov)
-                            .addGap(18, 18, 18)
-                            .addComponent(jComboBox_LugarDeMov, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGap(18, 18, 18)
-                            .addComponent(jLabel7)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                            .addComponent(jTextField_referencia, javax.swing.GroupLayout.PREFERRED_SIZE, 306, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                            .addGap(193, 193, 193)
-                            .addComponent(jButton_RegresarFact, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGap(0, 0, Short.MAX_VALUE))
-                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                            .addGap(42, 42, 42)
-                            .addComponent(jScrollPane2)))
-                    .addContainerGap()))
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(33, 33, 33)
-                .addComponent(jLabel_NumerodeMovimiento)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 278, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jFormattedTextField_Total, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton1))
-                .addGap(29, 29, 29))
-            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(layout.createSequentialGroup()
-                    .addContainerGap()
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(layout.createSequentialGroup()
-                            .addComponent(jLabel_NumFacTitle, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGap(240, 281, Short.MAX_VALUE))
-                        .addGroup(layout.createSequentialGroup()
-                            .addGap(17, 17, 17)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                .addComponent(jTextField_referencia, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(jLabel7)
-                                .addComponent(jComboBox_LugarDeMov, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(jLabel_tipoMov)
-                                .addComponent(jLabel_Fecha, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(jLabel_FechaFact, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                            .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)))
-                    .addGap(29, 29, 29)
-                    .addComponent(jButton_RegresarFact)
-                    .addContainerGap()))
-        );
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/System/Images/Panel1/panelVF.png"))); // NOI18N
+        add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton_RegresarFactActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_RegresarFactActionPerformed
-        this.regresar();
-    }//GEN-LAST:event_jButton_RegresarFactActionPerformed
-
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-         this.imprimirMovimiento(
+    private void bttPrintMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bttPrintMouseClicked
+        this.imprimirMovimiento(
                 this.jTable_Movimiento,this.jLabel_NumerodeMovimiento.getText(),
                 this.jLabel_Fecha.getText(),
                 this.jComboBox_LugarDeMov.getSelectedItem().toString(),
                 this.jFormattedTextField_Total.getText(),
                 this.jTextField_referencia.getText());
-        
-        
-
-                                                       
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_bttPrintMouseClicked
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    javax.swing.JButton jButton1;
-    javax.swing.JButton jButton_RegresarFact;
+    javax.swing.JLabel bttPrint;
     javax.swing.JComboBox jComboBox_LugarDeMov;
     javax.swing.JFormattedTextField jFormattedTextField_Total;
+    javax.swing.JLabel jLabel1;
+    javax.swing.JLabel jLabel2;
     javax.swing.JLabel jLabel6;
     javax.swing.JLabel jLabel7;
     javax.swing.JLabel jLabel_Fecha;
-    javax.swing.JLabel jLabel_FechaFact;
-    javax.swing.JLabel jLabel_NumFacTitle;
     javax.swing.JLabel jLabel_NumerodeMovimiento;
     javax.swing.JLabel jLabel_tipoMov;
     javax.swing.JScrollPane jScrollPane2;

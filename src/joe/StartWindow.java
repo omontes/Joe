@@ -129,7 +129,7 @@ public class StartWindow extends javax.swing.JFrame {
         panActiveUsser.add(labActiveName, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 180, 40));
 
         jLayeredPane1.add(panActiveUsser);
-        panActiveUsser.setBounds(380, 180, 190, 150);
+        panActiveUsser.setBounds(470, 20, 190, 150);
 
         panLoggedoutUsser.setOpaque(false);
         panLoggedoutUsser.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());

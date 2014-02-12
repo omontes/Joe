@@ -61,6 +61,7 @@ public class Pan_VerFactura extends javax.swing.JPanel {
         jFormattedTextField_DescuentoTotal = new javax.swing.JFormattedTextField();
         jFormattedTextField_Total = new javax.swing.JFormattedTextField();
         jLabel9 = new javax.swing.JLabel();
+        bttPrint = new javax.swing.JLabel();
         jLabel16 = new javax.swing.JLabel();
         jFormattedTextField_Cliente = new javax.swing.JFormattedTextField();
         jLabel_NumerodeFact = new javax.swing.JLabel();
@@ -95,7 +96,7 @@ public class Pan_VerFactura extends javax.swing.JPanel {
         jFormattedTextField_SubTotal.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(new java.text.DecimalFormat("C#,##0.00;(C#,##0.00)"))));
         jFormattedTextField_SubTotal.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         jFormattedTextField_SubTotal.setText("0.00");
-        add(jFormattedTextField_SubTotal, new org.netbeans.lib.awtextra.AbsoluteConstraints(570, 380, 214, -1));
+        add(jFormattedTextField_SubTotal, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 380, 214, -1));
 
         jLabel_Fecha.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         jLabel_Fecha.setText("Aqui va la fecha");
@@ -103,48 +104,63 @@ public class Pan_VerFactura extends javax.swing.JPanel {
 
         jLabel6.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel6.setText("SubTotal");
-        add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 380, 73, 20));
+        add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 380, 73, 20));
 
         jLabel7.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel7.setText("Desc.");
-        add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 410, 44, 26));
+        add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 410, 44, 26));
 
         jFormattedTextField_desc.setEditable(false);
         jFormattedTextField_desc.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(new java.text.DecimalFormat("#0.00"))));
         jFormattedTextField_desc.setText("0.00");
-        add(jFormattedTextField_desc, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 410, 47, -1));
+        add(jFormattedTextField_desc, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 410, 47, -1));
 
         jLabel8.setText("%");
-        add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 420, -1, -1));
+        add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 420, -1, -1));
 
         jLabel10.setForeground(new java.awt.Color(255, 255, 255));
         jLabel10.setText("Tipo de Pago");
         add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 5, -1, 20));
 
         jTextField_Detalle.setEditable(false);
-        add(jTextField_Detalle, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 400, 400, 30));
+        add(jTextField_Detalle, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 400, 310, 30));
 
         jLabel11.setText("Detalle de Factura:");
         add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 380, -1, -1));
 
         jLabel12.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel12.setText("Total");
-        add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 440, 73, 20));
+        add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 440, 73, 20));
 
         jFormattedTextField_DescuentoTotal.setEditable(false);
         jFormattedTextField_DescuentoTotal.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(new java.text.DecimalFormat(""))));
         jFormattedTextField_DescuentoTotal.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         jFormattedTextField_DescuentoTotal.setText("0.00");
-        add(jFormattedTextField_DescuentoTotal, new org.netbeans.lib.awtextra.AbsoluteConstraints(570, 410, 214, -1));
+        add(jFormattedTextField_DescuentoTotal, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 410, 214, -1));
 
         jFormattedTextField_Total.setEditable(false);
         jFormattedTextField_Total.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(new java.text.DecimalFormat("C#,##0.00;(C#,##0.00)"))));
         jFormattedTextField_Total.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         jFormattedTextField_Total.setText("0.00");
-        add(jFormattedTextField_Total, new org.netbeans.lib.awtextra.AbsoluteConstraints(570, 440, 214, -1));
+        add(jFormattedTextField_Total, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 440, 214, -1));
 
         jLabel9.setText("Vendedor");
         add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 440, 60, 22));
+
+        bttPrint.setIcon(new javax.swing.ImageIcon(getClass().getResource("/System/Images/Buttons/printBtt.png"))); // NOI18N
+        bttPrint.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        bttPrint.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                bttPrintMouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                bttPrintMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                bttPrintMouseExited(evt);
+            }
+        });
+        add(bttPrint, new org.netbeans.lib.awtextra.AbsoluteConstraints(730, 400, -1, -1));
 
         jLabel16.setForeground(new java.awt.Color(255, 255, 255));
         jLabel16.setText("Cliente");
@@ -175,11 +191,23 @@ public class Pan_VerFactura extends javax.swing.JPanel {
         jTextField_Vendedor.setEditable(false);
         jTextField_Vendedor.setHorizontalAlignment(javax.swing.JTextField.LEFT);
         jTextField_Vendedor.setText("Vendedor");
-        add(jTextField_Vendedor, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 440, 190, 22));
+        add(jTextField_Vendedor, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 440, 250, 22));
 
         jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/System/Images/Panel1/panelVF.png"))); // NOI18N
         add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
     }// </editor-fold>//GEN-END:initComponents
+
+    private void bttPrintMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bttPrintMouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_bttPrintMouseClicked
+
+    private void bttPrintMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bttPrintMouseEntered
+        bttPrint.setIcon(new javax.swing.ImageIcon(getClass().getResource("/System/Images/Buttons/printBttOvr.png")));
+    }//GEN-LAST:event_bttPrintMouseEntered
+
+    private void bttPrintMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bttPrintMouseExited
+        bttPrint.setIcon(new javax.swing.ImageIcon(getClass().getResource("/System/Images/Buttons/printBtt.png")));
+    }//GEN-LAST:event_bttPrintMouseExited
  /**
      * Este metodo permite corregir el dato que tiene el signo de C y ademas
      * que puede tener comas ya que el tipo Decimal en la base solo
@@ -259,6 +287,7 @@ public class Pan_VerFactura extends javax.swing.JPanel {
         return string;
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    javax.swing.JLabel bttPrint;
     javax.swing.JFormattedTextField jFormattedTextField_Cliente;
     javax.swing.JFormattedTextField jFormattedTextField_DescuentoTotal;
     javax.swing.JFormattedTextField jFormattedTextField_SubTotal;

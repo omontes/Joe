@@ -23,6 +23,9 @@ public class StartWindow extends javax.swing.JFrame {
     private static int _posX;
     private static int _posY;
     
+    private static final int LOGGED_IN = 0;
+    private static final int LOGGED_OUT = 1;
+    
     /**
      * Creates new form StartWindow
      */
@@ -44,8 +47,25 @@ public class StartWindow extends javax.swing.JFrame {
         _posX = this.getWidth()/2-jLayeredPane1.getWidth()/2;
         _posY = this.getHeight()/2-jLayeredPane1.getHeight()/2;
         jLayeredPane1.setLocation(_posX, _posY);       
+        
+        panActiveUsser.setLocation(600, 180);
+        activeLoginPanel(LOGGED_OUT);
     }
-
+    
+    private void activeLoginPanel(int pPanel){
+        if (pPanel == LOGGED_IN){
+            panActiveUsser.setVisible(true);
+            panActiveUsser.setEnabled(true);
+            panLoggedoutUsser.setVisible(false);
+            panLoggedoutUsser.setEnabled(false);
+        } else {
+            panActiveUsser.setVisible(false);
+            panActiveUsser.setEnabled(false);
+            panLoggedoutUsser.setVisible(true);
+            panLoggedoutUsser.setEnabled(true);
+        }
+    }
+    
     public static int getPosX(){
         return _posX;
     }
@@ -73,12 +93,16 @@ public class StartWindow extends javax.swing.JFrame {
 
         jLayeredPane1 = new javax.swing.JLayeredPane();
         jLabel1 = new javax.swing.JLabel();
+        panActiveUsser = new javax.swing.JPanel();
+        labActiveName = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
+        panLoggedoutUsser = new javax.swing.JPanel();
         fieldUsser = new javax.swing.JTextField();
         fieldPassword = new javax.swing.JPasswordField();
+        bttLogin = new javax.swing.JLabel();
         bttExit = new javax.swing.JLabel();
         bttFact = new javax.swing.JLabel();
         bttInv = new javax.swing.JLabel();
-        bttLogin = new javax.swing.JLabel();
         bkgBase = new javax.swing.JLabel();
         lbCompanyName = new javax.swing.JLabel();
         bkgImage = new javax.swing.JLabel();
@@ -96,10 +120,35 @@ public class StartWindow extends javax.swing.JFrame {
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/System/Images/PanelInicio/logOutImg.jpg"))); // NOI18N
         jLayeredPane1.add(jLabel1);
         jLabel1.setBounds(625, 40, 131, 135);
-        jLayeredPane1.add(fieldUsser);
-        fieldUsser.setBounds(620, 200, 150, 30);
-        jLayeredPane1.add(fieldPassword);
-        fieldPassword.setBounds(620, 260, 150, 30);
+
+        panActiveUsser.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        labActiveName.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        labActiveName.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        labActiveName.setText("Nombre activo");
+        panActiveUsser.add(labActiveName, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 40, -1, -1));
+
+        jLabel3.setText("Usuario:");
+        panActiveUsser.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 10, -1, -1));
+
+        jLayeredPane1.add(panActiveUsser);
+        panActiveUsser.setBounds(300, 180, 190, 150);
+
+        panLoggedoutUsser.setOpaque(false);
+        panLoggedoutUsser.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        panLoggedoutUsser.add(fieldUsser, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 20, 150, 30));
+        panLoggedoutUsser.add(fieldPassword, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 80, 150, 30));
+
+        bttLogin.setIcon(new javax.swing.ImageIcon(getClass().getResource("/System/Images/PanelInicio/loginBtt.png"))); // NOI18N
+        bttLogin.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                bttLoginMouseClicked(evt);
+            }
+        });
+        panLoggedoutUsser.add(bttLogin, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 120, -1, -1));
+
+        jLayeredPane1.add(panLoggedoutUsser);
+        panLoggedoutUsser.setBounds(600, 180, 190, 150);
 
         bttExit.setIcon(new javax.swing.ImageIcon(getClass().getResource("/System/Images/PanelInicio/bttExitUnt.png"))); // NOI18N
         bttExit.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
@@ -136,15 +185,6 @@ public class StartWindow extends javax.swing.JFrame {
         });
         jLayeredPane1.add(bttInv);
         bttInv.setBounds(385, 362, 150, 124);
-
-        bttLogin.setIcon(new javax.swing.ImageIcon(getClass().getResource("/System/Images/PanelInicio/loginBtt.png"))); // NOI18N
-        bttLogin.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                bttLoginMouseClicked(evt);
-            }
-        });
-        jLayeredPane1.add(bttLogin);
-        bttLogin.setBounds(710, 300, 57, 24);
 
         bkgBase.setIcon(new javax.swing.ImageIcon(getClass().getResource("/System/Images/PanelInicio/panelInicio.png"))); // NOI18N
         jLayeredPane1.add(bkgBase);
@@ -238,6 +278,8 @@ public class StartWindow extends javax.swing.JFrame {
                     JOptionPane.INFORMATION_MESSAGE);
                 XMLConfiguracion xml = ManejoDeArchivos.XMLConfiguracion.getInstance();
                 xml.establecerUsuario(usser);
+                activeLoginPanel(LOGGED_IN);
+                labActiveName.setText(usser);
                 if (authentique == 1){
                     // ES ADMIN
                 } else {
@@ -295,7 +337,11 @@ public class StartWindow extends javax.swing.JFrame {
     private javax.swing.JPasswordField fieldPassword;
     private javax.swing.JTextField fieldUsser;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel3;
     private javax.swing.JLayeredPane jLayeredPane1;
+    private javax.swing.JLabel labActiveName;
     private javax.swing.JLabel lbCompanyName;
+    private javax.swing.JPanel panActiveUsser;
+    private javax.swing.JPanel panLoggedoutUsser;
     // End of variables declaration//GEN-END:variables
 }

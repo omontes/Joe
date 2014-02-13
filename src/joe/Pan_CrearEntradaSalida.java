@@ -125,9 +125,10 @@ public class Pan_CrearEntradaSalida extends javax.swing.JPanel {
         jLabel8 = new javax.swing.JLabel();
 
         jDialog_CrearProducto.setUndecorated(true);
-        jDialog_CrearProducto.setPreferredSize(new java.awt.Dimension(320, 220));
         jDialog_CrearProducto.setResizable(false);
         jDialog_CrearProducto.getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        jDialog_CrearProducto.setSize(320, 220);
+        jDialog_CrearProducto.setLocationRelativeTo(null);
 
         jPanel2.setBackground(new java.awt.Color(153, 153, 153));
         jPanel2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
@@ -236,14 +237,16 @@ public class Pan_CrearEntradaSalida extends javax.swing.JPanel {
         jDialog_VerProducto.setModal(true);
         jDialog_VerProducto.setUndecorated(true);
         jDialog_VerProducto.setResizable(false);
-        jDialog_VerProducto.setLocationRelativeTo(null);
         jDialog_VerProducto.getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        jDialog_VerProducto.setSize(470, 210);
+        jDialog_VerProducto.setLocationRelativeTo(null);
 
         jLayeredPane_VerProducto.setBackground(new java.awt.Color(153, 153, 153));
         jLayeredPane_VerProducto.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         jLayeredPane_VerProducto.setMaximumSize(new java.awt.Dimension(470, 210));
         jLayeredPane_VerProducto.setMinimumSize(new java.awt.Dimension(470, 210));
         jLayeredPane_VerProducto.setOpaque(true);
+        jLayeredPane_VerProducto.setPreferredSize(new java.awt.Dimension(470, 210));
         jLayeredPane_VerProducto.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel_Nombre.setForeground(new java.awt.Color(255, 255, 255));
@@ -307,12 +310,14 @@ public class Pan_CrearEntradaSalida extends javax.swing.JPanel {
         jDialog_BuscarProductoPorCod.setTitle("Buscar Producto");
         jDialog_BuscarProductoPorCod.setUndecorated(true);
         jDialog_BuscarProductoPorCod.setResizable(false);
-        jDialog_BuscarProductoPorCod.setLocationRelativeTo(null);
         jDialog_BuscarProductoPorCod.getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        jDialog_BuscarProductoPorCod.setSize(320, 130);
+        jDialog_BuscarProductoPorCod.setLocationRelativeTo(null);
 
         jPanel1.setBackground(new java.awt.Color(153, 153, 153));
         jPanel1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        jPanel1.setPreferredSize(new java.awt.Dimension(295, 125));
+        jPanel1.setMinimumSize(new java.awt.Dimension(320, 130));
+        jPanel1.setPreferredSize(new java.awt.Dimension(320, 130));
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jButton_BusqueProducto.setText("Buscar");
@@ -648,7 +653,6 @@ public class Pan_CrearEntradaSalida extends javax.swing.JPanel {
             this.verProducto(idProducto);
         } // Si no selecciono un producto entonces que busque el producto por cod
         else {
-            jDialog_BuscarProductoPorCod.setSize(295, 243);
             jDialog_BuscarProductoPorCod.setVisible(true);
         }
     }//GEN-LAST:event_bttWatchMouseClicked
@@ -823,14 +827,12 @@ public class Pan_CrearEntradaSalida extends javax.swing.JPanel {
         //En caso de que quiera crear un producto mientras se este editando
         if (jTable_Movimiento.isEditing()) {
             jTable_Movimiento.getCellEditor().cancelCellEditing();
-            this.jDialog_CrearProducto.setSize(500, 300);
             this.jDialog_CrearProducto.setVisible(true);
             return;
         }
         DocumentFilter onlyNumberFilter = new MyFilter();
         ((AbstractDocument)this.jFormattedTextField_precioProducto.getDocument()).setDocumentFilter(onlyNumberFilter);
         //Llama a la ventana para crear el producto
-        this.jDialog_CrearProducto.setSize(500, 300);
         this.jDialog_CrearProducto.setVisible(true);
 
     }

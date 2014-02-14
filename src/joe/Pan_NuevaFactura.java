@@ -9,6 +9,7 @@ import db_managment.Direct_Control_BD;
 import java.awt.Toolkit;
 import java.awt.event.KeyEvent;
 import java.math.BigDecimal;
+import java.math.MathContext;
 import java.text.DateFormat;
 import java.text.DecimalFormat;
 import java.text.NumberFormat;
@@ -130,6 +131,15 @@ public class Pan_NuevaFactura extends javax.swing.JPanel {
         jButton_CrearCliente = new javax.swing.JButton();
         jButton_CancelarCrearCliente = new javax.swing.JButton();
         jLabel20 = new javax.swing.JLabel();
+        jDialog_darVuelto = new javax.swing.JDialog();
+        jPanel5 = new javax.swing.JPanel();
+        jLabel23 = new javax.swing.JLabel();
+        jLabel24 = new javax.swing.JLabel();
+        jLabel25 = new javax.swing.JLabel();
+        jFormattedTextField_totalFact = new javax.swing.JFormattedTextField();
+        jFormattedTextField_pagoVuelto = new javax.swing.JFormattedTextField();
+        jFormattedTextField_vuelto = new javax.swing.JFormattedTextField();
+        jButton_aceptarVuelto = new javax.swing.JButton();
         jLayeredPane1 = new javax.swing.JLayeredPane();
         jScrollPane2 = new javax.swing.JScrollPane();
         jTable_Factura = new javax.swing.JTable();
@@ -630,6 +640,106 @@ public class Pan_NuevaFactura extends javax.swing.JPanel {
         jPanel4.add(jLabel20, new org.netbeans.lib.awtextra.AbsoluteConstraints(11, 12, -1, -1));
 
         jDialog_CrearCliente.getContentPane().add(jPanel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 330, 230));
+
+        jDialog_darVuelto.setMinimumSize(new java.awt.Dimension(400, 300));
+
+        jPanel5.setBackground(new java.awt.Color(153, 153, 153));
+
+        jLabel23.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel23.setText("Total Facturado");
+
+        jLabel24.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel24.setText("Paga con:");
+
+        jLabel25.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel25.setText("Vuelto");
+
+        jFormattedTextField_totalFact.setEditable(false);
+        jFormattedTextField_totalFact.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(new java.text.DecimalFormat("C#,##0.00;(C#,##0.00)"))));
+        jFormattedTextField_totalFact.setText("0.00");
+
+        jFormattedTextField_pagoVuelto.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(new java.text.DecimalFormat("#,##0.00"))));
+        jFormattedTextField_pagoVuelto.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jFormattedTextField_pagoVueltoMouseClicked(evt);
+            }
+        });
+        jFormattedTextField_pagoVuelto.addPropertyChangeListener(new java.beans.PropertyChangeListener() {
+            public void propertyChange(java.beans.PropertyChangeEvent evt) {
+                jFormattedTextField_pagoVueltoPropertyChange(evt);
+            }
+        });
+        jFormattedTextField_pagoVuelto.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                jFormattedTextField_pagoVueltoKeyTyped(evt);
+            }
+        });
+
+        jFormattedTextField_vuelto.setEditable(false);
+        jFormattedTextField_vuelto.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(new java.text.DecimalFormat("C#,##0.00;(C#,##0.00)"))));
+
+        jButton_aceptarVuelto.setText("Aceptar");
+        jButton_aceptarVuelto.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton_aceptarVueltoActionPerformed(evt);
+            }
+        });
+        jButton_aceptarVuelto.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                jButton_aceptarVueltoKeyPressed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
+        jPanel5.setLayout(jPanel5Layout);
+        jPanel5Layout.setHorizontalGroup(
+            jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel5Layout.createSequentialGroup()
+                .addGap(60, 60, 60)
+                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jButton_aceptarVuelto)
+                    .addGroup(jPanel5Layout.createSequentialGroup()
+                        .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel23)
+                            .addComponent(jLabel24)
+                            .addComponent(jLabel25))
+                        .addGap(18, 18, 18)
+                        .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(jFormattedTextField_vuelto, javax.swing.GroupLayout.DEFAULT_SIZE, 108, Short.MAX_VALUE)
+                            .addComponent(jFormattedTextField_pagoVuelto)
+                            .addComponent(jFormattedTextField_totalFact))))
+                .addContainerGap(138, Short.MAX_VALUE))
+        );
+        jPanel5Layout.setVerticalGroup(
+            jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel5Layout.createSequentialGroup()
+                .addGap(53, 53, 53)
+                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel23)
+                    .addComponent(jFormattedTextField_totalFact, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(24, 24, 24)
+                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel24)
+                    .addComponent(jFormattedTextField_pagoVuelto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(23, 23, 23)
+                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel25)
+                    .addComponent(jFormattedTextField_vuelto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(32, 32, 32)
+                .addComponent(jButton_aceptarVuelto)
+                .addContainerGap(85, Short.MAX_VALUE))
+        );
+
+        javax.swing.GroupLayout jDialog_darVueltoLayout = new javax.swing.GroupLayout(jDialog_darVuelto.getContentPane());
+        jDialog_darVuelto.getContentPane().setLayout(jDialog_darVueltoLayout);
+        jDialog_darVueltoLayout.setHorizontalGroup(
+            jDialog_darVueltoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jPanel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        );
+        jDialog_darVueltoLayout.setVerticalGroup(
+            jDialog_darVueltoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jPanel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        );
 
         setOpaque(false);
 
@@ -1460,7 +1570,9 @@ public class Pan_NuevaFactura extends javax.swing.JPanel {
         
         if (_callType == FACTURACION_CALL){
             if (factSave()) {
-                this.regresar();
+                this.jFormattedTextField_totalFact.setValue(this.corregirDato(this.jFormattedTextField_Total.getText()));
+                this.jDialog_darVuelto.setVisible(true);
+                this.jFormattedTextField_pagoVuelto.requestFocusInWindow();
                 return true;
             }
             return false;
@@ -2044,6 +2156,78 @@ public class Pan_NuevaFactura extends javax.swing.JPanel {
 
         }
     }//GEN-LAST:event_jFormattedTextField_fechaCumpleKeyTyped
+
+    private void jFormattedTextField_pagoVueltoPropertyChange(java.beans.PropertyChangeEvent evt) {//GEN-FIRST:event_jFormattedTextField_pagoVueltoPropertyChange
+          if (evt.getPropertyName().equals("value")) {
+
+            if (evt.getNewValue() != null) {
+                String text = evt.getNewValue().toString();
+                BigDecimal vuelto_new = this.StringtoBigDecimal(text);
+                /**if (evt.getOldValue() != null) {
+                    String text2 = evt.getOldValue().toString();
+                    BigDecimal vuelto_old = this.StringtoBigDecimal(text2);
+                    BigDecimal total = this.corregirDato(this.jFormattedTextField_Total.getText());
+                    this.jFormattedTextField_vuelto.setValue(total.subtract(vuelto_new.subtract(vuelto_old)));
+                    return;
+                }**/
+                BigDecimal total = this.corregirDato(this.jFormattedTextField_Total.getText());
+                if(vuelto_new.compareTo(total)<0){
+                    
+                    
+                    this.jFormattedTextField_vuelto.setValue(BigDecimal.ZERO);
+                    this.jFormattedTextField_pagoVuelto.requestFocusInWindow();
+                    this.jFormattedTextField_pagoVuelto.selectAll();
+                    JOptionPane.showMessageDialog(
+                    null,
+                    "El pago del cliente debe ser mayor o igual que el total facturado",
+                    "Alert!", JOptionPane.ERROR_MESSAGE);
+                    return;                         
+                            
+                
+                }
+                this.jFormattedTextField_vuelto.setValue(vuelto_new.subtract(total));
+
+            } 
+            
+        }
+    }//GEN-LAST:event_jFormattedTextField_pagoVueltoPropertyChange
+
+    private void jFormattedTextField_pagoVueltoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jFormattedTextField_pagoVueltoKeyTyped
+        int tecla = evt.getKeyChar();
+        if (tecla == KeyEvent.VK_COMMA) {
+            return;
+        }
+        if (tecla == KeyEvent.VK_PERIOD) {
+            return;
+        }
+        if (!Character.isDigit(tecla) & !Character.isISOControl(evt.getKeyChar())) {
+            Toolkit.getDefaultToolkit().beep();
+            evt.consume();
+
+        }
+
+        if (KeyEvent.VK_ENTER == evt.getKeyChar()) {
+            this.jButton_aceptarVuelto.requestFocusInWindow();
+
+        }
+    }//GEN-LAST:event_jFormattedTextField_pagoVueltoKeyTyped
+
+    private void jButton_aceptarVueltoKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jButton_aceptarVueltoKeyPressed
+        if(evt.getKeyChar()== KeyEvent.VK_ENTER){
+            this.jButton_aceptarVuelto.doClick();
+        
+        }
+    }//GEN-LAST:event_jButton_aceptarVueltoKeyPressed
+
+    private void jButton_aceptarVueltoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_aceptarVueltoActionPerformed
+        this.jDialog_darVuelto.dispose();
+        this.jFormattedTextField_pagoVuelto.setValue(BigDecimal.ZERO);
+        this.regresar();
+    }//GEN-LAST:event_jButton_aceptarVueltoActionPerformed
+
+    private void jFormattedTextField_pagoVueltoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jFormattedTextField_pagoVueltoMouseClicked
+         this.jFormattedTextField_pagoVuelto.selectAll();
+    }//GEN-LAST:event_jFormattedTextField_pagoVueltoMouseClicked
     /**
      * Este metodo devuelve toda la informacion de la tabla de crear factura
      *
@@ -2167,6 +2351,7 @@ public class Pan_NuevaFactura extends javax.swing.JPanel {
     javax.swing.JButton jButton_CrearCliente;
     javax.swing.JButton jButton_CrearProducto;
     javax.swing.JButton jButton_IngresarDescuento;
+    javax.swing.JButton jButton_aceptarVuelto;
     javax.swing.JComboBox jComboBox_CategoriaTipoPago;
     javax.swing.JComboBox jComboBox_Vendedores;
     javax.swing.JDialog jDialog_BuscarProductoPorCod;
@@ -2174,6 +2359,7 @@ public class Pan_NuevaFactura extends javax.swing.JPanel {
     javax.swing.JDialog jDialog_CrearProducto;
     javax.swing.JDialog jDialog_DescuentoUnitario;
     javax.swing.JDialog jDialog_VerProducto;
+    javax.swing.JDialog jDialog_darVuelto;
     javax.swing.JFormattedTextField jFormattedTextField_Cliente;
     javax.swing.JFormattedTextField jFormattedTextField_DescuentoTotal;
     javax.swing.JFormattedTextField jFormattedTextField_PrecioConDesc;
@@ -2187,8 +2373,11 @@ public class Pan_NuevaFactura extends javax.swing.JPanel {
     javax.swing.JFormattedTextField jFormattedTextField_direccionCliente;
     javax.swing.JFormattedTextField jFormattedTextField_fechaCumple;
     javax.swing.JFormattedTextField jFormattedTextField_nombreCliente;
+    javax.swing.JFormattedTextField jFormattedTextField_pagoVuelto;
     javax.swing.JFormattedTextField jFormattedTextField_precioProducto;
     javax.swing.JFormattedTextField jFormattedTextField_telefono;
+    javax.swing.JFormattedTextField jFormattedTextField_totalFact;
+    javax.swing.JFormattedTextField jFormattedTextField_vuelto;
     javax.swing.JLabel jLabel1;
     javax.swing.JLabel jLabel10;
     javax.swing.JLabel jLabel11;
@@ -2204,6 +2393,9 @@ public class Pan_NuevaFactura extends javax.swing.JPanel {
     javax.swing.JLabel jLabel20;
     javax.swing.JLabel jLabel21;
     javax.swing.JLabel jLabel22;
+    javax.swing.JLabel jLabel23;
+    javax.swing.JLabel jLabel24;
+    javax.swing.JLabel jLabel25;
     javax.swing.JLabel jLabel3;
     javax.swing.JLabel jLabel4;
     javax.swing.JLabel jLabel5;
@@ -2233,6 +2425,7 @@ public class Pan_NuevaFactura extends javax.swing.JPanel {
     javax.swing.JPanel jPanel2;
     javax.swing.JPanel jPanel3;
     javax.swing.JPanel jPanel4;
+    javax.swing.JPanel jPanel5;
     javax.swing.JScrollPane jScrollPane2;
     javax.swing.JSeparator jSeparator3;
     javax.swing.JTable jTable_Factura;

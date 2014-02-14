@@ -256,7 +256,7 @@ public class Pan_VerFactura extends javax.swing.JPanel {
                 /**
                  * ********************************************************
                  */
-                MyTableModel_FACT dtm = (MyTableModel_FACT) jTable_Factura.getModel();
+                Modelo_verFacturas dtm = (Modelo_verFacturas) jTable_Factura.getModel();
                 int nRow = dtm.getRowCount();
                 for (int i = 0; i < nRow; i++) {
                     String Producto = dtm.getValueAt(i, 1).toString();

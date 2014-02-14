@@ -1,3 +1,3 @@
 SELECT P.idPersona
 FROM persona AS P,usuario AS U
-WHERE P.Nombre=? AND U.`idUsuario`=P.`idPersona` AND U.`TipoUsuario`='Vendedor';
+WHERE P.Nombre=? AND U.`idUsuario`=P.`idPersona`;

@@ -161,7 +161,7 @@ public class Pan_VerCierresCaja extends javax.swing.JPanel {
             BigDecimal montoinicio = AdminBD.obtenerMontoInicio(idCierre);
             panelCreaCerrarCaja.jLabel_horaCierre.setText(fechaFinal);
             panelCreaCerrarCaja.personalizarTablaCierre(totalcont, totaltarj, totalvent.add(montoinicio), Cajero, fechaInicio, montoinicio);
-            panelCreaCerrarCaja.hideSaveButton();
+            //panelCreaCerrarCaja.hideSaveButton();
 
         } else {
             JOptionPane.showMessageDialog(

@@ -21,12 +21,16 @@ import java.util.List;
 import java.util.Vector;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.print.PrintService;
 import javax.swing.JLabel;
+import javax.swing.JTable;
 import javax.swing.RowSorter;
 import javax.swing.SortOrder;
 import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableRowSorter;
+import jzebra.PrintRaw;
+import jzebra.PrintServiceMatcher;
 
 /**
  *
@@ -222,6 +226,7 @@ public class Pan_CerrarCaja extends javax.swing.JPanel {
     private void saveBttMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_saveBttMouseClicked
         Direct_Control_BD AdminBD = Direct_Control_BD.getInstance();
         int idCierreVigente= AdminBD.obtenerultimoidCierre();
+        String HoraInicio= this.jLabel_horaInicio.getText();
         String HoraCierre= this.jLabel_horaCierre.getText();
         BigDecimal totalTarjet = this.corregirDato(this.jFormattedTextField_totalTarjeta.getText());
         BigDecimal totalCont = this.corregirDato(this.jFormattedTextField_totalContado.getText());
@@ -231,9 +236,100 @@ public class Pan_CerrarCaja extends javax.swing.JPanel {
         BigDecimal totalTarjtReportado= this.corregirDato(this.jFormattedTextField_totalTarjetaReportado.getText());
         BigDecimal totalContReportado = this.corregirDato(this.jFormattedTextField_totalContadoReportado.getText());
         AdminBD.actualizarCierreDeCaja(HoraCierre, totalVendido, observaciones, ReporteFinal, totalCont, totalTarjet, totalContReportado, totalTarjtReportado, idCierreVigente);
-
+        this.imprimirCierre(jTable_VerCierre,this.jLabel_Cajero.getText(), HoraInicio, HoraCierre, this.jFormattedTextField_totalContadoReportado.getText(), this.jFormattedTextField_totalTarjetaReportado.getText(), this.jFormattedTextField_totalVentaReportado.getText());
         JF_Facturacion.getInstance().getPanelManager().back();
     }//GEN-LAST:event_saveBttMouseClicked
+    private void imprimirCierre(JTable table,String Cajero, String horaInicio, String horaCierre, String totalcontadoReportado, String totaltarjetaReportado, String totalVentaReportado) {
+        try {
+            String rawCmds = "FIRST NAME";
+            String printer = "Generic / Text Only (Copy 3)"; // debe tener 
+            //el mismo nombre que la impresora 
+            PrintService ps = PrintServiceMatcher.findPrinter(printer);
+            if (ps != null) {
+
+                PrintRaw p = new PrintRaw(ps, rawCmds);
+                p.clear();
+                p.append("\u001B\u0040"); //reset printer 
+
+                p.append("\u001B" + "\u0061" + "\u0001" + "\r");//*** Centrado
+                p.append("Boutique Francini\r\n");
+                p.append("San Jose, Costa Rica\r\n");
+                p.append("Tel:228826962,pulgamontes@gmail.com\r\n");
+                p.append("Resolucion nro. 234252 del 2003-89\r\n");
+                p.append("\u001B" + "\u0064" + "\u0001" + "\r");//*** 1lineas
+
+                p.append("\u001B" + "\u0061" + "\u0000" + "\r");//Quita Centrado
+
+                String fecha = " Cajero        :  " + Cajero + "";
+                p.append("----------------------------------------\r\n");
+                String fechamov = this.fill(fecha, 13, " ");
+                p.append(fechamov + "\r\n");
+                p.append(this.fill(" Hora Inicio   :  " + horaInicio + "", fechamov.length(), " ") + "\r\n");
+                p.append(this.fill(" Hora Cierre   :  " + horaCierre + "", fechamov.length(), " ") + "\r\n");
+                
+                p.append("----------------------------------------\r\n");
+                //Agrega 1 linea vacia
+                p.append("\u001B" + "\u0064" + "\u0001" + "\r");
+                p.append("NUM FACT \tTIPO PAGO        MONTO\r\n");
+                p.append("--------        ---------        -----\r\n");
+
+                /**
+                 * ********************************************************
+                 */
+                int nRow = table.getRowCount();
+                for (int i = 0; i < nRow; i++) {
+                    String Concepto = table.getValueAt(i, 1).toString();
+                    if (!Concepto.equals("")) {
+                        String numFact = this.fill(table.getValueAt(i, 2).toString(),15," ");
+                        String tipopago = this.fill(table.getValueAt(i, 3).toString(),8," ");
+                        String monto= this.fill(table.getValueAt(i, 4).toString(),11," ");
+                        p.append(""+Concepto+"\r\n");
+                        p.append(""+numFact+" "+tipopago+"     "+""+monto+"\r\n");
+                    }
+
+                }
+                p.append("----------------------------------------\r\n");
+                p.append("\u001B" + "\u0061" + "\u0002" + "\r");//*** Derecha
+                p.append("\u001B" + "\u0064" + "\u0003" + "\r");//*** 1lineas
+                String totalcontador = this.fill("Total Contado Reportado", 24, " ");
+                String totalcontadoRep = totalcontador+" :"+"  "+ this.fill(totalcontadoReportado,12," ");
+                p.append(totalcontadoRep + "\r\n");
+                p.append("----------------------------------------\r\n");
+
+                p.append("\u001B\u0040");//reset printer
+                p.append("\u001B" + "\u0064" + "\u0008" + "\r");//*** 10lineas**/
+                p.append("\u001D" + "\u0056" + "\u0001" + "\r");//*** CutPaper
+
+                p.print();
+
+            } else {
+                System.err.println("No encontro ninguna impresora");
+                return;
+            }
+
+        } catch (Exception e) {
+            e.printStackTrace();
+            return;
+        }
+    }
+
+    public String fill(int length, String with) {
+        StringBuilder sb = new StringBuilder(length);
+        while (sb.length() < length) {
+            sb.append(with);
+        }
+        return sb.toString();
+    }
+
+    public String fill(String value, int length, String with) {
+
+        StringBuilder result = new StringBuilder(length);
+        result.append(value);
+        result.append(fill(Math.max(0, length - value.length()), with));
+
+        return result.toString();
+
+    }
 
     private void saveBttMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_saveBttMouseEntered
         saveBtt.setIcon(new javax.swing.ImageIcon(getClass().getResource("/System/Images/Buttons/saveBttOvr.png")));

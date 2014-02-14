@@ -641,7 +641,9 @@ public class Pan_NuevaFactura extends javax.swing.JPanel {
 
         jDialog_CrearCliente.getContentPane().add(jPanel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 330, 230));
 
+        jDialog_darVuelto.setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         jDialog_darVuelto.setMinimumSize(new java.awt.Dimension(400, 300));
+        jDialog_darVuelto.setModal(true);
 
         jPanel5.setBackground(new java.awt.Color(153, 153, 153));
 
@@ -670,6 +672,9 @@ public class Pan_NuevaFactura extends javax.swing.JPanel {
             }
         });
         jFormattedTextField_pagoVuelto.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                jFormattedTextField_pagoVueltoKeyPressed(evt);
+            }
             public void keyTyped(java.awt.event.KeyEvent evt) {
                 jFormattedTextField_pagoVueltoKeyTyped(evt);
             }
@@ -1452,6 +1457,7 @@ public class Pan_NuevaFactura extends javax.swing.JPanel {
                 this.modificaFactura();
                 this.guardarFactura(CONCEPT_APARTADO);
                 this.crearApartado(montodePago, fechaVencimiento);
+                this.darVuelto(montodePago);
                 return true;
                 
             } else {
@@ -1476,6 +1482,7 @@ public class Pan_NuevaFactura extends javax.swing.JPanel {
 
                 this.guardarFactura(CONCEPT_APARTADO);
                 this.crearApartado(montodePago, fechaVencimiento);
+                this.darVuelto(montodePago);
                 return true;
 
             } else {
@@ -1501,6 +1508,7 @@ public class Pan_NuevaFactura extends javax.swing.JPanel {
                 this.modificaFactura();
                 this.guardarFactura(CONCEPT_CREDITO);
                 this.crearApartado(montodePago, fechaVencimiento);
+                this.darVuelto(montodePago);
                 return true;
             } else {
                 JOptionPane.showMessageDialog(
@@ -1524,6 +1532,7 @@ public class Pan_NuevaFactura extends javax.swing.JPanel {
 
                 this.guardarFactura(CONCEPT_CREDITO);
                 this.crearApartado(montodePago, fechaVencimiento);
+                this.darVuelto(montodePago);
                 return true;
 
             } else {
@@ -1553,7 +1562,11 @@ public class Pan_NuevaFactura extends javax.swing.JPanel {
     private boolean factSave(){
         return this.guardarFactura(CONCEPT_FACTURA);
     }
-    
+    private void darVuelto(BigDecimal totalFact) {
+        this.jFormattedTextField_totalFact.setValue(totalFact);
+        this.jDialog_darVuelto.setVisible(true);
+        this.jFormattedTextField_pagoVuelto.requestFocusInWindow();
+    }
     /**
      * Se encarga de guardar las facturas de acuerdo a la accion es decir si es
      * un apartado, una factura o un credito.
@@ -1570,9 +1583,7 @@ public class Pan_NuevaFactura extends javax.swing.JPanel {
         
         if (_callType == FACTURACION_CALL){
             if (factSave()) {
-                this.jFormattedTextField_totalFact.setValue(this.corregirDato(this.jFormattedTextField_Total.getText()));
-                this.jDialog_darVuelto.setVisible(true);
-                this.jFormattedTextField_pagoVuelto.requestFocusInWindow();
+                this.darVuelto(this.corregirDato(this.jFormattedTextField_Total.getText()));
                 return true;
             }
             return false;
@@ -1580,7 +1591,7 @@ public class Pan_NuevaFactura extends javax.swing.JPanel {
         } 
         else if (_callType == MOD_FACT_CALL) {
             if(modFactSave()){
-            this.regresar();
+                this.darVuelto(this.corregirDato(this.jFormattedTextField_Total.getText()));
                 return true;
             }
             return false;
@@ -1589,42 +1600,38 @@ public class Pan_NuevaFactura extends javax.swing.JPanel {
             
         else if (_callType == MOD_APART_CALL) {
             if(modApartSave()){
-            this.regresar();
                 return true;
             }
             return false;
             
         } else if (_callType == APARTADO_CALL) {
             if(apartSave()){
-            this.regresar();
                 return true;
             }
             return false;
         
         } else if (_callType == MOD_CRED_CALL) {
             if(modCredSave()){
-            this.regresar();
                 return true;
             }
             return false;
             
         } else if (_callType == CREDITO_CALL) {
             if(credSave()){
-            this.regresar();
                 return true;
             }
             return false;
             
         } else if (_callType == DEVOLUCION_CALL) {
             if(devSave()){
-            this.regresar();
+                this.regresar();
                 return true;
             }
             return false;
 
         } else if (_callType == MOD_DEV_CALL) {
             if(modDevSave()){
-            this.regresar();
+                this.regresar();
                 return true;
             }
             return false;
@@ -2163,14 +2170,7 @@ public class Pan_NuevaFactura extends javax.swing.JPanel {
             if (evt.getNewValue() != null) {
                 String text = evt.getNewValue().toString();
                 BigDecimal vuelto_new = this.StringtoBigDecimal(text);
-                /**if (evt.getOldValue() != null) {
-                    String text2 = evt.getOldValue().toString();
-                    BigDecimal vuelto_old = this.StringtoBigDecimal(text2);
-                    BigDecimal total = this.corregirDato(this.jFormattedTextField_Total.getText());
-                    this.jFormattedTextField_vuelto.setValue(total.subtract(vuelto_new.subtract(vuelto_old)));
-                    return;
-                }**/
-                BigDecimal total = this.corregirDato(this.jFormattedTextField_Total.getText());
+                BigDecimal total = this.corregirDato(this.jFormattedTextField_totalFact.getText());
                 if(vuelto_new.compareTo(total)<0){
                     
                     
@@ -2221,13 +2221,19 @@ public class Pan_NuevaFactura extends javax.swing.JPanel {
 
     private void jButton_aceptarVueltoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_aceptarVueltoActionPerformed
         this.jDialog_darVuelto.dispose();
-        this.jFormattedTextField_pagoVuelto.setValue(BigDecimal.ZERO);
+        this.jFormattedTextField_pagoVuelto.setText(BigDecimal.ZERO.toString());
         this.regresar();
     }//GEN-LAST:event_jButton_aceptarVueltoActionPerformed
 
     private void jFormattedTextField_pagoVueltoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jFormattedTextField_pagoVueltoMouseClicked
          this.jFormattedTextField_pagoVuelto.selectAll();
     }//GEN-LAST:event_jFormattedTextField_pagoVueltoMouseClicked
+
+    private void jFormattedTextField_pagoVueltoKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jFormattedTextField_pagoVueltoKeyPressed
+         if (evt.isControlDown()) {
+            evt.consume();
+        }
+    }//GEN-LAST:event_jFormattedTextField_pagoVueltoKeyPressed
     /**
      * Este metodo devuelve toda la informacion de la tabla de crear factura
      *

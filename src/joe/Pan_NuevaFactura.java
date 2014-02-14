@@ -5,6 +5,7 @@
  */
 package joe;
 
+import ManejoDeArchivos.XMLConfiguracion;
 import db_managment.Direct_Control_BD;
 import java.awt.Toolkit;
 import java.awt.event.KeyEvent;
@@ -160,7 +161,6 @@ public class Pan_NuevaFactura extends javax.swing.JPanel {
         jFormattedTextField_Total = new javax.swing.JFormattedTextField();
         jLabel21 = new javax.swing.JLabel();
         jLabel16 = new javax.swing.JLabel();
-        jComboBox_Vendedores = new javax.swing.JComboBox();
         jFormattedTextField_Cliente = new javax.swing.JFormattedTextField();
         jLabel_NumerodeFact = new javax.swing.JLabel();
         addBtt = new javax.swing.JLabel();
@@ -890,15 +890,6 @@ public class Pan_NuevaFactura extends javax.swing.JPanel {
         jLabel16.setText("Cliente");
         jLayeredPane1.add(jLabel16);
         jLabel16.setBounds(350, 0, 60, 30);
-
-        jComboBox_Vendedores.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-        jComboBox_Vendedores.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyTyped(java.awt.event.KeyEvent evt) {
-                jComboBox_VendedoresKeyTyped(evt);
-            }
-        });
-        jLayeredPane1.add(jComboBox_Vendedores);
-        jComboBox_Vendedores.setBounds(670, 380, 20, 20);
 
         jFormattedTextField_Cliente.setHorizontalAlignment(javax.swing.JTextField.LEFT);
         jFormattedTextField_Cliente.setText("Cliente Generico");
@@ -1870,13 +1861,6 @@ public class Pan_NuevaFactura extends javax.swing.JPanel {
     private void jFormattedTextField_descMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jFormattedTextField_descMouseClicked
         this.jFormattedTextField_desc.selectAll();
     }//GEN-LAST:event_jFormattedTextField_descMouseClicked
-
-    private void jComboBox_VendedoresKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jComboBox_VendedoresKeyTyped
-        if (KeyEvent.VK_ENTER == evt.getKeyChar()) {
-            this.jComboBox_Vendedores.transferFocus();
-
-        }
-    }//GEN-LAST:event_jComboBox_VendedoresKeyTyped
     /**
      * Este metodo detecta si el usuario ingresa un cliente y verifica si este
      * existe o no para poder mostrarle la interfaz de crear un cliente.
@@ -2002,6 +1986,7 @@ public class Pan_NuevaFactura extends javax.swing.JPanel {
 
     private void printBttMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_printBttMouseClicked
         if(this.guardarFactura()){
+                XMLConfiguracion xml = ManejoDeArchivos.XMLConfiguracion.getInstance();
                 this.imprimir(this.jLabel_NumerodeFact.getText(),
                 this.jLabel_Fecha.getText(),
                 this.jFormattedTextField_Total.getText(),
@@ -2009,7 +1994,7 @@ public class Pan_NuevaFactura extends javax.swing.JPanel {
                 this.jFormattedTextField_desc.getText(),
                 this.jFormattedTextField_DescuentoTotal.getText(),
                 this.jFormattedTextField_Cliente.getText(),
-                this.jComboBox_Vendedores.getSelectedItem().toString(),
+                xml.ObtenerUsuario(),
                 this.jComboBox_CategoriaTipoPago.getSelectedItem().toString());}
     }//GEN-LAST:event_printBttMouseClicked
 
@@ -2262,20 +2247,19 @@ public class Pan_NuevaFactura extends javax.swing.JPanel {
      * de pago etc.
      */
     public void cargarInfoFact() {
+      
         Direct_Control_BD AdminBD = Direct_Control_BD.getInstance();
         AdminBD.verInfoFactura(Integer.parseInt(this.jLabel_NumerodeFact.getText()));
         Object[][] dataInfoFactura = AdminBD.getData();
         Object[] datosInfoFactura = dataInfoFactura[0];
         String fecha = datosInfoFactura[0].toString();
         String cliente = datosInfoFactura[1].toString();
-        String vendedor = datosInfoFactura[2].toString();
         String tipopago = datosInfoFactura[3].toString();
         String totalFact = datosInfoFactura[4].toString();
         String detalle = datosInfoFactura[5].toString();
         String descuento = datosInfoFactura[6].toString();
         this.jFormattedTextField_Cliente.setText(cliente);
         this.jLabel_Fecha.setText(fecha);
-        this.jComboBox_Vendedores.setSelectedItem(vendedor);
         this.jComboBox_CategoriaTipoPago.setSelectedItem(tipopago);
         this.jTextField_Detalle.setText(detalle);
         BigDecimal totalFacturado = this.StringtoBigDecimal(totalFact);
@@ -2305,16 +2289,8 @@ public class Pan_NuevaFactura extends javax.swing.JPanel {
         //Agrega 20 filas
         model.addRow(1);
         this.jTable_Factura.setModel(model);
-        AdminBD.verVendedores();
-        /**
-         * Personalizando el jComboBox_Vendedores para que tenga los vendedores
-         * registrados en la base de datos
-         */
-        Object[][] dataVendedores = AdminBD.getData();
-        this.jComboBox_Vendedores.removeAllItems();
-        for (int i = 0; i < dataVendedores.length; i++) {
-            this.jComboBox_Vendedores.addItem(dataVendedores[i][1]);
-        }
+          
+        
         
         this.jFormattedTextField_SubTotal.setValue(BigDecimal.ZERO);
         this.jFormattedTextField_Total.setValue(BigDecimal.ZERO);
@@ -2359,7 +2335,6 @@ public class Pan_NuevaFactura extends javax.swing.JPanel {
     javax.swing.JButton jButton_IngresarDescuento;
     javax.swing.JButton jButton_aceptarVuelto;
     javax.swing.JComboBox jComboBox_CategoriaTipoPago;
-    javax.swing.JComboBox jComboBox_Vendedores;
     javax.swing.JDialog jDialog_BuscarProductoPorCod;
     javax.swing.JDialog jDialog_CrearCliente;
     javax.swing.JDialog jDialog_CrearProducto;
@@ -2453,7 +2428,10 @@ public class Pan_NuevaFactura extends javax.swing.JPanel {
         String Cliente = this.jFormattedTextField_Cliente.getText();
         int idCliente = AdminBD.veridCliente(Cliente);
         int idFactura = Integer.parseInt(this.jLabel_NumerodeFact.getText());
-        String vendedor = this.jComboBox_Vendedores.getSelectedItem().toString();
+        
+        XMLConfiguracion xml = ManejoDeArchivos.XMLConfiguracion.getInstance();
+        String vendedor = xml.ObtenerUsuario();
+        
         int idVendedor = AdminBD.veridVendedor(vendedor);
         String tipoPago = this.jComboBox_CategoriaTipoPago.getSelectedItem().toString();
         String detalle = this.jTextField_Detalle.getText();
@@ -2741,9 +2719,7 @@ public class Pan_NuevaFactura extends javax.swing.JPanel {
         //ingresan datos*****
         this.jTable_Factura.setSurrendersFocusOnKeystroke(true);
 
-        //Agregando por default los datos del comboBox de vendedores y del 
-        //cliente
-        this.jComboBox_Vendedores.setSelectedItem("Sin Categoria");
+        
 
     }
 
@@ -2799,11 +2775,12 @@ public class Pan_NuevaFactura extends javax.swing.JPanel {
     }
 
     private void crearDev() {
+         XMLConfiguracion xml = ManejoDeArchivos.XMLConfiguracion.getInstance();
         Direct_Control_BD AdminBD = Direct_Control_BD.getInstance();
         String Cliente = this.jFormattedTextField_Cliente.getText();
         int idCliente = AdminBD.veridCliente(Cliente);
         int idFactura = Integer.parseInt(this.jLabel_NumerodeFact.getText());
-        String vendedor = this.jComboBox_Vendedores.getSelectedItem().toString();
+        String vendedor = xml.ObtenerUsuario();
         int idVendedor = AdminBD.veridVendedor(vendedor);
         String tipoPago = this.jComboBox_CategoriaTipoPago.getSelectedItem().toString();
         String detalle = this.jTextField_Detalle.getText();
@@ -2871,14 +2848,12 @@ public class Pan_NuevaFactura extends javax.swing.JPanel {
         Object[] datosInfoFactura = dataInfoFactura[0];
         String fecha = datosInfoFactura[0].toString();
         String cliente = datosInfoFactura[1].toString();
-        String vendedor = datosInfoFactura[2].toString();
         String tipopago = datosInfoFactura[3].toString();
         String totalFact = datosInfoFactura[4].toString();
         String detalle = datosInfoFactura[5].toString();
         String descuento = datosInfoFactura[6].toString();
         this.jFormattedTextField_Cliente.setText(cliente);
         this.jLabel_Fecha.setText(fecha);
-        this.jComboBox_Vendedores.setSelectedItem(vendedor);
         this.jComboBox_CategoriaTipoPago.setSelectedItem(tipopago);
         this.jTextField_Detalle.setText(detalle);
         BigDecimal totalFacturado = this.StringtoBigDecimal(totalFact);

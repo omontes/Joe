@@ -107,7 +107,7 @@ public class JF_Facturacion extends javax.swing.JFrame {
     /**
      * Creates new form JF_Facturacion
      */
-    public JF_Facturacion(String pUser, String pPosition) {
+    public JF_Facturacion() {
         //this.setUndecorated(true);
         
         _instance = this;
@@ -115,7 +115,7 @@ public class JF_Facturacion extends javax.swing.JFrame {
         initComponents();
         _panelManager = new PanelManager(jLayeredPane1);
         startComponents();
-        labUsuario.setText(pUser + " - " + pPosition);
+        labUsuario.setText(ManejoDeArchivos.XMLConfiguracion.getInstance().ObtenerUsuario());
         setLocation(StartWindow.getPosX(), StartWindow.getPosY());
         _activePanel = FACT_PANEL;        
     }
@@ -254,15 +254,20 @@ public class JF_Facturacion extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_bttDevMouseClicked
 
-    private void bttAtrasMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bttAtrasMouseClicked
+    public void backOnWindow(){
         Object newPanel = _panelManager.back();
         if (newPanel == null){
             StartWindow.getInstance().enableMe();
             this.dispose();            
         }
+        System.out.println(_panelManager.getPanelCount());
         if (_panelManager.getPanelCount() == 1){
             setEnableTabs(true);
         }
+    }
+    
+    private void bttAtrasMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bttAtrasMouseClicked
+        backOnWindow();
     }//GEN-LAST:event_bttAtrasMouseClicked
 
     private void formWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosing

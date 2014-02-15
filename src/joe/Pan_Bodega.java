@@ -109,49 +109,64 @@ public final class Pan_Bodega extends javax.swing.JPanel {
         jDialog_VerProducto.setUndecorated(true);
         jDialog_VerProducto.setResizable(false);
         jDialog_VerProducto.getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-        jDialog_VerProducto.setLocationRelativeTo(null);
         jDialog_VerProducto.setSize(310, 280);
+        jDialog_VerProducto.setLocationRelativeTo(null);
 
         jPanel5.setBackground(new java.awt.Color(153, 153, 153));
         jPanel5.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        jPanel5.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-        jPanel5.add(jTextField_CodigoVerProducto, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 50, 210, -1));
+        jPanel5.setLayout(null);
+        jPanel5.add(jTextField_CodigoVerProducto);
+        jTextField_CodigoVerProducto.setBounds(80, 50, 210, 23);
 
         jLabel_Codigo2.setForeground(new java.awt.Color(255, 255, 255));
         jLabel_Codigo2.setText("Codigo");
-        jPanel5.add(jLabel_Codigo2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 50, -1, 20));
+        jPanel5.add(jLabel_Codigo2);
+        jLabel_Codigo2.setBounds(10, 50, 33, 23);
 
         jLabel_Nombre2.setForeground(new java.awt.Color(255, 255, 255));
         jLabel_Nombre2.setText("Nombre");
-        jPanel5.add(jLabel_Nombre2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 80, -1, 20));
-        jPanel5.add(jTextField_nombreVerProducto, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 80, 210, -1));
+        jPanel5.add(jLabel_Nombre2);
+        jLabel_Nombre2.setBounds(10, 80, 37, 23);
+        jPanel5.add(jTextField_nombreVerProducto);
+        jTextField_nombreVerProducto.setBounds(80, 80, 210, 23);
 
         jLabel_Precio2.setForeground(new java.awt.Color(255, 255, 255));
         jLabel_Precio2.setText("Precio");
-        jPanel5.add(jLabel_Precio2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 110, 56, 20));
-        jPanel5.add(jTextField_PrecioVerProducto, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 110, 210, -1));
-        jPanel5.add(jTextField_CostoVerProducto, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 140, 210, -1));
-        jPanel5.add(jLabel14, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 153, -1, -1));
+        jPanel5.add(jLabel_Precio2);
+        jLabel_Precio2.setBounds(10, 110, 56, 23);
+        jPanel5.add(jTextField_PrecioVerProducto);
+        jTextField_PrecioVerProducto.setBounds(80, 110, 210, 23);
+        jPanel5.add(jTextField_CostoVerProducto);
+        jTextField_CostoVerProducto.setBounds(80, 140, 210, 23);
+        jPanel5.add(jLabel14);
+        jLabel14.setBounds(150, 153, 0, 0);
 
         jLabel_Costo2.setForeground(new java.awt.Color(255, 255, 255));
         jLabel_Costo2.setText("Costo");
-        jPanel5.add(jLabel_Costo2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 140, -1, 20));
+        jPanel5.add(jLabel_Costo2);
+        jLabel_Costo2.setBounds(10, 140, 28, 23);
 
         jLabel15.setForeground(new java.awt.Color(255, 255, 255));
         jLabel15.setText("Categoria");
-        jPanel5.add(jLabel15, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 170, -1, 20));
-        jPanel5.add(jLabel16, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 202, -1, -1));
+        jPanel5.add(jLabel15);
+        jLabel15.setBounds(10, 170, 47, 23);
+        jPanel5.add(jLabel16);
+        jLabel16.setBounds(410, 202, 0, 0);
 
         jLabel17.setForeground(new java.awt.Color(255, 255, 255));
         jLabel17.setText("Descripcion");
-        jPanel5.add(jLabel17, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 200, -1, 20));
-        jPanel5.add(jTextField_DescripcionVerProducto, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 200, 212, 20));
-        jPanel5.add(jTextField_CategoriaVerProducto, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 170, 210, -1));
+        jPanel5.add(jLabel17);
+        jLabel17.setBounds(10, 200, 54, 23);
+        jPanel5.add(jTextField_DescripcionVerProducto);
+        jTextField_DescripcionVerProducto.setBounds(80, 200, 210, 23);
+        jPanel5.add(jTextField_CategoriaVerProducto);
+        jTextField_CategoriaVerProducto.setBounds(80, 170, 210, 23);
 
         jLabel25.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jLabel25.setForeground(new java.awt.Color(255, 255, 255));
         jLabel25.setText("Ver Producto");
-        jPanel5.add(jLabel25, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, -1, -1));
+        jPanel5.add(jLabel25);
+        jLabel25.setBounds(10, 10, 118, 22);
 
         jButton4.setText("Aceptar");
         jButton4.addActionListener(new java.awt.event.ActionListener() {
@@ -159,23 +174,25 @@ public final class Pan_Bodega extends javax.swing.JPanel {
                 jButton4ActionPerformed(evt);
             }
         });
-        jPanel5.add(jButton4, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 240, -1, -1));
+        jPanel5.add(jButton4);
+        jButton4.setBounds(220, 240, 71, 23);
 
         jDialog_VerProducto.getContentPane().add(jPanel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 310, 280));
 
         jDialog_ConfirmacionVerProducto.setUndecorated(true);
         jDialog_ConfirmacionVerProducto.setResizable(false);
         jDialog_ConfirmacionVerProducto.getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-        jDialog_ConfirmacionVerProducto.setLocationRelativeTo(null);
         jDialog_ConfirmacionVerProducto.setSize(250, 110);
+        jDialog_ConfirmacionVerProducto.setLocationRelativeTo(null);
 
         jPanel7.setBackground(new java.awt.Color(153, 153, 153));
         jPanel7.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        jPanel7.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        jPanel7.setLayout(null);
 
         jLabel26.setForeground(new java.awt.Color(255, 255, 255));
         jLabel26.setText("ID del producto");
-        jPanel7.add(jLabel26, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 40, -1, 20));
+        jPanel7.add(jLabel26);
+        jLabel26.setBounds(10, 40, 74, 23);
 
         jTextField_IdProductoModificar1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -187,7 +204,8 @@ public final class Pan_Bodega extends javax.swing.JPanel {
                 jTextField_IdProductoModificar1KeyPressed(evt);
             }
         });
-        jPanel7.add(jTextField_IdProductoModificar1, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 40, 140, -1));
+        jPanel7.add(jTextField_IdProductoModificar1);
+        jTextField_IdProductoModificar1.setBounds(90, 40, 140, 23);
 
         jButton3.setText("Aceptar");
         jButton3.addActionListener(new java.awt.event.ActionListener() {
@@ -200,12 +218,14 @@ public final class Pan_Bodega extends javax.swing.JPanel {
                 jButton3KeyPressed(evt);
             }
         });
-        jPanel7.add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 70, 80, -1));
+        jPanel7.add(jButton3);
+        jButton3.setBounds(150, 70, 80, 23);
 
         jLabel27.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jLabel27.setForeground(new java.awt.Color(255, 255, 255));
         jLabel27.setText("Ver Producto");
-        jPanel7.add(jLabel27, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, -1, -1));
+        jPanel7.add(jLabel27);
+        jLabel27.setBounds(10, 10, 118, 22);
 
         jDialog_ConfirmacionVerProducto.getContentPane().add(jPanel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 250, 110));
 
@@ -356,33 +376,6 @@ public final class Pan_Bodega extends javax.swing.JPanel {
     private javax.swing.JTextField jTextField_busquedaBodega;
     private javax.swing.JTextField jTextField_nombreVerProducto;
     // End of variables declaration//GEN-END:variables
-
-    private void verEntrada(JTable table, String title) {
-          int row = table.getSelectedRow();
-            if (row >= 0) {
-                VentanaDeInicio mVentana = VentanaDeInicio.getInstance();
-                JPanel_verEntradaSalidaMercaderia panelVerMovimientoEntradaSalida = new JPanel_verEntradaSalidaMercaderia();
-                mVentana.add(panelVerMovimientoEntradaSalida);
-                panelVerMovimientoEntradaSalida.setSize(this.getSize());
-                panelVerMovimientoEntradaSalida.setLocation(this.getLocation());
-                mVentana.remove(this);
-                panelVerMovimientoEntradaSalida.setVisible(true);
-                mVentana.revalidate();
-                mVentana.repaint();
-                mVentana.setTitle(title);
-                if(title.equals("Ver Salida de Mercaderia")){
-                    panelVerMovimientoEntradaSalida.jLabel_tipoMov.setText("Salida de:");
-                }
-                Modelo_Facturacion model = (Modelo_Facturacion) table.getModel();
-                panelVerMovimientoEntradaSalida.jLabel_NumerodeMovimiento.setText(model.getValueAt(row, 0).toString());
-                panelVerMovimientoEntradaSalida.personalizarTablaVerMovimiento();
-            } else {
-                JOptionPane.showMessageDialog(
-                        null,
-                        "No se selecciono ninguna entrada de mercaderia",
-                        "Alert!", JOptionPane.ERROR_MESSAGE);
-            }
-    }
     
     public void personalizarTablaBodega() {
         Direct_Control_BD AdministradorBD= Direct_Control_BD.getInstance();
@@ -410,7 +403,6 @@ public final class Pan_Bodega extends javax.swing.JPanel {
         int row = this.jTable_verBodega.getSelectedRow();
         if(row>0){
             String idProducto = model.getValueAt(row, 0).toString();
-            this.jDialog_ConfirmacionVerProducto.setSize(200, 100);
             Pan_Bodega mPanel = Pan_Bodega.getInstance();
             this.jDialog_ConfirmacionVerProducto.setLocation(mPanel.getLocation());
             this.jTextField_IdProductoModificar1.setText(idProducto);

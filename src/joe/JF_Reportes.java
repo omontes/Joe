@@ -26,6 +26,7 @@ public class JF_Reportes extends javax.swing.JFrame {
         initComponents();
         startComponents();
         setLocation(StartWindow.getPosX(), StartWindow.getPosY());
+        labUsuario.setText(ManejoDeArchivos.XMLConfiguracion.getInstance().ObtenerUsuario());
     }
     
     private void startComponents(){
@@ -44,9 +45,6 @@ public class JF_Reportes extends javax.swing.JFrame {
         jLayeredPane1.add(_panRepInv, 0);
         _panRepInv.setVisible(false);
         _panRepInv.setEnabled(false);
-        
-        String ussr = ManejoDeArchivos.XMLConfiguracion.getInstance().ObtenerUsuario();
-        lblUsser.setText(ussr);
     }
     
     private void changeTab(){
@@ -87,7 +85,7 @@ public class JF_Reportes extends javax.swing.JFrame {
     private void initComponents() {
 
         jLayeredPane1 = new javax.swing.JLayeredPane();
-        lblUsser = new javax.swing.JLabel();
+        labUsuario = new javax.swing.JLabel();
         bttRepFact = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         bttRepInv = new javax.swing.JLabel();
@@ -109,11 +107,11 @@ public class JF_Reportes extends javax.swing.JFrame {
         jLayeredPane1.setMinimumSize(new java.awt.Dimension(800, 500));
         jLayeredPane1.setOpaque(true);
 
-        lblUsser.setFont(new java.awt.Font("Calibri", 2, 14)); // NOI18N
-        lblUsser.setForeground(new java.awt.Color(255, 255, 255));
-        lblUsser.setText("Nombre de Usuario Aquí - Cargo");
-        jLayeredPane1.add(lblUsser);
-        lblUsser.setBounds(80, 480, 540, 17);
+        labUsuario.setFont(new java.awt.Font("Calibri", 2, 14)); // NOI18N
+        labUsuario.setForeground(new java.awt.Color(255, 255, 255));
+        labUsuario.setText("Nombre de Usuario Aquí - Cargo");
+        jLayeredPane1.add(labUsuario);
+        labUsuario.setBounds(80, 480, 540, 17);
 
         bttRepFact.setIcon(new javax.swing.ImageIcon(getClass().getResource("/System/Images/Panel3/bttRepFactAct.png"))); // NOI18N
         bttRepFact.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
@@ -182,6 +180,6 @@ public class JF_Reportes extends javax.swing.JFrame {
     private javax.swing.JLabel bttRepInv;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLayeredPane jLayeredPane1;
-    private javax.swing.JLabel lblUsser;
+    private javax.swing.JLabel labUsuario;
     // End of variables declaration//GEN-END:variables
 }

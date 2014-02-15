@@ -107,7 +107,7 @@ public class JF_Facturacion extends javax.swing.JFrame {
     /**
      * Creates new form JF_Facturacion
      */
-    public JF_Facturacion(String pUser, String pPosition) {
+    public JF_Facturacion() {
         //this.setUndecorated(true);
         
         _instance = this;
@@ -115,7 +115,7 @@ public class JF_Facturacion extends javax.swing.JFrame {
         initComponents();
         _panelManager = new PanelManager(jLayeredPane1);
         startComponents();
-        labUsuario.setText(pUser + " - " + pPosition);
+        labUsuario.setText(ManejoDeArchivos.XMLConfiguracion.getInstance().ObtenerUsuario());
         setLocation(StartWindow.getPosX(), StartWindow.getPosY());
         _activePanel = FACT_PANEL;        
     }

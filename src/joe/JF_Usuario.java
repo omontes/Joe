@@ -23,6 +23,7 @@ public class JF_Usuario extends javax.swing.JFrame {
         clientes.setSize(800, 471);
         jLayeredPane1.add(clientes, 0);
         clientes.setVisible(true);
+        labUsuario.setText(ManejoDeArchivos.XMLConfiguracion.getInstance().ObtenerUsuario());
     }
 
     /**
@@ -36,6 +37,7 @@ public class JF_Usuario extends javax.swing.JFrame {
 
         jLayeredPane1 = new javax.swing.JLayeredPane();
         bttAtras = new javax.swing.JLabel();
+        labUsuario = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -63,6 +65,12 @@ public class JF_Usuario extends javax.swing.JFrame {
         jLayeredPane1.add(bttAtras);
         bttAtras.setBounds(726, 471, 79, 29);
 
+        labUsuario.setFont(new java.awt.Font("Calibri", 2, 14)); // NOI18N
+        labUsuario.setForeground(new java.awt.Color(255, 255, 255));
+        labUsuario.setText("Nombre de Usuario Aquí - Cargo");
+        jLayeredPane1.add(labUsuario);
+        labUsuario.setBounds(80, 480, 630, 17);
+
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/System/Images/Panel2/panel2.png"))); // NOI18N
         jLayeredPane1.add(jLabel1);
         jLabel1.setBounds(0, 0, 838, 500);
@@ -87,5 +95,6 @@ public class JF_Usuario extends javax.swing.JFrame {
     private javax.swing.JLabel bttAtras;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLayeredPane jLayeredPane1;
+    private javax.swing.JLabel labUsuario;
     // End of variables declaration//GEN-END:variables
 }

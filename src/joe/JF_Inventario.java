@@ -40,6 +40,8 @@ public class JF_Inventario extends javax.swing.JFrame {
         setLocation(StartWindow.getPosX(), StartWindow.getPosY());
         _panelManager = new PanelManager(jLayeredPane1);
         
+        labUsuario.setText(ManejoDeArchivos.XMLConfiguracion.getInstance().ObtenerUsuario());
+        
         startComponents();
         
         _activeTab = 0;

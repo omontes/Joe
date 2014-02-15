@@ -378,7 +378,7 @@ public class StartWindow extends javax.swing.JFrame {
                     "¡Atención!", 
                     JOptionPane.WARNING_MESSAGE);
             return false;
-        } else if (pNeedAdmin && isAdmin()){
+        } else if (pNeedAdmin && !isAdmin()){
             JOptionPane.showMessageDialog(
                     jLayeredPane1, 
                     "Necesitas permisos de administrador para poder continuar", 
@@ -395,7 +395,8 @@ public class StartWindow extends javax.swing.JFrame {
      * @return 
      */
     private boolean isAdmin(){
-        return false;
+        String usser = ManejoDeArchivos.XMLConfiguracion.getInstance().ObtenerUsuario();
+        return db_managment.Direct_Control_BD.getInstance().obtenerTipoUsuario(usser).equalsIgnoreCase("Administrador");
     }
     
     private void bttExitMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bttExitMouseClicked
@@ -427,11 +428,7 @@ public class StartWindow extends javax.swing.JFrame {
 
     private void bttInvMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bttInvMouseClicked
         if (valUsser(true)){
-            java.awt.EventQueue.invokeLater(new Runnable() {
-                public void run() {
-                    new JF_Inventario().setVisible(true);
-                }
-            });
+            new JF_Inventario().setVisible(true);
             this.setEnabled(false);
         }
     }//GEN-LAST:event_bttInvMouseClicked
@@ -442,22 +439,14 @@ public class StartWindow extends javax.swing.JFrame {
 
     private void bttRepMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bttRepMouseClicked
         if (valUsser(true)){
-            java.awt.EventQueue.invokeLater(new Runnable() {
-                public void run() {
-                    new JF_Reportes().setVisible(true);
-                }
-            });
+            new JF_Reportes().setVisible(true);
             this.setEnabled(false);
         }
     }//GEN-LAST:event_bttRepMouseClicked
 
     private void bttClientMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bttClientMouseClicked
         if (valUsser(true)){
-            java.awt.EventQueue.invokeLater(new Runnable() {
-                public void run() {
-                    new JF_Usuario().setVisible(true);
-                }
-            });
+            new JF_Usuario().setVisible(true);
             this.setEnabled(false);
         }
     }//GEN-LAST:event_bttClientMouseClicked
@@ -544,7 +533,7 @@ public class StartWindow extends javax.swing.JFrame {
     }//GEN-LAST:event_fieldPasswordKeyPressed
 
     private void verFacturacion() {
-        new JF_Facturacion("Joseph Loaiza", "Jefe").setVisible(true);
+        new JF_Facturacion().setVisible(true);
         this.setEnabled(false);
     }
     

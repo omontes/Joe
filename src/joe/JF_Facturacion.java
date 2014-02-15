@@ -107,7 +107,7 @@ public class JF_Facturacion extends javax.swing.JFrame {
     /**
      * Creates new form JF_Facturacion
      */
-    public JF_Facturacion(String pUser, String pPosition) {
+    public JF_Facturacion() {
         //this.setUndecorated(true);
         
         _instance = this;
@@ -115,7 +115,7 @@ public class JF_Facturacion extends javax.swing.JFrame {
         initComponents();
         _panelManager = new PanelManager(jLayeredPane1);
         startComponents();
-        labUsuario.setText(pUser + " - " + pPosition);
+        labUsuario.setText(ManejoDeArchivos.XMLConfiguracion.getInstance().ObtenerUsuario());
         setLocation(StartWindow.getPosX(), StartWindow.getPosY());
         _activePanel = FACT_PANEL;        
     }
@@ -145,6 +145,9 @@ public class JF_Facturacion extends javax.swing.JFrame {
         setUndecorated(true);
         setResizable(false);
         addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowClosed(java.awt.event.WindowEvent evt) {
+                formWindowClosed(evt);
+            }
             public void windowClosing(java.awt.event.WindowEvent evt) {
                 formWindowClosing(evt);
             }
@@ -265,6 +268,10 @@ public class JF_Facturacion extends javax.swing.JFrame {
     private void formWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosing
         StartWindow.getInstance().enableMe();
     }//GEN-LAST:event_formWindowClosing
+
+    private void formWindowClosed(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosed
+        
+    }//GEN-LAST:event_formWindowClosed
 
     
     private void changeTab(int pPanel){

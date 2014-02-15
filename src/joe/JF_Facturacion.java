@@ -55,6 +55,31 @@ public class JF_Facturacion extends javax.swing.JFrame {
         refreshPanelTable(_activePanel);
     }
     
+    public void setEnableTabs(boolean pAreEnalble){
+        if (pAreEnalble){
+            bttFact.setEnabled(true);
+            bttDev.setEnabled(true);
+            bttCred.setEnabled(true);
+            bttApart.setEnabled(true);
+            
+            bttFact.setVisible(true);
+            bttDev.setVisible(true);
+            bttCred.setVisible(true);
+            bttApart.setVisible(true);
+        } else {
+            
+            bttFact.setVisible(false);
+            bttDev.setVisible(false);
+            bttCred.setVisible(false);
+            bttApart.setVisible(false);
+            
+            bttFact.setEnabled(false);
+            bttDev.setEnabled(false);
+            bttCred.setEnabled(false);
+            bttApart.setEnabled(false);
+        }
+    }
+    
     public void refreshPanelTable(int pPanel){
         if (pPanel == FACT_PANEL){
             _panFact.completarTablaFacturacion();
@@ -231,6 +256,9 @@ public class JF_Facturacion extends javax.swing.JFrame {
         if (newPanel == null){
             StartWindow.getInstance().enableMe();
             this.dispose();            
+        }
+        if (_panelManager.getPanelCount() == 1){
+            setEnableTabs(true);
         }
     }//GEN-LAST:event_bttAtrasMouseClicked
 

@@ -38,15 +38,19 @@ import jzebra.PrintServiceMatcher;
  */
 public class Pan_CerrarCaja extends javax.swing.JPanel {
 
+    public static final int NEW_CALL = 0;
+    public static final int WATCH_CALL = 1;
+    
+    private final int _callType;
     /**
      * Creates new form JPanel_CerrarCaja
      */
-    public Pan_CerrarCaja() {
+    public Pan_CerrarCaja(int pCallType) {
         initComponents();
-    }
-    
-    public void hideSaveButton(){
-        saveBtt.setVisible(false);
+        _callType = pCallType;
+        if (pCallType == WATCH_CALL){
+            saveBtt.setVisible(false);
+        }
     }
     
     /**
@@ -76,6 +80,7 @@ public class Pan_CerrarCaja extends javax.swing.JPanel {
         jFormattedTextField_totalVentaConCaja = new javax.swing.JFormattedTextField();
         jLabel8 = new javax.swing.JLabel();
         jLabel9 = new javax.swing.JLabel();
+        bttPrint = new javax.swing.JLabel();
         jLabel10 = new javax.swing.JLabel();
         jLabel11 = new javax.swing.JLabel();
         jLabel13 = new javax.swing.JLabel();
@@ -166,6 +171,14 @@ public class Pan_CerrarCaja extends javax.swing.JPanel {
         jLabel9.setText("Total Tarjeta  Reportado");
         add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 320, -1, 20));
 
+        bttPrint.setIcon(new javax.swing.ImageIcon(getClass().getResource("/System/Images/Buttons/printBtt.png"))); // NOI18N
+        bttPrint.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                bttPrintMouseClicked(evt);
+            }
+        });
+        add(bttPrint, new org.netbeans.lib.awtextra.AbsoluteConstraints(750, 420, -1, -1));
+
         jLabel10.setText("Total Venta Reportado");
         add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 350, -1, 20));
 
@@ -179,7 +192,7 @@ public class Pan_CerrarCaja extends javax.swing.JPanel {
 
         saveBtt.setIcon(new javax.swing.ImageIcon(getClass().getResource("/System/Images/Buttons/saveBtt.png"))); // NOI18N
         saveBtt.setToolTipText("Aceptar y guardar cierre de caja");
-        saveBtt.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        saveBtt.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         saveBtt.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 saveBttMouseClicked(evt);
@@ -191,7 +204,7 @@ public class Pan_CerrarCaja extends javax.swing.JPanel {
                 saveBttMouseExited(evt);
             }
         });
-        add(saveBtt, new org.netbeans.lib.awtextra.AbsoluteConstraints(740, 420, -1, -1));
+        add(saveBtt, new org.netbeans.lib.awtextra.AbsoluteConstraints(690, 420, -1, -1));
 
         jFormattedTextField_totalContadoReportado.setEditable(false);
         jFormattedTextField_totalContadoReportado.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(new java.text.DecimalFormat("C#,##0.00"))));
@@ -224,9 +237,12 @@ public class Pan_CerrarCaja extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void saveBttMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_saveBttMouseClicked
+        saveAction();
+    }//GEN-LAST:event_saveBttMouseClicked
+    
+    private void saveAction(){
         Direct_Control_BD AdminBD = Direct_Control_BD.getInstance();
         int idCierreVigente= AdminBD.obtenerultimoidCierre();
-        String HoraInicio= this.jLabel_horaInicio.getText();
         String HoraCierre= this.jLabel_horaCierre.getText();
         BigDecimal totalTarjet = this.corregirDato(this.jFormattedTextField_totalTarjeta.getText());
         BigDecimal totalCont = this.corregirDato(this.jFormattedTextField_totalContado.getText());
@@ -387,8 +403,18 @@ public class Pan_CerrarCaja extends javax.swing.JPanel {
         saveBtt.setIcon(new javax.swing.ImageIcon(getClass().getResource("/System/Images/Buttons/saveBtt.png")));
     }//GEN-LAST:event_saveBttMouseExited
 
+    private void bttPrintMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bttPrintMouseClicked
+        if (_callType == NEW_CALL){
+            saveAction();
+        }
+        String HoraInicio= this.jLabel_horaInicio.getText();
+        String HoraCierre= this.jLabel_horaCierre.getText();
+        this.imprimirCierre(jTable_VerCierre,this.jLabel_Cajero.getText(), HoraInicio, HoraCierre, this.jFormattedTextField_totalContadoReportado.getText(), this.jFormattedTextField_totalTarjetaReportado.getText(), this.jFormattedTextField_totalVentaReportado.getText());
+    }//GEN-LAST:event_bttPrintMouseClicked
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    javax.swing.JLabel bttPrint;
     javax.swing.JFormattedTextField jFormattedTextField_totalContado;
     javax.swing.JFormattedTextField jFormattedTextField_totalContadoReportado;
     javax.swing.JFormattedTextField jFormattedTextField_totalTarjeta;

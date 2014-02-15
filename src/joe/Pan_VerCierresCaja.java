@@ -150,7 +150,7 @@ public class Pan_VerCierresCaja extends javax.swing.JPanel {
             String fechaFinal = InfoCierre[0][3].toString();
             
             
-            Pan_CerrarCaja panelCreaCerrarCaja = new Pan_CerrarCaja();
+            Pan_CerrarCaja panelCreaCerrarCaja = new Pan_CerrarCaja(Pan_CerrarCaja.WATCH_CALL);
             
             //**************** Interfaz ************
             JF_Facturacion.getInstance().getPanelManager().showPanel(panelCreaCerrarCaja, 800, 471, 0, 0);
@@ -161,7 +161,6 @@ public class Pan_VerCierresCaja extends javax.swing.JPanel {
             BigDecimal montoinicio = AdminBD.obtenerMontoInicio(idCierre);
             panelCreaCerrarCaja.jLabel_horaCierre.setText(fechaFinal);
             panelCreaCerrarCaja.personalizarTablaCierre(totalcont, totaltarj, totalvent.add(montoinicio), Cajero, fechaInicio, montoinicio);
-            //panelCreaCerrarCaja.hideSaveButton();
 
         } else {
             JOptionPane.showMessageDialog(

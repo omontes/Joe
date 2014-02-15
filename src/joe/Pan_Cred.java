@@ -431,6 +431,7 @@ public class Pan_Cred extends javax.swing.JPanel {
         Pan_NuevaFactura panelNuevaFact = new Pan_NuevaFactura(Pan_NuevaFactura.CREDITO_CALL);
 
         JF_Facturacion.getInstance().getPanelManager().showPanel(panelNuevaFact, 800, 474, 0, 0);
+        JF_Facturacion.getInstance().setEnableTabs(false);
 
         //*******************************************************************
         
@@ -444,6 +445,7 @@ public class Pan_Cred extends javax.swing.JPanel {
 
     private void jLabel11MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel11MouseClicked
         this.modificar(this.jTable_Creditos,Pan_NuevaFactura.MOD_CRED_CALL);
+        JF_Facturacion.getInstance().setEnableTabs(false);
     }//GEN-LAST:event_jLabel11MouseClicked
 
     private void jLabel12MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel12MouseClicked
@@ -594,6 +596,7 @@ public class Pan_Cred extends javax.swing.JPanel {
                 
             Pan_VerFactura panelVerFact = new Pan_VerFactura();
             JF_Facturacion.getInstance().getPanelManager().showPanel(panelVerFact, 800, 474, 0, 0);
+            JF_Facturacion.getInstance().setEnableTabs(false);
                 
             //**********************************************************************
             

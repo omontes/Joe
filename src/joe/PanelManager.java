@@ -18,8 +18,10 @@ public class PanelManager {
     
     private final PanelStack _stack;
     private final JLayeredPane _layeredPane;
+    private int _count;
     
     public PanelManager(JLayeredPane pLayeredPane){
+        _count = 0;
         _stack = new PanelStack();
         _layeredPane = pLayeredPane;
     }
@@ -33,6 +35,7 @@ public class PanelManager {
             _stack.getTop().getPanel().setVisible(false);
             _stack.getTop().getPanel().setEnabled(false);
         }
+        _count++;
         _stack.push(pPanel);
         _layeredPane.add(pPanel, 0);
         pPanel.setVisible(true);
@@ -56,6 +59,7 @@ public class PanelManager {
     }
     
     public Object back(){
+        _count--;
         JPanel lastPanel = _stack.pop();
         lastPanel.setVisible(false);
         _layeredPane.remove(lastPanel);
@@ -64,5 +68,9 @@ public class PanelManager {
             _stack.getTop().getPanel().setEnabled(true);
         }
         return _stack.getTop();
+    }
+
+    public int getPanelCount() {
+        return _count;
     }
 }

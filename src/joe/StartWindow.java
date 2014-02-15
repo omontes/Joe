@@ -10,6 +10,11 @@ import ManejoDeArchivos.XMLConfiguracion;
 import db_managment.Direct_Control_BD;
 import java.awt.Toolkit;
 import java.awt.Dimension;
+import java.awt.event.KeyEvent;
+import java.math.BigDecimal;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import javax.swing.JDialog;
 import javax.swing.JOptionPane;
 
@@ -94,6 +99,15 @@ public class StartWindow extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        inicioCaja = new javax.swing.JDialog();
+        jPanel1 = new javax.swing.JPanel();
+        jLabel2 = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
+        jFormattedTextField_MontoInicioCaja = new javax.swing.JFormattedTextField();
+        jLabel4 = new javax.swing.JLabel();
+        labFecha = new javax.swing.JLabel();
+        jButton1 = new javax.swing.JButton();
+        jButton2 = new javax.swing.JButton();
         jLayeredPane1 = new javax.swing.JLayeredPane();
         jLabel1 = new javax.swing.JLabel();
         panActiveUsser = new javax.swing.JPanel();
@@ -113,6 +127,81 @@ public class StartWindow extends javax.swing.JFrame {
         lbCompanyName = new javax.swing.JLabel();
         bkgImage = new javax.swing.JLabel();
         bkColor = new javax.swing.JLabel();
+
+        inicioCaja.setUndecorated(true);
+        inicioCaja.setPreferredSize(new java.awt.Dimension(350, 180));
+        inicioCaja.setResizable(false);
+        inicioCaja.getContentPane().setLayout(null);
+        inicioCaja.setSize(350, 180);
+        inicioCaja.setLocationRelativeTo(null);
+
+        jPanel1.setBackground(new java.awt.Color(153, 153, 153));
+        jPanel1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        jPanel1.setPreferredSize(new java.awt.Dimension(350, 180));
+        jPanel1.setLayout(null);
+
+        jLabel2.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        jLabel2.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel2.setText("Inicio de caja");
+        jPanel1.add(jLabel2);
+        jLabel2.setBounds(10, 10, 360, 22);
+
+        jLabel3.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        jLabel3.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel3.setText("Monto inicial:");
+        jPanel1.add(jLabel3);
+        jLabel3.setBounds(20, 50, 90, 20);
+
+        jFormattedTextField_MontoInicioCaja.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter()));
+        jFormattedTextField_MontoInicioCaja.setText("0.00");
+        jFormattedTextField_MontoInicioCaja.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jFormattedTextField_MontoInicioCajaMouseClicked(evt);
+            }
+        });
+        jFormattedTextField_MontoInicioCaja.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                jFormattedTextField_MontoInicioCajaKeyPressed(evt);
+            }
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                jFormattedTextField_MontoInicioCajaKeyTyped(evt);
+            }
+        });
+        jPanel1.add(jFormattedTextField_MontoInicioCaja);
+        jFormattedTextField_MontoInicioCaja.setBounds(110, 50, 220, 23);
+
+        jLabel4.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        jLabel4.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel4.setText("Fecha:");
+        jPanel1.add(jLabel4);
+        jLabel4.setBounds(20, 100, 50, 15);
+
+        labFecha.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        labFecha.setForeground(new java.awt.Color(255, 255, 255));
+        labFecha.setText("...");
+        jPanel1.add(labFecha);
+        labFecha.setBounds(110, 100, 220, 15);
+
+        jButton1.setText("Cancelar");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+        jPanel1.add(jButton1);
+        jButton1.setBounds(250, 140, 80, 23);
+
+        jButton2.setText("Aceptar");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
+        jPanel1.add(jButton2);
+        jButton2.setBounds(170, 140, 71, 23);
+
+        inicioCaja.getContentPane().add(jPanel1);
+        jPanel1.setBounds(0, 0, 350, 180);
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(51, 51, 51));
@@ -154,7 +243,19 @@ public class StartWindow extends javax.swing.JFrame {
 
         panLoggedoutUsser.setOpaque(false);
         panLoggedoutUsser.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        fieldUsser.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                fieldUsserKeyPressed(evt);
+            }
+        });
         panLoggedoutUsser.add(fieldUsser, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 20, 150, 30));
+
+        fieldPassword.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                fieldPasswordKeyPressed(evt);
+            }
+        });
         panLoggedoutUsser.add(fieldPassword, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 80, 150, 30));
 
         bttLogin.setIcon(new javax.swing.ImageIcon(getClass().getResource("/System/Images/PanelInicio/loginBtt.png"))); // NOI18N
@@ -303,12 +404,16 @@ public class StartWindow extends javax.swing.JFrame {
 
     private void bttFactMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bttFactMouseClicked
         if (valUsser(false)){
-            java.awt.EventQueue.invokeLater(new Runnable() {
-                public void run() {
-                    new JF_Facturacion("Joseph Loaiza", "Jefe").setVisible(true);
-                }
-            });
-            this.setEnabled(false);
+            if (true) { //Acá se debe validar el inicio de la caja
+                DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
+                Date date = new Date();
+                String fecha = dateFormat.format(date);
+                this.labFecha.setText(fecha);
+                this.inicioCaja.setVisible(true);
+
+            } else {
+                this.verFacturacion();
+            }
         }
     }//GEN-LAST:event_bttFactMouseClicked
 
@@ -332,6 +437,128 @@ public class StartWindow extends javax.swing.JFrame {
     }//GEN-LAST:event_bttInvMouseClicked
 
     private void bttLoginMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bttLoginMouseClicked
+        login();
+    }//GEN-LAST:event_bttLoginMouseClicked
+
+    private void bttRepMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bttRepMouseClicked
+        if (valUsser(true)){
+            java.awt.EventQueue.invokeLater(new Runnable() {
+                public void run() {
+                    new JF_Reportes().setVisible(true);
+                }
+            });
+            this.setEnabled(false);
+        }
+    }//GEN-LAST:event_bttRepMouseClicked
+
+    private void bttClientMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bttClientMouseClicked
+        if (valUsser(true)){
+            java.awt.EventQueue.invokeLater(new Runnable() {
+                public void run() {
+                    new JF_Usuario().setVisible(true);
+                }
+            });
+            this.setEnabled(false);
+        }
+    }//GEN-LAST:event_bttClientMouseClicked
+
+    private void bttConfMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bttConfMouseEntered
+        bttConf.setIcon(new javax.swing.ImageIcon(getClass().getResource("/System/Images/PanelInicio/bttConfTch.png")));
+    }//GEN-LAST:event_bttConfMouseEntered
+
+    private void bttConfMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bttConfMouseExited
+        bttConf.setIcon(new javax.swing.ImageIcon(getClass().getResource("/System/Images/PanelInicio/bttConfUnt.png")));
+    }//GEN-LAST:event_bttConfMouseExited
+
+    private void bttLogoutMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bttLogoutMouseClicked
+        ManejoDeArchivos.XMLConfiguracion.getInstance().establecerUsuario("");
+        _logged = false;
+        
+        panActiveUsser.setVisible(false);
+        panActiveUsser.setEnabled(false);
+        
+        panLoggedoutUsser.setEnabled(true);
+        panLoggedoutUsser.setVisible(true);
+    }//GEN-LAST:event_bttLogoutMouseClicked
+
+    private void formWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosing
+        ManejoDeArchivos.XMLConfiguracion.getInstance().establecerUsuario("");
+    }//GEN-LAST:event_formWindowClosing
+
+    private void bttConfMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bttConfMouseClicked
+        if (valUsser(true)){
+            
+        }
+    }//GEN-LAST:event_bttConfMouseClicked
+
+    private void jFormattedTextField_MontoInicioCajaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jFormattedTextField_MontoInicioCajaMouseClicked
+        this.jFormattedTextField_MontoInicioCaja.selectAll();
+    }//GEN-LAST:event_jFormattedTextField_MontoInicioCajaMouseClicked
+
+    private void jFormattedTextField_MontoInicioCajaKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jFormattedTextField_MontoInicioCajaKeyPressed
+        if (evt.getKeyChar() == KeyEvent.VK_ENTER) {
+            this.jFormattedTextField_MontoInicioCaja.transferFocus();
+
+        }
+        if (evt.isControlDown()) {
+            evt.consume();
+        }
+    }//GEN-LAST:event_jFormattedTextField_MontoInicioCajaKeyPressed
+
+    private void jFormattedTextField_MontoInicioCajaKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jFormattedTextField_MontoInicioCajaKeyTyped
+        int tecla = evt.getKeyChar();
+        if (tecla == KeyEvent.VK_COMMA) {
+            return;
+        }
+        if (tecla == KeyEvent.VK_PERIOD) {
+            return;
+        };
+        if (!Character.isDigit(tecla) & !Character.isISOControl(
+            evt.getKeyChar())) {
+        Toolkit.getDefaultToolkit().beep();
+        evt.consume();
+        }
+    }//GEN-LAST:event_jFormattedTextField_MontoInicioCajaKeyTyped
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        inicioCaja.dispose();
+    }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        this.crearCierreCaja();
+        this.inicioCaja.dispose();
+        this.jFormattedTextField_MontoInicioCaja.setValue(new BigDecimal("0.00"));
+        this.verFacturacion();
+    }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void fieldUsserKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_fieldUsserKeyPressed
+        if (evt.getKeyCode() == 10){
+            login();
+        }
+    }//GEN-LAST:event_fieldUsserKeyPressed
+
+    private void fieldPasswordKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_fieldPasswordKeyPressed
+        if (evt.getKeyCode() == 10){
+            login();
+        }
+    }//GEN-LAST:event_fieldPasswordKeyPressed
+
+    private void verFacturacion() {
+        new JF_Facturacion("Joseph Loaiza", "Jefe").setVisible(true);
+        this.setEnabled(false);
+    }
+    
+    private void crearCierreCaja() {
+        Direct_Control_BD AdminBD = Direct_Control_BD.getInstance();
+        String fecha = this.labFecha.getText();
+        String Cajero = ManejoDeArchivos.XMLConfiguracion.getInstance().ObtenerUsuario();
+
+        Object montoInicio = this.jFormattedTextField_MontoInicioCaja.getValue();
+        BigDecimal reporteInicio = new BigDecimal(montoInicio != null ? montoInicio.toString() : "0");
+        AdminBD.insertarCierreDeCaja(fecha, Cajero, reporteInicio);
+    }
+    
+    private void login(){
         String usser = fieldUsser.getText();
         String pass = new String(fieldPassword.getPassword());
         
@@ -380,55 +607,8 @@ public class StartWindow extends javax.swing.JFrame {
             }
         }
         
-        
-    }//GEN-LAST:event_bttLoginMouseClicked
-
-    private void bttRepMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bttRepMouseClicked
-        if (valUsser(true)){
-            java.awt.EventQueue.invokeLater(new Runnable() {
-                public void run() {
-                    new JF_Reportes().setVisible(true);
-                }
-            });
-            this.setEnabled(false);
-        }
-    }//GEN-LAST:event_bttRepMouseClicked
-
-    private void bttClientMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bttClientMouseClicked
-        if (valUsser(true)){
-            
-        }
-    }//GEN-LAST:event_bttClientMouseClicked
-
-    private void bttConfMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bttConfMouseEntered
-        bttConf.setIcon(new javax.swing.ImageIcon(getClass().getResource("/System/Images/PanelInicio/bttConfTch.png")));
-    }//GEN-LAST:event_bttConfMouseEntered
-
-    private void bttConfMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bttConfMouseExited
-        bttConf.setIcon(new javax.swing.ImageIcon(getClass().getResource("/System/Images/PanelInicio/bttConfUnt.png")));
-    }//GEN-LAST:event_bttConfMouseExited
-
-    private void bttLogoutMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bttLogoutMouseClicked
-        ManejoDeArchivos.XMLConfiguracion.getInstance().establecerUsuario("");
-        _logged = false;
-        
-        panActiveUsser.setVisible(false);
-        panActiveUsser.setEnabled(false);
-        
-        panLoggedoutUsser.setEnabled(true);
-        panLoggedoutUsser.setVisible(true);
-    }//GEN-LAST:event_bttLogoutMouseClicked
-
-    private void formWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosing
-        ManejoDeArchivos.XMLConfiguracion.getInstance().establecerUsuario("");
-    }//GEN-LAST:event_formWindowClosing
-
-    private void bttConfMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bttConfMouseClicked
-        if (valUsser(true)){
-            
-        }
-    }//GEN-LAST:event_bttConfMouseClicked
-
+    }
+    
     /**
      * @param args the command line arguments
      */
@@ -478,11 +658,21 @@ public class StartWindow extends javax.swing.JFrame {
     private javax.swing.JLabel bttRep;
     private javax.swing.JPasswordField fieldPassword;
     private javax.swing.JTextField fieldUsser;
+    private javax.swing.JDialog inicioCaja;
+    private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton2;
+    private javax.swing.JFormattedTextField jFormattedTextField_MontoInicioCaja;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
     private javax.swing.JLayeredPane jLayeredPane1;
+    private javax.swing.JPanel jPanel1;
     private javax.swing.JLabel labActiveName;
+    private javax.swing.JLabel labFecha;
     private javax.swing.JLabel lbCompanyName;
     private javax.swing.JPanel panActiveUsser;
     private javax.swing.JPanel panLoggedoutUsser;
     // End of variables declaration//GEN-END:variables
+
 }

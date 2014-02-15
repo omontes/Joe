@@ -59,6 +59,31 @@ public class JF_Inventario extends javax.swing.JFrame {
         }
     }
     
+    public void setEnableTabs(boolean pAreEnable){
+        if (pAreEnable){
+            bttSalidas.setEnabled(true);
+            bttBodega.setEnabled(true);
+            bttInventario.setEnabled(true);
+            bttMovimientos.setEnabled(true);
+            
+            bttSalidas.setVisible(true);
+            bttBodega.setVisible(true);
+            bttInventario.setVisible(true);
+            bttMovimientos.setVisible(true);
+            
+        } else {
+            bttSalidas.setVisible(false);
+            bttBodega.setVisible(false);
+            bttInventario.setVisible(false);
+            bttMovimientos.setVisible(false);
+            
+            bttSalidas.setEnabled(false);
+            bttBodega.setEnabled(false);
+            bttInventario.setEnabled(false);
+            bttMovimientos.setEnabled(false);
+        }
+    }
+    
     private void startComponents(){
         _panInventario = new Pan_Inventario();
         _panInventario.setSize(760, 400);
@@ -279,6 +304,9 @@ public class JF_Inventario extends javax.swing.JFrame {
         if (newPanel == null){
             StartWindow.getInstance().enableMe();
             this.dispose();            
+        }
+        if (_panelManager.getPanelCount() == 1){
+            setEnableTabs(true);
         }
     }//GEN-LAST:event_backMouseClicked
 

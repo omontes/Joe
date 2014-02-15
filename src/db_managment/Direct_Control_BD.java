@@ -18,6 +18,7 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 import joe.JPanel_VerFactura;
 
 /**
@@ -1789,21 +1790,21 @@ public class Direct_Control_BD {
         }
     }
 
-    /**
-     * Obtener informacion de los vendedores
-     */
-    public void consultarVendedores() {
-        try {
-            String categorias = this.readSql("../Joe/src/"
-                    + "sql_files/consultarInfoVendedores.sql");
-            PreparedStatement stm = this.conection.prepareStatement(categorias);
-            ResultSet resultset = stm.executeQuery();
-            this.setColumnNames(this.Get_Columnas(resultset));
-            this.setData(this.ResultSet_Array(resultset));
-        } catch (Exception e) {
-            System.out.println("Error al consultar Vendedores");
-        }
-    }
+//    /**
+//     * Obtener informacion de los vendedores
+//     */
+//    public void consultarVendedores() {
+//        try {
+//            String categorias = this.readSql("../Joe/src/"
+//                    + "sql_files/consultarInfoVendedores.sql");
+//            PreparedStatement stm = this.conection.prepareStatement(categorias);
+//            ResultSet resultset = stm.executeQuery();
+//            this.setColumnNames(this.Get_Columnas(resultset));
+//            this.setData(this.ResultSet_Array(resultset));
+//        } catch (Exception e) {
+//            System.out.println("Error al consultar Vendedores");
+//        }
+//    }
 
     /**
      * Devuelve el idVendedor del nombre del vendedor dado.
@@ -3360,9 +3361,11 @@ public class Direct_Control_BD {
             stm.executeUpdate();
 
         } catch (Exception e) {
-            System.out.println("No se pudo eliminar el usuario");
-
-        }
+            JOptionPane.showMessageDialog(
+                    null,
+                    "No se pudo eliminar este usuario",
+                    "Mensaje", JOptionPane.ERROR_MESSAGE);
+                   }
     }
 
     public boolean insertarPersona(String nombre, String direccion,
@@ -3724,13 +3727,31 @@ public class Direct_Control_BD {
             ResultSet resultset = stm.executeQuery();
             while (resultset.next()) {
                 return resultset.getInt(1);
-               
+
             }
         } catch (IOException | SQLException e) {
             System.out.println("Error al verificar tipo de usuario");
         }
 
         return 0;
+    }
+
+    /**
+     * Obtener todos los usuarios
+     */
+    public void consultarUsuarios() {
+
+        try {
+            String usuarios = this.readSql("../Joe/src/"
+                    + "sql_files/consultarUsuarios.sql");
+            PreparedStatement stm = this.conection.prepareStatement(usuarios);
+            ResultSet resultset = stm.executeQuery();
+            this.setColumnNames(this.Get_Columnas(resultset));
+            this.setData(this.ResultSet_Array(resultset));
+        } catch (Exception e) {
+            System.out.println("Error al consultar Usuarios");
+        }
+
     }
 
 }

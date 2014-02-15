@@ -19,9 +19,12 @@ import java.util.Date;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.print.PrintService;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableCellRenderer;
+import jzebra.PrintRaw;
+import jzebra.PrintServiceMatcher;
 
 /**
  *
@@ -196,9 +199,142 @@ public class Pan_VerFactura extends javax.swing.JPanel {
         jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/System/Images/Panel1/panelVF.png"))); // NOI18N
         add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
     }// </editor-fold>//GEN-END:initComponents
+     /**
+     * Imprime la factura.
+     *
+     * @param numFact //Debe ser Generico.
+     * @param date
+     * @param totalFact
+     * @return
+     */
+    private boolean imprimir(String numFact, String date, String totalFact, String subtotalFact, String desc, String rebaja, String cliente,
+            String vendedor, String venta) {
+        try {
+            String rawCmds = "FIRST NAME";
+            String printer = "Generic / Text Only (Copy 3)"; // debe tener 
+            //el mismo nombre que la impresora 
+            PrintService ps = PrintServiceMatcher.findPrinter(printer);
+            if (ps != null) {
 
+                PrintRaw p = new PrintRaw(ps, rawCmds);
+                /**
+                 * p.clear(); p.append("N\n"); p.append("^XA\n");
+                 * p.append("^FO350,355^A0N,30,30^FD\"" + title + "\"\n");
+                 * p.append("^XZ\n");
+                p.append("P1,1\n");*
+                 */
+                p.clear();
+                p.append("\u001B\u0040"); //reset printer 
+                //p.append("\u001B"+"\u0045"+"\u0001"+"\r");//Negrita
+                /**
+                 * ********************************************************
+                 */
+
+                p.append("\u001B" + "\u0061" + "\u0001" + "\r");//*** Centrado
+                p.append("Boutique Francini\r\n");
+                p.append("San Jose, Costa Rica\r\n");
+                p.append("Tel:228826962,pulgamontes@gmail.com\r\n");
+                p.append("Resolucion nro. 234252 del 2003-89\r\n");
+                p.append("\u001B" + "\u0064" + "\u0001" + "\r");//*** 3lineas
+                /**
+                 * *******************************************************
+                 */
+                //p.append("\u001B"+"\u0045"+"\u0000"+"\r");//QuitalaNegrita
+                /**
+                 * ********************************************************
+                 */
+
+                p.append("\u001B" + "\u0061" + "\u0000" + "\r");//Quita Centrado
+                p.append("Fecha   : \t " + date + "\r\n");
+                p.append("NoFact  : \t " + numFact + "\r\n");
+                p.append("Cliente : \t " + cliente + "\r\n");
+                p.append("Vendedor: \t " + vendedor + "\r\n");
+                p.append("Venta   : \t " + venta + "\r\n");
+                p.append("CANT. \t DESCRIPCION \t      TOTAL\r\n");
+                p.append("----  ----------------       ------\r\n");
+
+                /**
+                 * ********************************************************
+                 */
+                Modelo_verFacturas dtm = (Modelo_verFacturas) jTable_Factura.getModel();
+                int nRow = dtm.getRowCount();
+                for (int i = 0; i < nRow; i++) {
+                    String Producto = dtm.getValueAt(i, 1).toString();
+                    if (!Producto.equals("")) {
+                        String cantidad = dtm.getValueAt(i, 2).toString();
+                        String subtotal = dtm.getValueAt(i, 4).toString();
+                        p.append("" + Producto + "   \r\n");
+                        p.append("" + cantidad + "                           "
+                                + "" + subtotal + "   \r\n");
+                    }
+
+                }
+
+                //p.append("----  ----------------    -----------   \r\n");
+                //p.append("----------------------------------------\r\n"); 
+                /*
+                 * Importante solo se esta usando la parte hexadecimal
+                 * //u00HEX
+                 * junto con el archivo ESC-POS-Programming-Guide
+                 */
+                /*
+                 * Para centrado y Derecha se esta usando la descripcion 
+                 * que viene en esta pagina donde dice other 
+                 * http://www.lprng.com/DISTRIB/RESOURCES/PPD/epson.htm 
+                 * (FAVORITOS)
+                 */
+                p.append("\u001B" + "\u0061" + "\u0002" + "\r");//*** Derecha
+                p.append("\u001B" + "\u0064" + "\u0003" + "\r");//*** 1lineas
+                String subto = " SUB TOTAL : \t " + subtotalFact + "";
+                String subtoCantidad = this.fill(subto, 25, " ");
+                p.append(subtoCantidad + "\r\n");
+                p.append(this.fill(" DESCTO  % : \t " + desc + "", subtoCantidad.length(), " ") + "\r\n");
+                p.append(this.fill(" DESCUENTO : \t " + rebaja + "", subtoCantidad.length(), " ") + "\r\n");
+                p.append("---------------------------\r\n");
+                p.append(this.fill(" T O T A L : \t " + totalFact + "", subtoCantidad.length(), " ") + "\r\n");
+                p.append("\u001B" + "\u0061" + "\u0000" + "\r");//Quita Centrado
+                p.append("\u001B" + "\u0061" + "\u0001" + "\r");//*** Centrado
+                p.append("\u001B" + "\u0064" + "\u0004" + "\r");//*** 3lineas
+                p.append("Muchas Gracias por su compra\r\n");
+                p.append("\u001B\u0040");//reset printer
+                p.append("\u001B" + "\u0064" + "\u0008" + "\r");//*** 10lineas**/
+                p.append("\u001D" + "\u0056" + "\u0001" + "\r");//*** CutPaper
+                
+                //p.append("-Texto sin negrita-\r\n");
+                //p.append("-XXXXXXXXXXXXXX-\r\n");
+                return p.print();
+
+            } else {
+                System.err.println("No encontro ninguna impresora");
+                return false;
+            }
+
+        } catch (Exception e) {
+            e.printStackTrace();
+            return false;
+        }
+    }
+
+    public String fill(int length, String with) {
+        StringBuilder sb = new StringBuilder(length);
+        while (sb.length() < length) {
+            sb.append(with);
+        }
+        return sb.toString();
+    }
+
+    public String fill(String value, int length, String with) {
+
+        StringBuilder result = new StringBuilder(length);
+        result.append(value);
+        result.append(fill(Math.max(0, length - value.length()), with));
+
+        return result.toString();
+
+    }
     private void bttPrintMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bttPrintMouseClicked
-        // TODO add your handling code here:
+        this.imprimir(this.jLabel_NumerodeFact.getText(),this.jLabel_Fecha.getText(),this.jFormattedTextField_Total.getText(),this.jFormattedTextField_SubTotal.getText(),this.jFormattedTextField_desc.getText(),this.jFormattedTextField_DescuentoTotal.getText(),this.jFormattedTextField_Cliente.getText(),
+            this.jTextField_Vendedor.getText(),this.jTextField_tipopago.getText());
     }//GEN-LAST:event_bttPrintMouseClicked
 
     private void bttPrintMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bttPrintMouseEntered

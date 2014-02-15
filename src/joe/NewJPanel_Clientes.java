@@ -845,26 +845,26 @@ jPanel_ModifClienteLayout.setHorizontalGroup(
 
     }
 
-    public void actualizaTablaParaVendedores() {
-        AdminBD.consultarVendedores();
-        data = AdminBD.getData();
-        String[] columnNames = AdminBD.getColumnNames();
-
-        this.jTable_Generica.setModel(new MyTableModel_Generic(columnNames, data));
-        //Crea el ordenador para la tabla generica
-        TableRowSorter<TableModel> ordenador = new TableRowSorter<TableModel>(this.jTable_Generica.getModel());
-        this.jTable_Generica.setRowSorter(ordenador);
-        Vector<RowSorter.SortKey> qq = new Vector<RowSorter.SortKey>();
-        qq.add(new RowSorter.SortKey(0, SortOrder.ASCENDING));
-        ordenador.setSortKeys(qq);
-        jTable_Generica.requestFocus();
-        jTable_Generica.changeSelection(0, 0, false, false);
-        /**
-         * Agrega el listener al JtextField del buscador *
-         */
-        this.TextField_Buscador.getDocument().addDocumentListener(new ListenerBuscador(this.TextField_Buscador, ordenador));
-
-    }
+//    public void actualizaTablaParaVendedores() {
+//        AdminBD.consultarVendedores();
+//        data = AdminBD.getData();
+//        String[] columnNames = AdminBD.getColumnNames();
+//
+//        this.jTable_Generica.setModel(new MyTableModel_Generic(columnNames, data));
+//        //Crea el ordenador para la tabla generica
+//        TableRowSorter<TableModel> ordenador = new TableRowSorter<TableModel>(this.jTable_Generica.getModel());
+//        this.jTable_Generica.setRowSorter(ordenador);
+//        Vector<RowSorter.SortKey> qq = new Vector<RowSorter.SortKey>();
+//        qq.add(new RowSorter.SortKey(0, SortOrder.ASCENDING));
+//        ordenador.setSortKeys(qq);
+//        jTable_Generica.requestFocus();
+//        jTable_Generica.changeSelection(0, 0, false, false);
+//        /**
+//         * Agrega el listener al JtextField del buscador *
+//         */
+//        this.TextField_Buscador.getDocument().addDocumentListener(new ListenerBuscador(this.TextField_Buscador, ordenador));
+//
+//    }
 
     private void crearPersona() {
         String nombre = this.jFormattedTextField_nombreClteVend.getText();
@@ -929,15 +929,7 @@ jPanel_ModifClienteLayout.setHorizontalGroup(
      * @param nombre
      */
     private void modificarPersona(String nombre) {
-//        String fecha = "";
-//        try {//convertir de formato yyyy/MM/dd a dd/MM/yyyy
-//            Date date = new SimpleDateFormat("dd/MM/yyyy").
-//                    parse(jFormattedTextField_ModffechaCumpleClteVend.
-//                            getText().toString());
-//            fecha = new SimpleDateFormat("yyyy/MM/dd").format(date);
-//
-//        } catch (ParseException ex) {
-//        }
+
         String fecha = dateFormatIng.format(
                 dateChooserCombo_CumpModifCliente.getSelectedDate().
                 getTime());

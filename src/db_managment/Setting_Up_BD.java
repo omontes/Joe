@@ -31,7 +31,7 @@ public final class Setting_Up_BD {
     private String driver = "com.mysql.jdbc.Driver";
     private String database = "jdbc:mysql://localhost:3306/monicatico";
     private String user = "root";
-    private String pass = "mysql";
+    private String pass = "123456";
     private Connection conection;
     private Statement statement;
     DateFormat dateFormat = new SimpleDateFormat("EEEE");//formato fecha act

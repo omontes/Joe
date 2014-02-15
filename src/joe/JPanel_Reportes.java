@@ -5074,13 +5074,12 @@ public void actionPerformed(java.awt.event.ActionEvent evt) {
     }//GEN-LAST:event_jButton5ActionPerformed
 
     private void jButton_VentasPorVendedorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_VentasPorVendedorActionPerformed
-        /////////////////esta parte al correr tira una advertencia, si se comenta no//////////////////
-        Direct_Control_BD mBD = Direct_Control_BD.getInstance();
+               Direct_Control_BD mBD = Direct_Control_BD.getInstance();
         mBD.verVendedores();//consulta los vendedores existentes
         Object[][] data;
         data = mBD.getData();
-        String[] columnNames;
-        columnNames = mBD.getColumnNames();
+//        String[] columnNames;
+//        columnNames = mBD.getColumnNames();
         this.jComboBox_SeleccionarVendedor.removeAllItems();
         for (Object[] data1 : data) {
             //muestra los vendedores

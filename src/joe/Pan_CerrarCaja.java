@@ -238,7 +238,7 @@ public class Pan_CerrarCaja extends javax.swing.JPanel {
 
     private void saveBttMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_saveBttMouseClicked
         saveAction();
-    }//GEN-LAST:event_saveBttMouseClicked
+    }                                    
     
     private void saveAction(){
         Direct_Control_BD AdminBD = Direct_Control_BD.getInstance();
@@ -253,9 +253,11 @@ public class Pan_CerrarCaja extends javax.swing.JPanel {
         BigDecimal totalContReportado = this.corregirDato(this.jFormattedTextField_totalContadoReportado.getText());
         AdminBD.actualizarCierreDeCaja(HoraCierre, totalVendido, observaciones, ReporteFinal, totalCont, totalTarjet, totalContReportado, totalTarjtReportado, idCierreVigente);
         JF_Facturacion.getInstance().getPanelManager().back();
-    }
-    
-    private void imprimirCierre(JTable table,String Cajero, String horaInicio, String horaCierre, String totalcontadoReportado, String totaltarjetaReportado, String totalVentaReportado) {
+    }//GEN-LAST:event_saveBttMouseClicked
+    private void imprimirCierre(JTable table,String Cajero, String horaInicio, String horaCierre,
+            String totalcontadoReportado, String totaltarjetaReportado, String totalVentaReportado,
+            String totalVentaCajaReportado, String totalcontadoSistema,
+            String totaltarjetaSistema, String totalVentaSistema, String totalVentaCajaSistema, String Detalle) {
         try {
             String rawCmds = "FIRST NAME";
             String printer = "Generic / Text Only (Copy 3)"; // debe tener 
@@ -307,9 +309,43 @@ public class Pan_CerrarCaja extends javax.swing.JPanel {
                 p.append("----------------------------------------\r\n");
                 p.append("\u001B" + "\u0061" + "\u0002" + "\r");//*** Derecha
                 p.append("\u001B" + "\u0064" + "\u0003" + "\r");//*** 1lineas
+                
+                String totalcontadoS = this.fill("Total Contado Sistema", 24, " ");
+                String totalcontadoSys = totalcontadoS+" :"+"  "+ this.fill(totalcontadoSistema,12," ");
+                p.append(totalcontadoSys + "\r\n");
+                String totaltarjetaS = this.fill("Total Tarjeta Sistema", 24, " ");
+                String totaltarjetaSys = totaltarjetaS+" :"+"  "+ this.fill(totaltarjetaSistema,12," ");
+                p.append(totaltarjetaSys + "\r\n");
+                String totalventaS=this.fill("Total Venta Sistema", 24, " ");
+                String totalventaSys = totalventaS+" :"+"  "+ this.fill(totalVentaSistema,12," ");
+                p.append(totalventaSys + "\r\n");
+                String totalventaCS=this.fill("Total Venta Sistem + Caja", 24, " ");
+                String totalventaCSys = totalventaCS+":"+"  "+ this.fill( totalVentaCajaSistema,12," ");
+                p.append(totalventaCSys + "\r\n");
+                
+                p.append("\u001B" + "\u0064" + "\u0001" + "\r");//*** 1lineas
+                
                 String totalcontador = this.fill("Total Contado Reportado", 24, " ");
                 String totalcontadoRep = totalcontador+" :"+"  "+ this.fill(totalcontadoReportado,12," ");
                 p.append(totalcontadoRep + "\r\n");
+                String totaltarjetar = this.fill("Total Tarjeta Reportado", 24, " ");
+                String totaltarjetaRep = totaltarjetar+" :"+"  "+ this.fill(totaltarjetaReportado,12," ");
+                p.append(totaltarjetaRep + "\r\n");
+                String totalventar=this.fill("Total Venta Reportado", 24, " ");
+                String totalventaRep = totalventar+" :"+"  "+ this.fill(totalVentaReportado,12," ");
+                p.append(totalventaRep + "\r\n");
+                String totalventaCr=this.fill("Total Venta Report + Caja", 24, " ");
+                String totalventaCRep = totalventaCr+":"+"  "+ this.fill( totalVentaCajaReportado,12," ");
+                p.append(totalventaCRep + "\r\n");
+                
+                p.append("\u001B" + "\u0064" + "\u0001" + "\r");//*** 1lineas
+                
+                p.append("\u001B" + "\u0061" + "\u0001" + "\r");//*** Centrado
+                p.append(""+Detalle+""+"\r\n");
+                p.append("\u001B" + "\u0061" + "\u0000" + "\r");//Quita Centrado
+               
+                
+                
                 p.append("----------------------------------------\r\n");
 
                 p.append("\u001B\u0040");//reset printer
@@ -361,7 +397,19 @@ public class Pan_CerrarCaja extends javax.swing.JPanel {
         }
         String HoraInicio= this.jLabel_horaInicio.getText();
         String HoraCierre= this.jLabel_horaCierre.getText();
-        this.imprimirCierre(jTable_VerCierre,this.jLabel_Cajero.getText(), HoraInicio, HoraCierre, this.jFormattedTextField_totalContadoReportado.getText(), this.jFormattedTextField_totalTarjetaReportado.getText(), this.jFormattedTextField_totalVentaReportado.getText());
+        
+        this.imprimirCierre(jTable_VerCierre,this.jLabel_Cajero.getText(),
+                HoraInicio, HoraCierre,
+                this.jFormattedTextField_totalContadoReportado.getText(),
+                this.jFormattedTextField_totalTarjetaReportado.getText(),
+                this.jFormattedTextField_totalVentaReportado.getText(),
+                jFormattedTextField_totalVentaCajaReportado.getText(),
+                this.jFormattedTextField_totalContado.getText(),
+                this.jFormattedTextField_totalTarjeta.getText(),
+                this.jFormattedTextField_totalVenta.getText(),
+                this.jFormattedTextField_totalVentaConCaja.getText(),
+                this.jLabel_detalle.getText());
+       
     }//GEN-LAST:event_bttPrintMouseClicked
 
 

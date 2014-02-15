@@ -1832,7 +1832,7 @@ public class Direct_Control_BD {
         }
 
     }
-
+    
     public boolean verSiExisteCliente(String nombre) {
         try {
             String verCliente = this.readSql("../Joe"
@@ -3752,6 +3752,25 @@ public class Direct_Control_BD {
             System.out.println("Error al consultar Usuarios");
         }
 
+    }
+    
+    
+    public String obtenerTipoUsuario(String nombre) {
+        try {
+            String verTipoUsuario = this.readSql("../Joe"
+                    + "/src/sql_files/obtenerTipoUsuario.sql");
+            PreparedStatement stm = this.conection.prepareStatement(verTipoUsuario);
+            stm.setString(1, nombre);
+            ResultSet rs = stm.executeQuery();
+            String tipoUser = "";
+            while (rs.next()) {
+                tipoUser = rs.getString(1);
+            }
+            return tipoUser;
+        } catch (Exception e) {
+            System.out.println("Error en obtner tipo de usuario");
+            return "";
+        }
     }
 
 }

@@ -2478,7 +2478,7 @@ public class Pan_NuevaFactura extends javax.swing.JPanel {
     private void crearCliente() {
         Direct_Control_BD AdminBD = Direct_Control_BD.getInstance();
         String nombre = this.jFormattedTextField_nombreCliente.getText();
-        if(!nombre.equals("")){
+        if(nombre.equals("")){
             JOptionPane.showMessageDialog(
                     null,
                     "Por favor ingrese el nombre del cliente",

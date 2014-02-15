@@ -172,9 +172,16 @@ public class Pan_CerrarCaja extends javax.swing.JPanel {
         add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 320, -1, 20));
 
         bttPrint.setIcon(new javax.swing.ImageIcon(getClass().getResource("/System/Images/Buttons/printBtt.png"))); // NOI18N
+        bttPrint.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         bttPrint.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 bttPrintMouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                bttPrintMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                bttPrintMouseExited(evt);
             }
         });
         add(bttPrint, new org.netbeans.lib.awtextra.AbsoluteConstraints(750, 420, -1, -1));
@@ -192,7 +199,7 @@ public class Pan_CerrarCaja extends javax.swing.JPanel {
 
         saveBtt.setIcon(new javax.swing.ImageIcon(getClass().getResource("/System/Images/Buttons/saveBtt.png"))); // NOI18N
         saveBtt.setToolTipText("Aceptar y guardar cierre de caja");
-        saveBtt.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        saveBtt.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         saveBtt.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 saveBttMouseClicked(evt);
@@ -233,6 +240,7 @@ public class Pan_CerrarCaja extends javax.swing.JPanel {
 
         jLabel12.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jLabel12.setIcon(new javax.swing.ImageIcon(getClass().getResource("/System/Images/Panel1/panelVF.png"))); // NOI18N
+        jLabel12.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
     }// </editor-fold>//GEN-END:initComponents
 
@@ -252,7 +260,8 @@ public class Pan_CerrarCaja extends javax.swing.JPanel {
         BigDecimal totalTarjtReportado= this.corregirDato(this.jFormattedTextField_totalTarjetaReportado.getText());
         BigDecimal totalContReportado = this.corregirDato(this.jFormattedTextField_totalContadoReportado.getText());
         AdminBD.actualizarCierreDeCaja(HoraCierre, totalVendido, observaciones, ReporteFinal, totalCont, totalTarjet, totalContReportado, totalTarjtReportado, idCierreVigente);
-        JF_Facturacion.getInstance().getPanelManager().back();
+        StartWindow.getInstance().enableMe();
+        JF_Facturacion.getInstance().dispose();
     }//GEN-LAST:event_saveBttMouseClicked
     private void imprimirCierre(JTable table,String Cajero, String horaInicio, String horaCierre,
             String totalcontadoReportado, String totaltarjetaReportado, String totalVentaReportado,
@@ -411,6 +420,14 @@ public class Pan_CerrarCaja extends javax.swing.JPanel {
                 this.jLabel_detalle.getText());
        
     }//GEN-LAST:event_bttPrintMouseClicked
+
+    private void bttPrintMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bttPrintMouseEntered
+        bttPrint.setIcon(new javax.swing.ImageIcon(getClass().getResource("/System/Images/Buttons/printBttOvr.png")));
+    }//GEN-LAST:event_bttPrintMouseEntered
+
+    private void bttPrintMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bttPrintMouseExited
+        bttPrint.setIcon(new javax.swing.ImageIcon(getClass().getResource("/System/Images/Buttons/printBtt.png")));
+    }//GEN-LAST:event_bttPrintMouseExited
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

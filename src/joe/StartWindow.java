@@ -26,11 +26,14 @@ public class StartWindow extends javax.swing.JFrame {
     private static final int LOGGED_IN = 0;
     private static final int LOGGED_OUT = 1;
     
+    private boolean _logged;
+    
     /**
      * Creates new form StartWindow
      */
     public StartWindow() {
         _instance = this;
+        _logged = false;
         
         initComponents();
         
@@ -95,10 +98,14 @@ public class StartWindow extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         panActiveUsser = new javax.swing.JPanel();
         labActiveName = new javax.swing.JLabel();
+        bttLogout = new javax.swing.JLabel();
         panLoggedoutUsser = new javax.swing.JPanel();
         fieldUsser = new javax.swing.JTextField();
         fieldPassword = new javax.swing.JPasswordField();
         bttLogin = new javax.swing.JLabel();
+        bttConf = new javax.swing.JLabel();
+        bttClient = new javax.swing.JLabel();
+        bttRep = new javax.swing.JLabel();
         bttExit = new javax.swing.JLabel();
         bttFact = new javax.swing.JLabel();
         bttInv = new javax.swing.JLabel();
@@ -112,6 +119,11 @@ public class StartWindow extends javax.swing.JFrame {
         setMinimumSize(new java.awt.Dimension(800, 500));
         setUndecorated(true);
         setResizable(false);
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowClosing(java.awt.event.WindowEvent evt) {
+                formWindowClosing(evt);
+            }
+        });
         getContentPane().setLayout(null);
 
         jLayeredPane1.setPreferredSize(new java.awt.Dimension(800, 500));
@@ -128,8 +140,17 @@ public class StartWindow extends javax.swing.JFrame {
         labActiveName.setText("Nombre activo");
         panActiveUsser.add(labActiveName, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 180, 40));
 
+        bttLogout.setIcon(new javax.swing.ImageIcon(getClass().getResource("/System/Images/PanelInicio/bttLogout.png"))); // NOI18N
+        bttLogout.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        bttLogout.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                bttLogoutMouseClicked(evt);
+            }
+        });
+        panActiveUsser.add(bttLogout, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 40, -1, -1));
+
         jLayeredPane1.add(panActiveUsser);
-        panActiveUsser.setBounds(470, 20, 190, 150);
+        panActiveUsser.setBounds(420, 20, 190, 150);
 
         panLoggedoutUsser.setOpaque(false);
         panLoggedoutUsser.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -137,6 +158,7 @@ public class StartWindow extends javax.swing.JFrame {
         panLoggedoutUsser.add(fieldPassword, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 80, 150, 30));
 
         bttLogin.setIcon(new javax.swing.ImageIcon(getClass().getResource("/System/Images/PanelInicio/loginBtt.png"))); // NOI18N
+        bttLogin.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         bttLogin.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 bttLoginMouseClicked(evt);
@@ -146,6 +168,42 @@ public class StartWindow extends javax.swing.JFrame {
 
         jLayeredPane1.add(panLoggedoutUsser);
         panLoggedoutUsser.setBounds(600, 180, 190, 150);
+
+        bttConf.setIcon(new javax.swing.ImageIcon(getClass().getResource("/System/Images/PanelInicio/bttConfUnt.png"))); // NOI18N
+        bttConf.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        bttConf.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                bttConfMouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                bttConfMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                bttConfMouseExited(evt);
+            }
+        });
+        jLayeredPane1.add(bttConf);
+        bttConf.setBounds(746, 366, 42, 56);
+
+        bttClient.setIcon(new javax.swing.ImageIcon(getClass().getResource("/System/Images/PanelInicio/bttClientes.png"))); // NOI18N
+        bttClient.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        bttClient.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                bttClientMouseClicked(evt);
+            }
+        });
+        jLayeredPane1.add(bttClient);
+        bttClient.setBounds(198, 362, 150, 124);
+
+        bttRep.setIcon(new javax.swing.ImageIcon(getClass().getResource("/System/Images/PanelInicio/bttReportes.png"))); // NOI18N
+        bttRep.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        bttRep.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                bttRepMouseClicked(evt);
+            }
+        });
+        jLayeredPane1.add(bttRep);
+        bttRep.setBounds(572, 362, 150, 124);
 
         bttExit.setIcon(new javax.swing.ImageIcon(getClass().getResource("/System/Images/PanelInicio/bttExitUnt.png"))); // NOI18N
         bttExit.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
@@ -210,18 +268,48 @@ public class StartWindow extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
+    
+    private boolean valUsser(boolean pNeedAdmin){
+        if (!_logged){
+            JOptionPane.showMessageDialog(
+                    jLayeredPane1, 
+                    "Debes iniciar sesión antes de continuar", 
+                    "¡Atención!", 
+                    JOptionPane.WARNING_MESSAGE);
+            return false;
+        } else if (pNeedAdmin && isAdmin()){
+            JOptionPane.showMessageDialog(
+                    jLayeredPane1, 
+                    "Necesitas permisos de administrador para poder continuar", 
+                    "¡Error!", 
+                    JOptionPane.WARNING_MESSAGE);
+            return false;
+        } else {
+            return true;
+        }
+    }
+    
+    /**
+     * 
+     * @return 
+     */
+    private boolean isAdmin(){
+        return false;
+    }
+    
     private void bttExitMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bttExitMouseClicked
         this.dispose();
     }//GEN-LAST:event_bttExitMouseClicked
 
     private void bttFactMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bttFactMouseClicked
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new JF_Facturacion("Joseph Loaiza", "Jefe").setVisible(true);
-            }
-        });
-        this.setEnabled(false);
+        if (valUsser(false)){
+            java.awt.EventQueue.invokeLater(new Runnable() {
+                public void run() {
+                    new JF_Facturacion("Joseph Loaiza", "Jefe").setVisible(true);
+                }
+            });
+            this.setEnabled(false);
+        }
     }//GEN-LAST:event_bttFactMouseClicked
 
     private void bttExitMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bttExitMouseEntered
@@ -233,12 +321,14 @@ public class StartWindow extends javax.swing.JFrame {
     }//GEN-LAST:event_bttExitMouseExited
 
     private void bttInvMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bttInvMouseClicked
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new JF_Inventario().setVisible(true);
-            }
-        });
-        this.setEnabled(false);
+        if (valUsser(true)){
+            java.awt.EventQueue.invokeLater(new Runnable() {
+                public void run() {
+                    new JF_Inventario().setVisible(true);
+                }
+            });
+            this.setEnabled(false);
+        }
     }//GEN-LAST:event_bttInvMouseClicked
 
     private void bttLoginMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bttLoginMouseClicked
@@ -268,6 +358,7 @@ public class StartWindow extends javax.swing.JFrame {
                     "¡Error!", 
                     JOptionPane.ERROR_MESSAGE);
             } else{
+                _logged = true;
                 JOptionPane.showMessageDialog(
                     jLayeredPane1, 
                     "Bienvenido "+usser, 
@@ -282,11 +373,61 @@ public class StartWindow extends javax.swing.JFrame {
                 } else {
                     //ES VENDEDOR
                 }
+                
+                fieldUsser.setText("");
+                fieldPassword.setText("");
+                
             }
         }
         
         
     }//GEN-LAST:event_bttLoginMouseClicked
+
+    private void bttRepMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bttRepMouseClicked
+        if (valUsser(true)){
+            java.awt.EventQueue.invokeLater(new Runnable() {
+                public void run() {
+                    new JF_Reportes().setVisible(true);
+                }
+            });
+            this.setEnabled(false);
+        }
+    }//GEN-LAST:event_bttRepMouseClicked
+
+    private void bttClientMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bttClientMouseClicked
+        if (valUsser(true)){
+            
+        }
+    }//GEN-LAST:event_bttClientMouseClicked
+
+    private void bttConfMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bttConfMouseEntered
+        bttConf.setIcon(new javax.swing.ImageIcon(getClass().getResource("/System/Images/PanelInicio/bttConfTch.png")));
+    }//GEN-LAST:event_bttConfMouseEntered
+
+    private void bttConfMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bttConfMouseExited
+        bttConf.setIcon(new javax.swing.ImageIcon(getClass().getResource("/System/Images/PanelInicio/bttConfUnt.png")));
+    }//GEN-LAST:event_bttConfMouseExited
+
+    private void bttLogoutMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bttLogoutMouseClicked
+        ManejoDeArchivos.XMLConfiguracion.getInstance().establecerUsuario("");
+        _logged = false;
+        
+        panActiveUsser.setVisible(false);
+        panActiveUsser.setEnabled(false);
+        
+        panLoggedoutUsser.setEnabled(true);
+        panLoggedoutUsser.setVisible(true);
+    }//GEN-LAST:event_bttLogoutMouseClicked
+
+    private void formWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosing
+        ManejoDeArchivos.XMLConfiguracion.getInstance().establecerUsuario("");
+    }//GEN-LAST:event_formWindowClosing
+
+    private void bttConfMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bttConfMouseClicked
+        if (valUsser(true)){
+            
+        }
+    }//GEN-LAST:event_bttConfMouseClicked
 
     /**
      * @param args the command line arguments
@@ -327,10 +468,14 @@ public class StartWindow extends javax.swing.JFrame {
     private javax.swing.JLabel bkColor;
     private javax.swing.JLabel bkgBase;
     private javax.swing.JLabel bkgImage;
+    private javax.swing.JLabel bttClient;
+    private javax.swing.JLabel bttConf;
     private javax.swing.JLabel bttExit;
     private javax.swing.JLabel bttFact;
     private javax.swing.JLabel bttInv;
     private javax.swing.JLabel bttLogin;
+    private javax.swing.JLabel bttLogout;
+    private javax.swing.JLabel bttRep;
     private javax.swing.JPasswordField fieldPassword;
     private javax.swing.JTextField fieldUsser;
     private javax.swing.JLabel jLabel1;

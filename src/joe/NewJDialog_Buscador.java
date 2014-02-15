@@ -55,6 +55,7 @@ public class NewJDialog_Buscador extends javax.swing.JDialog {
         jTable_Generica = new javax.swing.JTable();
         jButton_AceptarBusqueda = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
+        jButton1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setModal(true);
@@ -96,12 +97,20 @@ public class NewJDialog_Buscador extends javax.swing.JDialog {
                 jButton_AceptarBusquedaActionPerformed(evt);
             }
         });
-        jPanel1.add(jButton_AceptarBusqueda, new org.netbeans.lib.awtextra.AbsoluteConstraints(558, 268, -1, -1));
+        jPanel1.add(jButton_AceptarBusqueda, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 270, -1, -1));
 
         jLabel2.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(255, 255, 255));
         jLabel2.setText("Buscar");
         jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 11, -1, -1));
+
+        jButton1.setText("Cancelar");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+        jPanel1.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 270, -1, -1));
 
         getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 640, 300));
 
@@ -127,6 +136,10 @@ public class NewJDialog_Buscador extends javax.swing.JDialog {
             this.jButton_AceptarBusqueda.doClick();
         }
     }//GEN-LAST:event_jTable_GenericaMouseClicked
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        this.dispose();
+    }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
      * Actualiza la tabla que se ve en el buscador generico, para este caso debe
@@ -156,6 +169,7 @@ public class NewJDialog_Buscador extends javax.swing.JDialog {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     javax.swing.JFormattedTextField TextField_Buscador;
+    javax.swing.JButton jButton1;
     javax.swing.JButton jButton_AceptarBusqueda;
     javax.swing.JLabel jLabel1;
     javax.swing.JLabel jLabel2;

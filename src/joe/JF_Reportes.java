@@ -12,11 +12,69 @@ package joe;
  */
 public class JF_Reportes extends javax.swing.JFrame {
 
+    private static final int REP_FACT = 0;
+    private static final int REP_INV = 1;
+    
+    private int _activePanel;
+    private Pan_RepFact _panRepFact;
+    private Pan_RepInv _panRepInv;
+    
     /**
      * Creates new form JF_Reportes
      */
     public JF_Reportes() {
         initComponents();
+        startComponents();
+        setLocation(StartWindow.getPosX(), StartWindow.getPosY());
+    }
+    
+    private void startComponents(){
+        _activePanel = REP_FACT;
+        
+        _panRepFact = new Pan_RepFact();
+        _panRepFact.setSize(760, 400);
+        _panRepFact.setLocation(20, 60);
+        jLayeredPane1.add(_panRepFact, 0);
+        _panRepFact.setVisible(true);
+        _panRepFact.setEnabled(true);
+        
+        _panRepInv = new Pan_RepInv();
+        _panRepInv.setSize(760, 400);
+        _panRepInv.setLocation(20, 60);
+        jLayeredPane1.add(_panRepInv, 0);
+        _panRepInv.setVisible(false);
+        _panRepInv.setEnabled(false);
+        
+        String ussr = ManejoDeArchivos.XMLConfiguracion.getInstance().ObtenerUsuario();
+        lblUsser.setText(ussr);
+    }
+    
+    private void changeTab(){
+        if (_activePanel == REP_FACT){
+            bttRepFact.setIcon(new javax.swing.ImageIcon(getClass().getResource("/System/Images/Panel3/bttRepFactDct.png")));
+            bttRepInv.setIcon(new javax.swing.ImageIcon(getClass().getResource("/System/Images/Panel3/bttRepInvAct.png")));
+            
+            _panRepFact.setVisible(false);
+            _panRepFact.setEnabled(false);
+            
+            _panRepInv.setEnabled(true);
+            _panRepInv.setVisible(true);
+            
+            _activePanel = REP_INV;
+            
+        } else {
+            bttRepInv.setIcon(new javax.swing.ImageIcon(getClass().getResource("/System/Images/Panel3/bttRepInvDct.png")));
+            bttRepFact.setIcon(new javax.swing.ImageIcon(getClass().getResource("/System/Images/Panel3/bttRepFactAct.png")));
+            
+            _panRepInv.setEnabled(false);
+            _panRepInv.setVisible(false);
+            
+            _panRepFact.setVisible(true);
+            _panRepFact.setEnabled(true);
+            
+            _activePanel = REP_FACT;
+            
+        }
     }
 
     /**
@@ -29,74 +87,94 @@ public class JF_Reportes extends javax.swing.JFrame {
     private void initComponents() {
 
         jLayeredPane1 = new javax.swing.JLayeredPane();
+        lblUsser = new javax.swing.JLabel();
         bttRepFact = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         bttRepInv = new javax.swing.JLabel();
         bkgr = new javax.swing.JLabel();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setMinimumSize(new java.awt.Dimension(800, 500));
         setUndecorated(true);
+        setPreferredSize(new java.awt.Dimension(800, 500));
         setResizable(false);
-        getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowClosing(java.awt.event.WindowEvent evt) {
+                formWindowClosing(evt);
+            }
+        });
+        getContentPane().setLayout(null);
 
         jLayeredPane1.setBackground(new java.awt.Color(153, 153, 153));
+        jLayeredPane1.setMinimumSize(new java.awt.Dimension(800, 500));
         jLayeredPane1.setOpaque(true);
-        jLayeredPane1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        lblUsser.setFont(new java.awt.Font("Calibri", 2, 14)); // NOI18N
+        lblUsser.setForeground(new java.awt.Color(255, 255, 255));
+        lblUsser.setText("Nombre de Usuario Aquí - Cargo");
+        jLayeredPane1.add(lblUsser);
+        lblUsser.setBounds(80, 480, 540, 17);
 
         bttRepFact.setIcon(new javax.swing.ImageIcon(getClass().getResource("/System/Images/Panel3/bttRepFactAct.png"))); // NOI18N
         bttRepFact.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        jLayeredPane1.add(bttRepFact, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 12, -1, -1));
+        bttRepFact.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                bttRepFactMouseClicked(evt);
+            }
+        });
+        jLayeredPane1.add(bttRepFact);
+        bttRepFact.setBounds(0, 11, 311, 32);
 
         jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/System/Images/Buttons/atras.png"))); // NOI18N
         jLabel2.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        jLayeredPane1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(725, 471, -1, -1));
+        jLabel2.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabel2MouseClicked(evt);
+            }
+        });
+        jLayeredPane1.add(jLabel2);
+        jLabel2.setBounds(725, 471, 65, 29);
 
         bttRepInv.setIcon(new javax.swing.ImageIcon(getClass().getResource("/System/Images/Panel3/bttRepInvDct.png"))); // NOI18N
         bttRepInv.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        jLayeredPane1.add(bttRepInv, new org.netbeans.lib.awtextra.AbsoluteConstraints(311, 12, -1, -1));
+        bttRepInv.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                bttRepInvMouseClicked(evt);
+            }
+        });
+        jLayeredPane1.add(bttRepInv);
+        bttRepInv.setBounds(311, 11, 293, 32);
 
         bkgr.setIcon(new javax.swing.ImageIcon(getClass().getResource("/System/Images/Panel3/panel3.png"))); // NOI18N
-        jLayeredPane1.add(bkgr, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
+        jLayeredPane1.add(bkgr);
+        bkgr.setBounds(0, 0, 800, 500);
 
-        getContentPane().add(jLayeredPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
+        getContentPane().add(jLayeredPane1);
+        jLayeredPane1.setBounds(0, 0, 800, 500);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(JF_Reportes.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(JF_Reportes.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(JF_Reportes.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(JF_Reportes.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+    private void bttRepFactMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bttRepFactMouseClicked
+        if (_activePanel != REP_FACT){
+            changeTab();
         }
-        //</editor-fold>
+    }//GEN-LAST:event_bttRepFactMouseClicked
 
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new JF_Reportes().setVisible(true);
-            }
-        });
-    }
+    private void bttRepInvMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bttRepInvMouseClicked
+        if (_activePanel != REP_INV){
+            changeTab();
+        }
+    }//GEN-LAST:event_bttRepInvMouseClicked
+
+    private void jLabel2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel2MouseClicked
+        StartWindow.getInstance().enableMe();
+        this.dispose();
+    }//GEN-LAST:event_jLabel2MouseClicked
+
+    private void formWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosing
+        StartWindow.getInstance().enableMe();
+    }//GEN-LAST:event_formWindowClosing
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel bkgr;
@@ -104,5 +182,6 @@ public class JF_Reportes extends javax.swing.JFrame {
     private javax.swing.JLabel bttRepInv;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLayeredPane jLayeredPane1;
+    private javax.swing.JLabel lblUsser;
     // End of variables declaration//GEN-END:variables
 }

@@ -16,7 +16,7 @@ import javax.swing.JLayeredPane;
  */
 public class PanelManager {
     
-    private PanelStack _stack;
+    private final PanelStack _stack;
     private final JLayeredPane _layeredPane;
     
     public PanelManager(JLayeredPane pLayeredPane){
@@ -29,7 +29,10 @@ public class PanelManager {
     }
     
     public void showPanel(JPanel pPanel){
-        if (_stack.getTop() != null) _stack.getTop().getPanel().setVisible(false);
+        if (_stack.getTop() != null){
+            _stack.getTop().getPanel().setVisible(false);
+            _stack.getTop().getPanel().setEnabled(false);
+        }
         _stack.push(pPanel);
         _layeredPane.add(pPanel, 0);
         pPanel.setVisible(true);
@@ -56,7 +59,10 @@ public class PanelManager {
         JPanel lastPanel = _stack.pop();
         lastPanel.setVisible(false);
         _layeredPane.remove(lastPanel);
-        if (_stack.getTop() != null) _stack.getTop().getPanel().setVisible(true);
+        if (_stack.getTop() != null) {
+            _stack.getTop().getPanel().setVisible(true);
+            _stack.getTop().getPanel().setEnabled(true);
+        }
         return _stack.getTop();
     }
 }

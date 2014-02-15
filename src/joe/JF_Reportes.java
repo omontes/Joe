@@ -45,9 +45,6 @@ public class JF_Reportes extends javax.swing.JFrame {
         jLayeredPane1.add(_panRepInv, 0);
         _panRepInv.setVisible(false);
         _panRepInv.setEnabled(false);
-        
-        String ussr = ManejoDeArchivos.XMLConfiguracion.getInstance().ObtenerUsuario();
-        labUsuario.setText(ussr);
     }
     
     private void changeTab(){

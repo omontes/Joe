@@ -420,6 +420,7 @@ public class Pan_Apart extends javax.swing.JPanel {
         Pan_NuevaFactura panelNuevaFact = new Pan_NuevaFactura(Pan_NuevaFactura.APARTADO_CALL);
 
         JF_Facturacion.getInstance().getPanelManager().showPanel(panelNuevaFact, 800, 474, 0, 0);
+        JF_Facturacion.getInstance().setEnableTabs(false);
 
         //*******************************************************************
         
@@ -600,6 +601,7 @@ public class Pan_Apart extends javax.swing.JPanel {
                 
                 Pan_VerFactura panelVerFact = new Pan_VerFactura();
                 JF_Facturacion.getInstance().getPanelManager().showPanel(panelVerFact, 800, 474, 0, 0);
+                JF_Facturacion.getInstance().setEnableTabs(false);
                 
                 //**********************************************************************
                 
@@ -780,7 +782,7 @@ public class Pan_Apart extends javax.swing.JPanel {
             Pan_NuevaFactura panelModApart = new Pan_NuevaFactura(pCallType);
             
             JF_Facturacion.getInstance().getPanelManager().showPanel(panelModApart, 800, 474, 0, 0);
-            
+            JF_Facturacion.getInstance().setEnableTabs(false);
             
             panelModApart.personalizarTablaFactura();
             panelModApart.jLabel_NumerodeFact.setText(factura);

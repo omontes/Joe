@@ -127,6 +127,7 @@ public final class Pan_Salidas extends javax.swing.JPanel {
         
         //--------------- INTERFAZ ----------------------------------
         JF_Inventario.getInstance().getPanelManager().showPanel(panelCreaSalidaMerca, 800, 474, 0, 0);
+        JF_Inventario.getInstance().setEnableTabs(false);
         
         //-----------------------------------------------------------
         
@@ -160,6 +161,7 @@ public final class Pan_Salidas extends javax.swing.JPanel {
                 //-----------------INTERFAZ----------------------
                 JF_Inventario.getInstance().getPanelManager().showPanel(
                         panelVerMovimientoEntradaSalida, 800, 471, 0, 0);
+                JF_Inventario.getInstance().setEnableTabs(false);
                 //-----------------------------------------------------
                 
                 

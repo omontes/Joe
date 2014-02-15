@@ -220,7 +220,7 @@ public class Dialog_VerCierre extends javax.swing.JDialog {
               BigDecimal totalvent = this.StringtoBigDecimal(this.jFormattedTextField_totalVentaReportado.getText());
               
               
-              Pan_CerrarCaja panelCreaCerrarCaja = new Pan_CerrarCaja();
+              Pan_CerrarCaja panelCreaCerrarCaja = new Pan_CerrarCaja(Pan_CerrarCaja.WATCH_CALL);
               JF_Facturacion.getInstance().getPanelManager().showPanel(panelCreaCerrarCaja, 800, 471, 0, 0);
               
               Direct_Control_BD AdminBD = Direct_Control_BD.getInstance();

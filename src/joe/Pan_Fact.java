@@ -184,6 +184,7 @@ public class Pan_Fact extends javax.swing.JPanel {
 
         Pan_NuevaFactura panelNuevaFact = new Pan_NuevaFactura(Pan_NuevaFactura.FACTURACION_CALL);
         JF_Facturacion.getInstance().getPanelManager().showPanel(panelNuevaFact, 800, 474, 0, 0);
+        JF_Facturacion.getInstance().setEnableTabs(false);
 
         //*******************************************************************
 
@@ -218,6 +219,7 @@ public class Pan_Fact extends javax.swing.JPanel {
         Pan_VerCierresCaja panelVerCierres= new Pan_VerCierresCaja();
         
         JF_Facturacion.getInstance().getPanelManager().showPanel(panelVerCierres, 800, 474, 0, 0);
+        JF_Facturacion.getInstance().setEnableTabs(false);
         
         panelVerCierres.completarTablaVerCierres();
     }//GEN-LAST:event_jLabel7MouseClicked
@@ -250,7 +252,7 @@ public class Pan_Fact extends javax.swing.JPanel {
                 
                 Pan_VerFactura panelVerFact = new Pan_VerFactura();
                 JF_Facturacion.getInstance().getPanelManager().showPanel(panelVerFact, 800, 474, 0, 0);
-                
+                JF_Facturacion.getInstance().setEnableTabs(false);
                 //**********************************************************************
                 
                 Modelo_Facturacion model = (Modelo_Facturacion) table.getModel();
@@ -329,8 +331,10 @@ public class Pan_Fact extends javax.swing.JPanel {
             
             Pan_NuevaFactura panelModFact = new Pan_NuevaFactura(pCallType);
             
+            //**************INTERFAZ******************************
             JF_Facturacion.getInstance().getPanelManager().showPanel(panelModFact, 800, 474, 0, 0);
-            
+            JF_Facturacion.getInstance().setEnableTabs(false);
+            //*******************************************************
             
             panelModFact.personalizarTablaFactura();
             panelModFact.jLabel_NumerodeFact.setText(factura);

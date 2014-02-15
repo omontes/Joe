@@ -130,6 +130,7 @@ public void personalizarTablaEntradaMercaderia(){
         //--------------- INTERFAZ ----------------------------------
         
         JF_Inventario.getInstance().getPanelManager().showPanel(panelCreaEntradaMerca, 800, 474, 0, 0);
+        JF_Inventario.getInstance().setEnableTabs(false);
         
         //-----------------------------------------------------------
         
@@ -166,6 +167,7 @@ public void personalizarTablaEntradaMercaderia(){
                 //-----------------INTERFAZ----------------------
                 JF_Inventario.getInstance().getPanelManager().showPanel(
                         panelVerMovimientoEntradaSalida, 800, 471, 0, 0);
+                JF_Inventario.getInstance().setEnableTabs(false);
                 //-----------------------------------------------------
                 
                 Modelo_Facturacion model = (Modelo_Facturacion) table.getModel();

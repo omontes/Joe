@@ -238,7 +238,7 @@ public class Pan_CerrarCaja extends javax.swing.JPanel {
 
     private void saveBttMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_saveBttMouseClicked
         saveAction();
-    }//GEN-LAST:event_saveBttMouseClicked
+    }                                    
     
     private void saveAction(){
         Direct_Control_BD AdminBD = Direct_Control_BD.getInstance();
@@ -252,18 +252,6 @@ public class Pan_CerrarCaja extends javax.swing.JPanel {
         BigDecimal totalTarjtReportado= this.corregirDato(this.jFormattedTextField_totalTarjetaReportado.getText());
         BigDecimal totalContReportado = this.corregirDato(this.jFormattedTextField_totalContadoReportado.getText());
         AdminBD.actualizarCierreDeCaja(HoraCierre, totalVendido, observaciones, ReporteFinal, totalCont, totalTarjet, totalContReportado, totalTarjtReportado, idCierreVigente);
-        this.imprimirCierre(jTable_VerCierre,this.jLabel_Cajero.getText(),
-                HoraInicio, HoraCierre,
-                this.jFormattedTextField_totalContadoReportado.getText(),
-                this.jFormattedTextField_totalTarjetaReportado.getText(),
-                this.jFormattedTextField_totalVentaReportado.getText(),
-                jFormattedTextField_totalVentaCajaReportado.getText(),
-                this.jFormattedTextField_totalContado.getText(),
-                this.jFormattedTextField_totalTarjeta.getText(),
-                this.jFormattedTextField_totalVenta.getText(),
-                this.jFormattedTextField_totalVentaConCaja.getText(),
-                this.jLabel_detalle.getText());
-            
         JF_Facturacion.getInstance().getPanelManager().back();
     }//GEN-LAST:event_saveBttMouseClicked
     private void imprimirCierre(JTable table,String Cajero, String horaInicio, String horaCierre,
@@ -409,7 +397,19 @@ public class Pan_CerrarCaja extends javax.swing.JPanel {
         }
         String HoraInicio= this.jLabel_horaInicio.getText();
         String HoraCierre= this.jLabel_horaCierre.getText();
-        this.imprimirCierre(jTable_VerCierre,this.jLabel_Cajero.getText(), HoraInicio, HoraCierre, this.jFormattedTextField_totalContadoReportado.getText(), this.jFormattedTextField_totalTarjetaReportado.getText(), this.jFormattedTextField_totalVentaReportado.getText());
+        
+        this.imprimirCierre(jTable_VerCierre,this.jLabel_Cajero.getText(),
+                HoraInicio, HoraCierre,
+                this.jFormattedTextField_totalContadoReportado.getText(),
+                this.jFormattedTextField_totalTarjetaReportado.getText(),
+                this.jFormattedTextField_totalVentaReportado.getText(),
+                jFormattedTextField_totalVentaCajaReportado.getText(),
+                this.jFormattedTextField_totalContado.getText(),
+                this.jFormattedTextField_totalTarjeta.getText(),
+                this.jFormattedTextField_totalVenta.getText(),
+                this.jFormattedTextField_totalVentaConCaja.getText(),
+                this.jLabel_detalle.getText());
+       
     }//GEN-LAST:event_bttPrintMouseClicked
 
 

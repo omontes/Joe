@@ -427,11 +427,7 @@ public class StartWindow extends javax.swing.JFrame {
 
     private void bttInvMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bttInvMouseClicked
         if (valUsser(true)){
-            java.awt.EventQueue.invokeLater(new Runnable() {
-                public void run() {
-                    new JF_Inventario().setVisible(true);
-                }
-            });
+            new JF_Inventario().setVisible(true);
             this.setEnabled(false);
         }
     }//GEN-LAST:event_bttInvMouseClicked
@@ -442,22 +438,14 @@ public class StartWindow extends javax.swing.JFrame {
 
     private void bttRepMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bttRepMouseClicked
         if (valUsser(true)){
-            java.awt.EventQueue.invokeLater(new Runnable() {
-                public void run() {
-                    new JF_Reportes().setVisible(true);
-                }
-            });
+            new JF_Reportes().setVisible(true);
             this.setEnabled(false);
         }
     }//GEN-LAST:event_bttRepMouseClicked
 
     private void bttClientMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bttClientMouseClicked
         if (valUsser(true)){
-            java.awt.EventQueue.invokeLater(new Runnable() {
-                public void run() {
-                    new JF_Usuario().setVisible(true);
-                }
-            });
+            new JF_Usuario().setVisible(true);
             this.setEnabled(false);
         }
     }//GEN-LAST:event_bttClientMouseClicked

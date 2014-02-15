@@ -1870,19 +1870,17 @@ public class Pan_NuevaFactura extends javax.swing.JPanel {
     private void jFormattedTextField_ClientePropertyChange(java.beans.PropertyChangeEvent evt) {//GEN-FIRST:event_jFormattedTextField_ClientePropertyChange
         if (evt.getPropertyName().equals("value")) {
             String cliente = this.jFormattedTextField_Cliente.getText();
-            if (!cliente.equals("")) {
-                Direct_Control_BD AdminBD = Direct_Control_BD.getInstance();
-                boolean existeCliente = AdminBD.verSiExisteCliente(cliente);
-                if (existeCliente) {
-                    return;
+            Direct_Control_BD AdminBD = Direct_Control_BD.getInstance();
+            boolean existeCliente = AdminBD.verSiExisteCliente(cliente);
+            if (existeCliente) {
+                return;
 
-                } else {
-                    this.jFormattedTextField_nombreCliente.setText(cliente);
-                    this.jDialog_CrearCliente.setVisible(true);
-
-                }
+            } else {
+                this.jFormattedTextField_nombreCliente.setText(cliente);
+                this.jDialog_CrearCliente.setVisible(true);
 
             }
+
         }
     }//GEN-LAST:event_jFormattedTextField_ClientePropertyChange
 

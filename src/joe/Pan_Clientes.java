@@ -39,8 +39,18 @@ public class Pan_Clientes extends javax.swing.JPanel {
         initComponents();
         AdminBD = Direct_Control_BD.getInstance();
         actualizaTablaParaClientes();
+        addPanelsToDialog();
+        hideAllPanelsOfDialogs();
     }
 
+    private void addPanelsToDialog(){
+        jDialog_CrearClte.add(jPanel_CrearCliente);
+        jDialog_CrearClte.add(jPanel_ModifCliente);
+        jDialog_CrearClte.add(jPanel_VerClte);
+        
+        
+    }
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -102,8 +112,9 @@ public class Pan_Clientes extends javax.swing.JPanel {
         jLabel5 = new javax.swing.JLabel();
         bkg = new javax.swing.JLabel();
 
-        jDialog_CrearClte.setMinimumSize(new java.awt.Dimension(490, 322));
         jDialog_CrearClte.setModal(true);
+        jDialog_CrearClte.setUndecorated(true);
+        jDialog_CrearClte.setResizable(false);
         jDialog_CrearClte.addWindowListener(new java.awt.event.WindowAdapter() {
             public void windowClosed(java.awt.event.WindowEvent evt) {
                 jDialog_CrearClteWindowClosed(evt);
@@ -122,22 +133,22 @@ public class Pan_Clientes extends javax.swing.JPanel {
         jLabel_nombreCliente3.setForeground(new java.awt.Color(255, 255, 255));
         jLabel_nombreCliente3.setText("Nombre del Cliente");
         jPanel_CrearCliente.add(jLabel_nombreCliente3);
-        jLabel_nombreCliente3.setBounds(20, 40, 90, 23);
+        jLabel_nombreCliente3.setBounds(20, 40, 110, 20);
 
         jLabel_telefonoCliente3.setForeground(new java.awt.Color(255, 255, 255));
         jLabel_telefonoCliente3.setText("Telefono");
         jPanel_CrearCliente.add(jLabel_telefonoCliente3);
-        jLabel_telefonoCliente3.setBounds(20, 100, 42, 23);
+        jLabel_telefonoCliente3.setBounds(20, 100, 60, 23);
 
         jLabel_direccionCliente3.setForeground(new java.awt.Color(255, 255, 255));
         jLabel_direccionCliente3.setText("Direccion");
         jPanel_CrearCliente.add(jLabel_direccionCliente3);
-        jLabel_direccionCliente3.setBounds(20, 70, 43, 23);
+        jLabel_direccionCliente3.setBounds(20, 70, 60, 23);
 
         jLabel_FechaCumpleanos3.setForeground(new java.awt.Color(255, 255, 255));
         jLabel_FechaCumpleanos3.setText("Fecha de Cumpleanos");
         jPanel_CrearCliente.add(jLabel_FechaCumpleanos3);
-        jLabel_FechaCumpleanos3.setBounds(20, 130, 105, 23);
+        jLabel_FechaCumpleanos3.setBounds(20, 130, 120, 23);
 
         jFormattedTextField_nombreClteVend.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
@@ -257,25 +268,25 @@ public class Pan_Clientes extends javax.swing.JPanel {
     jLabel_nombreCliente4.setForeground(new java.awt.Color(255, 255, 255));
     jLabel_nombreCliente4.setText("Nombre del Cliente");
     jPanel_VerClte.add(jLabel_nombreCliente4);
-    jLabel_nombreCliente4.setBounds(10, 50, 140, 15);
+    jLabel_nombreCliente4.setBounds(10, 40, 140, 23);
 
     jLabel_telefonoCliente4.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
     jLabel_telefonoCliente4.setForeground(new java.awt.Color(255, 255, 255));
     jLabel_telefonoCliente4.setText("Telefono");
     jPanel_VerClte.add(jLabel_telefonoCliente4);
-    jLabel_telefonoCliente4.setBounds(10, 80, 140, 15);
+    jLabel_telefonoCliente4.setBounds(10, 70, 140, 23);
 
     jLabel_direccionCliente4.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
     jLabel_direccionCliente4.setForeground(new java.awt.Color(255, 255, 255));
     jLabel_direccionCliente4.setText("Dirección");
     jPanel_VerClte.add(jLabel_direccionCliente4);
-    jLabel_direccionCliente4.setBounds(10, 110, 140, 15);
+    jLabel_direccionCliente4.setBounds(10, 100, 140, 23);
 
     jLabel_FechaCumpleanos4.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
     jLabel_FechaCumpleanos4.setForeground(new java.awt.Color(255, 255, 255));
     jLabel_FechaCumpleanos4.setText("Fecha de Cumpleaños");
     jPanel_VerClte.add(jLabel_FechaCumpleanos4);
-    jLabel_FechaCumpleanos4.setBounds(10, 170, 140, 15);
+    jLabel_FechaCumpleanos4.setBounds(10, 160, 140, 23);
 
     jButton_CrearCliente1.setText("Aceptar");
     jButton_CrearCliente1.addActionListener(new java.awt.event.ActionListener() {
@@ -324,7 +335,7 @@ public class Pan_Clientes extends javax.swing.JPanel {
     jLabel_FechaCumpleanos5.setForeground(new java.awt.Color(255, 255, 255));
     jLabel_FechaCumpleanos5.setText("Cédula");
     jPanel_VerClte.add(jLabel_FechaCumpleanos5);
-    jLabel_FechaCumpleanos5.setBounds(10, 140, 140, 15);
+    jLabel_FechaCumpleanos5.setBounds(10, 130, 140, 23);
 
     jLabel_CedCVerClteVend.setBackground(new java.awt.Color(0, 51, 51));
     jLabel_CedCVerClteVend.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
@@ -378,7 +389,7 @@ public class Pan_Clientes extends javax.swing.JPanel {
         }
     });
     jPanel_ModifCliente.add(jFormattedTextField_ModfnombreClteVend);
-    jFormattedTextField_ModfnombreClteVend.setBounds(180, 40, 168, 20);
+    jFormattedTextField_ModfnombreClteVend.setBounds(180, 40, 168, 23);
 
     jFormattedTextField_ModfdireccionClteVend.addKeyListener(new java.awt.event.KeyAdapter() {
         public void keyPressed(java.awt.event.KeyEvent evt) {
@@ -386,7 +397,7 @@ public class Pan_Clientes extends javax.swing.JPanel {
         }
     });
     jPanel_ModifCliente.add(jFormattedTextField_ModfdireccionClteVend);
-    jFormattedTextField_ModfdireccionClteVend.setBounds(180, 120, 168, 20);
+    jFormattedTextField_ModfdireccionClteVend.setBounds(180, 120, 168, 23);
 
     jButton_ModifCliente.setText("Aceptar");
     jButton_ModifCliente.addActionListener(new java.awt.event.ActionListener() {
@@ -417,11 +428,11 @@ public class Pan_Clientes extends javax.swing.JPanel {
         }
     });
     jPanel_ModifCliente.add(jFormattedTextField_ModfCedulaClteVend);
-    jFormattedTextField_ModfCedulaClteVend.setBounds(180, 200, 168, 20);
+    jFormattedTextField_ModfCedulaClteVend.setBounds(180, 200, 168, 23);
 
     jLabel_FechaCumpleanos7.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
     jLabel_FechaCumpleanos7.setForeground(new java.awt.Color(255, 255, 255));
-    jLabel_FechaCumpleanos7.setText("Cedula");
+    jLabel_FechaCumpleanos7.setText("Cédula");
     jPanel_ModifCliente.add(jLabel_FechaCumpleanos7);
     jLabel_FechaCumpleanos7.setBounds(20, 200, 105, 20);
 
@@ -432,7 +443,7 @@ public class Pan_Clientes extends javax.swing.JPanel {
         }
     });
     jPanel_ModifCliente.add(jFormattedTextField_ModftelefonoClteVend);
-    jFormattedTextField_ModftelefonoClteVend.setBounds(180, 80, 168, 20);
+    jFormattedTextField_ModftelefonoClteVend.setBounds(180, 80, 168, 23);
 
     dateChooserCombo_CumpModifCliente.setCurrentView(new datechooser.view.appearance.AppearancesList("Grey",
         new datechooser.view.appearance.ViewAppearance("custom",
@@ -479,7 +490,7 @@ dateChooserCombo_CumpModifCliente.setCalendarBackground(new java.awt.Color(0, 51
 dateChooserCombo_CumpModifCliente.setNothingAllowed(false);
 dateChooserCombo_CumpModifCliente.setBehavior(datechooser.model.multiple.MultyModelBehavior.SELECT_SINGLE);
 jPanel_ModifCliente.add(dateChooserCombo_CumpModifCliente);
-dateChooserCombo_CumpModifCliente.setBounds(180, 160, 168, 20);
+dateChooserCombo_CumpModifCliente.setBounds(180, 160, 168, 23);
 
 jLabel6.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
 jLabel6.setForeground(new java.awt.Color(255, 255, 255));
@@ -664,6 +675,10 @@ jTable_Generica.setModel(new javax.swing.table.DefaultTableModel(
     }//GEN-LAST:event_jFormattedTextField_ModftelefonoClteVendKeyPressed
 
     private void jDialog_CrearClteWindowClosed(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_jDialog_CrearClteWindowClosed
+        hideAllPanelsOfDialogs();
+    }//GEN-LAST:event_jDialog_CrearClteWindowClosed
+
+    private void hideAllPanelsOfDialogs(){
         jPanel_CrearCliente.setVisible(false);
         jPanel_CrearCliente.setEnabled(false);
         
@@ -672,8 +687,8 @@ jTable_Generica.setModel(new javax.swing.table.DefaultTableModel(
         
         jPanel_VerClte.setVisible(false);
         jPanel_VerClte.setEnabled(false);
-    }//GEN-LAST:event_jDialog_CrearClteWindowClosed
-
+    }
+    
     private void jLabel5MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel5MouseClicked
         llenarEditarInformacionClteVend();
         

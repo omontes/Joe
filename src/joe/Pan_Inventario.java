@@ -187,41 +187,47 @@ public final class Pan_Inventario extends javax.swing.JPanel {
         jDialog_CrearProducto.setResizable(false);
         jDialog_CrearProducto.setSize(390, 358);
         jDialog_CrearProducto.setLocationRelativeTo(null);
-        jDialog_CrearProducto.getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        jDialog_CrearProducto.getContentPane().setLayout(null);
 
         jPanel2.setBackground(new java.awt.Color(153, 153, 153));
         jPanel2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        jPanel2.setLayout(null);
 
         jTextField_codigo.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
                 jTextField_codigoKeyTyped(evt);
             }
         });
-        jPanel2.add(jTextField_codigo, new org.netbeans.lib.awtextra.AbsoluteConstraints(121, 49, 258, -1));
+        jPanel2.add(jTextField_codigo);
+        jTextField_codigo.setBounds(121, 49, 258, 23);
 
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
         jLabel1.setText("Codigo del Producto");
-        jPanel2.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(11, 52, -1, -1));
+        jPanel2.add(jLabel1);
+        jLabel1.setBounds(11, 52, 96, 23);
 
         jLabel2.setForeground(new java.awt.Color(255, 255, 255));
         jLabel2.setText("Nombre del Producto");
-        jPanel2.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(11, 90, 106, -1));
+        jPanel2.add(jLabel2);
+        jLabel2.setBounds(11, 90, 106, 23);
 
         jTextField_nombre.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
                 jTextField_nombreKeyTyped(evt);
             }
         });
-        jPanel2.add(jTextField_nombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(121, 87, 258, -1));
+        jPanel2.add(jTextField_nombre);
+        jTextField_nombre.setBounds(120, 90, 258, 23);
 
         jLabel3.setForeground(new java.awt.Color(255, 255, 255));
         jLabel3.setText("Precio del Producto");
-        jPanel2.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 120, 106, 20));
+        jPanel2.add(jLabel3);
+        jLabel3.setBounds(10, 130, 106, 23);
 
         jLabel4.setForeground(new java.awt.Color(255, 255, 255));
         jLabel4.setText("Cantidad del Producto");
-        jPanel2.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(11, 159, -1, -1));
+        jPanel2.add(jLabel4);
+        jLabel4.setBounds(10, 170, 106, 23);
 
         jTextField_Cantidad.setText("0");
         jTextField_Cantidad.addKeyListener(new java.awt.event.KeyAdapter() {
@@ -232,7 +238,8 @@ public final class Pan_Inventario extends javax.swing.JPanel {
                 jTextField_CantidadKeyTyped(evt);
             }
         });
-        jPanel2.add(jTextField_Cantidad, new org.netbeans.lib.awtextra.AbsoluteConstraints(121, 156, 258, -1));
+        jPanel2.add(jTextField_Cantidad);
+        jTextField_Cantidad.setBounds(120, 170, 258, 23);
 
         jButton_CrearProducto.setText("Aceptar");
         jButton_CrearProducto.addActionListener(new java.awt.event.ActionListener() {
@@ -240,11 +247,13 @@ public final class Pan_Inventario extends javax.swing.JPanel {
                 jButton_CrearProductoActionPerformed(evt);
             }
         });
-        jPanel2.add(jButton_CrearProducto, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 310, -1, -1));
+        jPanel2.add(jButton_CrearProducto);
+        jButton_CrearProducto.setBounds(220, 320, 71, 23);
 
         jLabel10.setForeground(new java.awt.Color(255, 255, 255));
         jLabel10.setText("Categoria");
-        jPanel2.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(11, 197, -1, -1));
+        jPanel2.add(jLabel10);
+        jLabel10.setBounds(10, 210, 47, 23);
 
         jComboBox_CategoriaCrearProducto.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
         jComboBox_CategoriaCrearProducto.addFocusListener(new java.awt.event.FocusAdapter() {
@@ -257,15 +266,18 @@ public final class Pan_Inventario extends javax.swing.JPanel {
                 jComboBox_CategoriaCrearProductoKeyTyped(evt);
             }
         });
-        jPanel2.add(jComboBox_CategoriaCrearProducto, new org.netbeans.lib.awtextra.AbsoluteConstraints(121, 194, -1, -1));
+        jPanel2.add(jComboBox_CategoriaCrearProducto);
+        jComboBox_CategoriaCrearProducto.setBounds(120, 210, 56, 20);
 
         jLabel11.setForeground(new java.awt.Color(255, 255, 255));
         jLabel11.setText("Descripcion");
-        jPanel2.add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 270, -1, -1));
+        jPanel2.add(jLabel11);
+        jLabel11.setBounds(10, 280, 54, 23);
 
         jLabel12.setForeground(new java.awt.Color(255, 255, 255));
         jLabel12.setText("Costo");
-        jPanel2.add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(11, 235, -1, -1));
+        jPanel2.add(jLabel12);
+        jLabel12.setBounds(10, 240, 28, 23);
 
         jTextField_CostoCrearProducto.setText("0.00");
         jTextField_CostoCrearProducto.addKeyListener(new java.awt.event.KeyAdapter() {
@@ -276,14 +288,16 @@ public final class Pan_Inventario extends javax.swing.JPanel {
                 jTextField_CostoCrearProductoKeyTyped(evt);
             }
         });
-        jPanel2.add(jTextField_CostoCrearProducto, new org.netbeans.lib.awtextra.AbsoluteConstraints(121, 232, 258, -1));
+        jPanel2.add(jTextField_CostoCrearProducto);
+        jTextField_CostoCrearProducto.setBounds(120, 240, 258, 23);
 
         jTextArea_DescripcionCrearProducto.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
                 jTextArea_DescripcionCrearProductoKeyTyped(evt);
             }
         });
-        jPanel2.add(jTextArea_DescripcionCrearProducto, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 270, 258, -1));
+        jPanel2.add(jTextArea_DescripcionCrearProducto);
+        jTextArea_DescripcionCrearProducto.setBounds(120, 280, 258, 23);
 
         jButton6.setText("Cancelar");
         jButton6.addActionListener(new java.awt.event.ActionListener() {
@@ -291,7 +305,8 @@ public final class Pan_Inventario extends javax.swing.JPanel {
                 jButton6ActionPerformed(evt);
             }
         });
-        jPanel2.add(jButton6, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 310, -1, -1));
+        jPanel2.add(jButton6);
+        jButton6.setBounds(300, 320, 75, 23);
 
         jTextField_Precio.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(new java.text.DecimalFormat("#,##0.00"))));
         jTextField_Precio.setText("0.00");
@@ -308,14 +323,17 @@ public final class Pan_Inventario extends javax.swing.JPanel {
                 jTextField_PrecioKeyTyped(evt);
             }
         });
-        jPanel2.add(jTextField_Precio, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 120, 258, -1));
+        jPanel2.add(jTextField_Precio);
+        jTextField_Precio.setBounds(120, 130, 258, 23);
 
         jLabel13.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jLabel13.setForeground(new java.awt.Color(255, 255, 255));
         jLabel13.setText("Crear Producto");
-        jPanel2.add(jLabel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(11, 9, -1, -1));
+        jPanel2.add(jLabel13);
+        jLabel13.setBounds(11, 9, 137, 22);
 
-        jDialog_CrearProducto.getContentPane().add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 390, 358));
+        jDialog_CrearProducto.getContentPane().add(jPanel2);
+        jPanel2.setBounds(0, 0, 390, 358);
 
         jDialog_EliminarProducto.setUndecorated(true);
         jDialog_EliminarProducto.setResizable(false);
@@ -325,14 +343,15 @@ public final class Pan_Inventario extends javax.swing.JPanel {
 
         jPanel1.setBackground(new java.awt.Color(153, 153, 153));
         jPanel1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        jPanel1.setLayout(null);
 
         jTextField_IdProducto.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jTextField_IdProductoActionPerformed(evt);
             }
         });
-        jPanel1.add(jTextField_IdProducto, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 40, 130, -1));
+        jPanel1.add(jTextField_IdProducto);
+        jTextField_IdProducto.setBounds(90, 40, 130, 23);
 
         jButton_EliminarProducto.setText("Eliminar");
         jButton_EliminarProducto.addActionListener(new java.awt.event.ActionListener() {
@@ -340,16 +359,19 @@ public final class Pan_Inventario extends javax.swing.JPanel {
                 jButton_EliminarProductoActionPerformed(evt);
             }
         });
-        jPanel1.add(jButton_EliminarProducto, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 70, -1, -1));
+        jPanel1.add(jButton_EliminarProducto);
+        jButton_EliminarProducto.setBounds(150, 70, 69, 23);
 
         jLabel18.setForeground(new java.awt.Color(255, 255, 255));
         jLabel18.setText("ID del producto");
-        jPanel1.add(jLabel18, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 40, -1, 23));
+        jPanel1.add(jLabel18);
+        jLabel18.setBounds(10, 40, 74, 23);
 
         jLabel19.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jLabel19.setForeground(new java.awt.Color(255, 255, 255));
         jLabel19.setText("Eliminar Producto");
-        jPanel1.add(jLabel19, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, -1, -1));
+        jPanel1.add(jLabel19);
+        jLabel19.setBounds(10, 10, 161, 22);
 
         jDialog_EliminarProducto.getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 240, 110));
 
@@ -360,39 +382,44 @@ public final class Pan_Inventario extends javax.swing.JPanel {
                 jDialog_ModificarProductoKeyPressed(evt);
             }
         });
-        jDialog_ModificarProducto.getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        jDialog_ModificarProducto.getContentPane().setLayout(null);
         jDialog_ModificarProducto.setSize(440, 270);
         jDialog_ModificarProducto.setLocationRelativeTo(null);
 
         jPanel3.setBackground(new java.awt.Color(153, 153, 153));
         jPanel3.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        jPanel3.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        jPanel3.setLayout(null);
 
         jTextField_CodigoProducto.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
                 jTextField_CodigoProductoKeyTyped(evt);
             }
         });
-        jPanel3.add(jTextField_CodigoProducto, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 80, 355, -1));
+        jPanel3.add(jTextField_CodigoProducto);
+        jTextField_CodigoProducto.setBounds(70, 80, 355, 23);
 
         jLabel_Codigo.setForeground(new java.awt.Color(255, 255, 255));
         jLabel_Codigo.setText("Codigo");
-        jPanel3.add(jLabel_Codigo, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 80, -1, -1));
+        jPanel3.add(jLabel_Codigo);
+        jLabel_Codigo.setBounds(10, 80, 33, 23);
 
         jLabel_Nombre.setForeground(new java.awt.Color(255, 255, 255));
         jLabel_Nombre.setText("Nombre");
-        jPanel3.add(jLabel_Nombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 110, -1, -1));
+        jPanel3.add(jLabel_Nombre);
+        jLabel_Nombre.setBounds(10, 110, 37, 23);
 
         jTextField_nombre1.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
                 jTextField_nombre1KeyTyped(evt);
             }
         });
-        jPanel3.add(jTextField_nombre1, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 110, 355, -1));
+        jPanel3.add(jTextField_nombre1);
+        jTextField_nombre1.setBounds(70, 110, 355, 23);
 
         jLabel_Precio.setForeground(new java.awt.Color(255, 255, 255));
         jLabel_Precio.setText("Precio");
-        jPanel3.add(jLabel_Precio, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 140, 56, -1));
+        jPanel3.add(jLabel_Precio);
+        jLabel_Precio.setBounds(10, 140, 56, 23);
 
         jTextField_Precio1.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
@@ -402,7 +429,8 @@ public final class Pan_Inventario extends javax.swing.JPanel {
                 jTextField_Precio1KeyTyped(evt);
             }
         });
-        jPanel3.add(jTextField_Precio1, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 140, 355, -1));
+        jPanel3.add(jTextField_Precio1);
+        jTextField_Precio1.setBounds(70, 140, 355, 23);
 
         jTextField_Costo.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
@@ -412,7 +440,8 @@ public final class Pan_Inventario extends javax.swing.JPanel {
                 jTextField_CostoKeyTyped(evt);
             }
         });
-        jPanel3.add(jTextField_Costo, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 170, 355, -1));
+        jPanel3.add(jTextField_Costo);
+        jTextField_Costo.setBounds(70, 170, 355, 23);
 
         jButton_CrearProducto1.setText("Aceptar");
         jButton_CrearProducto1.addActionListener(new java.awt.event.ActionListener() {
@@ -420,16 +449,20 @@ public final class Pan_Inventario extends javax.swing.JPanel {
                 jButton_CrearProducto1ActionPerformed(evt);
             }
         });
-        jPanel3.add(jButton_CrearProducto1, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 230, -1, -1));
-        jPanel3.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 286, -1, -1));
+        jPanel3.add(jButton_CrearProducto1);
+        jButton_CrearProducto1.setBounds(350, 230, 71, 23);
+        jPanel3.add(jLabel9);
+        jLabel9.setBounds(150, 286, 0, 0);
 
         jLabel_Costo.setForeground(new java.awt.Color(255, 255, 255));
         jLabel_Costo.setText("Costo");
-        jPanel3.add(jLabel_Costo, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 170, -1, -1));
+        jPanel3.add(jLabel_Costo);
+        jLabel_Costo.setBounds(10, 170, 28, 23);
 
         jLabel5.setForeground(new java.awt.Color(255, 255, 255));
         jLabel5.setText("Categoria");
-        jPanel3.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 50, -1, 20));
+        jPanel3.add(jLabel5);
+        jLabel5.setBounds(10, 50, 47, 23);
 
         jComboBox_Categorias.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
         jComboBox_Categorias.addKeyListener(new java.awt.event.KeyAdapter() {
@@ -437,12 +470,15 @@ public final class Pan_Inventario extends javax.swing.JPanel {
                 jComboBox_CategoriasKeyTyped(evt);
             }
         });
-        jPanel3.add(jComboBox_Categorias, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 50, 110, 20));
-        jPanel3.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(418, 338, -1, -1));
+        jPanel3.add(jComboBox_Categorias);
+        jComboBox_Categorias.setBounds(70, 50, 110, 23);
+        jPanel3.add(jLabel6);
+        jLabel6.setBounds(418, 338, 0, 0);
 
         jLabel7.setForeground(new java.awt.Color(255, 255, 255));
         jLabel7.setText("Descripcion");
-        jPanel3.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 200, -1, -1));
+        jPanel3.add(jLabel7);
+        jLabel7.setBounds(10, 200, 54, 23);
 
         jButton_CrearCategoria.setText("Nueva");
         jButton_CrearCategoria.addActionListener(new java.awt.event.ActionListener() {
@@ -455,21 +491,25 @@ public final class Pan_Inventario extends javax.swing.JPanel {
                 jButton_CrearCategoriaFocusGained(evt);
             }
         });
-        jPanel3.add(jButton_CrearCategoria, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 50, -1, -1));
+        jPanel3.add(jButton_CrearCategoria);
+        jButton_CrearCategoria.setBounds(190, 50, 63, 23);
 
         jTextField_Descripcion.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
                 jTextField_DescripcionKeyTyped(evt);
             }
         });
-        jPanel3.add(jTextField_Descripcion, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 200, 355, -1));
+        jPanel3.add(jTextField_Descripcion);
+        jTextField_Descripcion.setBounds(70, 200, 355, 23);
 
         jLabel20.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jLabel20.setForeground(new java.awt.Color(255, 255, 255));
         jLabel20.setText("Modificar Producto");
-        jPanel3.add(jLabel20, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, -1, -1));
+        jPanel3.add(jLabel20);
+        jLabel20.setBounds(10, 10, 171, 22);
 
-        jDialog_ModificarProducto.getContentPane().add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 440, 270));
+        jDialog_ModificarProducto.getContentPane().add(jPanel3);
+        jPanel3.setBounds(0, 0, 440, 270);
 
         jDialog_ConfirmacionModificacionProducto.setUndecorated(true);
         jDialog_ConfirmacionModificacionProducto.setResizable(false);
@@ -479,14 +519,15 @@ public final class Pan_Inventario extends javax.swing.JPanel {
 
         jPanel4.setBackground(new java.awt.Color(153, 153, 153));
         jPanel4.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        jPanel4.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        jPanel4.setLayout(null);
 
         jTextField_IdProductoModificar.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 jTextField_IdProductoModificarKeyPressed(evt);
             }
         });
-        jPanel4.add(jTextField_IdProductoModificar, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 40, 130, -1));
+        jPanel4.add(jTextField_IdProductoModificar);
+        jTextField_IdProductoModificar.setBounds(90, 40, 130, 23);
 
         jButton1.setText("Aceptar");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
@@ -499,16 +540,19 @@ public final class Pan_Inventario extends javax.swing.JPanel {
                 jButton1KeyPressed(evt);
             }
         });
-        jPanel4.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 70, 80, -1));
+        jPanel4.add(jButton1);
+        jButton1.setBounds(140, 70, 80, 23);
 
         jLabel21.setForeground(new java.awt.Color(255, 255, 255));
         jLabel21.setText("ID del producto");
-        jPanel4.add(jLabel21, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 40, -1, 20));
+        jPanel4.add(jLabel21);
+        jLabel21.setBounds(10, 40, 74, 23);
 
         jLabel23.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jLabel23.setForeground(new java.awt.Color(255, 255, 255));
         jLabel23.setText("Modificar Producto");
-        jPanel4.add(jLabel23, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, -1, -1));
+        jPanel4.add(jLabel23);
+        jLabel23.setBounds(10, 10, 171, 22);
 
         jDialog_ConfirmacionModificacionProducto.getContentPane().add(jPanel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 240, 110));
 
@@ -520,12 +564,14 @@ public final class Pan_Inventario extends javax.swing.JPanel {
 
         jPanel6.setBackground(new java.awt.Color(153, 153, 153));
         jPanel6.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        jPanel6.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        jPanel6.setLayout(null);
 
         jLabel8.setForeground(new java.awt.Color(255, 255, 255));
         jLabel8.setText("Nombre");
-        jPanel6.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 50, -1, 20));
-        jPanel6.add(jTextField_NombreCategoria, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 50, 190, -1));
+        jPanel6.add(jLabel8);
+        jLabel8.setBounds(20, 50, 37, 23);
+        jPanel6.add(jTextField_NombreCategoria);
+        jTextField_NombreCategoria.setBounds(70, 50, 190, 23);
 
         jButton2.setText("Aceptar");
         jButton2.addActionListener(new java.awt.event.ActionListener() {
@@ -533,12 +579,14 @@ public final class Pan_Inventario extends javax.swing.JPanel {
                 jButton2ActionPerformed(evt);
             }
         });
-        jPanel6.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 90, -1, -1));
+        jPanel6.add(jButton2);
+        jButton2.setBounds(190, 90, 71, 23);
 
         jLabel24.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jLabel24.setForeground(new java.awt.Color(255, 255, 255));
         jLabel24.setText("Nueva Categoría");
-        jPanel6.add(jLabel24, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, -1, -1));
+        jPanel6.add(jLabel24);
+        jLabel24.setBounds(10, 10, 150, 22);
 
         jButton5.setText("Cancelar");
         jButton5.addActionListener(new java.awt.event.ActionListener() {
@@ -546,7 +594,8 @@ public final class Pan_Inventario extends javax.swing.JPanel {
                 jButton5ActionPerformed(evt);
             }
         });
-        jPanel6.add(jButton5, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 90, -1, -1));
+        jPanel6.add(jButton5);
+        jButton5.setBounds(110, 90, 75, 23);
 
         jDialog_CrearCategoria.getContentPane().add(jPanel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 270, 120));
 
@@ -558,44 +607,59 @@ public final class Pan_Inventario extends javax.swing.JPanel {
 
         jPanel5.setBackground(new java.awt.Color(153, 153, 153));
         jPanel5.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        jPanel5.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-        jPanel5.add(jTextField_CodigoVerProducto, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 50, 210, -1));
+        jPanel5.setLayout(null);
+        jPanel5.add(jTextField_CodigoVerProducto);
+        jTextField_CodigoVerProducto.setBounds(80, 50, 210, 23);
 
         jLabel_Codigo2.setForeground(new java.awt.Color(255, 255, 255));
         jLabel_Codigo2.setText("Codigo");
-        jPanel5.add(jLabel_Codigo2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 50, -1, 20));
+        jPanel5.add(jLabel_Codigo2);
+        jLabel_Codigo2.setBounds(10, 50, 33, 23);
 
         jLabel_Nombre2.setForeground(new java.awt.Color(255, 255, 255));
         jLabel_Nombre2.setText("Nombre");
-        jPanel5.add(jLabel_Nombre2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 80, -1, 20));
-        jPanel5.add(jTextField_nombreVerProducto, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 80, 210, -1));
+        jPanel5.add(jLabel_Nombre2);
+        jLabel_Nombre2.setBounds(10, 80, 37, 23);
+        jPanel5.add(jTextField_nombreVerProducto);
+        jTextField_nombreVerProducto.setBounds(80, 80, 210, 23);
 
         jLabel_Precio2.setForeground(new java.awt.Color(255, 255, 255));
         jLabel_Precio2.setText("Precio");
-        jPanel5.add(jLabel_Precio2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 110, 56, 20));
-        jPanel5.add(jTextField_PrecioVerProducto, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 110, 210, -1));
-        jPanel5.add(jTextField_CostoVerProducto, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 140, 210, -1));
-        jPanel5.add(jLabel14, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 153, -1, -1));
+        jPanel5.add(jLabel_Precio2);
+        jLabel_Precio2.setBounds(10, 110, 56, 23);
+        jPanel5.add(jTextField_PrecioVerProducto);
+        jTextField_PrecioVerProducto.setBounds(80, 110, 210, 23);
+        jPanel5.add(jTextField_CostoVerProducto);
+        jTextField_CostoVerProducto.setBounds(80, 140, 210, 23);
+        jPanel5.add(jLabel14);
+        jLabel14.setBounds(150, 153, 0, 0);
 
         jLabel_Costo2.setForeground(new java.awt.Color(255, 255, 255));
         jLabel_Costo2.setText("Costo");
-        jPanel5.add(jLabel_Costo2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 140, -1, 20));
+        jPanel5.add(jLabel_Costo2);
+        jLabel_Costo2.setBounds(10, 140, 28, 23);
 
         jLabel15.setForeground(new java.awt.Color(255, 255, 255));
         jLabel15.setText("Categoria");
-        jPanel5.add(jLabel15, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 170, -1, 20));
-        jPanel5.add(jLabel16, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 202, -1, -1));
+        jPanel5.add(jLabel15);
+        jLabel15.setBounds(10, 170, 47, 23);
+        jPanel5.add(jLabel16);
+        jLabel16.setBounds(410, 202, 0, 0);
 
         jLabel17.setForeground(new java.awt.Color(255, 255, 255));
         jLabel17.setText("Descripcion");
-        jPanel5.add(jLabel17, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 200, -1, 20));
-        jPanel5.add(jTextField_DescripcionVerProducto, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 200, 210, 20));
-        jPanel5.add(jTextField_CategoriaVerProducto, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 170, 210, -1));
+        jPanel5.add(jLabel17);
+        jLabel17.setBounds(10, 200, 54, 23);
+        jPanel5.add(jTextField_DescripcionVerProducto);
+        jTextField_DescripcionVerProducto.setBounds(80, 200, 210, 23);
+        jPanel5.add(jTextField_CategoriaVerProducto);
+        jTextField_CategoriaVerProducto.setBounds(80, 170, 210, 23);
 
         jLabel25.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jLabel25.setForeground(new java.awt.Color(255, 255, 255));
         jLabel25.setText("Ver Producto");
-        jPanel5.add(jLabel25, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, -1, -1));
+        jPanel5.add(jLabel25);
+        jLabel25.setBounds(10, 10, 118, 22);
 
         jButton4.setText("Aceptar");
         jButton4.addActionListener(new java.awt.event.ActionListener() {
@@ -603,7 +667,8 @@ public final class Pan_Inventario extends javax.swing.JPanel {
                 jButton4ActionPerformed(evt);
             }
         });
-        jPanel5.add(jButton4, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 240, -1, -1));
+        jPanel5.add(jButton4);
+        jButton4.setBounds(220, 240, 71, 23);
 
         jDialog_VerProducto.getContentPane().add(jPanel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 310, 280));
 
@@ -615,11 +680,12 @@ public final class Pan_Inventario extends javax.swing.JPanel {
 
         jPanel7.setBackground(new java.awt.Color(153, 153, 153));
         jPanel7.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        jPanel7.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        jPanel7.setLayout(null);
 
         jLabel26.setForeground(new java.awt.Color(255, 255, 255));
         jLabel26.setText("ID del producto");
-        jPanel7.add(jLabel26, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 40, -1, 20));
+        jPanel7.add(jLabel26);
+        jLabel26.setBounds(10, 40, 74, 23);
 
         jTextField_IdProductoModificar1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -631,7 +697,8 @@ public final class Pan_Inventario extends javax.swing.JPanel {
                 jTextField_IdProductoModificar1KeyPressed(evt);
             }
         });
-        jPanel7.add(jTextField_IdProductoModificar1, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 40, 140, -1));
+        jPanel7.add(jTextField_IdProductoModificar1);
+        jTextField_IdProductoModificar1.setBounds(90, 40, 140, 23);
 
         jButton3.setText("Aceptar");
         jButton3.addActionListener(new java.awt.event.ActionListener() {
@@ -644,12 +711,14 @@ public final class Pan_Inventario extends javax.swing.JPanel {
                 jButton3KeyPressed(evt);
             }
         });
-        jPanel7.add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 70, 80, -1));
+        jPanel7.add(jButton3);
+        jButton3.setBounds(150, 70, 80, 23);
 
         jLabel27.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jLabel27.setForeground(new java.awt.Color(255, 255, 255));
         jLabel27.setText("Ver Producto");
-        jPanel7.add(jLabel27, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, -1, -1));
+        jPanel7.add(jLabel27);
+        jLabel27.setBounds(10, 10, 118, 22);
 
         jDialog_ConfirmacionVerProducto.getContentPane().add(jPanel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 250, 110));
 

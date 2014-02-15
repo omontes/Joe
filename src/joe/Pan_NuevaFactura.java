@@ -2897,6 +2897,6 @@ public class Pan_NuevaFactura extends javax.swing.JPanel {
 
     private void regresar() {
         JF_Facturacion.getInstance().refreshActiveTable();
-        JF_Facturacion.getInstance().getPanelManager().back();
+        JF_Facturacion.getInstance().backOnWindow();
     }
 }

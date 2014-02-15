@@ -222,6 +222,7 @@ public class Dialog_VerCierre extends javax.swing.JDialog {
               
               Pan_CerrarCaja panelCreaCerrarCaja = new Pan_CerrarCaja(Pan_CerrarCaja.NEW_CALL);
               JF_Facturacion.getInstance().getPanelManager().showPanel(panelCreaCerrarCaja, 800, 471, 0, 0);
+              JF_Facturacion.getInstance().setEnableTabs(false);
               
               Direct_Control_BD AdminBD = Direct_Control_BD.getInstance();
               int idCierreVigente = AdminBD.obtenerultimoidCierre();

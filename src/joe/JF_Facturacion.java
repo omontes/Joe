@@ -254,15 +254,20 @@ public class JF_Facturacion extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_bttDevMouseClicked
 
-    private void bttAtrasMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bttAtrasMouseClicked
+    public void backOnWindow(){
         Object newPanel = _panelManager.back();
         if (newPanel == null){
             StartWindow.getInstance().enableMe();
             this.dispose();            
         }
+        System.out.println(_panelManager.getPanelCount());
         if (_panelManager.getPanelCount() == 1){
             setEnableTabs(true);
         }
+    }
+    
+    private void bttAtrasMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bttAtrasMouseClicked
+        backOnWindow();
     }//GEN-LAST:event_bttAtrasMouseClicked
 
     private void formWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosing

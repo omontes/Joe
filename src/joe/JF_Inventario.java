@@ -301,7 +301,7 @@ public class JF_Inventario extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_bttMovimientosMouseClicked
 
-    private void backMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_backMouseClicked
+    private void backOnWindow(){
         Object newPanel = _panelManager.back();
         if (newPanel == null){
             StartWindow.getInstance().enableMe();
@@ -310,6 +310,10 @@ public class JF_Inventario extends javax.swing.JFrame {
         if (_panelManager.getPanelCount() == 1){
             setEnableTabs(true);
         }
+}
+    
+    private void backMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_backMouseClicked
+        backOnWindow();
     }//GEN-LAST:event_backMouseClicked
 
     private void formWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosing

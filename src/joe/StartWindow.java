@@ -476,7 +476,8 @@ public class StartWindow extends javax.swing.JFrame {
 
     private void bttConfMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bttConfMouseClicked
         if (valUsser(true)){
-            
+            new JF_Conf().setVisible(true);
+            this.setEnabled(false);
         }
     }//GEN-LAST:event_bttConfMouseClicked
 

@@ -121,6 +121,7 @@ public void personalizarTablaEntradaMercaderia(){
         this.jTable_EntradasMercaderia.getColumnModel().getColumn(0).setCellRenderer
                 (centerRenderer);
         
+        
     }
     private void bttAddMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bttAddMouseClicked
         

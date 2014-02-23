@@ -3773,4 +3773,31 @@ public class Direct_Control_BD {
         }
     }
 
+    public boolean verSiExisteCierreTerminado(int idCierre) {
+        
+         try {
+             String temp="";
+            String verSiExisteCierreTerminado = this.readSql("../Joe"
+                    + "/src/sql_files/verSiExisteCierreTerminado.sql");
+            PreparedStatement stm = this.conection.prepareStatement(verSiExisteCierreTerminado);
+            stm.setInt(1, idCierre);
+            ResultSet rs = stm.executeQuery();
+            while (rs.next()) {
+                temp = rs.getString("HoraCierre");
+            }
+             System.out.println(temp);
+            if(temp==null){
+                System.out.println("entro tambn");
+                return false;
+            
+            }
+            
+            return true;
+        } catch (Exception e) {
+            System.out.println("No existe ese cierre");
+            return false;
+        }
+        
+    }
+
 }

@@ -279,6 +279,7 @@ public class VentanaDeInicio extends javax.swing.JFrame {
             Date date = new Date();
             String fecha = dateFormat.format(date);
             this.jLabel_fechaInicioCaja.setText(fecha);
+            Direct_Control_BD AdminBD = Direct_Control_BD.getInstance();
             this.jDialog_InicioCaja.setVisible(true);
             return;
 

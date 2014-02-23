@@ -52,6 +52,8 @@ public class JF_Inventario extends javax.swing.JFrame {
             _panInventario.personalizarTablaInventario();
         } else if (_activeTab == ENTRADAS){
             _panEntradas.personalizarTablaEntradaMercaderia();
+            this.revalidate();
+            this.repaint();
         } else if (_activeTab == SALIDAS){
             _panSalidas.personalizarTablaSalidaMercaderia();
         } else if (_activeTab == BODEGA){

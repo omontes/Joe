@@ -410,7 +410,12 @@ public class StartWindow extends javax.swing.JFrame {
                 Date date = new Date();
                 String fecha = dateFormat.format(date);
                 this.labFecha.setText(fecha);
+                Direct_Control_BD AdminBD=Direct_Control_BD.getInstance();
+                if(AdminBD.verSiExisteCierreTerminado(AdminBD.obtenerultimoidCierre())){
                 this.inicioCaja.setVisible(true);
+                return;}
+                this.verFacturacion();
+                
 
             } else {
                 this.verFacturacion();

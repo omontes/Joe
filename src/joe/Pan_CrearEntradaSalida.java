@@ -719,6 +719,7 @@ public class Pan_CrearEntradaSalida extends javax.swing.JPanel {
 
     private void bttSaveMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bttSaveMouseClicked
         this.guardarMovimiento();
+        
     }//GEN-LAST:event_bttSaveMouseClicked
 
     private void bttPrintMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bttPrintMouseClicked
@@ -1167,6 +1168,7 @@ public class Pan_CrearEntradaSalida extends javax.swing.JPanel {
             return false;
         }
         JF_Inventario.getInstance().refreshActiveTable();
+        
         this.crearMovimiento();
         this.guardarProductosMovimiento();
         this.clearAll();
@@ -1469,5 +1471,7 @@ public class Pan_CrearEntradaSalida extends javax.swing.JPanel {
         int idMovimiento= AdminBD.ObtenerUltimoidMovimiento();
         AdminBD.insertarProductoCantidadMovimiento(idProducto,idVersion,idMovimiento,cantidadMov,PrecioVenta);
     }
+
+    
 
 }

@@ -32,12 +32,14 @@ public class StartWindow extends javax.swing.JFrame {
     private static final int LOGGED_OUT = 1;
     
     private boolean _logged;
+    private boolean _otherWindow;
     
     /**
      * Creates new form StartWindow
      */
     public StartWindow() {
         _instance = this;
+        _otherWindow = false;
         _logged = false;
         
         initComponents();
@@ -57,7 +59,12 @@ public class StartWindow extends javax.swing.JFrame {
         jLayeredPane1.setLocation(_posX, _posY);       
         
         panActiveUsser.setLocation(600, 180);
+        panConf.setVisible(false);
+        panConf.setEnabled(false);
         activeLoginPanel(LOGGED_OUT);
+        
+        loadImageConf();
+        panConf.setLocation(0, 330);
     }
     
     private void activeLoginPanel(int pPanel){
@@ -84,6 +91,7 @@ public class StartWindow extends javax.swing.JFrame {
     
     public void enableMe(){
         this.setEnabled(true);
+        _otherWindow = false;
     }
     
     public static StartWindow getInstance(){
@@ -109,7 +117,27 @@ public class StartWindow extends javax.swing.JFrame {
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
         jLayeredPane1 = new javax.swing.JLayeredPane();
+        bttConfAp = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
+        panConf = new javax.swing.JPanel();
+        jLabel5 = new javax.swing.JLabel();
+        txtImageDir = new javax.swing.JTextField();
+        sliderSize = new javax.swing.JSlider();
+        bttSearchDir = new javax.swing.JButton();
+        jLabel7 = new javax.swing.JLabel();
+        txtNombreEmpresa = new javax.swing.JTextField();
+        jLabel8 = new javax.swing.JLabel();
+        jLabel6 = new javax.swing.JLabel();
+        sliderYI = new javax.swing.JSlider();
+        sliderYN = new javax.swing.JSlider();
+        jLabel10 = new javax.swing.JLabel();
+        jLabel9 = new javax.swing.JLabel();
+        jLabel11 = new javax.swing.JLabel();
+        jSpinner1 = new javax.swing.JSpinner();
+        sliderXI = new javax.swing.JSlider();
+        jLabel12 = new javax.swing.JLabel();
+        jLabel13 = new javax.swing.JLabel();
+        bkConfPan = new javax.swing.JLabel();
         panActiveUsser = new javax.swing.JPanel();
         labActiveName = new javax.swing.JLabel();
         bttLogout = new javax.swing.JLabel();
@@ -124,12 +152,12 @@ public class StartWindow extends javax.swing.JFrame {
         bttFact = new javax.swing.JLabel();
         bttInv = new javax.swing.JLabel();
         bkgBase = new javax.swing.JLabel();
+        jPanel2 = new javax.swing.JPanel();
         lbCompanyName = new javax.swing.JLabel();
         bkgImage = new javax.swing.JLabel();
         bkColor = new javax.swing.JLabel();
 
         inicioCaja.setUndecorated(true);
-        inicioCaja.setPreferredSize(new java.awt.Dimension(350, 180));
         inicioCaja.setResizable(false);
         inicioCaja.getContentPane().setLayout(null);
         inicioCaja.setSize(350, 180);
@@ -217,9 +245,114 @@ public class StartWindow extends javax.swing.JFrame {
 
         jLayeredPane1.setPreferredSize(new java.awt.Dimension(800, 500));
 
+        bttConfAp.setIcon(new javax.swing.ImageIcon(getClass().getResource("/System/Images/PanelInicio/confLittl.png"))); // NOI18N
+        bttConfAp.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        bttConfAp.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                bttConfApMouseClicked(evt);
+            }
+        });
+        jLayeredPane1.add(bttConfAp);
+        bttConfAp.setBounds(480, 310, 20, 20);
+
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/System/Images/PanelInicio/logOutImg.jpg"))); // NOI18N
         jLayeredPane1.add(jLabel1);
         jLabel1.setBounds(625, 40, 131, 135);
+
+        panConf.setOpaque(false);
+        panConf.setLayout(null);
+
+        jLabel5.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel5.setText("Nombre de la empresa");
+        panConf.add(jLabel5);
+        jLabel5.setBounds(30, 50, 130, 20);
+
+        txtImageDir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtImageDirActionPerformed(evt);
+            }
+        });
+        panConf.add(txtImageDir);
+        txtImageDir.setBounds(160, 90, 470, 23);
+        panConf.add(sliderSize);
+        sliderSize.setBounds(170, 130, 200, 23);
+
+        bttSearchDir.setText("Buscar");
+        bttSearchDir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bttSearchDirActionPerformed(evt);
+            }
+        });
+        panConf.add(bttSearchDir);
+        bttSearchDir.setBounds(640, 90, 80, 23);
+
+        jLabel7.setForeground(new java.awt.Color(51, 204, 255));
+        jLabel7.setText("Posición");
+        panConf.add(jLabel7);
+        jLabel7.setBounds(580, 50, 50, 20);
+        panConf.add(txtNombreEmpresa);
+        txtNombreEmpresa.setBounds(160, 50, 290, 23);
+
+        jLabel8.setForeground(new java.awt.Color(51, 204, 255));
+        jLabel8.setText("Tamaño");
+        panConf.add(jLabel8);
+        jLabel8.setBounds(460, 50, 50, 20);
+
+        jLabel6.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel6.setText("Imágen de fondo");
+        panConf.add(jLabel6);
+        jLabel6.setBounds(30, 90, 110, 20);
+        panConf.add(sliderYI);
+        sliderYI.setBounds(560, 130, 80, 23);
+        panConf.add(sliderYN);
+        sliderYN.setBounds(640, 50, 80, 23);
+
+        jLabel10.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        jLabel10.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel10.setText("Apariencia");
+        panConf.add(jLabel10);
+        jLabel10.setBounds(10, 20, 96, 22);
+
+        jLabel9.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLabel9.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel9.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel9.setText("-");
+        panConf.add(jLabel9);
+        jLabel9.setBounds(540, 130, 20, 20);
+
+        jLabel11.setIcon(new javax.swing.ImageIcon(getClass().getResource("/System/Images/Buttons/bttSaveWht.png"))); // NOI18N
+        jLabel11.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jLabel11.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabel11MouseClicked(evt);
+            }
+        });
+        panConf.add(jLabel11);
+        jLabel11.setBounds(750, 120, 40, 40);
+
+        jSpinner1.setModel(new javax.swing.SpinnerNumberModel(2, 2, 64, 1));
+        jSpinner1.setOpaque(false);
+        panConf.add(jSpinner1);
+        jSpinner1.setBounds(510, 50, 50, 23);
+        panConf.add(sliderXI);
+        sliderXI.setBounds(460, 130, 80, 23);
+
+        jLabel12.setForeground(new java.awt.Color(51, 204, 255));
+        jLabel12.setText("Tamaño");
+        panConf.add(jLabel12);
+        jLabel12.setBounds(110, 130, 50, 20);
+
+        jLabel13.setForeground(new java.awt.Color(51, 204, 255));
+        jLabel13.setText("Posición");
+        panConf.add(jLabel13);
+        jLabel13.setBounds(400, 130, 50, 20);
+
+        bkConfPan.setIcon(new javax.swing.ImageIcon(getClass().getResource("/System/Images/PanelInicio/confInterfaz.png"))); // NOI18N
+        panConf.add(bkConfPan);
+        bkConfPan.setBounds(0, 9, 800, 161);
+
+        jLayeredPane1.add(panConf);
+        panConf.setBounds(0, 0, 800, 170);
 
         panActiveUsser.setBackground(new java.awt.Color(236, 233, 233));
         panActiveUsser.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -230,7 +363,7 @@ public class StartWindow extends javax.swing.JFrame {
         panActiveUsser.add(labActiveName, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 180, 40));
 
         bttLogout.setIcon(new javax.swing.ImageIcon(getClass().getResource("/System/Images/PanelInicio/bttLogout.png"))); // NOI18N
-        bttLogout.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        bttLogout.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         bttLogout.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 bttLogoutMouseClicked(evt);
@@ -239,7 +372,7 @@ public class StartWindow extends javax.swing.JFrame {
         panActiveUsser.add(bttLogout, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 40, -1, -1));
 
         jLayeredPane1.add(panActiveUsser);
-        panActiveUsser.setBounds(420, 20, 190, 150);
+        panActiveUsser.setBounds(220, 150, 190, 150);
 
         panLoggedoutUsser.setOpaque(false);
         panLoggedoutUsser.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -259,7 +392,7 @@ public class StartWindow extends javax.swing.JFrame {
         panLoggedoutUsser.add(fieldPassword, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 80, 150, 30));
 
         bttLogin.setIcon(new javax.swing.ImageIcon(getClass().getResource("/System/Images/PanelInicio/loginBtt.png"))); // NOI18N
-        bttLogin.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        bttLogin.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         bttLogin.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 bttLoginMouseClicked(evt);
@@ -346,15 +479,21 @@ public class StartWindow extends javax.swing.JFrame {
         jLayeredPane1.add(bkgBase);
         bkgBase.setBounds(0, 0, 800, 500);
 
+        jPanel2.setOpaque(false);
+        jPanel2.setLayout(null);
+
         lbCompanyName.setFont(new java.awt.Font("Calibri", 1, 36)); // NOI18N
         lbCompanyName.setText("NOMBRE DE LA EMPRESA AQUI");
         lbCompanyName.setVerticalAlignment(javax.swing.SwingConstants.TOP);
-        jLayeredPane1.add(lbCompanyName);
+        jPanel2.add(lbCompanyName);
         lbCompanyName.setBounds(10, 64, 510, 60);
 
         bkgImage.setText("ImagenDeFondo");
-        jLayeredPane1.add(bkgImage);
-        bkgImage.setBounds(0, 24, 620, 320);
+        jPanel2.add(bkgImage);
+        bkgImage.setBounds(0, 0, 600, 320);
+
+        jLayeredPane1.add(jPanel2);
+        jPanel2.setBounds(0, 31, 580, 310);
 
         getContentPane().add(jLayeredPane1);
         jLayeredPane1.setBounds(0, 0, 800, 500);
@@ -404,22 +543,18 @@ public class StartWindow extends javax.swing.JFrame {
     }//GEN-LAST:event_bttExitMouseClicked
 
     private void bttFactMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bttFactMouseClicked
-        if (valUsser(false)){
-            if (true) { //Acá se debe validar el inicio de la caja
-                DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
-                Date date = new Date();
-                String fecha = dateFormat.format(date);
-                this.labFecha.setText(fecha);
-                Direct_Control_BD AdminBD=Direct_Control_BD.getInstance();
-                if(AdminBD.verSiExisteCierreTerminado(AdminBD.obtenerultimoidCierre())){
-                this.inicioCaja.setVisible(true);
-                return;}
-                this.verFacturacion();
-                
-
-            } else {
-                this.verFacturacion();
-            }
+        if (valUsser(false) && _otherWindow == false){
+            _otherWindow = true;
+            DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
+            Date date = new Date();
+            String fecha = dateFormat.format(date);
+            this.labFecha.setText(fecha);
+            Direct_Control_BD AdminBD=Direct_Control_BD.getInstance();
+            if(AdminBD.verSiExisteCierreTerminado(AdminBD.obtenerultimoidCierre())){
+            this.inicioCaja.setVisible(true);
+            return;}
+            this.verFacturacion();
+            
         }
     }//GEN-LAST:event_bttFactMouseClicked
 
@@ -432,7 +567,8 @@ public class StartWindow extends javax.swing.JFrame {
     }//GEN-LAST:event_bttExitMouseExited
 
     private void bttInvMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bttInvMouseClicked
-        if (valUsser(true)){
+        if (valUsser(true) && _otherWindow == false){
+            _otherWindow = true;
             new JF_Inventario().setVisible(true);
             this.setEnabled(false);
         }
@@ -443,14 +579,16 @@ public class StartWindow extends javax.swing.JFrame {
     }//GEN-LAST:event_bttLoginMouseClicked
 
     private void bttRepMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bttRepMouseClicked
-        if (valUsser(true)){
+        if (valUsser(true) && _otherWindow == false){
+            _otherWindow = true;
             new JF_Reportes().setVisible(true);
             this.setEnabled(false);
         }
     }//GEN-LAST:event_bttRepMouseClicked
 
     private void bttClientMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bttClientMouseClicked
-        if (valUsser(true)){
+        if (valUsser(true) && _otherWindow == false){
+            _otherWindow = true;
             new JF_Usuario().setVisible(true);
             this.setEnabled(false);
         }
@@ -480,7 +618,8 @@ public class StartWindow extends javax.swing.JFrame {
     }//GEN-LAST:event_formWindowClosing
 
     private void bttConfMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bttConfMouseClicked
-        if (valUsser(true)){
+        if (valUsser(true) && _otherWindow == false){
+            _otherWindow = true;
             new JF_Conf().setVisible(true);
             this.setEnabled(false);
         }
@@ -538,9 +677,31 @@ public class StartWindow extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_fieldPasswordKeyPressed
 
+    private void bttConfApMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bttConfApMouseClicked
+        panConf.setEnabled(true);
+        panConf.setVisible(true);
+    }//GEN-LAST:event_bttConfApMouseClicked
+
+    private void jLabel11MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel11MouseClicked
+        panConf.setVisible(false);
+        panConf.setEnabled(false);
+    }//GEN-LAST:event_jLabel11MouseClicked
+
+    private void txtImageDirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtImageDirActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtImageDirActionPerformed
+
+    private void bttSearchDirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bttSearchDirActionPerformed
+        
+    }//GEN-LAST:event_bttSearchDirActionPerformed
+
     private void verFacturacion() {
         new JF_Facturacion().setVisible(true);
         this.setEnabled(false);
+    }
+    
+    private void loadImageConf(){
+        
     }
     
     private void crearCierreCaja() {
@@ -641,16 +802,19 @@ public class StartWindow extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel bkColor;
+    private javax.swing.JLabel bkConfPan;
     private javax.swing.JLabel bkgBase;
     private javax.swing.JLabel bkgImage;
     private javax.swing.JLabel bttClient;
     private javax.swing.JLabel bttConf;
+    private javax.swing.JLabel bttConfAp;
     private javax.swing.JLabel bttExit;
     private javax.swing.JLabel bttFact;
     private javax.swing.JLabel bttInv;
     private javax.swing.JLabel bttLogin;
     private javax.swing.JLabel bttLogout;
     private javax.swing.JLabel bttRep;
+    private javax.swing.JButton bttSearchDir;
     private javax.swing.JPasswordField fieldPassword;
     private javax.swing.JTextField fieldUsser;
     private javax.swing.JDialog inicioCaja;
@@ -658,16 +822,34 @@ public class StartWindow extends javax.swing.JFrame {
     private javax.swing.JButton jButton2;
     private javax.swing.JFormattedTextField jFormattedTextField_MontoInicioCaja;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel10;
+    private javax.swing.JLabel jLabel11;
+    private javax.swing.JLabel jLabel12;
+    private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel jLabel9;
     private javax.swing.JLayeredPane jLayeredPane1;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanel2;
+    private javax.swing.JSpinner jSpinner1;
     private javax.swing.JLabel labActiveName;
     private javax.swing.JLabel labFecha;
     private javax.swing.JLabel lbCompanyName;
     private javax.swing.JPanel panActiveUsser;
+    private javax.swing.JPanel panConf;
     private javax.swing.JPanel panLoggedoutUsser;
+    private javax.swing.JSlider sliderSize;
+    private javax.swing.JSlider sliderXI;
+    private javax.swing.JSlider sliderYI;
+    private javax.swing.JSlider sliderYN;
+    private javax.swing.JTextField txtImageDir;
+    private javax.swing.JTextField txtNombreEmpresa;
     // End of variables declaration//GEN-END:variables
 
 }

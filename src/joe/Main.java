@@ -57,8 +57,10 @@ public class Main {
             @Override
             public void run() {
                 //Centra Main_Window en la pantalla del monitor
-                VentanaDeInicio miVentana = VentanaDeInicio.getInstance();
+                //VentanaDeInicio miVentana = VentanaDeInicio.getInstance();
+                StartWindow miVentana = new StartWindow();
                 miVentana.setLocationRelativeTo(null);
+                miVentana.setVisible(true);
 
             }
         });

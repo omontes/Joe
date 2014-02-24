@@ -121,19 +121,19 @@ public final class Pan_Bodega extends javax.swing.JPanel {
         jLabel_Codigo2.setForeground(new java.awt.Color(255, 255, 255));
         jLabel_Codigo2.setText("Codigo");
         jPanel5.add(jLabel_Codigo2);
-        jLabel_Codigo2.setBounds(10, 50, 33, 23);
+        jLabel_Codigo2.setBounds(10, 50, 40, 23);
 
         jLabel_Nombre2.setForeground(new java.awt.Color(255, 255, 255));
         jLabel_Nombre2.setText("Nombre");
         jPanel5.add(jLabel_Nombre2);
-        jLabel_Nombre2.setBounds(10, 80, 37, 23);
+        jLabel_Nombre2.setBounds(10, 80, 50, 23);
         jPanel5.add(jTextField_nombreVerProducto);
         jTextField_nombreVerProducto.setBounds(80, 80, 210, 23);
 
         jLabel_Precio2.setForeground(new java.awt.Color(255, 255, 255));
         jLabel_Precio2.setText("Precio");
         jPanel5.add(jLabel_Precio2);
-        jLabel_Precio2.setBounds(10, 110, 56, 23);
+        jLabel_Precio2.setBounds(10, 110, 70, 23);
         jPanel5.add(jTextField_PrecioVerProducto);
         jTextField_PrecioVerProducto.setBounds(80, 110, 210, 23);
         jPanel5.add(jTextField_CostoVerProducto);
@@ -149,14 +149,14 @@ public final class Pan_Bodega extends javax.swing.JPanel {
         jLabel15.setForeground(new java.awt.Color(255, 255, 255));
         jLabel15.setText("Categoria");
         jPanel5.add(jLabel15);
-        jLabel15.setBounds(10, 170, 47, 23);
+        jLabel15.setBounds(10, 170, 60, 23);
         jPanel5.add(jLabel16);
         jLabel16.setBounds(410, 202, 0, 0);
 
         jLabel17.setForeground(new java.awt.Color(255, 255, 255));
         jLabel17.setText("Descripcion");
         jPanel5.add(jLabel17);
-        jLabel17.setBounds(10, 200, 54, 23);
+        jLabel17.setBounds(10, 200, 60, 23);
         jPanel5.add(jTextField_DescripcionVerProducto);
         jTextField_DescripcionVerProducto.setBounds(80, 200, 210, 23);
         jPanel5.add(jTextField_CategoriaVerProducto);
@@ -192,7 +192,7 @@ public final class Pan_Bodega extends javax.swing.JPanel {
         jLabel26.setForeground(new java.awt.Color(255, 255, 255));
         jLabel26.setText("ID del producto");
         jPanel7.add(jLabel26);
-        jLabel26.setBounds(10, 40, 74, 23);
+        jLabel26.setBounds(10, 40, 90, 23);
 
         jTextField_IdProductoModificar1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -205,7 +205,7 @@ public final class Pan_Bodega extends javax.swing.JPanel {
             }
         });
         jPanel7.add(jTextField_IdProductoModificar1);
-        jTextField_IdProductoModificar1.setBounds(90, 40, 140, 23);
+        jTextField_IdProductoModificar1.setBounds(100, 40, 130, 23);
 
         jButton3.setText("Aceptar");
         jButton3.addActionListener(new java.awt.event.ActionListener() {

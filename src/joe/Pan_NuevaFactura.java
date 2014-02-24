@@ -190,7 +190,7 @@ public class Pan_NuevaFactura extends javax.swing.JPanel {
                 jTextField_codigoKeyTyped(evt);
             }
         });
-        jPanel2.add(jTextField_codigo, new org.netbeans.lib.awtextra.AbsoluteConstraints(135, 52, 251, -1));
+        jPanel2.add(jTextField_codigo, new org.netbeans.lib.awtextra.AbsoluteConstraints(146, 52, 240, -1));
 
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
         jLabel1.setText("Codigo del Producto");
@@ -205,7 +205,7 @@ public class Pan_NuevaFactura extends javax.swing.JPanel {
                 jTextField_nombreKeyTyped(evt);
             }
         });
-        jPanel2.add(jTextField_nombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(135, 90, 251, -1));
+        jPanel2.add(jTextField_nombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(146, 90, 240, -1));
 
         jLabel3.setForeground(new java.awt.Color(255, 255, 255));
         jLabel3.setText("Precio del Producto");
@@ -213,7 +213,7 @@ public class Pan_NuevaFactura extends javax.swing.JPanel {
 
         jLabel4.setForeground(new java.awt.Color(255, 255, 255));
         jLabel4.setText("Cantidad del Producto");
-        jPanel2.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(11, 162, 120, -1));
+        jPanel2.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(11, 162, 130, -1));
 
         jButton_CrearProducto.setText("Aceptar");
         jButton_CrearProducto.addActionListener(new java.awt.event.ActionListener() {
@@ -256,7 +256,7 @@ public class Pan_NuevaFactura extends javax.swing.JPanel {
                 jFormattedTextField_precioProductoKeyTyped(evt);
             }
         });
-        jPanel2.add(jFormattedTextField_precioProducto, new org.netbeans.lib.awtextra.AbsoluteConstraints(135, 128, 251, -1));
+        jPanel2.add(jFormattedTextField_precioProducto, new org.netbeans.lib.awtextra.AbsoluteConstraints(146, 128, 240, -1));
 
         jFormattedTextField_cantidadProducto.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(new java.text.DecimalFormat("#0"))));
         jFormattedTextField_cantidadProducto.setText("0");
@@ -273,7 +273,7 @@ public class Pan_NuevaFactura extends javax.swing.JPanel {
                 jFormattedTextField_cantidadProductoKeyTyped(evt);
             }
         });
-        jPanel2.add(jFormattedTextField_cantidadProducto, new org.netbeans.lib.awtextra.AbsoluteConstraints(135, 159, 251, -1));
+        jPanel2.add(jFormattedTextField_cantidadProducto, new org.netbeans.lib.awtextra.AbsoluteConstraints(146, 159, 240, -1));
 
         jLabel9.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jLabel9.setForeground(new java.awt.Color(255, 255, 255));
@@ -647,10 +647,10 @@ public class Pan_NuevaFactura extends javax.swing.JPanel {
         jDialog_darVuelto.setMinimumSize(new java.awt.Dimension(370, 290));
         jDialog_darVuelto.setModal(true);
         jDialog_darVuelto.setUndecorated(true);
-        jDialog_darVuelto.setPreferredSize(new java.awt.Dimension(370, 290));
         jDialog_darVuelto.setResizable(false);
         jDialog_darVuelto.setSize(370, 290);
         jDialog_darVuelto.setLocationRelativeTo(null);
+        jDialog_darVuelto.getContentPane().setLayout(new java.awt.BorderLayout());
 
         jPanel5.setBackground(new java.awt.Color(153, 153, 153));
         jPanel5.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));

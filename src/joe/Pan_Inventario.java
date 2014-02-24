@@ -199,17 +199,17 @@ public final class Pan_Inventario extends javax.swing.JPanel {
             }
         });
         jPanel2.add(jTextField_codigo);
-        jTextField_codigo.setBounds(121, 49, 258, 23);
+        jTextField_codigo.setBounds(149, 49, 230, 25);
 
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
         jLabel1.setText("Codigo del Producto");
         jPanel2.add(jLabel1);
-        jLabel1.setBounds(11, 52, 96, 23);
+        jLabel1.setBounds(11, 52, 130, 23);
 
         jLabel2.setForeground(new java.awt.Color(255, 255, 255));
         jLabel2.setText("Nombre del Producto");
         jPanel2.add(jLabel2);
-        jLabel2.setBounds(11, 90, 106, 23);
+        jLabel2.setBounds(11, 90, 140, 23);
 
         jTextField_nombre.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
@@ -217,17 +217,17 @@ public final class Pan_Inventario extends javax.swing.JPanel {
             }
         });
         jPanel2.add(jTextField_nombre);
-        jTextField_nombre.setBounds(120, 90, 258, 23);
+        jTextField_nombre.setBounds(148, 90, 230, 25);
 
         jLabel3.setForeground(new java.awt.Color(255, 255, 255));
         jLabel3.setText("Precio del Producto");
         jPanel2.add(jLabel3);
-        jLabel3.setBounds(10, 130, 106, 23);
+        jLabel3.setBounds(10, 130, 140, 23);
 
         jLabel4.setForeground(new java.awt.Color(255, 255, 255));
         jLabel4.setText("Cantidad del Producto");
         jPanel2.add(jLabel4);
-        jLabel4.setBounds(10, 170, 106, 23);
+        jLabel4.setBounds(10, 170, 140, 23);
 
         jTextField_Cantidad.setText("0");
         jTextField_Cantidad.addKeyListener(new java.awt.event.KeyAdapter() {
@@ -239,7 +239,7 @@ public final class Pan_Inventario extends javax.swing.JPanel {
             }
         });
         jPanel2.add(jTextField_Cantidad);
-        jTextField_Cantidad.setBounds(120, 170, 258, 23);
+        jTextField_Cantidad.setBounds(148, 170, 230, 25);
 
         jButton_CrearProducto.setText("Aceptar");
         jButton_CrearProducto.addActionListener(new java.awt.event.ActionListener() {
@@ -253,7 +253,7 @@ public final class Pan_Inventario extends javax.swing.JPanel {
         jLabel10.setForeground(new java.awt.Color(255, 255, 255));
         jLabel10.setText("Categoria");
         jPanel2.add(jLabel10);
-        jLabel10.setBounds(10, 210, 47, 23);
+        jLabel10.setBounds(10, 210, 80, 23);
 
         jComboBox_CategoriaCrearProducto.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
         jComboBox_CategoriaCrearProducto.addFocusListener(new java.awt.event.FocusAdapter() {
@@ -267,17 +267,17 @@ public final class Pan_Inventario extends javax.swing.JPanel {
             }
         });
         jPanel2.add(jComboBox_CategoriaCrearProducto);
-        jComboBox_CategoriaCrearProducto.setBounds(120, 210, 56, 20);
+        jComboBox_CategoriaCrearProducto.setBounds(150, 205, 130, 25);
 
         jLabel11.setForeground(new java.awt.Color(255, 255, 255));
         jLabel11.setText("Descripcion");
         jPanel2.add(jLabel11);
-        jLabel11.setBounds(10, 280, 54, 23);
+        jLabel11.setBounds(10, 280, 90, 23);
 
         jLabel12.setForeground(new java.awt.Color(255, 255, 255));
         jLabel12.setText("Costo");
         jPanel2.add(jLabel12);
-        jLabel12.setBounds(10, 240, 28, 23);
+        jLabel12.setBounds(10, 240, 60, 23);
 
         jTextField_CostoCrearProducto.setText("0.00");
         jTextField_CostoCrearProducto.addKeyListener(new java.awt.event.KeyAdapter() {
@@ -289,7 +289,7 @@ public final class Pan_Inventario extends javax.swing.JPanel {
             }
         });
         jPanel2.add(jTextField_CostoCrearProducto);
-        jTextField_CostoCrearProducto.setBounds(120, 240, 258, 23);
+        jTextField_CostoCrearProducto.setBounds(148, 240, 230, 25);
 
         jTextArea_DescripcionCrearProducto.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
@@ -297,7 +297,7 @@ public final class Pan_Inventario extends javax.swing.JPanel {
             }
         });
         jPanel2.add(jTextArea_DescripcionCrearProducto);
-        jTextArea_DescripcionCrearProducto.setBounds(120, 280, 258, 23);
+        jTextArea_DescripcionCrearProducto.setBounds(148, 280, 230, 25);
 
         jButton6.setText("Cancelar");
         jButton6.addActionListener(new java.awt.event.ActionListener() {
@@ -306,7 +306,7 @@ public final class Pan_Inventario extends javax.swing.JPanel {
             }
         });
         jPanel2.add(jButton6);
-        jButton6.setBounds(300, 320, 75, 23);
+        jButton6.setBounds(295, 320, 80, 23);
 
         jTextField_Precio.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(new java.text.DecimalFormat("#,##0.00"))));
         jTextField_Precio.setText("0.00");
@@ -324,7 +324,7 @@ public final class Pan_Inventario extends javax.swing.JPanel {
             }
         });
         jPanel2.add(jTextField_Precio);
-        jTextField_Precio.setBounds(120, 130, 258, 23);
+        jTextField_Precio.setBounds(148, 130, 230, 25);
 
         jLabel13.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jLabel13.setForeground(new java.awt.Color(255, 255, 255));
@@ -351,7 +351,7 @@ public final class Pan_Inventario extends javax.swing.JPanel {
             }
         });
         jPanel1.add(jTextField_IdProducto);
-        jTextField_IdProducto.setBounds(90, 40, 130, 23);
+        jTextField_IdProducto.setBounds(100, 40, 120, 23);
 
         jButton_EliminarProducto.setText("Eliminar");
         jButton_EliminarProducto.addActionListener(new java.awt.event.ActionListener() {
@@ -365,7 +365,7 @@ public final class Pan_Inventario extends javax.swing.JPanel {
         jLabel18.setForeground(new java.awt.Color(255, 255, 255));
         jLabel18.setText("ID del producto");
         jPanel1.add(jLabel18);
-        jLabel18.setBounds(10, 40, 74, 23);
+        jLabel18.setBounds(10, 40, 90, 23);
 
         jLabel19.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jLabel19.setForeground(new java.awt.Color(255, 255, 255));
@@ -396,17 +396,17 @@ public final class Pan_Inventario extends javax.swing.JPanel {
             }
         });
         jPanel3.add(jTextField_CodigoProducto);
-        jTextField_CodigoProducto.setBounds(70, 80, 355, 23);
+        jTextField_CodigoProducto.setBounds(85, 80, 340, 23);
 
         jLabel_Codigo.setForeground(new java.awt.Color(255, 255, 255));
         jLabel_Codigo.setText("Codigo");
         jPanel3.add(jLabel_Codigo);
-        jLabel_Codigo.setBounds(10, 80, 33, 23);
+        jLabel_Codigo.setBounds(10, 80, 50, 23);
 
         jLabel_Nombre.setForeground(new java.awt.Color(255, 255, 255));
         jLabel_Nombre.setText("Nombre");
         jPanel3.add(jLabel_Nombre);
-        jLabel_Nombre.setBounds(10, 110, 37, 23);
+        jLabel_Nombre.setBounds(10, 110, 50, 23);
 
         jTextField_nombre1.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
@@ -414,12 +414,12 @@ public final class Pan_Inventario extends javax.swing.JPanel {
             }
         });
         jPanel3.add(jTextField_nombre1);
-        jTextField_nombre1.setBounds(70, 110, 355, 23);
+        jTextField_nombre1.setBounds(85, 110, 340, 23);
 
         jLabel_Precio.setForeground(new java.awt.Color(255, 255, 255));
         jLabel_Precio.setText("Precio");
         jPanel3.add(jLabel_Precio);
-        jLabel_Precio.setBounds(10, 140, 56, 23);
+        jLabel_Precio.setBounds(10, 140, 70, 23);
 
         jTextField_Precio1.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
@@ -430,7 +430,7 @@ public final class Pan_Inventario extends javax.swing.JPanel {
             }
         });
         jPanel3.add(jTextField_Precio1);
-        jTextField_Precio1.setBounds(70, 140, 355, 23);
+        jTextField_Precio1.setBounds(85, 140, 340, 23);
 
         jTextField_Costo.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
@@ -441,7 +441,7 @@ public final class Pan_Inventario extends javax.swing.JPanel {
             }
         });
         jPanel3.add(jTextField_Costo);
-        jTextField_Costo.setBounds(70, 170, 355, 23);
+        jTextField_Costo.setBounds(85, 170, 340, 23);
 
         jButton_CrearProducto1.setText("Aceptar");
         jButton_CrearProducto1.addActionListener(new java.awt.event.ActionListener() {
@@ -457,12 +457,12 @@ public final class Pan_Inventario extends javax.swing.JPanel {
         jLabel_Costo.setForeground(new java.awt.Color(255, 255, 255));
         jLabel_Costo.setText("Costo");
         jPanel3.add(jLabel_Costo);
-        jLabel_Costo.setBounds(10, 170, 28, 23);
+        jLabel_Costo.setBounds(10, 170, 40, 23);
 
         jLabel5.setForeground(new java.awt.Color(255, 255, 255));
         jLabel5.setText("Categoria");
         jPanel3.add(jLabel5);
-        jLabel5.setBounds(10, 50, 47, 23);
+        jLabel5.setBounds(10, 50, 70, 23);
 
         jComboBox_Categorias.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
         jComboBox_Categorias.addKeyListener(new java.awt.event.KeyAdapter() {
@@ -471,14 +471,14 @@ public final class Pan_Inventario extends javax.swing.JPanel {
             }
         });
         jPanel3.add(jComboBox_Categorias);
-        jComboBox_Categorias.setBounds(70, 50, 110, 23);
+        jComboBox_Categorias.setBounds(90, 50, 110, 23);
         jPanel3.add(jLabel6);
         jLabel6.setBounds(418, 338, 0, 0);
 
         jLabel7.setForeground(new java.awt.Color(255, 255, 255));
         jLabel7.setText("Descripcion");
         jPanel3.add(jLabel7);
-        jLabel7.setBounds(10, 200, 54, 23);
+        jLabel7.setBounds(10, 200, 70, 23);
 
         jButton_CrearCategoria.setText("Nueva");
         jButton_CrearCategoria.addActionListener(new java.awt.event.ActionListener() {
@@ -492,7 +492,7 @@ public final class Pan_Inventario extends javax.swing.JPanel {
             }
         });
         jPanel3.add(jButton_CrearCategoria);
-        jButton_CrearCategoria.setBounds(190, 50, 63, 23);
+        jButton_CrearCategoria.setBounds(210, 50, 63, 23);
 
         jTextField_Descripcion.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
@@ -500,7 +500,7 @@ public final class Pan_Inventario extends javax.swing.JPanel {
             }
         });
         jPanel3.add(jTextField_Descripcion);
-        jTextField_Descripcion.setBounds(70, 200, 355, 23);
+        jTextField_Descripcion.setBounds(85, 200, 340, 23);
 
         jLabel20.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jLabel20.setForeground(new java.awt.Color(255, 255, 255));
@@ -527,7 +527,7 @@ public final class Pan_Inventario extends javax.swing.JPanel {
             }
         });
         jPanel4.add(jTextField_IdProductoModificar);
-        jTextField_IdProductoModificar.setBounds(90, 40, 130, 23);
+        jTextField_IdProductoModificar.setBounds(100, 40, 120, 23);
 
         jButton1.setText("Aceptar");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
@@ -546,7 +546,7 @@ public final class Pan_Inventario extends javax.swing.JPanel {
         jLabel21.setForeground(new java.awt.Color(255, 255, 255));
         jLabel21.setText("ID del producto");
         jPanel4.add(jLabel21);
-        jLabel21.setBounds(10, 40, 74, 23);
+        jLabel21.setBounds(10, 40, 90, 23);
 
         jLabel23.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jLabel23.setForeground(new java.awt.Color(255, 255, 255));
@@ -569,7 +569,7 @@ public final class Pan_Inventario extends javax.swing.JPanel {
         jLabel8.setForeground(new java.awt.Color(255, 255, 255));
         jLabel8.setText("Nombre");
         jPanel6.add(jLabel8);
-        jLabel8.setBounds(20, 50, 37, 23);
+        jLabel8.setBounds(20, 50, 50, 23);
         jPanel6.add(jTextField_NombreCategoria);
         jTextField_NombreCategoria.setBounds(70, 50, 190, 23);
 
@@ -609,51 +609,51 @@ public final class Pan_Inventario extends javax.swing.JPanel {
         jPanel5.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         jPanel5.setLayout(null);
         jPanel5.add(jTextField_CodigoVerProducto);
-        jTextField_CodigoVerProducto.setBounds(80, 50, 210, 23);
+        jTextField_CodigoVerProducto.setBounds(90, 50, 200, 25);
 
         jLabel_Codigo2.setForeground(new java.awt.Color(255, 255, 255));
         jLabel_Codigo2.setText("Codigo");
         jPanel5.add(jLabel_Codigo2);
-        jLabel_Codigo2.setBounds(10, 50, 33, 23);
+        jLabel_Codigo2.setBounds(10, 50, 80, 25);
 
         jLabel_Nombre2.setForeground(new java.awt.Color(255, 255, 255));
         jLabel_Nombre2.setText("Nombre");
         jPanel5.add(jLabel_Nombre2);
-        jLabel_Nombre2.setBounds(10, 80, 37, 23);
+        jLabel_Nombre2.setBounds(10, 80, 80, 25);
         jPanel5.add(jTextField_nombreVerProducto);
-        jTextField_nombreVerProducto.setBounds(80, 80, 210, 23);
+        jTextField_nombreVerProducto.setBounds(90, 80, 200, 25);
 
         jLabel_Precio2.setForeground(new java.awt.Color(255, 255, 255));
         jLabel_Precio2.setText("Precio");
         jPanel5.add(jLabel_Precio2);
-        jLabel_Precio2.setBounds(10, 110, 56, 23);
+        jLabel_Precio2.setBounds(10, 110, 80, 25);
         jPanel5.add(jTextField_PrecioVerProducto);
-        jTextField_PrecioVerProducto.setBounds(80, 110, 210, 23);
+        jTextField_PrecioVerProducto.setBounds(90, 110, 200, 25);
         jPanel5.add(jTextField_CostoVerProducto);
-        jTextField_CostoVerProducto.setBounds(80, 140, 210, 23);
+        jTextField_CostoVerProducto.setBounds(90, 140, 200, 25);
         jPanel5.add(jLabel14);
         jLabel14.setBounds(150, 153, 0, 0);
 
         jLabel_Costo2.setForeground(new java.awt.Color(255, 255, 255));
         jLabel_Costo2.setText("Costo");
         jPanel5.add(jLabel_Costo2);
-        jLabel_Costo2.setBounds(10, 140, 28, 23);
+        jLabel_Costo2.setBounds(10, 140, 80, 25);
 
         jLabel15.setForeground(new java.awt.Color(255, 255, 255));
         jLabel15.setText("Categoria");
         jPanel5.add(jLabel15);
-        jLabel15.setBounds(10, 170, 47, 23);
+        jLabel15.setBounds(10, 170, 80, 25);
         jPanel5.add(jLabel16);
         jLabel16.setBounds(410, 202, 0, 0);
 
         jLabel17.setForeground(new java.awt.Color(255, 255, 255));
         jLabel17.setText("Descripcion");
         jPanel5.add(jLabel17);
-        jLabel17.setBounds(10, 200, 54, 23);
+        jLabel17.setBounds(10, 200, 80, 25);
         jPanel5.add(jTextField_DescripcionVerProducto);
-        jTextField_DescripcionVerProducto.setBounds(80, 200, 210, 23);
+        jTextField_DescripcionVerProducto.setBounds(90, 200, 200, 25);
         jPanel5.add(jTextField_CategoriaVerProducto);
-        jTextField_CategoriaVerProducto.setBounds(80, 170, 210, 23);
+        jTextField_CategoriaVerProducto.setBounds(90, 170, 200, 25);
 
         jLabel25.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jLabel25.setForeground(new java.awt.Color(255, 255, 255));
@@ -685,7 +685,7 @@ public final class Pan_Inventario extends javax.swing.JPanel {
         jLabel26.setForeground(new java.awt.Color(255, 255, 255));
         jLabel26.setText("ID del producto");
         jPanel7.add(jLabel26);
-        jLabel26.setBounds(10, 40, 74, 23);
+        jLabel26.setBounds(10, 40, 90, 23);
 
         jTextField_IdProductoModificar1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -698,7 +698,7 @@ public final class Pan_Inventario extends javax.swing.JPanel {
             }
         });
         jPanel7.add(jTextField_IdProductoModificar1);
-        jTextField_IdProductoModificar1.setBounds(90, 40, 140, 23);
+        jTextField_IdProductoModificar1.setBounds(100, 40, 130, 23);
 
         jButton3.setText("Aceptar");
         jButton3.addActionListener(new java.awt.event.ActionListener() {

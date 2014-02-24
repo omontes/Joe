@@ -41,6 +41,7 @@ public class Pan_ConfUsser extends javax.swing.JPanel {
         AdminBD = Direct_Control_BD.getInstance();
         addPanelsToDialog();
         hideAllPanels();
+        actualizarTabla();
     }
 
     private void addPanelsToDialog(){
@@ -60,6 +61,7 @@ public class Pan_ConfUsser extends javax.swing.JPanel {
     }
     
     private void showPanelOnDialog(javax.swing.JPanel pPanel){
+        hideAllPanels();
         jDialog_AdmiVend.setSize(pPanel.getSize());
         jDialog_AdmiVend.setLocationRelativeTo(null);
         
@@ -133,7 +135,6 @@ public class Pan_ConfUsser extends javax.swing.JPanel {
 
         jDialog_AdmiVend.setModal(true);
         jDialog_AdmiVend.setUndecorated(true);
-        jDialog_AdmiVend.setPreferredSize(new java.awt.Dimension(0, 0));
         jDialog_AdmiVend.setResizable(false);
         jDialog_AdmiVend.addWindowListener(new java.awt.event.WindowAdapter() {
             public void windowClosed(java.awt.event.WindowEvent evt) {
@@ -185,7 +186,7 @@ public class Pan_ConfUsser extends javax.swing.JPanel {
             }
         });
         jPanel_CrearAdmVend.add(jFormattedTextField_nombreAdm);
-        jFormattedTextField_nombreAdm.setBounds(160, 40, 168, 23);
+        jFormattedTextField_nombreAdm.setBounds(160, 40, 168, 25);
 
         jFormattedTextField_telefonoAdm.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(new java.text.DecimalFormat("#0"))));
         jFormattedTextField_telefonoAdm.addKeyListener(new java.awt.event.KeyAdapter() {
@@ -194,7 +195,7 @@ public class Pan_ConfUsser extends javax.swing.JPanel {
             }
         });
         jPanel_CrearAdmVend.add(jFormattedTextField_telefonoAdm);
-        jFormattedTextField_telefonoAdm.setBounds(160, 100, 168, 23);
+        jFormattedTextField_telefonoAdm.setBounds(160, 100, 168, 25);
 
         jFormattedTextField_direccionAdm.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
@@ -202,7 +203,7 @@ public class Pan_ConfUsser extends javax.swing.JPanel {
             }
         });
         jPanel_CrearAdmVend.add(jFormattedTextField_direccionAdm);
-        jFormattedTextField_direccionAdm.setBounds(160, 130, 168, 23);
+        jFormattedTextField_direccionAdm.setBounds(160, 130, 168, 25);
 
         jButton_CrearAdministrador.setText("Aceptar");
         jButton_CrearAdministrador.addActionListener(new java.awt.event.ActionListener() {
@@ -239,7 +240,7 @@ public class Pan_ConfUsser extends javax.swing.JPanel {
             }
         });
         jPanel_CrearAdmVend.add(jPasswordField_Adm);
-        jPasswordField_Adm.setBounds(160, 70, 168, 23);
+        jPasswordField_Adm.setBounds(160, 70, 168, 25);
 
         dateChooserCombo_CumpCrearVendAdm.setCurrentView(new datechooser.view.appearance.AppearancesList("Grey",
             new datechooser.view.appearance.ViewAppearance("custom",
@@ -286,7 +287,7 @@ public class Pan_ConfUsser extends javax.swing.JPanel {
     dateChooserCombo_CumpCrearVendAdm.setNothingAllowed(false);
     dateChooserCombo_CumpCrearVendAdm.setBehavior(datechooser.model.multiple.MultyModelBehavior.SELECT_SINGLE);
     jPanel_CrearAdmVend.add(dateChooserCombo_CumpCrearVendAdm);
-    dateChooserCombo_CumpCrearVendAdm.setBounds(160, 160, 168, 23);
+    dateChooserCombo_CumpCrearVendAdm.setBounds(160, 160, 168, 25);
 
     jLabel9.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
     jLabel9.setForeground(new java.awt.Color(255, 255, 255));
@@ -294,6 +295,7 @@ public class Pan_ConfUsser extends javax.swing.JPanel {
     jPanel_CrearAdmVend.add(jLabel9);
     jLabel9.setBounds(10, 190, 100, 23);
 
+    buttonGroup.add(jRadioButton_Vendedor);
     jRadioButton_Vendedor.setForeground(new java.awt.Color(255, 255, 255));
     jRadioButton_Vendedor.setSelected(true);
     jRadioButton_Vendedor.setText("Vendedor");
@@ -301,6 +303,7 @@ public class Pan_ConfUsser extends javax.swing.JPanel {
     jPanel_CrearAdmVend.add(jRadioButton_Vendedor);
     jRadioButton_Vendedor.setBounds(160, 190, 71, 23);
 
+    buttonGroup.add(jRadioButton_Administrador);
     jRadioButton_Administrador.setForeground(new java.awt.Color(255, 255, 255));
     jRadioButton_Administrador.setText("Administrador");
     jRadioButton_Administrador.setOpaque(false);
@@ -329,7 +332,7 @@ public class Pan_ConfUsser extends javax.swing.JPanel {
     jLabel_nombreCliente12.setForeground(new java.awt.Color(255, 255, 255));
     jLabel_nombreCliente12.setText("Nombre ");
     jPanel_VerAdmVend.add(jLabel_nombreCliente12);
-    jLabel_nombreCliente12.setBounds(20, 60, 40, 23);
+    jLabel_nombreCliente12.setBounds(20, 60, 70, 23);
 
     jLabel_telefonoCliente8.setForeground(new java.awt.Color(255, 255, 255));
     jLabel_telefonoCliente8.setText("Telefono");
@@ -344,7 +347,7 @@ public class Pan_ConfUsser extends javax.swing.JPanel {
     jLabel_FechaCumpleanos8.setForeground(new java.awt.Color(255, 255, 255));
     jLabel_FechaCumpleanos8.setText("Fecha de Cumpleaños");
     jPanel_VerAdmVend.add(jLabel_FechaCumpleanos8);
-    jLabel_FechaCumpleanos8.setBounds(20, 210, 105, 23);
+    jLabel_FechaCumpleanos8.setBounds(20, 210, 120, 23);
 
     jButton_CrearCliente5.setText("Aceptar");
     jButton_CrearCliente5.addActionListener(new java.awt.event.ActionListener() {
@@ -373,25 +376,25 @@ public class Pan_ConfUsser extends javax.swing.JPanel {
     jLabel_DirreVerAdmVend.setForeground(new java.awt.Color(255, 255, 255));
     jLabel_DirreVerAdmVend.setText("...");
     jPanel_VerAdmVend.add(jLabel_DirreVerAdmVend);
-    jLabel_DirreVerAdmVend.setBounds(130, 160, 290, 23);
+    jLabel_DirreVerAdmVend.setBounds(140, 160, 280, 23);
 
     jLabel_FechaCVerAdmVend.setBackground(new java.awt.Color(0, 51, 51));
     jLabel_FechaCVerAdmVend.setForeground(new java.awt.Color(255, 255, 255));
     jLabel_FechaCVerAdmVend.setText("...");
     jPanel_VerAdmVend.add(jLabel_FechaCVerAdmVend);
-    jLabel_FechaCVerAdmVend.setBounds(130, 210, 290, 23);
+    jLabel_FechaCVerAdmVend.setBounds(140, 210, 280, 23);
 
     jLabel_TeleVerAdmVend.setBackground(new java.awt.Color(0, 51, 51));
     jLabel_TeleVerAdmVend.setForeground(new java.awt.Color(255, 255, 255));
     jLabel_TeleVerAdmVend.setText("...");
     jPanel_VerAdmVend.add(jLabel_TeleVerAdmVend);
-    jLabel_TeleVerAdmVend.setBounds(130, 110, 290, 23);
+    jLabel_TeleVerAdmVend.setBounds(140, 110, 280, 23);
 
     jLabel_NombreVerAdmVend.setBackground(new java.awt.Color(0, 51, 51));
     jLabel_NombreVerAdmVend.setForeground(new java.awt.Color(255, 255, 255));
     jLabel_NombreVerAdmVend.setText("...");
     jPanel_VerAdmVend.add(jLabel_NombreVerAdmVend);
-    jLabel_NombreVerAdmVend.setBounds(130, 60, 290, 23);
+    jLabel_NombreVerAdmVend.setBounds(140, 60, 280, 23);
 
     jLabel2.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
     jLabel2.setForeground(new java.awt.Color(255, 255, 255));
@@ -439,7 +442,7 @@ public class Pan_ConfUsser extends javax.swing.JPanel {
         }
     });
     jPanel_ModifAdmVend.add(jFormattedTextField_Modifnombre);
-    jFormattedTextField_Modifnombre.setBounds(140, 40, 168, 23);
+    jFormattedTextField_Modifnombre.setBounds(140, 40, 168, 25);
 
     jFormattedTextField_Modiftelefono.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(new java.text.DecimalFormat("#0"))));
     jFormattedTextField_Modiftelefono.addKeyListener(new java.awt.event.KeyAdapter() {
@@ -448,7 +451,7 @@ public class Pan_ConfUsser extends javax.swing.JPanel {
         }
     });
     jPanel_ModifAdmVend.add(jFormattedTextField_Modiftelefono);
-    jFormattedTextField_Modiftelefono.setBounds(140, 100, 168, 23);
+    jFormattedTextField_Modiftelefono.setBounds(140, 100, 168, 25);
 
     jFormattedTextField_Modifdireccion.addKeyListener(new java.awt.event.KeyAdapter() {
         public void keyPressed(java.awt.event.KeyEvent evt) {
@@ -456,7 +459,7 @@ public class Pan_ConfUsser extends javax.swing.JPanel {
         }
     });
     jPanel_ModifAdmVend.add(jFormattedTextField_Modifdireccion);
-    jFormattedTextField_Modifdireccion.setBounds(140, 130, 168, 23);
+    jFormattedTextField_Modifdireccion.setBounds(140, 130, 168, 25);
 
     jButton_ModifAdmVend.setText("Aceptar");
     jButton_ModifAdmVend.addActionListener(new java.awt.event.ActionListener() {
@@ -486,7 +489,7 @@ public class Pan_ConfUsser extends javax.swing.JPanel {
     jPanel_ModifAdmVend.add(jLabel_nombreCliente14);
     jLabel_nombreCliente14.setBounds(20, 70, 80, 23);
     jPanel_ModifAdmVend.add(jPasswordField_Modif);
-    jPasswordField_Modif.setBounds(140, 70, 168, 23);
+    jPasswordField_Modif.setBounds(140, 70, 168, 25);
 
     dateChooserCombo_CumpModfVendAdm.setCurrentView(new datechooser.view.appearance.AppearancesList("Grey",
         new datechooser.view.appearance.ViewAppearance("custom",
@@ -534,7 +537,7 @@ dateChooserCombo_CumpModfVendAdm.setNothingAllowed(false);
 dateChooserCombo_CumpModfVendAdm.setFormat(2);
 dateChooserCombo_CumpModfVendAdm.setBehavior(datechooser.model.multiple.MultyModelBehavior.SELECT_SINGLE);
 jPanel_ModifAdmVend.add(dateChooserCombo_CumpModfVendAdm);
-dateChooserCombo_CumpModfVendAdm.setBounds(140, 160, 168, 23);
+dateChooserCombo_CumpModfVendAdm.setBounds(140, 160, 168, 25);
 
 jLabel3.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
 jLabel3.setForeground(new java.awt.Color(255, 255, 255));
@@ -759,12 +762,12 @@ jTable_Generica_AdmVend.setModel(new javax.swing.table.DefaultTableModel(
     }//GEN-LAST:event_jPanel_ModifAdmVendComponentShown
 
     private void jLabel4MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel4MouseClicked
-        showPanelOnDialog(jPanel_VerAdmVend);
+        showPanelOnDialog(jPanel_CrearAdmVend);
     }//GEN-LAST:event_jLabel4MouseClicked
 
     private void jLabel5MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel5MouseClicked
         cargarDatosModf();
-        showPanelOnDialog(jPanel_CrearAdmVend);
+        showPanelOnDialog(jPanel_ModifAdmVend);
     }//GEN-LAST:event_jLabel5MouseClicked
 
     private void jLabel6MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel6MouseClicked

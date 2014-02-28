@@ -4,7 +4,7 @@
  */
 package joe;
 
-import com.jidesoft.hints.ListDataIntelliHints;
+//import com.jidesoft.hints.ListDataIntelliHints;
 import java.awt.Color;
 import java.awt.Component;
 import java.awt.Toolkit;
@@ -32,7 +32,7 @@ public class SeleccionadorEditor extends DefaultCellEditor {
         this.table=table;
         this.informacion=informacion;
         ftf = (JTextField)getComponent();
-        ListDataIntelliHints intellihints=new ListDataIntelliHints(ftf,informacion);
+        //ListDataIntelliHints intellihints=new ListDataIntelliHints(ftf,informacion);
         ftf.setBorder(null);
         this.clickCountToStart=1;
         

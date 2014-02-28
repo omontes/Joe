@@ -32,12 +32,15 @@ import jzebra.PrintServiceMatcher;
  */
 public class Pan_VerFactura extends javax.swing.JPanel {
 
+    private boolean _savePress;
+    
     /**
      * Creates new form JPanel_VerFactura
      */
     
     public Pan_VerFactura() {
         initComponents();
+        _savePress = false;
     }
 
     /**
@@ -333,8 +336,13 @@ public class Pan_VerFactura extends javax.swing.JPanel {
 
     }
     private void bttPrintMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bttPrintMouseClicked
-        this.imprimir(this.jLabel_NumerodeFact.getText(),this.jLabel_Fecha.getText(),this.jFormattedTextField_Total.getText(),this.jFormattedTextField_SubTotal.getText(),this.jFormattedTextField_desc.getText(),this.jFormattedTextField_DescuentoTotal.getText(),this.jFormattedTextField_Cliente.getText(),
-            this.jTextField_Vendedor.getText(),this.jTextField_tipopago.getText());
+        if (!_savePress){
+            _savePress = true;
+            this.imprimir(this.jLabel_NumerodeFact.getText(),this.jLabel_Fecha.getText(),this.jFormattedTextField_Total.getText(),this.jFormattedTextField_SubTotal.getText(),this.jFormattedTextField_desc.getText(),this.jFormattedTextField_DescuentoTotal.getText(),this.jFormattedTextField_Cliente.getText(),
+                this.jTextField_Vendedor.getText(),this.jTextField_tipopago.getText());
+        } 
+        _savePress = false;
+            
     }//GEN-LAST:event_bttPrintMouseClicked
 
     private void bttPrintMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bttPrintMouseEntered

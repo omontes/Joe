@@ -49,22 +49,39 @@ public class Pan_NuevaFactura extends javax.swing.JPanel {
     public static final String CONCEPT_APARTADO ="Apartado";
     public static final String CONCEPT_CREDITO= "Credito";
     public static final String CONCEPT_DEVOLUCION="Devolucion";
-    public int _callType;
     public static final String DETALLE_FACT= "Fact Num ";
     public static final String DETALLE_APART="Apartado Num Fact ";
     public static final String DETALLE_CRED="Credito Num Fact ";
-     
     
+    public int _callType;
+    
+    private boolean _savePress;
+    private boolean _printPress;
     
     /**
      * Creates new form NewJPanel
      */
     public Pan_NuevaFactura(int pCallType) {
         _callType = pCallType;
+        _savePress = false;
+        _printPress = false;
         initComponents();
+        setTittle();
         
     }
 
+    private void setTittle(){
+        if (_callType == FACTURACION_CALL || _callType == MOD_FACT_CALL){
+            lblTittle.setText("Facturación");
+        } else if (_callType == APARTADO_CALL || _callType == MOD_APART_CALL){
+            lblTittle.setText("Apartado");
+        } else if (_callType == DEVOLUCION_CALL || _callType == MOD_DEV_CALL){
+            lblTittle.setText("Devolución");
+        } else if (_callType == CREDITO_CALL || _callType == MOD_CRED_CALL){
+            lblTittle.setText("Crédito");
+        }
+    }
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -161,7 +178,7 @@ public class Pan_NuevaFactura extends javax.swing.JPanel {
         jLabel12 = new javax.swing.JLabel();
         jFormattedTextField_DescuentoTotal = new javax.swing.JFormattedTextField();
         jFormattedTextField_Total = new javax.swing.JFormattedTextField();
-        jLabel21 = new javax.swing.JLabel();
+        lblTittle = new javax.swing.JLabel();
         jLabel16 = new javax.swing.JLabel();
         jFormattedTextField_Cliente = new javax.swing.JFormattedTextField();
         jLabel_NumerodeFact = new javax.swing.JLabel();
@@ -650,7 +667,6 @@ public class Pan_NuevaFactura extends javax.swing.JPanel {
         jDialog_darVuelto.setResizable(false);
         jDialog_darVuelto.setSize(370, 290);
         jDialog_darVuelto.setLocationRelativeTo(null);
-        jDialog_darVuelto.getContentPane().setLayout(new java.awt.BorderLayout());
 
         jPanel5.setBackground(new java.awt.Color(153, 153, 153));
         jPanel5.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
@@ -868,11 +884,11 @@ public class Pan_NuevaFactura extends javax.swing.JPanel {
         jLayeredPane1.add(jFormattedTextField_Total);
         jFormattedTextField_Total.setBounds(530, 410, 180, 50);
 
-        jLabel21.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        jLabel21.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel21.setText("Facturación");
-        jLayeredPane1.add(jLabel21);
-        jLabel21.setBounds(10, 5, 160, 22);
+        lblTittle.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        lblTittle.setForeground(new java.awt.Color(255, 255, 255));
+        lblTittle.setText("Facturación");
+        jLayeredPane1.add(lblTittle);
+        lblTittle.setBounds(10, 5, 160, 22);
 
         jLabel16.setForeground(new java.awt.Color(255, 255, 255));
         jLabel16.setText("Cliente");
@@ -1967,21 +1983,30 @@ public class Pan_NuevaFactura extends javax.swing.JPanel {
     }//GEN-LAST:event_searchBttMouseClicked
 
     private void saveBttMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_saveBttMouseClicked
-        this.guardarFactura();
+        if (!_savePress){
+            _savePress = true;
+            this.guardarFactura();
+        }
+        _savePress = false;
     }//GEN-LAST:event_saveBttMouseClicked
 
     private void printBttMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_printBttMouseClicked
-        if(this.guardarFactura()){
-                XMLConfiguracion xml = ManejoDeArchivos.XMLConfiguracion.getInstance();
-                this.imprimir(this.jLabel_NumerodeFact.getText(),
-                this.jLabel_Fecha.getText(),
-                this.jFormattedTextField_Total.getText(),
-                this.jFormattedTextField_SubTotal.getText(),
-                this.jFormattedTextField_desc.getText(),
-                this.jFormattedTextField_DescuentoTotal.getText(),
-                this.jFormattedTextField_Cliente.getText(),
-                xml.ObtenerUsuario(),
-                this.jComboBox_CategoriaTipoPago.getSelectedItem().toString());}
+        if (!_savePress){
+            _savePress = true;
+            
+            if(this.guardarFactura()){
+                    XMLConfiguracion xml = ManejoDeArchivos.XMLConfiguracion.getInstance();
+                    this.imprimir(this.jLabel_NumerodeFact.getText(),
+                    this.jLabel_Fecha.getText(),
+                    this.jFormattedTextField_Total.getText(),
+                    this.jFormattedTextField_SubTotal.getText(),
+                    this.jFormattedTextField_desc.getText(),
+                    this.jFormattedTextField_DescuentoTotal.getText(),
+                    this.jFormattedTextField_Cliente.getText(),
+                    xml.ObtenerUsuario(),
+                    this.jComboBox_CategoriaTipoPago.getSelectedItem().toString());}
+        }
+        _savePress = false;
     }//GEN-LAST:event_printBttMouseClicked
 
     private void addBttMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_addBttMouseEntered
@@ -2358,7 +2383,6 @@ public class Pan_NuevaFactura extends javax.swing.JPanel {
     javax.swing.JLabel jLabel19;
     javax.swing.JLabel jLabel2;
     javax.swing.JLabel jLabel20;
-    javax.swing.JLabel jLabel21;
     javax.swing.JLabel jLabel22;
     javax.swing.JLabel jLabel23;
     javax.swing.JLabel jLabel24;
@@ -2401,6 +2425,7 @@ public class Pan_NuevaFactura extends javax.swing.JPanel {
     javax.swing.JTextField jTextField_busqueProducto;
     javax.swing.JTextField jTextField_codigo;
     javax.swing.JTextField jTextField_nombre;
+    javax.swing.JLabel lblTittle;
     javax.swing.JLabel printBtt;
     javax.swing.JLabel saveBtt;
     javax.swing.JLabel searchBtt;

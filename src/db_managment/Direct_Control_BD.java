@@ -3785,9 +3785,7 @@ public class Direct_Control_BD {
             while (rs.next()) {
                 temp = rs.getString("HoraCierre");
             }
-             System.out.println(temp);
             if(temp==null){
-                System.out.println("entro tambn");
                 return false;
             
             }

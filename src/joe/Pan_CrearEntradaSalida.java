@@ -1170,6 +1170,7 @@ public class Pan_CrearEntradaSalida extends javax.swing.JPanel {
         this.guardarProductosMovimiento();
         this.clearAll();
         JF_Inventario.getInstance().refreshActiveTable();
+        JF_Inventario.getInstance().backOnWindow();
         return true;
     }
 

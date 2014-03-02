@@ -303,7 +303,7 @@ public class JF_Inventario extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_bttMovimientosMouseClicked
 
-    private void backOnWindow(){
+    public void backOnWindow(){
         Object newPanel = _panelManager.back();
         if (newPanel == null){
             StartWindow.getInstance().enableMe();

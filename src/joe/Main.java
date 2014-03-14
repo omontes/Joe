@@ -6,6 +6,7 @@
 package joe;
 
 
+import ManejoDeArchivos.XMLConfiguracion;
 import db_managment.Direct_Control_BD;
 import java.io.IOException;
 import java.net.URISyntaxException;
@@ -64,7 +65,16 @@ public class Main {
 
             }
         });
-         
+     
+        XMLConfiguracion m= new XMLConfiguracion();
+        m.crearXML("Joe", "010202020", "Cartago Oriente", "26501136", "Cartago", "joe@gmail.com", "Hola", "adios", "admi", "C:\\ ","100","125","200","751");
+    m.establecerPosXImagen("523");
+    
+        System.out.println(m.obtenerPosXImagen());
+        System.out.println(m.obtenerPosYImagen());
+       
+        System.out.println(m.obtenerPosXNombreEmpresa());
+        System.out.println(m.obtenerPosYNombreEmpresa());
     }
 ;
 }

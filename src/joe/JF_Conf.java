@@ -100,7 +100,6 @@ public class JF_Conf extends javax.swing.JFrame {
         jLayeredPane1.setBackground(new java.awt.Color(153, 153, 153));
         jLayeredPane1.setMinimumSize(new java.awt.Dimension(800, 500));
         jLayeredPane1.setOpaque(true);
-        jLayeredPane1.setPreferredSize(new java.awt.Dimension(800, 500));
 
         bttUsser.setIcon(new javax.swing.ImageIcon(getClass().getResource("/System/Images/PanelConf/PanelConfDct.png"))); // NOI18N
         bttUsser.addMouseListener(new java.awt.event.MouseAdapter() {

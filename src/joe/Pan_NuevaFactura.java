@@ -2074,7 +2074,7 @@ public class Pan_NuevaFactura extends javax.swing.JPanel {
     }//GEN-LAST:event_jLabel22MouseClicked
 
     private void jTextField_codigoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField_codigoKeyTyped
-        int limite = 11;
+        int limite = 20;
         if (jTextField_codigo.getText().length() >= limite) {
             evt.consume();
             Toolkit.getDefaultToolkit().beep();

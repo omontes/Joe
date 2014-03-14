@@ -57,11 +57,15 @@ public class XMLConfiguracion {
      * @param comentarioFinal
      * @param Usuario
      * @param rutaImagen
+     * @param PosXImagen
+     * @param PosYImagen
+     * @param PosYNombreEmpresa
+     * @param PosXNombreEmpresa
      */
     public static void crearXML(String nombreEmpresa, String cedulaJuridica,
             String dirrecion, String telefono, String ciudad, String correo,
             String comentarioInicial, String comentarioFinal, String Usuario,
-            String rutaImagen) {
+            String rutaImagen,String posXImagen,String posYImagen,String posXNombreEmpresa,String posYNombreEmpresa) {
         try {
 
             DocumentBuilderFactory docFactory = DocumentBuilderFactory.
@@ -132,11 +136,36 @@ public class XMLConfiguracion {
             Element Imagen = doc.createElement("Imagen");
             rootElement.appendChild(Imagen);
 
-            //Agregar Usuario Actual
+            //Agregar ruta Imagen
             Element RutaImagen = doc.createElement("RutaImagen");
             RutaImagen.appendChild(doc.createTextNode(rutaImagen));
             Imagen.appendChild(RutaImagen);
-
+            
+            
+            ////////*****************modificaciones para josehp/********
+            //Agregar posixion x de Imagen
+            Element PosXImagen = doc.createElement("PosXImagen");
+            PosXImagen .appendChild(doc.createTextNode(posXImagen));
+            Imagen.appendChild(PosXImagen);
+            //*********************************************************
+           
+            //Agregar posixion y de Imagen
+            Element PosYImagen = doc.createElement("PosYImagen");
+            PosYImagen .appendChild(doc.createTextNode(posYImagen));
+            Imagen.appendChild(PosYImagen);
+            
+            //Agregar posixion x de nombre empresa
+            Element PosXNombreEmpresa = doc.createElement("PosXNombreEmpresa");
+            PosXNombreEmpresa .appendChild(doc.createTextNode(posXNombreEmpresa));
+            Imagen.appendChild(PosXNombreEmpresa);
+            //*********************************************************
+           
+            //Agregar posicion y de nombre de la empresa
+            Element PosYNombreEmpresa = doc.createElement("PosYNombreEmpresa");
+           PosYNombreEmpresa.appendChild(doc.createTextNode(posYNombreEmpresa));
+            Imagen.appendChild(PosYNombreEmpresa);
+            //*********************************************************
+            
             // escribir los datos en el documento xml
             TransformerFactory transformerFactory = TransformerFactory.
                     newInstance();
@@ -264,6 +293,18 @@ public class XMLConfiguracion {
     public String obtenerRutaImagen() {
         return obtenerValorDeElemeto("Imagen", "RutaImagen");
     }
+    public String obtenerPosXImagen() {
+        return obtenerValorDeElemeto("Imagen", "PosXImagen");
+    }
+    public String obtenerPosYImagen() {
+        return obtenerValorDeElemeto("Imagen", "PosYImagen");
+    }
+    public String obtenerPosXNombreEmpresa() {
+        return obtenerValorDeElemeto("Imagen", "PosXNombreEmpresa");
+    }
+    public String obtenerPosYNombreEmpresa() {
+        return obtenerValorDeElemeto("Imagen", "PosYNombreEmpresa");
+    }
 
     /**
      * Actualizar el contenido de un elemento
@@ -322,6 +363,18 @@ public class XMLConfiguracion {
      */
     public void establecerRutaImagen(String nuevoValor) {
         actualizarContenidoElemento("Imagen", "RutaImagen", nuevoValor);
+    }
+    public void establecerPosXImagen(String nuevoValor) {
+        actualizarContenidoElemento("Imagen", "PosXImagen", nuevoValor);
+    }
+    public void establecerPosYImagen(String nuevoValor) {
+        actualizarContenidoElemento("Imagen", "PosYImagen", nuevoValor);
+    }
+    public void establecerPosXNombreEmpresa(String nuevoValor) {
+        actualizarContenidoElemento("Imagen", "PosXNombreEmpresa", nuevoValor);
+    }
+    public void establecerPosYNombreEmpresa(String nuevoValor) {
+        actualizarContenidoElemento("Imagen", "PosYNombreEmpresa", nuevoValor);
     }
 
     /**

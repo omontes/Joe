@@ -167,7 +167,7 @@ public class Pan_ConfEmpr extends javax.swing.JPanel {
                 jTextField_Direccion.getText(), jTextField_telefono.getText(),
                 jTextField_ciudad.getText(), jTextField_correo.getText(),
                 jTextField_ComentarioIni.getText(), jTextField_ComentarioFin.
-                getText(), xml.ObtenerUsuario(), xml.obtenerRutaImagen());
+                getText(), xml.ObtenerUsuario(), xml.obtenerRutaImagen(),xml.obtenerPosXImagen(),xml.obtenerPosYImagen(),xml.obtenerPosXNombreEmpresa(),xml.obtenerPosYNombreEmpresa());
     }//GEN-LAST:event_jButton_aceptarActionPerformed
 
     private void jTextField_CedJActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField_CedJActionPerformed

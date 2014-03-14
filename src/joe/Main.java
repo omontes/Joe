@@ -6,6 +6,7 @@
 package joe;
 
 
+import ManejoDeArchivos.XMLConfiguracion;
 import db_managment.Direct_Control_BD;
 import java.io.IOException;
 import java.net.URISyntaxException;
@@ -64,7 +65,8 @@ public class Main {
 
             }
         });
-         
+     
+       
     }
 ;
 }

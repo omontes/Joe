@@ -1145,7 +1145,7 @@ public final class Pan_Inventario extends javax.swing.JPanel {
     }//GEN-LAST:event_jTextField_CostoKeyPressed
 
     private void jTextField_codigoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField_codigoKeyTyped
-        int limite = 11;
+        int limite = 20;
         if (jTextField_codigo.getText().length() >= limite) {
             evt.consume();
             Toolkit.getDefaultToolkit().beep();

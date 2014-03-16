@@ -2177,8 +2177,8 @@ public class JPanel_CrearFactura extends javax.swing.JPanel {
                     log(Level.SEVERE, null, ex);
         }
         //System.out.println(idFactura+" "+descuento+" "+tipoPago+" "+idCliente+" "+idVendedor+" "+detalle+" "+totalFact+" ");
-        AdminBD.crearFactura(idFactura, descuento, tipoPago, idCliente, idVendedor,
-                concepto, detalle, totalFact, "A");
+       // AdminBD.crearFactura(idFactura, descuento, tipoPago, idCliente, idVendedor,
+         //       concepto, detalle, totalFact, "A");
     }
 
     /**
@@ -2534,7 +2534,7 @@ public class JPanel_CrearFactura extends javax.swing.JPanel {
         String totalFacturaSinCorregir = this.jFormattedTextField_Total.getText();
         BigDecimal totalFact = this.corregirDato(totalFacturaSinCorregir);
         AdminBD.insertarFacturasPendientes(idFactura, totalFact, Fecha, idVersionFacturasProducto);
-        AdminBD.insertarPago(montoDePago, idFactura, idVersionFacturasProducto,tipopago);
+//        AdminBD.insertarPago(montoDePago, idFactura, idVersionFacturasProducto,tipopago);
     }
 
     private void guardarDev() {
@@ -2576,8 +2576,8 @@ public class JPanel_CrearFactura extends javax.swing.JPanel {
                     log(Level.SEVERE, null, ex);
         }
         //System.out.println(idFactura+" "+descuento+" "+tipoPago+" "+idCliente+" "+idVendedor+" "+detalle+" "+totalFact+" ");
-        AdminBD.crearDevolucion(idFactura, descuento, tipoPago, idCliente, idVendedor,
-                "Devolucion", detalle, totalFact, "A");
+//        AdminBD.crearDevolucion(idFactura, descuento, tipoPago, idCliente, idVendedor,
+//                "Devolucion", detalle, totalFact, "A");
     }
 
     private void guardarProductosDev() {

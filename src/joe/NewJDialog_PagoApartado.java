@@ -30,10 +30,19 @@ public class NewJDialog_PagoApartado extends javax.swing.JDialog {
     private String fecha;
     private BigDecimal montoDePago;
     DateFormat dateF = new SimpleDateFormat("yyyy-MM-dd");
+    private static NewJDialog_PagoApartado PagoApartado;
     public NewJDialog_PagoApartado() {
         
         initComponents();
         setLocationRelativeTo(null);
+        
+    }
+    
+     public static NewJDialog_PagoApartado getInstance() {
+        if (PagoApartado == null) {
+            PagoApartado = new NewJDialog_PagoApartado();
+        }
+        return PagoApartado;
     }
 
     /**

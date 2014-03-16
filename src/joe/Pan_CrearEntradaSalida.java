@@ -1386,7 +1386,7 @@ public class Pan_CrearEntradaSalida extends javax.swing.JPanel {
                 /**
                  * ********************************************************
                  */
-                MyTableModel_FACT dtm = (MyTableModel_FACT) table.getModel();
+                MyTableModel_FACT dtm = (MyTableModel_FACT) this.jTable_Movimiento.getModel();
                 int nRow = dtm.getRowCount();
                 for (int i = 0; i < nRow; i++) {
                     String Producto = dtm.getValueAt(i, 1).toString();

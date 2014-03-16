@@ -545,8 +545,8 @@ public class Direct_Control_BD {
      * @param concepto
      * @param nota
      */
-    public void crearFactura(int idFactura, BigDecimal descuento, String tipoPago, int idCliente,
-            int idVendedor, String concepto, String nota, BigDecimal TotalFacturado, String estado) {//Revisado+
+    public void crearFactura(int idFactura, BigDecimal descuento,int idCliente,
+            int idVendedor, String concepto, String nota,BigDecimal TotalTarjeta,BigDecimal TotalContado, String estado) {//Revisado+
         DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
         Date date = new Date();
         String fecha = dateFormat.format(date);
@@ -558,13 +558,13 @@ public class Direct_Control_BD {
 
             stm.setInt(1, idFactura);
             stm.setDouble(2, descuento.doubleValue());
-            stm.setString(3, tipoPago);
-            stm.setInt(4, idCliente);
-            stm.setInt(5, idVendedor);
-            stm.setString(6, concepto);
-            stm.setString(7, nota);
-            stm.setString(8, fecha);
-            stm.setDouble(9, TotalFacturado.doubleValue());
+            stm.setInt(3, idCliente);
+            stm.setInt(4, idVendedor);
+            stm.setString(5, concepto);
+            stm.setString(6, nota);
+            stm.setString(7, fecha);
+            stm.setBigDecimal(8, TotalTarjeta);
+            stm.setBigDecimal(9, TotalContado);
             stm.setString(10, estado);
             stm.executeUpdate();
 
@@ -1253,7 +1253,7 @@ public class Direct_Control_BD {
      * @param idFacturaPendiente
      * @param idFacturaVersionPagosPend
      */
-    public void insertarPago(BigDecimal montoDePago, int idFacturaPendiente, int idFacturaVersionPagosPend, String tipopago) {
+    public void insertarPago(BigDecimal montoDePago, int idFacturaPendiente, int idFacturaVersionPagosPend) {
         try {
             DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
             Date date = new Date();
@@ -1265,7 +1265,6 @@ public class Direct_Control_BD {
             stm.setDouble(2, montoDePago.doubleValue());
             stm.setInt(3, idFacturaPendiente);
             stm.setInt(4, idFacturaVersionPagosPend);
-            stm.setString(5, tipopago);
             stm.executeUpdate();
 
         } catch (Exception e) {
@@ -1917,6 +1916,25 @@ public class Direct_Control_BD {
         } catch (Exception e) {
             System.out.println(NumFact);
             System.out.println("Error al obtener la informacion de la factura");
+        }
+    }
+    
+     /**
+     * Devuelve toda la informacion(Cliente,Vendedor,Total etc) del num de
+     * apartado o credito ingresado.
+     */
+    public void verInfoApartadoCredito(int NumFact) {
+        try {
+            String verInfoApartadoCredito = this.readSql("../Joe/src/"
+                    + "sql_files/cargarApartadoCredito.sql");
+            PreparedStatement stm = this.conection.prepareStatement(verInfoApartadoCredito);
+            stm.setInt(1, NumFact);
+            ResultSet resultset = stm.executeQuery();
+            this.setColumnNames(this.Get_Columnas(resultset));
+            this.setData(this.ResultSet_Array(resultset));
+        } catch (Exception e) {
+            System.out.println(NumFact);
+            System.out.println("Error al obtener la informacion del apartado o credito");
         }
     }
 
@@ -2759,7 +2777,7 @@ public class Direct_Control_BD {
         }
     }
 
-    public void crearDevolucion(int idFactura, BigDecimal descuento, String tipoPago, int idCliente, int idVendedor, String concepto, String detalle, BigDecimal totalFact, String estado) {
+    public void crearDevolucion(int idFactura, BigDecimal descuento,int idCliente, int idVendedor, String concepto, String detalle, BigDecimal totalFact, String estado) {
         DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
         Date date = new Date();
         String fecha = dateFormat.format(date);
@@ -2770,14 +2788,13 @@ public class Direct_Control_BD {
             PreparedStatement stm = conection.prepareStatement(CrearDevolucion, statement.RETURN_GENERATED_KEYS);
             stm.setInt(1, idFactura);
             stm.setDouble(2, descuento.doubleValue());
-            stm.setString(3, tipoPago);
-            stm.setInt(4, idCliente);
-            stm.setInt(5, idVendedor);
-            stm.setString(6, concepto);
-            stm.setString(7, detalle);
-            stm.setString(8, fecha);
-            stm.setDouble(9, totalFact.doubleValue());
-            stm.setString(10, estado);
+            stm.setInt(3, idCliente);
+            stm.setInt(4, idVendedor);
+            stm.setString(5, concepto);
+            stm.setString(6, detalle);
+            stm.setString(7, fecha);
+            stm.setBigDecimal(8, totalFact);
+            stm.setString(9, estado);
             stm.executeUpdate();
 
         } catch (Exception e) {

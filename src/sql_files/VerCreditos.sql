@@ -1,4 +1,4 @@
-SELECT DISTINCT F.idFactura, FP.Saldo,FP.FechaVencimiento,(SELECT FPP.`Saldo` + SUM(PFPP.`MontoDePago`) FROM Factura AS FF,FacturasPendientes AS FPP,PagosFactPendientes AS PFPP WHERE
+SELECT DISTINCT F.idFactura, FP.Saldo,FP.FechaVencimiento,(SELECT FPP.`Saldo`+SUM(PFPP.`PagoContado`)+SUM(PFPP.`PagoTarjeta`) FROM Factura AS FF,FacturasPendientes AS FPP,PagosFactPendientes AS PFPP WHERE
 FF.idFactura=F.idFactura AND FF.Estado='A'AND FF.idFactura=FP.idFactura AND FF.idVersionFactura=FPP.idVersionFactPendientes AND PFPP.idFacturaPendiente = FPP.idFactura AND PFPP.idFacturaVersionPagosPend = FPP.idVersionFactPendientes
 ) AS Total,C.Nombre,V.Nombre
 FROM Factura AS F,FacturasPendientes AS FP, Persona AS C, Persona AS V, PagosFactPendientes AS PFP

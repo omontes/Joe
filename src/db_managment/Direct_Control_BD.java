@@ -1253,7 +1253,7 @@ public class Direct_Control_BD {
      * @param idFacturaPendiente
      * @param idFacturaVersionPagosPend
      */
-    public void insertarPago(BigDecimal montoDePago, int idFacturaPendiente, int idFacturaVersionPagosPend) {
+    public void insertarPago(BigDecimal PagoTarjeta,BigDecimal PagoContado, int idFacturaPendiente, int idFacturaVersionPagosPend) {
         try {
             DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
             Date date = new Date();
@@ -1262,12 +1262,15 @@ public class Direct_Control_BD {
                     + "insertarPago.sql");
             PreparedStatement stm = this.conection.prepareStatement(insertarPago);
             stm.setString(1, fecha);
-            stm.setDouble(2, montoDePago.doubleValue());
-            stm.setInt(3, idFacturaPendiente);
-            stm.setInt(4, idFacturaVersionPagosPend);
+            stm.setBigDecimal(2,PagoTarjeta);
+            stm.setBigDecimal(3,PagoContado);
+            stm.setInt(4, idFacturaPendiente);
+            stm.setInt(5, idFacturaVersionPagosPend);
             stm.executeUpdate();
 
         } catch (Exception e) {
+            //System.out.println(PagoTarjeta+" "+PagoContado+" 
+            //"+idFacturaPendiente+" "+idFacturaVersionPagosPend);
             System.out.println("Error al insertar un Pago a una Factura Pendiente");
 
         }

@@ -483,7 +483,7 @@ public class Pan_CerrarCaja extends javax.swing.JPanel {
         this.jLabel_Cajero.setText(Cajero);
         this.jLabel_horaInicio.setText(fechaInicio);        
         String[] columnNames = {"Fecha","Concepto",
-            "Num Fact","Tipo Pago","Monto"};
+            "Num Fact","Pago Tarjeta","Pago Contado"};
         List<Object[]> data = new ArrayList<Object[]>();      
         //Agrega el modelo a la factura
         Modelo_CierreCaja model=new Modelo_CierreCaja(columnNames,data);
@@ -552,13 +552,13 @@ public class Pan_CerrarCaja extends javax.swing.JPanel {
             String Fecha= infofactscontado[0].toString();
             String Concepto= infofactscontado[1].toString();
             int NumFact = Integer.parseInt(infofactscontado[2].toString());
-            String TipoPago=infofactscontado[3].toString();
-            BigDecimal monto= this.StringtoBigDecimal(infofactscontado[4].toString());
+            BigDecimal montoTarjeta=this.StringtoBigDecimal(infofactscontado[3].toString());
+            BigDecimal montoContado= this.StringtoBigDecimal(infofactscontado[4].toString());
             model.setValueAt(Fecha, row, 0);
             model.setValueAt(Concepto, row, 1);
             model.setValueAt(NumFact, row, 2);
-            model.setValueAt(TipoPago, row, 3);
-            model.setValueAt(monto, row, 4);
+            model.setValueAt(montoTarjeta, row, 3);
+            model.setValueAt(montoContado, row, 4);
             
             
             }
@@ -577,13 +577,13 @@ public class Pan_CerrarCaja extends javax.swing.JPanel {
             String Fecha= infoapscreditos[0].toString();
             String Concepto= infoapscreditos[1].toString();
             int NumFact = Integer.parseInt(infoapscreditos[2].toString());
-            String TipoPago=infoapscreditos[3].toString();
-            BigDecimal monto= this.StringtoBigDecimal(infoapscreditos[4].toString());
+            BigDecimal montoTarjeta=this.StringtoBigDecimal(infoapscreditos[3].toString());
+            BigDecimal montoContado= this.StringtoBigDecimal(infoapscreditos[4].toString());
             model.setValueAt(Fecha, numFilasTablas+row, 0);
             model.setValueAt(Concepto, numFilasTablas+row, 1);
             model.setValueAt(NumFact, numFilasTablas+row, 2);
-            model.setValueAt(TipoPago, numFilasTablas+row, 3);
-            model.setValueAt(monto, numFilasTablas+row, 4);
+            model.setValueAt(montoTarjeta, numFilasTablas+row, 3);
+            model.setValueAt(montoContado, numFilasTablas+row, 4);
             
             
             }
@@ -602,13 +602,13 @@ public class Pan_CerrarCaja extends javax.swing.JPanel {
             String Fecha= infodev[0].toString();
             String Concepto= infodev[1].toString();
             int NumFact = Integer.parseInt(infodev[2].toString());
-            String TipoPago=infodev[3].toString();
-            BigDecimal monto= this.StringtoBigDecimal(infodev[4].toString());
+            BigDecimal montoTarjeta=this.StringtoBigDecimal(infodev[3].toString());
+            BigDecimal montoContado= this.StringtoBigDecimal(infodev[4].toString());
             model.setValueAt(Fecha, numFilasTablas+row, 0);
             model.setValueAt(Concepto, numFilasTablas+row, 1);
             model.setValueAt(NumFact, numFilasTablas+row, 2);
-            model.setValueAt(TipoPago, numFilasTablas+row, 3);
-            model.setValueAt(monto.negate(), numFilasTablas+row, 4);
+            model.setValueAt(montoTarjeta, numFilasTablas+row, 3);
+            model.setValueAt(montoContado.negate(), numFilasTablas+row, 4);
             
             
             }
@@ -625,9 +625,9 @@ public class Pan_CerrarCaja extends javax.swing.JPanel {
         rightRenderer.setHorizontalAlignment(JLabel.RIGHT);
         this.jTable_VerCierre.getColumnModel().getColumn(2).
                 setCellRenderer(rightRenderer);
-        this.jTable_VerCierre.getColumnModel().getColumn(3).
-                setCellRenderer(rightRenderer);
         this.jTable_VerCierre.getColumnModel().getColumn(4).
+                setCellRenderer(new CurrencyRender());
+        this.jTable_VerCierre.getColumnModel().getColumn(3).
                 setCellRenderer(new CurrencyRender());
         
     

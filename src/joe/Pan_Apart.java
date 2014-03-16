@@ -78,6 +78,19 @@ public class Pan_Apart extends javax.swing.JPanel {
         jLabel10 = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
         jLabel17 = new javax.swing.JLabel();
+        jDialog_darVuelto = new javax.swing.JDialog();
+        jPanel5 = new javax.swing.JPanel();
+        jLabel23 = new javax.swing.JLabel();
+        jLabel24 = new javax.swing.JLabel();
+        jLabel25 = new javax.swing.JLabel();
+        jFormattedTextField_totalFact = new javax.swing.JFormattedTextField();
+        jFormattedTextField_pagoVueltoContado = new javax.swing.JFormattedTextField();
+        jFormattedTextField_vuelto = new javax.swing.JFormattedTextField();
+        jButton_aceptarVuelto = new javax.swing.JButton();
+        jLabel26 = new javax.swing.JLabel();
+        jLabel27 = new javax.swing.JLabel();
+        jFormattedTextField_pagoVueltoTarjeta = new javax.swing.JFormattedTextField();
+        jButton2 = new javax.swing.JButton();
         jScrollPane2 = new javax.swing.JScrollPane();
         jTable_Apartados = new javax.swing.JTable();
         jLabel5 = new javax.swing.JLabel();
@@ -170,7 +183,7 @@ public class Pan_Apart extends javax.swing.JPanel {
 
         jLabel7.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jLabel7.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel7.setText("Abono a la factura #");
+        jLabel7.setText("Pago al Apartado#");
         jPanel2.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, -1, -1));
 
         jFormattedTextField_Abono.setText("0.00");
@@ -218,7 +231,7 @@ public class Pan_Apart extends javax.swing.JPanel {
         jLabel_numFactVerPagos.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jLabel_numFactVerPagos.setForeground(new java.awt.Color(255, 255, 255));
         jLabel_numFactVerPagos.setText("705");
-        jDialog_VerPagos.getContentPane().add(jLabel_numFactVerPagos, new org.netbeans.lib.awtextra.AbsoluteConstraints(198, 11, 120, 22));
+        jDialog_VerPagos.getContentPane().add(jLabel_numFactVerPagos, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 10, 100, 30));
 
         jLabel8.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jLabel8.setText("Saldo Pendiente");
@@ -240,7 +253,7 @@ public class Pan_Apart extends javax.swing.JPanel {
 
         jLabel10.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jLabel10.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel10.setText("Pagos a la factura #");
+        jLabel10.setText("Pagos del Apartado #");
         jDialog_VerPagos.getContentPane().add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 11, -1, -1));
 
         jButton1.setText("Aceptar");
@@ -255,6 +268,135 @@ public class Pan_Apart extends javax.swing.JPanel {
         jLabel17.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         jLabel17.setOpaque(true);
         jDialog_VerPagos.getContentPane().add(jLabel17, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 330, 390));
+
+        jDialog_darVuelto.setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        jDialog_darVuelto.setMinimumSize(new java.awt.Dimension(370, 290));
+        jDialog_darVuelto.setModal(true);
+        jDialog_darVuelto.setUndecorated(true);
+        jDialog_darVuelto.setResizable(false);
+        jDialog_darVuelto.setSize(370, 290);
+        jDialog_darVuelto.setLocationRelativeTo(null);
+
+        jPanel5.setBackground(new java.awt.Color(153, 153, 153));
+        jPanel5.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        jPanel5.setLayout(null);
+
+        jLabel23.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLabel23.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel23.setText("Total Abonado");
+        jPanel5.add(jLabel23);
+        jLabel23.setBounds(50, 40, 150, 50);
+
+        jLabel24.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLabel24.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel24.setText("Pago de contado");
+        jPanel5.add(jLabel24);
+        jLabel24.setBounds(50, 150, 120, 50);
+
+        jLabel25.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLabel25.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel25.setText("Vuelto");
+        jPanel5.add(jLabel25);
+        jLabel25.setBounds(50, 200, 130, 50);
+
+        jFormattedTextField_totalFact.setEditable(false);
+        jFormattedTextField_totalFact.setForeground(new java.awt.Color(255, 0, 0));
+        jFormattedTextField_totalFact.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(new java.text.DecimalFormat("C#,##0.00;(C#,##0.00)"))));
+        jFormattedTextField_totalFact.setText("0.00");
+        jFormattedTextField_totalFact.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
+        jPanel5.add(jFormattedTextField_totalFact);
+        jFormattedTextField_totalFact.setBounds(180, 50, 180, 40);
+
+        jFormattedTextField_pagoVueltoContado.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(new java.text.DecimalFormat("#,##0.00"))));
+        jFormattedTextField_pagoVueltoContado.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
+        jFormattedTextField_pagoVueltoContado.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jFormattedTextField_pagoVueltoContadoMouseClicked(evt);
+            }
+        });
+        jFormattedTextField_pagoVueltoContado.addPropertyChangeListener(new java.beans.PropertyChangeListener() {
+            public void propertyChange(java.beans.PropertyChangeEvent evt) {
+                jFormattedTextField_pagoVueltoContadoPropertyChange(evt);
+            }
+        });
+        jFormattedTextField_pagoVueltoContado.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                jFormattedTextField_pagoVueltoContadoKeyPressed(evt);
+            }
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                jFormattedTextField_pagoVueltoContadoKeyTyped(evt);
+            }
+        });
+        jPanel5.add(jFormattedTextField_pagoVueltoContado);
+        jFormattedTextField_pagoVueltoContado.setBounds(180, 160, 180, 40);
+
+        jFormattedTextField_vuelto.setEditable(false);
+        jFormattedTextField_vuelto.setForeground(new java.awt.Color(51, 0, 255));
+        jFormattedTextField_vuelto.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(new java.text.DecimalFormat("#,##0.00"))));
+        jFormattedTextField_vuelto.setText("0.00");
+        jFormattedTextField_vuelto.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
+        jPanel5.add(jFormattedTextField_vuelto);
+        jFormattedTextField_vuelto.setBounds(180, 210, 180, 40);
+
+        jButton_aceptarVuelto.setText("Aceptar");
+        jButton_aceptarVuelto.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton_aceptarVueltoActionPerformed(evt);
+            }
+        });
+        jButton_aceptarVuelto.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                jButton_aceptarVueltoKeyPressed(evt);
+            }
+        });
+        jPanel5.add(jButton_aceptarVuelto);
+        jButton_aceptarVuelto.setBounds(180, 260, 70, 30);
+
+        jLabel26.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        jLabel26.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel26.setText("Pago de Apartado");
+        jPanel5.add(jLabel26);
+        jLabel26.setBounds(10, 10, 200, 22);
+
+        jLabel27.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLabel27.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel27.setText("Pago con tarjeta");
+        jPanel5.add(jLabel27);
+        jLabel27.setBounds(50, 90, 120, 50);
+
+        jFormattedTextField_pagoVueltoTarjeta.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(new java.text.DecimalFormat("#,##0.00"))));
+        jFormattedTextField_pagoVueltoTarjeta.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
+        jFormattedTextField_pagoVueltoTarjeta.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jFormattedTextField_pagoVueltoTarjetaMouseClicked(evt);
+            }
+        });
+        jFormattedTextField_pagoVueltoTarjeta.addPropertyChangeListener(new java.beans.PropertyChangeListener() {
+            public void propertyChange(java.beans.PropertyChangeEvent evt) {
+                jFormattedTextField_pagoVueltoTarjetaPropertyChange(evt);
+            }
+        });
+        jFormattedTextField_pagoVueltoTarjeta.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                jFormattedTextField_pagoVueltoTarjetaKeyPressed(evt);
+            }
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                jFormattedTextField_pagoVueltoTarjetaKeyTyped(evt);
+            }
+        });
+        jPanel5.add(jFormattedTextField_pagoVueltoTarjeta);
+        jFormattedTextField_pagoVueltoTarjeta.setBounds(180, 100, 180, 40);
+
+        jButton2.setText("Cancelar");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
+        jPanel5.add(jButton2);
+        jButton2.setBounds(270, 260, 90, 30);
+
+        jDialog_darVuelto.getContentPane().add(jPanel5, java.awt.BorderLayout.CENTER);
 
         setMinimumSize(new java.awt.Dimension(760, 400));
         setOpaque(false);
@@ -368,11 +510,11 @@ public class Pan_Apart extends javax.swing.JPanel {
         
         BigDecimal montoDePago = this.StringtoBigDecimal(this.jFormattedTextField_Abono.getText());
         if(montoDePago.compareTo(new BigDecimal("0.00"))>0){
-            this.crearPago(Integer.parseInt(this.jLabel_numFact.getText()), montoDePago);
             this.jDialog_CrearPago.dispose();
-            this.jFormattedTextField_Abono.setText(new BigDecimal("0.00").toString());
-            this.jFormattedTextField_Saldo.setValue(new BigDecimal("0.00"));
-            this.completarTablaApartados();
+            this.jFormattedTextField_Abono.setText(BigDecimal.ZERO.toString());
+            this.jFormattedTextField_Saldo.setValue(BigDecimal.ZERO);
+            this.darVuelto(montoDePago);
+            
         }
         else{
             JOptionPane.showMessageDialog(
@@ -463,12 +605,6 @@ public class Pan_Apart extends javax.swing.JPanel {
             this.jFormattedTextField_Total.setValue(TotalFacturado);
             this.jFormattedTextField_TotalPagado.setValue(Saldo);
             this.jFormattedTextField_Saldo.setValue(Saldo);
-         
-           
-                                   
-                     
-            
-            
             this.jDialog_CrearPago.setVisible(true);
         }
         else{
@@ -561,6 +697,143 @@ public class Pan_Apart extends javax.swing.JPanel {
             this.jButton_AceptarPago.requestFocusInWindow();
         }
     }//GEN-LAST:event_jFormattedTextField_AbonoKeyTyped
+
+    private void jFormattedTextField_pagoVueltoContadoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jFormattedTextField_pagoVueltoContadoMouseClicked
+        this.jFormattedTextField_pagoVueltoContado.selectAll();
+    }//GEN-LAST:event_jFormattedTextField_pagoVueltoContadoMouseClicked
+
+    private void jFormattedTextField_pagoVueltoContadoPropertyChange(java.beans.PropertyChangeEvent evt) {//GEN-FIRST:event_jFormattedTextField_pagoVueltoContadoPropertyChange
+        if (evt.getPropertyName().equals("value")) {
+
+            if (evt.getNewValue() != null) {
+                String text = evt.getNewValue().toString();
+                BigDecimal pagoContado = this.StringtoBigDecimal(text);
+                BigDecimal pagoTarjeta = this.StringtoBigDecimal(this.jFormattedTextField_pagoVueltoTarjeta.getText());
+                BigDecimal total = this.corregirDato(this.jFormattedTextField_totalFact.getText());
+                if (pagoContado.compareTo(BigDecimal.ZERO) == 0 & pagoTarjeta.compareTo(BigDecimal.ZERO) == 0) {
+                    this.jFormattedTextField_vuelto.setValue(BigDecimal.ZERO);
+                    return;
+                }
+                this.jFormattedTextField_vuelto.setValue((pagoTarjeta.add(pagoContado)).subtract(total));
+
+            }
+
+        }
+    }//GEN-LAST:event_jFormattedTextField_pagoVueltoContadoPropertyChange
+
+    private void jFormattedTextField_pagoVueltoContadoKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jFormattedTextField_pagoVueltoContadoKeyPressed
+        if (evt.isControlDown()) {
+            evt.consume();
+        }
+    }//GEN-LAST:event_jFormattedTextField_pagoVueltoContadoKeyPressed
+
+    private void jFormattedTextField_pagoVueltoContadoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jFormattedTextField_pagoVueltoContadoKeyTyped
+        int tecla = evt.getKeyChar();
+        if (tecla == KeyEvent.VK_COMMA) {
+            return;
+        }
+        if (tecla == KeyEvent.VK_PERIOD) {
+            return;
+        }
+        if (!Character.isDigit(tecla) & !Character.isISOControl(evt.getKeyChar())) {
+            Toolkit.getDefaultToolkit().beep();
+            evt.consume();
+
+        }
+
+        if (KeyEvent.VK_ENTER == evt.getKeyChar()) {
+            this.jButton_aceptarVuelto.requestFocusInWindow();
+
+        }
+    }//GEN-LAST:event_jFormattedTextField_pagoVueltoContadoKeyTyped
+
+    private void jButton_aceptarVueltoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_aceptarVueltoActionPerformed
+        if(new BigDecimal(this.jFormattedTextField_vuelto.getValue().toString()).compareTo(BigDecimal.ZERO)<0){
+            JOptionPane.showMessageDialog(
+                null,
+                "Por favor ingrese el pago del cliente correctamente",
+                "Error vuelto negativo", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+        this.jDialog_darVuelto.dispose();
+        this.guardarApartado();
+
+    }//GEN-LAST:event_jButton_aceptarVueltoActionPerformed
+
+    private void jButton_aceptarVueltoKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jButton_aceptarVueltoKeyPressed
+        if(evt.getKeyChar()== KeyEvent.VK_ENTER){
+            this.jButton_aceptarVuelto.doClick();
+
+        }
+    }//GEN-LAST:event_jButton_aceptarVueltoKeyPressed
+
+    private void jFormattedTextField_pagoVueltoTarjetaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jFormattedTextField_pagoVueltoTarjetaMouseClicked
+        this.jFormattedTextField_pagoVueltoTarjeta.selectAll();
+    }//GEN-LAST:event_jFormattedTextField_pagoVueltoTarjetaMouseClicked
+
+    private void jFormattedTextField_pagoVueltoTarjetaPropertyChange(java.beans.PropertyChangeEvent evt) {//GEN-FIRST:event_jFormattedTextField_pagoVueltoTarjetaPropertyChange
+        if (evt.getPropertyName().equals("value")) {
+
+            if (evt.getNewValue() != null) {
+                String text = evt.getNewValue().toString();
+                BigDecimal pagotarjeta = this.StringtoBigDecimal(text);
+                BigDecimal pagocontado = this.StringtoBigDecimal(this.jFormattedTextField_pagoVueltoContado.getText());
+                BigDecimal total = this.corregirDato(this.jFormattedTextField_totalFact.getText());
+                if (pagotarjeta.compareTo(BigDecimal.ZERO) == 0 & pagocontado.compareTo(BigDecimal.ZERO) == 0) {
+                    this.jFormattedTextField_vuelto.setValue(BigDecimal.ZERO);
+                    return;
+                }
+                if(pagotarjeta.compareTo(total)>0){
+                    JOptionPane.showMessageDialog(
+                        null,
+                        "El pago con tarjeta no puede superar el monto facturado",
+                        "Alert!", JOptionPane.ERROR_MESSAGE);
+                    this.jFormattedTextField_pagoVueltoTarjeta.setValue(BigDecimal.ZERO);
+                    this.jFormattedTextField_pagoVueltoTarjeta.requestFocusInWindow();
+                    if(pagocontado.compareTo(BigDecimal.ZERO)==0){
+                        this.jFormattedTextField_vuelto.setValue(BigDecimal.ZERO);
+                    }
+                }
+                else{
+                    this.jFormattedTextField_vuelto.setValue((pagotarjeta.add(pagocontado)).subtract(total));}
+
+            }
+
+        }
+    }//GEN-LAST:event_jFormattedTextField_pagoVueltoTarjetaPropertyChange
+
+    private void jFormattedTextField_pagoVueltoTarjetaKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jFormattedTextField_pagoVueltoTarjetaKeyPressed
+        if (evt.isControlDown()) {
+            evt.consume();
+        }
+    }//GEN-LAST:event_jFormattedTextField_pagoVueltoTarjetaKeyPressed
+
+    private void jFormattedTextField_pagoVueltoTarjetaKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jFormattedTextField_pagoVueltoTarjetaKeyTyped
+        int tecla = evt.getKeyChar();
+        if (tecla == KeyEvent.VK_COMMA) {
+            return;
+        }
+        if (tecla == KeyEvent.VK_PERIOD) {
+            return;
+        }
+        if (!Character.isDigit(tecla) & !Character.isISOControl(evt.getKeyChar())) {
+            Toolkit.getDefaultToolkit().beep();
+            evt.consume();
+
+        }
+
+        if (KeyEvent.VK_ENTER == evt.getKeyChar()) {
+            this.jButton_aceptarVuelto.requestFocusInWindow();
+
+        }
+    }//GEN-LAST:event_jFormattedTextField_pagoVueltoTarjetaKeyTyped
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        this.jDialog_darVuelto.dispose();
+        this.jFormattedTextField_pagoVueltoContado.setText(BigDecimal.ZERO.toString());
+        this.jFormattedTextField_pagoVueltoTarjeta.setText(BigDecimal.ZERO.toString());
+        this.jFormattedTextField_vuelto.setValue(BigDecimal.ZERO);
+    }//GEN-LAST:event_jButton2ActionPerformed
    
     
      /**
@@ -645,16 +918,23 @@ public class Pan_Apart extends javax.swing.JPanel {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     javax.swing.JButton jButton1;
+    javax.swing.JButton jButton2;
     javax.swing.JButton jButton_AceptarPago;
     javax.swing.JButton jButton_CancelarPago;
+    javax.swing.JButton jButton_aceptarVuelto;
     javax.swing.JDialog jDialog_CrearPago;
     javax.swing.JDialog jDialog_VerPagos;
+    javax.swing.JDialog jDialog_darVuelto;
     javax.swing.JTextField jFormattedTextField_Abono;
     javax.swing.JFormattedTextField jFormattedTextField_Saldo;
     javax.swing.JFormattedTextField jFormattedTextField_Total;
     javax.swing.JFormattedTextField jFormattedTextField_TotalPagado;
+    javax.swing.JFormattedTextField jFormattedTextField_pagoVueltoContado;
+    javax.swing.JFormattedTextField jFormattedTextField_pagoVueltoTarjeta;
     javax.swing.JFormattedTextField jFormattedTextField_saldoPendiente;
+    javax.swing.JFormattedTextField jFormattedTextField_totalFact;
     javax.swing.JFormattedTextField jFormattedTextField_totalFacturado;
+    javax.swing.JFormattedTextField jFormattedTextField_vuelto;
     javax.swing.JLabel jLabel1;
     javax.swing.JLabel jLabel10;
     javax.swing.JLabel jLabel11;
@@ -664,6 +944,11 @@ public class Pan_Apart extends javax.swing.JPanel {
     javax.swing.JLabel jLabel16;
     javax.swing.JLabel jLabel17;
     javax.swing.JLabel jLabel2;
+    javax.swing.JLabel jLabel23;
+    javax.swing.JLabel jLabel24;
+    javax.swing.JLabel jLabel25;
+    javax.swing.JLabel jLabel26;
+    javax.swing.JLabel jLabel27;
     javax.swing.JLabel jLabel3;
     javax.swing.JLabel jLabel4;
     javax.swing.JLabel jLabel5;
@@ -674,6 +959,7 @@ public class Pan_Apart extends javax.swing.JPanel {
     javax.swing.JLabel jLabel_numFact;
     javax.swing.JLabel jLabel_numFactVerPagos;
     javax.swing.JPanel jPanel2;
+    javax.swing.JPanel jPanel5;
     javax.swing.JScrollPane jScrollPane2;
     javax.swing.JScrollPane jScrollPane3;
     javax.swing.JSeparator jSeparator1;
@@ -681,11 +967,11 @@ public class Pan_Apart extends javax.swing.JPanel {
     javax.swing.JTable jTable_VerPagos;
     // End of variables declaration//GEN-END:variables
 
-    private void crearPago(int idFactura, BigDecimal montoDePago) {
+    private void crearPago(int idFactura, BigDecimal pagoTarjeta, BigDecimal pagoContado) {
        
         Direct_Control_BD AdminBD = Direct_Control_BD.getInstance();
         int idVersionFacturasProducto = AdminBD.verVersionDEFacturaActiva(idFactura);
-        AdminBD.insertarPago(montoDePago,idFactura,idVersionFacturasProducto);
+        AdminBD.insertarPago(pagoTarjeta,pagoContado,idFactura,idVersionFacturasProducto);
 
     }
      /**
@@ -791,6 +1077,25 @@ public class Pan_Apart extends javax.swing.JPanel {
         String fechaInicio = AdminBD.obtenerFechaInicioCierre(idCierreVigente);
         boolean Sisepuede = AdminBD.verificarFacturaCierre(fechaInicio,idFact);
         return Sisepuede;
+    }
+
+    private void darVuelto(BigDecimal montoDePago) {
+        this.jFormattedTextField_totalFact.setValue(montoDePago);
+        this.jFormattedTextField_vuelto.setValue(BigDecimal.ZERO);
+        this.jFormattedTextField_pagoVueltoTarjeta.setText(BigDecimal.ZERO.toString());
+        this.jFormattedTextField_pagoVueltoContado.setText(BigDecimal.ZERO.toString());
+        this.jDialog_darVuelto.show();
+    }
+
+    private void guardarApartado() {
+        BigDecimal totalfact = this.corregirDato(this.jFormattedTextField_totalFact.getText());
+        BigDecimal totalTarjeta = this.StringtoBigDecimal(this.jFormattedTextField_pagoVueltoTarjeta.getText());
+        BigDecimal totalContado = totalfact.subtract(totalTarjeta);
+        this.crearPago(Integer.parseInt(this.jLabel_numFact.getText()),totalTarjeta,totalContado);
+        this.jDialog_CrearPago.dispose();
+        this.jFormattedTextField_Abono.setText(new BigDecimal("0.00").toString());
+        this.jFormattedTextField_Saldo.setValue(new BigDecimal("0.00"));
+        this.completarTablaApartados();
     }
 
    

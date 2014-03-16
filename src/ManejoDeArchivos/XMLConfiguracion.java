@@ -35,6 +35,7 @@ import org.xml.sax.SAXException;
 public class XMLConfiguracion {
 
     private static XMLConfiguracion xml;
+    
 
     public static XMLConfiguracion getInstance() {
         if (xml == null) {
@@ -65,7 +66,8 @@ public class XMLConfiguracion {
     public static void crearXML(String nombreEmpresa, String cedulaJuridica,
             String dirrecion, String telefono, String ciudad, String correo,
             String comentarioInicial, String comentarioFinal, String Usuario,
-            String rutaImagen,String posXImagen,String posYImagen,String posXNombreEmpresa,String posYNombreEmpresa, String slogan) {
+            String rutaImagen, String posXImagen, String posYImagen,
+            String posXNombreEmpresa, String posYNombreEmpresa, String slogan, String TipoUsuario) {
         try {
 
             DocumentBuilderFactory docFactory = DocumentBuilderFactory.
@@ -122,10 +124,10 @@ public class XMLConfiguracion {
             Element ComentarioFin = doc.createElement("ComentarioFinal");
             ComentarioFin.appendChild(doc.createTextNode(comentarioFinal));
             Factura.appendChild(ComentarioFin);
-            
+
             //Agregar slogan de empresa
             Element Slogan = doc.createElement("slogan");
-            Slogan .appendChild(doc.createTextNode(slogan));
+            Slogan.appendChild(doc.createTextNode(slogan));
             Factura.appendChild(Slogan);
 
             // Agregar informacion de Usuario Actual
@@ -137,7 +139,12 @@ public class XMLConfiguracion {
             UsuarioActual.appendChild(doc.createTextNode(Usuario));
             UsuarioAct.appendChild(UsuarioActual);
 
-            // Agregar informacion de Usuario Actual
+            //Agregar Tipo Usuario Actual
+            Element TipUsuarioActual = doc.createElement("TipoUsuarioActual");
+            TipUsuarioActual.appendChild(doc.createTextNode(TipoUsuario));
+            UsuarioAct.appendChild(TipUsuarioActual);
+
+            // Agregar informacion de imagen
             Element Imagen = doc.createElement("Imagen");
             rootElement.appendChild(Imagen);
 
@@ -145,34 +152,29 @@ public class XMLConfiguracion {
             Element RutaImagen = doc.createElement("RutaImagen");
             RutaImagen.appendChild(doc.createTextNode(rutaImagen));
             Imagen.appendChild(RutaImagen);
-            
-            
-            
+
             //Agregar posixion x de Imagen
             Element PosXImagen = doc.createElement("PosXImagen");
-            PosXImagen .appendChild(doc.createTextNode(posXImagen));
+            PosXImagen.appendChild(doc.createTextNode(posXImagen));
             Imagen.appendChild(PosXImagen);
-            
-            
-            
-           
+
             //Agregar posixion y de Imagen
             Element PosYImagen = doc.createElement("PosYImagen");
-            PosYImagen .appendChild(doc.createTextNode(posYImagen));
+            PosYImagen.appendChild(doc.createTextNode(posYImagen));
             Imagen.appendChild(PosYImagen);
-            
+
             //Agregar posixion x de nombre empresa
             Element PosXNombreEmpresa = doc.createElement("PosXNombreEmpresa");
-            PosXNombreEmpresa .appendChild(doc.createTextNode(posXNombreEmpresa));
+            PosXNombreEmpresa.appendChild(doc.createTextNode(posXNombreEmpresa));
             Imagen.appendChild(PosXNombreEmpresa);
             //*********************************************************
-           
+
             //Agregar posicion y de nombre de la empresa
             Element PosYNombreEmpresa = doc.createElement("PosYNombreEmpresa");
-           PosYNombreEmpresa.appendChild(doc.createTextNode(posYNombreEmpresa));
+            PosYNombreEmpresa.appendChild(doc.createTextNode(posYNombreEmpresa));
             Imagen.appendChild(PosYNombreEmpresa);
             //*********************************************************
-            
+
             // escribir los datos en el documento xml
             TransformerFactory transformerFactory = TransformerFactory.
                     newInstance();
@@ -284,12 +286,31 @@ public class XMLConfiguracion {
     }
 
     /**
+     * Permite obtener el tipo de usuario actual
+     *Retorna admien caso ser administrador o vend en caso de ser vendedor
+     * @return
+     */
+    public String ObtenerTipoUsuario() {
+        return obtenerValorDeElemeto("Usuario", "TipoUsuarioActual");
+    }
+
+    /**
      * Permite actualizar el elemento Usuario Actual.
      *
      * @param nuevoUsuario
      */
     public void establecerUsuario(String nuevoUsuario) {
         actualizarContenidoElemento("Usuario", "UsuarioActual", nuevoUsuario);
+    }
+
+    /**
+     * Permite actualizar el elemento tipo de Usuario Actual.
+     *
+     * @param nuevoTipoUsuario
+     */
+    public void establecerTipoUsuario(String nuevoTipoUsuario) {
+        actualizarContenidoElemento("Usuario", "TipoUsuarioActual",
+                nuevoTipoUsuario);
     }
 
     /**
@@ -300,18 +321,23 @@ public class XMLConfiguracion {
     public String obtenerRutaImagen() {
         return obtenerValorDeElemeto("Imagen", "RutaImagen");
     }
+
     public String obtenerPosXImagen() {
         return obtenerValorDeElemeto("Imagen", "PosXImagen");
     }
+
     public String ObtenerSlogan() {
         return obtenerValorDeElemeto("Factura", "Slogan");
     }
+
     public String obtenerPosYImagen() {
         return obtenerValorDeElemeto("Imagen", "PosYImagen");
     }
+
     public String obtenerPosXNombreEmpresa() {
         return obtenerValorDeElemeto("Imagen", "PosXNombreEmpresa");
     }
+
     public String obtenerPosYNombreEmpresa() {
         return obtenerValorDeElemeto("Imagen", "PosYNombreEmpresa");
     }
@@ -374,18 +400,23 @@ public class XMLConfiguracion {
     public void establecerRutaImagen(String nuevoValor) {
         actualizarContenidoElemento("Imagen", "RutaImagen", nuevoValor);
     }
+
     public void establecerPosXImagen(String nuevoValor) {
         actualizarContenidoElemento("Imagen", "PosXImagen", nuevoValor);
     }
+
     public void establecerSlogan(String nuevoValor) {
         actualizarContenidoElemento("Factura", "Slogan", nuevoValor);
     }
+
     public void establecerPosYImagen(String nuevoValor) {
         actualizarContenidoElemento("Imagen", "PosYImagen", nuevoValor);
     }
+
     public void establecerPosXNombreEmpresa(String nuevoValor) {
         actualizarContenidoElemento("Imagen", "PosXNombreEmpresa", nuevoValor);
     }
+
     public void establecerPosYNombreEmpresa(String nuevoValor) {
         actualizarContenidoElemento("Imagen", "PosYNombreEmpresa", nuevoValor);
     }
@@ -428,4 +459,5 @@ public class XMLConfiguracion {
         }
         return valor;
     }
+
 }

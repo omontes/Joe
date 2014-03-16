@@ -70,7 +70,9 @@ public class Main {
                 "ComentarioInicial", "ComentarioFinal", xml.ObtenerUsuario(), xml.obtenerRutaImagen(),
                 xml.obtenerPosXImagen(), xml.obtenerPosYImagen(),
                 xml.obtenerPosXNombreEmpresa(), xml.obtenerPosYNombreEmpresa(),
-                "Slogan");
+                "Slogan","Admi");
+        xml.establecerTipoUsuario("Vend");
+        System.out.println(xml.ObtenerTipoUsuario());
     }
 ;
 }

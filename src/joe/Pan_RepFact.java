@@ -3428,7 +3428,7 @@ public void actionPerformed(java.awt.event.ActionEvent evt) {
         String fechaAct = dateFormat.format(date);
 
         EscribirExcel archivoExcel = new EscribirExcel();
-        System.out.println(fechaAct);
+
         archivoExcel.setNombreArchivoExcel("VentasPorFechasPorEliminada"
                 + fechaAct + ".xls");
         try {
@@ -4000,7 +4000,6 @@ public void actionPerformed(java.awt.event.ActionEvent evt) {
     }
 
     private void showPanelOnDialog(javax.swing.JPanel pPanel, javax.swing.JDialog pDialog) {
-        System.out.println("panel size:" + pPanel.getSize().toString());
 
         pDialog.setSize(pPanel.getSize());
         pPanel.setLocation(0, 0);
@@ -4420,7 +4419,6 @@ public void actionPerformed(java.awt.event.ActionEvent evt) {
                     dateF.format(dateChooserCombo_FinVent.getSelectedDate().
                             getTime()), concepto);
         } else if ("todos".equals(concepto)) {
-            System.out.println("todos terminos");
             AdminBD.VerFacturasPorRangoDeFecha(dateF.format(
                     dateChooserCombo_IniVent.getSelectedDate().getTime()),
                     dateF.format(dateChooserCombo_FinVent.getSelectedDate().

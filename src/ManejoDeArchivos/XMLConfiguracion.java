@@ -65,7 +65,7 @@ public class XMLConfiguracion {
     public static void crearXML(String nombreEmpresa, String cedulaJuridica,
             String dirrecion, String telefono, String ciudad, String correo,
             String comentarioInicial, String comentarioFinal, String Usuario,
-            String rutaImagen,String posXImagen,String posYImagen,String posXNombreEmpresa,String posYNombreEmpresa) {
+            String rutaImagen,String posXImagen,String posYImagen,String posXNombreEmpresa,String posYNombreEmpresa, String slogan) {
         try {
 
             DocumentBuilderFactory docFactory = DocumentBuilderFactory.
@@ -122,6 +122,11 @@ public class XMLConfiguracion {
             Element ComentarioFin = doc.createElement("ComentarioFinal");
             ComentarioFin.appendChild(doc.createTextNode(comentarioFinal));
             Factura.appendChild(ComentarioFin);
+            
+            //Agregar slogan de empresa
+            Element Slogan = doc.createElement("slogan");
+            Slogan .appendChild(doc.createTextNode(slogan));
+            Factura.appendChild(Slogan);
 
             // Agregar informacion de Usuario Actual
             Element UsuarioAct = doc.createElement("Usuario");
@@ -142,12 +147,14 @@ public class XMLConfiguracion {
             Imagen.appendChild(RutaImagen);
             
             
-            ////////*****************modificaciones para josehp/********
+            
             //Agregar posixion x de Imagen
             Element PosXImagen = doc.createElement("PosXImagen");
             PosXImagen .appendChild(doc.createTextNode(posXImagen));
             Imagen.appendChild(PosXImagen);
-            //*********************************************************
+            
+            
+            
            
             //Agregar posixion y de Imagen
             Element PosYImagen = doc.createElement("PosYImagen");
@@ -296,6 +303,9 @@ public class XMLConfiguracion {
     public String obtenerPosXImagen() {
         return obtenerValorDeElemeto("Imagen", "PosXImagen");
     }
+    public String ObtenerSlogan() {
+        return obtenerValorDeElemeto("Factura", "Slogan");
+    }
     public String obtenerPosYImagen() {
         return obtenerValorDeElemeto("Imagen", "PosYImagen");
     }
@@ -366,6 +376,9 @@ public class XMLConfiguracion {
     }
     public void establecerPosXImagen(String nuevoValor) {
         actualizarContenidoElemento("Imagen", "PosXImagen", nuevoValor);
+    }
+    public void establecerSlogan(String nuevoValor) {
+        actualizarContenidoElemento("Factura", "Slogan", nuevoValor);
     }
     public void establecerPosYImagen(String nuevoValor) {
         actualizarContenidoElemento("Imagen", "PosYImagen", nuevoValor);

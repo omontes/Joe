@@ -3,7 +3,6 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package joe;
 
 import ManejoDeArchivos.XMLConfiguracion;
@@ -27,13 +26,13 @@ public class StartWindow extends javax.swing.JFrame {
     private static StartWindow _instance = null;
     private static int _posX;
     private static int _posY;
-    
+
     private static final int LOGGED_IN = 0;
     private static final int LOGGED_OUT = 1;
-    
+
     private boolean _logged;
     private boolean _otherWindow;
-    
+
     /**
      * Creates new form StartWindow
      */
@@ -41,34 +40,33 @@ public class StartWindow extends javax.swing.JFrame {
         _instance = this;
         _otherWindow = false;
         _logged = false;
-        
+
         initComponents();
-        
+
         //Esto hay que quitarlo:
         bkgImage.setText("");
         bkgImage.setIcon(new javax.swing.ImageIcon(getClass().getResource("/System/Images/url.jpg")));
-        
-        
+
         Toolkit tk = Toolkit.getDefaultToolkit();
         Dimension screenSize = tk.getScreenSize();
         this.setSize(screenSize);
         this.setLocation(0, 0);
         bkColor.setSize(screenSize);
-        _posX = this.getWidth()/2-jLayeredPane1.getWidth()/2;
-        _posY = this.getHeight()/2-jLayeredPane1.getHeight()/2;
-        jLayeredPane1.setLocation(_posX, _posY);       
-        
+        _posX = this.getWidth() / 2 - jLayeredPane1.getWidth() / 2;
+        _posY = this.getHeight() / 2 - jLayeredPane1.getHeight() / 2;
+        jLayeredPane1.setLocation(_posX, _posY);
+
         panActiveUsser.setLocation(600, 180);
         panConf.setVisible(false);
         panConf.setEnabled(false);
         activeLoginPanel(LOGGED_OUT);
-        
+
         loadImageConf();
         panConf.setLocation(0, 330);
     }
-    
-    private void activeLoginPanel(int pPanel){
-        if (pPanel == LOGGED_IN){
+
+    private void activeLoginPanel(int pPanel) {
+        if (pPanel == LOGGED_IN) {
             panActiveUsser.setVisible(true);
             panActiveUsser.setEnabled(true);
             panLoggedoutUsser.setVisible(false);
@@ -80,24 +78,24 @@ public class StartWindow extends javax.swing.JFrame {
             panLoggedoutUsser.setEnabled(true);
         }
     }
-    
-    public static int getPosX(){
+
+    public static int getPosX() {
         return _posX;
     }
-    
-    public static int getPosY(){
+
+    public static int getPosY() {
         return _posY;
     }
-    
-    public void enableMe(){
+
+    public void enableMe() {
         this.setEnabled(true);
         _otherWindow = false;
     }
-    
-    public static StartWindow getInstance(){
+
+    public static StartWindow getInstance() {
         return _instance;
     }
-    
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -508,53 +506,54 @@ public class StartWindow extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-    
-    private boolean valUsser(boolean pNeedAdmin){
-        if (!_logged){
+
+    private boolean valUsser(boolean pNeedAdmin) {
+        if (!_logged) {
             JOptionPane.showMessageDialog(
-                    jLayeredPane1, 
-                    "Debes iniciar sesión antes de continuar", 
-                    "¡Atención!", 
+                    jLayeredPane1,
+                    "Debes iniciar sesión antes de continuar",
+                    "¡Atención!",
                     JOptionPane.WARNING_MESSAGE);
             return false;
-        } else if (pNeedAdmin && !isAdmin()){
+        } else if (pNeedAdmin && !isAdmin()) {
             JOptionPane.showMessageDialog(
-                    jLayeredPane1, 
-                    "Necesitas permisos de administrador para poder continuar", 
-                    "¡Error!", 
+                    jLayeredPane1,
+                    "Necesitas permisos de administrador para poder continuar",
+                    "¡Error!",
                     JOptionPane.WARNING_MESSAGE);
             return false;
         } else {
             return true;
         }
     }
-    
+
     /**
-     * 
-     * @return 
+     *
+     * @return
      */
-    private boolean isAdmin(){
+    private boolean isAdmin() {
         String usser = ManejoDeArchivos.XMLConfiguracion.getInstance().ObtenerUsuario();
         return db_managment.Direct_Control_BD.getInstance().obtenerTipoUsuario(usser).equalsIgnoreCase("Administrador");
     }
-    
+
     private void bttExitMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bttExitMouseClicked
         this.dispose();
     }//GEN-LAST:event_bttExitMouseClicked
 
     private void bttFactMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bttFactMouseClicked
-        if (valUsser(false) && _otherWindow == false){
+        if (valUsser(false) && _otherWindow == false) {
             _otherWindow = true;
             DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
             Date date = new Date();
             String fecha = dateFormat.format(date);
             this.labFecha.setText(fecha);
-            Direct_Control_BD AdminBD=Direct_Control_BD.getInstance();
-            if(AdminBD.verSiExisteCierreTerminado(AdminBD.obtenerultimoidCierre())){
-            this.inicioCaja.setVisible(true);
-            return;}
+            Direct_Control_BD AdminBD = Direct_Control_BD.getInstance();
+            if (AdminBD.verSiExisteCierreTerminado(AdminBD.obtenerultimoidCierre())) {
+                this.inicioCaja.setVisible(true);
+                return;
+            }
             this.verFacturacion();
-            
+
         }
     }//GEN-LAST:event_bttFactMouseClicked
 
@@ -567,7 +566,7 @@ public class StartWindow extends javax.swing.JFrame {
     }//GEN-LAST:event_bttExitMouseExited
 
     private void bttInvMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bttInvMouseClicked
-        if (valUsser(true) && _otherWindow == false){
+        if (valUsser(true) && _otherWindow == false) {
             _otherWindow = true;
             new JF_Inventario().setVisible(true);
             this.setEnabled(false);
@@ -579,7 +578,7 @@ public class StartWindow extends javax.swing.JFrame {
     }//GEN-LAST:event_bttLoginMouseClicked
 
     private void bttRepMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bttRepMouseClicked
-        if (valUsser(true) && _otherWindow == false){
+        if (valUsser(true) && _otherWindow == false) {
             _otherWindow = true;
             new JF_Reportes().setVisible(true);
             this.setEnabled(false);
@@ -587,7 +586,7 @@ public class StartWindow extends javax.swing.JFrame {
     }//GEN-LAST:event_bttRepMouseClicked
 
     private void bttClientMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bttClientMouseClicked
-        if (valUsser(true) && _otherWindow == false){
+        if (valUsser(true) && _otherWindow == false) {
             _otherWindow = true;
             new JF_Usuario().setVisible(true);
             this.setEnabled(false);
@@ -605,10 +604,10 @@ public class StartWindow extends javax.swing.JFrame {
     private void bttLogoutMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bttLogoutMouseClicked
         ManejoDeArchivos.XMLConfiguracion.getInstance().establecerUsuario("");
         _logged = false;
-        
+
         panActiveUsser.setVisible(false);
         panActiveUsser.setEnabled(false);
-        
+
         panLoggedoutUsser.setEnabled(true);
         panLoggedoutUsser.setVisible(true);
     }//GEN-LAST:event_bttLogoutMouseClicked
@@ -618,7 +617,7 @@ public class StartWindow extends javax.swing.JFrame {
     }//GEN-LAST:event_formWindowClosing
 
     private void bttConfMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bttConfMouseClicked
-        if (valUsser(true) && _otherWindow == false){
+        if (valUsser(true) && _otherWindow == false) {
             _otherWindow = true;
             new JF_Conf().setVisible(true);
             this.setEnabled(false);
@@ -648,9 +647,9 @@ public class StartWindow extends javax.swing.JFrame {
             return;
         };
         if (!Character.isDigit(tecla) & !Character.isISOControl(
-            evt.getKeyChar())) {
-        Toolkit.getDefaultToolkit().beep();
-        evt.consume();
+                evt.getKeyChar())) {
+            Toolkit.getDefaultToolkit().beep();
+            evt.consume();
         }
     }//GEN-LAST:event_jFormattedTextField_MontoInicioCajaKeyTyped
 
@@ -666,13 +665,13 @@ public class StartWindow extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void fieldUsserKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_fieldUsserKeyPressed
-        if (evt.getKeyCode() == 10){
+        if (evt.getKeyCode() == 10) {
             login();
         }
     }//GEN-LAST:event_fieldUsserKeyPressed
 
     private void fieldPasswordKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_fieldPasswordKeyPressed
-        if (evt.getKeyCode() == 10){
+        if (evt.getKeyCode() == 10) {
             login();
         }
     }//GEN-LAST:event_fieldPasswordKeyPressed
@@ -692,18 +691,18 @@ public class StartWindow extends javax.swing.JFrame {
     }//GEN-LAST:event_txtImageDirActionPerformed
 
     private void bttSearchDirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bttSearchDirActionPerformed
-        
+
     }//GEN-LAST:event_bttSearchDirActionPerformed
 
     private void verFacturacion() {
         new JF_Facturacion().setVisible(true);
         this.setEnabled(false);
     }
-    
-    private void loadImageConf(){
-        
+
+    private void loadImageConf() {
+
     }
-    
+
     private void crearCierreCaja() {
         Direct_Control_BD AdminBD = Direct_Control_BD.getInstance();
         String fecha = this.labFecha.getText();
@@ -713,58 +712,60 @@ public class StartWindow extends javax.swing.JFrame {
         BigDecimal reporteInicio = new BigDecimal(montoInicio != null ? montoInicio.toString() : "0");
         AdminBD.insertarCierreDeCaja(fecha, Cajero, reporteInicio);
     }
-    
-    private void login(){
+
+    private void login() {
         String usser = fieldUsser.getText();
         String pass = new String(fieldPassword.getPassword());
-        
-        if (usser.isEmpty()){
+
+        if (usser.isEmpty()) {
             JOptionPane.showMessageDialog(
-                    jLayeredPane1, 
-                    "Por favor digite su usuario", 
-                    "¡Atención!", 
+                    jLayeredPane1,
+                    "Por favor digite su usuario",
+                    "¡Atención!",
                     JOptionPane.WARNING_MESSAGE);
-        } else if (pass.isEmpty()){
+        } else if (pass.isEmpty()) {
             JOptionPane.showMessageDialog(
-                    jLayeredPane1, 
-                    "Por favor digite su contraseña", 
-                    "¡Atención!", 
+                    jLayeredPane1,
+                    "Por favor digite su contraseña",
+                    "¡Atención!",
                     JOptionPane.WARNING_MESSAGE);
         } else {
-            
+
             Direct_Control_BD base = db_managment.Direct_Control_BD.getInstance();
             int authentique = base.verificarUsuario(usser, pass);
-            if (authentique == 0){
+            if (authentique == 0) {
                 JOptionPane.showMessageDialog(
-                    jLayeredPane1, 
-                    "No se ha podido ingresar. Por favor revise su usuario y contraseña", 
-                    "¡Error!", 
-                    JOptionPane.ERROR_MESSAGE);
-            } else{
+                        jLayeredPane1,
+                        "No se ha podido ingresar. Por favor revise su usuario y contraseña",
+                        "¡Error!",
+                        JOptionPane.ERROR_MESSAGE);
+            } else {
                 _logged = true;
                 JOptionPane.showMessageDialog(
-                    jLayeredPane1, 
-                    "Bienvenido "+usser, 
-                    "¡Hola!", 
-                    JOptionPane.INFORMATION_MESSAGE);
+                        jLayeredPane1,
+                        "Bienvenido " + usser,
+                        "¡Hola!",
+                        JOptionPane.INFORMATION_MESSAGE);
                 XMLConfiguracion xml = ManejoDeArchivos.XMLConfiguracion.getInstance();
                 xml.establecerUsuario(usser);
                 activeLoginPanel(LOGGED_IN);
                 labActiveName.setText(usser);
-                if (authentique == 1){
+                if (authentique == 1) {
                     // ES ADMIN
+                    xml.establecerTipoUsuario("admi");
                 } else {
                     //ES VENDEDOR
+                    xml.establecerTipoUsuario("vend");
                 }
-                
+
                 fieldUsser.setText("");
                 fieldPassword.setText("");
-                
+
             }
         }
-        
+
     }
-    
+
     /**
      * @param args the command line arguments
      */

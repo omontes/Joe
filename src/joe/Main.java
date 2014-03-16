@@ -5,7 +5,6 @@
  */
 package joe;
 
-
 import ManejoDeArchivos.XMLConfiguracion;
 import db_managment.Direct_Control_BD;
 import java.io.IOException;
@@ -54,19 +53,26 @@ public class Main {
         /* Create and display the form */
         Direct_Control_BD AdminBD = Direct_Control_BD.getInstance();
 
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            @Override
-            public void run() {
-                //Centra Main_Window en la pantalla del monitor
-                //VentanaDeInicio miVentana = VentanaDeInicio.getInstance();
-                StartWindow miVentana = new StartWindow();
-                miVentana.setLocationRelativeTo(null);
-                miVentana.setVisible(true);
-
-            }
-        });
-     
-       
+//        java.awt.EventQueue.invokeLater(new Runnable() {
+//            @Override
+//            public void run() {
+//                //Centra Main_Window en la pantalla del monitor
+//                //VentanaDeInicio miVentana = VentanaDeInicio.getInstance();
+//                StartWindow miVentana = new StartWindow();
+//                miVentana.setLocationRelativeTo(null);
+//                miVentana.setVisible(true);
+//
+//            }
+//        });
+        XMLConfiguracion xml = new XMLConfiguracion();
+        xml.crearXML("Joe", "0102", "200mts Al norte", "26501136",
+                "Cartago", "joe@gmail.com",
+                "ComentarioInicial", "ComentarioFinal", xml.ObtenerUsuario(), xml.obtenerRutaImagen(),
+                xml.obtenerPosXImagen(), xml.obtenerPosYImagen(),
+                xml.obtenerPosXNombreEmpresa(), xml.obtenerPosYNombreEmpresa(),
+                "Slogan","Admi");
+        xml.establecerTipoUsuario("Vend");
+        System.out.println(xml.ObtenerTipoUsuario());
     }
 ;
 }

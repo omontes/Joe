@@ -1494,7 +1494,6 @@ public class Pan_NuevaFactura extends javax.swing.JPanel {
     private boolean apartSave(){
         NewJDialog_PagoApartado pago = NewJDialog_PagoApartado.getInstance();
         pago.setVisible(true);
-        String fechaVencimiento = pago.getFecha();
         BigDecimal montodePago = pago.getMontoDePago();
         if (montodePago != null) {
             BigDecimal saldo = this.corregirDato(this.jFormattedTextField_Total.getText());
@@ -1662,31 +1661,39 @@ public class Pan_NuevaFactura extends javax.swing.JPanel {
             this.devolverProductos();
             this.modificaFactura();
             this.guardarFactura(CONCEPT_APARTADO);
-            this.crearApartado(NewJDialog_PagoApartado.getInstance().
-                    getMontoDePago(), NewJDialog_PagoApartado.
-                    getInstance().getFecha());
+            BigDecimal totalfact = this.corregirDato(this.jFormattedTextField_totalFact.getText());
+            BigDecimal totalTarjeta = this.StringtoBigDecimal(this.jFormattedTextField_pagoVueltoTarjeta.getText());
+            BigDecimal totalContado = totalfact.subtract(totalTarjeta);
+            this.crearApartado(totalTarjeta, totalContado, NewJDialog_PagoApartado.getInstance().
+                    getFecha());
             return true;
 
         } else if (_callType == APARTADO_CALL) {
 
             this.guardarFactura(CONCEPT_APARTADO);
-            this.crearApartado(NewJDialog_PagoApartado.getInstance().
-                    getMontoDePago(), NewJDialog_PagoApartado.getInstance().
+            BigDecimal totalfact = this.corregirDato(this.jFormattedTextField_totalFact.getText());
+            BigDecimal totalTarjeta = this.StringtoBigDecimal(this.jFormattedTextField_pagoVueltoTarjeta.getText());
+            BigDecimal totalContado = totalfact.subtract(totalTarjeta);
+            this.crearApartado(totalTarjeta, totalContado, NewJDialog_PagoApartado.getInstance().
                     getFecha());
             return true;
         } else if (_callType == MOD_CRED_CALL) {
             this.devolverProductos();
             this.modificaFactura();
             this.guardarFactura(CONCEPT_CREDITO);
-            this.crearApartado(NewJDialog_PagoApartado.getInstance().
-                    getMontoDePago(), NewJDialog_PagoApartado.
-                    getInstance().getFecha());
+            BigDecimal totalfact = this.corregirDato(this.jFormattedTextField_totalFact.getText());
+            BigDecimal totalTarjeta = this.StringtoBigDecimal(this.jFormattedTextField_pagoVueltoTarjeta.getText());
+            BigDecimal totalContado = totalfact.subtract(totalTarjeta);
+            this.crearApartado(totalTarjeta, totalContado, NewJDialog_PagoApartado.getInstance().
+                    getFecha());
             return true;
 
         } else if (_callType == CREDITO_CALL) {
             this.guardarFactura(CONCEPT_CREDITO);
-            this.crearApartado(NewJDialog_PagoApartado.getInstance().
-                    getMontoDePago(), NewJDialog_PagoApartado.getInstance().
+            BigDecimal totalfact = this.corregirDato(this.jFormattedTextField_totalFact.getText());
+            BigDecimal totalTarjeta = this.StringtoBigDecimal(this.jFormattedTextField_pagoVueltoTarjeta.getText());
+            BigDecimal totalContado = totalfact.subtract(totalTarjeta);
+            this.crearApartado(totalTarjeta, totalContado, NewJDialog_PagoApartado.getInstance().
                     getFecha());
             return true;
             
@@ -2891,14 +2898,14 @@ public class Pan_NuevaFactura extends javax.swing.JPanel {
 
     }
 
-    private void crearApartado(BigDecimal montoDePago, String Fecha) {
+    private void crearApartado(BigDecimal pagoTarjeta,BigDecimal pagoContado, String Fecha) {
         Direct_Control_BD AdminBD = Direct_Control_BD.getInstance();
         int idFactura = Integer.parseInt(this.jLabel_NumerodeFact.getText());
         int idVersionFacturasProducto = AdminBD.verVersionDEFacturaActiva(idFactura);
         String totalFacturaSinCorregir = this.jFormattedTextField_Total.getText();
         BigDecimal totalFact = this.corregirDato(totalFacturaSinCorregir);
         AdminBD.insertarFacturasPendientes(idFactura, totalFact, Fecha, idVersionFacturasProducto);
-        AdminBD.insertarPago(montoDePago, idFactura, idVersionFacturasProducto);
+        AdminBD.insertarPago(pagoTarjeta,pagoContado,idFactura, idVersionFacturasProducto);
     }
 
     private boolean guardarDev() {

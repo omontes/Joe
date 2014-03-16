@@ -63,7 +63,7 @@ public class Dialog_VerCierre extends javax.swing.JDialog {
         jPanel3.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
         jLabel7.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel7.setText("Total Tarjeta Reportado");
+        jLabel7.setText("Total Tarjeta Bouchers");
 
         jLabel10.setForeground(new java.awt.Color(255, 255, 255));
         jLabel10.setText("Total Contado Reportado");

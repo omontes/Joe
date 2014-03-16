@@ -199,20 +199,31 @@ public class Pan_Fact extends javax.swing.JPanel {
     }//GEN-LAST:event_jLabel1MouseClicked
 
     private void jLabel2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel2MouseClicked
-        this.modificar(this.jTable_Facturacion, Pan_NuevaFactura.MOD_FACT_CALL);
+
+        XMLConfiguracion conf = new XMLConfiguracion();
+        String usuarioActual = conf.ObtenerTipoUsuario();
+
+        if ("admi".equals(usuarioActual)) {
+            this.modificar(this.jTable_Facturacion, Pan_NuevaFactura.MOD_FACT_CALL);
+        } else {
+            JOptionPane.showMessageDialog(this, "Necesitas permisos de "
+                    + "administrador para poder continuar",
+                    "¡Alerta!",
+                    JOptionPane.WARNING_MESSAGE);
+        }
     }//GEN-LAST:event_jLabel2MouseClicked
 
     private void jLabel3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel3MouseClicked
         XMLConfiguracion conf = new XMLConfiguracion();
         String usuarioActual = conf.ObtenerTipoUsuario();
-        
+
         if ("admi".equals(usuarioActual)) {
             this.eliminar(this.jTable_Facturacion);
             this.completarTablaFacturacion();
-        }
-        else{
-        JOptionPane.showMessageDialog( this,"Necesitas permisos de administrador para poder continuar", 
-                    "¡Alerta!", 
+        } else {
+            JOptionPane.showMessageDialog(this, "Necesitas permisos de "
+                    + "administrador para poder continuar",
+                    "¡Alerta!",
                     JOptionPane.WARNING_MESSAGE);
         }
     }//GEN-LAST:event_jLabel3MouseClicked
@@ -258,12 +269,12 @@ public class Pan_Fact extends javax.swing.JPanel {
     public void verFacturas(JTable table) {
         int row = table.getSelectedRow();
         if (row >= 0) {
-                //***********************INTERFAZ***************************************
+            //***********************INTERFAZ***************************************
 
             Pan_VerFactura panelVerFact = new Pan_VerFactura();
             JF_Facturacion.getInstance().getPanelManager().showPanel(panelVerFact, 800, 474, 0, 0);
             JF_Facturacion.getInstance().setEnableTabs(false);
-                //**********************************************************************
+            //**********************************************************************
 
             Modelo_Facturacion model = (Modelo_Facturacion) table.getModel();
             panelVerFact.jLabel_NumerodeFact.setText(model.getValueAt(row, 0).toString());

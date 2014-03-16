@@ -545,8 +545,8 @@ public class Direct_Control_BD {
      * @param concepto
      * @param nota
      */
-    public void crearFactura(int idFactura, BigDecimal descuento,int idCliente,
-            int idVendedor, String concepto, String nota,BigDecimal TotalTarjeta,BigDecimal TotalContado, String estado) {//Revisado+
+    public void crearFactura(int idFactura, BigDecimal descuento, int idCliente,
+            int idVendedor, String concepto, String nota, BigDecimal TotalTarjeta, BigDecimal TotalContado, String estado) {//Revisado+
         DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
         Date date = new Date();
         String fecha = dateFormat.format(date);
@@ -1674,6 +1674,24 @@ public class Direct_Control_BD {
         }
     }
 
+    public void VerFacturasPorRangoDeFecha(String FechaIni,
+            String FechaFin) {
+        try {
+            String Fact = this.readSql("../Joe"
+                    + "/src/sql_files/VerFacturasRangoDeFecha.sql");
+            PreparedStatement stm = this.conection.prepareStatement(Fact);
+            stm.setString(1, FechaIni);
+            stm.setString(2, FechaFin);
+            ResultSet rs = stm.executeQuery();
+            setColumnNames(Get_Columnas(rs));
+            setData2(ResultSet_Array(rs));
+        } catch (Exception e) {
+
+            System.out.println("Error al Ver Facturas Por Rango De Fecha");
+
+        }
+    }
+
     /**
      * Permite la insercion de un producto en la factura.
      *
@@ -1804,7 +1822,6 @@ public class Direct_Control_BD {
 //            System.out.println("Error al consultar Vendedores");
 //        }
 //    }
-
     /**
      * Devuelve el idVendedor del nombre del vendedor dado.
      *
@@ -1831,7 +1848,7 @@ public class Direct_Control_BD {
         }
 
     }
-    
+
     public boolean verSiExisteCliente(String nombre) {
         try {
             String verCliente = this.readSql("../Joe"
@@ -1918,8 +1935,8 @@ public class Direct_Control_BD {
             System.out.println("Error al obtener la informacion de la factura");
         }
     }
-    
-     /**
+
+    /**
      * Devuelve toda la informacion(Cliente,Vendedor,Total etc) del num de
      * apartado o credito ingresado.
      */
@@ -2777,7 +2794,7 @@ public class Direct_Control_BD {
         }
     }
 
-    public void crearDevolucion(int idFactura, BigDecimal descuento,int idCliente, int idVendedor, String concepto, String detalle, BigDecimal totalFact, String estado) {
+    public void crearDevolucion(int idFactura, BigDecimal descuento, int idCliente, int idVendedor, String concepto, String detalle, BigDecimal totalFact, String estado) {
         DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
         Date date = new Date();
         String fecha = dateFormat.format(date);
@@ -3382,7 +3399,7 @@ public class Direct_Control_BD {
                     null,
                     "No se pudo eliminar este usuario",
                     "Mensaje", JOptionPane.ERROR_MESSAGE);
-                   }
+        }
     }
 
     public boolean insertarPersona(String nombre, String direccion,
@@ -3770,8 +3787,7 @@ public class Direct_Control_BD {
         }
 
     }
-    
-    
+
     public String obtenerTipoUsuario(String nombre) {
         try {
             String verTipoUsuario = this.readSql("../Joe"
@@ -3791,9 +3807,9 @@ public class Direct_Control_BD {
     }
 
     public boolean verSiExisteCierreTerminado(int idCierre) {
-        
-         try {
-             String temp="";
+
+        try {
+            String temp = "";
             String verSiExisteCierreTerminado = this.readSql("../Joe"
                     + "/src/sql_files/verSiExisteCierreTerminado.sql");
             PreparedStatement stm = this.conection.prepareStatement(verSiExisteCierreTerminado);
@@ -3802,17 +3818,17 @@ public class Direct_Control_BD {
             while (rs.next()) {
                 temp = rs.getString("HoraCierre");
             }
-            if(temp==null){
+            if (temp == null) {
                 return false;
-            
+
             }
-            
+
             return true;
         } catch (Exception e) {
             System.out.println("No existe ese cierre");
             return false;
         }
-        
+
     }
 
 }

@@ -34,21 +34,20 @@ public class Pan_RepFact extends javax.swing.JPanel {
     //formato para consultar
     DateFormat dateF = new SimpleDateFormat("yyyy-MM-dd");
     static String[] infoEmpresa;
-    
+
     //Número correspondiente al index de la lista, de cambiar el orden se deberán cambiar los números
-    private static final int VENT_FECHAS        = 0;
-    private static final int VENT_CLIENTE       = 2;
-    private static final int VENT_PRODUCTO      = 1;
-    private static final int VENT_TERMINOS      = 5;
-    private static final int VENT_CLIENTE_PROD  = 3;
-    private static final int FACT_ELIMINADAS    = 6;
-    private static final int VENT_VENDEDOR      = 4;
-    private static final int FACT_MODIFICADAS   = 7;
-    private static final int PROD_VENDEDOR      = 8;
-    private static final int DEV_FECHAS         = 9;
-    private static final int DEV_ELIMINADAS     = 10;
-    private static final int DEV_MODIFICADAS    = 11;
-            
+    private static final int VENT_FECHAS = 0;
+    private static final int VENT_CLIENTE = 2;
+    private static final int VENT_PRODUCTO = 1;
+    private static final int VENT_TERMINOS = 5;
+    private static final int VENT_CLIENTE_PROD = 3;
+    private static final int FACT_ELIMINADAS = 6;
+    private static final int VENT_VENDEDOR = 4;
+    private static final int FACT_MODIFICADAS = 7;
+    private static final int PROD_VENDEDOR = 8;
+    private static final int DEV_FECHAS = 9;
+    private static final int DEV_ELIMINADAS = 10;
+    private static final int DEV_MODIFICADAS = 11;
 
     /**
      * Creates new form Reportes
@@ -59,7 +58,7 @@ public class Pan_RepFact extends javax.swing.JPanel {
 
         initComponents();
     }
-    
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -80,9 +79,10 @@ public class Pan_RepFact extends javax.swing.JPanel {
         dateChooserCombo_IniVent = new datechooser.beans.DateChooserCombo();
         dateChooserCombo_FinVent = new datechooser.beans.DateChooserCombo();
         jLabel43 = new javax.swing.JLabel();
-        jRadioButton_CreditoVentasFecha = new javax.swing.JRadioButton();
         jRadioButton_ApartadoVentasFecha = new javax.swing.JRadioButton();
         jRadioButton_CanceladoVentasFecha = new javax.swing.JRadioButton();
+        jRadioButton_TodosVentasFecha = new javax.swing.JRadioButton();
+        jRadioButton_CreditoVentasFecha = new javax.swing.JRadioButton();
         jPanel_VentasPorCliente = new javax.swing.JPanel();
         jButton_AceptaVerVentasPorCliente = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
@@ -489,12 +489,6 @@ jLabel43.setText("Término:");
 jPanel_VerVentasPorFech.add(jLabel43);
 jLabel43.setBounds(10, 120, 53, 15);
 
-jRadioButton_CreditoVentasFecha.setForeground(new java.awt.Color(255, 255, 255));
-jRadioButton_CreditoVentasFecha.setText("Credito");
-jRadioButton_CreditoVentasFecha.setOpaque(false);
-jPanel_VerVentasPorFech.add(jRadioButton_CreditoVentasFecha);
-jRadioButton_CreditoVentasFecha.setBounds(210, 140, 80, 23);
-
 jRadioButton_ApartadoVentasFecha.setForeground(new java.awt.Color(255, 255, 255));
 jRadioButton_ApartadoVentasFecha.setText("Apartado");
 jRadioButton_ApartadoVentasFecha.setOpaque(false);
@@ -507,6 +501,18 @@ jRadioButton_CanceladoVentasFecha.setText("Cancelado");
 jRadioButton_CanceladoVentasFecha.setOpaque(false);
 jPanel_VerVentasPorFech.add(jRadioButton_CanceladoVentasFecha);
 jRadioButton_CanceladoVentasFecha.setBounds(50, 140, 90, 23);
+
+jRadioButton_TodosVentasFecha.setForeground(new java.awt.Color(255, 255, 255));
+jRadioButton_TodosVentasFecha.setText("Todos");
+jRadioButton_TodosVentasFecha.setOpaque(false);
+jPanel_VerVentasPorFech.add(jRadioButton_TodosVentasFecha);
+jRadioButton_TodosVentasFecha.setBounds(300, 140, 80, 23);
+
+jRadioButton_CreditoVentasFecha.setForeground(new java.awt.Color(255, 255, 255));
+jRadioButton_CreditoVentasFecha.setText("Credito");
+jRadioButton_CreditoVentasFecha.setOpaque(false);
+jPanel_VerVentasPorFech.add(jRadioButton_CreditoVentasFecha);
+jRadioButton_CreditoVentasFecha.setBounds(210, 140, 80, 23);
 
 jPanel_VentasPorCliente.setBackground(new java.awt.Color(153, 153, 153));
 jPanel_VentasPorCliente.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
@@ -3918,7 +3924,7 @@ public void actionPerformed(java.awt.event.ActionEvent evt) {
         jDialog_ReportesInventario.setVisible(false);
     }//GEN-LAST:event_jButton_CancelarListaValorInvActionPerformed
 
-    private void facturasModificadas(){
+    private void facturasModificadas() {
         NewJDialog_Buscador buscador = new NewJDialog_Buscador();
         buscador.actualizaTablaParaFacturasModificadas();
         String idFact = buscador.getIdFactura();
@@ -3973,7 +3979,8 @@ public void actionPerformed(java.awt.event.ActionEvent evt) {
 
         }
     }
-    private void productoPorVendedor(){
+
+    private void productoPorVendedor() {
         Direct_Control_BD mBD = Direct_Control_BD.getInstance();
         mBD.verVendedores();//consulta los vendedores existentes
         Object[][] data;
@@ -3991,20 +3998,20 @@ public void actionPerformed(java.awt.event.ActionEvent evt) {
         //mostrar componentes
         showPanelOnDialog(jPanel_VentasProductosPorVendedor, jDialog_ReportesFact);
     }
-    
-    private void showPanelOnDialog(javax.swing.JPanel pPanel, javax.swing.JDialog pDialog){
+
+    private void showPanelOnDialog(javax.swing.JPanel pPanel, javax.swing.JDialog pDialog) {
         System.out.println("panel size:" + pPanel.getSize().toString());
-        
+
         pDialog.setSize(pPanel.getSize());
         pPanel.setLocation(0, 0);
         pDialog.setLocationRelativeTo(null);
-        
+
         pDialog.add(pPanel);
         pPanel.setVisible(true);
         pDialog.setVisible(true);
     }
-    
-    private void ventasPorVendedor(){
+
+    private void ventasPorVendedor() {
         /////////////////esta parte al correr tira una advertencia, si se comenta no//////////////////
         Direct_Control_BD mBD = Direct_Control_BD.getInstance();
         mBD.verVendedores();//consulta los vendedores existentes
@@ -4028,23 +4035,26 @@ public void actionPerformed(java.awt.event.ActionEvent evt) {
 
         showPanelOnDialog(jPanel_VentasPorVendedor, jDialog_ReportesFact);
     }
-    private void ventasPorTerminos(){
+
+    private void ventasPorTerminos() {
         buttonGroup2.add(jRadioButton_Efectivo);
+        buttonGroup2.add(jRadioButton_TodosVentasFecha);
         buttonGroup2.add(jRadioButton_Tarjeta);
         jRadioButton_Efectivo.setSelected(true);
-        
+
         showPanelOnDialog(jPanel_VerVentasPorTermino, jDialog_ReportesFact);
     }
-    private void facturasEliminadas(){
+
+    private void facturasEliminadas() {
         showPanelOnDialog(jPanel_VerFacturasEliminadasPorFech, jDialog_ReportesFact);
     }
-    
-    private void ventasPorClienteProducto(){
+
+    private void ventasPorClienteProducto() {
         //mostrar componentes
         showPanelOnDialog(jPanel_VentasProductosPorCliente, jDialog_ReportesFact);
     }
-    
-    private void ventasPorProducto(){
+
+    private void ventasPorProducto() {
         /////////////////esta parte al correr tira una advertencia, si se comenta no//////////////////
         ///importante por esta advertencia no agrega cambios al ejecutable en estos casos
         Direct_Control_BD mBD = Direct_Control_BD.getInstance();
@@ -4069,22 +4079,25 @@ public void actionPerformed(java.awt.event.ActionEvent evt) {
         jButton_Buscar.setVisible(true);
         jTextField_CodiOCateg.setVisible(true);
         jLabel_CodOCateg.setText("Codigo del Producto");
-        
+
         showPanelOnDialog(jPanel_VerVentasPorProd, jDialog_ReportesFact);
     }
-    private void ventasPorCliente(){
-        
+
+    private void ventasPorCliente() {
+
         showPanelOnDialog(jPanel_VentasPorCliente, jDialog_ReportesFact);
-    }    
-    private void ventasPorFecha(){
+    }
+
+    private void ventasPorFecha() {
         buttonGroup2.add(jRadioButton_ApartadoVentasFecha);
+        buttonGroup2.add(jRadioButton_TodosVentasFecha);
         buttonGroup2.add(jRadioButton_CanceladoVentasFecha);
-        buttonGroup2.add(jRadioButton_CreditoVentasFecha);
+        buttonGroup2.add(jRadioButton_TodosVentasFecha);
         jRadioButton_CanceladoVentasFecha.setSelected(true);
-        
+
         showPanelOnDialog(jPanel_VerVentasPorFech, jDialog_ReportesFact);
     }
-    
+
     private void jButton_AceptarVerDevFechActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_AceptarVerDevFechActionPerformed
 
         Direct_Control_BD AdminBD = Direct_Control_BD.getInstance();
@@ -4098,7 +4111,6 @@ public void actionPerformed(java.awt.event.ActionEvent evt) {
         Date date = new Date();//hora Actual
         String fechaAct = dateFormat.format(date);
 
-        
         EscribirExcel archivoExcel = new EscribirExcel();
         archivoExcel.setNombreArchivoExcel("DevolucionesPorFechas"
                 + fechaAct + ".xls");
@@ -4123,7 +4135,7 @@ public void actionPerformed(java.awt.event.ActionEvent evt) {
         jDialog_ReportesFact.setVisible(false);
     }//GEN-LAST:event_jButton_CancelarVerDevFechActionPerformed
 
-    private void devolucionesPorFecha(){
+    private void devolucionesPorFecha() {
         showPanelOnDialog(jPanel_VerDevolucionesPorFech, jDialog_ReportesFact);
     }
     private void jButton_AceptarVerDevEliminadasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_AceptarVerDevEliminadasActionPerformed
@@ -4163,11 +4175,11 @@ public void actionPerformed(java.awt.event.ActionEvent evt) {
         jDialog_ReportesFact.setVisible(false);
     }//GEN-LAST:event_jButton_CancelarVerDevEliminadasActionPerformed
 
-    private void devolucionesEliminadas(){
+    private void devolucionesEliminadas() {
         showPanelOnDialog(jPanel_VerDevEliminadasPorFech, jDialog_ReportesFact);
     }
-    
-    private void devolucionesModificadas(){
+
+    private void devolucionesModificadas() {
         NewJDialog_Buscador buscador = new NewJDialog_Buscador();
         buscador.actualizaTablaParaDevolucionesModificadas();
         String idDev = buscador.getIdFactura();
@@ -4397,13 +4409,23 @@ public void actionPerformed(java.awt.event.ActionEvent evt) {
 
         } else if (jRadioButton_ApartadoVentasFecha.isSelected()) {
             concepto = "Apartado";
+        } else if (jRadioButton_TodosVentasFecha.isSelected()) {
+            concepto = "todos";
         }
+        if (!"todos".equals(concepto)) {
 
-        //Consulta de Fact Por Fech y concepto
-        AdminBD.VerFacturasPorConeptoPorRangoDeFecha(dateF.format(
-                dateChooserCombo_IniVent.getSelectedDate().getTime()),
-                dateF.format(dateChooserCombo_FinVent.getSelectedDate().
-                        getTime()), concepto);
+            //Consulta de Fact Por Fech y concepto
+            AdminBD.VerFacturasPorConeptoPorRangoDeFecha(dateF.format(
+                    dateChooserCombo_IniVent.getSelectedDate().getTime()),
+                    dateF.format(dateChooserCombo_FinVent.getSelectedDate().
+                            getTime()), concepto);
+        } else if ("todos".equals(concepto)) {
+            System.out.println("todos terminos");
+            AdminBD.VerFacturasPorRangoDeFecha(dateF.format(
+                    dateChooserCombo_IniVent.getSelectedDate().getTime()),
+                    dateF.format(dateChooserCombo_FinVent.getSelectedDate().
+                            getTime()));
+        };
 
         Date date = new Date();//hora Actual
         String fechaAct = dateFormat.format(date);
@@ -4428,29 +4450,29 @@ public void actionPerformed(java.awt.event.ActionEvent evt) {
 
     private void jLabel14MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel14MouseClicked
         int selection = jTable1.getSelectedRow();
-        if (selection == DEV_ELIMINADAS){
+        if (selection == DEV_ELIMINADAS) {
             devolucionesEliminadas();
-        } else if (selection == DEV_FECHAS){
+        } else if (selection == DEV_FECHAS) {
             devolucionesPorFecha();
-        } else if (selection == DEV_MODIFICADAS){
+        } else if (selection == DEV_MODIFICADAS) {
             devolucionesModificadas();
-        } else if (selection == FACT_ELIMINADAS){
+        } else if (selection == FACT_ELIMINADAS) {
             facturasEliminadas();
-        } else if (selection == FACT_MODIFICADAS){
+        } else if (selection == FACT_MODIFICADAS) {
             facturasModificadas();
-        } else if (selection == PROD_VENDEDOR){
+        } else if (selection == PROD_VENDEDOR) {
             productoPorVendedor();
-        } else if (selection == VENT_CLIENTE){
+        } else if (selection == VENT_CLIENTE) {
             ventasPorCliente();
-        } else if (selection == VENT_CLIENTE_PROD){
+        } else if (selection == VENT_CLIENTE_PROD) {
             ventasPorClienteProducto();
-        } else if (selection == VENT_FECHAS){
+        } else if (selection == VENT_FECHAS) {
             ventasPorFecha();
-        } else if (selection == VENT_PRODUCTO){
+        } else if (selection == VENT_PRODUCTO) {
             ventasPorProducto();
-        } else if (selection == VENT_TERMINOS){
+        } else if (selection == VENT_TERMINOS) {
             ventasPorTerminos();
-        } else if (selection == VENT_VENDEDOR){
+        } else if (selection == VENT_VENDEDOR) {
             ventasPorVendedor();
         }
     }//GEN-LAST:event_jLabel14MouseClicked
@@ -4470,32 +4492,32 @@ public void actionPerformed(java.awt.event.ActionEvent evt) {
     private void jButton_AceptaVerVentasPorClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_AceptaVerVentasPorClienteActionPerformed
 
         String concepto = "Ventas Por Cliente: " + jTextField_Cliente.
-        getText().toString();
+                getText().toString();
         Direct_Control_BD AdminBD = Direct_Control_BD.getInstance();
         //Consulta de Fact Por cliente
         AdminBD.VerVentasPorCliente(dateF.format(
-            dateChooserCombo_IniClie.getSelectedDate().getTime()),
-        dateF.format(dateChooserCombo_FinClie.getSelectedDate().
-            getTime()), jTextField_Cliente.getText().toString());
+                dateChooserCombo_IniClie.getSelectedDate().getTime()),
+                dateF.format(dateChooserCombo_FinClie.getSelectedDate().
+                        getTime()), jTextField_Cliente.getText().toString());
 
-    Date date = new Date();//hora Actual
-    String fechaAct = dateFormat.format(date);
+        Date date = new Date();//hora Actual
+        String fechaAct = dateFormat.format(date);
 
-    EscribirExcel archivoExcel = new EscribirExcel();
-    archivoExcel.setNombreArchivoExcel("VentasPorCliente"
-        + fechaAct + ".xls");
+        EscribirExcel archivoExcel = new EscribirExcel();
+        archivoExcel.setNombreArchivoExcel("VentasPorCliente"
+                + fechaAct + ".xls");
         try {
             //escribir excel
             archivoExcel.escribir(infoEmpresa, AdminBD.getInfoFact(),
-                AdminBD.getNombresColumnas(),
-                dateF1.format(dateChooserCombo_IniProd.
-                    getSelectedDate().getTime()),
-                dateF1.format(dateChooserCombo_FinProd.
-                    getSelectedDate().getTime()),
-                concepto, "Excel");
+                    AdminBD.getNombresColumnas(),
+                    dateF1.format(dateChooserCombo_IniProd.
+                            getSelectedDate().getTime()),
+                    dateF1.format(dateChooserCombo_FinProd.
+                            getSelectedDate().getTime()),
+                    concepto, "Excel");
         } catch (IOException | WriteException ex) {
             Logger.getLogger(Pan_RepFact.class.getName()).
-            log(Level.SEVERE, null, ex);
+                    log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_jButton_AceptaVerVentasPorClienteActionPerformed
 
@@ -4725,6 +4747,7 @@ public void actionPerformed(java.awt.event.ActionEvent evt) {
     private javax.swing.JRadioButton jRadioButton_TodosListaCostos;
     private javax.swing.JRadioButton jRadioButton_TodosListaPrecio;
     private javax.swing.JRadioButton jRadioButton_TodosValorInv;
+    private javax.swing.JRadioButton jRadioButton_TodosVentasFecha;
     private javax.swing.JRadioButton jRadioButton_bodega;
     private javax.swing.JRadioButton jRadioButton_bodegaInv;
     private javax.swing.JRadioButton jRadioButton_bodegaValorInv;

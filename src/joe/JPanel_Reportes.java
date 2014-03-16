@@ -5074,7 +5074,7 @@ public void actionPerformed(java.awt.event.ActionEvent evt) {
     }//GEN-LAST:event_jButton5ActionPerformed
 
     private void jButton_VentasPorVendedorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_VentasPorVendedorActionPerformed
-               Direct_Control_BD mBD = Direct_Control_BD.getInstance();
+        Direct_Control_BD mBD = Direct_Control_BD.getInstance();
         mBD.verVendedores();//consulta los vendedores existentes
         Object[][] data;
         data = mBD.getData();
@@ -5510,12 +5510,19 @@ public void actionPerformed(java.awt.event.ActionEvent evt) {
         } else if (jRadioButton_ApartadoVentasFecha.isSelected()) {
             concepto = "Apartado";
         }
-
-        //Consulta de Fact Por Fech y concepto
-        AdminBD.VerFacturasPorConeptoPorRangoDeFecha(dateF.format(
-                dateChooserCombo_IniVent.getSelectedDate().getTime()),
-                dateF.format(dateChooserCombo_FinVent.getSelectedDate().
-                        getTime()), concepto);
+        if (!"".equals(concepto)) {
+            //Consulta de Fact Por Fech y concepto
+            AdminBD.VerFacturasPorConeptoPorRangoDeFecha(dateF.format(
+                    dateChooserCombo_IniVent.getSelectedDate().getTime()),
+                    dateF.format(dateChooserCombo_FinVent.getSelectedDate().
+                            getTime()), concepto);
+        }
+        else if("".equals(concepto)){
+            AdminBD.VerFacturasPorRangoDeFecha(dateF.format(
+                    dateChooserCombo_IniVent.getSelectedDate().getTime()),
+                    dateF.format(dateChooserCombo_FinVent.getSelectedDate().
+                            getTime()));
+        }
 
         Date date = new Date();//hora Actual
         String fechaAct = dateFormat.format(date);

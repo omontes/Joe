@@ -64,15 +64,7 @@ public class Main {
 //
 //            }
 //        });
-        XMLConfiguracion xml = new XMLConfiguracion();
-        xml.crearXML("Joe", "0102", "200mts Al norte", "26501136",
-                "Cartago", "joe@gmail.com",
-                "ComentarioInicial", "ComentarioFinal", xml.ObtenerUsuario(), xml.obtenerRutaImagen(),
-                xml.obtenerPosXImagen(), xml.obtenerPosYImagen(),
-                xml.obtenerPosXNombreEmpresa(), xml.obtenerPosYNombreEmpresa(),
-                "Slogan","Admi");
-        xml.establecerTipoUsuario("Vend");
-        System.out.println(xml.ObtenerTipoUsuario());
+
     }
 ;
 }

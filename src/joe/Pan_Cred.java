@@ -390,8 +390,7 @@ public class Pan_Cred extends javax.swing.JPanel {
         }
         BigDecimal montoDePago = this.StringtoBigDecimal(this.jFormattedTextField_Abono.getText());
         if(montoDePago.compareTo(new BigDecimal("0.00"))>0){
-            String tipopago= this.jComboBox_TipodePago.getSelectedItem().toString();
-            this.crearPago(Integer.parseInt(this.jLabel_numFact.getText()), montoDePago,tipopago);
+            this.crearPago(Integer.parseInt(this.jLabel_numFact.getText()), montoDePago);
             this.jDialog_CrearPago.dispose();
             this.jFormattedTextField_Abono.setText(new BigDecimal("0.00").toString());
             this.jFormattedTextField_Saldo.setValue(new BigDecimal("0.00"));
@@ -601,7 +600,7 @@ public class Pan_Cred extends javax.swing.JPanel {
             //**********************************************************************
             
             panelVerFact.jLabel_NumerodeFact.setText(table.getValueAt(row, 0).toString());
-            panelVerFact.personalizarTablaVerFactura();
+            panelVerFact.personalizarTablaVerApartadoCredito();
         } else {
             JOptionPane.showMessageDialog(
                     null,
@@ -689,11 +688,11 @@ public class Pan_Cred extends javax.swing.JPanel {
     javax.swing.JTable jTable_VerPagos;
     // End of variables declaration//GEN-END:variables
 
-    private void crearPago(int idFactura, BigDecimal montoDePago, String tipopago) {
+    private void crearPago(int idFactura, BigDecimal montoDePago) {
        
         Direct_Control_BD AdminBD = Direct_Control_BD.getInstance();
         int idVersionFacturasProducto = AdminBD.verVersionDEFacturaActiva(idFactura);
-        AdminBD.insertarPago(montoDePago,idFactura,idVersionFacturasProducto,tipopago);
+        AdminBD.insertarPago(montoDePago,idFactura,idVersionFacturasProducto);
 
     }
     
@@ -705,7 +704,7 @@ public class Pan_Cred extends javax.swing.JPanel {
           //Realiza la consulta para obtener los pagos de apartados o creditos
         Direct_Control_BD AdminBD = Direct_Control_BD.getInstance();
         AdminBD.verInfoFacturaApartadoPagos(numFact);
-        String[] columnNames = {"Fecha de Pago","Monto","Tipo Pago"};
+        String[] columnNames = {"Fecha de Pago","Monto"};
         Object[][] data = AdminBD.getData();
         //Crea la tabla generica para Facturas
         this.jTable_VerPagos.setModel(new Modelo_Facturacion(columnNames,data));

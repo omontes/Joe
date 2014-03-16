@@ -1399,7 +1399,7 @@ public class JPanel_Facturacion extends javax.swing.JPanel {
        
         Direct_Control_BD AdminBD = Direct_Control_BD.getInstance();
         int idVersionFacturasProducto = AdminBD.verVersionDEFacturaActiva(idFactura);
-        AdminBD.insertarPago(montoDePago,idFactura,idVersionFacturasProducto,tipopago);
+//        AdminBD.insertarPago(montoDePago,idFactura,idVersionFacturasProducto,tipopago);
 
     }
      /**

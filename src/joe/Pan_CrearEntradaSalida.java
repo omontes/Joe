@@ -607,7 +607,7 @@ public class Pan_CrearEntradaSalida extends javax.swing.JPanel {
     }//GEN-LAST:event_jTextField_referenciaKeyTyped
 
     private void jTextField_codigoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField_codigoKeyTyped
-        int limite = 11;
+        int limite = 30;
         if (jTextField_codigo.getText().length() >= limite) {
             evt.consume();
             Toolkit.getDefaultToolkit().beep();

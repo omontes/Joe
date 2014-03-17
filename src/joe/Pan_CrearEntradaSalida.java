@@ -1217,6 +1217,7 @@ public class Pan_CrearEntradaSalida extends javax.swing.JPanel {
                 int cantidadMov = cantidadB.intValue();
                 String precioSinCorregir = infoTablaMov[i][3];
                 BigDecimal PrecioVenta = this.corregirDato(precioSinCorregir);
+                AdminBD.actualizarPrecioProducto(idProducto, PrecioVenta);
                 //System.out.println(idProducto+" "+idVersion+" "+idMovimiento+" "+cantidadMov+" "+PrecioVenta);
                 AdminBD.insertarProductoCantidadMovimiento(idProducto, idVersion, idMovimiento, cantidadMov, PrecioVenta);
 

@@ -2057,21 +2057,12 @@ public class Pan_NuevaFactura extends javax.swing.JPanel {
     }//GEN-LAST:event_saveBttMouseClicked
 
     private void printBttMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_printBttMouseClicked
-        if (!_savePress){
+         if (!_savePress){
             _savePress = true;
-            
-            if(this.guardarFacturadesdeVuelto()){
-                    XMLConfiguracion xml = ManejoDeArchivos.XMLConfiguracion.getInstance();
-                    this.imprimir(this.jLabel_NumerodeFact.getText(),
-                    this.jLabel_Fecha.getText(),
-                    this.jFormattedTextField_Total.getText(),
-                    this.jFormattedTextField_SubTotal.getText(),
-                    this.jFormattedTextField_desc.getText(),
-                    this.jFormattedTextField_DescuentoTotal.getText(),
-                    this.jFormattedTextField_Cliente.getText(),
-                    xml.ObtenerUsuario());}
+            this.beforeSave();
         }
         _savePress = false;
+    
     }//GEN-LAST:event_printBttMouseClicked
 
     private void addBttMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_addBttMouseEntered
@@ -2139,7 +2130,7 @@ public class Pan_NuevaFactura extends javax.swing.JPanel {
     }//GEN-LAST:event_jLabel22MouseClicked
 
     private void jTextField_codigoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField_codigoKeyTyped
-        int limite = 20;
+        int limite = 30;
         if (jTextField_codigo.getText().length() >= limite) {
             evt.consume();
             Toolkit.getDefaultToolkit().beep();
@@ -2280,7 +2271,21 @@ public class Pan_NuevaFactura extends javax.swing.JPanel {
               return;
         }
         this.jDialog_darVuelto.dispose();
-        this.guardarFacturadesdeVuelto();
+        String callType = "Imprimir";
+        if(callType.equals("Imprimir")){
+             if(this.guardarFacturadesdeVuelto()){
+                    XMLConfiguracion xml = ManejoDeArchivos.XMLConfiguracion.getInstance();
+                    this.imprimir(this.jLabel_NumerodeFact.getText(),
+                    this.jLabel_Fecha.getText(),
+                    this.jFormattedTextField_Total.getText(),
+                    this.jFormattedTextField_SubTotal.getText(),
+                    this.jFormattedTextField_desc.getText(),
+                    this.jFormattedTextField_DescuentoTotal.getText(),
+                    this.jFormattedTextField_Cliente.getText(),
+                    xml.ObtenerUsuario());}
+        }
+        else{
+        this.guardarFacturadesdeVuelto();}
         this.regresar();
     }//GEN-LAST:event_jButton_aceptarVueltoActionPerformed
 
@@ -2685,13 +2690,21 @@ public class Pan_NuevaFactura extends javax.swing.JPanel {
                 /**
                  * ********************************************************
                  */
-
+                XMLConfiguracion xml = new XMLConfiguracion();
+                String[] comentariosFactura = xml.leerInfoParaFactura();
+                String[] infoEmpresa = xml.leerInfoEmpresaXML();
                 p.append("\u001B" + "\u0061" + "\u0001" + "\r");//*** Centrado
-                p.append("Boutique Francini\r\n");
-                p.append("San Jose, Costa Rica\r\n");
-                p.append("Tel:228826962,pulgamontes@gmail.com\r\n");
-                p.append("Resolucion nro. 234252 del 2003-89\r\n");
-                p.append("\u001B" + "\u0064" + "\u0001" + "\r");//*** 3lineas
+                p.append(infoEmpresa[0]+"\r\n");
+                p.append(infoEmpresa[1]+"\r\n");
+                p.append("Tel: "+infoEmpresa[4]+"\r\n");
+                p.append("Ced Jur: "+infoEmpresa[3]+"\r\n");
+                 if(!infoEmpresa[5].equals("")){
+                    p.append(infoEmpresa[5]+"\r\n");
+                }
+                p.append("\u001B" + "\u0064" + "\u0001" + "\r");//*** 1lineas
+                p.append(xml.ObtenerSlogan()+"\r\n");
+                p.append("\u001B" + "\u0064" + "\u0001" + "\r");//*** 1lineas
+                p.append(comentariosFactura[0]+"\r\n");
                 /**
                  * *******************************************************
                  */
@@ -2707,7 +2720,6 @@ public class Pan_NuevaFactura extends javax.swing.JPanel {
                 p.append("Vendedor: \t " + vendedor + "\r\n");
                 p.append("CANT. \t DESCRIPCION \t      TOTAL\r\n");
                 p.append("----  ----------------       ------\r\n");
-
                 /**
                  * ********************************************************
                  */
@@ -2750,7 +2762,7 @@ public class Pan_NuevaFactura extends javax.swing.JPanel {
                 p.append("\u001B" + "\u0061" + "\u0000" + "\r");//Quita Centrado
                 p.append("\u001B" + "\u0061" + "\u0001" + "\r");//*** Centrado
                 p.append("\u001B" + "\u0064" + "\u0004" + "\r");//*** 3lineas
-                p.append("Muchas Gracias por su compra\r\n");
+                p.append(comentariosFactura[1]+"\r\n");
                 p.append("\u001B\u0040");//reset printer
                 p.append("\u001B" + "\u0064" + "\u0008" + "\r");//*** 10lineas**/
                 p.append("\u001D" + "\u0056" + "\u0001" + "\r");//*** CutPaper

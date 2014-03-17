@@ -607,7 +607,7 @@ public class Pan_CrearEntradaSalida extends javax.swing.JPanel {
     }//GEN-LAST:event_jTextField_referenciaKeyTyped
 
     private void jTextField_codigoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField_codigoKeyTyped
-        int limite = 11;
+        int limite = 30;
         if (jTextField_codigo.getText().length() >= limite) {
             evt.consume();
             Toolkit.getDefaultToolkit().beep();
@@ -1217,6 +1217,7 @@ public class Pan_CrearEntradaSalida extends javax.swing.JPanel {
                 int cantidadMov = cantidadB.intValue();
                 String precioSinCorregir = infoTablaMov[i][3];
                 BigDecimal PrecioVenta = this.corregirDato(precioSinCorregir);
+                AdminBD.actualizarPrecioProducto(idProducto, PrecioVenta);
                 //System.out.println(idProducto+" "+idVersion+" "+idMovimiento+" "+cantidadMov+" "+PrecioVenta);
                 AdminBD.insertarProductoCantidadMovimiento(idProducto, idVersion, idMovimiento, cantidadMov, PrecioVenta);
 
@@ -1282,7 +1283,7 @@ public class Pan_CrearEntradaSalida extends javax.swing.JPanel {
         int numFilas = inventario.length;
         for (int row = 0; row < numFilas; row++) {
             try {
-                String idProducto = inventario[row][0];
+                String idProducto = inventario[row][0].toUpperCase();
                 if (idProducto.equals("")) {
                     continue;
                 }

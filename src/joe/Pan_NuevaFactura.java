@@ -1613,15 +1613,8 @@ public class Pan_NuevaFactura extends javax.swing.JPanel {
         else if (_callType == CREDITO_CALL) {
             credSave();
             
-        } else if (_callType == DEVOLUCION_CALL) {
-            devSave();
-            this.regresar();
-
-        } else if (_callType == MOD_DEV_CALL) {
-            modDevSave();
-            this.regresar();
-            
-        } else {
+        } 
+        else {
             System.out.println("ERROR AL GUARDAR FACTURA. CODIGO DE LLAMADO INCORRECTO");
             
         }
@@ -2049,9 +2042,21 @@ public class Pan_NuevaFactura extends javax.swing.JPanel {
     }//GEN-LAST:event_searchBttMouseClicked
 
     private void saveBttMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_saveBttMouseClicked
+        
         if (!_savePress){
             _savePress = true;
-            this.beforeSave();
+            if (_callType == DEVOLUCION_CALL) {
+                devSave();
+                this.regresar();
+                return;
+            }
+            if (_callType == MOD_DEV_CALL) {
+                modDevSave();
+                this.regresar();
+                return;
+            }
+            else{
+            this.beforeSave();}
         }
         _savePress = false;
     }//GEN-LAST:event_saveBttMouseClicked
@@ -2059,7 +2064,37 @@ public class Pan_NuevaFactura extends javax.swing.JPanel {
     private void printBttMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_printBttMouseClicked
          if (!_savePress){
             _savePress = true;
-            this.beforeSave();
+            if (_callType == DEVOLUCION_CALL) {
+                devSave();
+                XMLConfiguracion xml = new XMLConfiguracion(); 
+                this.imprimirDevolucion(this.jLabel_NumerodeFact.getText(),
+                            this.jLabel_Fecha.getText(),
+                            this.jFormattedTextField_Total.getText(),
+                            this.jFormattedTextField_SubTotal.getText(),
+                            this.jFormattedTextField_desc.getText(),
+                            this.jFormattedTextField_DescuentoTotal.getText(),
+                            this.jFormattedTextField_Cliente.getText(),
+                            xml.ObtenerUsuario());
+                
+                this.regresar();
+                return;
+            }
+            if (_callType == MOD_DEV_CALL) {
+                modDevSave();
+                XMLConfiguracion xml = new XMLConfiguracion(); 
+                this.imprimirDevolucion(this.jLabel_NumerodeFact.getText(),
+                            this.jLabel_Fecha.getText(),
+                            this.jFormattedTextField_Total.getText(),
+                            this.jFormattedTextField_SubTotal.getText(),
+                            this.jFormattedTextField_desc.getText(),
+                            this.jFormattedTextField_DescuentoTotal.getText(),
+                            this.jFormattedTextField_Cliente.getText(),
+                            xml.ObtenerUsuario());
+                this.regresar();
+                return;
+            }
+            else{
+            this.beforeSave();}
         }
         _savePress = false;
     
@@ -2272,20 +2307,33 @@ public class Pan_NuevaFactura extends javax.swing.JPanel {
         }
         this.jDialog_darVuelto.dispose();
         String callType = "Imprimir";
-        if(callType.equals("Imprimir")){
-             if(this.guardarFacturadesdeVuelto()){
-                    XMLConfiguracion xml = ManejoDeArchivos.XMLConfiguracion.getInstance();
-                    this.imprimir(this.jLabel_NumerodeFact.getText(),
-                    this.jLabel_Fecha.getText(),
-                    this.jFormattedTextField_Total.getText(),
-                    this.jFormattedTextField_SubTotal.getText(),
-                    this.jFormattedTextField_desc.getText(),
-                    this.jFormattedTextField_DescuentoTotal.getText(),
-                    this.jFormattedTextField_Cliente.getText(),
-                    xml.ObtenerUsuario());}
+        if (callType.equals("Imprimir")) {
+            if (this.guardarFacturadesdeVuelto()) {
+                XMLConfiguracion xml = ManejoDeArchivos.XMLConfiguracion.getInstance();
+                if (_callType == FACTURACION_CALL | _callType == MOD_FACT_CALL) {
+                    this.imprimirFactura(this.jLabel_NumerodeFact.getText(),
+                            this.jLabel_Fecha.getText(),
+                            this.jFormattedTextField_Total.getText(),
+                            this.jFormattedTextField_SubTotal.getText(),
+                            this.jFormattedTextField_desc.getText(),
+                            this.jFormattedTextField_DescuentoTotal.getText(),
+                            this.jFormattedTextField_Cliente.getText(),
+                            xml.ObtenerUsuario());
+                }
+                if (_callType == APARTADO_CALL | _callType == MOD_APART_CALL | _callType == CREDITO_CALL | _callType == MOD_CRED_CALL) {
+                    this.imprimirApartadoCredito(this.jLabel_NumerodeFact.getText(),
+                            this.jLabel_Fecha.getText(),
+                            this.jFormattedTextField_Total.getText(),
+                            this.jFormattedTextField_SubTotal.getText(),
+                            this.jFormattedTextField_desc.getText(),
+                            this.jFormattedTextField_DescuentoTotal.getText(),
+                            this.jFormattedTextField_Cliente.getText(),
+                            xml.ObtenerUsuario());
+                }
+            }
+        } else {
+            this.guardarFacturadesdeVuelto();
         }
-        else{
-        this.guardarFacturadesdeVuelto();}
         this.regresar();
     }//GEN-LAST:event_jButton_aceptarVueltoActionPerformed
 
@@ -2668,7 +2716,7 @@ public class Pan_NuevaFactura extends javax.swing.JPanel {
      * @param totalFact
      * @return
      */
-    private boolean imprimir(String numFact, String date, String totalFact, String subtotalFact, String desc, String rebaja, String cliente,
+    private boolean imprimirFactura(String numFact, String date, String totalFact, String subtotalFact, String desc, String rebaja, String cliente,
             String vendedor) {
         try {
             String rawCmds = "FIRST NAME";
@@ -2752,15 +2800,21 @@ public class Pan_NuevaFactura extends javax.swing.JPanel {
                  * http://www.lprng.com/DISTRIB/RESOURCES/PPD/epson.htm 
                  * (FAVORITOS)
                  */
+                String pagoTarjeta = "C"+this.jFormattedTextField_pagoVueltoTarjeta.getText();
+                String pagoContado = "C"+this.jFormattedTextField_pagoVueltoContado.getText();
+                String vuelto = "C"+this.jFormattedTextField_vuelto.getText();
                 p.append("\u001B" + "\u0061" + "\u0002" + "\r");//*** Derecha
                 p.append("\u001B" + "\u0064" + "\u0003" + "\r");//*** 1lineas
                 String subto = " SUB TOTAL : \t " + subtotalFact + "";
-                String subtoCantidad = this.fill(subto, 25, " ");
+                String subtoCantidad = this.fill(subto, 28, " ");
                 p.append(subtoCantidad + "\r\n");
                 p.append(this.fill(" DESCTO  % : \t " + desc + "", subtoCantidad.length(), " ") + "\r\n");
                 p.append(this.fill(" DESCUENTO : \t " + rebaja + "", subtoCantidad.length(), " ") + "\r\n");
+                p.append(this.fill(" PAGO TARJ : \t " + pagoTarjeta + "", subtoCantidad.length(), " ") + "\r\n");
+                p.append(this.fill(" PAGO CONT : \t " + pagoContado + "", subtoCantidad.length(), " ") + "\r\n");
                 p.append("---------------------------\r\n");
-                p.append(this.fill(" T O T A L : \t " + totalFact + "", subtoCantidad.length(), " ") + "\r\n");
+                p.append(this.fill(" T O T A L   : \t " + totalFact + "", subtoCantidad.length(), " ") + "\r\n");
+                p.append(this.fill(" V U E L T O : \t " + vuelto + "", subtoCantidad.length(), " ") + "\r\n");
                 p.append("\u001B" + "\u0061" + "\u0000" + "\r");//Quita Centrado
                 p.append("\u001B" + "\u0061" + "\u0001" + "\r");//*** Centrado
                 p.append("\u001B" + "\u0064" + "\u0004" + "\r");//*** 3lineas
@@ -2785,7 +2839,235 @@ public class Pan_NuevaFactura extends javax.swing.JPanel {
             return false;
         }
     }
+     /**
+     * Imprime la factura.
+     *
+     * @param numFact //Debe ser Generico.
+     * @param date
+     * @param totalFact
+     * @return
+     */
+    private boolean imprimirDevolucion(String numFact, String date, String totalFact, String subtotalFact, String desc, String rebaja, String cliente,
+            String vendedor) {
+        try {
+            String rawCmds = "FIRST NAME";
+            String printer = "Generic / Text Only (Copy 3)"; // debe tener 
+            //el mismo nombre que la impresora 
+            PrintService ps = PrintServiceMatcher.findPrinter(printer);
+            if (ps != null) {
 
+                PrintRaw p = new PrintRaw(ps, rawCmds);
+                /**
+                 * p.clear(); p.append("N\n"); p.append("^XA\n");
+                 * p.append("^FO350,355^A0N,30,30^FD\"" + title + "\"\n");
+                 * p.append("^XZ\n");
+                p.append("P1,1\n");*
+                 */
+                p.clear();
+                p.append("\u001B\u0040"); //reset printer 
+                //p.append("\u001B"+"\u0045"+"\u0001"+"\r");//Negrita
+                /**
+                 * ********************************************************
+                 */
+                XMLConfiguracion xml = new XMLConfiguracion();
+                String[] comentariosFactura = xml.leerInfoParaFactura();
+                String[] infoEmpresa = xml.leerInfoEmpresaXML();
+                p.append("\u001B" + "\u0061" + "\u0001" + "\r");//*** Centrado
+                p.append(infoEmpresa[0]+"\r\n");
+                p.append(infoEmpresa[1]+"\r\n");
+                p.append("Tel: "+infoEmpresa[4]+"\r\n");
+                p.append("Ced Jur: "+infoEmpresa[3]+"\r\n");
+                 if(!infoEmpresa[5].equals("")){
+                    p.append(infoEmpresa[5]+"\r\n");
+                }
+                p.append("\u001B" + "\u0064" + "\u0001" + "\r");//*** 1lineas
+                p.append(xml.ObtenerSlogan()+"\r\n");
+                p.append("\u001B" + "\u0064" + "\u0001" + "\r");//*** 1lineas
+                if (!comentariosFactura[0].equals("")) {
+                    p.append(comentariosFactura[0] + "\r\n");
+                }
+                /**
+                 * *******************************************************
+                 */
+                //p.append("\u001B"+"\u0045"+"\u0000"+"\r");//QuitalaNegrita
+                /**
+                 * ********************************************************
+                 */
+
+                p.append("\u001B" + "\u0061" + "\u0000" + "\r");//Quita Centrado
+                p.append("Fecha   : \t " + date + "\r\n");
+                p.append("NoDev   : \t " + numFact + "\r\n");
+                p.append("Cliente : \t " + cliente + "\r\n");
+                p.append("Vendedor: \t " + vendedor + "\r\n");
+                p.append("CANT. \t DESCRIPCION \t      TOTAL\r\n");
+                p.append("----  ----------------       ------\r\n");
+                /**
+                 * ********************************************************
+                 */
+                MyTableModel_FACT dtm = (MyTableModel_FACT) jTable_Factura.getModel();
+                int nRow = dtm.getRowCount();
+                for (int i = 0; i < nRow; i++) {
+                    String Producto = dtm.getValueAt(i, 1).toString();
+                    if (!Producto.equals("")) {
+                        String cantidad = dtm.getValueAt(i, 2).toString();
+                        String subtotal = dtm.getValueAt(i, 4).toString();
+                        p.append("" + Producto + "   \r\n");
+                        p.append("" + cantidad + "                           "
+                                + "" + subtotal + "   \r\n");
+                    }
+
+                }
+
+                //p.append("----  ----------------    -----------   \r\n");
+                //p.append("----------------------------------------\r\n"); 
+                /*
+                 * Importante solo se esta usando la parte hexadecimal
+                 * //u00HEX
+                 * junto con el archivo ESC-POS-Programming-Guide
+                 */
+                /*
+                 * Para centrado y Derecha se esta usando la descripcion 
+                 * que viene en esta pagina donde dice other 
+                 * http://www.lprng.com/DISTRIB/RESOURCES/PPD/epson.htm 
+                 * (FAVORITOS)
+                 */
+                p.append("\u001B" + "\u0061" + "\u0002" + "\r");//*** Derecha
+                p.append("\u001B" + "\u0064" + "\u0003" + "\r");//*** 1lineas
+                String subto = " SUB TOTAL : \t " + subtotalFact + "";
+                String subtoCantidad = this.fill(subto, 28, " ");
+                p.append(subtoCantidad + "\r\n");
+                p.append(this.fill(" DESCTO  % : \t " + desc + "", subtoCantidad.length(), " ") + "\r\n");
+                p.append(this.fill(" DESCUENTO : \t " + rebaja + "", subtoCantidad.length(), " ") + "\r\n");
+                p.append("---------------------------\r\n");
+                p.append(this.fill(" T O T A L   : \t " + totalFact + "", subtoCantidad.length(), " ") + "\r\n");
+                p.append("\u001B" + "\u0061" + "\u0000" + "\r");//Quita Centrado
+                p.append("\u001B" + "\u0061" + "\u0001" + "\r");//*** Centrado
+                p.append("\u001B" + "\u0064" + "\u0004" + "\r");//*** 3lineas
+                if (!comentariosFactura[1].equals("")) {
+                    p.append(comentariosFactura[1] + "\r\n");
+                }
+                p.append("\u001B\u0040");//reset printer
+                p.append("\u001B" + "\u0064" + "\u0008" + "\r");//*** 10lineas**/
+                p.append("\u001D" + "\u0056" + "\u0001" + "\r");//*** CutPaper
+                
+                //p.append("-Texto sin negrita-\r\n");
+                //p.append("-XXXXXXXXXXXXXX-\r\n");
+                return p.print();
+
+            } else {
+                System.err.println("No encontro ninguna impresora");
+                return false;
+            }
+
+        } catch (Exception e) {
+            e.printStackTrace();
+            return false;
+        }
+    }
+    /**
+     * Imprime el apartado o el credito.
+     *
+     * @param numFact 
+     * @param date
+     * @param totalFact
+     * @return
+     */
+    private boolean imprimirApartadoCredito(String numFact, String date, String totalFact, String subtotalFact, String desc, String rebaja, String cliente,
+            String vendedor) {
+        try {
+            String rawCmds = "FIRST NAME";
+            String printer = "Generic / Text Only (Copy 3)"; // debe tener 
+            //el mismo nombre que la impresora 
+            PrintService ps = PrintServiceMatcher.findPrinter(printer);
+            if (ps != null) {
+
+                PrintRaw p = new PrintRaw(ps, rawCmds);
+                p.clear();
+                p.append("\u001B\u0040"); //reset printer 
+           
+                XMLConfiguracion xml = new XMLConfiguracion();
+                String[] comentariosFactura = xml.leerInfoParaFactura();
+                String[] infoEmpresa = xml.leerInfoEmpresaXML();
+                p.append("\u001B" + "\u0061" + "\u0001" + "\r");//*** Centrado
+                p.append(infoEmpresa[0]+"\r\n");
+                p.append(infoEmpresa[1]+"\r\n");
+                p.append("Tel: "+infoEmpresa[4]+"\r\n");
+                p.append("Ced Jur: "+infoEmpresa[3]+"\r\n");
+                 if(!infoEmpresa[5].equals("")){
+                    p.append(infoEmpresa[5]+"\r\n");
+                }
+                p.append("\u001B" + "\u0064" + "\u0001" + "\r");//*** 1lineas
+                p.append(xml.ObtenerSlogan()+"\r\n");
+                p.append("\u001B" + "\u0064" + "\u0001" + "\r");//*** 1lineas
+                if (!comentariosFactura[0].equals("")) {
+                    p.append(comentariosFactura[0] + "\r\n");
+                }
+                p.append("\u001B" + "\u0061" + "\u0000" + "\r");//Quita Centrado
+                p.append("Fecha   : \t " + date + "\r\n");
+                p.append("NoFact  : \t " + numFact + "\r\n");
+                p.append("Cliente : \t " + cliente + "\r\n");
+                p.append("Vendedor: \t " + vendedor + "\r\n");
+                p.append("CANT. \t DESCRIPCION \t      TOTAL\r\n");
+                p.append("----  ----------------       ------\r\n");
+                /**
+                 * ********************************************************
+                 */
+                MyTableModel_FACT dtm = (MyTableModel_FACT) jTable_Factura.getModel();
+                int nRow = dtm.getRowCount();
+                for (int i = 0; i < nRow; i++) {
+                    String Producto = dtm.getValueAt(i, 1).toString();
+                    if (!Producto.equals("")) {
+                        String cantidad = dtm.getValueAt(i, 2).toString();
+                        String subtotal = dtm.getValueAt(i, 4).toString();
+                        p.append("" + Producto + "   \r\n");
+                        p.append("" + cantidad + "                           "
+                                + "" + subtotal + "   \r\n");
+                    }
+
+                }
+
+              
+                String abono = this.jFormattedTextField_totalFact.getText();
+                BigDecimal saldo = this.corregirDato(totalFact).subtract(this.corregirDato(abono));
+                String pagoTarjeta = "C"+this.jFormattedTextField_pagoVueltoTarjeta.getText();
+                String pagoContado = "C"+this.jFormattedTextField_pagoVueltoContado.getText();
+                String vuelto = "C"+this.jFormattedTextField_vuelto.getText();
+                p.append("\u001B" + "\u0061" + "\u0002" + "\r");//*** Derecha
+                p.append("\u001B" + "\u0064" + "\u0003" + "\r");//*** 1lineas
+                String subto = " SUB TOTAL : \t " + subtotalFact + "";
+                String subtoCantidad = this.fill(subto, 28, " ");
+                p.append(subtoCantidad + "\r\n");
+                p.append(this.fill(" DESCTO  % : \t " + desc + "", subtoCantidad.length(), " ") + "\r\n");
+                p.append(this.fill(" DESCUENTO : \t " + rebaja + "", subtoCantidad.length(), " ") + "\r\n");
+                p.append(this.fill(" TOTAL     : \t " + totalFact + "", subtoCantidad.length(), " ") + "\r\n");
+                p.append(this.fill(" PAGO TARJ : \t " + pagoTarjeta + "", subtoCantidad.length(), " ") + "\r\n");
+                p.append(this.fill(" PAGO CONT : \t " + pagoContado + "", subtoCantidad.length(), " ") + "\r\n");
+                p.append("---------------------------\r\n");
+                p.append(this.fill(" A B O N O   : \t " + abono + "", subtoCantidad.length(), " ") + "\r\n");
+                p.append(this.fill(" S A L D O   : \t " +"C"+saldo.toString()+ "", subtoCantidad.length(), " ") + "\r\n");
+                p.append(this.fill(" V U E L T O : \t " + vuelto + "", subtoCantidad.length(), " ") + "\r\n");
+                p.append("\u001B" + "\u0061" + "\u0000" + "\r");//Quita Centrado
+                p.append("\u001B" + "\u0061" + "\u0001" + "\r");//*** Centrado
+                p.append("\u001B" + "\u0064" + "\u0004" + "\r");//*** 3lineas
+                if (!comentariosFactura[1].equals("")) {
+                    p.append(comentariosFactura[1] + "\r\n");
+                }
+                p.append("\u001B\u0040");//reset printer
+                p.append("\u001B" + "\u0064" + "\u0008" + "\r");//*** 10lineas**/
+                p.append("\u001D" + "\u0056" + "\u0001" + "\r");//*** CutPaper
+               
+                return p.print();
+
+            } else {
+                System.err.println("No encontro ninguna impresora");
+                return false;
+            }
+
+        } catch (Exception e) {
+            e.printStackTrace();
+            return false;
+        }
+    }
     public String fill(int length, String with) {
         StringBuilder sb = new StringBuilder(length);
         while (sb.length() < length) {

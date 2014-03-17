@@ -3,9 +3,9 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package joe;
 
+import ManejoDeArchivos.XMLConfiguracion;
 import db_managment.Direct_Control_BD;
 import java.awt.Toolkit;
 import java.awt.event.KeyEvent;
@@ -35,9 +35,10 @@ public class Pan_Apart extends javax.swing.JPanel {
     /**
      * Creates new form JPanel_Facturacion
      */
-    public static String detalleEliminacionApart= "Elimacion Apart";
-    public static String clienteGenerico="Cliente Generico";
-    public static String mensajeNoSeleccion="No se ha seleccionado ningun apartado";
+    public static String detalleEliminacionApart = "Elimacion Apart";
+    public static String clienteGenerico = "Cliente Generico";
+    public static String mensajeNoSeleccion = "No se ha seleccionado ningun apartado";
+
     public Pan_Apart() {
         initComponents();
         completarTablaApartados();
@@ -483,59 +484,56 @@ public class Pan_Apart extends javax.swing.JPanel {
         Object[][] ProductosdeFactura = AdminBD.getData();
         int numFilas = ProductosdeFactura.length;
         for (int row = 0; row < numFilas; row++) {
-            Object[] producto= ProductosdeFactura[row];
-            String codArticulo= producto[0].toString();
+            Object[] producto = ProductosdeFactura[row];
+            String codArticulo = producto[0].toString();
             BigDecimal precio = this.StringtoBigDecimal(producto[3].toString());
             int idVersion = AdminBD.veridVersionActivaProductoPorCodigo(codArticulo);
-            int cantidad= Integer.parseInt(producto[2].toString());
-            this.crearMovimiento(detalleEliminacionApart+" "+NumFact,precio,1);
+            int cantidad = Integer.parseInt(producto[2].toString());
+            this.crearMovimiento(detalleEliminacionApart + " " + NumFact, precio, 1);
             this.guardaProductoEnMovimiento(codArticulo, idVersion, cantidad, precio);
-            
-            
-            
-            }
+
+        }
     }
-   
+
     private void jButton_AceptarPagoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_AceptarPagoActionPerformed
-         if(this.jFormattedTextField_Abono.getText().equals("")){
+        if (this.jFormattedTextField_Abono.getText().equals("")) {
             JOptionPane.showMessageDialog(
-                          null,
-                          "Por favor ingrese un abono",
-                          "Alert!", JOptionPane.ERROR_MESSAGE);
-            
-                this.jFormattedTextField_Abono.requestFocus(true);
-                return;
-        
-        }       
-        
+                    null,
+                    "Por favor ingrese un abono",
+                    "Alert!", JOptionPane.ERROR_MESSAGE);
+
+            this.jFormattedTextField_Abono.requestFocus(true);
+            return;
+
+        }
+
         BigDecimal montoDePago = this.StringtoBigDecimal(this.jFormattedTextField_Abono.getText());
-        if(montoDePago.compareTo(new BigDecimal("0.00"))>0){
+        if (montoDePago.compareTo(new BigDecimal("0.00")) > 0) {
             this.jDialog_CrearPago.dispose();
             this.jFormattedTextField_Abono.setText(BigDecimal.ZERO.toString());
             this.jFormattedTextField_Saldo.setValue(BigDecimal.ZERO);
             this.darVuelto(montoDePago);
-            
-        }
-        else{
+
+        } else {
             JOptionPane.showMessageDialog(
-                          null,
-                          "El abono debe ser mayor que cero",
-                          "Alert!", JOptionPane.ERROR_MESSAGE);
-            
-                this.jFormattedTextField_Abono.requestFocus(true);
+                    null,
+                    "El abono debe ser mayor que cero",
+                    "Alert!", JOptionPane.ERROR_MESSAGE);
+
+            this.jFormattedTextField_Abono.requestFocus(true);
         }
-        
+
     }//GEN-LAST:event_jButton_AceptarPagoActionPerformed
 
     private void jButton_CancelarPagoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_CancelarPagoActionPerformed
         this.jDialog_CrearPago.dispose();
         this.jFormattedTextField_Abono.setText(new BigDecimal("0.00").toString());
         this.jFormattedTextField_Saldo.setValue(new BigDecimal("0.00"));
-        
+
     }//GEN-LAST:event_jButton_CancelarPagoActionPerformed
 
     private void jButton_AceptarPagoKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jButton_AceptarPagoKeyPressed
-        if(evt.getKeyChar()==KeyEvent.VK_ENTER){
+        if (evt.getKeyChar() == KeyEvent.VK_ENTER) {
             this.jButton_AceptarPago.doClick();
         }
     }//GEN-LAST:event_jButton_AceptarPagoKeyPressed
@@ -553,7 +551,6 @@ public class Pan_Apart extends javax.swing.JPanel {
         JF_Facturacion.getInstance().setEnableTabs(false);
 
         //*******************************************************************
-        
         Direct_Control_BD AdminBD = Direct_Control_BD.getInstance();
         String factura = Integer.toString(AdminBD.ObtenerUltimoidFact() + 1);
         panelNuevaFact.jLabel_NumerodeFact.setText(factura);
@@ -563,12 +560,37 @@ public class Pan_Apart extends javax.swing.JPanel {
     }//GEN-LAST:event_jLabel5MouseClicked
 
     private void jLabel11MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel11MouseClicked
-        this.modificar(this.jTable_Apartados,Pan_NuevaFactura.MOD_APART_CALL);
+
+        XMLConfiguracion conf = new XMLConfiguracion();
+        String TipousuarioActual = conf.ObtenerTipoUsuario();
+
+        if ("admi".equals(TipousuarioActual)|| "joe".equals(conf.ObtenerUsuario())) {
+            this.modificar(this.jTable_Apartados, Pan_NuevaFactura.MOD_APART_CALL);
+        } else {
+            JOptionPane.showMessageDialog(this, "Necesitas permisos de "
+                    + "administrador para poder continuar",
+                    "¡Alerta!",
+                    JOptionPane.WARNING_MESSAGE);
+        }
+
     }//GEN-LAST:event_jLabel11MouseClicked
 
     private void jLabel12MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel12MouseClicked
-        this.eliminar(this.jTable_Apartados);
-        this.completarTablaApartados();
+
+        XMLConfiguracion conf = new XMLConfiguracion();
+        String TipousuarioActual = conf.ObtenerTipoUsuario();
+
+        if ("admi".equals(TipousuarioActual)|| "joe".equals(conf.ObtenerUsuario())) {
+            this.eliminar(this.jTable_Apartados);
+            this.completarTablaApartados();
+        } else {
+            JOptionPane.showMessageDialog(this, "Necesitas permisos de "
+                    + "administrador para poder continuar",
+                    "¡Alerta!",
+                    JOptionPane.WARNING_MESSAGE);
+        }
+
+
     }//GEN-LAST:event_jLabel12MouseClicked
 
     private void jLabel13MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel13MouseClicked
@@ -576,7 +598,7 @@ public class Pan_Apart extends javax.swing.JPanel {
     }//GEN-LAST:event_jLabel13MouseClicked
 
     private void jLabel15MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel15MouseClicked
-       int row = this.jTable_Apartados.getSelectedRow();
+        int row = this.jTable_Apartados.getSelectedRow();
         if (row < 0) {
             JOptionPane.showMessageDialog(
                     null,
@@ -584,12 +606,10 @@ public class Pan_Apart extends javax.swing.JPanel {
                     "Alert!", JOptionPane.ERROR_MESSAGE);
             return;
         }
-        BigDecimal saldo = this.StringtoBigDecimal
-        (this.jTable_Apartados.getValueAt
-        (this.jTable_Apartados.getSelectedRow(),1).toString());
-         DocumentFilter onlyNumberFilter = new MyFilter();
-            ((AbstractDocument)this.jFormattedTextField_Abono.getDocument())
-                    .setDocumentFilter(onlyNumberFilter);
+        BigDecimal saldo = this.StringtoBigDecimal(this.jTable_Apartados.getValueAt(this.jTable_Apartados.getSelectedRow(), 1).toString());
+        DocumentFilter onlyNumberFilter = new MyFilter();
+        ((AbstractDocument) this.jFormattedTextField_Abono.getDocument())
+                .setDocumentFilter(onlyNumberFilter);
         if (saldo.compareTo(new BigDecimal("0.00")) > 0) {
             DateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
             Date date = new Date();
@@ -606,28 +626,26 @@ public class Pan_Apart extends javax.swing.JPanel {
             this.jFormattedTextField_TotalPagado.setValue(Saldo);
             this.jFormattedTextField_Saldo.setValue(Saldo);
             this.jDialog_CrearPago.setVisible(true);
-        }
-        else{
+        } else {
             JOptionPane.showMessageDialog(
-                        null,
-                        "Este credito ya esta pago",
-                        "Alert!", JOptionPane.ERROR_MESSAGE);
-        
+                    null,
+                    "Este credito ya esta pago",
+                    "Alert!", JOptionPane.ERROR_MESSAGE);
+
         }
     }//GEN-LAST:event_jLabel15MouseClicked
 
     private void jLabel16MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel16MouseClicked
         Direct_Control_BD AdminBD = Direct_Control_BD.getInstance();
-        int row=this.jTable_Apartados.getSelectedRow();
-        if(row<0){
+        int row = this.jTable_Apartados.getSelectedRow();
+        if (row < 0) {
             JOptionPane.showMessageDialog(
-                        null,
-                        mensajeNoSeleccion,
-                        "Alert!", JOptionPane.ERROR_MESSAGE);
+                    null,
+                    mensajeNoSeleccion,
+                    "Alert!", JOptionPane.ERROR_MESSAGE);
             return;
         }
-        int idFact = Integer.parseInt
-        (this.jTable_Apartados.getValueAt(row,0).toString());
+        int idFact = Integer.parseInt(this.jTable_Apartados.getValueAt(row, 0).toString());
         //Carga los datos a la tabla de ver pagos
         this.cargarVerPagos(idFact);
         // Obtiene la informacion de la factura, total facturado y 
@@ -656,17 +674,16 @@ public class Pan_Apart extends javax.swing.JPanel {
             } else {
 
                 JOptionPane.showMessageDialog(
-                    null,
-                    "El abono debe ser menor o igual que el saldo pendiente",
-                    "Alert!", JOptionPane.ERROR_MESSAGE);
+                        null,
+                        "El abono debe ser menor o igual que el saldo pendiente",
+                        "Alert!", JOptionPane.ERROR_MESSAGE);
 
                 this.jFormattedTextField_Abono.setText(new BigDecimal("0.00").toString());
                 this.jFormattedTextField_Saldo.setValue(this.corregirDato(this.jFormattedTextField_TotalPagado.getText()));
                 this.jFormattedTextField_Abono.requestFocus(true);
             }
 
-        }
-        else{
+        } else {
             this.jFormattedTextField_Saldo.setValue(this.corregirDato(this.jFormattedTextField_TotalPagado.getText()));
         }
 
@@ -748,11 +765,11 @@ public class Pan_Apart extends javax.swing.JPanel {
     }//GEN-LAST:event_jFormattedTextField_pagoVueltoContadoKeyTyped
 
     private void jButton_aceptarVueltoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_aceptarVueltoActionPerformed
-        if(new BigDecimal(this.jFormattedTextField_vuelto.getValue().toString()).compareTo(BigDecimal.ZERO)<0){
+        if (new BigDecimal(this.jFormattedTextField_vuelto.getValue().toString()).compareTo(BigDecimal.ZERO) < 0) {
             JOptionPane.showMessageDialog(
-                null,
-                "Por favor ingrese el pago del cliente correctamente",
-                "Error vuelto negativo", JOptionPane.ERROR_MESSAGE);
+                    null,
+                    "Por favor ingrese el pago del cliente correctamente",
+                    "Error vuelto negativo", JOptionPane.ERROR_MESSAGE);
             return;
         }
         this.jDialog_darVuelto.dispose();
@@ -761,7 +778,7 @@ public class Pan_Apart extends javax.swing.JPanel {
     }//GEN-LAST:event_jButton_aceptarVueltoActionPerformed
 
     private void jButton_aceptarVueltoKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jButton_aceptarVueltoKeyPressed
-        if(evt.getKeyChar()== KeyEvent.VK_ENTER){
+        if (evt.getKeyChar() == KeyEvent.VK_ENTER) {
             this.jButton_aceptarVuelto.doClick();
 
         }
@@ -783,19 +800,19 @@ public class Pan_Apart extends javax.swing.JPanel {
                     this.jFormattedTextField_vuelto.setValue(BigDecimal.ZERO);
                     return;
                 }
-                if(pagotarjeta.compareTo(total)>0){
+                if (pagotarjeta.compareTo(total) > 0) {
                     JOptionPane.showMessageDialog(
-                        null,
-                        "El pago con tarjeta no puede superar el monto facturado",
-                        "Alert!", JOptionPane.ERROR_MESSAGE);
+                            null,
+                            "El pago con tarjeta no puede superar el monto facturado",
+                            "Alert!", JOptionPane.ERROR_MESSAGE);
                     this.jFormattedTextField_pagoVueltoTarjeta.setValue(BigDecimal.ZERO);
                     this.jFormattedTextField_pagoVueltoTarjeta.requestFocusInWindow();
-                    if(pagocontado.compareTo(BigDecimal.ZERO)==0){
+                    if (pagocontado.compareTo(BigDecimal.ZERO) == 0) {
                         this.jFormattedTextField_vuelto.setValue(BigDecimal.ZERO);
                     }
+                } else {
+                    this.jFormattedTextField_vuelto.setValue((pagotarjeta.add(pagocontado)).subtract(total));
                 }
-                else{
-                    this.jFormattedTextField_vuelto.setValue((pagotarjeta.add(pagocontado)).subtract(total));}
 
             }
 
@@ -834,76 +851,74 @@ public class Pan_Apart extends javax.swing.JPanel {
         this.jFormattedTextField_pagoVueltoTarjeta.setText(BigDecimal.ZERO.toString());
         this.jFormattedTextField_vuelto.setValue(BigDecimal.ZERO);
     }//GEN-LAST:event_jButton2ActionPerformed
-   
-    
-     /**
-     * Actualiza la tabla que se ve en apartados (Obtiene el total vendido
-     * por cada factura y solo muestra las ultimas 100 facturas de apartados)**/
-        public void completarTablaApartados() {
-         //Realiza la consulta para obtener los apartados
+
+    /**
+     * Actualiza la tabla que se ve en apartados (Obtiene el total vendido por
+     * cada factura y solo muestra las ultimas 100 facturas de apartados)*
+     */
+    public void completarTablaApartados() {
+        //Realiza la consulta para obtener los apartados
         Direct_Control_BD AdminBD = Direct_Control_BD.getInstance();
         AdminBD.verApartados();
         String[] columnNames = AdminBD.getColumnNames();
         Object[][] data = AdminBD.getData();
         //Crea la tabla generica para Facturas
-        this.jTable_Apartados.setModel(new Modelo_Facturacion(columnNames,data));
+        this.jTable_Apartados.setModel(new Modelo_Facturacion(columnNames, data));
         //Alinea la primer columna de esta tabla hacia el centro
-        DefaultTableCellRenderer centerRenderer = new DefaultTableCellRenderer
-                ();
+        DefaultTableCellRenderer centerRenderer = new DefaultTableCellRenderer();
         centerRenderer.setHorizontalAlignment(JLabel.CENTER);
-        this.jTable_Apartados.getColumnModel().getColumn(0).setCellRenderer
-                (centerRenderer);
+        this.jTable_Apartados.getColumnModel().getColumn(0).setCellRenderer(centerRenderer);
     }
-        public void verFacturas(JTable table){
-            int row = table.getSelectedRow();
-            if (row >= 0) {
-                
+
+    public void verFacturas(JTable table) {
+        int row = table.getSelectedRow();
+        if (row >= 0) {
+
                 //***********************INTERFAZ***************************************
-                
-                Pan_VerFactura panelVerFact = new Pan_VerFactura();
-                JF_Facturacion.getInstance().getPanelManager().showPanel(panelVerFact, 800, 474, 0, 0);
-                JF_Facturacion.getInstance().setEnableTabs(false);
-                
+            Pan_VerFactura panelVerFact = new Pan_VerFactura();
+            JF_Facturacion.getInstance().getPanelManager().showPanel(panelVerFact, 800, 474, 0, 0);
+            JF_Facturacion.getInstance().setEnableTabs(false);
+
                 //**********************************************************************
-                
-                panelVerFact.jLabel_NumerodeFact.setText(table.getValueAt(row, 0).toString());
-                panelVerFact.personalizarTablaVerApartadoCredito();
-            } 
-            else {
-                JOptionPane.showMessageDialog(
-                        null,
-                        mensajeNoSeleccion,
-                        "Alert!", JOptionPane.ERROR_MESSAGE);
-            }
+            panelVerFact.jLabel_NumerodeFact.setText(table.getValueAt(row, 0).toString());
+            panelVerFact.personalizarTablaVerApartadoCredito();
+        } else {
+            JOptionPane.showMessageDialog(
+                    null,
+                    mensajeNoSeleccion,
+                    "Alert!", JOptionPane.ERROR_MESSAGE);
         }
-        
-        /**
-     * Este metodo permite corregir el dato que tiene el signo de C y ademas
-     * que puede tener comas ya que el tipo Decimal en la base solo
-     * puede tener puntos y no comas.
-     * @param Dato
-     * @return 
-     */
-    private BigDecimal corregirDato(String Dato){
-            String datoAcorregir = Dato.replace("C", "");
-            DecimalFormat decimalformat = (DecimalFormat) NumberFormat.getInstance();
-            decimalformat.setParseBigDecimal(true);
-            BigDecimal DatoCorregido = null;
-            try {
-                DatoCorregido = (BigDecimal) decimalformat.parseObject(datoAcorregir);
-            } catch (ParseException ex) {
-                Logger.getLogger(MyTableModelListener_FACT.class.getName()).log(Level.SEVERE, null, ex);
-            }
-            return DatoCorregido;
-    
     }
-    
-     /**
-     * Este metodo convierte un string que es un decimal a bigdecimal
-     * @param numero
-     * @return 
+
+    /**
+     * Este metodo permite corregir el dato que tiene el signo de C y ademas que
+     * puede tener comas ya que el tipo Decimal en la base solo puede tener
+     * puntos y no comas.
+     *
+     * @param Dato
+     * @return
      */
-    private BigDecimal StringtoBigDecimal(String numero){
+    private BigDecimal corregirDato(String Dato) {
+        String datoAcorregir = Dato.replace("C", "");
+        DecimalFormat decimalformat = (DecimalFormat) NumberFormat.getInstance();
+        decimalformat.setParseBigDecimal(true);
+        BigDecimal DatoCorregido = null;
+        try {
+            DatoCorregido = (BigDecimal) decimalformat.parseObject(datoAcorregir);
+        } catch (ParseException ex) {
+            Logger.getLogger(MyTableModelListener_FACT.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return DatoCorregido;
+
+    }
+
+    /**
+     * Este metodo convierte un string que es un decimal a bigdecimal
+     *
+     * @param numero
+     * @return
+     */
+    private BigDecimal StringtoBigDecimal(String numero) {
         DecimalFormat decimalfC = (DecimalFormat) NumberFormat.getInstance();
         decimalfC.setParseBigDecimal(true);
         BigDecimal numeroCorregido = null;
@@ -913,7 +928,7 @@ public class Pan_Apart extends javax.swing.JPanel {
             Logger.getLogger(JPanel_VerFactura.class.getName()).log(Level.SEVERE, null, ex);
         }
         return numeroCorregido;
-    
+
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -968,46 +983,47 @@ public class Pan_Apart extends javax.swing.JPanel {
     // End of variables declaration//GEN-END:variables
 
     private void crearPago(int idFactura, BigDecimal pagoTarjeta, BigDecimal pagoContado) {
-       
+
         Direct_Control_BD AdminBD = Direct_Control_BD.getInstance();
         int idVersionFacturasProducto = AdminBD.verVersionDEFacturaActiva(idFactura);
-        AdminBD.insertarPago(pagoTarjeta,pagoContado,idFactura,idVersionFacturasProducto);
+        AdminBD.insertarPago(pagoTarjeta, pagoContado, idFactura, idVersionFacturasProducto);
 
     }
-     /**
+
+    /**
      * Este metodo se encarga de llenar la tabla en ver pagos para mostrar los
-     * pagos que se le han hecho a la factura selecionada en apartados o creditos
+     * pagos que se le han hecho a la factura selecionada en apartados o
+     * creditos
      */
     private void cargarVerPagos(int numFact) {
-          //Realiza la consulta para obtener los pagos de apartados o creditos
+        //Realiza la consulta para obtener los pagos de apartados o creditos
         Direct_Control_BD AdminBD = Direct_Control_BD.getInstance();
         AdminBD.verInfoFacturaApartadoPagos(numFact);
-        String[] columnNames = {"Fecha de Pago","Monto"};
+        String[] columnNames = {"Fecha de Pago", "Monto"};
         Object[][] data = AdminBD.getData();
         //Crea la tabla generica para Facturas
-        this.jTable_VerPagos.setModel(new Modelo_Facturacion(columnNames,data));
+        this.jTable_VerPagos.setModel(new Modelo_Facturacion(columnNames, data));
         //Alinea la primer columna de esta tabla hacia el centro
-        DefaultTableCellRenderer centerRenderer = new DefaultTableCellRenderer
-                ();
+        DefaultTableCellRenderer centerRenderer = new DefaultTableCellRenderer();
         centerRenderer.setHorizontalAlignment(JLabel.CENTER);
-        this.jTable_VerPagos.getColumnModel().getColumn(1).setCellRenderer
-                (centerRenderer);
+        this.jTable_VerPagos.getColumnModel().getColumn(1).setCellRenderer(centerRenderer);
 
     }
 
     private void crearMovimiento(String detalle, BigDecimal precioProd, int movimiento) {
         Direct_Control_BD AdminBD = Direct_Control_BD.getInstance();
-        AdminBD.insertarmovimiento(detalle,movimiento,1,precioProd);
+        AdminBD.insertarmovimiento(detalle, movimiento, 1, precioProd);
     }
+
     private void guardaProductoEnMovimiento(String idProducto, int idVersion, int cantidadMov, BigDecimal PrecioVenta) {
         Direct_Control_BD AdminBD = Direct_Control_BD.getInstance();
-        int idMovimiento= AdminBD.ObtenerUltimoidMovimiento();
-        AdminBD.insertarProductoCantidadMovimiento(idProducto,idVersion,idMovimiento,cantidadMov,PrecioVenta);
+        int idMovimiento = AdminBD.ObtenerUltimoidMovimiento();
+        AdminBD.insertarProductoCantidadMovimiento(idProducto, idVersion, idMovimiento, cantidadMov, PrecioVenta);
     }
 
     private void eliminar(JTable table) {
         int row = table.getSelectedRow();
-        if (row <0){
+        if (row < 0) {
 
             JOptionPane.showMessageDialog(
                     null,
@@ -1016,7 +1032,7 @@ public class Pan_Apart extends javax.swing.JPanel {
             return;
 
         }
-           
+
         String factura = table.getValueAt(row, 0).toString();
         boolean SiSepuedeEliminar = this.verificarCierreFacts(Integer.parseInt(factura));
         if (SiSepuedeEliminar) {
@@ -1035,8 +1051,9 @@ public class Pan_Apart extends javax.swing.JPanel {
         }
 
     }
-    private void modificar(JTable table,int pCallType) {
-        
+
+    private void modificar(JTable table, int pCallType) {
+
         int row = table.getSelectedRow();
         if (row < 0) {
 
@@ -1050,18 +1067,17 @@ public class Pan_Apart extends javax.swing.JPanel {
         String factura = table.getValueAt(row, 0).toString();
         boolean SiSepuedeModificar = this.verificarCierreFacts(Integer.parseInt(factura));
         if (SiSepuedeModificar) {
-            
+
             Pan_NuevaFactura panelModApart = new Pan_NuevaFactura(pCallType);
-            
+
             JF_Facturacion.getInstance().getPanelManager().showPanel(panelModApart, 800, 474, 0, 0);
             JF_Facturacion.getInstance().setEnableTabs(false);
-            
+
             panelModApart.personalizarTablaFactura();
             panelModApart.jLabel_NumerodeFact.setText(factura);
             panelModApart.cargarInfoFact();
             panelModApart.cargarProductosFact((MyTableModel_FACT) panelModApart.jTable_Factura.getModel());
             panelModApart.agregarListenerRenders();
-
 
         } else {
             JOptionPane.showMessageDialog(
@@ -1071,11 +1087,11 @@ public class Pan_Apart extends javax.swing.JPanel {
         }
     }
 
-   private boolean verificarCierreFacts(int idFact) {
+    private boolean verificarCierreFacts(int idFact) {
         Direct_Control_BD AdminBD = Direct_Control_BD.getInstance();
-        int idCierreVigente= AdminBD.obtenerultimoidCierre();
+        int idCierreVigente = AdminBD.obtenerultimoidCierre();
         String fechaInicio = AdminBD.obtenerFechaInicioCierre(idCierreVigente);
-        boolean Sisepuede = AdminBD.verificarFacturaCierre(fechaInicio,idFact);
+        boolean Sisepuede = AdminBD.verificarFacturaCierre(fechaInicio, idFact);
         return Sisepuede;
     }
 
@@ -1091,13 +1107,11 @@ public class Pan_Apart extends javax.swing.JPanel {
         BigDecimal totalfact = this.corregirDato(this.jFormattedTextField_totalFact.getText());
         BigDecimal totalTarjeta = this.StringtoBigDecimal(this.jFormattedTextField_pagoVueltoTarjeta.getText());
         BigDecimal totalContado = totalfact.subtract(totalTarjeta);
-        this.crearPago(Integer.parseInt(this.jLabel_numFact.getText()),totalTarjeta,totalContado);
+        this.crearPago(Integer.parseInt(this.jLabel_numFact.getText()), totalTarjeta, totalContado);
         this.jDialog_CrearPago.dispose();
         this.jFormattedTextField_Abono.setText(new BigDecimal("0.00").toString());
         this.jFormattedTextField_Saldo.setValue(new BigDecimal("0.00"));
         this.completarTablaApartados();
     }
 
-   
-    
 }

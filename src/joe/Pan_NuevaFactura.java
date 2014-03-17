@@ -2057,21 +2057,12 @@ public class Pan_NuevaFactura extends javax.swing.JPanel {
     }//GEN-LAST:event_saveBttMouseClicked
 
     private void printBttMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_printBttMouseClicked
-        if (!_savePress){
+         if (!_savePress){
             _savePress = true;
-            
-            if(this.guardarFacturadesdeVuelto()){
-                    XMLConfiguracion xml = ManejoDeArchivos.XMLConfiguracion.getInstance();
-                    this.imprimir(this.jLabel_NumerodeFact.getText(),
-                    this.jLabel_Fecha.getText(),
-                    this.jFormattedTextField_Total.getText(),
-                    this.jFormattedTextField_SubTotal.getText(),
-                    this.jFormattedTextField_desc.getText(),
-                    this.jFormattedTextField_DescuentoTotal.getText(),
-                    this.jFormattedTextField_Cliente.getText(),
-                    xml.ObtenerUsuario());}
+            this.beforeSave();
         }
         _savePress = false;
+    
     }//GEN-LAST:event_printBttMouseClicked
 
     private void addBttMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_addBttMouseEntered
@@ -2280,7 +2271,21 @@ public class Pan_NuevaFactura extends javax.swing.JPanel {
               return;
         }
         this.jDialog_darVuelto.dispose();
-        this.guardarFacturadesdeVuelto();
+        String callType = "Imprimir";
+        if(callType.equals("Imprimir")){
+             if(this.guardarFacturadesdeVuelto()){
+                    XMLConfiguracion xml = ManejoDeArchivos.XMLConfiguracion.getInstance();
+                    this.imprimir(this.jLabel_NumerodeFact.getText(),
+                    this.jLabel_Fecha.getText(),
+                    this.jFormattedTextField_Total.getText(),
+                    this.jFormattedTextField_SubTotal.getText(),
+                    this.jFormattedTextField_desc.getText(),
+                    this.jFormattedTextField_DescuentoTotal.getText(),
+                    this.jFormattedTextField_Cliente.getText(),
+                    xml.ObtenerUsuario());}
+        }
+        else{
+        this.guardarFacturadesdeVuelto();}
         this.regresar();
     }//GEN-LAST:event_jButton_aceptarVueltoActionPerformed
 

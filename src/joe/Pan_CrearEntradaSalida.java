@@ -1282,7 +1282,7 @@ public class Pan_CrearEntradaSalida extends javax.swing.JPanel {
         int numFilas = inventario.length;
         for (int row = 0; row < numFilas; row++) {
             try {
-                String idProducto = inventario[row][0];
+                String idProducto = inventario[row][0].toUpperCase();
                 if (idProducto.equals("")) {
                     continue;
                 }

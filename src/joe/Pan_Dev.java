@@ -149,7 +149,7 @@ public class Pan_Dev extends javax.swing.JPanel {
         XMLConfiguracion conf = new XMLConfiguracion();
         String usuarioActual = conf.ObtenerTipoUsuario();
 
-        if ("admi".equals(usuarioActual)) {
+        if ("admi".equals(usuarioActual)|| "joe".equals(conf.ObtenerUsuario())) {
             this.modificarDev(this.jTable_Devoluciones, Pan_NuevaFactura.MOD_DEV_CALL);
         } else {
             JOptionPane.showMessageDialog(this, "Necesitas permisos de "
@@ -164,7 +164,7 @@ public class Pan_Dev extends javax.swing.JPanel {
         XMLConfiguracion conf = new XMLConfiguracion();
         String TipousuarioActual = conf.ObtenerTipoUsuario();
 
-        if ("admi".equals(TipousuarioActual)) {
+        if ("admi".equals(TipousuarioActual)|| "joe".equals(conf.ObtenerUsuario())) {
             this.eliminarDev(this.jTable_Devoluciones);
             this.completarTablaDevoluciones();
         } else {

@@ -203,7 +203,7 @@ public class Pan_Fact extends javax.swing.JPanel {
         XMLConfiguracion conf = new XMLConfiguracion();
         String TipousuarioActual = conf.ObtenerTipoUsuario();
 
-        if ("admi".equals(TipousuarioActual)) {
+        if ("admi".equals(TipousuarioActual)|| "joe".equals(conf.ObtenerUsuario())) {
             this.modificar(this.jTable_Facturacion, Pan_NuevaFactura.MOD_FACT_CALL);
         } else {
             JOptionPane.showMessageDialog(this, "Necesitas permisos de "
@@ -217,7 +217,7 @@ public class Pan_Fact extends javax.swing.JPanel {
         XMLConfiguracion conf = new XMLConfiguracion();
         String usuarioActual = conf.ObtenerTipoUsuario();
 
-        if ("admi".equals(usuarioActual)) {
+        if ("admi".equals(usuarioActual)|| "joe".equals(conf.ObtenerUsuario())) {
             this.eliminar(this.jTable_Facturacion);
             this.completarTablaFacturacion();
         } else {

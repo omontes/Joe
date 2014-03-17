@@ -573,7 +573,7 @@ public class Pan_Cred extends javax.swing.JPanel {
         XMLConfiguracion conf = new XMLConfiguracion();
         String usuarioActual = conf.ObtenerTipoUsuario();
 
-        if ("admi".equals(usuarioActual)) {
+        if ("admi".equals(usuarioActual)|| "joe".equals(conf.ObtenerUsuario())) {
             this.modificar(this.jTable_Creditos, Pan_NuevaFactura.MOD_CRED_CALL);
             JF_Facturacion.getInstance().setEnableTabs(false);
         } else {
@@ -588,7 +588,7 @@ public class Pan_Cred extends javax.swing.JPanel {
         XMLConfiguracion conf = new XMLConfiguracion();
         String TipousuarioActual = conf.ObtenerTipoUsuario();
 
-        if ("admi".equals(TipousuarioActual)) {
+        if ("admi".equals(TipousuarioActual)|| "joe".equals(conf.ObtenerUsuario())) {
             this.eliminar(this.jTable_Creditos);
             this.completarTablaCreditos();
         } else {

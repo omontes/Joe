@@ -2698,7 +2698,9 @@ public class Pan_NuevaFactura extends javax.swing.JPanel {
                 p.append(infoEmpresa[1]+"\r\n");
                 p.append("Tel: "+infoEmpresa[4]+"\r\n");
                 p.append("Ced Jur: "+infoEmpresa[3]+"\r\n");
-                p.append(infoEmpresa[5]+"\r\n");
+                 if(!infoEmpresa[5].equals("")){
+                    p.append(infoEmpresa[5]+"\r\n");
+                }
                 p.append("\u001B" + "\u0064" + "\u0001" + "\r");//*** 1lineas
                 p.append(xml.ObtenerSlogan()+"\r\n");
                 p.append("\u001B" + "\u0064" + "\u0001" + "\r");//*** 1lineas

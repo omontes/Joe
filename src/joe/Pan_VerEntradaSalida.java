@@ -6,6 +6,7 @@
 
 package joe;
 
+import ManejoDeArchivos.XMLConfiguracion;
 import db_managment.Direct_Control_BD;
 import java.math.BigDecimal;
 import java.text.DateFormat;
@@ -276,13 +277,19 @@ public class Pan_VerEntradaSalida extends javax.swing.JPanel {
                 p.append("\u001B\u0040"); //reset printer 
               
 
+                XMLConfiguracion xml = new XMLConfiguracion();
+                String[] infoEmpresa = xml.leerInfoEmpresaXML();
                 p.append("\u001B" + "\u0061" + "\u0001" + "\r");//*** Centrado
-                p.append("Boutique Francini\r\n");
-                p.append("San Jose, Costa Rica\r\n");
-                p.append("Tel:228826962,pulgamontes@gmail.com\r\n");
-                p.append("Resolucion nro. 234252 del 2003-89\r\n");
+                p.append(infoEmpresa[0]+"\r\n");
+                p.append(infoEmpresa[1]+"\r\n");
+                p.append("Tel: "+infoEmpresa[4]+"\r\n");
+                p.append("Ced Jur: "+infoEmpresa[3]+"\r\n");
+                 if(!infoEmpresa[5].equals("")){
+                    p.append(infoEmpresa[5]+"\r\n");
+                }
                 p.append("\u001B" + "\u0064" + "\u0001" + "\r");//*** 1lineas
-           
+                p.append(xml.ObtenerSlogan()+"\r\n");
+                p.append("\u001B" + "\u0064" + "\u0001" + "\r");//*** 1lineas
                 p.append("\u001B" + "\u0061" + "\u0000" + "\r");//Quita Centrado
                 
              
@@ -324,8 +331,6 @@ public class Pan_VerEntradaSalida extends javax.swing.JPanel {
                 String subto = " T O T A L : \t " + totalEntrada + "";
                 String subtoCantidad = this.fill(subto, 35, " ");
                 p.append(subtoCantidad + "\r\n");
-                
-               
                 p.append("\u001B\u0040");//reset printer
                 p.append("\u001B" + "\u0064" + "\u0008" + "\r");//*** 10lineas**/
                 p.append("\u001D" + "\u0056" + "\u0001" + "\r");//*** CutPaper

@@ -718,6 +718,7 @@ public class Pan_CrearEntradaSalida extends javax.swing.JPanel {
 
     private void bttSaveMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bttSaveMouseClicked
         this.guardarMovimiento();
+        this.clearAll();
         
     }//GEN-LAST:event_bttSaveMouseClicked
 
@@ -729,6 +730,7 @@ public class Pan_CrearEntradaSalida extends javax.swing.JPanel {
                     this.jComboBox_LugarDeMov.getSelectedItem().toString(),
                     this.jFormattedTextField_Total.getText(),
                     this.jTextField_referencia.getText());
+            this.clearAll();
         }
     }//GEN-LAST:event_bttPrintMouseClicked
 
@@ -1168,7 +1170,6 @@ public class Pan_CrearEntradaSalida extends javax.swing.JPanel {
         }
         this.crearMovimiento();
         this.guardarProductosMovimiento();
-        this.clearAll();
         JF_Inventario.getInstance().refreshActiveTable();
         JF_Inventario.getInstance().backOnWindow();
         return true;
@@ -1362,15 +1363,20 @@ public class Pan_CrearEntradaSalida extends javax.swing.JPanel {
                 p.clear();
                 p.append("\u001B\u0040"); //reset printer 
 
+                XMLConfiguracion xml = new XMLConfiguracion();
+                String[] infoEmpresa = xml.leerInfoEmpresaXML();
                 p.append("\u001B" + "\u0061" + "\u0001" + "\r");//*** Centrado
-                p.append("Boutique Francini\r\n");
-                p.append("San Jose, Costa Rica\r\n");
-                p.append("Tel:228826962,pulgamontes@gmail.com\r\n");
-                p.append("Resolucion nro. 234252 del 2003-89\r\n");
+                p.append(infoEmpresa[0] + "\r\n");
+                p.append(infoEmpresa[1] + "\r\n");
+                p.append("Tel: " + infoEmpresa[4] + "\r\n");
+                p.append("Ced Jur: " + infoEmpresa[3] + "\r\n");
+                if (!infoEmpresa[5].equals("")) {
+                    p.append(infoEmpresa[5] + "\r\n");
+                }
                 p.append("\u001B" + "\u0064" + "\u0001" + "\r");//*** 1lineas
-
+                p.append(xml.ObtenerSlogan() + "\r\n");
+                p.append("\u001B" + "\u0064" + "\u0001" + "\r");//*** 1lineas
                 p.append("\u001B" + "\u0061" + "\u0000" + "\r");//Quita Centrado
-
                 String fecha = " Fecha     :  " + date + "";
                 //p.append("----------------------------------------\r\n");
                 String fechamov = this.fill(fecha, 17, " ");
@@ -1387,8 +1393,8 @@ public class Pan_CrearEntradaSalida extends javax.swing.JPanel {
                 /**
                  * ********************************************************
                  */
-                MyTableModel_FACT dtm = (MyTableModel_FACT) this.jTable_Movimiento.getModel();
-                int nRow = dtm.getRowCount();
+                MyTableModel_FACT dtm = (MyTableModel_FACT) table.getModel();
+                int nRow = this.jTable_Movimiento.getModel().getRowCount();
                 for (int i = 0; i < nRow; i++) {
                     String Producto = dtm.getValueAt(i, 1).toString();
                     if (!Producto.equals("")) {

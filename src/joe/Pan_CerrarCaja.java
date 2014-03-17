@@ -6,6 +6,7 @@
 
 package joe;
 
+import ManejoDeArchivos.XMLConfiguracion;
 import db_managment.Direct_Control_BD;
 import java.math.BigDecimal;
 import java.math.MathContext;
@@ -288,12 +289,21 @@ public class Pan_CerrarCaja extends javax.swing.JPanel {
                 p.clear();
                 p.append("\u001B\u0040"); //reset printer 
 
+                XMLConfiguracion xml = new XMLConfiguracion();
+                String[] infoEmpresa = xml.leerInfoEmpresaXML();
                 p.append("\u001B" + "\u0061" + "\u0001" + "\r");//*** Centrado
-                p.append("Boutique Francini\r\n");
-                p.append("San Jose, Costa Rica\r\n");
-                p.append("Tel:228826962,pulgamontes@gmail.com\r\n");
-                p.append("Resolucion nro. 234252 del 2003-89\r\n");
+                p.append(infoEmpresa[0]+"\r\n");
+                p.append(infoEmpresa[1]+"\r\n");
+                p.append("Tel: "+infoEmpresa[4]+"\r\n");
+                p.append("Ced Jur: "+infoEmpresa[3]+"\r\n");
+                 if(!infoEmpresa[5].equals("")){
+                    p.append(infoEmpresa[5]+"\r\n");
+                }
                 p.append("\u001B" + "\u0064" + "\u0001" + "\r");//*** 1lineas
+                p.append(xml.ObtenerSlogan()+"\r\n");
+                p.append("\u001B" + "\u0064" + "\u0001" + "\r");//*** 1lineas
+                p.append("\u001B" + "\u0061" + "\u0000" + "\r");//Quita Centrado
+                
 
                 p.append("\u001B" + "\u0061" + "\u0000" + "\r");//Quita Centrado
 
@@ -307,8 +317,8 @@ public class Pan_CerrarCaja extends javax.swing.JPanel {
                 p.append("----------------------------------------\r\n");
                 //Agrega 1 linea vacia
                 p.append("\u001B" + "\u0064" + "\u0001" + "\r");
-                p.append("NUM FACT \tTIPO PAGO        MONTO\r\n");
-                p.append("--------        ---------        -----\r\n");
+                p.append("NUM FACT     PAGO TARJETA   PAGO CONTADO\r\n");
+                p.append("--------      -----------   ------------\r\n");
 
                 /**
                  * ********************************************************
@@ -318,10 +328,10 @@ public class Pan_CerrarCaja extends javax.swing.JPanel {
                     String Concepto = table.getValueAt(i, 1).toString();
                     if (!Concepto.equals("")) {
                         String numFact = this.fill(table.getValueAt(i, 2).toString(),15," ");
-                        String tipopago = this.fill(table.getValueAt(i, 3).toString(),8," ");
-                        String monto= this.fill(table.getValueAt(i, 4).toString(),11," ");
+                        String montoTarjeta = this.fill(table.getValueAt(i, 3).toString(),8," ");
+                        String montoContado= this.fill(table.getValueAt(i, 4).toString(),11," ");
                         p.append(""+Concepto+"\r\n");
-                        p.append(""+numFact+" "+tipopago+"     "+""+monto+"\r\n");
+                        p.append(""+numFact+" "+montoTarjeta+"     "+""+montoContado+"\r\n");
                     }
 
                 }

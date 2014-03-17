@@ -3,9 +3,9 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package joe;
 
+import ManejoDeArchivos.XMLConfiguracion;
 import db_managment.Direct_Control_BD;
 import java.math.BigDecimal;
 import java.text.DecimalFormat;
@@ -27,9 +27,10 @@ public class Pan_Dev extends javax.swing.JPanel {
     /**
      * Creates new form JPanel_Facturacion
      */
-    public static String detalleEliminacionDev= "Elimacion Dev";
-    public static String clienteGenerico="Cliente Generico";
-    public static String mensajeNoSeleccion="No se ha seleccionado ninguna devolucion";
+    public static String detalleEliminacionDev = "Elimacion Dev";
+    public static String clienteGenerico = "Cliente Generico";
+    public static String mensajeNoSeleccion = "No se ha seleccionado ninguna devolucion";
+
     public Pan_Dev() {
         initComponents();
         completarTablaDevoluciones();
@@ -110,25 +111,23 @@ public class Pan_Dev extends javax.swing.JPanel {
         });
         add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 360, -1, -1));
     }// </editor-fold>//GEN-END:initComponents
- 
-     private void devolverProductosDev(int NumFact) {
+
+    private void devolverProductosDev(int NumFact) {
         Direct_Control_BD AdminBD = Direct_Control_BD.getInstance();
         AdminBD.verProductosPorDevolucion(NumFact);
         Object[][] ProductosdeDevolucion = AdminBD.getData();
         int numFilas = ProductosdeDevolucion.length;
         for (int row = 0; row < numFilas; row++) {
-            Object[] producto= ProductosdeDevolucion[row];
-            String codArticulo= producto[0].toString();
+            Object[] producto = ProductosdeDevolucion[row];
+            String codArticulo = producto[0].toString();
             BigDecimal precio = this.StringtoBigDecimal(producto[3].toString());
             int idVersion = AdminBD.veridVersionActivaProductoPorCodigo(codArticulo);
-            int cantidad= Integer.parseInt(producto[2].toString());
-            this.crearMovimiento(detalleEliminacionDev+" "+NumFact,precio,2);
+            int cantidad = Integer.parseInt(producto[2].toString());
+            this.crearMovimiento(detalleEliminacionDev + " " + NumFact, precio, 2);
             this.guardaProductoEnMovimiento(codArticulo, idVersion, cantidad, precio);
-            
-            
-            
-            }
-    }    
+
+        }
+    }
     private void jLabel1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel1MouseClicked
         //****************** INTERFAZ ***************************************
 
@@ -138,7 +137,6 @@ public class Pan_Dev extends javax.swing.JPanel {
         JF_Facturacion.getInstance().setEnableTabs(false);
 
         //*******************************************************************
-                
         Direct_Control_BD AdminBD = Direct_Control_BD.getInstance();
         String factura = Integer.toString(AdminBD.ObtenerUltimoidDev() + 1);
         panelNuevaFact.jLabel_NumerodeFact.setText(factura);
@@ -148,26 +146,49 @@ public class Pan_Dev extends javax.swing.JPanel {
     }//GEN-LAST:event_jLabel1MouseClicked
 
     private void jLabel2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel2MouseClicked
-        this.modificarDev(this.jTable_Devoluciones,Pan_NuevaFactura.MOD_DEV_CALL);
+        XMLConfiguracion conf = new XMLConfiguracion();
+        String usuarioActual = conf.ObtenerTipoUsuario();
+
+        if ("admi".equals(usuarioActual)) {
+            this.modificarDev(this.jTable_Devoluciones, Pan_NuevaFactura.MOD_DEV_CALL);
+        } else {
+            JOptionPane.showMessageDialog(this, "Necesitas permisos de "
+                    + "administrador para poder continuar",
+                    "¡Alerta!",
+                    JOptionPane.WARNING_MESSAGE);
+        }
     }//GEN-LAST:event_jLabel2MouseClicked
 
     private void jLabel3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel3MouseClicked
-        this.eliminarDev(this.jTable_Devoluciones);
-        this.completarTablaDevoluciones();
+
+        XMLConfiguracion conf = new XMLConfiguracion();
+        String TipousuarioActual = conf.ObtenerTipoUsuario();
+
+        if ("admi".equals(TipousuarioActual)) {
+            this.eliminarDev(this.jTable_Devoluciones);
+            this.completarTablaDevoluciones();
+        } else {
+            JOptionPane.showMessageDialog(this, "Necesitas permisos de "
+                    + "administrador para poder continuar",
+                    "¡Alerta!",
+                    JOptionPane.WARNING_MESSAGE);
+        }
+
     }//GEN-LAST:event_jLabel3MouseClicked
 
     private void jLabel4MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel4MouseClicked
         this.verDevoluciones(this.jTable_Devoluciones);
     }//GEN-LAST:event_jLabel4MouseClicked
-   
+
     /**
-     * Este metodo permite corregir el dato que tiene el signo de C y ademas
-     * que puede tener comas ya que el tipo Decimal en la base solo
-     * puede tener puntos y no comas.
+     * Este metodo permite corregir el dato que tiene el signo de C y ademas que
+     * puede tener comas ya que el tipo Decimal en la base solo puede tener
+     * puntos y no comas.
+     *
      * @param Dato
-     * @return 
+     * @return
      */
-    private BigDecimal corregirDato(String Dato){
+    private BigDecimal corregirDato(String Dato) {
         String datoAcorregir = Dato.replace("C", "");
         DecimalFormat decimalformat = (DecimalFormat) NumberFormat.getInstance();
         decimalformat.setParseBigDecimal(true);
@@ -180,13 +201,14 @@ public class Pan_Dev extends javax.swing.JPanel {
         return DatoCorregido;
 
     }
-    
-     /**
+
+    /**
      * Este metodo convierte un string que es un decimal a bigdecimal
+     *
      * @param numero
-     * @return 
+     * @return
      */
-    private BigDecimal StringtoBigDecimal(String numero){
+    private BigDecimal StringtoBigDecimal(String numero) {
         DecimalFormat decimalfC = (DecimalFormat) NumberFormat.getInstance();
         decimalfC.setParseBigDecimal(true);
         BigDecimal numeroCorregido = null;
@@ -196,7 +218,7 @@ public class Pan_Dev extends javax.swing.JPanel {
             Logger.getLogger(JPanel_VerFactura.class.getName()).log(Level.SEVERE, null, ex);
         }
         return numeroCorregido;
-    
+
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -208,15 +230,15 @@ public class Pan_Dev extends javax.swing.JPanel {
     javax.swing.JTable jTable_Devoluciones;
     // End of variables declaration//GEN-END:variables
 
-      
     private void crearMovimiento(String detalle, BigDecimal precioProd, int movimiento) {
         Direct_Control_BD AdminBD = Direct_Control_BD.getInstance();
-        AdminBD.insertarmovimiento(detalle,movimiento,1,precioProd);
+        AdminBD.insertarmovimiento(detalle, movimiento, 1, precioProd);
     }
+
     private void guardaProductoEnMovimiento(String idProducto, int idVersion, int cantidadMov, BigDecimal PrecioVenta) {
         Direct_Control_BD AdminBD = Direct_Control_BD.getInstance();
-        int idMovimiento= AdminBD.ObtenerUltimoidMovimiento();
-        AdminBD.insertarProductoCantidadMovimiento(idProducto,idVersion,idMovimiento,cantidadMov,PrecioVenta);
+        int idMovimiento = AdminBD.ObtenerUltimoidMovimiento();
+        AdminBD.insertarProductoCantidadMovimiento(idProducto, idVersion, idMovimiento, cantidadMov, PrecioVenta);
     }
 
     void completarTablaDevoluciones() {
@@ -226,35 +248,33 @@ public class Pan_Dev extends javax.swing.JPanel {
         String[] columnNames = AdminBD.getColumnNames();
         Object[][] data = AdminBD.getData();
         //Crea la tabla generica para Facturas
-        this.jTable_Devoluciones.setModel(new Modelo_Facturacion(columnNames,data));
+        this.jTable_Devoluciones.setModel(new Modelo_Facturacion(columnNames, data));
         //Alinea la primer columna de esta tabla hacia el centro
-        DefaultTableCellRenderer centerRenderer = new DefaultTableCellRenderer
-                ();
+        DefaultTableCellRenderer centerRenderer = new DefaultTableCellRenderer();
         centerRenderer.setHorizontalAlignment(JLabel.CENTER);
-        this.jTable_Devoluciones.getColumnModel().getColumn(0).setCellRenderer
-                (centerRenderer);
+        this.jTable_Devoluciones.getColumnModel().getColumn(0).setCellRenderer(centerRenderer);
     }
 
     private void verDevoluciones(JTable table) {
-         int row = table.getSelectedRow();
-            if (row >= 0) {
-                //***********************INTERFAZ***************************************
-                
-                Pan_VerFactura panelVerFact = new Pan_VerFactura();
-                JF_Facturacion.getInstance().getPanelManager().showPanel(panelVerFact, 800, 474, 0, 0);
-                JF_Facturacion.getInstance().setEnableTabs(false);
-                
-                //**********************************************************************
-                Modelo_Facturacion model = (Modelo_Facturacion) table.getModel();
-                panelVerFact.jLabel_NumerodeFact.setText(model.getValueAt(row, 0).toString());
-                panelVerFact.personalizarTablaVerDevoluciones();
-            } else {
-                JOptionPane.showMessageDialog(
-                        null,
-                        mensajeNoSeleccion,
-                        "Alert!", JOptionPane.ERROR_MESSAGE);
-            }
+        int row = table.getSelectedRow();
+        if (row >= 0) {
+            //***********************INTERFAZ***************************************
+
+            Pan_VerFactura panelVerFact = new Pan_VerFactura();
+            JF_Facturacion.getInstance().getPanelManager().showPanel(panelVerFact, 800, 474, 0, 0);
+            JF_Facturacion.getInstance().setEnableTabs(false);
+
+            //**********************************************************************
+            Modelo_Facturacion model = (Modelo_Facturacion) table.getModel();
+            panelVerFact.jLabel_NumerodeFact.setText(model.getValueAt(row, 0).toString());
+            panelVerFact.personalizarTablaVerDevoluciones();
+        } else {
+            JOptionPane.showMessageDialog(
+                    null,
+                    mensajeNoSeleccion,
+                    "Alert!", JOptionPane.ERROR_MESSAGE);
         }
+    }
 
     private void modificarDev(JTable table, int pCallType) {
         int row = table.getSelectedRow();
@@ -281,8 +301,7 @@ public class Pan_Dev extends javax.swing.JPanel {
             panelModDev.cargarInfoDev();
             panelModDev.cargarProductosDevolucion();
             panelModDev.agregarListenerRenders();
-        }
-        else {
+        } else {
             JOptionPane.showMessageDialog(
                     null,
                     "No se puede modificar la devolucion porque ya pertenece a un cierre de caja",
@@ -291,10 +310,10 @@ public class Pan_Dev extends javax.swing.JPanel {
         }
 
     }
-    
+
     private void eliminarDev(JTable table) {
         int row = table.getSelectedRow();
-        if (row <0){
+        if (row < 0) {
 
             JOptionPane.showMessageDialog(
                     null,
@@ -322,14 +341,12 @@ public class Pan_Dev extends javax.swing.JPanel {
         }
     }
 
-  
-
     private boolean verificarCierreDevs(int idDev) {
         Direct_Control_BD AdminBD = Direct_Control_BD.getInstance();
-        int idCierreVigente= AdminBD.obtenerultimoidCierre();
+        int idCierreVigente = AdminBD.obtenerultimoidCierre();
         String fechaInicio = AdminBD.obtenerFechaInicioCierre(idCierreVigente);
-        boolean Sisepuede = AdminBD.verificarDevCierre(fechaInicio,idDev);
+        boolean Sisepuede = AdminBD.verificarDevCierre(fechaInicio, idDev);
         return Sisepuede;
     }
-    
+
 }

@@ -1253,7 +1253,7 @@ public class Direct_Control_BD {
      * @param idFacturaPendiente
      * @param idFacturaVersionPagosPend
      */
-    public void insertarPago(BigDecimal PagoTarjeta,BigDecimal PagoContado, int idFacturaPendiente, int idFacturaVersionPagosPend) {
+    public void insertarPago(BigDecimal PagoTarjeta, BigDecimal PagoContado, int idFacturaPendiente, int idFacturaVersionPagosPend) {
         try {
             DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
             Date date = new Date();
@@ -1262,8 +1262,8 @@ public class Direct_Control_BD {
                     + "insertarPago.sql");
             PreparedStatement stm = this.conection.prepareStatement(insertarPago);
             stm.setString(1, fecha);
-            stm.setBigDecimal(2,PagoTarjeta);
-            stm.setBigDecimal(3,PagoContado);
+            stm.setBigDecimal(2, PagoTarjeta);
+            stm.setBigDecimal(3, PagoContado);
             stm.setInt(4, idFacturaPendiente);
             stm.setInt(5, idFacturaVersionPagosPend);
             stm.executeUpdate();
@@ -1658,21 +1658,20 @@ public class Direct_Control_BD {
         infoFact = data;
     }
 
-    public void VerFacturasPorConeptoPorRangoDeFecha(String FechaIni,
-            String FechaFin, String concepto) {
+    public void VerFacturasCanceladasPorRangoDeFecha(String FechaIni,
+            String FechaFin) {
         try {
             String Fact = this.readSql("../Joe"
-                    + "/src/sql_files/VerFacturasPorConceptoPorRangoDeFecha.sql");
+                    + "/src/sql_files/VerFacturasCanceladasPorRangoDeFecha.sql");
             PreparedStatement stm = this.conection.prepareStatement(Fact);
             stm.setString(1, FechaIni);
             stm.setString(2, FechaFin);
-            stm.setString(3, concepto);
             ResultSet rs = stm.executeQuery();
             setColumnNames(Get_Columnas(rs));
             setData2(ResultSet_Array(rs));
         } catch (Exception e) {
 
-            System.out.println("Error al Ver Facturas Por Rango De Fecha");
+            System.out.println("Error al Ver Facturas Canceladas Por Rango De Fecha");
 
         }
     }
@@ -1685,6 +1684,8 @@ public class Direct_Control_BD {
             PreparedStatement stm = this.conection.prepareStatement(Fact);
             stm.setString(1, FechaIni);
             stm.setString(2, FechaFin);
+            stm.setString(3, FechaIni);
+            stm.setString(4, FechaFin);
             ResultSet rs = stm.executeQuery();
             setColumnNames(Get_Columnas(rs));
             setData2(ResultSet_Array(rs));
@@ -3832,6 +3833,25 @@ public class Direct_Control_BD {
             return false;
         }
 
+    }
+
+    public void VerFacturasCredOApartPorRangoDeFecha(String FechaIni, String FechaFin, String concepto) {
+        try {
+            String Fact = this.readSql("../Joe"
+                    + "/src/sql_files/VerFacturasCredOApartPorRangoDeFecha.sql");
+            PreparedStatement stm = this.conection.prepareStatement(Fact);
+            stm.setString(1, FechaIni);
+            stm.setString(2, FechaFin);
+            stm.setString(3, concepto);
+            ResultSet rs = stm.executeQuery();
+            setColumnNames(Get_Columnas(rs));
+            setData2(ResultSet_Array(rs));
+        } catch (Exception e) {
+
+            System.out.println("Error al Ver Facturas Por " + concepto
+                    + " Rango De Fecha");
+
+        }
     }
 
 }

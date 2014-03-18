@@ -18,6 +18,7 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.print.PrintService;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
@@ -25,6 +26,8 @@ import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.text.AbstractDocument;
 import javax.swing.text.DocumentFilter;
 import static joe.Pan_Cred.mensajeNoSeleccion;
+import jzebra.PrintRaw;
+import jzebra.PrintServiceMatcher;
 
 /**
  *
@@ -92,6 +95,7 @@ public class Pan_Apart extends javax.swing.JPanel {
         jLabel27 = new javax.swing.JLabel();
         jFormattedTextField_pagoVueltoTarjeta = new javax.swing.JFormattedTextField();
         jButton2 = new javax.swing.JButton();
+        jButton3 = new javax.swing.JButton();
         jScrollPane2 = new javax.swing.JScrollPane();
         jTable_Apartados = new javax.swing.JTable();
         jLabel5 = new javax.swing.JLabel();
@@ -309,6 +313,7 @@ public class Pan_Apart extends javax.swing.JPanel {
         jFormattedTextField_totalFact.setBounds(180, 50, 180, 40);
 
         jFormattedTextField_pagoVueltoContado.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(new java.text.DecimalFormat("#,##0.00"))));
+        jFormattedTextField_pagoVueltoContado.setText("0.00");
         jFormattedTextField_pagoVueltoContado.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
         jFormattedTextField_pagoVueltoContado.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -366,6 +371,7 @@ public class Pan_Apart extends javax.swing.JPanel {
         jLabel27.setBounds(50, 90, 120, 50);
 
         jFormattedTextField_pagoVueltoTarjeta.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(new java.text.DecimalFormat("#,##0.00"))));
+        jFormattedTextField_pagoVueltoTarjeta.setText("0.00");
         jFormattedTextField_pagoVueltoTarjeta.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
         jFormattedTextField_pagoVueltoTarjeta.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -396,6 +402,15 @@ public class Pan_Apart extends javax.swing.JPanel {
         });
         jPanel5.add(jButton2);
         jButton2.setBounds(270, 260, 90, 30);
+
+        jButton3.setText("Guarda e Imprime");
+        jButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton3ActionPerformed(evt);
+            }
+        });
+        jPanel5.add(jButton3);
+        jButton3.setBounds(33, 260, 120, 23);
 
         jDialog_darVuelto.getContentPane().add(jPanel5, java.awt.BorderLayout.CENTER);
 
@@ -852,6 +867,19 @@ public class Pan_Apart extends javax.swing.JPanel {
         this.jFormattedTextField_vuelto.setValue(BigDecimal.ZERO);
     }//GEN-LAST:event_jButton2ActionPerformed
 
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+         if (new BigDecimal(this.jFormattedTextField_vuelto.getValue().toString()).compareTo(BigDecimal.ZERO) < 0) {
+            JOptionPane.showMessageDialog(
+                    null,
+                    "Por favor ingrese el pago del cliente correctamente",
+                    "Error vuelto negativo", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+        this.jDialog_darVuelto.dispose();
+        this.guardarApartado();
+        this.imprimirPago(jLabel_numFact.getText(),jLabel_fechaDePago.getText(),jFormattedTextField_TotalPagado.getText());
+    }//GEN-LAST:event_jButton3ActionPerformed
+
     /**
      * Actualiza la tabla que se ve en apartados (Obtiene el total vendido por
      * cada factura y solo muestra las ultimas 100 facturas de apartados)*
@@ -934,6 +962,7 @@ public class Pan_Apart extends javax.swing.JPanel {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     javax.swing.JButton jButton1;
     javax.swing.JButton jButton2;
+    javax.swing.JButton jButton3;
     javax.swing.JButton jButton_AceptarPago;
     javax.swing.JButton jButton_CancelarPago;
     javax.swing.JButton jButton_aceptarVuelto;
@@ -1113,5 +1142,92 @@ public class Pan_Apart extends javax.swing.JPanel {
         this.jFormattedTextField_Saldo.setValue(new BigDecimal("0.00"));
         this.completarTablaApartados();
     }
+
+    private boolean imprimirPago(String numFact, String date, String saldoAnterior){
+        try {
+            String rawCmds = "FIRST NAME";
+            String printer = "Generic / Text Only (Copy 3)"; // debe tener 
+            //el mismo nombre que la impresora 
+            PrintService ps = PrintServiceMatcher.findPrinter(printer);
+            if (ps != null) {
+
+                PrintRaw p = new PrintRaw(ps, rawCmds);
+                p.clear();
+                p.append("\u001B\u0040"); //reset printer 
+           
+                XMLConfiguracion xml = new XMLConfiguracion();
+                String[] comentariosFactura = xml.leerInfoParaFactura();
+                String[] infoEmpresa = xml.leerInfoEmpresaXML();
+                p.append("\u001B" + "\u0061" + "\u0001" + "\r");//*** Centrado
+                p.append(infoEmpresa[0]+"\r\n");
+                p.append(infoEmpresa[1]+"\r\n");
+                p.append("Tel: "+infoEmpresa[4]+"\r\n");
+                p.append("Ced Jur: "+infoEmpresa[3]+"\r\n");
+                 if(!infoEmpresa[5].equals("")){
+                    p.append(infoEmpresa[5]+"\r\n");
+                }
+                p.append("\u001B" + "\u0064" + "\u0001" + "\r");//*** 1lineas
+                p.append(xml.ObtenerSlogan()+"\r\n");
+                p.append("\u001B" + "\u0064" + "\u0001" + "\r");//*** 1lineas
+                if (!comentariosFactura[0].equals("")) {
+                    p.append(comentariosFactura[0] + "\r\n");
+                }
+                p.append("\u001B" + "\u0061" + "\u0000" + "\r");//Quita Centrado
+                p.append("DETALLES DEL APARTADO\r\n");
+                p.append("Fecha   : \t " + date + "\r\n");
+                p.append("NoFact  : \t " + numFact + "\r\n");
+                String abono = this.jFormattedTextField_totalFact.getText();
+                BigDecimal saldo = this.corregirDato(saldoAnterior).subtract(this.corregirDato(abono));
+                String pagoTarjeta = "C"+this.jFormattedTextField_pagoVueltoTarjeta.getText();
+                String pagoContado = "C"+this.jFormattedTextField_pagoVueltoContado.getText();
+                String vuelto = "C"+this.jFormattedTextField_vuelto.getText();
+                p.append("\u001B" + "\u0061" + "\u0002" + "\r");//*** Derecha
+                p.append("\u001B" + "\u0064" + "\u0003" + "\r");//*** 1lineas
+                String subto = " SALDO ANT : \t " + saldoAnterior + "";
+                String subtoCantidad = this.fill(subto, 28, " ");
+                p.append(subtoCantidad + "\r\n");
+                p.append(this.fill(" PAGO TARJ : \t " + pagoTarjeta + "", subtoCantidad.length(), " ") + "\r\n");
+                p.append(this.fill(" PAGO CONT : \t " + pagoContado + "", subtoCantidad.length(), " ") + "\r\n");
+                p.append("---------------------------\r\n");
+                p.append(this.fill(" A B O N O   : \t " + abono + "", subtoCantidad.length(), " ") + "\r\n");
+                p.append(this.fill(" S A L D O   : \t " +"C"+saldo.toString()+ "", subtoCantidad.length(), " ") + "\r\n");
+                p.append(this.fill(" V U E L T O : \t " + vuelto + "", subtoCantidad.length(), " ") + "\r\n");
+                p.append("\u001B" + "\u0061" + "\u0000" + "\r");//Quita Centrado
+                p.append("\u001B" + "\u0061" + "\u0001" + "\r");//*** Centrado
+                p.append("\u001B\u0040");//reset printer
+                p.append("\u001B" + "\u0064" + "\u0008" + "\r");//*** 10lineas**/
+                p.append("\u001D" + "\u0056" + "\u0001" + "\r");//*** CutPaper
+               
+                return p.print();
+
+            } else {
+                System.err.println("No encontro ninguna impresora");
+                return false;
+            }
+
+        } catch (Exception e) {
+            e.printStackTrace();
+            return false;
+        }
+    }
+    public String fill(int length, String with) {
+        StringBuilder sb = new StringBuilder(length);
+        while (sb.length() < length) {
+            sb.append(with);
+        }
+        return sb.toString();
+    }
+
+    public String fill(String value, int length, String with) {
+
+        StringBuilder result = new StringBuilder(length);
+        result.append(value);
+        result.append(fill(Math.max(0, length - value.length()), with));
+
+        return result.toString();
+
+    }
+
+    
 
 }

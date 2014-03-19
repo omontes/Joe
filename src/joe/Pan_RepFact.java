@@ -506,7 +506,7 @@ jRadioButton_TodosVentasFecha.setForeground(new java.awt.Color(255, 255, 255));
 jRadioButton_TodosVentasFecha.setText("Todos");
 jRadioButton_TodosVentasFecha.setOpaque(false);
 jPanel_VerVentasPorFech.add(jRadioButton_TodosVentasFecha);
-jRadioButton_TodosVentasFecha.setBounds(300, 140, 80, 23);
+jRadioButton_TodosVentasFecha.setBounds(280, 140, 80, 23);
 
 jRadioButton_CreditoVentasFecha.setForeground(new java.awt.Color(255, 255, 255));
 jRadioButton_CreditoVentasFecha.setText("Credito");
@@ -4089,7 +4089,7 @@ public void actionPerformed(java.awt.event.ActionEvent evt) {
 
     private void ventasPorFecha() {
         buttonGroup2.add(jRadioButton_ApartadoVentasFecha);
-        buttonGroup2.add(jRadioButton_TodosVentasFecha);
+        buttonGroup2.add(jRadioButton_CreditoVentasFecha);
         buttonGroup2.add(jRadioButton_CanceladoVentasFecha);
         buttonGroup2.add(jRadioButton_TodosVentasFecha);
         jRadioButton_CanceladoVentasFecha.setSelected(true);
@@ -4403,6 +4403,11 @@ public void actionPerformed(java.awt.event.ActionEvent evt) {
         String concepto = "";
         if (jRadioButton_CanceladoVentasFecha.isSelected()) {
             concepto = "Cancelada";
+            AdminBD.VerFacturasCanceladasPorRangoDeFecha(dateF.format(
+                    dateChooserCombo_IniVent.getSelectedDate().getTime()),
+                    dateF.format(dateChooserCombo_FinVent.getSelectedDate().
+                            getTime()));
+
         } else if (jRadioButton_CreditoVentasFecha.isSelected()) {
             concepto = "Credito";
 
@@ -4410,20 +4415,30 @@ public void actionPerformed(java.awt.event.ActionEvent evt) {
             concepto = "Apartado";
         } else if (jRadioButton_TodosVentasFecha.isSelected()) {
             concepto = "todos";
-        }
-        if (!"todos".equals(concepto)) {
-
-            //Consulta de Fact Por Fech y concepto
-            AdminBD.VerFacturasPorConeptoPorRangoDeFecha(dateF.format(
-                    dateChooserCombo_IniVent.getSelectedDate().getTime()),
-                    dateF.format(dateChooserCombo_FinVent.getSelectedDate().
-                            getTime()), concepto);
-        } else if ("todos".equals(concepto)) {
             AdminBD.VerFacturasPorRangoDeFecha(dateF.format(
                     dateChooserCombo_IniVent.getSelectedDate().getTime()),
                     dateF.format(dateChooserCombo_FinVent.getSelectedDate().
                             getTime()));
-        };
+            //toque sucio porque esta consulta puede devolver NULL,NULL...
+            if (AdminBD.getInfoFact()[0][0] == null) {
+                Object[][] tmp = new Object[0][0];
+                AdminBD.setData2(tmp);
+
+            }
+        }
+        if (!"todos".equals(concepto) && !"Cancelada".equals(concepto)) {
+            //Consulta de Fact Por Fech y concepto credito o apartado
+            AdminBD.VerFacturasCredOApartPorRangoDeFecha(dateF.format(
+                    dateChooserCombo_IniVent.getSelectedDate().getTime()),
+                    dateF.format(dateChooserCombo_FinVent.getSelectedDate().
+                            getTime()), concepto);
+            //toque sucio porque esta consulta puede devolver NULL,NULL...
+            if (AdminBD.getInfoFact()[0][0] == null) {
+                Object[][] tmp = new Object[0][0];
+                AdminBD.setData2(tmp);
+
+            }
+        }
 
         Date date = new Date();//hora Actual
         String fechaAct = dateFormat.format(date);

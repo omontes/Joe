@@ -5512,10 +5512,10 @@ public void actionPerformed(java.awt.event.ActionEvent evt) {
         }
         if (!"".equals(concepto)) {
             //Consulta de Fact Por Fech y concepto
-            AdminBD.VerFacturasPorConeptoPorRangoDeFecha(dateF.format(
-                    dateChooserCombo_IniVent.getSelectedDate().getTime()),
-                    dateF.format(dateChooserCombo_FinVent.getSelectedDate().
-                            getTime()), concepto);
+//            AdminBD.VerFacturasCanceladasPorRangoDeFecha(dateF.format(
+//                    dateChooserCombo_IniVent.getSelectedDate().getTime()),
+//                    dateF.format(dateChooserCombo_FinVent.getSelectedDate().
+//                            getTime()), concepto);
         }
         else if("".equals(concepto)){
             AdminBD.VerFacturasPorRangoDeFecha(dateF.format(

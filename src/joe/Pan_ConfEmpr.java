@@ -188,7 +188,8 @@ public class Pan_ConfEmpr extends javax.swing.JPanel {
                 getText(), xml.ObtenerUsuario(), xml.obtenerRutaImagen(),
                 xml.obtenerPosXImagen(), xml.obtenerPosYImagen(),
                 xml.obtenerPosXNombreEmpresa(), xml.obtenerPosYNombreEmpresa(),
-                xml.ObtenerSlogan(),xml.ObtenerTipoUsuario(),xml.obtenerTamanoNombreEmpresa(),xml.obtenerTamanoImagen(),
+                xml.ObtenerSlogan(),xml.ObtenerTipoUsuario(),xml.obtenerTamanoNombreEmpresa(),
+                xml.obtenerTamanoImagen(),
                 xml.obtenerColorTextoNombreEmpresa());
     }//GEN-LAST:event_jButton_aceptarActionPerformed
 

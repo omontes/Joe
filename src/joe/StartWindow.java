@@ -7,7 +7,6 @@
 package joe;
 
 import ManejoDeArchivos.XMLConfiguracion;
-import com.jidesoft.utils.TypeUtils;
 import db_managment.Direct_Control_BD;
 import java.awt.AlphaComposite;
 import java.awt.Color;
@@ -15,7 +14,6 @@ import java.awt.Toolkit;
 import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.Graphics2D;
-import java.awt.Image;
 import java.awt.RenderingHints;
 import java.awt.event.KeyEvent;
 import java.awt.image.BufferedImage;
@@ -29,8 +27,8 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
-import javax.swing.JDialog;
 import javax.swing.JFileChooser;
+import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 
 /**
@@ -47,7 +45,8 @@ public class StartWindow extends javax.swing.JFrame {
     private static final int LOGGED_OUT = 1;
     private static final int BKG_WIDTH = 600;
     private static final int BKG_HEIGHT = 320;
-    
+    private static final int WHITE = 1;
+    private static final int BLACK = 0;
     private boolean _logged;
     private boolean _otherWindow;
     
@@ -89,12 +88,44 @@ public class StartWindow extends javax.swing.JFrame {
         panConf.setLocation(0, 330);
     }
     
-    private void loadStartConf(){
+    private void loadImageConf(){
         String imagePath = ManejoDeArchivos.XMLConfiguracion.getInstance().obtenerRutaImagen();
         String nombre = ManejoDeArchivos.XMLConfiguracion.getInstance().ObtenerSlogan();
+        int colorXML = Integer.valueOf(ManejoDeArchivos.XMLConfiguracion.getInstance().obtenerColorTextoNombreEmpresa());
         int posXI = Integer.valueOf(ManejoDeArchivos.XMLConfiguracion.getInstance().obtenerPosXImagen());
         int posYI = Integer.valueOf(ManejoDeArchivos.XMLConfiguracion.getInstance().obtenerPosYImagen());
         int posYT = Integer.valueOf(ManejoDeArchivos.XMLConfiguracion.getInstance().obtenerPosYNombreEmpresa());
+        int sizeI = Integer.valueOf(ManejoDeArchivos.XMLConfiguracion.getInstance().obtenerTamanoImagen());
+        int sizeT = Integer.valueOf(ManejoDeArchivos.XMLConfiguracion.getInstance().obtenerTamanoNombreEmpresa());
+        
+        txtImageDir.setText(imagePath);
+        txtNombreEmpresa.setText(nombre);
+        sliderSize.setValue(sizeI);
+        sliderXI.setValue(posXI);
+        sliderYI.setValue(posYI);
+        sliderYN.setValue(posYT);
+        jSpinner1.setValue(sizeT);
+        
+        try {
+            BufferedImage img = getBkImageAndSize(imagePath, sizeI);
+            bkgImage.setIcon(new ImageIcon(img));
+            bkgImage.setBounds(-posXI, -posYI, img.getWidth(), img.getHeight());
+            sliderXI.setMaximum(img.getWidth()-BKG_WIDTH);
+            sliderYI.setMaximum(img.getHeight()-BKG_HEIGHT);
+        } catch (IOException ex) {
+            Logger.getLogger(StartWindow.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        lbCompanyName.setText(nombre);
+        changeFontSize(lbCompanyName, sizeT);
+        lbCompanyName.setLocation(lbCompanyName.getX(), posYT);
+        
+        if (colorXML == BLACK){
+            lbCompanyName.setForeground(Color.black);
+        } else {
+            lbCompanyName.setForeground(Color.white);
+        }
+        
     }
     
     private void activeLoginPanel(int pPanel){
@@ -333,6 +364,11 @@ public class StartWindow extends javax.swing.JFrame {
         panConf.add(jLabel7);
         jLabel7.setBounds(580, 50, 50, 20);
 
+        txtNombreEmpresa.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                txtNombreEmpresaFocusLost(evt);
+            }
+        });
         txtNombreEmpresa.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 txtNombreEmpresaKeyPressed(evt);
@@ -794,6 +830,12 @@ public class StartWindow extends javax.swing.JFrame {
     private void jLabel11MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel11MouseClicked
         panConf.setVisible(false);
         panConf.setEnabled(false);
+        ManejoDeArchivos.XMLConfiguracion.getInstance().establecerPosXImagen(String.valueOf(sliderXI.getValue()));
+        ManejoDeArchivos.XMLConfiguracion.getInstance().establecerPosYImagen(String.valueOf(sliderYI.getValue()));
+        ManejoDeArchivos.XMLConfiguracion.getInstance().establecerPosYNombreEmpresa(String.valueOf(sliderYN.getValue()));
+        ManejoDeArchivos.XMLConfiguracion.getInstance().establecerTamanoNombreEmpresa(jSpinner1.getValue().toString());
+        ManejoDeArchivos.XMLConfiguracion.getInstance().establecerSlogan(txtNombreEmpresa.getText());
+        ManejoDeArchivos.XMLConfiguracion.getInstance().establecerTamanoImagen(String.valueOf(sliderSize.getValue()));
     }//GEN-LAST:event_jLabel11MouseClicked
 
     private void txtImageDirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtImageDirActionPerformed
@@ -834,18 +876,18 @@ public class StartWindow extends javax.swing.JFrame {
 
     private void nameWhiteMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_nameWhiteMousePressed
         lbCompanyName.setForeground(Color.white);
+        ManejoDeArchivos.XMLConfiguracion.getInstance().establecerColorTextoNombreEmpresa(String.valueOf(WHITE));
     }//GEN-LAST:event_nameWhiteMousePressed
 
     private void nameBlackMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_nameBlackMousePressed
         lbCompanyName.setForeground(Color.black);
+        ManejoDeArchivos.XMLConfiguracion.getInstance().establecerColorTextoNombreEmpresa(String.valueOf(BLACK));
     }//GEN-LAST:event_nameBlackMousePressed
 
     private void jSpinner1StateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_jSpinner1StateChanged
-        String name = lbCompanyName.getFont().getName();
-        int style = lbCompanyName.getFont().getStyle();
         String sValue = jSpinner1.getValue().toString();
         int size = Integer.valueOf(sValue);
-        lbCompanyName.setFont(new Font(name, style, size));
+        changeFontSize(lbCompanyName, size);
     }//GEN-LAST:event_jSpinner1StateChanged
 
     private void sliderSizeStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_sliderSizeStateChanged
@@ -870,6 +912,16 @@ public class StartWindow extends javax.swing.JFrame {
         lbCompanyName.setLocation(lbCompanyName.getX(), sliderYN.getValue());
     }//GEN-LAST:event_sliderYNStateChanged
 
+    private void txtNombreEmpresaFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtNombreEmpresaFocusLost
+        
+    }//GEN-LAST:event_txtNombreEmpresaFocusLost
+
+    private void changeFontSize(JLabel pLabel, int pValue){
+        String name = pLabel.getFont().getName();
+        int style = pLabel.getFont().getStyle();
+        pLabel.setFont(new Font(name, style, pValue));
+    }
+    
     private BufferedImage getBkImageAndSize(String pPath, int pPercent) throws IOException{
         BufferedImage originalImage = ImageIO.read(new File(pPath));
         int type = originalImage.getType() == 0? BufferedImage.TYPE_INT_ARGB : originalImage.getType();
@@ -902,10 +954,6 @@ public class StartWindow extends javax.swing.JFrame {
     private void verFacturacion() {
         new JF_Facturacion().setVisible(true);
         this.setEnabled(false);
-    }
-    
-    private void loadImageConf(){
-        
     }
     
     private void crearCierreCaja() {

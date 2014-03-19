@@ -60,22 +60,21 @@ class ListenerCierreCaja implements TableModelListener {
         String totalTarjetaSinCorregir = this.totalTarjeta.getText();
         BigDecimal totalTarjeta = this.corregirDato(totalTarjetaSinCorregir);
         //Esta condicion es para hacer que no se inserte un precio sin haber un codigo
-        if (columnName.equals("Monto")) {
-            String tipopago = model.getValueAt(row, column - 1).toString();
+        if (columnName.equals("Pago Tarjeta")) {
             String MontoConCurrency =info;
             BigDecimal MontoCorregido = this.corregirDato(MontoConCurrency);
-            if (tipopago.equals("Efectivo")) {
-                this.totalContado.setValue(MontoCorregido.add(totalContado));
-                return;
-                
+            this.totalTarjeta.setValue(MontoCorregido.add(totalTarjeta));
+            return;
+                  
             }
-            if (tipopago.equals("Tarjeta")) {
-                this.totalTarjeta.setValue(MontoCorregido.add(totalTarjeta));
-                return;
-                
-            }
-            
+        if(columnName.equals("Pago Contado")){
+            String MontoConCurrency =info;
+            BigDecimal MontoCorregido = this.corregirDato(MontoConCurrency);
+            this.totalContado.setValue(MontoCorregido.add(totalContado));
+        
         }
+            
+        
     }
 
      /**

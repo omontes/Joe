@@ -260,7 +260,6 @@ public class JF_Facturacion extends javax.swing.JFrame {
             StartWindow.getInstance().enableMe();
             this.dispose();            
         }
-        System.out.println(_panelManager.getPanelCount());
         if (_panelManager.getPanelCount() == 1){
             setEnableTabs(true);
         }

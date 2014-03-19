@@ -1248,7 +1248,9 @@ jPanel_ModifAdmVendLayout.setHorizontalGroup(
                 getText(), xml.ObtenerUsuario(), xml.obtenerRutaImagen(),
                 xml.obtenerPosXImagen(),xml.obtenerPosYImagen(),
                 xml.obtenerPosXNombreEmpresa(),xml.obtenerPosYNombreEmpresa(),
-                xml.ObtenerSlogan(),xml.ObtenerTipoUsuario());
+                xml.ObtenerSlogan(),xml.ObtenerTipoUsuario(),
+                xml.obtenerTamanoNombreEmpresa(),xml.obtenerTamanoImagen(),
+                xml.obtenerColorTextoNombreEmpresa());
 
         jDialog_configuracion.dispose();
     }//GEN-LAST:event_jButton_aceptarActionPerformed

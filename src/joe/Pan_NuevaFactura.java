@@ -5,6 +5,7 @@
  */
 package joe;
 
+import ManejoDeArchivos.XMLConfiguracion;
 import db_managment.Direct_Control_BD;
 import java.awt.Toolkit;
 import java.awt.event.KeyEvent;
@@ -2110,61 +2111,11 @@ public class Pan_NuevaFactura extends javax.swing.JPanel {
     }//GEN-LAST:event_searchBttMouseClicked
 
     private void saveBttMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_saveBttMouseClicked
-        
-        if (!_savePress){
-            _savePress = true;
-            if (_callType == DEVOLUCION_CALL) {
-                devSave();
-                this.regresar();
-                return;
-            }
-            if (_callType == MOD_DEV_CALL) {
-                modDevSave();
-                this.regresar();
-                return;
-            }
-            else{
-            this.beforeSave();}
-        }
-        _savePress = false;
+        justSavePrincipalCall();
     }//GEN-LAST:event_saveBttMouseClicked
 
     private void printBttMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_printBttMouseClicked
-         if (!_savePress){
-            _savePress = true;
-            if (_callType == DEVOLUCION_CALL) {
-                devSave();
-                XMLConfiguracion xml = new XMLConfiguracion(); 
-                this.imprimirDevolucion(this.jLabel_NumerodeFact.getText(),
-                            this.jLabel_Fecha.getText(),
-                            this.jFormattedTextField_Total.getText(),
-                            this.jFormattedTextField_SubTotal.getText(),
-                            this.jFormattedTextField_desc.getText(),
-                            this.jFormattedTextField_DescuentoTotal.getText(),
-                            this.jFormattedTextField_Cliente.getText(),
-                            xml.ObtenerUsuario());
-                
-                this.regresar();
-                return;
-            }
-            if (_callType == MOD_DEV_CALL) {
-                modDevSave();
-                XMLConfiguracion xml = new XMLConfiguracion(); 
-                this.imprimirDevolucion(this.jLabel_NumerodeFact.getText(),
-                            this.jLabel_Fecha.getText(),
-                            this.jFormattedTextField_Total.getText(),
-                            this.jFormattedTextField_SubTotal.getText(),
-                            this.jFormattedTextField_desc.getText(),
-                            this.jFormattedTextField_DescuentoTotal.getText(),
-                            this.jFormattedTextField_Cliente.getText(),
-                            xml.ObtenerUsuario());
-                this.regresar();
-                return;
-            }
-            else{
-            this.beforeSave();}
-        }
-        _savePress = false;
+         printPrincipalCall();
     
     }//GEN-LAST:event_printBttMouseClicked
 
@@ -2542,26 +2493,58 @@ public class Pan_NuevaFactura extends javax.swing.JPanel {
     }
 
     private void printPrincipalCall(){
-        if (!_printPress){
-            _printPress = true;            
-            if(this.guardarFacturadesdeVuelto()){
-                    System.out.println("enter here");
-                    this.imprimir(this.jLabel_NumerodeFact.getText(),
-                    this.jLabel_Fecha.getText(),
-                    this.jFormattedTextField_Total.getText(),
-                    this.jFormattedTextField_SubTotal.getText(),
-                    this.jFormattedTextField_desc.getText(),
-                    this.jFormattedTextField_DescuentoTotal.getText(),
-                    this.jFormattedTextField_Cliente.getText(),
-                    _seller);}
+        if (!_savePress){
+            _savePress = true;
+            if (_callType == DEVOLUCION_CALL) {
+                devSave();
+                XMLConfiguracion xml = new XMLConfiguracion(); 
+                this.imprimirDevolucion(this.jLabel_NumerodeFact.getText(),
+                            this.jLabel_Fecha.getText(),
+                            this.jFormattedTextField_Total.getText(),
+                            this.jFormattedTextField_SubTotal.getText(),
+                            this.jFormattedTextField_desc.getText(),
+                            this.jFormattedTextField_DescuentoTotal.getText(),
+                            this.jFormattedTextField_Cliente.getText(),
+                            xml.ObtenerUsuario());
+                
+                this.regresar();
+                return;
+            }
+            if (_callType == MOD_DEV_CALL) {
+                modDevSave();
+                XMLConfiguracion xml = new XMLConfiguracion(); 
+                this.imprimirDevolucion(this.jLabel_NumerodeFact.getText(),
+                            this.jLabel_Fecha.getText(),
+                            this.jFormattedTextField_Total.getText(),
+                            this.jFormattedTextField_SubTotal.getText(),
+                            this.jFormattedTextField_desc.getText(),
+                            this.jFormattedTextField_DescuentoTotal.getText(),
+                            this.jFormattedTextField_Cliente.getText(),
+                            xml.ObtenerUsuario());
+                this.regresar();
+                return;
+            }
+            else{
+            this.beforeSave();}
         }
-        _printPress = false;
+        _savePress = false;
     }
     
     private void justSavePrincipalCall(){
         if (!_savePress){
             _savePress = true;
-            this.beforeSave();
+            if (_callType == DEVOLUCION_CALL) {
+                devSave();
+                this.regresar();
+                return;
+            }
+            if (_callType == MOD_DEV_CALL) {
+                modDevSave();
+                this.regresar();
+                return;
+            }
+            else{
+            this.beforeSave();}
         }
         _savePress = false;
     }

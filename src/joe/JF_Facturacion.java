@@ -23,6 +23,8 @@ public class JF_Facturacion extends javax.swing.JFrame {
     private Pan_Dev _panDev;
     private Pan_Apart _panApart;
     
+    protected SellerReg _sellerReg;
+    
     private int _activePanel;
     private final PanelManager _panelManager;
 
@@ -49,6 +51,10 @@ public class JF_Facturacion extends javax.swing.JFrame {
         _panApart.setSize(760, 400);
         _panApart.setLocation(20, 60);
         _panelManager.addPanelToPane(_panApart);
+        
+        _sellerReg = new SellerReg();
+        _sellerReg.setVisible(false);
+        _sellerReg.setEnabled(false);
     }
     
     public void refreshActiveTable(){
@@ -254,6 +260,22 @@ public class JF_Facturacion extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_bttDevMouseClicked
 
+    public String getSellerName(){
+        return _sellerReg.getSeller();
+    }
+    
+    public void showSellerDialog(){
+        _panelManager.setEnableTop(false);
+        _sellerReg.setEnabled(true);
+        _sellerReg.setVisible(true);
+        _sellerReg.setLocationRelativeTo(null);
+        _sellerReg.resetFocus();
+    }
+    
+    protected void setSellerName(String pSeller){
+        labUsuario.setText(pSeller);
+    }
+    
     public void backOnWindow(){
         Object newPanel = _panelManager.back();
         if (newPanel == null){
@@ -262,6 +284,11 @@ public class JF_Facturacion extends javax.swing.JFrame {
         }
         if (_panelManager.getPanelCount() == 1){
             setEnableTabs(true);
+            labUsuario.setText(ManejoDeArchivos.XMLConfiguracion.getInstance().ObtenerUsuario());
+        }
+        if (_sellerReg.isVisible()){
+            _sellerReg.setVisible(false);
+            _sellerReg.setEnabled(false);
         }
     }
     

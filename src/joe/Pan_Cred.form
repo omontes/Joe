@@ -654,7 +654,7 @@
         </Container>
       </SubComponents>
     </Container>
-    <Container class="javax.swing.JDialog" name="jDialog_darVuelto">
+    <Container class="javax.swing.JDialog" name="jDialog_darVuelto1">
       <Properties>
         <Property name="defaultCloseOperation" type="int" value="2"/>
         <Property name="minimumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
@@ -670,7 +670,7 @@
 
       <Layout class="org.netbeans.modules.form.compat2.layouts.DesignBorderLayout"/>
       <SubComponents>
-        <Container class="javax.swing.JPanel" name="jPanel5">
+        <Container class="javax.swing.JPanel" name="jPanel6">
           <Properties>
             <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="99" green="99" red="99" type="rgb"/>
@@ -691,7 +691,7 @@
             <Property name="useNullLayout" type="boolean" value="true"/>
           </Layout>
           <SubComponents>
-            <Component class="javax.swing.JLabel" name="jLabel23">
+            <Component class="javax.swing.JLabel" name="jLabel28">
               <Properties>
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                   <Font name="Tahoma" size="14" style="1"/>
@@ -707,7 +707,7 @@
                 </Constraint>
               </Constraints>
             </Component>
-            <Component class="javax.swing.JLabel" name="jLabel24">
+            <Component class="javax.swing.JLabel" name="jLabel29">
               <Properties>
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                   <Font name="Tahoma" size="14" style="1"/>
@@ -723,7 +723,7 @@
                 </Constraint>
               </Constraints>
             </Component>
-            <Component class="javax.swing.JLabel" name="jLabel25">
+            <Component class="javax.swing.JLabel" name="jLabel30">
               <Properties>
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                   <Font name="Tahoma" size="14" style="1"/>
@@ -739,7 +739,7 @@
                 </Constraint>
               </Constraints>
             </Component>
-            <Component class="javax.swing.JFormattedTextField" name="jFormattedTextField_totalFact">
+            <Component class="javax.swing.JFormattedTextField" name="jFormattedTextField_totalFact1">
               <Properties>
                 <Property name="editable" type="boolean" value="false"/>
                 <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
@@ -759,7 +759,7 @@
                 </Constraint>
               </Constraints>
             </Component>
-            <Component class="javax.swing.JFormattedTextField" name="jFormattedTextField_pagoVueltoContado">
+            <Component class="javax.swing.JFormattedTextField" name="jFormattedTextField_pagoVueltoContado1">
               <Properties>
                 <Property name="formatterFactory" type="javax.swing.JFormattedTextField$AbstractFormatterFactory" editor="org.netbeans.modules.form.editors.AbstractFormatterFactoryEditor">
                   <Format format="#,##0.00" subtype="-1" type="0"/>
@@ -780,7 +780,7 @@
                 </Constraint>
               </Constraints>
             </Component>
-            <Component class="javax.swing.JFormattedTextField" name="jFormattedTextField_vuelto">
+            <Component class="javax.swing.JFormattedTextField" name="jFormattedTextField_vuelto1">
               <Properties>
                 <Property name="editable" type="boolean" value="false"/>
                 <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
@@ -800,7 +800,7 @@
                 </Constraint>
               </Constraints>
             </Component>
-            <Component class="javax.swing.JButton" name="jButton_aceptarVuelto">
+            <Component class="javax.swing.JButton" name="jButton_aceptarVuelto1">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Aceptar"/>
               </Properties>
@@ -814,7 +814,7 @@
                 </Constraint>
               </Constraints>
             </Component>
-            <Component class="javax.swing.JLabel" name="jLabel26">
+            <Component class="javax.swing.JLabel" name="jLabel31">
               <Properties>
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                   <Font name="Tahoma" size="18" style="1"/>
@@ -822,7 +822,7 @@
                 <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                   <Color blue="ff" green="ff" red="ff" type="rgb"/>
                 </Property>
-                <Property name="text" type="java.lang.String" value="Pago de Apartado"/>
+                <Property name="text" type="java.lang.String" value="Pago de Cr&#xe9;dito"/>
               </Properties>
               <Constraints>
                 <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
@@ -830,7 +830,7 @@
                 </Constraint>
               </Constraints>
             </Component>
-            <Component class="javax.swing.JLabel" name="jLabel27">
+            <Component class="javax.swing.JLabel" name="jLabel32">
               <Properties>
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                   <Font name="Tahoma" size="14" style="1"/>
@@ -846,7 +846,7 @@
                 </Constraint>
               </Constraints>
             </Component>
-            <Component class="javax.swing.JFormattedTextField" name="jFormattedTextField_pagoVueltoTarjeta">
+            <Component class="javax.swing.JFormattedTextField" name="jFormattedTextField_pagoVueltoTarjeta1">
               <Properties>
                 <Property name="formatterFactory" type="javax.swing.JFormattedTextField$AbstractFormatterFactory" editor="org.netbeans.modules.form.editors.AbstractFormatterFactoryEditor">
                   <Format format="#,##0.00" subtype="-1" type="0"/>
@@ -867,7 +867,7 @@
                 </Constraint>
               </Constraints>
             </Component>
-            <Component class="javax.swing.JButton" name="jButton2">
+            <Component class="javax.swing.JButton" name="jButton4">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Cancelar"/>
               </Properties>
@@ -880,16 +880,21 @@
                 </Constraint>
               </Constraints>
             </Component>
-            <Component class="javax.swing.JButton" name="jButton3">
+            <Component class="javax.swing.JCheckBox" name="checkPrint">
               <Properties>
-                <Property name="text" type="java.lang.String" value="Guarda e Imprime"/>
+                <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                  <Font name="Tahoma" size="14" style="1"/>
+                </Property>
+                <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                  <Color blue="ff" green="ff" id="white" palette="1" red="ff" type="palette"/>
+                </Property>
+                <Property name="selected" type="boolean" value="true"/>
+                <Property name="text" type="java.lang.String" value="Imprimir"/>
+                <Property name="opaque" type="boolean" value="false"/>
               </Properties>
-              <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton3ActionPerformed"/>
-              </Events>
               <Constraints>
                 <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-                  <AbsoluteConstraints x="30" y="260" width="120" height="-1"/>
+                  <AbsoluteConstraints x="50" y="260" width="120" height="-1"/>
                 </Constraint>
               </Constraints>
             </Component>

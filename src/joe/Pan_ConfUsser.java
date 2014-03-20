@@ -345,7 +345,7 @@ public class Pan_ConfUsser extends javax.swing.JPanel {
     jLabel_direccionCliente8.setBounds(20, 160, 105, 23);
 
     jLabel_FechaCumpleanos8.setForeground(new java.awt.Color(255, 255, 255));
-    jLabel_FechaCumpleanos8.setText("Fecha de Cumpleaños");
+    jLabel_FechaCumpleanos8.setText("Cumpleaños");
     jPanel_VerAdmVend.add(jLabel_FechaCumpleanos8);
     jLabel_FechaCumpleanos8.setBounds(20, 210, 120, 23);
 
@@ -806,7 +806,7 @@ jTable_Generica_AdmVend.setModel(new javax.swing.table.DefaultTableModel(
 
         }
         
-        showPanelOnDialog(jPanel_CrearAdmVend);
+        showPanelOnDialog(jPanel_VerAdmVend);
     }//GEN-LAST:event_jLabel7MouseClicked
 
 

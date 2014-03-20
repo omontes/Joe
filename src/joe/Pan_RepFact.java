@@ -949,13 +949,7 @@ public void actionPerformed(java.awt.event.ActionEvent evt) {
     jPanel_VerVentasPorTermino.add(jLabel27);
     jLabel27.setBounds(250, 70, 50, 25);
 
-    dateChooserCombo_IniTermino.setCalendarBackground(new java.awt.Color(0, 51, 51));
-    dateChooserCombo_IniTermino.setNothingAllowed(false);
-    dateChooserCombo_IniTermino.setMaxDate(dateChooserCombo_FinVent.getSelectedDate());
-    jPanel_VerVentasPorTermino.add(dateChooserCombo_IniTermino);
-    dateChooserCombo_IniTermino.setBounds(80, 70, 155, 25);
-
-    dateChooserCombo_FinTermino.setCurrentView(new datechooser.view.appearance.AppearancesList("Grey",
+    dateChooserCombo_IniTermino.setCurrentView(new datechooser.view.appearance.AppearancesList("Grey",
         new datechooser.view.appearance.ViewAppearance("custom",
             new datechooser.view.appearance.swing.SwingCellAppearance(new java.awt.Font("Tahoma", java.awt.Font.PLAIN, 11),
                 new java.awt.Color(0, 0, 0),
@@ -996,6 +990,53 @@ public void actionPerformed(java.awt.event.ActionEvent evt) {
             (datechooser.view.BackRenderer)null,
             false,
             true)));
+dateChooserCombo_IniTermino.setCalendarBackground(new java.awt.Color(0, 51, 51));
+dateChooserCombo_IniTermino.setNothingAllowed(false);
+dateChooserCombo_IniTermino.setMaxDate(dateChooserCombo_FinVent.getSelectedDate());
+jPanel_VerVentasPorTermino.add(dateChooserCombo_IniTermino);
+dateChooserCombo_IniTermino.setBounds(80, 70, 155, 25);
+
+dateChooserCombo_FinTermino.setCurrentView(new datechooser.view.appearance.AppearancesList("Grey",
+    new datechooser.view.appearance.ViewAppearance("custom",
+        new datechooser.view.appearance.swing.SwingCellAppearance(new java.awt.Font("Tahoma", java.awt.Font.PLAIN, 11),
+            new java.awt.Color(0, 0, 0),
+            new java.awt.Color(0, 0, 255),
+            false,
+            true,
+            new datechooser.view.appearance.swing.ButtonPainter()),
+        new datechooser.view.appearance.swing.SwingCellAppearance(new java.awt.Font("Tahoma", java.awt.Font.PLAIN, 11),
+            new java.awt.Color(0, 0, 0),
+            new java.awt.Color(0, 0, 255),
+            true,
+            true,
+            new datechooser.view.appearance.swing.ButtonPainter()),
+        new datechooser.view.appearance.swing.SwingCellAppearance(new java.awt.Font("Tahoma", java.awt.Font.PLAIN, 11),
+            new java.awt.Color(0, 0, 255),
+            new java.awt.Color(0, 0, 255),
+            false,
+            true,
+            new datechooser.view.appearance.swing.ButtonPainter()),
+        new datechooser.view.appearance.swing.SwingCellAppearance(new java.awt.Font("Tahoma", java.awt.Font.PLAIN, 11),
+            new java.awt.Color(128, 128, 128),
+            new java.awt.Color(0, 0, 255),
+            false,
+            true,
+            new datechooser.view.appearance.swing.LabelPainter()),
+        new datechooser.view.appearance.swing.SwingCellAppearance(new java.awt.Font("Tahoma", java.awt.Font.PLAIN, 11),
+            new java.awt.Color(0, 0, 0),
+            new java.awt.Color(0, 0, 255),
+            false,
+            true,
+            new datechooser.view.appearance.swing.LabelPainter()),
+        new datechooser.view.appearance.swing.SwingCellAppearance(new java.awt.Font("Tahoma", java.awt.Font.PLAIN, 11),
+            new java.awt.Color(0, 0, 0),
+            new java.awt.Color(255, 0, 0),
+            false,
+            false,
+            new datechooser.view.appearance.swing.ButtonPainter()),
+        (datechooser.view.BackRenderer)null,
+        false,
+        true)));
 dateChooserCombo_FinTermino.setNothingAllowed(false);
 dateChooserCombo_FinTermino.setMinDate(dateChooserCombo_IniVent.getSelectedDate());
 dateChooserCombo_FinTermino.setBehavior(datechooser.model.multiple.MultyModelBehavior.SELECT_SINGLE);
@@ -1030,8 +1071,8 @@ jPanel_VentasPorVendedor.setSize(500, 275);
 
 jButton_AceptaVerVentasPorVendedor.setText("Aceptar");
 jButton_AceptaVerVentasPorVendedor.addActionListener(new java.awt.event.ActionListener() {
-    public void actionPerformed(java.awt.event.ActionEvent evt) {
-        jButton_AceptaVerVentasPorVendedorActionPerformed(evt);
+public void actionPerformed(java.awt.event.ActionEvent evt) {
+    jButton_AceptaVerVentasPorVendedorActionPerformed(evt);
     }
     });
     jPanel_VentasPorVendedor.add(jButton_AceptaVerVentasPorVendedor);
@@ -4658,7 +4699,34 @@ public void mouseClicked(java.awt.event.MouseEvent evt) {
     }//GEN-LAST:event_jButton_AceptaVerVentasPorClienteActionPerformed
 
     private void aceptarIngrFechaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_aceptarIngrFechaActionPerformed
-        // TODO add your handling code here:
+        String concepto = "Ventas Por Cliente: " + jTextField_Cliente.
+                getText().toString();
+        Direct_Control_BD AdminBD = Direct_Control_BD.getInstance();
+        //Consulta de Fact Por cliente
+        AdminBD.VerVentasPorCliente(dateF.format(
+                dateChooserCombo_IniClie.getSelectedDate().getTime()),
+                dateF.format(dateChooserCombo_FinClie.getSelectedDate().
+                        getTime()), jTextField_Cliente.getText().toString());
+
+        Date date = new Date();//hora Actual
+        String fechaAct = dateFormat.format(date);
+
+        EscribirExcel archivoExcel = new EscribirExcel();
+        archivoExcel.setNombreArchivoExcel("VentasPorCliente"
+                + fechaAct + ".xls");
+        try {
+            //escribir excel
+            archivoExcel.escribir(infoEmpresa, AdminBD.getInfoFact(),
+                    AdminBD.getNombresColumnas(),
+                    dateF1.format(dateChooserCombo_IniProd.
+                            getSelectedDate().getTime()),
+                    dateF1.format(dateChooserCombo_FinProd.
+                            getSelectedDate().getTime()),
+                    concepto, "Excel");
+        } catch (IOException | WriteException ex) {
+            Logger.getLogger(Pan_RepFact.class.getName()).
+                    log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_aceptarIngrFechaActionPerformed
 
     private void cancelarIngrFechaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelarIngrFechaActionPerformed

@@ -4200,20 +4200,20 @@ public void actionPerformed(java.awt.event.ActionEvent evt) {
         if (jRadioButton_Efectivo.isSelected()) {//ventas En efectivo
             concepto = "Ventas Por Término: Efectivo";
             //Consulta de Fact Por Efectivo
-            AdminBD.FacturasPorTerminoPorFecha(dateF.format(
-                    dateChooserCombo_IniTermino.getSelectedDate().
-                    getTime()), dateF.
-                    format(dateChooserCombo_FinTermino.
-                            getSelectedDate().getTime()), "Efectivo");
+//            AdminBD.IngresosPorTarjPorFecha(dateF.format(
+//                    dateChooserCombo_IniTermino.getSelectedDate().
+//                    getTime()), dateF.
+//                    format(dateChooserCombo_FinTermino.
+//                            getSelectedDate().getTime()), "Efectivo");
 
         }//Consulta de Fact Por Tarjeta 
         else if (jRadioButton_Tarjeta.isSelected()) {
             concepto = "Ventas Por Término: Facturas Pendientes ";
-            AdminBD.FacturasPorTerminoPorFecha(dateF.format(
-                    dateChooserCombo_IniTermino.getSelectedDate().
-                    getTime()),
-                    dateF.format(dateChooserCombo_FinTermino.
-                            getSelectedDate().getTime()), "Tarjeta");
+//            AdminBD.IngresosPorTarjPorFecha(dateF.format(
+//                    dateChooserCombo_IniTermino.getSelectedDate().
+//                    getTime()),
+//                    dateF.format(dateChooserCombo_FinTermino.
+//                            getSelectedDate().getTime()), "Tarjeta");
 
         }
 

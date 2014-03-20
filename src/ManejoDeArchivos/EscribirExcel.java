@@ -235,7 +235,6 @@ public class EscribirExcel {
             int ultimaFila) throws WriteException {
 
         if (tipoDeReporte.startsWith("Ventas Por Fechas")
-                || tipoDeReporte.startsWith("Ventas Por Término:")
                 || tipoDeReporte.startsWith("Devoluciones")
                 || tipoDeReporte.startsWith("Devoluciones")) {
             hojaExc.addCell(new Label(1, ultimaFila + 1,
@@ -668,7 +667,7 @@ public class EscribirExcel {
 
             hojaExcel.addCell(new Number(2, 12, -ingresos[0], times10));
             hojaExcel.addCell(new Number(2, 14,
-                    ingresos[0] + ingresos[1] + ingresos[2] + ingresos[3], times14));
+                    -ingresos[0] + ingresos[1] + ingresos[2] + ingresos[3], times14));
 
         } else {
             hojaExcel.addCell(new Label(0, 10, "                Efectivo", times10));

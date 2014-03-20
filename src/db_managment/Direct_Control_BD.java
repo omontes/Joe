@@ -1983,33 +1983,62 @@ public class Direct_Control_BD {
     }
 
     /**
-     * Retorna las ventas por hechas en un lapso, por tipo de pago, ya sea
-     * Efectivo o Tarjeta
+     * Retorna el ingreso pot termino de tarjeta
      *
      * @param FechaIni
      * @param FechaFin
      * @param termino
      */
-    public void FacturasPorTerminoPorFecha(String FechaIni, String FechaFin,
-            String termino) {
+    public int IngresosPorTarjPorFecha(String FechaIni, String FechaFin) {
         try {
             String cosultarFacturasPorTermino = readSql("../Joe"
-                    + "/src/sql_files/FacturasPorTerminoPorFecha.sql");
+                    + "/src/sql_files/IngresoPorTarjetaPorFecha.sql");
             PreparedStatement stm
                     = conection.prepareStatement(cosultarFacturasPorTermino);
             stm.setString(1, FechaIni);
             stm.setString(2, FechaFin);
-            stm.setString(3, termino);
+            
             ResultSet rs = stm.executeQuery();
-            setColumnNames(Get_Columnas(rs));
-            setData2(ResultSet_Array(rs));
+            
+            while (rs.next()) {
+                return rs.getInt(1);
+            }
 
         } catch (Exception e) {
 
-            System.out.println("Error al Cosultar Facturas Por "
-                    + "Termino Por Fecha");
+            System.out.println("Error al Cosultar ingresos Por "
+                    + "termino tarjeta Por Fecha");
 
         }
+        return 0;
+    }
+    /**
+     * Retorna el ingreso por termino efectivo por fecha
+     * @param FechaIni
+     * @param FechaFin
+     */
+    public int IngresosPorEfectivoPorFecha(String FechaIni, String FechaFin) {
+        try {
+            String cosultarFacturasPorTermino = readSql("../Joe"
+                    + "/src/sql_files/IngresoPorEfectivoPorFecha.sql");
+            PreparedStatement stm
+                    = conection.prepareStatement(cosultarFacturasPorTermino);
+            stm.setString(1, FechaIni);
+            stm.setString(2, FechaFin);
+            
+            ResultSet rs = stm.executeQuery();
+            
+            while (rs.next()) {
+                return rs.getInt(1);
+            }
+
+        } catch (Exception e) {
+
+            System.out.println("Error al Cosultar ingresos Por "
+                    + "termino efectivo Por Fecha");
+
+        }
+        return 0;
     }
 
     /**

@@ -116,7 +116,7 @@ public class Pan_RepFact extends javax.swing.JPanel {
         buttonGroup2 = new javax.swing.ButtonGroup();
         buttonGroup3 = new javax.swing.ButtonGroup();
         buttonGroup4 = new javax.swing.ButtonGroup();
-        jPanel_VerVentasPorTermino = new javax.swing.JPanel();
+        jPanel_VerIngresosPorTarjetaYEfectivo = new javax.swing.JPanel();
         jLabel24 = new javax.swing.JLabel();
         jButton_AceptarVerVentasPorTermino = new javax.swing.JButton();
         jLabel25 = new javax.swing.JLabel();
@@ -125,9 +125,6 @@ public class Pan_RepFact extends javax.swing.JPanel {
         jLabel27 = new javax.swing.JLabel();
         dateChooserCombo_IniTermino = new datechooser.beans.DateChooserCombo();
         dateChooserCombo_FinTermino = new datechooser.beans.DateChooserCombo();
-        jLabel28 = new javax.swing.JLabel();
-        jRadioButton_Efectivo = new javax.swing.JRadioButton();
-        jRadioButton_Tarjeta = new javax.swing.JRadioButton();
         jPanel_VentasPorVendedor = new javax.swing.JPanel();
         jButton_AceptaVerVentasPorVendedor = new javax.swing.JButton();
         jLabel15 = new javax.swing.JLabel();
@@ -897,17 +894,17 @@ public void actionPerformed(java.awt.event.ActionEvent evt) {
     jPanel_VerVentasPorProd.add(jComboBox_SeleccionarCategoria);
     jComboBox_SeleccionarCategoria.setBounds(200, 220, 80, 28);
 
-    jPanel_VerVentasPorTermino.setBackground(new java.awt.Color(153, 153, 153));
-    jPanel_VerVentasPorTermino.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-    jPanel_VerVentasPorTermino.setMinimumSize(new java.awt.Dimension(490, 230));
-    jPanel_VerVentasPorTermino.setPreferredSize(new java.awt.Dimension(490, 230));
-    jPanel_VerVentasPorTermino.setLayout(null);
-    jPanel_VerVentasPorTermino.setSize(490, 230);
+    jPanel_VerIngresosPorTarjetaYEfectivo.setBackground(new java.awt.Color(153, 153, 153));
+    jPanel_VerIngresosPorTarjetaYEfectivo.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+    jPanel_VerIngresosPorTarjetaYEfectivo.setMinimumSize(new java.awt.Dimension(490, 230));
+    jPanel_VerIngresosPorTarjetaYEfectivo.setPreferredSize(new java.awt.Dimension(490, 230));
+    jPanel_VerIngresosPorTarjetaYEfectivo.setLayout(null);
+    jPanel_VerIngresosPorTarjetaYEfectivo.setSize(490, 230);
 
     jLabel24.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
     jLabel24.setForeground(new java.awt.Color(255, 255, 255));
-    jLabel24.setText("Relación De Facturas Emitidas Por Término");
-    jPanel_VerVentasPorTermino.add(jLabel24);
+    jLabel24.setText("Ingresos Por Tarjeta Y Efectivo");
+    jPanel_VerIngresosPorTarjetaYEfectivo.add(jLabel24);
     jLabel24.setBounds(10, 11, 470, 22);
 
     jButton_AceptarVerVentasPorTermino.setForeground(new java.awt.Color(0, 51, 51));
@@ -917,14 +914,14 @@ public void actionPerformed(java.awt.event.ActionEvent evt) {
             jButton_AceptarVerVentasPorTerminoActionPerformed(evt);
         }
     });
-    jPanel_VerVentasPorTermino.add(jButton_AceptarVerVentasPorTermino);
+    jPanel_VerIngresosPorTarjetaYEfectivo.add(jButton_AceptarVerVentasPorTermino);
     jButton_AceptarVerVentasPorTermino.setBounds(280, 190, 75, 23);
 
     jLabel25.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
     jLabel25.setForeground(new java.awt.Color(255, 255, 255));
     jLabel25.setText("Período:");
-    jPanel_VerVentasPorTermino.add(jLabel25);
-    jLabel25.setBounds(10, 50, 90, 15);
+    jPanel_VerIngresosPorTarjetaYEfectivo.add(jLabel25);
+    jLabel25.setBounds(10, 70, 90, 15);
 
     jButton_CancelarVerFactPorTermino.setText("Cancelar");
     jButton_CancelarVerFactPorTermino.addActionListener(new java.awt.event.ActionListener() {
@@ -932,22 +929,22 @@ public void actionPerformed(java.awt.event.ActionEvent evt) {
             jButton_CancelarVerFactPorTerminoActionPerformed(evt);
         }
     });
-    jPanel_VerVentasPorTermino.add(jButton_CancelarVerFactPorTermino);
+    jPanel_VerIngresosPorTarjetaYEfectivo.add(jButton_CancelarVerFactPorTermino);
     jButton_CancelarVerFactPorTermino.setBounds(370, 190, 90, 23);
 
     jLabel26.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
     jLabel26.setForeground(new java.awt.Color(255, 255, 255));
     jLabel26.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
     jLabel26.setText("Desde:");
-    jPanel_VerVentasPorTermino.add(jLabel26);
-    jLabel26.setBounds(22, 70, 50, 25);
+    jPanel_VerIngresosPorTarjetaYEfectivo.add(jLabel26);
+    jLabel26.setBounds(20, 90, 50, 25);
 
     jLabel27.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
     jLabel27.setForeground(new java.awt.Color(255, 255, 255));
     jLabel27.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
     jLabel27.setText("Hasta:");
-    jPanel_VerVentasPorTermino.add(jLabel27);
-    jLabel27.setBounds(250, 70, 50, 25);
+    jPanel_VerIngresosPorTarjetaYEfectivo.add(jLabel27);
+    jLabel27.setBounds(250, 90, 50, 25);
 
     dateChooserCombo_IniTermino.setCurrentView(new datechooser.view.appearance.AppearancesList("Grey",
         new datechooser.view.appearance.ViewAppearance("custom",
@@ -993,8 +990,8 @@ public void actionPerformed(java.awt.event.ActionEvent evt) {
 dateChooserCombo_IniTermino.setCalendarBackground(new java.awt.Color(0, 51, 51));
 dateChooserCombo_IniTermino.setNothingAllowed(false);
 dateChooserCombo_IniTermino.setMaxDate(dateChooserCombo_FinVent.getSelectedDate());
-jPanel_VerVentasPorTermino.add(dateChooserCombo_IniTermino);
-dateChooserCombo_IniTermino.setBounds(80, 70, 155, 25);
+jPanel_VerIngresosPorTarjetaYEfectivo.add(dateChooserCombo_IniTermino);
+dateChooserCombo_IniTermino.setBounds(80, 90, 155, 25);
 
 dateChooserCombo_FinTermino.setCurrentView(new datechooser.view.appearance.AppearancesList("Grey",
     new datechooser.view.appearance.ViewAppearance("custom",
@@ -1040,27 +1037,8 @@ dateChooserCombo_FinTermino.setCurrentView(new datechooser.view.appearance.Appea
 dateChooserCombo_FinTermino.setNothingAllowed(false);
 dateChooserCombo_FinTermino.setMinDate(dateChooserCombo_IniVent.getSelectedDate());
 dateChooserCombo_FinTermino.setBehavior(datechooser.model.multiple.MultyModelBehavior.SELECT_SINGLE);
-jPanel_VerVentasPorTermino.add(dateChooserCombo_FinTermino);
-dateChooserCombo_FinTermino.setBounds(310, 70, 155, 25);
-
-jLabel28.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-jLabel28.setForeground(new java.awt.Color(255, 255, 255));
-jLabel28.setText("Tipo De Venta:");
-jPanel_VerVentasPorTermino.add(jLabel28);
-jLabel28.setBounds(10, 130, 180, 15);
-
-jRadioButton_Efectivo.setForeground(new java.awt.Color(255, 255, 255));
-jRadioButton_Efectivo.setSelected(true);
-jRadioButton_Efectivo.setText("Efectivo");
-jRadioButton_Efectivo.setOpaque(false);
-jPanel_VerVentasPorTermino.add(jRadioButton_Efectivo);
-jRadioButton_Efectivo.setBounds(30, 150, 65, 23);
-
-jRadioButton_Tarjeta.setForeground(new java.awt.Color(255, 255, 255));
-jRadioButton_Tarjeta.setText("Tarjetas");
-jRadioButton_Tarjeta.setOpaque(false);
-jPanel_VerVentasPorTermino.add(jRadioButton_Tarjeta);
-jRadioButton_Tarjeta.setBounds(100, 150, 90, 23);
+jPanel_VerIngresosPorTarjetaYEfectivo.add(dateChooserCombo_FinTermino);
+dateChooserCombo_FinTermino.setBounds(310, 90, 155, 25);
 
 jPanel_VentasPorVendedor.setBackground(new java.awt.Color(153, 153, 153));
 jPanel_VentasPorVendedor.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
@@ -3260,7 +3238,7 @@ public void mouseClicked(java.awt.event.MouseEvent evt) {
         jPanel_VentasPorCliente.setVisible(false);
         jPanel_VerVentasPorFech.setVisible(false);
         jPanel_VentasPorVendedor.setVisible(false);
-        jPanel_VerVentasPorTermino.setVisible(false);
+        jPanel_VerIngresosPorTarjetaYEfectivo.setVisible(false);
         jPanel_VentasProductosPorVendedor.setVisible(false);
         jPanel_VentasProductosPorCliente.setVisible(false);
         jPanel_VerFacturasEliminadasPorFech.setVisible(false);
@@ -3437,49 +3415,41 @@ public void mouseClicked(java.awt.event.MouseEvent evt) {
     }//GEN-LAST:event_jComboBox_SeleccionarVendedorKeyTyped
 
     private void jButton_CancelarVerFactPorTerminoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_CancelarVerFactPorTerminoActionPerformed
-        jDialog_ReportesFact.remove(jPanel_VerVentasPorTermino);
+        jDialog_ReportesFact.remove(jPanel_VerIngresosPorTarjetaYEfectivo);
         jDialog_ReportesFact.setVisible(false);
     }//GEN-LAST:event_jButton_CancelarVerFactPorTerminoActionPerformed
 
     private void jButton_AceptarVerVentasPorTerminoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_AceptarVerVentasPorTerminoActionPerformed
+        int[] ingresos = {0, 0};
 
-        String concepto = "";
         Direct_Control_BD AdminBD = Direct_Control_BD.getInstance();
-        if (jRadioButton_Efectivo.isSelected()) {//ventas En efectivo
-            concepto = "Ventas Por Término: Efectivo";
-            //Consulta de Fact Por Efectivo
-            AdminBD.FacturasPorTerminoPorFecha(dateF.format(
-                    dateChooserCombo_IniTermino.getSelectedDate().
-                    getTime()), dateF.
-                    format(dateChooserCombo_FinTermino.
-                            getSelectedDate().getTime()), "Efectivo");
 
-        }//Consulta de Fact Por Tarjeta 
-        else if (jRadioButton_Tarjeta.isSelected()) {
-            concepto = "Ventas Por Término: Facturas Pendientes ";
-            AdminBD.FacturasPorTerminoPorFecha(dateF.format(
-                    dateChooserCombo_IniTermino.getSelectedDate().
-                    getTime()),
-                    dateF.format(dateChooserCombo_FinTermino.
-                            getSelectedDate().getTime()), "Tarjeta");
+        //Consulta ingresos Por Efectivo
+        ingresos[0] = AdminBD.IngresosPorEfectivoPorFecha(dateF.format(
+                dateChooserCombo_IniTermino.getSelectedDate().
+                getTime()), dateF.
+                format(dateChooserCombo_FinTermino.
+                        getSelectedDate().getTime()));
 
-        }
+        //Consulta ingresos Por tarjeta
+        ingresos[1] = AdminBD.IngresosPorTarjPorFecha(dateF.format(
+                dateChooserCombo_IniTermino.getSelectedDate().
+                getTime()),
+                dateF.format(dateChooserCombo_FinTermino.
+                        getSelectedDate().getTime()));
 
         Date date = new Date();//hora Actual
         String fechaAct = dateFormat.format(date);
 
         EscribirExcel archivoExcel = new EscribirExcel();
-        archivoExcel.setNombreArchivoExcel("VentasPorTermino"
+        archivoExcel.setNombreArchivoExcel("IngresosPorTerminoTarjetaEfectivo"
                 + fechaAct + ".xls");
         try {
             //escribir Excel
-            archivoExcel.escribir(infoEmpresa, AdminBD.getInfoFact(),
-                    AdminBD.getNombresColumnas(),
-                    dateF1.format(dateChooserCombo_IniTermino.
-                            getSelectedDate().getTime()),
-                    dateF1.format(dateChooserCombo_FinTermino.
-                            getSelectedDate().getTime()),
-                    concepto, "Excel");
+            archivoExcel.escribirIngresos(infoEmpresa, ingresos, dateF1.format(dateChooserCombo_IniTermino.
+                    getSelectedDate().getTime()), dateF1.format(dateChooserCombo_FinTermino.
+                            getSelectedDate().getTime()), "Excel", 2);
+
         } catch (IOException | WriteException ex) {
             Logger.getLogger(Pan_RepFact.class.getName()).
                     log(Level.SEVERE, null, ex);
@@ -4167,12 +4137,12 @@ public void mouseClicked(java.awt.event.MouseEvent evt) {
         pDialog.setVisible(true);
     }
 
-    private void ingresosPorFechas(){
+    private void ingresosPorFechas() {
         showPanelOnDialog(jPanel_IngresosPorFecha, jDialog_ReportesFact);
     }
-    
+
     private void ventasPorVendedor() {
-        
+
         Direct_Control_BD mBD = Direct_Control_BD.getInstance();
         mBD.verVendedores();//consulta los vendedores existentes
         Object[][] data;
@@ -4197,12 +4167,7 @@ public void mouseClicked(java.awt.event.MouseEvent evt) {
     }
 
     private void ventasPorTerminos() {
-        buttonGroup2.add(jRadioButton_Efectivo);
-        buttonGroup2.add(jRadioButton_TodosVentasFecha);
-        buttonGroup2.add(jRadioButton_Tarjeta);
-        jRadioButton_Efectivo.setSelected(true);
-
-        showPanelOnDialog(jPanel_VerVentasPorTermino, jDialog_ReportesFact);
+        showPanelOnDialog(jPanel_VerIngresosPorTarjetaYEfectivo, jDialog_ReportesFact);
     }
 
     private void facturasEliminadas() {
@@ -4648,10 +4613,10 @@ public void mouseClicked(java.awt.event.MouseEvent evt) {
             ventasPorTerminos();
         } else if (selection == VENT_VENDEDOR) {
             ventasPorVendedor();
-        } else if (selection == INGR_FECHAS){
+        } else if (selection == INGR_FECHAS) {
             ingresosPorFechas();
         }
-        
+
     }//GEN-LAST:event_jLabel14MouseClicked
 
     private void jButton_buscarClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_buscarClienteActionPerformed
@@ -4699,10 +4664,10 @@ public void mouseClicked(java.awt.event.MouseEvent evt) {
     }//GEN-LAST:event_jButton_AceptaVerVentasPorClienteActionPerformed
 
     private void aceptarIngrFechaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_aceptarIngrFechaActionPerformed
-        
+
         Direct_Control_BD AdminBD = Direct_Control_BD.getInstance();
         //Consulta ingresos por fecha
-       int[] ingresos = AdminBD.VerIngresosPorRangoDeFecha(dateF.format(
+        int[] ingresos = AdminBD.VerIngresosPorRangoDeFecha(dateF.format(
                 dateChooserCombo_IniIngreso.getSelectedDate().getTime()),
                 dateF.format(dateChooserCombo_FinIngreso.getSelectedDate().
                         getTime()));
@@ -4715,12 +4680,12 @@ public void mouseClicked(java.awt.event.MouseEvent evt) {
                 + fechaAct + ".xls");
         try {
             //escribir excel
-            archivoExcel.escribirIngresos(infoEmpresa,ingresos,
+            archivoExcel.escribirIngresos(infoEmpresa, ingresos,
                     dateF1.format(dateChooserCombo_IniIngreso.
                             getSelectedDate().getTime()),
                     dateF1.format(dateChooserCombo_FinIngreso.
                             getSelectedDate().getTime()),
-                     "Excel",1);
+                    "Excel", 1);
         } catch (IOException | WriteException ex) {
             Logger.getLogger(Pan_RepFact.class.getName()).
                     log(Level.SEVERE, null, ex);
@@ -4837,7 +4802,6 @@ public void mouseClicked(java.awt.event.MouseEvent evt) {
     private javax.swing.JLabel jLabel25;
     private javax.swing.JLabel jLabel26;
     private javax.swing.JLabel jLabel27;
-    private javax.swing.JLabel jLabel28;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel30;
     private javax.swing.JLabel jLabel31;
@@ -4923,6 +4887,7 @@ public void mouseClicked(java.awt.event.MouseEvent evt) {
     private javax.swing.JPanel jPanel_VerDevEliminadasPorFech;
     private javax.swing.JPanel jPanel_VerDevolucionesPorFech;
     private javax.swing.JPanel jPanel_VerFacturasEliminadasPorFech;
+    private javax.swing.JPanel jPanel_VerIngresosPorTarjetaYEfectivo;
     private javax.swing.JPanel jPanel_VerListaDeCostos;
     private javax.swing.JPanel jPanel_VerListaDePrecios;
     private javax.swing.JPanel jPanel_VerProductosAgotados;
@@ -4930,7 +4895,6 @@ public void mouseClicked(java.awt.event.MouseEvent evt) {
     private javax.swing.JPanel jPanel_VerValorDelInventario;
     private javax.swing.JPanel jPanel_VerVentasPorFech;
     private javax.swing.JPanel jPanel_VerVentasPorProd;
-    private javax.swing.JPanel jPanel_VerVentasPorTermino;
     private javax.swing.JRadioButton jRadioButton_ApartadoVend;
     private javax.swing.JRadioButton jRadioButton_ApartadoVentasFecha;
     private javax.swing.JRadioButton jRadioButton_BodegaMovimiento;
@@ -4949,7 +4913,6 @@ public void mouseClicked(java.awt.event.MouseEvent evt) {
     private javax.swing.JRadioButton jRadioButton_CodValorInv;
     private javax.swing.JRadioButton jRadioButton_CreditoVend;
     private javax.swing.JRadioButton jRadioButton_CreditoVentasFecha;
-    private javax.swing.JRadioButton jRadioButton_Efectivo;
     private javax.swing.JRadioButton jRadioButton_EntradaMovimiento;
     private javax.swing.JRadioButton jRadioButton_InvGeneralMovimiento;
     private javax.swing.JRadioButton jRadioButton_InvGeneralMovimientoProd;
@@ -4961,7 +4924,6 @@ public void mouseClicked(java.awt.event.MouseEvent evt) {
     private javax.swing.JRadioButton jRadioButton_PorCategoria;
     private javax.swing.JRadioButton jRadioButton_PorCodigo;
     private javax.swing.JRadioButton jRadioButton_SalidaMovimiento;
-    private javax.swing.JRadioButton jRadioButton_Tarjeta;
     private javax.swing.JRadioButton jRadioButton_TodosAgot;
     private javax.swing.JRadioButton jRadioButton_TodosInv;
     private javax.swing.JRadioButton jRadioButton_TodosListaCostos;
@@ -4992,5 +4954,4 @@ public void mouseClicked(java.awt.event.MouseEvent evt) {
     private javax.swing.JTextField jTextField_hastaListaValorInv;
     // End of variables declaration//GEN-END:variables
 
-  
 }

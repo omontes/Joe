@@ -3322,7 +3322,7 @@ public class Pan_NuevaFactura extends javax.swing.JPanel {
         int idFactura = Integer.parseInt(this.jLabel_NumerodeFact.getText());
         
         String seller = JF_Facturacion.getInstance().getSellerName();
-        int idVendedor = AdminBD.veridVendedor(seller);
+        int idVendedor = AdminBD.veridVendedor("admin");
         String detalle = this.jTextField_Detalle.getText();
         String totalFacturaSinCorregir = this.jFormattedTextField_Total.getText();
         BigDecimal totalFact = this.corregirDato(totalFacturaSinCorregir);
@@ -3336,7 +3336,7 @@ public class Pan_NuevaFactura extends javax.swing.JPanel {
             Logger.getLogger(MyTableModelListener_FACT.class.getName()).
                     log(Level.SEVERE, null, ex);
         }
-        //System.out.println(idFactura+" "+descuento+" "+tipoPago+" "+idCliente+" "+idVendedor+" "+detalle+" "+totalFact+" ");
+//        System.out.println(idFactura+" "+descuento+" "+idCliente+" "+idVendedor+" "+detalle+" "+totalFact+" ");
         AdminBD.crearDevolucion(idFactura, descuento,idCliente, idVendedor,
                 CONCEPT_DEVOLUCION, detalle, totalFact, "A");
     }

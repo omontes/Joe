@@ -686,6 +686,7 @@ public class StartWindow extends javax.swing.JFrame {
     }
     
     private void bttExitMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bttExitMouseClicked
+        
         this.dispose();
     }//GEN-LAST:event_bttExitMouseClicked
 

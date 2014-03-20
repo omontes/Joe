@@ -494,8 +494,7 @@ public class EscribirExcel {
                 .toString(), times11));
         hojaExcel.addCell(new Label(2, 6, "Cliente: " + infoFact[3]
                 .toString(), times11));
-        hojaExcel.addCell(new Label(3, 6, "Tipo de pago: " + infoFact[8]
-                .toString(), times11));
+        hojaExcel.addCell(new Label(3, 6, "    ", times11));
 
 //        //tipo de reporte 
 //        timesReport.setIndentation(3);
@@ -533,7 +532,7 @@ public class EscribirExcel {
 
         hojaExcel.addCell(new Label(0, ultimaFila + 8, "Nota: ", times11));
 
-        hojaExcel.addCell(new Label(0, ultimaFila + 9, infoFact[9].toString(),
+        hojaExcel.addCell(new Label(0, ultimaFila + 9, infoFact[8].toString(),
                 times10));
 
     }

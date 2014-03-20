@@ -61,6 +61,14 @@ public class JF_Facturacion extends javax.swing.JFrame {
         refreshPanelTable(_activePanel);
     }
     
+    public void setUsserName(String pUsser){
+        labUsuario.setText(pUsser);
+    }
+    
+    public void restoreUser(){
+        labUsuario.setText(ManejoDeArchivos.XMLConfiguracion.getInstance().ObtenerUsuario());
+    }
+    
     public void setEnableTabs(boolean pAreEnalble){
         if (pAreEnalble){
             bttFact.setEnabled(true);

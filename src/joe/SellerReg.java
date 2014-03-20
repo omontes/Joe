@@ -127,6 +127,7 @@ public class SellerReg extends javax.swing.JFrame {
 
     public void aceptAction(){
         if (loadSeller()){
+            JF_Facturacion.getInstance().setSellerName(_seller);
             JF_Facturacion.getInstance().getPanelManager().setEnableTop(true);
             setVisible(false);
             setEnabled(false);

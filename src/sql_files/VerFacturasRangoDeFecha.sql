@@ -4,7 +4,7 @@ SUM(PCF.`Cantidad`) AS TotalItem,F.Descuento,
 FROM Factura AS F, productocantidadfact AS PCF, persona AS Per
 WHERE SUBSTRING(F.Fecha,1,10) BETWEEN ? AND ? AND 
  PCF.`idFactura`=F.`idFactura` AND F.`idCliente`=Per.`idPersona` 
-AND F.`Estado`= "A" AND F.`idVersionFactura` = PCF.`idVersionFacturasProducto`
+AND F.`Estado`= "A" AND F.`idVersionFactura` = PCF.`idVersionFacturasProducto` AND F.`Concepto`="Cancelada"
 
 UNION 
 

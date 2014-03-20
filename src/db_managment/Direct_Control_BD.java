@@ -555,7 +555,7 @@ public class Direct_Control_BD {
             String CrearFactura = this.readSql("../Joe/src/"
                     + "sql_files/CrearFactura.sql");
             PreparedStatement stm = conection.prepareStatement(CrearFactura, statement.RETURN_GENERATED_KEYS);
-
+          
             stm.setInt(1, idFactura);
             stm.setDouble(2, descuento.doubleValue());
             stm.setInt(3, idCliente);

@@ -1329,7 +1329,7 @@
             </Property>
             <Property name="toolTipText" type="java.lang.String" value="Buscar cliente"/>
             <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
-              <Color id="Default Cursor"/>
+              <Color id="Cursor Por defecto"/>
             </Property>
           </Properties>
           <Events>
@@ -1493,7 +1493,7 @@
             </Property>
             <Property name="toolTipText" type="java.lang.String" value="Agregar un nuevo producto a la base de datos"/>
             <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
-              <Color id="Default Cursor"/>
+              <Color id="Cursor Por defecto"/>
             </Property>
           </Properties>
           <Events>
@@ -1517,7 +1517,7 @@
             </Property>
             <Property name="toolTipText" type="java.lang.String" value="Eliminar fila seleccionada"/>
             <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
-              <Color id="Default Cursor"/>
+              <Color id="Cursor Por defecto"/>
             </Property>
           </Properties>
           <Events>
@@ -1541,7 +1541,7 @@
             </Property>
             <Property name="toolTipText" type="java.lang.String" value="Ver producto seleccionado (Si hay selecci&#xf3;n) - Buscar producto por c&#xf3;digo (Si no hay selecci&#xf3;n)"/>
             <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
-              <Color id="Default Cursor"/>
+              <Color id="Cursor Por defecto"/>
             </Property>
           </Properties>
           <Events>
@@ -1565,7 +1565,7 @@
             </Property>
             <Property name="toolTipText" type="java.lang.String" value="Aplicar un descuento unitario"/>
             <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
-              <Color id="Default Cursor"/>
+              <Color id="Cursor Por defecto"/>
             </Property>
           </Properties>
           <Events>
@@ -1589,7 +1589,7 @@
             </Property>
             <Property name="toolTipText" type="java.lang.String" value="Guardar factura"/>
             <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
-              <Color id="Default Cursor"/>
+              <Color id="Cursor Por defecto"/>
             </Property>
           </Properties>
           <Events>
@@ -1624,7 +1624,7 @@
             </Property>
             <Property name="toolTipText" type="java.lang.String" value="Abrir el buscador de productos"/>
             <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
-              <Color id="Default Cursor"/>
+              <Color id="Cursor Por defecto"/>
             </Property>
           </Properties>
           <Events>
@@ -1675,7 +1675,7 @@
             </Property>
             <Property name="toolTipText" type="java.lang.String" value="Guardar e imprimir factura"/>
             <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
-              <Color id="Default Cursor"/>
+              <Color id="Cursor Por defecto"/>
             </Property>
           </Properties>
           <Events>

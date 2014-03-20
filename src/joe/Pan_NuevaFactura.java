@@ -2325,7 +2325,7 @@ public class Pan_NuevaFactura extends javax.swing.JPanel {
               return;
         }
         this.jDialog_darVuelto.dispose();
-        String callType = "Imprimir";
+        String callType = "Imprimir2";
         if (callType.equals("Imprimir")) {
             if (this.guardarFacturadesdeVuelto()) {
                 XMLConfiguracion xml = ManejoDeArchivos.XMLConfiguracion.getInstance();

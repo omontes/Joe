@@ -6,5 +6,6 @@ FF.idFactura=F.idFactura AND FF.Estado='A'AND FF.idFactura=FP.idFactura AND FF.i
 ) AS Total,FP.Saldo,FP.FechaVencimiento
 FROM Factura AS F,FacturasPendientes AS FP, Persona AS C, Persona AS V, PagosFactPendientes AS PFP,productocantidadfact AS PCF
 WHERE SUBSTRING(F.Fecha,1,10) BETWEEN ? AND ? AND F.Concepto = ? AND F.Estado='A' AND F.idFactura=FP.idFactura AND F.idCliente=C.idPersona AND F.idVendedor=V.idPersona 
-AND F.idVersionFactura=FP.idVersionFactPendientes AND PFP.idFacturaPendiente = FP.idFactura AND PFP.idFacturaVersionPagosPend = FP.idVersionFactPendientes
+-- WHERE F.Concepto = "Apartado" AND F.Estado='A' AND F.idFactura=FP.idFactura AND F.idCliente=C.idPersona AND F.idVendedor=V.idPersona 
+AND F.idVersionFactura=FP.idVersionFactPendientes AND PFP.idFacturaPendiente = FP.idFactura AND PFP.idFacturaVersionPagosPend = FP.idVersionFactPendientes  AND F.`idVersionFactura` = PCF.`idVersionFacturasProducto` AND PCF.`idFactura`=F.`idFactura`
 ORDER BY F.idFactura;

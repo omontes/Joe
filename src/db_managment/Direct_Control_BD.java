@@ -3854,4 +3854,107 @@ public class Direct_Control_BD {
         }
     }
 
+    /**
+     * Retorna los ingresos ocurridos en un rango de fecha
+     *
+     * @param FechaIni
+     * @param FechaFin
+     * @return
+     */
+    public int[] VerIngresosPorRangoDeFecha(String FechaIni, String FechaFin) {
+
+        //result[totalDev,totalCancelada,totalApartado,totalCredito]
+        int result[] = {0, 0, 0, 0};
+        result[0] = egresoTotalPorDevolucionesRangoFecha(FechaIni, FechaFin);
+        result[1] = ingresoTotalPorCanceladaRangoFecha(FechaIni, FechaFin);
+        result[2] = ingresoTotalPorApartadoRangoFecha(FechaIni, FechaFin);
+        result[3] = ingresoTotalPorCreditoRangoFecha(FechaIni, FechaFin);
+        
+        return result;
+    }
+
+    /**
+     * Retorna el monto total por concepto de devoluciones en unrango de fecha
+     * @param FechaIni
+     * @param FechaFin
+     * @return 
+     */
+    public int egresoTotalPorDevolucionesRangoFecha(String FechaIni, String FechaFin) {
+        try {
+
+            String valor = this.readSql("../Joe/"
+                    + "src/sql_files/ingresoPorDevoluciones.sql");
+            PreparedStatement stm = this.conection.prepareStatement(valor);
+            stm.setString(1, FechaIni);
+            stm.setString(2, FechaFin);
+            ResultSet resultset = stm.executeQuery();
+
+            while (resultset.next()) {
+                return resultset.getInt(1);
+            }
+
+        } catch (Exception e) {
+            System.out.println("Error al ingreso por devoluciones");
+        }
+        return 0;
+    }
+
+    private int ingresoTotalPorApartadoRangoFecha(String FechaIni, String FechaFin) {
+         try {
+
+            String valor = this.readSql("../Joe/"
+                    + "src/sql_files/ingresoPorApartado.sql");
+            PreparedStatement stm = this.conection.prepareStatement(valor);
+            stm.setString(1, FechaIni);
+            stm.setString(2, FechaFin);
+            ResultSet resultset = stm.executeQuery();
+
+            while (resultset.next()) {
+                return resultset.getInt(1);
+            }
+
+        } catch (Exception e) {
+            System.out.println("Error al ingreso por apartado");
+        }
+        return 0;}
+
+    private int ingresoTotalPorCreditoRangoFecha(String FechaIni, String FechaFin) {
+         try {
+
+            String valor = this.readSql("../Joe/"
+                    + "src/sql_files/ingresoPorCredito.sql");
+            PreparedStatement stm = this.conection.prepareStatement(valor);
+            stm.setString(1, FechaIni);
+            stm.setString(2, FechaFin);
+            ResultSet resultset = stm.executeQuery();
+
+            while (resultset.next()) {
+                return resultset.getInt(1);
+            }
+
+        } catch (Exception e) {
+            System.out.println("Error al ingreso por credito");
+        }
+        return 0; }
+
+    private int ingresoTotalPorCanceladaRangoFecha(String FechaIni, String FechaFin) {
+     try {
+
+            String valor = this.readSql("../Joe/"
+                    + "src/sql_files/ingresoPorContado.sql");
+            PreparedStatement stm = this.conection.prepareStatement(valor);
+            stm.setString(1, FechaIni);
+            stm.setString(2, FechaFin);
+            ResultSet resultset = stm.executeQuery();
+
+            while (resultset.next()) {
+                return resultset.getInt(1);
+            }
+
+        } catch (Exception e) {
+            System.out.println("Error al ingreso por contado");
+        }
+        return 0;
+    }
+
 }

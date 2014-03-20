@@ -318,8 +318,8 @@ public class Pan_RepFact extends javax.swing.JPanel {
         cancelarIngrFecha = new javax.swing.JButton();
         jLabel68 = new javax.swing.JLabel();
         jLabel71 = new javax.swing.JLabel();
-        dateChooserCombo_IniDevFech1 = new datechooser.beans.DateChooserCombo();
-        dateChooserCombo_FinDevFech1 = new datechooser.beans.DateChooserCombo();
+        dateChooserCombo_IniIngreso = new datechooser.beans.DateChooserCombo();
+        dateChooserCombo_FinIngreso = new datechooser.beans.DateChooserCombo();
         jLabel9 = new javax.swing.JLabel();
         jLabel14 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
@@ -3106,7 +3106,7 @@ public void actionPerformed(java.awt.event.ActionEvent evt) {
     jPanel_IngresosPorFecha.add(jLabel71);
     jLabel71.setBounds(230, 70, 34, 25);
 
-    dateChooserCombo_IniDevFech1.setCurrentView(new datechooser.view.appearance.AppearancesList("Grey",
+    dateChooserCombo_IniIngreso.setCurrentView(new datechooser.view.appearance.AppearancesList("Grey",
         new datechooser.view.appearance.ViewAppearance("custom",
             new datechooser.view.appearance.swing.SwingCellAppearance(new java.awt.Font("Tahoma", java.awt.Font.PLAIN, 11),
                 new java.awt.Color(0, 0, 0),
@@ -3147,14 +3147,14 @@ public void actionPerformed(java.awt.event.ActionEvent evt) {
             (datechooser.view.BackRenderer)null,
             false,
             true)));
-dateChooserCombo_IniDevFech1.setCalendarBackground(new java.awt.Color(0, 51, 51));
-dateChooserCombo_IniDevFech1.setNothingAllowed(false);
-dateChooserCombo_IniDevFech1.setMaxDate(dateChooserCombo_FinVent.getSelectedDate());
-dateChooserCombo_IniDevFech1.setBehavior(datechooser.model.multiple.MultyModelBehavior.SELECT_SINGLE);
-jPanel_IngresosPorFecha.add(dateChooserCombo_IniDevFech1);
-dateChooserCombo_IniDevFech1.setBounds(70, 70, 155, 25);
+dateChooserCombo_IniIngreso.setCalendarBackground(new java.awt.Color(0, 51, 51));
+dateChooserCombo_IniIngreso.setNothingAllowed(false);
+dateChooserCombo_IniIngreso.setMaxDate(dateChooserCombo_FinVent.getSelectedDate());
+dateChooserCombo_IniIngreso.setBehavior(datechooser.model.multiple.MultyModelBehavior.SELECT_SINGLE);
+jPanel_IngresosPorFecha.add(dateChooserCombo_IniIngreso);
+dateChooserCombo_IniIngreso.setBounds(70, 70, 155, 25);
 
-dateChooserCombo_FinDevFech1.setCurrentView(new datechooser.view.appearance.AppearancesList("Grey",
+dateChooserCombo_FinIngreso.setCurrentView(new datechooser.view.appearance.AppearancesList("Grey",
     new datechooser.view.appearance.ViewAppearance("custom",
         new datechooser.view.appearance.swing.SwingCellAppearance(new java.awt.Font("Tahoma", java.awt.Font.PLAIN, 11),
             new java.awt.Color(0, 0, 0),
@@ -3195,11 +3195,11 @@ dateChooserCombo_FinDevFech1.setCurrentView(new datechooser.view.appearance.Appe
         (datechooser.view.BackRenderer)null,
         false,
         true)));
-dateChooserCombo_FinDevFech1.setNothingAllowed(false);
-dateChooserCombo_FinDevFech1.setMinDate(dateChooserCombo_IniVent.getSelectedDate());
-dateChooserCombo_FinDevFech1.setBehavior(datechooser.model.multiple.MultyModelBehavior.SELECT_SINGLE);
-jPanel_IngresosPorFecha.add(dateChooserCombo_FinDevFech1);
-dateChooserCombo_FinDevFech1.setBounds(270, 70, 155, 27);
+dateChooserCombo_FinIngreso.setNothingAllowed(false);
+dateChooserCombo_FinIngreso.setMinDate(dateChooserCombo_IniVent.getSelectedDate());
+dateChooserCombo_FinIngreso.setBehavior(datechooser.model.multiple.MultyModelBehavior.SELECT_SINGLE);
+jPanel_IngresosPorFecha.add(dateChooserCombo_FinIngreso);
+dateChooserCombo_FinIngreso.setBounds(270, 70, 155, 27);
 
 setMaximumSize(new java.awt.Dimension(2147483647, 2147483647));
 setMinimumSize(new java.awt.Dimension(760, 400));
@@ -4687,9 +4687,9 @@ public void mouseClicked(java.awt.event.MouseEvent evt) {
             //escribir excel
             archivoExcel.escribir(infoEmpresa, AdminBD.getInfoFact(),
                     AdminBD.getNombresColumnas(),
-                    dateF1.format(dateChooserCombo_IniProd.
+                    dateF1.format(dateChooserCombo_IniClie.
                             getSelectedDate().getTime()),
-                    dateF1.format(dateChooserCombo_FinProd.
+                    dateF1.format(dateChooserCombo_FinClie.
                             getSelectedDate().getTime()),
                     concepto, "Excel");
         } catch (IOException | WriteException ex) {
@@ -4699,30 +4699,28 @@ public void mouseClicked(java.awt.event.MouseEvent evt) {
     }//GEN-LAST:event_jButton_AceptaVerVentasPorClienteActionPerformed
 
     private void aceptarIngrFechaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_aceptarIngrFechaActionPerformed
-        String concepto = "Ventas Por Cliente: " + jTextField_Cliente.
-                getText().toString();
+        
         Direct_Control_BD AdminBD = Direct_Control_BD.getInstance();
-        //Consulta de Fact Por cliente
-        AdminBD.VerVentasPorCliente(dateF.format(
-                dateChooserCombo_IniClie.getSelectedDate().getTime()),
-                dateF.format(dateChooserCombo_FinClie.getSelectedDate().
-                        getTime()), jTextField_Cliente.getText().toString());
+        //Consulta ingresos por fecha
+       int[] ingresos = AdminBD.VerIngresosPorRangoDeFecha(dateF.format(
+                dateChooserCombo_IniIngreso.getSelectedDate().getTime()),
+                dateF.format(dateChooserCombo_FinIngreso.getSelectedDate().
+                        getTime()));
 
         Date date = new Date();//hora Actual
         String fechaAct = dateFormat.format(date);
 
         EscribirExcel archivoExcel = new EscribirExcel();
-        archivoExcel.setNombreArchivoExcel("VentasPorCliente"
+        archivoExcel.setNombreArchivoExcel("ingresos"
                 + fechaAct + ".xls");
         try {
             //escribir excel
-            archivoExcel.escribir(infoEmpresa, AdminBD.getInfoFact(),
-                    AdminBD.getNombresColumnas(),
-                    dateF1.format(dateChooserCombo_IniProd.
+            archivoExcel.escribirIngresos(infoEmpresa,ingresos,
+                    dateF1.format(dateChooserCombo_IniIngreso.
                             getSelectedDate().getTime()),
-                    dateF1.format(dateChooserCombo_FinProd.
+                    dateF1.format(dateChooserCombo_FinIngreso.
                             getSelectedDate().getTime()),
-                    concepto, "Excel");
+                     "Excel",1);
         } catch (IOException | WriteException ex) {
             Logger.getLogger(Pan_RepFact.class.getName()).
                     log(Level.SEVERE, null, ex);
@@ -4744,9 +4742,9 @@ public void mouseClicked(java.awt.event.MouseEvent evt) {
     private javax.swing.JButton cancelarIngrFecha;
     private datechooser.beans.DateChooserCombo dateChooserCombo_FinClie;
     private datechooser.beans.DateChooserCombo dateChooserCombo_FinDevFech;
-    private datechooser.beans.DateChooserCombo dateChooserCombo_FinDevFech1;
     private datechooser.beans.DateChooserCombo dateChooserCombo_FinEliminadasDev;
     private datechooser.beans.DateChooserCombo dateChooserCombo_FinEliminadasFact;
+    private datechooser.beans.DateChooserCombo dateChooserCombo_FinIngreso;
     private datechooser.beans.DateChooserCombo dateChooserCombo_FinMovimiento;
     private datechooser.beans.DateChooserCombo dateChooserCombo_FinMovimientoProd;
     private datechooser.beans.DateChooserCombo dateChooserCombo_FinProd;
@@ -4757,9 +4755,9 @@ public void mouseClicked(java.awt.event.MouseEvent evt) {
     private datechooser.beans.DateChooserCombo dateChooserCombo_FinVent;
     private datechooser.beans.DateChooserCombo dateChooserCombo_IniClie;
     private datechooser.beans.DateChooserCombo dateChooserCombo_IniDevFech;
-    private datechooser.beans.DateChooserCombo dateChooserCombo_IniDevFech1;
     private datechooser.beans.DateChooserCombo dateChooserCombo_IniEliminadasDev;
     private datechooser.beans.DateChooserCombo dateChooserCombo_IniEliminadasFact;
+    private datechooser.beans.DateChooserCombo dateChooserCombo_IniIngreso;
     private datechooser.beans.DateChooserCombo dateChooserCombo_IniMovimiento;
     private datechooser.beans.DateChooserCombo dateChooserCombo_IniMovimientoProd;
     private datechooser.beans.DateChooserCombo dateChooserCombo_IniProd;

@@ -63,6 +63,10 @@ public class JF_Inventario extends javax.swing.JFrame {
         }
     }
     
+    public void refreshInventoryTable(){
+        _panInventario.personalizarTablaInventario();
+    }
+    
     public void setEnableTabs(boolean pAreEnable){
         if (pAreEnable){
             bttSalidas.setEnabled(true);

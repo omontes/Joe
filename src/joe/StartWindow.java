@@ -231,17 +231,19 @@ public class StartWindow extends javax.swing.JFrame {
         jPanel1.setPreferredSize(new java.awt.Dimension(350, 180));
         jPanel1.setLayout(null);
 
+        jLabel2.setBackground(new java.awt.Color(0, 153, 255));
         jLabel2.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel2.setText("Inicio de caja");
+        jLabel2.setText("  Inicio de caja");
+        jLabel2.setOpaque(true);
         jPanel1.add(jLabel2);
-        jLabel2.setBounds(10, 10, 360, 22);
+        jLabel2.setBounds(1, 1, 348, 40);
 
         jLabel3.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(255, 255, 255));
         jLabel3.setText("Monto inicial:");
         jPanel1.add(jLabel3);
-        jLabel3.setBounds(20, 50, 90, 20);
+        jLabel3.setBounds(20, 60, 90, 20);
 
         jFormattedTextField_MontoInicioCaja.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter()));
         jFormattedTextField_MontoInicioCaja.setText("0.00");
@@ -259,19 +261,19 @@ public class StartWindow extends javax.swing.JFrame {
             }
         });
         jPanel1.add(jFormattedTextField_MontoInicioCaja);
-        jFormattedTextField_MontoInicioCaja.setBounds(110, 50, 220, 23);
+        jFormattedTextField_MontoInicioCaja.setBounds(110, 60, 220, 23);
 
         jLabel4.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jLabel4.setForeground(new java.awt.Color(255, 255, 255));
         jLabel4.setText("Fecha:");
         jPanel1.add(jLabel4);
-        jLabel4.setBounds(20, 100, 50, 15);
+        jLabel4.setBounds(20, 110, 50, 15);
 
         labFecha.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         labFecha.setForeground(new java.awt.Color(255, 255, 255));
         labFecha.setText("...");
         jPanel1.add(labFecha);
-        labFecha.setBounds(110, 100, 220, 15);
+        labFecha.setBounds(110, 110, 220, 15);
 
         jButton1.setText("Cancelar");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
@@ -487,7 +489,7 @@ public class StartWindow extends javax.swing.JFrame {
         bkConfPan.setBounds(0, 9, 800, 161);
 
         jLayeredPane1.add(panConf);
-        panConf.setBounds(0, 200, 800, 170);
+        panConf.setBounds(0, 300, 800, 170);
         jLayeredPane1.setLayer(panConf, javax.swing.JLayeredPane.PALETTE_LAYER);
 
         panActiveUsser.setBackground(new java.awt.Color(236, 233, 233));
@@ -811,8 +813,8 @@ public class StartWindow extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void fieldUsserKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_fieldUsserKeyPressed
-        if (evt.getKeyCode() == 10){
-            login();
+        if (evt.getKeyCode() == evt.VK_ENTER){
+            fieldUsser.transferFocus();
         }
     }//GEN-LAST:event_fieldUsserKeyPressed
 

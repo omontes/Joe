@@ -58,12 +58,15 @@ public class Pan_NuevaFactura extends javax.swing.JPanel {
     private boolean _savePress;
     private boolean _printPress;
     
+    private boolean _justSave;
+    
     /**
      * Creates new form NewJPanel
      * @param pCallType
      */
     public Pan_NuevaFactura(int pCallType) {
         _callType = pCallType;
+        _justSave = true;
         _seller = "";
         _savePress = false;
         _printPress = false;
@@ -189,10 +192,7 @@ public class Pan_NuevaFactura extends javax.swing.JPanel {
         watchBtt = new javax.swing.JLabel();
         discBtt = new javax.swing.JLabel();
         saveBtt = new javax.swing.JLabel();
-        jLabel21 = new javax.swing.JLabel();
         searchBtt = new javax.swing.JLabel();
-        lbSellerName = new javax.swing.JTextField();
-        sellerCode = new javax.swing.JPasswordField();
         printBtt = new javax.swing.JLabel();
         background = new javax.swing.JLabel();
 
@@ -845,7 +845,7 @@ public class Pan_NuevaFactura extends javax.swing.JPanel {
         jScrollPane2.setViewportView(jTable_Factura);
 
         jLayeredPane1.add(jScrollPane2);
-        jScrollPane2.setBounds(60, 70, 730, 300);
+        jScrollPane2.setBounds(60, 40, 730, 330);
 
         jFormattedTextField_SubTotal.setEditable(false);
         jFormattedTextField_SubTotal.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(new java.text.DecimalFormat("C#,##0.00;(C#,##0.00)"))));
@@ -878,7 +878,6 @@ public class Pan_NuevaFactura extends javax.swing.JPanel {
         jFormattedTextField_desc.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(new java.text.DecimalFormat("#0.00"))));
         jFormattedTextField_desc.setText("0.00");
         jFormattedTextField_desc.setToolTipText("Descuento sobre el subtotal");
-        jFormattedTextField_desc.setFocusable(false);
         jFormattedTextField_desc.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jFormattedTextField_descMouseClicked(evt);
@@ -1084,11 +1083,6 @@ public class Pan_NuevaFactura extends javax.swing.JPanel {
         saveBtt.setBounds(740, 375, 40, 40);
         jLayeredPane1.setLayer(saveBtt, javax.swing.JLayeredPane.PALETTE_LAYER);
 
-        jLabel21.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        jLabel21.setText("Vendedor");
-        jLayeredPane1.add(jLabel21);
-        jLabel21.setBounds(60, 40, 60, 20);
-
         searchBtt.setIcon(new javax.swing.ImageIcon(getClass().getResource("/System/Images/Buttons/searchBtt.png"))); // NOI18N
         searchBtt.setToolTipText("Abrir el buscador de productos");
         searchBtt.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
@@ -1106,21 +1100,6 @@ public class Pan_NuevaFactura extends javax.swing.JPanel {
         jLayeredPane1.add(searchBtt);
         searchBtt.setBounds(4, 310, 40, 40);
         jLayeredPane1.setLayer(searchBtt, javax.swing.JLayeredPane.PALETTE_LAYER);
-
-        lbSellerName.setEditable(false);
-        lbSellerName.setBackground(new java.awt.Color(204, 204, 204));
-        lbSellerName.setForeground(new java.awt.Color(102, 102, 102));
-        lbSellerName.setFocusable(false);
-        jLayeredPane1.add(lbSellerName);
-        lbSellerName.setBounds(350, 38, 310, 24);
-
-        sellerCode.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyPressed(java.awt.event.KeyEvent evt) {
-                sellerCodeKeyPressed(evt);
-            }
-        });
-        jLayeredPane1.add(sellerCode);
-        sellerCode.setBounds(130, 38, 210, 24);
 
         printBtt.setIcon(new javax.swing.ImageIcon(getClass().getResource("/System/Images/Buttons/printBtt.png"))); // NOI18N
         printBtt.setToolTipText("Guardar e imprimir factura");
@@ -1141,6 +1120,11 @@ public class Pan_NuevaFactura extends javax.swing.JPanel {
         jLayeredPane1.setLayer(printBtt, javax.swing.JLayeredPane.PALETTE_LAYER);
 
         background.setIcon(new javax.swing.ImageIcon(getClass().getResource("/System/Images/Panel1/panelNF.png"))); // NOI18N
+        background.addComponentListener(new java.awt.event.ComponentAdapter() {
+            public void componentHidden(java.awt.event.ComponentEvent evt) {
+                backgroundComponentHidden(evt);
+            }
+        });
         jLayeredPane1.add(background);
         background.setBounds(0, 0, 800, 474);
 
@@ -1558,7 +1542,7 @@ public class Pan_NuevaFactura extends javax.swing.JPanel {
     
     private boolean apartSave(){
         NewJDialog_PagoApartado pago = NewJDialog_PagoApartado.getInstance();
-        pago.setTitle("Detalles del crédito");
+        pago.setTitle("Detalles del apartado");
         pago.setVisible(true);
         BigDecimal montodePago = pago.getMontoDePago();
         if (montodePago != null) {
@@ -1600,6 +1584,7 @@ public class Pan_NuevaFactura extends javax.swing.JPanel {
     
     private boolean credSave(){
         NewJDialog_PagoApartado pago = NewJDialog_PagoApartado.getInstance();
+        pago.setTittle("Detalles del crédito");
         pago.setVisible(true);
         BigDecimal montodePago = pago.getMontoDePago();
         if (montodePago != null) {
@@ -2325,8 +2310,7 @@ public class Pan_NuevaFactura extends javax.swing.JPanel {
               return;
         }
         this.jDialog_darVuelto.dispose();
-        String callType = "Imprimir";
-        if (callType.equals("Imprimir")) {
+        if (!_justSave) {
             if (this.guardarFacturadesdeVuelto()) {
                 XMLConfiguracion xml = ManejoDeArchivos.XMLConfiguracion.getInstance();
                 if (_callType == FACTURACION_CALL | _callType == MOD_FACT_CALL) {
@@ -2337,7 +2321,7 @@ public class Pan_NuevaFactura extends javax.swing.JPanel {
                             this.jFormattedTextField_desc.getText(),
                             this.jFormattedTextField_DescuentoTotal.getText(),
                             this.jFormattedTextField_Cliente.getText(),
-                            xml.ObtenerUsuario());
+                            JF_Facturacion.getInstance().getSellerName());
                 }
                 if (_callType == APARTADO_CALL | _callType == MOD_APART_CALL | _callType == CREDITO_CALL | _callType == MOD_CRED_CALL) {
                     this.imprimirApartadoCredito(this.jLabel_NumerodeFact.getText(),
@@ -2347,7 +2331,7 @@ public class Pan_NuevaFactura extends javax.swing.JPanel {
                             this.jFormattedTextField_desc.getText(),
                             this.jFormattedTextField_DescuentoTotal.getText(),
                             this.jFormattedTextField_Cliente.getText(),
-                            xml.ObtenerUsuario());
+                            JF_Facturacion.getInstance().getSellerName());
                 }
             }
         } else {
@@ -2443,14 +2427,6 @@ public class Pan_NuevaFactura extends javax.swing.JPanel {
         
     }//GEN-LAST:event_formPropertyChange
 
-    private void sellerCodeKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_sellerCodeKeyPressed
-        if (evt.getKeyCode() == evt.VK_ENTER){
-            loadSeller();
-        } else {
-            hotKeyPressEvt(evt);
-        }
-    }//GEN-LAST:event_sellerCodeKeyPressed
-
     private void formKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_formKeyPressed
         hotKeyPressEvt(evt);
     }//GEN-LAST:event_formKeyPressed
@@ -2462,6 +2438,10 @@ public class Pan_NuevaFactura extends javax.swing.JPanel {
     private void jTextField_DetalleKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField_DetalleKeyPressed
         hotKeyPressEvt(evt);
     }//GEN-LAST:event_jTextField_DetalleKeyPressed
+
+    private void backgroundComponentHidden(java.awt.event.ComponentEvent evt) {//GEN-FIRST:event_backgroundComponentHidden
+        
+    }//GEN-LAST:event_backgroundComponentHidden
     /**
      * Este metodo devuelve toda la informacion de la tabla de crear factura
      *
@@ -2495,6 +2475,7 @@ public class Pan_NuevaFactura extends javax.swing.JPanel {
     private void printPrincipalCall(){
         if (!_savePress){
             _savePress = true;
+            _justSave = false;
             if (_callType == DEVOLUCION_CALL) {
                 devSave();
                 XMLConfiguracion xml = new XMLConfiguracion(); 
@@ -2505,7 +2486,7 @@ public class Pan_NuevaFactura extends javax.swing.JPanel {
                             this.jFormattedTextField_desc.getText(),
                             this.jFormattedTextField_DescuentoTotal.getText(),
                             this.jFormattedTextField_Cliente.getText(),
-                            xml.ObtenerUsuario());
+                            JF_Facturacion.getInstance().getSellerName());
                 
                 this.regresar();
                 return;
@@ -2520,7 +2501,7 @@ public class Pan_NuevaFactura extends javax.swing.JPanel {
                             this.jFormattedTextField_desc.getText(),
                             this.jFormattedTextField_DescuentoTotal.getText(),
                             this.jFormattedTextField_Cliente.getText(),
-                            xml.ObtenerUsuario());
+                            JF_Facturacion.getInstance().getSellerName());
                 this.regresar();
                 return;
             }
@@ -2532,6 +2513,7 @@ public class Pan_NuevaFactura extends javax.swing.JPanel {
     
     private void justSavePrincipalCall(){
         if (!_savePress){
+            _justSave = true;
             _savePress = true;
             if (_callType == DEVOLUCION_CALL) {
                 devSave();
@@ -2549,36 +2531,7 @@ public class Pan_NuevaFactura extends javax.swing.JPanel {
         _savePress = false;
     }
     
-    public void loadSeller(){
-        if (String.valueOf(sellerCode.getPassword()).isEmpty()){
-            JOptionPane.showMessageDialog(
-                this,
-                "Por favor ingrese su numero de pase",
-                "¡Atención!",
-                JOptionPane.WARNING_MESSAGE);
-        } else {
-
-            int i = String.valueOf(sellerCode.getPassword()).indexOf(' ');
-            int length = String.valueOf(sellerCode.getPassword()).length();
-
-            String seller = String.valueOf(sellerCode.getPassword()).substring(0, i);
-            String pass = String.valueOf(sellerCode.getPassword()).substring(i+1, length);
-
-            Direct_Control_BD base = db_managment.Direct_Control_BD.getInstance();
-            int authentique = base.verificarUsuario(seller, pass);
-            if (authentique == 0){
-                JOptionPane.showMessageDialog(
-                    this,
-                    "No se ha podido ingresar. Por favor revise su código.",
-                    "¡Error!",
-                    JOptionPane.ERROR_MESSAGE);
-                sellerCode.setText("");
-            } else {
-                _seller = seller;
-                lbSellerName.setText(seller);
-            }
-        }
-    }
+    
     
     /**
      * Este metodo carga la informacion de la factura que se desea ver, esta
@@ -2713,7 +2666,6 @@ public class Pan_NuevaFactura extends javax.swing.JPanel {
     javax.swing.JLabel jLabel19;
     javax.swing.JLabel jLabel2;
     javax.swing.JLabel jLabel20;
-    javax.swing.JLabel jLabel21;
     javax.swing.JLabel jLabel22;
     javax.swing.JLabel jLabel23;
     javax.swing.JLabel jLabel24;
@@ -2757,12 +2709,10 @@ public class Pan_NuevaFactura extends javax.swing.JPanel {
     javax.swing.JTextField jTextField_codigo;
     javax.swing.JTextField jTextField_nombre;
     javax.swing.JLabel lbPagoTitle;
-    javax.swing.JTextField lbSellerName;
     javax.swing.JLabel lblTittle;
     javax.swing.JLabel printBtt;
     javax.swing.JLabel saveBtt;
     javax.swing.JLabel searchBtt;
-    javax.swing.JPasswordField sellerCode;
     javax.swing.JLabel trashBtt;
     javax.swing.JLabel watchBtt;
     // End of variables declaration//GEN-END:variables

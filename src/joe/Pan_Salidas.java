@@ -123,7 +123,7 @@ public final class Pan_Salidas extends javax.swing.JPanel {
            
     private void bttAddMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bttAddMouseClicked
 
-        Pan_CrearEntradaSalida panelCreaSalidaMerca = new Pan_CrearEntradaSalida(Pan_CrearEntradaSalida.ENTRADA);
+        Pan_CrearEntradaSalida panelCreaSalidaMerca = new Pan_CrearEntradaSalida(Pan_CrearEntradaSalida.SALIDA);
         
         //--------------- INTERFAZ ----------------------------------
         JF_Inventario.getInstance().getPanelManager().showPanel(panelCreaSalidaMerca, 800, 474, 0, 0);

@@ -717,8 +717,9 @@ public class Pan_CrearEntradaSalida extends javax.swing.JPanel {
     }//GEN-LAST:event_jTextField_referenciaActionPerformed
 
     private void bttSaveMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bttSaveMouseClicked
-        this.guardarMovimiento();
-        this.clearAll();
+        if (this.guardarMovimiento()){
+            this.clearAll();
+        }
         
     }//GEN-LAST:event_bttSaveMouseClicked
 
@@ -1171,6 +1172,7 @@ public class Pan_CrearEntradaSalida extends javax.swing.JPanel {
         this.crearMovimiento();
         this.guardarProductosMovimiento();
         JF_Inventario.getInstance().refreshActiveTable();
+        JF_Inventario.getInstance().refreshInventoryTable();
         JF_Inventario.getInstance().backOnWindow();
         return true;
     }

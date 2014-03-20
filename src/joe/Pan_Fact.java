@@ -81,6 +81,9 @@ public class Pan_Fact extends javax.swing.JPanel {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jLabel1MouseClicked(evt);
             }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                jLabel1MouseEntered(evt);
+            }
         });
         add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 360, -1, -1));
 
@@ -196,6 +199,9 @@ public class Pan_Fact extends javax.swing.JPanel {
         panelNuevaFact.personalizarTablaFactura();
         panelNuevaFact.agregarListenerRenders();
         panelNuevaFact.jFormattedTextField_Cliente.setText(clienteGenerico);
+        
+        JF_Facturacion.getInstance().showSellerDialog();
+        
     }//GEN-LAST:event_jLabel1MouseClicked
 
     private void jLabel2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel2MouseClicked
@@ -246,6 +252,10 @@ public class Pan_Fact extends javax.swing.JPanel {
 
         panelVerCierres.completarTablaVerCierres();
     }//GEN-LAST:event_jLabel7MouseClicked
+
+    private void jLabel1MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel1MouseEntered
+        
+    }//GEN-LAST:event_jLabel1MouseEntered
 
     /**
      * Actualiza la tabla que se ve en facturacion (Obtiene el total vendido por

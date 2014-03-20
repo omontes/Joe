@@ -58,6 +58,11 @@ public class PanelManager {
         pPanel.setVisible(true);
     }
     
+    public void setEnableTop(boolean pEnable){
+        _stack.getTop().getPanel().setVisible(pEnable);
+        _stack.getTop().getPanel().setEnabled(pEnable);
+    }
+    
     public Object back(){
         _count--;
         JPanel lastPanel = _stack.pop();

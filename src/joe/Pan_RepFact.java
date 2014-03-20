@@ -48,6 +48,7 @@ public class Pan_RepFact extends javax.swing.JPanel {
     private static final int DEV_FECHAS = 9;
     private static final int DEV_ELIMINADAS = 10;
     private static final int DEV_MODIFICADAS = 11;
+    private static final int INGR_FECHAS = 12;
 
     /**
      * Creates new form Reportes
@@ -311,10 +312,19 @@ public class Pan_RepFact extends javax.swing.JPanel {
         jLabel89 = new javax.swing.JLabel();
         jRadioButton_BodegaMovimientoProd = new javax.swing.JRadioButton();
         jRadioButton_InvGeneralMovimientoProd = new javax.swing.JRadioButton();
+        jPanel_IngresosPorFecha = new javax.swing.JPanel();
+        jLabel60 = new javax.swing.JLabel();
+        aceptarIngrFecha = new javax.swing.JButton();
+        jLabel64 = new javax.swing.JLabel();
+        cancelarIngrFecha = new javax.swing.JButton();
+        jLabel68 = new javax.swing.JLabel();
+        jLabel71 = new javax.swing.JLabel();
+        dateChooserCombo_IniDevFech1 = new datechooser.beans.DateChooserCombo();
+        dateChooserCombo_FinDevFech1 = new datechooser.beans.DateChooserCombo();
         jLabel9 = new javax.swing.JLabel();
+        jLabel14 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
-        jLabel14 = new javax.swing.JLabel();
 
         jDialog_ReportesFact.setIconImage(null);
         jDialog_ReportesFact.setIconImages(null);
@@ -1573,6 +1583,7 @@ public void actionPerformed(java.awt.event.ActionEvent evt) {
     jButton_buscarVentasProdPorCliente.setBounds(240, 130, 90, 23);
 
     jPanel_VerFacturasEliminadasPorFech.setBackground(new java.awt.Color(153, 153, 153));
+    jPanel_VerFacturasEliminadasPorFech.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
     jPanel_VerFacturasEliminadasPorFech.setMinimumSize(new java.awt.Dimension(460, 155));
     jPanel_VerFacturasEliminadasPorFech.setPreferredSize(new java.awt.Dimension(460, 155));
     jPanel_VerFacturasEliminadasPorFech.setLayout(null);
@@ -1717,6 +1728,7 @@ jPanel_VerFacturasEliminadasPorFech.add(dateChooserCombo_FinEliminadasFact);
 dateChooserCombo_FinEliminadasFact.setBounds(280, 60, 155, 25);
 
 jPanel_VerListaDePrecios.setBackground(new java.awt.Color(153, 153, 153));
+jPanel_VerListaDePrecios.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 jPanel_VerListaDePrecios.setMinimumSize(new java.awt.Dimension(470, 180));
 jPanel_VerListaDePrecios.setPreferredSize(new java.awt.Dimension(470, 180));
 jPanel_VerListaDePrecios.setLayout(null);
@@ -1974,6 +1986,7 @@ public void actionPerformed(java.awt.event.ActionEvent evt) {
     jRadioButton_TodosListaCostos.setBounds(360, 50, 55, 23);
 
     jPanel_VerProductosAgotados.setBackground(new java.awt.Color(153, 153, 153));
+    jPanel_VerProductosAgotados.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
     jPanel_VerProductosAgotados.setMaximumSize(new java.awt.Dimension(585, 360));
     jPanel_VerProductosAgotados.setMinimumSize(new java.awt.Dimension(455, 195));
     jPanel_VerProductosAgotados.setPreferredSize(new java.awt.Dimension(455, 195));
@@ -2111,6 +2124,7 @@ public void actionPerformed(java.awt.event.ActionEvent evt) {
     jRadioButton_TodosAgot.setBounds(360, 50, 55, 23);
 
     jPanel_VerProductosEnInventario.setBackground(new java.awt.Color(153, 153, 153));
+    jPanel_VerProductosEnInventario.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
     jPanel_VerProductosEnInventario.setMaximumSize(new java.awt.Dimension(12312314, 12412412));
     jPanel_VerProductosEnInventario.setMinimumSize(new java.awt.Dimension(455, 195));
     jPanel_VerProductosEnInventario.setPreferredSize(new java.awt.Dimension(455, 195));
@@ -3045,15 +3059,168 @@ public void actionPerformed(java.awt.event.ActionEvent evt) {
     jPanel_MovimientosPorProducto.add(jRadioButton_InvGeneralMovimientoProd);
     jRadioButton_InvGeneralMovimientoProd.setBounds(220, 160, 91, 23);
 
-    setMaximumSize(new java.awt.Dimension(2147483647, 2147483647));
-    setMinimumSize(new java.awt.Dimension(760, 400));
-    setOpaque(false);
-    setPreferredSize(new java.awt.Dimension(760, 400));
-    setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+    jPanel_IngresosPorFecha.setBackground(new java.awt.Color(153, 153, 153));
+    jPanel_IngresosPorFecha.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+    jPanel_IngresosPorFecha.setMinimumSize(new java.awt.Dimension(445, 150));
+    jPanel_IngresosPorFecha.setLayout(null);
+    jPanel_IngresosPorFecha.setSize(445, 150);
 
-    jLabel9.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
-    jLabel9.setText("Tipo de reporte:");
-    add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 90, 20));
+    jLabel60.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+    jLabel60.setForeground(new java.awt.Color(255, 255, 255));
+    jLabel60.setText("Relación De Ingresos Por Fecha");
+    jPanel_IngresosPorFecha.add(jLabel60);
+    jLabel60.setBounds(10, 10, 510, 22);
+
+    aceptarIngrFecha.setForeground(new java.awt.Color(0, 51, 51));
+    aceptarIngrFecha.setText("Aceptar");
+    aceptarIngrFecha.addActionListener(new java.awt.event.ActionListener() {
+        public void actionPerformed(java.awt.event.ActionEvent evt) {
+            aceptarIngrFechaActionPerformed(evt);
+        }
+    });
+    jPanel_IngresosPorFecha.add(aceptarIngrFecha);
+    aceptarIngrFecha.setBounds(250, 110, 75, 23);
+
+    jLabel64.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+    jLabel64.setForeground(new java.awt.Color(255, 255, 255));
+    jLabel64.setText("Período:");
+    jPanel_IngresosPorFecha.add(jLabel64);
+    jLabel64.setBounds(10, 50, 60, 15);
+
+    cancelarIngrFecha.setText("Cancelar");
+    cancelarIngrFecha.addActionListener(new java.awt.event.ActionListener() {
+        public void actionPerformed(java.awt.event.ActionEvent evt) {
+            cancelarIngrFechaActionPerformed(evt);
+        }
+    });
+    jPanel_IngresosPorFecha.add(cancelarIngrFecha);
+    cancelarIngrFecha.setBounds(340, 110, 90, 23);
+
+    jLabel68.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+    jLabel68.setForeground(new java.awt.Color(255, 255, 255));
+    jLabel68.setText("Desde:");
+    jPanel_IngresosPorFecha.add(jLabel68);
+    jLabel68.setBounds(20, 70, 39, 25);
+
+    jLabel71.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+    jLabel71.setForeground(new java.awt.Color(255, 255, 255));
+    jLabel71.setText("Hasta:");
+    jPanel_IngresosPorFecha.add(jLabel71);
+    jLabel71.setBounds(230, 70, 34, 25);
+
+    dateChooserCombo_IniDevFech1.setCurrentView(new datechooser.view.appearance.AppearancesList("Grey",
+        new datechooser.view.appearance.ViewAppearance("custom",
+            new datechooser.view.appearance.swing.SwingCellAppearance(new java.awt.Font("Tahoma", java.awt.Font.PLAIN, 11),
+                new java.awt.Color(0, 0, 0),
+                new java.awt.Color(0, 0, 255),
+                false,
+                true,
+                new datechooser.view.appearance.swing.ButtonPainter()),
+            new datechooser.view.appearance.swing.SwingCellAppearance(new java.awt.Font("Tahoma", java.awt.Font.PLAIN, 11),
+                new java.awt.Color(0, 0, 0),
+                new java.awt.Color(0, 0, 255),
+                true,
+                true,
+                new datechooser.view.appearance.swing.ButtonPainter()),
+            new datechooser.view.appearance.swing.SwingCellAppearance(new java.awt.Font("Tahoma", java.awt.Font.PLAIN, 11),
+                new java.awt.Color(0, 0, 255),
+                new java.awt.Color(0, 0, 255),
+                false,
+                true,
+                new datechooser.view.appearance.swing.ButtonPainter()),
+            new datechooser.view.appearance.swing.SwingCellAppearance(new java.awt.Font("Tahoma", java.awt.Font.PLAIN, 11),
+                new java.awt.Color(128, 128, 128),
+                new java.awt.Color(0, 0, 255),
+                false,
+                true,
+                new datechooser.view.appearance.swing.LabelPainter()),
+            new datechooser.view.appearance.swing.SwingCellAppearance(new java.awt.Font("Tahoma", java.awt.Font.PLAIN, 11),
+                new java.awt.Color(0, 0, 0),
+                new java.awt.Color(0, 0, 255),
+                false,
+                true,
+                new datechooser.view.appearance.swing.LabelPainter()),
+            new datechooser.view.appearance.swing.SwingCellAppearance(new java.awt.Font("Tahoma", java.awt.Font.PLAIN, 11),
+                new java.awt.Color(0, 0, 0),
+                new java.awt.Color(255, 0, 0),
+                false,
+                false,
+                new datechooser.view.appearance.swing.ButtonPainter()),
+            (datechooser.view.BackRenderer)null,
+            false,
+            true)));
+dateChooserCombo_IniDevFech1.setCalendarBackground(new java.awt.Color(0, 51, 51));
+dateChooserCombo_IniDevFech1.setNothingAllowed(false);
+dateChooserCombo_IniDevFech1.setMaxDate(dateChooserCombo_FinVent.getSelectedDate());
+dateChooserCombo_IniDevFech1.setBehavior(datechooser.model.multiple.MultyModelBehavior.SELECT_SINGLE);
+jPanel_IngresosPorFecha.add(dateChooserCombo_IniDevFech1);
+dateChooserCombo_IniDevFech1.setBounds(70, 70, 155, 25);
+
+dateChooserCombo_FinDevFech1.setCurrentView(new datechooser.view.appearance.AppearancesList("Grey",
+    new datechooser.view.appearance.ViewAppearance("custom",
+        new datechooser.view.appearance.swing.SwingCellAppearance(new java.awt.Font("Tahoma", java.awt.Font.PLAIN, 11),
+            new java.awt.Color(0, 0, 0),
+            new java.awt.Color(0, 0, 255),
+            false,
+            true,
+            new datechooser.view.appearance.swing.ButtonPainter()),
+        new datechooser.view.appearance.swing.SwingCellAppearance(new java.awt.Font("Tahoma", java.awt.Font.PLAIN, 11),
+            new java.awt.Color(0, 0, 0),
+            new java.awt.Color(0, 0, 255),
+            true,
+            true,
+            new datechooser.view.appearance.swing.ButtonPainter()),
+        new datechooser.view.appearance.swing.SwingCellAppearance(new java.awt.Font("Tahoma", java.awt.Font.PLAIN, 11),
+            new java.awt.Color(0, 0, 255),
+            new java.awt.Color(0, 0, 255),
+            false,
+            true,
+            new datechooser.view.appearance.swing.ButtonPainter()),
+        new datechooser.view.appearance.swing.SwingCellAppearance(new java.awt.Font("Tahoma", java.awt.Font.PLAIN, 11),
+            new java.awt.Color(128, 128, 128),
+            new java.awt.Color(0, 0, 255),
+            false,
+            true,
+            new datechooser.view.appearance.swing.LabelPainter()),
+        new datechooser.view.appearance.swing.SwingCellAppearance(new java.awt.Font("Tahoma", java.awt.Font.PLAIN, 11),
+            new java.awt.Color(0, 0, 0),
+            new java.awt.Color(0, 0, 255),
+            false,
+            true,
+            new datechooser.view.appearance.swing.LabelPainter()),
+        new datechooser.view.appearance.swing.SwingCellAppearance(new java.awt.Font("Tahoma", java.awt.Font.PLAIN, 11),
+            new java.awt.Color(0, 0, 0),
+            new java.awt.Color(255, 0, 0),
+            false,
+            false,
+            new datechooser.view.appearance.swing.ButtonPainter()),
+        (datechooser.view.BackRenderer)null,
+        false,
+        true)));
+dateChooserCombo_FinDevFech1.setNothingAllowed(false);
+dateChooserCombo_FinDevFech1.setMinDate(dateChooserCombo_IniVent.getSelectedDate());
+dateChooserCombo_FinDevFech1.setBehavior(datechooser.model.multiple.MultyModelBehavior.SELECT_SINGLE);
+jPanel_IngresosPorFecha.add(dateChooserCombo_FinDevFech1);
+dateChooserCombo_FinDevFech1.setBounds(270, 70, 155, 27);
+
+setMaximumSize(new java.awt.Dimension(2147483647, 2147483647));
+setMinimumSize(new java.awt.Dimension(760, 400));
+setOpaque(false);
+setPreferredSize(new java.awt.Dimension(760, 400));
+setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+jLabel9.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+jLabel9.setText("Tipo de reporte:");
+add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 90, 20));
+
+jLabel14.setIcon(new javax.swing.ImageIcon(getClass().getResource("/System/Images/Buttons/listBtt.png"))); // NOI18N
+jLabel14.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+jLabel14.addMouseListener(new java.awt.event.MouseAdapter() {
+public void mouseClicked(java.awt.event.MouseEvent evt) {
+    jLabel14MouseClicked(evt);
+    }
+    });
+    add(jLabel14, new org.netbeans.lib.awtextra.AbsoluteConstraints(710, 360, -1, -1));
 
     jTable1.setModel(new javax.swing.table.DefaultTableModel(
         new Object [][] {
@@ -3068,7 +3235,8 @@ public void actionPerformed(java.awt.event.ActionEvent evt) {
             {"Productos por vendedor"},
             {"Devoluciones por fechas"},
             {"Devoluciones eliminadas"},
-            {"Devoluciones modificadas"}
+            {"Devoluciones modificadas"},
+            {"Ingreso por fechas"}
         },
         new String [] {
             "Reporte"
@@ -3083,19 +3251,10 @@ public void actionPerformed(java.awt.event.ActionEvent evt) {
         }
     });
     jTable1.setGridColor(new java.awt.Color(255, 255, 255));
-    jTable1.setRowHeight(24);
+    jTable1.setRowHeight(22);
     jScrollPane1.setViewportView(jTable1);
 
     add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 30, 760, 320));
-
-    jLabel14.setIcon(new javax.swing.ImageIcon(getClass().getResource("/System/Images/Buttons/listBtt.png"))); // NOI18N
-    jLabel14.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-    jLabel14.addMouseListener(new java.awt.event.MouseAdapter() {
-        public void mouseClicked(java.awt.event.MouseEvent evt) {
-            jLabel14MouseClicked(evt);
-        }
-    });
-    add(jLabel14, new org.netbeans.lib.awtextra.AbsoluteConstraints(710, 360, -1, -1));
     }// </editor-fold>//GEN-END:initComponents
 
     private void jDialog_ReportesFactWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_jDialog_ReportesFactWindowClosing
@@ -4010,6 +4169,10 @@ public void actionPerformed(java.awt.event.ActionEvent evt) {
         pDialog.setVisible(true);
     }
 
+    private void ingresosPorFechas(){
+        showPanelOnDialog(jPanel_IngresosPorFecha, jDialog_ReportesFact);
+    }
+    
     private void ventasPorVendedor() {
         /////////////////esta parte al correr tira una advertencia, si se comenta no//////////////////
         Direct_Control_BD mBD = Direct_Control_BD.getInstance();
@@ -4487,7 +4650,10 @@ public void actionPerformed(java.awt.event.ActionEvent evt) {
             ventasPorTerminos();
         } else if (selection == VENT_VENDEDOR) {
             ventasPorVendedor();
+        } else if (selection == INGR_FECHAS){
+            ingresosPorFechas();
         }
+        
     }//GEN-LAST:event_jLabel14MouseClicked
 
     private void jButton_buscarClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_buscarClienteActionPerformed
@@ -4534,14 +4700,26 @@ public void actionPerformed(java.awt.event.ActionEvent evt) {
         }
     }//GEN-LAST:event_jButton_AceptaVerVentasPorClienteActionPerformed
 
+    private void aceptarIngrFechaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_aceptarIngrFechaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_aceptarIngrFechaActionPerformed
+
+    private void cancelarIngrFechaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelarIngrFechaActionPerformed
+        jDialog_ReportesFact.setVisible(false);
+        jDialog_ReportesFact.remove(jPanel_IngresosPorFecha);
+    }//GEN-LAST:event_cancelarIngrFechaActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton aceptarIngrFecha;
     private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.ButtonGroup buttonGroup2;
     private javax.swing.ButtonGroup buttonGroup3;
     private javax.swing.ButtonGroup buttonGroup4;
+    private javax.swing.JButton cancelarIngrFecha;
     private datechooser.beans.DateChooserCombo dateChooserCombo_FinClie;
     private datechooser.beans.DateChooserCombo dateChooserCombo_FinDevFech;
+    private datechooser.beans.DateChooserCombo dateChooserCombo_FinDevFech1;
     private datechooser.beans.DateChooserCombo dateChooserCombo_FinEliminadasDev;
     private datechooser.beans.DateChooserCombo dateChooserCombo_FinEliminadasFact;
     private datechooser.beans.DateChooserCombo dateChooserCombo_FinMovimiento;
@@ -4554,6 +4732,7 @@ public void actionPerformed(java.awt.event.ActionEvent evt) {
     private datechooser.beans.DateChooserCombo dateChooserCombo_FinVent;
     private datechooser.beans.DateChooserCombo dateChooserCombo_IniClie;
     private datechooser.beans.DateChooserCombo dateChooserCombo_IniDevFech;
+    private datechooser.beans.DateChooserCombo dateChooserCombo_IniDevFech1;
     private datechooser.beans.DateChooserCombo dateChooserCombo_IniEliminadasDev;
     private datechooser.beans.DateChooserCombo dateChooserCombo_IniEliminadasFact;
     private datechooser.beans.DateChooserCombo dateChooserCombo_IniMovimiento;
@@ -4665,15 +4844,19 @@ public void actionPerformed(java.awt.event.ActionEvent evt) {
     private javax.swing.JLabel jLabel58;
     private javax.swing.JLabel jLabel59;
     private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel60;
     private javax.swing.JLabel jLabel61;
     private javax.swing.JLabel jLabel62;
     private javax.swing.JLabel jLabel63;
+    private javax.swing.JLabel jLabel64;
     private javax.swing.JLabel jLabel65;
     private javax.swing.JLabel jLabel66;
     private javax.swing.JLabel jLabel67;
+    private javax.swing.JLabel jLabel68;
     private javax.swing.JLabel jLabel69;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel70;
+    private javax.swing.JLabel jLabel71;
     private javax.swing.JLabel jLabel72;
     private javax.swing.JLabel jLabel73;
     private javax.swing.JLabel jLabel74;
@@ -4707,6 +4890,7 @@ public void actionPerformed(java.awt.event.ActionEvent evt) {
     private javax.swing.JLabel jLabel_hastaListaInv;
     private javax.swing.JLabel jLabel_hastaListaPrec;
     private javax.swing.JLabel jLabel_hastaListaValorInv;
+    private javax.swing.JPanel jPanel_IngresosPorFecha;
     private javax.swing.JPanel jPanel_Movimientos;
     private javax.swing.JPanel jPanel_MovimientosPorProducto;
     private javax.swing.JPanel jPanel_VentasPorCliente;

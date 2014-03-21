@@ -1,7 +1,6 @@
 SELECT SUM(F.`TotalTarjeta`)
 FROM Factura AS F
-WHERE SUBSTRING(F.Fecha,1,10) BETWEEN ? AND ? AND F.`Estado` = "A"
-GROUP BY F.idFactura;
+WHERE SUBSTRING(F.Fecha,1,10) BETWEEN ? AND ? AND F.`Estado` = "A";
 -- SELECT F.Fecha ,Per.`Nombre` AS Cliente,F.idFactura AS NumFact,
 -- SUM(PCF.`Cantidad`) AS TotalItem,F.Descuento,
 -- ((F.`TotalTarjeta`+F.`TotalContado`) / (1 - ((F.Descuento) / 100))) AS SubTotal,(F.`TotalTarjeta`+F.`TotalContado`) AS TotalFacturado

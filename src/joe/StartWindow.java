@@ -3,7 +3,6 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package joe;
 
 import ManejoDeArchivos.XMLConfiguracion;
@@ -40,7 +39,7 @@ public class StartWindow extends javax.swing.JFrame {
     private static StartWindow _instance = null;
     private static int _posX;
     private static int _posY;
-    
+
     private static final int LOGGED_IN = 0;
     private static final int LOGGED_OUT = 1;
     private static final int BKG_WIDTH = 600;
@@ -49,9 +48,7 @@ public class StartWindow extends javax.swing.JFrame {
     private static final int BLACK = 0;
     private boolean _logged;
     private boolean _otherWindow;
-    
-    
-    
+
     /**
      * Creates new form StartWindow
      */
@@ -59,37 +56,36 @@ public class StartWindow extends javax.swing.JFrame {
         _instance = this;
         _otherWindow = false;
         _logged = false;
-        
+
         initComponents();
-        
+
         //Esto hay que quitarlo:
         bkgImage.setText("");
         bkgImage.setIcon(new javax.swing.ImageIcon(getClass().getResource("/System/Images/url.jpg")));
-        
-        
+
         Toolkit tk = Toolkit.getDefaultToolkit();
         Dimension screenSize = tk.getScreenSize();
         this.setSize(screenSize);
         this.setLocation(0, 0);
         bkColor.setSize(screenSize);
-        _posX = this.getWidth()/2-jLayeredPane1.getWidth()/2;
-        _posY = this.getHeight()/2-jLayeredPane1.getHeight()/2;
-        jLayeredPane1.setLocation(_posX, _posY);       
-        
+        _posX = this.getWidth() / 2 - jLayeredPane1.getWidth() / 2;
+        _posY = this.getHeight() / 2 - jLayeredPane1.getHeight() / 2;
+        jLayeredPane1.setLocation(_posX, _posY);
+
         panActiveUsser.setLocation(600, 180);
         panConf.setVisible(false);
         panConf.setEnabled(false);
         activeLoginPanel(LOGGED_OUT);
-        
+
         sliderYN.setMaximum(BKG_HEIGHT);
         sliderYN.setMinimum(0);
-        
+
         loadImageConf();
         panConf.setLocation(0, 330);
     }
-    
-    private void loadImageConf(){
-        
+
+    private void loadImageConf() {
+
         String nombre = ManejoDeArchivos.XMLConfiguracion.getInstance().ObtenerSlogan();
         int posYT = Integer.valueOf(ManejoDeArchivos.XMLConfiguracion.getInstance().obtenerPosYNombreEmpresa());
         int sizeT = Integer.valueOf(ManejoDeArchivos.XMLConfiguracion.getInstance().obtenerTamanoNombreEmpresa());
@@ -97,24 +93,23 @@ public class StartWindow extends javax.swing.JFrame {
         txtNombreEmpresa.setText(nombre);
         sliderYN.setValue(posYT);
         jSpinner1.setValue(sizeT);
-        
+
         lbCompanyName.setText(nombre);
         changeFontSize(lbCompanyName, sizeT);
         lbCompanyName.setLocation(lbCompanyName.getX(), posYT);
-        
-        if (colorXML == BLACK){
+
+        if (colorXML == BLACK) {
             lbCompanyName.setForeground(Color.black);
         } else {
             lbCompanyName.setForeground(Color.white);
         }
-        
+
         String imagePath = ManejoDeArchivos.XMLConfiguracion.getInstance().obtenerRutaImagen();
         File file = new File(imagePath);
-        if (file.exists()){
+        if (file.exists()) {
             int posXI = Integer.valueOf(ManejoDeArchivos.XMLConfiguracion.getInstance().obtenerPosXImagen());
             int posYI = Integer.valueOf(ManejoDeArchivos.XMLConfiguracion.getInstance().obtenerPosYImagen());
             int sizeI = Integer.valueOf(ManejoDeArchivos.XMLConfiguracion.getInstance().obtenerTamanoImagen());
-
 
             txtImageDir.setText(imagePath);
 
@@ -126,16 +121,16 @@ public class StartWindow extends javax.swing.JFrame {
                 BufferedImage img = getBkImageAndSize(imagePath, sizeI);
                 bkgImage.setIcon(new ImageIcon(img));
                 bkgImage.setBounds(-posXI, -posYI, img.getWidth(), img.getHeight());
-                sliderXI.setMaximum(img.getWidth()-BKG_WIDTH);
-                sliderYI.setMaximum(img.getHeight()-BKG_HEIGHT);
+                sliderXI.setMaximum(img.getWidth() - BKG_WIDTH);
+                sliderYI.setMaximum(img.getHeight() - BKG_HEIGHT);
             } catch (IOException ex) {
                 Logger.getLogger(StartWindow.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
     }
-    
-    private void activeLoginPanel(int pPanel){
-        if (pPanel == LOGGED_IN){
+
+    private void activeLoginPanel(int pPanel) {
+        if (pPanel == LOGGED_IN) {
             panActiveUsser.setVisible(true);
             panActiveUsser.setEnabled(true);
             panLoggedoutUsser.setVisible(false);
@@ -147,24 +142,24 @@ public class StartWindow extends javax.swing.JFrame {
             panLoggedoutUsser.setEnabled(true);
         }
     }
-    
-    public static int getPosX(){
+
+    public static int getPosX() {
         return _posX;
     }
-    
-    public static int getPosY(){
+
+    public static int getPosY() {
         return _posY;
     }
-    
-    public void enableMe(){
+
+    public void enableMe() {
         this.setEnabled(true);
         _otherWindow = false;
     }
-    
-    public static StartWindow getInstance(){
+
+    public static StartWindow getInstance() {
         return _instance;
     }
-    
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -662,56 +657,58 @@ public class StartWindow extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-    
-    private boolean valUsser(boolean pNeedAdmin){
-        if (!_logged){
+
+    private boolean valUsser(boolean pNeedAdmin) {
+        if (!_logged) {
             JOptionPane.showMessageDialog(
-                    jLayeredPane1, 
-                    "Debes iniciar sesión antes de continuar", 
-                    "¡Atención!", 
+                    jLayeredPane1,
+                    "Debes iniciar sesión antes de continuar",
+                    "¡Atención!",
                     JOptionPane.WARNING_MESSAGE);
             return false;
-        } else if (pNeedAdmin && !isAdmin()){
+        } else if (pNeedAdmin && !isAdmin()) {
             JOptionPane.showMessageDialog(
-                    jLayeredPane1, 
-                    "Necesitas permisos de administrador para poder continuar", 
-                    "¡Error!", 
+                    jLayeredPane1,
+                    "Necesitas permisos de administrador para poder continuar",
+                    "¡Error!",
                     JOptionPane.WARNING_MESSAGE);
             return false;
         } else {
             return true;
         }
     }
-    
+
     /**
-     * 
-     * @return 
+     *
+     * @return
      */
-    private boolean isAdmin(){
+    private boolean isAdmin() {
         String usser = ManejoDeArchivos.XMLConfiguracion.getInstance().ObtenerUsuario();
         return db_managment.Direct_Control_BD.getInstance().obtenerTipoUsuario(usser).equalsIgnoreCase("Administrador");
     }
-    
+
     private void bttExitMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bttExitMouseClicked
-        
+
         this.dispose();
+        System.exit(1);
     }//GEN-LAST:event_bttExitMouseClicked
 
     private void bttFactMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bttFactMouseClicked
-        if (valUsser(false) && _otherWindow == false){
+        if (valUsser(false) && _otherWindow == false) {
             _otherWindow = true;
             DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
             Date date = new Date();
             String fecha = dateFormat.format(date);
             this.labFecha.setText(fecha);
-            Direct_Control_BD AdminBD=Direct_Control_BD.getInstance();
-            if(AdminBD.verSiExisteCierreTerminado(AdminBD.obtenerultimoidCierre())){
-            this.inicioCaja.setVisible(true);
-            inicioCaja.requestFocusInWindow();
-            jFormattedTextField_MontoInicioCaja.requestFocusInWindow();
-            return;}
+            Direct_Control_BD AdminBD = Direct_Control_BD.getInstance();
+            if (AdminBD.verSiExisteCierreTerminado(AdminBD.obtenerultimoidCierre())) {
+                this.inicioCaja.setVisible(true);
+                inicioCaja.requestFocusInWindow();
+                jFormattedTextField_MontoInicioCaja.requestFocusInWindow();
+                return;
+            }
             this.verFacturacion();
-            
+
         }
     }//GEN-LAST:event_bttFactMouseClicked
 
@@ -724,7 +721,7 @@ public class StartWindow extends javax.swing.JFrame {
     }//GEN-LAST:event_bttExitMouseExited
 
     private void bttInvMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bttInvMouseClicked
-        if (valUsser(true) && _otherWindow == false){
+        if (valUsser(true) && _otherWindow == false) {
             _otherWindow = true;
             new JF_Inventario().setVisible(true);
             this.setEnabled(false);
@@ -736,7 +733,7 @@ public class StartWindow extends javax.swing.JFrame {
     }//GEN-LAST:event_bttLoginMouseClicked
 
     private void bttRepMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bttRepMouseClicked
-        if (valUsser(true) && _otherWindow == false){
+        if (valUsser(true) && _otherWindow == false) {
             _otherWindow = true;
             new JF_Reportes().setVisible(true);
             this.setEnabled(false);
@@ -744,7 +741,7 @@ public class StartWindow extends javax.swing.JFrame {
     }//GEN-LAST:event_bttRepMouseClicked
 
     private void bttClientMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bttClientMouseClicked
-        if (valUsser(true) && _otherWindow == false){
+        if (valUsser(true) && _otherWindow == false) {
             _otherWindow = true;
             new JF_Usuario().setVisible(true);
             this.setEnabled(false);
@@ -762,10 +759,10 @@ public class StartWindow extends javax.swing.JFrame {
     private void bttLogoutMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bttLogoutMouseClicked
         ManejoDeArchivos.XMLConfiguracion.getInstance().establecerUsuario("");
         _logged = false;
-        
+
         panActiveUsser.setVisible(false);
         panActiveUsser.setEnabled(false);
-        
+
         panLoggedoutUsser.setEnabled(true);
         panLoggedoutUsser.setVisible(true);
     }//GEN-LAST:event_bttLogoutMouseClicked
@@ -775,7 +772,7 @@ public class StartWindow extends javax.swing.JFrame {
     }//GEN-LAST:event_formWindowClosing
 
     private void bttConfMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bttConfMouseClicked
-        if (valUsser(true) && _otherWindow == false){
+        if (valUsser(true) && _otherWindow == false) {
             _otherWindow = true;
             new JF_Conf().setVisible(true);
             this.setEnabled(false);
@@ -805,9 +802,9 @@ public class StartWindow extends javax.swing.JFrame {
             return;
         };
         if (!Character.isDigit(tecla) & !Character.isISOControl(
-            evt.getKeyChar())) {
-        Toolkit.getDefaultToolkit().beep();
-        evt.consume();
+                evt.getKeyChar())) {
+            Toolkit.getDefaultToolkit().beep();
+            evt.consume();
         }
     }//GEN-LAST:event_jFormattedTextField_MontoInicioCajaKeyTyped
 
@@ -823,13 +820,13 @@ public class StartWindow extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void fieldUsserKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_fieldUsserKeyPressed
-        if (evt.getKeyCode() == evt.VK_ENTER){
+        if (evt.getKeyCode() == evt.VK_ENTER) {
             fieldUsser.transferFocus();
         }
     }//GEN-LAST:event_fieldUsserKeyPressed
 
     private void fieldPasswordKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_fieldPasswordKeyPressed
-        if (evt.getKeyCode() == 10){
+        if (evt.getKeyCode() == 10) {
             login();
         }
     }//GEN-LAST:event_fieldPasswordKeyPressed
@@ -859,8 +856,8 @@ public class StartWindow extends javax.swing.JFrame {
         dialog.setFileFilter(Utils.getFileFilter());
         dialog.setAcceptAllFileFilterUsed(false);
         int op = dialog.showOpenDialog(this);
-        if (op == JFileChooser.APPROVE_OPTION){
-            if (dialog.getSelectedFile().exists() && Utils.isExtValid(dialog.getSelectedFile())){
+        if (op == JFileChooser.APPROVE_OPTION) {
+            if (dialog.getSelectedFile().exists() && Utils.isExtValid(dialog.getSelectedFile())) {
                 try {
                     ManejoDeArchivos.XMLConfiguracion.getInstance().establecerRutaImagen(dialog.getSelectedFile().getAbsolutePath());
                     txtImageDir.setText(dialog.getSelectedFile().getAbsolutePath());
@@ -875,11 +872,11 @@ public class StartWindow extends javax.swing.JFrame {
     }//GEN-LAST:event_bttSearchDirActionPerformed
 
     private void txtNombreEmpresaKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtNombreEmpresaKeyTyped
-        
+
     }//GEN-LAST:event_txtNombreEmpresaKeyTyped
 
     private void txtNombreEmpresaKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtNombreEmpresaKeyPressed
-        
+
     }//GEN-LAST:event_txtNombreEmpresaKeyPressed
 
     private void txtNombreEmpresaKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtNombreEmpresaKeyReleased
@@ -925,49 +922,49 @@ public class StartWindow extends javax.swing.JFrame {
     }//GEN-LAST:event_sliderYNStateChanged
 
     private void txtNombreEmpresaFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtNombreEmpresaFocusLost
-        
+
     }//GEN-LAST:event_txtNombreEmpresaFocusLost
 
-    private void changeFontSize(JLabel pLabel, int pValue){
+    private void changeFontSize(JLabel pLabel, int pValue) {
         String name = pLabel.getFont().getName();
         int style = pLabel.getFont().getStyle();
         pLabel.setFont(new Font(name, style, pValue));
     }
-    
-    private BufferedImage getBkImageAndSize(String pPath, int pPercent) throws IOException{
+
+    private BufferedImage getBkImageAndSize(String pPath, int pPercent) throws IOException {
         BufferedImage originalImage = ImageIO.read(new File(pPath));
-        int type = originalImage.getType() == 0? BufferedImage.TYPE_INT_ARGB : originalImage.getType();
-        
+        int type = originalImage.getType() == 0 ? BufferedImage.TYPE_INT_ARGB : originalImage.getType();
+
         int newWidth, newHeight;
-        if (originalImage.getWidth() >= originalImage.getHeight()){
-            newHeight = BKG_HEIGHT + BKG_HEIGHT*pPercent/100;
+        if (originalImage.getWidth() >= originalImage.getHeight()) {
+            newHeight = BKG_HEIGHT + BKG_HEIGHT * pPercent / 100;
             newWidth = originalImage.getWidth() + newHeight - originalImage.getHeight();
         } else {
-            newWidth = BKG_WIDTH + BKG_WIDTH*pPercent/100;
+            newWidth = BKG_WIDTH + BKG_WIDTH * pPercent / 100;
             newHeight = originalImage.getHeight() + newWidth - originalImage.getWidth();
         }
-        
+
         BufferedImage resizedImage = new BufferedImage(newWidth, newHeight, type);
-	Graphics2D g = resizedImage.createGraphics();
-	g.drawImage(originalImage, 0, 0, newWidth, newHeight, null);
-	g.dispose();	
-	g.setComposite(AlphaComposite.Src);
- 
-	g.setRenderingHint(RenderingHints.KEY_INTERPOLATION,
-	RenderingHints.VALUE_INTERPOLATION_BILINEAR);
-	g.setRenderingHint(RenderingHints.KEY_RENDERING,
-	RenderingHints.VALUE_RENDER_QUALITY);
-	g.setRenderingHint(RenderingHints.KEY_ANTIALIASING,
-	RenderingHints.VALUE_ANTIALIAS_ON);
- 
-	return resizedImage;
+        Graphics2D g = resizedImage.createGraphics();
+        g.drawImage(originalImage, 0, 0, newWidth, newHeight, null);
+        g.dispose();
+        g.setComposite(AlphaComposite.Src);
+
+        g.setRenderingHint(RenderingHints.KEY_INTERPOLATION,
+                RenderingHints.VALUE_INTERPOLATION_BILINEAR);
+        g.setRenderingHint(RenderingHints.KEY_RENDERING,
+                RenderingHints.VALUE_RENDER_QUALITY);
+        g.setRenderingHint(RenderingHints.KEY_ANTIALIASING,
+                RenderingHints.VALUE_ANTIALIAS_ON);
+
+        return resizedImage;
     }
-    
+
     private void verFacturacion() {
         new JF_Facturacion().setVisible(true);
         this.setEnabled(false);
     }
-    
+
     private void crearCierreCaja() {
         Direct_Control_BD AdminBD = Direct_Control_BD.getInstance();
         String fecha = this.labFecha.getText();
@@ -977,58 +974,58 @@ public class StartWindow extends javax.swing.JFrame {
         BigDecimal reporteInicio = new BigDecimal(montoInicio != null ? montoInicio.toString() : "0");
         AdminBD.insertarCierreDeCaja(fecha, Cajero, reporteInicio);
     }
-    
-    private void login(){
+
+    private void login() {
         String usser = fieldUsser.getText();
         String pass = new String(fieldPassword.getPassword());
-        
-        if (usser.isEmpty()){
+
+        if (usser.isEmpty()) {
             JOptionPane.showMessageDialog(
-                    jLayeredPane1, 
-                    "Por favor digite su usuario", 
-                    "¡Atención!", 
+                    jLayeredPane1,
+                    "Por favor digite su usuario",
+                    "¡Atención!",
                     JOptionPane.WARNING_MESSAGE);
-        } else if (pass.isEmpty()){
+        } else if (pass.isEmpty()) {
             JOptionPane.showMessageDialog(
-                    jLayeredPane1, 
-                    "Por favor digite su contraseña", 
-                    "¡Atención!", 
+                    jLayeredPane1,
+                    "Por favor digite su contraseña",
+                    "¡Atención!",
                     JOptionPane.WARNING_MESSAGE);
         } else {
-            
+
             Direct_Control_BD base = db_managment.Direct_Control_BD.getInstance();
             int authentique = base.verificarUsuario(usser, pass);
-            if (authentique == 0){
+            if (authentique == 0) {
                 JOptionPane.showMessageDialog(
-                    jLayeredPane1, 
-                    "No se ha podido ingresar. Por favor revise su usuario y contraseña", 
-                    "¡Error!", 
-                    JOptionPane.ERROR_MESSAGE);
-            } else{
+                        jLayeredPane1,
+                        "No se ha podido ingresar. Por favor revise su usuario y contraseña",
+                        "¡Error!",
+                        JOptionPane.ERROR_MESSAGE);
+            } else {
                 _logged = true;
                 JOptionPane.showMessageDialog(
-                    jLayeredPane1, 
-                    "Bienvenido "+usser, 
-                    "¡Hola!", 
-                    JOptionPane.INFORMATION_MESSAGE);
+                        jLayeredPane1,
+                        "Bienvenido " + usser,
+                        "¡Hola!",
+                        JOptionPane.INFORMATION_MESSAGE);
                 XMLConfiguracion xml = ManejoDeArchivos.XMLConfiguracion.getInstance();
                 xml.establecerUsuario(usser);
                 activeLoginPanel(LOGGED_IN);
                 labActiveName.setText(usser);
-                if (authentique == 1){
+                if (authentique == 1) {
                     // ES ADMIN
                 } else {
                     //ES VENDEDOR
                 }
-                
+
                 fieldUsser.setText("");
                 fieldPassword.setText("");
-                
+
             }
         }
-        
+
     }
-    
+
     /**
      * @param args the command line arguments
      */

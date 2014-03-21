@@ -2484,7 +2484,7 @@ public class Pan_NuevaFactura extends javax.swing.JPanel {
                             this.jFormattedTextField_desc.getText(),
                             this.jFormattedTextField_DescuentoTotal.getText(),
                             this.jFormattedTextField_Cliente.getText(),
-                            JF_Facturacion.getInstance().getSellerName());
+                            ManejoDeArchivos.XMLConfiguracion.getInstance().ObtenerUsuario());
                 
                 this.regresar();
                 return;
@@ -2499,7 +2499,7 @@ public class Pan_NuevaFactura extends javax.swing.JPanel {
                             this.jFormattedTextField_desc.getText(),
                             this.jFormattedTextField_DescuentoTotal.getText(),
                             this.jFormattedTextField_Cliente.getText(),
-                            JF_Facturacion.getInstance().getSellerName());
+                            ManejoDeArchivos.XMLConfiguracion.getInstance().ObtenerUsuario());
                 this.regresar();
                 return;
             }
@@ -3321,8 +3321,8 @@ public class Pan_NuevaFactura extends javax.swing.JPanel {
         int idCliente = AdminBD.veridCliente(Cliente);
         int idFactura = Integer.parseInt(this.jLabel_NumerodeFact.getText());
         
-        String seller = JF_Facturacion.getInstance().getSellerName();
-        int idVendedor = AdminBD.veridVendedor("admin");
+        String seller = ManejoDeArchivos.XMLConfiguracion.getInstance().ObtenerUsuario();
+        int idVendedor = AdminBD.veridVendedor(seller);
         String detalle = this.jTextField_Detalle.getText();
         String totalFacturaSinCorregir = this.jFormattedTextField_Total.getText();
         BigDecimal totalFact = this.corregirDato(totalFacturaSinCorregir);

@@ -38,7 +38,7 @@ public class Pan_RepFact extends javax.swing.JPanel {
     private static final int VENT_FECHAS = 0;
     private static final int VENT_CLIENTE = 2;
     private static final int VENT_PRODUCTO = 1;
-    private static final int VENT_TERMINOS = 5;
+    private static final int INGR_TAR_EFECT = 5;
     private static final int VENT_CLIENTE_PROD = 3;
     private static final int FACT_ELIMINADAS = 6;
     private static final int VENT_VENDEDOR = 4;
@@ -3205,7 +3205,7 @@ public void mouseClicked(java.awt.event.MouseEvent evt) {
             {"Ventas por cliente"},
             {"Ventas por cliente/producto"},
             {"Ventas por vendedor"},
-            {"Ventas por términos"},
+            {"Ingresos por tarjeta y efectivo"},
             {"Facturas eliminadas"},
             {"Facturas modificadas"},
             {"Productos por vendedor"},
@@ -4609,7 +4609,7 @@ public void mouseClicked(java.awt.event.MouseEvent evt) {
             ventasPorFecha();
         } else if (selection == VENT_PRODUCTO) {
             ventasPorProducto();
-        } else if (selection == VENT_TERMINOS) {
+        } else if (selection == INGR_TAR_EFECT) {
             ventasPorTerminos();
         } else if (selection == VENT_VENDEDOR) {
             ventasPorVendedor();

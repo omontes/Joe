@@ -89,32 +89,14 @@ public class StartWindow extends javax.swing.JFrame {
     }
     
     private void loadImageConf(){
-        String imagePath = ManejoDeArchivos.XMLConfiguracion.getInstance().obtenerRutaImagen();
-        String nombre = ManejoDeArchivos.XMLConfiguracion.getInstance().ObtenerSlogan();
-        int colorXML = Integer.valueOf(ManejoDeArchivos.XMLConfiguracion.getInstance().obtenerColorTextoNombreEmpresa());
-        int posXI = Integer.valueOf(ManejoDeArchivos.XMLConfiguracion.getInstance().obtenerPosXImagen());
-        int posYI = Integer.valueOf(ManejoDeArchivos.XMLConfiguracion.getInstance().obtenerPosYImagen());
-        int posYT = Integer.valueOf(ManejoDeArchivos.XMLConfiguracion.getInstance().obtenerPosYNombreEmpresa());
-        int sizeI = Integer.valueOf(ManejoDeArchivos.XMLConfiguracion.getInstance().obtenerTamanoImagen());
-        int sizeT = Integer.valueOf(ManejoDeArchivos.XMLConfiguracion.getInstance().obtenerTamanoNombreEmpresa());
         
-        txtImageDir.setText(imagePath);
+        String nombre = ManejoDeArchivos.XMLConfiguracion.getInstance().ObtenerSlogan();
+        int posYT = Integer.valueOf(ManejoDeArchivos.XMLConfiguracion.getInstance().obtenerPosYNombreEmpresa());
+        int sizeT = Integer.valueOf(ManejoDeArchivos.XMLConfiguracion.getInstance().obtenerTamanoNombreEmpresa());
+        int colorXML = Integer.valueOf(ManejoDeArchivos.XMLConfiguracion.getInstance().obtenerColorTextoNombreEmpresa());
         txtNombreEmpresa.setText(nombre);
-        sliderSize.setValue(sizeI);
-        sliderXI.setValue(posXI);
-        sliderYI.setValue(posYI);
         sliderYN.setValue(posYT);
         jSpinner1.setValue(sizeT);
-        
-        try {
-            BufferedImage img = getBkImageAndSize(imagePath, sizeI);
-            bkgImage.setIcon(new ImageIcon(img));
-            bkgImage.setBounds(-posXI, -posYI, img.getWidth(), img.getHeight());
-            sliderXI.setMaximum(img.getWidth()-BKG_WIDTH);
-            sliderYI.setMaximum(img.getHeight()-BKG_HEIGHT);
-        } catch (IOException ex) {
-            Logger.getLogger(StartWindow.class.getName()).log(Level.SEVERE, null, ex);
-        }
         
         lbCompanyName.setText(nombre);
         changeFontSize(lbCompanyName, sizeT);
@@ -126,6 +108,30 @@ public class StartWindow extends javax.swing.JFrame {
             lbCompanyName.setForeground(Color.white);
         }
         
+        String imagePath = ManejoDeArchivos.XMLConfiguracion.getInstance().obtenerRutaImagen();
+        File file = new File(imagePath);
+        if (file.exists()){
+            int posXI = Integer.valueOf(ManejoDeArchivos.XMLConfiguracion.getInstance().obtenerPosXImagen());
+            int posYI = Integer.valueOf(ManejoDeArchivos.XMLConfiguracion.getInstance().obtenerPosYImagen());
+            int sizeI = Integer.valueOf(ManejoDeArchivos.XMLConfiguracion.getInstance().obtenerTamanoImagen());
+
+
+            txtImageDir.setText(imagePath);
+
+            sliderSize.setValue(sizeI);
+            sliderXI.setValue(posXI);
+            sliderYI.setValue(posYI);
+
+            try {
+                BufferedImage img = getBkImageAndSize(imagePath, sizeI);
+                bkgImage.setIcon(new ImageIcon(img));
+                bkgImage.setBounds(-posXI, -posYI, img.getWidth(), img.getHeight());
+                sliderXI.setMaximum(img.getWidth()-BKG_WIDTH);
+                sliderYI.setMaximum(img.getHeight()-BKG_HEIGHT);
+            } catch (IOException ex) {
+                Logger.getLogger(StartWindow.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
     }
     
     private void activeLoginPanel(int pPanel){
@@ -220,6 +226,7 @@ public class StartWindow extends javax.swing.JFrame {
         bkgImage = new javax.swing.JLabel();
         bkColor = new javax.swing.JLabel();
 
+        inicioCaja.setAlwaysOnTop(true);
         inicioCaja.setUndecorated(true);
         inicioCaja.setResizable(false);
         inicioCaja.getContentPane().setLayout(null);
@@ -489,7 +496,7 @@ public class StartWindow extends javax.swing.JFrame {
         bkConfPan.setBounds(0, 9, 800, 161);
 
         jLayeredPane1.add(panConf);
-        panConf.setBounds(0, 300, 800, 170);
+        panConf.setBounds(0, 100, 800, 170);
         jLayeredPane1.setLayer(panConf, javax.swing.JLayeredPane.PALETTE_LAYER);
 
         panActiveUsser.setBackground(new java.awt.Color(236, 233, 233));
@@ -700,6 +707,8 @@ public class StartWindow extends javax.swing.JFrame {
             Direct_Control_BD AdminBD=Direct_Control_BD.getInstance();
             if(AdminBD.verSiExisteCierreTerminado(AdminBD.obtenerultimoidCierre())){
             this.inicioCaja.setVisible(true);
+            inicioCaja.requestFocusInWindow();
+            jFormattedTextField_MontoInicioCaja.requestFocusInWindow();
             return;}
             this.verFacturacion();
             

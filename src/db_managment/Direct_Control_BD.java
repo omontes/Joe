@@ -113,6 +113,9 @@ public class Direct_Control_BD {
             stm.setString(1, NombreCliente);
             stm.setString(2, FechaIni);
             stm.setString(3, FechaFin);
+            stm.setString(4, FechaIni);
+            stm.setString(5, FechaFin);
+            stm.setString(6, NombreCliente);
             ResultSet resultset = stm.executeQuery();
             setColumnNames(Get_Columnas(resultset));
             setData2(ResultSet_Array(resultset));
@@ -1997,9 +2000,9 @@ public class Direct_Control_BD {
                     = conection.prepareStatement(cosultarFacturasPorTermino);
             stm.setString(1, FechaIni);
             stm.setString(2, FechaFin);
-            
+
             ResultSet rs = stm.executeQuery();
-            
+
             while (rs.next()) {
                 return rs.getInt(1);
             }
@@ -2012,8 +2015,10 @@ public class Direct_Control_BD {
         }
         return 0;
     }
+
     /**
      * Retorna el ingreso por termino efectivo por fecha
+     *
      * @param FechaIni
      * @param FechaFin
      */
@@ -2025,9 +2030,9 @@ public class Direct_Control_BD {
                     = conection.prepareStatement(cosultarFacturasPorTermino);
             stm.setString(1, FechaIni);
             stm.setString(2, FechaFin);
-            
+
             ResultSet rs = stm.executeQuery();
-            
+
             while (rs.next()) {
                 return rs.getInt(1);
             }
@@ -2212,6 +2217,8 @@ public class Direct_Control_BD {
             PreparedStatement stm = this.conection.prepareStatement(Fact);
             stm.setString(1, FechaIni);
             stm.setString(2, FechaFin);
+            stm.setString(3, FechaIni);
+            stm.setString(4, FechaFin);
             ResultSet rs = stm.executeQuery();
             setColumnNames(Get_Columnas(rs));
             setData2(ResultSet_Array(rs));
@@ -3898,15 +3905,16 @@ public class Direct_Control_BD {
         result[1] = ingresoTotalPorCanceladaRangoFecha(FechaIni, FechaFin);
         result[2] = ingresoTotalPorApartadoRangoFecha(FechaIni, FechaFin);
         result[3] = ingresoTotalPorCreditoRangoFecha(FechaIni, FechaFin);
-        
+
         return result;
     }
 
     /**
      * Retorna el monto total por concepto de devoluciones en unrango de fecha
+     *
      * @param FechaIni
      * @param FechaFin
-     * @return 
+     * @return
      */
     public int egresoTotalPorDevolucionesRangoFecha(String FechaIni, String FechaFin) {
         try {
@@ -3929,7 +3937,7 @@ public class Direct_Control_BD {
     }
 
     private int ingresoTotalPorApartadoRangoFecha(String FechaIni, String FechaFin) {
-         try {
+        try {
 
             String valor = this.readSql("../Joe/"
                     + "src/sql_files/ingresoPorApartado.sql");
@@ -3945,10 +3953,11 @@ public class Direct_Control_BD {
         } catch (Exception e) {
             System.out.println("Error al ingreso por apartado");
         }
-        return 0;}
+        return 0;
+    }
 
     private int ingresoTotalPorCreditoRangoFecha(String FechaIni, String FechaFin) {
-         try {
+        try {
 
             String valor = this.readSql("../Joe/"
                     + "src/sql_files/ingresoPorCredito.sql");
@@ -3964,10 +3973,11 @@ public class Direct_Control_BD {
         } catch (Exception e) {
             System.out.println("Error al ingreso por credito");
         }
-        return 0; }
+        return 0;
+    }
 
     private int ingresoTotalPorCanceladaRangoFecha(String FechaIni, String FechaFin) {
-     try {
+        try {
 
             String valor = this.readSql("../Joe/"
                     + "src/sql_files/ingresoPorContado.sql");

@@ -3346,74 +3346,6 @@ public void mouseClicked(java.awt.event.MouseEvent evt) {
         }
     }//GEN-LAST:event_jComboBox_SeleccionarCategoriaKeyTyped
 
-    private void jButton_AceptaVerVentasPorVendedorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_AceptaVerVentasPorVendedorActionPerformed
-        String concepto = "";
-
-        Direct_Control_BD AdminBD = Direct_Control_BD.getInstance();
-        if (jRadioButton_CanceladoVend.isSelected()) {
-            concepto = "Canceladas";
-            //Consulta de Fact Por Vendedor, termino cancelado
-            AdminBD.ventasPorVendedorCancelada(dateF.format(
-                    dateChooserCombo_IniVendedor.getSelectedDate().
-                    getTime()),
-                    dateF.format(dateChooserCombo_FinVendedor.
-                            getSelectedDate().getTime()),
-                    jComboBox_SeleccionarVendedor.getSelectedItem().
-                    toString());
-        } else if (jRadioButton_CreditoVend.isSelected()) {
-            concepto = "Credito";
-            //Consulta de Fact Por Vendedor, termino credito
-            AdminBD.ventasPorVendedorAparatadoOCredito(dateF.format(
-                    dateChooserCombo_IniVendedor.getSelectedDate().
-                    getTime()),
-                    dateF.format(dateChooserCombo_FinVendedor.
-                            getSelectedDate().getTime()),
-                    jComboBox_SeleccionarVendedor.getSelectedItem().
-                    toString(), concepto);
-        } else if (jRadioButton_ApartadoVend.isSelected()) {
-            concepto = "Apartado";
-            //Consulta de Fact Por Vendedor, termino apartado
-            AdminBD.ventasPorVendedorAparatadoOCredito(dateF.format(
-                    dateChooserCombo_IniVendedor.getSelectedDate()
-                    .getTime()), dateF.format(dateChooserCombo_FinVendedor.
-                            getSelectedDate().getTime()),
-                    jComboBox_SeleccionarVendedor.getSelectedItem()
-                    .toString(), concepto);
-        }
-
-        Date date = new Date();//hora Actual
-        String fechaAct = dateFormat.format(date);
-
-        EscribirExcel archivoExcel = new EscribirExcel();
-        archivoExcel.setNombreArchivoExcel("VentasPorVendedor"
-                + fechaAct + ".xls");//Nombre del excel "Fisico"
-        try {
-            //escribir excel
-            archivoExcel.escribir(infoEmpresa, AdminBD.getInfoFact(),
-                    AdminBD.getNombresColumnas(),
-                    dateF1.format(dateChooserCombo_IniVendedor.
-                            getSelectedDate().getTime()),
-                    dateF1.format(dateChooserCombo_FinVendedor.
-                            getSelectedDate().getTime()),
-                    "Ventas Por Vendedor: " + jComboBox_SeleccionarVendedor.
-                    getSelectedItem().toString() + " Por Concepto de : "
-                    + concepto, "Excel");
-        } catch (IOException | WriteException ex) {
-            Logger.getLogger(Pan_RepFact.class.getName()).
-                    log(Level.SEVERE, null, ex);
-        }
-
-    }//GEN-LAST:event_jButton_AceptaVerVentasPorVendedorActionPerformed
-
-    private void jButton_CancelarVerFactVendedorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_CancelarVerFactVendedorActionPerformed
-        jDialog_ReportesFact.remove(jPanel_VentasPorVendedor);
-        jDialog_ReportesFact.setVisible(false);
-    }//GEN-LAST:event_jButton_CancelarVerFactVendedorActionPerformed
-
-    private void jComboBox_SeleccionarVendedorKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jComboBox_SeleccionarVendedorKeyTyped
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jComboBox_SeleccionarVendedorKeyTyped
-
     private void jButton_CancelarVerFactPorTerminoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_CancelarVerFactPorTerminoActionPerformed
         jDialog_ReportesFact.remove(jPanel_VerIngresosPorTarjetaYEfectivo);
         jDialog_ReportesFact.setVisible(false);
@@ -4696,6 +4628,73 @@ public void mouseClicked(java.awt.event.MouseEvent evt) {
         jDialog_ReportesFact.setVisible(false);
         jDialog_ReportesFact.remove(jPanel_IngresosPorFecha);
     }//GEN-LAST:event_cancelarIngrFechaActionPerformed
+
+    private void jComboBox_SeleccionarVendedorKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jComboBox_SeleccionarVendedorKeyTyped
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jComboBox_SeleccionarVendedorKeyTyped
+
+    private void jButton_CancelarVerFactVendedorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_CancelarVerFactVendedorActionPerformed
+        jDialog_ReportesFact.remove(jPanel_VentasPorVendedor);
+        jDialog_ReportesFact.setVisible(false);
+    }//GEN-LAST:event_jButton_CancelarVerFactVendedorActionPerformed
+
+    private void jButton_AceptaVerVentasPorVendedorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_AceptaVerVentasPorVendedorActionPerformed
+        String concepto = "";
+
+        Direct_Control_BD AdminBD = Direct_Control_BD.getInstance();
+        if (jRadioButton_CanceladoVend.isSelected()) {
+            concepto = "Canceladas";
+            //Consulta de Fact Por Vendedor, termino cancelado
+            AdminBD.ventasPorVendedorCancelada(dateF.format(
+                dateChooserCombo_IniVendedor.getSelectedDate().
+                getTime()),
+            dateF.format(dateChooserCombo_FinVendedor.
+                getSelectedDate().getTime()),
+            jComboBox_SeleccionarVendedor.getSelectedItem().
+            toString());
+        } else if (jRadioButton_CreditoVend.isSelected()) {
+            concepto = "Credito";
+            //Consulta de Fact Por Vendedor, termino credito
+            AdminBD.ventasPorVendedorAparatadoOCredito(dateF.format(
+                dateChooserCombo_IniVendedor.getSelectedDate().
+                getTime()),
+            dateF.format(dateChooserCombo_FinVendedor.
+                getSelectedDate().getTime()),
+            jComboBox_SeleccionarVendedor.getSelectedItem().
+            toString(), concepto);
+        } else if (jRadioButton_ApartadoVend.isSelected()) {
+            concepto = "Apartado";
+            //Consulta de Fact Por Vendedor, termino apartado
+            AdminBD.ventasPorVendedorAparatadoOCredito(dateF.format(
+                dateChooserCombo_IniVendedor.getSelectedDate()
+                .getTime()), dateF.format(dateChooserCombo_FinVendedor.
+                getSelectedDate().getTime()),
+            jComboBox_SeleccionarVendedor.getSelectedItem()
+            .toString(), concepto);
+        }
+
+        Date date = new Date();//hora Actual
+        String fechaAct = dateFormat.format(date);
+
+        EscribirExcel archivoExcel = new EscribirExcel();
+        archivoExcel.setNombreArchivoExcel("VentasPorVendedor"
+            + fechaAct + ".xls");//Nombre del excel "Fisico"
+        try {
+            //escribir excel
+            archivoExcel.escribir(infoEmpresa, AdminBD.getInfoFact(),
+                AdminBD.getNombresColumnas(),
+                dateF1.format(dateChooserCombo_IniVendedor.
+                    getSelectedDate().getTime()),
+                dateF1.format(dateChooserCombo_FinVendedor.
+                    getSelectedDate().getTime()),
+                "Ventas Por Vendedor: " + jComboBox_SeleccionarVendedor.
+                getSelectedItem().toString() + " Por Concepto de : "
+                + concepto, "Excel");
+        } catch (IOException | WriteException ex) {
+            Logger.getLogger(Pan_RepFact.class.getName()).
+            log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_jButton_AceptaVerVentasPorVendedorActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

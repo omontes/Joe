@@ -9,6 +9,7 @@ import java.io.File;
 import java.io.IOException;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.Locale;
 import jxl.Workbook;
@@ -376,9 +377,14 @@ public class EscribirExcel {
             // En caso de Ventas Por Producto o por categoria de Producto
             hojaExc.addCell(new Label(0, ultimaFila + 1,
                     "       Total Facturas:", timesLines));
-            hojaExc.addCell(new jxl.write.Formula(1,
-                    ultimaFila + 1, //total de fact
-                    "COUNT(B11:B" + ultimaFila + ")", timesLines));
+
+//            hojaExc.addCell(new jxl.write.Formula(1,
+//                    ultimaFila + 1, //total de fact
+//                    "COUNT(B11:B" + ultimaFila + ")", timesLines)); 
+            hojaExc.addCell(new Number(1, ultimaFila + 1,
+                    contarFacturasDiferentes(
+                            ultimaFila, hojaExc), timesLines));
+//           
             hojaExc.addCell(new jxl.write.Formula(5, ultimaFila + 1,
                     "SUM(F11:F" + ultimaFila + ")", timesLines));
 
@@ -429,6 +435,22 @@ public class EscribirExcel {
         }
 
         return resultado;
+    }
+
+    public int contarFacturasDiferentes(int ultimaFila, WritableSheet hojaExc) {
+        int result = 0;
+        ArrayList<Integer> NumFact = new ArrayList<Integer>();
+        for (int i = 10; i < ultimaFila; i++) {
+            if (NumFact.indexOf(Integer.parseInt(hojaExc.
+                    getColumn(1)[i].getContents().toString())) == -1) {
+                NumFact.add(Integer.parseInt(hojaExc.
+                        getColumn(1)[i].getContents().toString()));
+                result++;
+            }
+
+        }
+
+        return result;
     }
 
     /**

@@ -1,5 +1,5 @@
 SELECT P.`idProducto` AS CodProduct,P.`Nombre` AS Producto,
-SUM(PCF.`Cantidad`) AS Unidades,SUM(PCF.`PrecioVenta`) AS TotalFact
+SUM(PCF.`Cantidad`) AS Unidades,(PCF.`PrecioVenta`*PCF.`Cantidad`) AS TotalFact
 FROM Persona AS V, Producto AS P,Productocantidadfact AS PCF,Factura AS F
 WHERE V.`Nombre`=? AND F.`idFactura` = PCF.`idFactura` 
 AND F.`Estado`="A" AND F.`idVendedor`=V.`idPersona` 

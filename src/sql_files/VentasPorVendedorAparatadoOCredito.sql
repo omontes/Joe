@@ -1,5 +1,5 @@
 SELECT F.Fecha,F.`idFactura` AS NumFactura, F.Nota AS Descripcion ,
-SUM(PCF.`Cantidad`) AS TotalItem,FP.Saldo, (F.`TotalTarjeta`+F.`TotalContado`) 
+SUM(PCF.`Cantidad`) AS TotalItem,FP.Saldo, (F.`TotalTarjeta`+F.`TotalContado`+ FP.`Saldo`) 
 AS TotalFacturado 
 FROM factura AS F, productocantidadfact AS PCF, persona AS V, 
 Facturaspendientes AS FP

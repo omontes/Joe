@@ -71,6 +71,11 @@ public class Pan_NuevaFactura extends javax.swing.JPanel {
         initComponents();
         setTittle();
     }
+    
+    public void refreshFocus(){
+        jTable_Factura.requestFocusInWindow();
+
+    }
 
     private void setTittle(){
         if (_callType == FACTURACION_CALL || _callType == MOD_FACT_CALL){

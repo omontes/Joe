@@ -144,7 +144,6 @@ public class SellerReg extends javax.swing.JFrame {
         this.toFront();
         requestFocus();
         requestFocusInWindow();
-        sellerCode.requestFocus();
         sellerCode.requestFocusInWindow();
     }
     

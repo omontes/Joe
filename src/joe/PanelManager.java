@@ -61,6 +61,9 @@ public class PanelManager {
     public void setEnableTop(boolean pEnable){
         _stack.getTop().getPanel().setVisible(pEnable);
         _stack.getTop().getPanel().setEnabled(pEnable);
+        _stack.getTop().getPanel().requestFocus();
+        _stack.getTop().getPanel().requestFocusInWindow();
+        ((Pan_NuevaFactura)_stack.getTop().getPanel()).refreshFocus();
     }
     
     public Object back(){

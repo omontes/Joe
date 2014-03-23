@@ -1,2 +1,2 @@
-SELECT idCategoria AS Codigo, Descripcion AS Categoria
+SELECT Descripcion AS Categoria
 FROM Categoria;

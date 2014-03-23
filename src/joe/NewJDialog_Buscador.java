@@ -120,11 +120,11 @@ public class NewJDialog_Buscador extends javax.swing.JDialog {
     private void jButton_AceptarBusquedaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_AceptarBusquedaActionPerformed
 
         try {
+            setCatgeria(jTable_Generica.getValueAt(this.jTable_Generica.getSelectedRow(), 0).toString());
             setIdProducto(jTable_Generica.getValueAt(this.jTable_Generica.getSelectedRow(), 0).toString());
             setNombreProducto(jTable_Generica.getValueAt(this.jTable_Generica.getSelectedRow(), 1).toString());
             setCliente(jTable_Generica.getValueAt(this.jTable_Generica.getSelectedRow(), 0).toString());
             setIdFactura(jTable_Generica.getValueAt(this.jTable_Generica.getSelectedRow(), 1).toString());
-            setCatgeria(jTable_Generica.getValueAt(this.jTable_Generica.getSelectedRow(), 1).toString());
             setPrecioProducto(jTable_Generica.getValueAt(this.jTable_Generica.getSelectedRow(), 3).toString());
         } catch (Exception e) {
         }
@@ -305,7 +305,7 @@ public class NewJDialog_Buscador extends javax.swing.JDialog {
         this.jTable_Generica.setRowSorter(ordenador);
         Vector<RowSorter.SortKey> qq = new Vector<RowSorter.SortKey>();
         qq.add(new RowSorter.SortKey(0, SortOrder.ASCENDING));
-        ordenador.setSortKeys(qq);
+//        ordenador.setSortKeys(qq);// con esta linea se cae en buscar categoria en reporte lista de precios por categoria
         jTable_Generica.requestFocus();
         jTable_Generica.changeSelection(0, 0, false, false);
         /**

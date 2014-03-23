@@ -2258,6 +2258,7 @@ public class Direct_Control_BD {
                     + "/src/sql_files/ObtenerFacturasModificadas.sql");
             PreparedStatement stm = this.conection.prepareStatement(Facturas);
             stm.setString(1, idFactura);
+            stm.setString(2, idFactura);
             ResultSet rs = stm.executeQuery();
             setColumnNames(Get_Columnas(rs));
             setData2(ResultSet_Array(rs));

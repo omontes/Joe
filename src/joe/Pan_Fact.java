@@ -368,6 +368,8 @@ public class Pan_Fact extends javax.swing.JPanel {
             panelModFact.cargarInfoFact();
             panelModFact.cargarProductosFact((MyTableModel_FACT) panelModFact.jTable_Factura.getModel());
             panelModFact.agregarListenerRenders();
+            
+            JF_Facturacion.getInstance().showSellerDialog();
 
         } else {
             JOptionPane.showMessageDialog(

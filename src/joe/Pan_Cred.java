@@ -1239,6 +1239,8 @@ public class Pan_Cred extends javax.swing.JPanel {
             panelModCredt.cargarInfoFact();
             panelModCredt.cargarProductosFact((MyTableModel_FACT) panelModCredt.jTable_Factura.getModel());
             panelModCredt.agregarListenerRenders();
+            
+            JF_Facturacion.getInstance().showSellerDialog();
 
         } else {
             JOptionPane.showMessageDialog(

@@ -1388,6 +1388,8 @@ public class Pan_Apart extends javax.swing.JPanel {
             panelModApart.cargarInfoFact();
             panelModApart.cargarProductosFact((MyTableModel_FACT) panelModApart.jTable_Factura.getModel());
             panelModApart.agregarListenerRenders();
+            
+            JF_Facturacion.getInstance().showSellerDialog();
 
         } else {
             JOptionPane.showMessageDialog(

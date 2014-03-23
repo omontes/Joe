@@ -966,13 +966,14 @@ public class Pan_CrearEntradaSalida extends javax.swing.JPanel {
             BigDecimal precio_Producto = this.StringtoBigDecimal(
                     this.jFormattedTextField_precioProducto.
                     getText());
+            BigDecimal cantidadBD= this.StringtoBigDecimal(this.jFormattedTextField_cantidadProducto.getText());
             int cantidad=Integer.parseInt(this.jFormattedTextField_cantidadProducto.getText());
             AdminBD.crearProducto(codigo, this.jTextField_nombre.getText(),
                     precio_Producto, BigDecimal.ZERO, dateFormat.format(date), "A", null, 1);
             
             
             
-            this.crearMovimiento("Creacion Producto",precio_Producto,1);
+            this.crearMovimiento("Creacion Producto",precio_Producto.multiply(cantidadBD),1);
             int idVersion= AdminBD.veridVersionActivaProductoPorCodigo(codigo);
             this.guardaProductoEnMovimiento(codigo, idVersion, cantidad, precio_Producto);
             

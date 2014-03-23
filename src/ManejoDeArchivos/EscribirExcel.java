@@ -34,7 +34,7 @@ public class EscribirExcel {
 
     public WritableWorkbook workbook;
     File ArchivoExcel;
-
+    DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd-HH-mm-ss-SSS0");
     private WritableCellFormat timesReport;
     private WritableCellFormat times10; // formato de la celda
     private WritableCellFormat times14; // formato de la celda
@@ -344,17 +344,19 @@ public class EscribirExcel {
 
             hojaExc.addCell(new Number(2, ultimaFila + 9,
                     sumarColumnas(9, ultimaFila, hojaExc), times10));
-            hojaExc.addCell(new Label(1, ultimaFila + 9, "Cantida Salida:",
+            hojaExc.addCell(new Label(1, ultimaFila + 9, "Cantidad Salida:",
                     times10));
 
             hojaExc.addCell(new Number(2, ultimaFila + 11,
                     sumarColumnas(8, ultimaFila, hojaExc)
                     + sumarColumnas(9, ultimaFila, hojaExc), times10));
-            hojaExc.addCell(new Label(1, ultimaFila + 11, "Cantida Total:",
+            hojaExc.addCell(new Label(1, ultimaFila + 11, "Cantidad Total:",
                     times10));
 
             hojaExc.addCell(new Number(5, ultimaFila + 7,
                     sumarColumnas(6, ultimaFila, hojaExc), times10));
+//            hojaExc.addCell(new Number(5, ultimaFila + 7,
+//                    sumarColumnas(6, ultimaFila, hojaExc), times10));
             hojaExc.addCell(new Label(4, ultimaFila + 7, "Valor de Entrada:",
                     times10));
 
@@ -729,4 +731,151 @@ public class EscribirExcel {
         }
 //    
     }
+
+    ////////////*****************************/////////////////////////
+    ///Esta parte es exclusivo para la tienda valeska/////////////////
+    /**
+     * Permite escribir la Proforma
+     *
+     * @param datos
+     */
+//    public void escribirProforma(String[] infoEmpresa, Object[][] datos)
+//            throws IOException, WriteException {
+//        Date date = new Date();//hora Actual
+//        String fechaAct = dateFormat.format(date);
+//        setNombreArchivoExcel("PROFORMA "
+//                + fechaAct + ".xls");//Nombre del excel "Fisico"
+//        //crear un nuevo excel un el nombreArchivoExcel
+//        File ArchivoExcel = new File(nombreArchivoExcel);
+//        //configuracion de el libro de trabajo
+//        WorkbookSettings wbSettings = new WorkbookSettings();
+//
+//        wbSettings.setLocale(new Locale("en", "EN"));//Configu default para 
+//        //generar la hoja de cálculo
+//
+//        //Crea un libro, con su nombre de Archivo y la respectiva configuracion
+//        WritableWorkbook workbook = Workbook.createWorkbook(ArchivoExcel,
+//                wbSettings);
+//        workbook.createSheet("Pag 1", 0);//***crear una hoja***
+//        WritableSheet hojaExcel = workbook.getSheet(0);//obtiene la hoja 0
+//
+//        ///tipos de letra
+//        WritableFont times10pt = new WritableFont(WritableFont.TIMES, 10);
+//        // times10pt.setItalic(true);//tipo de letra italic
+//        WritableFont times14pt = new WritableFont(WritableFont.TIMES, 14);
+//        WritableFont times12pt = new WritableFont(WritableFont.TIMES, 12);
+//        WritableFont times11pt = new WritableFont(WritableFont.TIMES, 11);
+//        times14pt.setColour(Colour.BLUE_GREY);
+//        workbook.setColourRGB(Colour.VIOLET, 54, 96, 146);//crear color RGB
+//        times11pt.setColour(Colour.VIOLET);
+//
+//        // formato para escribir linea separadora
+//        WritableFont timesLinespt = new WritableFont(WritableFont.TIMES, 14);
+//        timesLines = new WritableCellFormat(timesLinespt);
+//        timesLines.setBorder(Border.TOP, BorderLineStyle.SLANTED_DASH_DOT,
+//                Colour.BLUE_GREY);
+//        timesLines.setAlignment(Alignment.CENTRE);
+//
+//        //asignar el tipo de letra times12pt al formato times12
+//        times12 = new WritableCellFormat(times12pt);
+//        //asignar el tipo de letra times10pt al formato times10
+//        times10 = new WritableCellFormat(times10pt);
+//        //asignar el tipo de letra times14pt al formato times14
+//        times14 = new WritableCellFormat(times14pt);
+//        //asignar el tipo de letra times11pt al formato times11
+//        times11 = new WritableCellFormat(times11pt);
+//
+//        workbook.setColourRGB(Colour.VIOLET2, 197, 217, 241);
+//        times11.setBackground(Colour.VIOLET2);
+//        timesReport = new WritableCellFormat(times11pt);
+//
+//        //escribir datos de la empresa
+//        hojaExcel.addCell(new Label(0, 0, infoEmpresa[0], times14));
+//        for (int i = 1; i <= 4; i++) {//set info de la empresa
+//            hojaExcel.addCell(new Label(0, i, infoEmpresa[i], times10));
+//        }
+//        hojaExcel.mergeCells(0, 8, 1, 8);
+//        hojaExcel.mergeCells(2, 12, 3, 12);
+//        hojaExcel.mergeCells(2, 8, 3, 8);
+//        hojaExcel.mergeCells(2, 9, 3, 9);
+//        hojaExcel.mergeCells(0, 13, 3, 13);
+//        hojaExcel.mergeCells(0, 14, 1, 14);
+//        hojaExcel.mergeCells(2, 14, 3, 14);
+//        hojaExcel.mergeCells(0, 10, 1, 10);
+//        hojaExcel.mergeCells(2, 11, 3, 11);
+//        hojaExcel.mergeCells(2, 10, 3, 10);
+//        hojaExcel.mergeCells(0, 11, 1, 11);
+//        hojaExcel.mergeCells(0, 12, 1, 12);
+//        hojaExcel.mergeCells(0, 15, 3, 15);
+//        hojaExcel.mergeCells(0, 16, 3, 16);
+//        hojaExcel.mergeCells(0, 6, 3, 6);
+//        hojaExcel.mergeCells(0, 7, 3, 7);
+//        hojaExcel.mergeCells(0, 9, 1, 9);
+//
+//        hojaExcel.setColumnView(0, 25);
+//
+//        hojaExcel.addCell(new Label(0, 6,
+//                "      Ingresos " + "desde el " + fechaIni + " hasta el " + fechaFin,
+//                times11));
+//
+//        hojaExcel.addCell(new Label(0, 8, "      Concepto de Factura", times11));
+//        hojaExcel.addCell(new Label(2, 8, "             Monto", times11));
+//
+//        if (tipo == 1) {
+//            hojaExcel.addCell(new Label(0, 9, "                Cancelada", times10));
+//
+//            hojaExcel.addCell(new Number(2, 9, ingresos[1], times10));
+//
+//            hojaExcel.addCell(new Label(0, 10, "                Apartados", times10));
+//
+//            hojaExcel.addCell(new Number(2, 10, ingresos[2], times10));
+//
+//            hojaExcel.addCell(new Label(0, 11, "                Creditos", times10));
+//
+//            hojaExcel.addCell(new Number(2, 11, ingresos[3], times10));
+//
+//            hojaExcel.addCell(new Label(0, 12, "                Devoluciones", times10));
+//
+//            hojaExcel.addCell(new Number(2, 12, -ingresos[0], times10));
+//            hojaExcel.addCell(new Number(2, 14,
+//                    -ingresos[0] + ingresos[1] + ingresos[2] + ingresos[3], times14));
+//
+//        } else {
+//            hojaExcel.addCell(new Label(0, 10, "                Efectivo", times10));
+//
+//            hojaExcel.addCell(new Number(2, 10, ingresos[0], times10));
+//
+//            hojaExcel.addCell(new Label(0, 11, "                Tarjeta", times10));
+//
+//            hojaExcel.addCell(new Number(2, 11, ingresos[1], times10));
+//            hojaExcel.addCell(new Number(2, 14,
+//                    ingresos[0] + ingresos[1], times14));
+//        }
+//
+//        hojaExcel.addCell(new Label(0, 13, "                       ", times11));
+//
+//        hojaExcel.addCell(new Label(0, 14, "     Total ", times14));
+//
+//        DateFormat dateFormatP = new SimpleDateFormat("dd/MM/yyyy");
+//       
+//
+//        hojaExcel.addCell(new Label(0, 16, "Fecha: "
+//                + dateFormatP.format(date), times10));
+//
+////        //Escribe los datos contenidos en este libro en formato Excel
+//        workbook.write();
+////
+////        //cerrar libro liberando memoria
+//        workbook.close();
+//
+//        //mostrar el Excel
+//        try {
+//            Runtime.getRuntime().exec("rundll32 url.dll,FileProtocolHandler "
+//                    + nombreArchivoExcel);
+//        } catch (IOException e) {
+//            System.out.println("Error al abrir el archivo "
+//                    + nombreArchivoExcel + "\n" + e.getMessage());
+//        }
+//
+//    }
 }

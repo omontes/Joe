@@ -4006,12 +4006,27 @@ public void mouseClicked(java.awt.event.MouseEvent evt) {
                         log(Level.SEVERE, null, ex);
             }
 
-            for (int i = 0; i < infoFact.length; i++) {
+//            for (int i = 0; i < infoFact.length; i++) {
+//                AdminBD.verProductosPorFacturaYVersionDeFactura(infoFact[i][1].
+//                        toString(),
+//                        Integer.parseInt(infoFact[i][2].toString()));
+//                try {
+//                    archivoExcel.escribirHojas("Factura ", i, infoEmpresa,
+//                            AdminBD.getInfoFact(), AdminBD.getColumnNames(),
+//                            infoFact[i]);
+//                } catch (IOException | WriteException ex) {
+//                    Logger.getLogger(Pan_RepFact.class.getName()).
+//                            log(Level.SEVERE, null, ex);
+//                }
+//
+//            }
+            int pag =0;
+            for (int i = infoFact.length-1; i >= 0; i--,pag++) {
                 AdminBD.verProductosPorFacturaYVersionDeFactura(infoFact[i][1].
                         toString(),
                         Integer.parseInt(infoFact[i][2].toString()));
                 try {
-                    archivoExcel.escribirHojas("Factura ", i, infoEmpresa,
+                    archivoExcel.escribirHojas("Factura ", pag, infoEmpresa,
                             AdminBD.getInfoFact(), AdminBD.getColumnNames(),
                             infoFact[i]);
                 } catch (IOException | WriteException ex) {

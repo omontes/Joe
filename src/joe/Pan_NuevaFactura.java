@@ -1282,12 +1282,13 @@ public class Pan_NuevaFactura extends javax.swing.JPanel {
         boolean existeProducto = AdminBD.verSiExisteCod(codigo);
         if (!existeProducto) {
             BigDecimal precio_Producto = this.StringtoBigDecimal(this.jFormattedTextField_precioProducto.getText());
+            BigDecimal cantidadBD = this.StringtoBigDecimal(this.jFormattedTextField_cantidadProducto.getText());
             int cantidad=Integer.parseInt(this.jFormattedTextField_cantidadProducto.getText()); 
            
             AdminBD.crearProducto(codigo, this.jTextField_nombre.getText(),
                     precio_Producto, BigDecimal.ZERO, dateFormat.format(date), "A", null, 1);
            
-            this.crearMovimiento("Creacion Producto",precio_Producto,1);
+            this.crearMovimiento("Creacion Producto",precio_Producto.multiply(cantidadBD),1);
             int idVersion= AdminBD.veridVersionActivaProductoPorCodigo(codigo);
             this.guardaProductoEnMovimiento(codigo, idVersion, cantidad, precio_Producto);
             
@@ -1479,32 +1480,32 @@ public class Pan_NuevaFactura extends javax.swing.JPanel {
                 
                 if (_callType == FACTURACION_CALL) {
 
-                    this.crearMovimiento(DETALLE_FACT+""+idFactura, PrecioVenta, 2);
+                    this.crearMovimiento(DETALLE_FACT+""+idFactura, PrecioVenta.multiply(cantidadB), 2);
                     this.guardaProductoEnMovimiento(idProducto, idVersion, cantidad, PrecioVenta);
                 }
                 if(_callType == MOD_FACT_CALL){
                     this.eliminarMovimiento(DETALLE_FACT+""+idFactura);
-                    this.crearMovimiento(DETALLE_FACT+""+idFactura, PrecioVenta,2);
+                    this.crearMovimiento(DETALLE_FACT+""+idFactura, PrecioVenta.multiply(cantidadB),2);
                     this.guardaProductoEnMovimiento(idProducto, idVersion, cantidad, PrecioVenta);
                 
                 }
                 if(_callType == APARTADO_CALL){
-                    this.crearMovimiento(DETALLE_APART+""+idFactura, PrecioVenta,2);
+                    this.crearMovimiento(DETALLE_APART+""+idFactura, PrecioVenta.multiply(cantidadB),2);
                     this.guardaProductoEnMovimiento(idProducto, idVersion, cantidad, PrecioVenta);
                 }
                 if(_callType == MOD_APART_CALL){
                     this.eliminarMovimiento(DETALLE_APART+""+idFactura);
-                    this.crearMovimiento(DETALLE_APART+""+idFactura, PrecioVenta,2);
+                    this.crearMovimiento(DETALLE_APART+""+idFactura, PrecioVenta.multiply(cantidadB),2);
                     this.guardaProductoEnMovimiento(idProducto, idVersion, cantidad, PrecioVenta);
                 }
                 
                 if(_callType == CREDITO_CALL){
-                    this.crearMovimiento(DETALLE_CRED+""+idFactura, PrecioVenta,2);
+                    this.crearMovimiento(DETALLE_CRED+""+idFactura, PrecioVenta.multiply(cantidadB),2);
                     this.guardaProductoEnMovimiento(idProducto, idVersion, cantidad, PrecioVenta);
                 }
                 if(_callType == MOD_CRED_CALL){
                     this.eliminarMovimiento(DETALLE_CRED+""+idFactura);
-                    this.crearMovimiento(DETALLE_CRED+""+idFactura, PrecioVenta,2);
+                    this.crearMovimiento(DETALLE_CRED+""+idFactura, PrecioVenta.multiply(cantidadB),2);
                     this.guardaProductoEnMovimiento(idProducto, idVersion, cantidad, PrecioVenta);
                 }
                 
@@ -2727,7 +2728,9 @@ public class Pan_NuevaFactura extends javax.swing.JPanel {
         int idCliente = AdminBD.veridCliente(Cliente);
         int idFactura = Integer.parseInt(this.jLabel_NumerodeFact.getText());
         
-        String seller = JF_Facturacion.getInstance().getSellerName();
+//        String seller = JF_Facturacion.getInstance().getSellerName();
+        String seller = "admin";
+        
         int idVendedor = AdminBD.veridVendedor(seller);
         String detalle = this.jTextField_Detalle.getText();
         String DescuentoSinCorregir =this.jFormattedTextField_desc.getText();
@@ -3325,7 +3328,8 @@ public class Pan_NuevaFactura extends javax.swing.JPanel {
         int idCliente = AdminBD.veridCliente(Cliente);
         int idFactura = Integer.parseInt(this.jLabel_NumerodeFact.getText());
         
-        String seller = ManejoDeArchivos.XMLConfiguracion.getInstance().ObtenerUsuario();
+//        String seller = ManejoDeArchivos.XMLConfiguracion.getInstance().ObtenerUsuario();
+        String seller = "admin";
         int idVendedor = AdminBD.veridVendedor(seller);
         String detalle = this.jTextField_Detalle.getText();
         String totalFacturaSinCorregir = this.jFormattedTextField_Total.getText();
@@ -3367,13 +3371,13 @@ public class Pan_NuevaFactura extends javax.swing.JPanel {
                 //System.out.println(idProducto+" "+idVersion+" "+cantidad+" "+idFactura+" "+PrecioVenta+" "+idVersionFacturasProducto);
                 
                 if(_callType == DEVOLUCION_CALL){
-                    this.crearMovimiento("Devolucion Num "+""+idFactura, PrecioVenta,1);
+                    this.crearMovimiento("Devolucion Num "+""+idFactura, PrecioVenta.multiply(cantidadB),1);
                     this.guardaProductoEnMovimiento(idProducto, idVersion, cantidad, PrecioVenta);
                 
                 }
                 if(_callType == MOD_DEV_CALL){
                     this.eliminarMovimiento("Devolucion Num "+""+idFactura);
-                    this.crearMovimiento("Devolucion Num "+""+idFactura, PrecioVenta,1);
+                    this.crearMovimiento("Devolucion Num "+""+idFactura, PrecioVenta.multiply(cantidadB),1);
                     this.guardaProductoEnMovimiento(idProducto, idVersion, cantidad, PrecioVenta);
                 
                 }

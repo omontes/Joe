@@ -1,3 +1,11 @@
+
+import ManejoDeArchivos.EscribirExcel;
+import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import joe.StartWindow;
+import jxl.write.WriteException;
+
 ///*
 // * To change this license header, choose License Headers in Project Properties.
 // * To change this template file, choose Tools | Templates
@@ -16,7 +24,7 @@
 // *
 // * @author Joe
 // */
-//public class Main {
+public class Main {
 //
 //    /**
 //     * @param args the command line arguments
@@ -24,7 +32,7 @@
 //     * @throws jxl.write.WriteException
 //     * @throws java.net.URISyntaxException
 //     */
-////    public static void main(String args[]) throws IOException, WriteException, URISyntaxException, SAXException {
+    public static void main(String args[])  {
 //////        Backupdbtosql();
 ////        /* Set the Nimbus look and feel */
 ////        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
@@ -65,9 +73,19 @@
 //////            }
 //////        });
 ////
-////    }
+        EscribirExcel p = new EscribirExcel();
+        try {
+            
+            p.escribirProforma(null,null);
+        } catch (IOException ex) {
+            Logger.getLogger(StartWindow.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (WriteException ex) {
+            Logger.getLogger(StartWindow.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+    }
 //;
-//}
+}
 ////Replace your executeCmd with this:
 ////
 ////String executeCmd = "mysqldump -u " + dbUserName + " -p" + dbPassword + " "

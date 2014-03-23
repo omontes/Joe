@@ -70,6 +70,7 @@ public class Pan_NuevaFactura extends javax.swing.JPanel {
         _printPress = false;
         initComponents();
         setTittle();
+        
     }
 
     private void setTittle(){
@@ -1610,7 +1611,7 @@ public class Pan_NuevaFactura extends javax.swing.JPanel {
     }
     
     private boolean modDevSave(){
-        this.devolverProductos();
+        this.devolverProductosDevolucion();
         this.modificaDevolucion();
         return this.guardarDev();
     
@@ -3274,11 +3275,11 @@ public class Pan_NuevaFactura extends javax.swing.JPanel {
 
     private void devolverProductos() {
         Direct_Control_BD AdminBD = Direct_Control_BD.getInstance();
-        AdminBD.verProductosPorDevolucion(Integer.parseInt(this.jLabel_NumerodeFact.getText()));
-        Object[][] ProductosdeDevolucion = AdminBD.getData();
-        int numFilas = ProductosdeDevolucion.length;
+        AdminBD.verProductosPorFactura(Integer.parseInt(this.jLabel_NumerodeFact.getText()));
+        Object[][] ProductosFactura = AdminBD.getData();
+        int numFilas = ProductosFactura.length;
         for (int row = 0; row < numFilas; row++) {
-            Object[] producto = ProductosdeDevolucion[row];
+            Object[] producto = ProductosFactura[row];
             String codArticulo = producto[0].toString();
             int cantidadTotal = AdminBD.verCantidadInvGeneral(codArticulo);
             int cantidad = Integer.parseInt(producto[2].toString());
@@ -3286,7 +3287,20 @@ public class Pan_NuevaFactura extends javax.swing.JPanel {
 
         }
     }
+     private void devolverProductosDevolucion() {
+        Direct_Control_BD AdminBD = Direct_Control_BD.getInstance();
+        AdminBD.verProductosPorDevolucion(Integer.parseInt(this.jLabel_NumerodeFact.getText()));
+        Object[][] ProductosDev = AdminBD.getData();
+        int numFilas = ProductosDev.length;
+        for (int row = 0; row < numFilas; row++) {
+            Object[] producto = ProductosDev[row];
+            String codArticulo = producto[0].toString();
+            int cantidadTotal = AdminBD.verCantidadInvGeneral(codArticulo);
+            int cantidad = Integer.parseInt(producto[2].toString());
+            AdminBD.actualizarCantidadInventario(codArticulo, cantidadTotal + cantidad);
 
+        }
+    }
     private void cargarSeleccionadorProductos() {
         Direct_Control_BD AdminBD = Direct_Control_BD.getInstance();
         AdminBD.verCodigos();

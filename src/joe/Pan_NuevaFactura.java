@@ -2312,6 +2312,14 @@ public class Pan_NuevaFactura extends javax.swing.JPanel {
                     "Error vuelto negativo", JOptionPane.ERROR_MESSAGE);
               return;
         }
+        if(new BigDecimal(this.jFormattedTextField_pagoVueltoContado.getText()).compareTo(BigDecimal.ZERO)==0 &
+                new BigDecimal(this.jFormattedTextField_pagoVueltoTarjeta.getText()).compareTo(BigDecimal.ZERO)==0 ){
+            JOptionPane.showMessageDialog(
+                    null,
+                    "Por favor ingrese el pago del cliente correctamente",
+                    "No se recibio ningun pago", JOptionPane.ERROR_MESSAGE);
+              return;
+        }
         this.jDialog_darVuelto.dispose();
         if (!_justSave) {
             if (this.guardarFacturadesdeVuelto()) {

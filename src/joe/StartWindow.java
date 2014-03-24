@@ -5,6 +5,7 @@
  */
 package joe;
 
+import ManejoDeArchivos.EscribirExcel;
 import ManejoDeArchivos.XMLConfiguracion;
 import db_managment.Direct_Control_BD;
 import java.awt.AlphaComposite;
@@ -29,6 +30,7 @@ import javax.swing.ImageIcon;
 import javax.swing.JFileChooser;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
+import jxl.write.WriteException;
 
 /**
  *
@@ -688,7 +690,7 @@ public class StartWindow extends javax.swing.JFrame {
     }
 
     private void bttExitMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bttExitMouseClicked
-
+        
         this.dispose();
         System.exit(1);
     }//GEN-LAST:event_bttExitMouseClicked

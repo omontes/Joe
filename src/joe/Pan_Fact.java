@@ -145,12 +145,10 @@ public class Pan_Fact extends javax.swing.JPanel {
         for (int row = 0; row < numFilas; row++) {
             Object[] producto = ProductosdeFactura[row];
             String codArticulo = producto[0].toString();
-            int cantidadTotal = AdminBD.verCantidadInvGeneral(codArticulo);
             int cantidad = Integer.parseInt(producto[2].toString());
-            AdminBD.actualizarCantidadInventario(codArticulo, cantidadTotal + cantidad);
             BigDecimal precio = this.StringtoBigDecimal(producto[3].toString());
             int idVersion = AdminBD.veridVersionActivaProductoPorCodigo(codArticulo);
-            this.crearMovimiento(detalleEliminacionFact + " " + NumFact, precio, 1);
+            this.crearMovimiento(detalleEliminacionFact + " " + NumFact, precio.multiply(new BigDecimal(cantidad)), 1);
             this.guardaProductoEnMovimiento(codArticulo, idVersion, cantidad, precio);
 
         }

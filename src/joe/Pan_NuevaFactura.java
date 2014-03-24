@@ -1525,7 +1525,6 @@ public class Pan_NuevaFactura extends javax.swing.JPanel {
         NewJDialog_PagoApartado pago = NewJDialog_PagoApartado.getInstance();
         pago.setTitle("Detalles del apartado");
         pago.setVisible(true);
-        String fechaVencimiento = pago.getFecha();
         BigDecimal montodePago = pago.getMontoDePago();
         if (montodePago != null) {
             BigDecimal saldo = this.corregirDato(this.jFormattedTextField_Total.getValue().toString());

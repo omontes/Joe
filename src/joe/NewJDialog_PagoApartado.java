@@ -47,6 +47,7 @@ public class NewJDialog_PagoApartado extends javax.swing.JDialog {
         if (PagoApartado == null) {
             PagoApartado = new NewJDialog_PagoApartado();
         }
+        PagoApartado.jFormattedTextField_MontoApartado.setValue(BigDecimal.ZERO);
         return PagoApartado;
     }
 

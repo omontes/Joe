@@ -119,7 +119,12 @@ public class MyTableModelListener_FACT implements TableModelListener {
 
               } else { //Si es vacio el subtotal significa que no tiene que actualizar
                   // el subtotal
+                
                   model.removeRow(row);
+                  //En caso de que no haya nada en la base
+                  if (model.data.size() == 0) {
+                      model.addRow(1);
+                  };
 
               }
               table.revalidate();

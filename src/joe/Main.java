@@ -73,15 +73,15 @@ public class Main {
 //////            }
 //////        });
 ////
-        EscribirExcel p = new EscribirExcel();
-        try {
-            
-            p.escribirProforma(null,null);
-        } catch (IOException ex) {
-            Logger.getLogger(StartWindow.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (WriteException ex) {
-            Logger.getLogger(StartWindow.class.getName()).log(Level.SEVERE, null, ex);
-        }
+//        EscribirExcel p = new EscribirExcel();
+//        try {
+//            
+//            p.escribirProforma(null,null);
+//        } catch (IOException ex) {
+//            Logger.getLogger(StartWindow.class.getName()).log(Level.SEVERE, null, ex);
+//        } catch (WriteException ex) {
+//            Logger.getLogger(StartWindow.class.getName()).log(Level.SEVERE, null, ex);
+//        }
         
     }
 //;

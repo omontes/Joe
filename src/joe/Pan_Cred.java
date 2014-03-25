@@ -653,7 +653,7 @@ public class Pan_Cred extends javax.swing.JPanel {
             BigDecimal precio = this.StringtoBigDecimal(producto[3].toString());
             int idVersion = AdminBD.veridVersionActivaProductoPorCodigo(codArticulo);
             int cantidad = Integer.parseInt(producto[2].toString());
-            this.crearMovimiento(detalleEliminacionCred + " " + NumFact, precio, 1);
+            this.crearMovimiento(detalleEliminacionCred + " " + NumFact, precio.multiply(new BigDecimal(cantidad)), 1);
             this.guardaProductoEnMovimiento(codArticulo, idVersion, cantidad, precio);
 
         }

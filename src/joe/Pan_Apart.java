@@ -644,7 +644,7 @@ public class Pan_Apart extends javax.swing.JPanel {
             BigDecimal precio = this.StringtoBigDecimal(producto[3].toString());
             int idVersion = AdminBD.veridVersionActivaProductoPorCodigo(codArticulo);
             int cantidad = Integer.parseInt(producto[2].toString());
-            this.crearMovimiento(detalleEliminacionApart + " " + NumFact, precio, 1);
+            this.crearMovimiento(detalleEliminacionApart + " " + NumFact, precio.multiply(new BigDecimal(cantidad)), 1);
             this.guardaProductoEnMovimiento(codArticulo, idVersion, cantidad, precio);
 
         }

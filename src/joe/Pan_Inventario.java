@@ -62,6 +62,16 @@ public final class Pan_Inventario extends javax.swing.JPanel {
         
     }
     
+    public void showModProdDialog(){
+        jDialog_ModificarProducto.setVisible(true);
+        jDialog_ModificarProducto.setEnabled(true);
+    }
+    
+    public void showCrearProdDialog(){
+        jDialog_CrearProducto.setVisible(true);
+        jDialog_CrearProducto.setEnabled(true);
+    }
+    
        
     public void personalizarTablaInventario(){
       Direct_Control_BD AdministradorBD= Direct_Control_BD.getInstance();
@@ -190,6 +200,7 @@ public final class Pan_Inventario extends javax.swing.JPanel {
         jLabel28 = new javax.swing.JLabel();
 
         jDialog_CrearProducto.setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        jDialog_CrearProducto.setAlwaysOnTop(true);
         jDialog_CrearProducto.setMinimumSize(new java.awt.Dimension(390, 358));
         jDialog_CrearProducto.setUndecorated(true);
         jDialog_CrearProducto.setResizable(false);
@@ -352,6 +363,7 @@ public final class Pan_Inventario extends javax.swing.JPanel {
         jDialog_CrearProducto.getContentPane().add(jPanel2);
         jPanel2.setBounds(0, 0, 390, 358);
 
+        jDialog_EliminarProducto.setAlwaysOnTop(true);
         jDialog_EliminarProducto.setUndecorated(true);
         jDialog_EliminarProducto.setResizable(false);
         jDialog_EliminarProducto.getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -392,6 +404,7 @@ public final class Pan_Inventario extends javax.swing.JPanel {
 
         jDialog_EliminarProducto.getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 240, 110));
 
+        jDialog_ModificarProducto.setAlwaysOnTop(true);
         jDialog_ModificarProducto.setUndecorated(true);
         jDialog_ModificarProducto.setResizable(false);
         jDialog_ModificarProducto.addKeyListener(new java.awt.event.KeyAdapter() {
@@ -528,6 +541,7 @@ public final class Pan_Inventario extends javax.swing.JPanel {
         jDialog_ModificarProducto.getContentPane().add(jPanel3);
         jPanel3.setBounds(0, 0, 440, 270);
 
+        jDialog_ConfirmacionModificacionProducto.setAlwaysOnTop(true);
         jDialog_ConfirmacionModificacionProducto.setUndecorated(true);
         jDialog_ConfirmacionModificacionProducto.setResizable(false);
         jDialog_ConfirmacionModificacionProducto.getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -573,6 +587,7 @@ public final class Pan_Inventario extends javax.swing.JPanel {
 
         jDialog_ConfirmacionModificacionProducto.getContentPane().add(jPanel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 240, 110));
 
+        jDialog_CrearCategoria.setAlwaysOnTop(true);
         jDialog_CrearCategoria.setUndecorated(true);
         jDialog_CrearCategoria.setResizable(false);
         jDialog_CrearCategoria.getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -616,6 +631,7 @@ public final class Pan_Inventario extends javax.swing.JPanel {
 
         jDialog_CrearCategoria.getContentPane().add(jPanel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 270, 120));
 
+        jDialog_VerProducto.setAlwaysOnTop(true);
         jDialog_VerProducto.setUndecorated(true);
         jDialog_VerProducto.setResizable(false);
         jDialog_VerProducto.getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -625,6 +641,8 @@ public final class Pan_Inventario extends javax.swing.JPanel {
         jPanel5.setBackground(new java.awt.Color(153, 153, 153));
         jPanel5.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         jPanel5.setLayout(null);
+
+        jTextField_CodigoVerProducto.setEditable(false);
         jPanel5.add(jTextField_CodigoVerProducto);
         jTextField_CodigoVerProducto.setBounds(90, 50, 200, 25);
 
@@ -637,6 +655,8 @@ public final class Pan_Inventario extends javax.swing.JPanel {
         jLabel_Nombre2.setText("Nombre");
         jPanel5.add(jLabel_Nombre2);
         jLabel_Nombre2.setBounds(10, 80, 80, 25);
+
+        jTextField_nombreVerProducto.setEditable(false);
         jPanel5.add(jTextField_nombreVerProducto);
         jTextField_nombreVerProducto.setBounds(90, 80, 200, 25);
 
@@ -644,8 +664,12 @@ public final class Pan_Inventario extends javax.swing.JPanel {
         jLabel_Precio2.setText("Precio");
         jPanel5.add(jLabel_Precio2);
         jLabel_Precio2.setBounds(10, 110, 80, 25);
+
+        jTextField_PrecioVerProducto.setEditable(false);
         jPanel5.add(jTextField_PrecioVerProducto);
         jTextField_PrecioVerProducto.setBounds(90, 110, 200, 25);
+
+        jTextField_CostoVerProducto.setEditable(false);
         jPanel5.add(jTextField_CostoVerProducto);
         jTextField_CostoVerProducto.setBounds(90, 140, 200, 25);
         jPanel5.add(jLabel14);
@@ -667,8 +691,12 @@ public final class Pan_Inventario extends javax.swing.JPanel {
         jLabel17.setText("Descripcion");
         jPanel5.add(jLabel17);
         jLabel17.setBounds(10, 200, 80, 25);
+
+        jTextField_DescripcionVerProducto.setEditable(false);
         jPanel5.add(jTextField_DescripcionVerProducto);
         jTextField_DescripcionVerProducto.setBounds(90, 200, 200, 25);
+
+        jTextField_CategoriaVerProducto.setEditable(false);
         jPanel5.add(jTextField_CategoriaVerProducto);
         jTextField_CategoriaVerProducto.setBounds(90, 170, 200, 25);
 
@@ -689,6 +717,7 @@ public final class Pan_Inventario extends javax.swing.JPanel {
 
         jDialog_VerProducto.getContentPane().add(jPanel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 310, 280));
 
+        jDialog_ConfirmacionVerProducto.setAlwaysOnTop(true);
         jDialog_ConfirmacionVerProducto.setUndecorated(true);
         jDialog_ConfirmacionVerProducto.setResizable(false);
         jDialog_ConfirmacionVerProducto.getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -739,6 +768,9 @@ public final class Pan_Inventario extends javax.swing.JPanel {
 
         jDialog_ConfirmacionVerProducto.getContentPane().add(jPanel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 250, 110));
 
+        jDialog_creaCategoriaModificacion.setAlwaysOnTop(true);
+        jDialog_creaCategoriaModificacion.setUndecorated(true);
+        jDialog_creaCategoriaModificacion.setResizable(false);
         jDialog_creaCategoriaModificacion.getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
         jDialog_creaCategoriaModificacion.setSize(270, 120);
         jDialog_creaCategoriaModificacion.setLocationRelativeTo(null);
@@ -1016,7 +1048,8 @@ public final class Pan_Inventario extends javax.swing.JPanel {
     }//GEN-LAST:event_jButton1ActionPerformed
     }
     private void jButton_CrearCategoriaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_CrearCategoriaActionPerformed
-       
+       jDialog_ModificarProducto.setEnabled(false);
+       jDialog_ModificarProducto.setVisible(false);
        this.jDialog_creaCategoriaModificacion.setVisible(true);
        
        
@@ -1034,7 +1067,7 @@ public final class Pan_Inventario extends javax.swing.JPanel {
             this.jComboBox_CategoriaCrearProducto.addItem(data[i][0]);
         }
         this.jComboBox_CategoriaCrearProducto.setSelectedItem(this.jTextField_NombreCategoria.getText());
-        
+        showCrearProdDialog();
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jTextField_IdProductoModificar1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField_IdProductoModificar1ActionPerformed
@@ -1440,6 +1473,7 @@ public final class Pan_Inventario extends javax.swing.JPanel {
 
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
         jDialog_CrearCategoria.dispose();
+        showCrearProdDialog();
     }//GEN-LAST:event_jButton5ActionPerformed
 
     private void jLabel28MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel28MouseClicked
@@ -1462,6 +1496,8 @@ public final class Pan_Inventario extends javax.swing.JPanel {
     }//GEN-LAST:event_bttEditMouseClicked
 
     private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton7ActionPerformed
+        jDialog_CrearProducto.setEnabled(false);
+        jDialog_CrearProducto.setVisible(false);
         this.jDialog_CrearCategoria.setVisible(true);
     }//GEN-LAST:event_jButton7ActionPerformed
 
@@ -1476,10 +1512,12 @@ public final class Pan_Inventario extends javax.swing.JPanel {
             this.jComboBox_Categorias.addItem(data[i][0]);
         }
         this.jComboBox_Categorias.setSelectedItem(this.jTextField_NombreCategoriaMod.getText());
+        showModProdDialog();
     }//GEN-LAST:event_jButton10ActionPerformed
 
     private void jButton11ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton11ActionPerformed
         this.jDialog_creaCategoriaModificacion.dispose();
+        showModProdDialog();
     }//GEN-LAST:event_jButton11ActionPerformed
 
 

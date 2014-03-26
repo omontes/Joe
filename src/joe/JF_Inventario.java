@@ -67,6 +67,14 @@ public class JF_Inventario extends javax.swing.JFrame {
         _panInventario.personalizarTablaInventario();
     }
     
+    public void refreshEntryTable(){
+        _panEntradas.personalizarTablaEntradaMercaderia();
+    }
+    
+    public void refreshExitTable(){
+        _panSalidas.personalizarTablaSalidaMercaderia();
+    }
+    
     public void setEnableTabs(boolean pAreEnable){
         if (pAreEnable){
             bttSalidas.setEnabled(true);
@@ -145,18 +153,23 @@ public class JF_Inventario extends javax.swing.JFrame {
         if (pTab == INVENTARIO){
             bttInventario.setIcon(new javax.swing.ImageIcon(getClass().getResource("/System/Images/Panel2/inventarioBttAct.png")));
             _panelManager.changeStartPanel(_panInventario);
+            _panInventario.personalizarTablaInventario();
         } else if (pTab == ENTRADAS){
             bttEntradas.setIcon(new javax.swing.ImageIcon(getClass().getResource("/System/Images/Panel2/entradasBttAct.png")));
             _panelManager.changeStartPanel(_panEntradas);
+            _panEntradas.personalizarTablaEntradaMercaderia();
         } else if (pTab == SALIDAS){
             bttSalidas.setIcon(new javax.swing.ImageIcon(getClass().getResource("/System/Images/Panel2/salidasBttAct.png")));
             _panelManager.changeStartPanel(_panSalidas);
+            _panSalidas.personalizarTablaSalidaMercaderia();
         } else if (pTab == BODEGA){
             bttBodega.setIcon(new javax.swing.ImageIcon(getClass().getResource("/System/Images/Panel2/bodegaBttAct.png")));
             _panelManager.changeStartPanel(_panBodega);
+            _panBodega.personalizarTablaBodega();
         } else if (pTab == MOVIMIENTOS){
             bttMovimientos.setIcon(new javax.swing.ImageIcon(getClass().getResource("/System/Images/Panel2/movimientosBttAct.png")));
             _panelManager.changeStartPanel(_panMovimientos);
+            _panMovimientos.personalizarTablaVerMovimientos();
         }
     }
     
@@ -312,8 +325,7 @@ public class JF_Inventario extends javax.swing.JFrame {
         if (newPanel == null){
             StartWindow.getInstance().enableMe();
             this.dispose();            
-        }
-        if (_panelManager.getPanelCount() == 1){
+        } else if (_panelManager.getPanelCount() == 1){
             setEnableTabs(true);
         }
 }

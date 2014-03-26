@@ -222,8 +222,14 @@ public class Pan_Fact extends javax.swing.JPanel {
         String usuarioActual = conf.ObtenerTipoUsuario();
 
         if ("admi".equals(usuarioActual)|| "joe".equals(conf.ObtenerUsuario())) {
-            this.eliminar(this.jTable_Facturacion);
-            this.completarTablaFacturacion();
+            
+            String[] options = {"Aceptar","Cancelar"};
+            int selection = JOptionPane.showOptionDialog(this, "Desea eliminar la factura", "¡Atención!", 0, 0, null, options, 0);
+            if (selection == 0){
+                this.eliminar(this.jTable_Facturacion);
+                this.completarTablaFacturacion();
+            }
+            
         } else {
             JOptionPane.showMessageDialog(this, "Necesitas permisos de "
                     + "administrador para poder continuar",

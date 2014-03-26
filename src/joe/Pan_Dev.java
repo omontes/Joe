@@ -165,8 +165,13 @@ public class Pan_Dev extends javax.swing.JPanel {
         String TipousuarioActual = conf.ObtenerTipoUsuario();
 
         if ("admi".equals(TipousuarioActual)|| "joe".equals(conf.ObtenerUsuario())) {
-            this.eliminarDev(this.jTable_Devoluciones);
-            this.completarTablaDevoluciones();
+            String[] options = {"Aceptar","Cancelar"};
+            int selection = JOptionPane.showOptionDialog(this, "Desea eliminar la factura", "¡Atención!", 0, 0, null, options, 0);
+            if (selection == 0){
+                this.eliminarDev(this.jTable_Devoluciones);
+                this.completarTablaDevoluciones();
+            }
+                
         } else {
             JOptionPane.showMessageDialog(this, "Necesitas permisos de "
                     + "administrador para poder continuar",

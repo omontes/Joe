@@ -252,7 +252,7 @@ public final class Pan_Bodega extends javax.swing.JPanel {
 
         jLabel23.setText("Busqueda :");
         add(jLabel23, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 3, -1, -1));
-        add(jTextField_busquedaBodega, new org.netbeans.lib.awtextra.AbsoluteConstraints(68, 0, 119, -1));
+        add(jTextField_busquedaBodega, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 0, 119, -1));
 
         jComboBox_categoriaBusquedaBodega.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Codigo", "Descripcion", "Cantidad", "Precio" }));
         jComboBox_categoriaBusquedaBodega.addActionListener(new java.awt.event.ActionListener() {
@@ -260,7 +260,7 @@ public final class Pan_Bodega extends javax.swing.JPanel {
                 jComboBox_categoriaBusquedaBodegaActionPerformed(evt);
             }
         });
-        add(jComboBox_categoriaBusquedaBodega, new org.netbeans.lib.awtextra.AbsoluteConstraints(193, 0, -1, -1));
+        add(jComboBox_categoriaBusquedaBodega, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 0, -1, -1));
 
         bttWatch.setIcon(new javax.swing.ImageIcon(getClass().getResource("/System/Images/Buttons/watchBtt.png"))); // NOI18N
         bttWatch.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));

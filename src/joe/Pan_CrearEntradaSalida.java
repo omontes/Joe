@@ -390,7 +390,7 @@ public class Pan_CrearEntradaSalida extends javax.swing.JPanel {
         add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 35, 69, 20));
 
         jComboBox_LugarDeMov.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Inventario General", "Bodega" }));
-        add(jComboBox_LugarDeMov, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 5, 130, -1));
+        add(jComboBox_LugarDeMov, new org.netbeans.lib.awtextra.AbsoluteConstraints(245, 3, 130, -1));
 
         jLabel_tipoMovimiento.setForeground(new java.awt.Color(255, 255, 255));
         jLabel_tipoMovimiento.setText("Entrada a:");
@@ -1173,7 +1173,6 @@ public class Pan_CrearEntradaSalida extends javax.swing.JPanel {
         this.crearMovimiento();
         this.guardarProductosMovimiento();
         JF_Inventario.getInstance().refreshActiveTable();
-        JF_Inventario.getInstance().refreshInventoryTable();
         JF_Inventario.getInstance().backOnWindow();
         return true;
     }

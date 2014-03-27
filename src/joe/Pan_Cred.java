@@ -746,8 +746,12 @@ public class Pan_Cred extends javax.swing.JPanel {
         String TipousuarioActual = conf.ObtenerTipoUsuario();
 
         if ("admi".equals(TipousuarioActual)|| "joe".equals(conf.ObtenerUsuario())) {
-            this.eliminar(this.jTable_Creditos);
-            this.completarTablaCreditos();
+            String[] options = {"Aceptar","Cancelar"};
+            int selection = JOptionPane.showOptionDialog(this, "Desea eliminar la factura", "¡Atención!", 0, 0, null, options, 0);
+            if (selection == 0){
+                this.eliminar(this.jTable_Creditos);
+                this.completarTablaCreditos();
+            }
         } else {
             JOptionPane.showMessageDialog(this, "Necesitas permisos de "
                     + "administrador para poder continuar",

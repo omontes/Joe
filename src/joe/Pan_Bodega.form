@@ -360,7 +360,7 @@
     <Component class="javax.swing.JTextField" name="jTextField_busquedaBodega">
       <Constraints>
         <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-          <AbsoluteConstraints x="68" y="0" width="119" height="-1"/>
+          <AbsoluteConstraints x="70" y="0" width="119" height="-1"/>
         </Constraint>
       </Constraints>
     </Component>
@@ -380,7 +380,7 @@
       </Events>
       <Constraints>
         <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-          <AbsoluteConstraints x="193" y="0" width="-1" height="-1"/>
+          <AbsoluteConstraints x="200" y="0" width="-1" height="-1"/>
         </Constraint>
       </Constraints>
     </Component>

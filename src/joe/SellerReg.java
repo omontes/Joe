@@ -155,8 +155,8 @@ public class SellerReg extends javax.swing.JFrame {
                 "¡Atención!",
                 JOptionPane.WARNING_MESSAGE);
             return false;
-        } else {
-
+        } else if ( String.valueOf(sellerCode.getPassword()).contains(" ") ){
+            
             int i = String.valueOf(sellerCode.getPassword()).indexOf(' ');
             int length = String.valueOf(sellerCode.getPassword()).length();
 
@@ -165,21 +165,20 @@ public class SellerReg extends javax.swing.JFrame {
 
             Direct_Control_BD base = db_managment.Direct_Control_BD.getInstance();
             int authentique = base.verificarUsuario(seller, pass);
-            if (authentique == 0){
-                JOptionPane.showMessageDialog(
-                    this,
-                    "No se ha podido ingresar. Por favor revise su código.",
-                    "¡Error!",
-                    JOptionPane.ERROR_MESSAGE);
-                sellerCode.setText("");
-                return false;
-            } else {
+            if (authentique != 0){
                 _seller = seller;
                 sellerCode.setText("");
                 JF_Facturacion.getInstance().setSellerName(seller);
                 return true;
             }
         }
+        JOptionPane.showMessageDialog(
+            this,
+            "No se ha podido ingresar. Por favor revise su código.",
+            "¡Error!",
+            JOptionPane.ERROR_MESSAGE);
+        sellerCode.setText("");
+        return false;
     }
     
     // Variables declaration - do not modify//GEN-BEGIN:variables

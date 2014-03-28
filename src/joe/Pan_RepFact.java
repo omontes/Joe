@@ -4138,7 +4138,7 @@ public void mouseClicked(java.awt.event.MouseEvent evt) {
         this.jComboBox_SeleccionarCategoria.removeAllItems();
         for (Object[] data1 : data) {
             //Muestra las categorias disponib
-            this.jComboBox_SeleccionarCategoria.addItem(data1[1]);
+            this.jComboBox_SeleccionarCategoria.addItem(data1[0]);
         }
         this.jComboBox_SeleccionarCategoria.setSelectedItem("Sin Categoria");
         ///////////////////////////////

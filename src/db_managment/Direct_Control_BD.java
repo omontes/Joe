@@ -3607,6 +3607,31 @@ public class Direct_Control_BD {
             System.out.println("Error al Ver Movimientos Por Fecha Y Lugar");
         }
     }
+    /**
+     * Permite obtener las salidas que se han echo de bodega, 
+     * esto dado un cliente = detalle = referencias(bodega de ramon)
+     * @param detalle
+     * @param fechaIni
+     * @param fechaFin 
+     */
+    void salidasPorTienda(String detalle,String fechaIni, String fechaFin){    
+            try {
+            String verMovPorProd = readSql("../Joe/src/"
+                    + "sql_files/SalidasHaciaTiendas.sql");
+            PreparedStatement stm = this.conection.prepareStatement(verMovPorProd);
+            stm.setString(1, fechaIni);
+            stm.setString(2, fechaFin);
+            stm.setString(3, detalle);
+            ResultSet resultset = stm.executeQuery();
+            this.setColumnNames(this.Get_Columnas(resultset));
+            this.setData(this.ResultSet_Array(resultset));
+
+        } catch (Exception e) {
+            System.out.println("Error al ver salidas hacia tiendas");
+
+        }
+            
+    }
 
     public void verMovimientoPorProducto(String idProd) {
         try {

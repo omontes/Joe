@@ -742,7 +742,8 @@ public class EscribirExcel {
     ///Esta parte es exclusivo para la tienda valeska/////////////////
     /**
      * Permite escribir la Proforma
-     *
+     *String[]info={Cliente,Numero}
+     * Object[][]datos={{cantida,codigo,descripcion,precioD}}
      * @param info
      * @param datos
      * @throws java.io.IOException
@@ -750,11 +751,6 @@ public class EscribirExcel {
      */
     public void escribirProforma(String[] info, Object[][] datos)
             throws IOException, WriteException {
-
-        //String[]info2={Cliente,Direccion,telefono,Observacion,Lote,Transporte,Numero,Serie}
-        String[] info2 = {"00004 - A - COMERCIAL VALESKA IV", "AV 1.CALLES 14 Y 16", "89792102", " ESTA ES UNA CADENA QUE MIDE 80 DE LONGUITUD O QUE ES LO MISMO SU LONGITUD ES 80", "01", "SI¿Transportes?", "005529", "AAA"};
-        //Object[][]datos2={{cantida,codigo,descripcion,precioD}}
-        Object[][] datos2 = {{"6", "745303846536", "EVOK SPRAY SECADOR DE UÑAS 8,5 OZ", "200.00"}, {"25", "7501906611633", "APPLE MASCARA CACAHUATE", "1200.00"}};
 
         Date date = new Date();//hora Actual
         String fechaAct = dateFormat.format(date);
@@ -777,7 +773,7 @@ public class EscribirExcel {
         WritableSheet hojaExcel = workbook.getSheet(0);//obtiene la hoja 0
 
         hojaExcel.getSettings().setLeftMargin(0.25);
-        hojaExcel.getSettings().setRightMargin(0.1);
+        hojaExcel.getSettings().setRightMargin(0.05);
         hojaExcel.getSettings().setTopMargin(0.2);
 
         ///tipos de letra
@@ -787,21 +783,24 @@ public class EscribirExcel {
         WritableCellFormat calibri10format = new WritableCellFormat(
                 calibri10font);
         calibri10format.setVerticalAlignment(VerticalAlignment.TOP);
-//        calibri10format.setWrap(true);
-//		calibri10format.setAlignment(Alignment.LEFT);
-//		calibri16format.setBackground(Colour.BLACK);
 
         FontName fontName2 = WritableFont.createFont("Calibri");
         WritableFont calibri10font2 = new WritableFont(fontName2, 10,
                 WritableFont.NO_BOLD);
         WritableCellFormat calibri10format2 = new WritableCellFormat(
                 calibri10font2);
+
+        WritableCellFormat calibri10format4 = new WritableCellFormat(
+                calibri10font2);
+        calibri10format4.setVerticalAlignment(VerticalAlignment.TOP);
+        calibri10format4.setWrap(true);
+        calibri10format4.setAlignment(Alignment.CENTRE);
+
         calibri10format2.setVerticalAlignment(VerticalAlignment.TOP);
         calibri10format2.setBorder(Border.BOTTOM, BorderLineStyle.THIN);
         calibri10format2.setWrap(true);
         calibri10format2.setAlignment(Alignment.CENTRE);
-//		calibri16format.setBackground(Colour.BLACK);
-
+        
         FontName fontName3 = WritableFont.createFont("Calibri");
         WritableFont calibri10font3 = new WritableFont(fontName3, 10,
                 WritableFont.NO_BOLD);
@@ -810,8 +809,6 @@ public class EscribirExcel {
         calibri10format3.setVerticalAlignment(VerticalAlignment.TOP);
         calibri10format3.setBorder(Border.BOTTOM, BorderLineStyle.THIN);
         calibri10format3.setWrap(true);
-//        calibri10format3.setAlignment(Alignment.CENTRE);
-//		calibri16format.setBackground(Colour.BLACK);
 
         //asignar el tipo de letra times12pt al formato times12
         WritableFont times12pt = new WritableFont(WritableFont.TIMES, 10);
@@ -821,59 +818,61 @@ public class EscribirExcel {
         times12.setWrap(true);
 
         hojaExcel.setColumnView(2, 10);
-//        hojaExcel.mergeCells(1, 3, 2, 3);
         hojaExcel.addCell(new Label(5, 3, "PROFORMA", calibri10format2));
 
-//        hojaExcel.setColumnView(0, 35);
-        hojaExcel.setRowView(6, 240, false);
-        hojaExcel.addCell(new Label(0, 6, "Cliente. " + info2[0], calibri10format));
-        hojaExcel.setRowView(7, 240, false);
-        hojaExcel.addCell(new Label(0, 7, "Dirección. " + info2[1], calibri10format));
-        hojaExcel.setRowView(8, 240, false);
-        hojaExcel.addCell(new Label(0, 8, "Teléfono. " + info2[2], calibri10format));
-//        hojaExcel.setRowView(9, 500, false);
-//        int es = espacio(info2[3]);
+        int ultimaFila = 5;
+        if (info[0].length() >= 22) {
+            hojaExcel.addCell(new Label(0, 5, "Cliente. " + info[0].substring(0, 21), calibri10format));
 
-        int ultimaFila = 9;
-        if (info2[3].length() >= 22) {
-            hojaExcel.addCell(new Label(0, 9, "Observación. " + info2[3].substring(0, 21), calibri10format));
-            System.out.println(info2[3].substring(0, 21));
-            info2[3] = info2[3].substring(21);
+            info[0] = info[0].substring(21);
             boolean a = true;
             while (a) {
-                if (info2[3].length() >= 35) {
-                    System.out.println(info2[3].substring(0, 34));
-                    hojaExcel.addCell(new Label(0, ultimaFila+1,info2[3].substring(0, 34), calibri10format));
-                    info2[3] = info2[3].substring(34);
+                if (info[0].length() >= 35) {
                     
-                    
+                    hojaExcel.addCell(new Label(0, ultimaFila + 1, info[0].substring(0, 34), calibri10format));
+                    info[0] = info[0].substring(34);
+
                 } else {
-                    System.out.println("ULTIMA"+info2[3]);
-                    hojaExcel.addCell(new Label(0, ultimaFila+1, info2[3], calibri10format));
-                    a =false;
+                    
+                    hojaExcel.addCell(new Label(0, ultimaFila + 1, info[0], calibri10format));
+                    a = false;
                 }
                 ultimaFila++;
             }
 
         } else {
-            hojaExcel.addCell(new Label(0, 9, "Observación. " + info2[3], calibri10format));
-
+            hojaExcel.addCell(new Label(0, 6, "Cliente. " + info[0], calibri10format));
         }
-
-        hojaExcel.setRowView(ultimaFila + 1, 240, false);
-        hojaExcel.addCell(new Label(0, ultimaFila + 1, "Lote. " + info2[4], calibri10format));
-        hojaExcel.setRowView(ultimaFila + 1, 240, false);
-        hojaExcel.addCell(new Label(0, ultimaFila + 2, "Transporte. " + info2[5], calibri10format));
-        hojaExcel.setRowView(ultimaFila + 2, 240, false);
         hojaExcel.setColumnView(5, 20);
-        hojaExcel.addCell(new Label(7, 3, "              Fecha. " + fechaAct.substring(0, 10), calibri10format));
-        hojaExcel.addCell(new Label(7, 4, "              Número. " + info2[6], calibri10format));
-        hojaExcel.addCell(new Label(7, 5, "              Serie. " + info2[7], calibri10format));
 
-        hojaExcel.mergeCells(0, ultimaFila + 2, 8, ultimaFila+2);
-        hojaExcel.addCell(new Label(0, ultimaFila + 2, "Cantidad                                                   Código                                                   Descripción                                                   Precio D. ", calibri10format3));
+        hojaExcel.mergeCells(7, 3, 8, 3);
+        hojaExcel.mergeCells(7, 4, 8, 4);
+        hojaExcel.setColumnView(8, 13);
+        hojaExcel.addCell(new Label(7, 4, "                 Número. " + info[1], calibri10format));
+        hojaExcel.addCell(new Label(7, 3, "                 Fecha. " + fechaAct.substring(0, 10), calibri10format));
+
+        hojaExcel.mergeCells(0, ultimaFila + 2, 8, ultimaFila + 2);
+        hojaExcel.addCell(new Label(0, ultimaFila + 2, "Cantidad                                          Código                                                                           Descripción                                           Precio D. ", calibri10format3));
         hojaExcel.mergeCells(0, ultimaFila + 1, 8, ultimaFila + 1);
         hojaExcel.addCell(new Label(0, ultimaFila + 1, "", calibri10format2));
+
+        ultimaFila += 2;
+        //Escribir datos
+        for (int i = 0; i < datos.length; i++) {
+            hojaExcel.mergeCells(1, ultimaFila + 1, 4, ultimaFila + 1);//combinar celdas para escribir el codigo
+            hojaExcel.mergeCells(5, ultimaFila + 1, 7, ultimaFila + 1);//combinar celdas para escribir la descripcion
+            hojaExcel.addCell(new Label(1, ultimaFila + 1, datos[i][1].toString(), calibri10format4));// escribir el codigo
+            hojaExcel.addCell(new Number(0, ultimaFila + 1, Integer.parseInt(datos[i][0].toString()), calibri10format4));//escribir cantidad
+            hojaExcel.addCell(new Number(8, ultimaFila + 1, Double.parseDouble(datos[i][3].toString()), calibri10format4));// escribir precio
+            hojaExcel.addCell(new Label(5, ultimaFila + 1, datos[i][2].toString(), calibri10format4));// escribir la descripcion
+            ultimaFila += 1;
+        }
+        hojaExcel.mergeCells(1, ultimaFila + 4, 2, ultimaFila + 4);//combinar celdas para escribir la linea recibe conforme
+        hojaExcel.mergeCells(3, ultimaFila + 4, 4, ultimaFila + 4);//combinar celdas para escribir la linea cedula
+        hojaExcel.addCell(new Label(1, ultimaFila + 4, "____________________", calibri10format));// escribir la linea recibe conforme
+        hojaExcel.addCell(new Label(1, ultimaFila + 5, "    Recibe Conforme   ", calibri10format));// escribir recibe conforme
+        hojaExcel.addCell(new Label(3, ultimaFila + 4, " _____________________", calibri10format));// escribir el linea cedula
+        hojaExcel.addCell(new Label(3, ultimaFila + 5, "            Cédula       ", calibri10format));// escribir el linea cedula
 
         WritableFont times10pt = new WritableFont(WritableFont.TIMES, 10);
         // times10pt.setItalic(true);//tipo de letra italic
@@ -902,67 +901,6 @@ public class EscribirExcel {
         times11.setBackground(Colour.VIOLET2);
         timesReport = new WritableCellFormat(times11pt);
 
-        //escribir datos de la empresa
-//        hojaExcel.mergeCells(0, 8, 1, 8);
-//        hojaExcel.mergeCells(2, 12, 3, 12);
-//        hojaExcel.mergeCells(2, 8, 3, 8);
-//        hojaExcel.mergeCells(2, 9, 3, 9);
-//        hojaExcel.mergeCells(0, 13, 3, 13);
-//        hojaExcel.mergeCells(0, 14, 1, 14);
-//        hojaExcel.mergeCells(2, 14, 3, 14);
-//        hojaExcel.mergeCells(0, 10, 1, 10);
-//        hojaExcel.mergeCells(2, 11, 3, 11);
-//        hojaExcel.mergeCells(2, 10, 3, 10);
-//        hojaExcel.mergeCells(0, 11, 1, 11);
-//        hojaExcel.mergeCells(0, 12, 1, 12);
-//        hojaExcel.mergeCells(0, 15, 3, 15);
-//        hojaExcel.mergeCells(0, 16, 3, 16);
-//        hojaExcel.mergeCells(0, 6, 3, 6);
-//        hojaExcel.mergeCells(0, 7, 3, 7);
-//        hojaExcel.mergeCells(0, 9, 1, 9);
-//
-//        hojaExcel.setColumnView(0, 25);
-//        hojaExcel.addCell(new Label(0, 6,
-//                "      Ingresos " + "desde el " + fechaIni + " hasta el " + fechaFin,
-//                times11));
-//
-//        hojaExcel.addCell(new Label(0, 8, "      Concepto de Factura", times11));
-//        hojaExcel.addCell(new Label(2, 8, "             Monto", times11));
-//
-//        if (tipo == 1) {
-//            hojaExcel.addCell(new Label(0, 9, "                Cancelada", times10));
-//
-//            hojaExcel.addCell(new Number(2, 9, ingresos[1], times10));
-//
-//            hojaExcel.addCell(new Label(0, 10, "                Apartados", times10));
-//
-//            hojaExcel.addCell(new Number(2, 10, ingresos[2], times10));
-//
-//            hojaExcel.addCell(new Label(0, 11, "                Creditos", times10));
-//
-//            hojaExcel.addCell(new Number(2, 11, ingresos[3], times10));
-//
-//            hojaExcel.addCell(new Label(0, 12, "                Devoluciones", times10));
-//
-//            hojaExcel.addCell(new Number(2, 12, -ingresos[0], times10));
-//            hojaExcel.addCell(new Number(2, 14,
-//                    -ingresos[0] + ingresos[1] + ingresos[2] + ingresos[3], times14));
-//
-//        } else {
-//            hojaExcel.addCell(new Label(0, 10, "                Efectivo", times10));
-//
-//            hojaExcel.addCell(new Number(2, 10, ingresos[0], times10));
-//
-//            hojaExcel.addCell(new Label(0, 11, "                Tarjeta", times10));
-//
-//            hojaExcel.addCell(new Number(2, 11, ingresos[1], times10));
-//            hojaExcel.addCell(new Number(2, 14,
-//                    ingresos[0] + ingresos[1], times14));
-//        }
-//        hojaExcel.addCell(new Label(0, 13, "                       ", times11));
-//
-//        hojaExcel.addCell(new Label(0, 14, "     Total ", times14));
-//        //Escribe los datos contenidos en este libro en formato Excel
         workbook.write();
 //
 //        //cerrar libro liberando memoria
@@ -976,21 +914,5 @@ public class EscribirExcel {
             System.out.println("Error al abrir el archivo "
                     + nombreArchivoExcel + "\n" + e.getMessage());
         }
-
     }
-
-    private int espacio(String observacion) {
-        int result = 240;
-        if (observacion.length() > 24) {
-            double division = observacion.length() / 35.0;
-            result += 480 * division;
-
-            System.out.println(division);
-
-        }
-        System.out.println(result);
-        return result;
-
-    }
-
 }

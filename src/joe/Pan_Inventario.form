@@ -5,6 +5,7 @@
     <Container class="javax.swing.JDialog" name="jDialog_CrearProducto">
       <Properties>
         <Property name="defaultCloseOperation" type="int" value="2"/>
+        <Property name="alwaysOnTop" type="boolean" value="true"/>
         <Property name="minimumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
           <Dimension value="[390, 358]"/>
         </Property>
@@ -292,6 +293,7 @@
     </Container>
     <Container class="javax.swing.JDialog" name="jDialog_EliminarProducto">
       <Properties>
+        <Property name="alwaysOnTop" type="boolean" value="true"/>
         <Property name="undecorated" type="boolean" value="true"/>
         <Property name="resizable" type="boolean" value="false"/>
       </Properties>
@@ -382,6 +384,7 @@
     </Container>
     <Container class="javax.swing.JDialog" name="jDialog_ModificarProducto">
       <Properties>
+        <Property name="alwaysOnTop" type="boolean" value="true"/>
         <Property name="undecorated" type="boolean" value="true"/>
         <Property name="resizable" type="boolean" value="false"/>
       </Properties>
@@ -630,6 +633,7 @@
     </Container>
     <Container class="javax.swing.JDialog" name="jDialog_ConfirmacionModificacionProducto">
       <Properties>
+        <Property name="alwaysOnTop" type="boolean" value="true"/>
         <Property name="undecorated" type="boolean" value="true"/>
         <Property name="resizable" type="boolean" value="false"/>
       </Properties>
@@ -721,6 +725,7 @@
     </Container>
     <Container class="javax.swing.JDialog" name="jDialog_CrearCategoria">
       <Properties>
+        <Property name="alwaysOnTop" type="boolean" value="true"/>
         <Property name="undecorated" type="boolean" value="true"/>
         <Property name="resizable" type="boolean" value="false"/>
       </Properties>
@@ -821,6 +826,7 @@
     </Container>
     <Container class="javax.swing.JDialog" name="jDialog_VerProducto">
       <Properties>
+        <Property name="alwaysOnTop" type="boolean" value="true"/>
         <Property name="undecorated" type="boolean" value="true"/>
         <Property name="resizable" type="boolean" value="false"/>
       </Properties>
@@ -854,6 +860,9 @@
           </Layout>
           <SubComponents>
             <Component class="javax.swing.JTextField" name="jTextField_CodigoVerProducto">
+              <Properties>
+                <Property name="editable" type="boolean" value="false"/>
+              </Properties>
               <Constraints>
                 <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
                   <AbsoluteConstraints x="90" y="50" width="200" height="25"/>
@@ -887,6 +896,9 @@
               </Constraints>
             </Component>
             <Component class="javax.swing.JTextField" name="jTextField_nombreVerProducto">
+              <Properties>
+                <Property name="editable" type="boolean" value="false"/>
+              </Properties>
               <Constraints>
                 <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
                   <AbsoluteConstraints x="90" y="80" width="200" height="25"/>
@@ -907,6 +919,9 @@
               </Constraints>
             </Component>
             <Component class="javax.swing.JTextField" name="jTextField_PrecioVerProducto">
+              <Properties>
+                <Property name="editable" type="boolean" value="false"/>
+              </Properties>
               <Constraints>
                 <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
                   <AbsoluteConstraints x="90" y="110" width="200" height="25"/>
@@ -914,6 +929,9 @@
               </Constraints>
             </Component>
             <Component class="javax.swing.JTextField" name="jTextField_CostoVerProducto">
+              <Properties>
+                <Property name="editable" type="boolean" value="false"/>
+              </Properties>
               <Constraints>
                 <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
                   <AbsoluteConstraints x="90" y="140" width="200" height="25"/>
@@ -974,6 +992,9 @@
               </Constraints>
             </Component>
             <Component class="javax.swing.JTextField" name="jTextField_DescripcionVerProducto">
+              <Properties>
+                <Property name="editable" type="boolean" value="false"/>
+              </Properties>
               <Constraints>
                 <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
                   <AbsoluteConstraints x="90" y="200" width="200" height="25"/>
@@ -981,6 +1002,9 @@
               </Constraints>
             </Component>
             <Component class="javax.swing.JTextField" name="jTextField_CategoriaVerProducto">
+              <Properties>
+                <Property name="editable" type="boolean" value="false"/>
+              </Properties>
               <Constraints>
                 <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
                   <AbsoluteConstraints x="90" y="170" width="200" height="25"/>
@@ -1022,6 +1046,7 @@
     </Container>
     <Container class="javax.swing.JDialog" name="jDialog_ConfirmacionVerProducto">
       <Properties>
+        <Property name="alwaysOnTop" type="boolean" value="true"/>
         <Property name="undecorated" type="boolean" value="true"/>
         <Property name="resizable" type="boolean" value="false"/>
       </Properties>
@@ -1113,6 +1138,11 @@
       </SubComponents>
     </Container>
     <Container class="javax.swing.JDialog" name="jDialog_creaCategoriaModificacion">
+      <Properties>
+        <Property name="alwaysOnTop" type="boolean" value="true"/>
+        <Property name="undecorated" type="boolean" value="true"/>
+        <Property name="resizable" type="boolean" value="false"/>
+      </Properties>
       <AuxValues>
         <AuxValue name="JavaCodeGenerator_LayoutCodePre" type="java.lang.String" value="jDialog_creaCategoriaModificacion.setSize(270, 120);&#xa;jDialog_creaCategoriaModificacion.setLocationRelativeTo(null);"/>
       </AuxValues>

@@ -82,7 +82,7 @@ public class Dialog_VerCierre extends javax.swing.JDialog {
         jFormattedTextField11 = new javax.swing.JFormattedTextField();
         jFormattedTextField12 = new javax.swing.JFormattedTextField();
         jLabel17 = new javax.swing.JLabel();
-        jFormattedTextField_totalVentaReportado1 = new javax.swing.JFormattedTextField();
+        jFormattedTextField_gasto = new javax.swing.JFormattedTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setUndecorated(true);
@@ -342,9 +342,9 @@ public class Dialog_VerCierre extends javax.swing.JDialog {
         jLabel17.setForeground(new java.awt.Color(255, 255, 255));
         jLabel17.setText("Total Gastos");
 
-        jFormattedTextField_totalVentaReportado1.setEditable(false);
-        jFormattedTextField_totalVentaReportado1.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter()));
-        jFormattedTextField_totalVentaReportado1.setText("0.00");
+        jFormattedTextField_gasto.setEditable(false);
+        jFormattedTextField_gasto.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter()));
+        jFormattedTextField_gasto.setText("0.00");
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
@@ -404,7 +404,7 @@ public class Dialog_VerCierre extends javax.swing.JDialog {
                                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                     .addComponent(jFormattedTextField_totalVentaReportado, javax.swing.GroupLayout.Alignment.TRAILING)
                                     .addComponent(jFormattedTextField_totalContadoReportado, javax.swing.GroupLayout.DEFAULT_SIZE, 178, Short.MAX_VALUE)
-                                    .addComponent(jFormattedTextField_totalVentaReportado1))
+                                    .addComponent(jFormattedTextField_gasto))
                                 .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
                                     .addComponent(jButton3)
                                     .addGap(18, 18, 18)
@@ -472,7 +472,7 @@ public class Dialog_VerCierre extends javax.swing.JDialog {
                         .addComponent(jLabel17))
                     .addGroup(jPanel3Layout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
-                        .addComponent(jFormattedTextField_totalVentaReportado1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(jFormattedTextField_gasto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(27, 27, 27)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton3)
@@ -903,10 +903,10 @@ public class Dialog_VerCierre extends javax.swing.JDialog {
     javax.swing.JFormattedTextField jFormattedTextField7;
     javax.swing.JFormattedTextField jFormattedTextField8;
     javax.swing.JFormattedTextField jFormattedTextField9;
+    javax.swing.JFormattedTextField jFormattedTextField_gasto;
     javax.swing.JFormattedTextField jFormattedTextField_totalContadoReportado;
     javax.swing.JFormattedTextField jFormattedTextField_totalTarjetaReportado;
     javax.swing.JFormattedTextField jFormattedTextField_totalVentaReportado;
-    javax.swing.JFormattedTextField jFormattedTextField_totalVentaReportado1;
     javax.swing.JLabel jLabel1;
     javax.swing.JLabel jLabel10;
     javax.swing.JLabel jLabel11;

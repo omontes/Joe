@@ -9,6 +9,7 @@ package joe;
 import db_managment.Direct_Control_BD;
 import java.awt.Toolkit;
 import java.awt.event.KeyEvent;
+import java.beans.PropertyChangeEvent;
 import java.math.BigDecimal;
 import java.text.DateFormat;
 import java.text.DecimalFormat;
@@ -34,6 +35,7 @@ public class Dialog_VerCierre extends javax.swing.JDialog {
     public Dialog_VerCierre(JPanel parent) {
             this.parent=parent;
             initComponents();
+            this.jFormattedTextField1.selectAll();
             setLocationRelativeTo(null);
     }
 
@@ -140,6 +142,7 @@ public class Dialog_VerCierre extends javax.swing.JDialog {
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
         jLabel1.setText("Crear Cierre");
 
+        jFormattedTextField_totalContadoReportado.setEditable(false);
         jFormattedTextField_totalContadoReportado.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter()));
         jFormattedTextField_totalContadoReportado.setText("0.00");
         jFormattedTextField_totalContadoReportado.addPropertyChangeListener(new java.beans.PropertyChangeListener() {
@@ -170,21 +173,81 @@ public class Dialog_VerCierre extends javax.swing.JDialog {
 
         jFormattedTextField1.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(java.text.NumberFormat.getIntegerInstance())));
         jFormattedTextField1.setText("0.00");
+        jFormattedTextField1.addPropertyChangeListener(new java.beans.PropertyChangeListener() {
+            public void propertyChange(java.beans.PropertyChangeEvent evt) {
+                jFormattedTextField1PropertyChange(evt);
+            }
+        });
+        jFormattedTextField1.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                jFormattedTextField1KeyTyped(evt);
+            }
+        });
 
         jFormattedTextField2.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(java.text.NumberFormat.getIntegerInstance())));
         jFormattedTextField2.setText("0.00");
+        jFormattedTextField2.addPropertyChangeListener(new java.beans.PropertyChangeListener() {
+            public void propertyChange(java.beans.PropertyChangeEvent evt) {
+                jFormattedTextField2PropertyChange(evt);
+            }
+        });
+        jFormattedTextField2.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                jFormattedTextField2KeyTyped(evt);
+            }
+        });
 
         jFormattedTextField3.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(java.text.NumberFormat.getIntegerInstance())));
         jFormattedTextField3.setText("0.00");
+        jFormattedTextField3.addPropertyChangeListener(new java.beans.PropertyChangeListener() {
+            public void propertyChange(java.beans.PropertyChangeEvent evt) {
+                jFormattedTextField3PropertyChange(evt);
+            }
+        });
+        jFormattedTextField3.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                jFormattedTextField3KeyTyped(evt);
+            }
+        });
 
         jFormattedTextField4.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(java.text.NumberFormat.getIntegerInstance())));
         jFormattedTextField4.setText("0.00");
+        jFormattedTextField4.addPropertyChangeListener(new java.beans.PropertyChangeListener() {
+            public void propertyChange(java.beans.PropertyChangeEvent evt) {
+                jFormattedTextField4PropertyChange(evt);
+            }
+        });
+        jFormattedTextField4.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                jFormattedTextField4KeyTyped(evt);
+            }
+        });
 
         jFormattedTextField5.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(java.text.NumberFormat.getIntegerInstance())));
         jFormattedTextField5.setText("0.00");
+        jFormattedTextField5.addPropertyChangeListener(new java.beans.PropertyChangeListener() {
+            public void propertyChange(java.beans.PropertyChangeEvent evt) {
+                jFormattedTextField5PropertyChange(evt);
+            }
+        });
+        jFormattedTextField5.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                jFormattedTextField5KeyTyped(evt);
+            }
+        });
 
         jFormattedTextField6.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(java.text.NumberFormat.getIntegerInstance())));
         jFormattedTextField6.setText("0.00");
+        jFormattedTextField6.addPropertyChangeListener(new java.beans.PropertyChangeListener() {
+            public void propertyChange(java.beans.PropertyChangeEvent evt) {
+                jFormattedTextField6PropertyChange(evt);
+            }
+        });
+        jFormattedTextField6.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                jFormattedTextField6KeyTyped(evt);
+            }
+        });
 
         jLabel9.setText("Monedas de C5");
 
@@ -200,21 +263,81 @@ public class Dialog_VerCierre extends javax.swing.JDialog {
 
         jFormattedTextField7.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(java.text.NumberFormat.getIntegerInstance())));
         jFormattedTextField7.setText("0.00");
+        jFormattedTextField7.addPropertyChangeListener(new java.beans.PropertyChangeListener() {
+            public void propertyChange(java.beans.PropertyChangeEvent evt) {
+                jFormattedTextField7PropertyChange(evt);
+            }
+        });
+        jFormattedTextField7.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                jFormattedTextField7KeyTyped(evt);
+            }
+        });
 
         jFormattedTextField8.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(java.text.NumberFormat.getIntegerInstance())));
         jFormattedTextField8.setText("0.00");
+        jFormattedTextField8.addPropertyChangeListener(new java.beans.PropertyChangeListener() {
+            public void propertyChange(java.beans.PropertyChangeEvent evt) {
+                jFormattedTextField8PropertyChange(evt);
+            }
+        });
+        jFormattedTextField8.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                jFormattedTextField8KeyTyped(evt);
+            }
+        });
 
         jFormattedTextField9.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(java.text.NumberFormat.getIntegerInstance())));
         jFormattedTextField9.setText("0.00");
+        jFormattedTextField9.addPropertyChangeListener(new java.beans.PropertyChangeListener() {
+            public void propertyChange(java.beans.PropertyChangeEvent evt) {
+                jFormattedTextField9PropertyChange(evt);
+            }
+        });
+        jFormattedTextField9.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                jFormattedTextField9KeyTyped(evt);
+            }
+        });
 
         jFormattedTextField10.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(java.text.NumberFormat.getIntegerInstance())));
         jFormattedTextField10.setText("0.00");
+        jFormattedTextField10.addPropertyChangeListener(new java.beans.PropertyChangeListener() {
+            public void propertyChange(java.beans.PropertyChangeEvent evt) {
+                jFormattedTextField10PropertyChange(evt);
+            }
+        });
+        jFormattedTextField10.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                jFormattedTextField10KeyTyped(evt);
+            }
+        });
 
         jFormattedTextField11.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(java.text.NumberFormat.getIntegerInstance())));
         jFormattedTextField11.setText("0.00");
+        jFormattedTextField11.addPropertyChangeListener(new java.beans.PropertyChangeListener() {
+            public void propertyChange(java.beans.PropertyChangeEvent evt) {
+                jFormattedTextField11PropertyChange(evt);
+            }
+        });
+        jFormattedTextField11.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                jFormattedTextField11KeyTyped(evt);
+            }
+        });
 
         jFormattedTextField12.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(java.text.NumberFormat.getIntegerInstance())));
         jFormattedTextField12.setText("0.00");
+        jFormattedTextField12.addPropertyChangeListener(new java.beans.PropertyChangeListener() {
+            public void propertyChange(java.beans.PropertyChangeEvent evt) {
+                jFormattedTextField12PropertyChange(evt);
+            }
+        });
+        jFormattedTextField12.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                jFormattedTextField12KeyTyped(evt);
+            }
+        });
 
         jLabel17.setForeground(new java.awt.Color(255, 255, 255));
         jLabel17.setText("Total Gastos");
@@ -295,15 +418,15 @@ public class Dialog_VerCierre extends javax.swing.JDialog {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLabel1)
-                .addGap(18, 18, 18)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addGap(38, 38, 38)
                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel2)
                             .addComponent(jFormattedTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel9)
                             .addComponent(jFormattedTextField7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED, 38, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 18, Short.MAX_VALUE)
                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel3)
                             .addComponent(jFormattedTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -437,12 +560,9 @@ public class Dialog_VerCierre extends javax.swing.JDialog {
     private void jFormattedTextField_totalTarjetaReportadoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jFormattedTextField_totalTarjetaReportadoKeyTyped
         int tecla= evt.getKeyChar();
         
-        int limite = 15;
-        if (jFormattedTextField_totalTarjetaReportado.getText().length() >= limite) {
-            evt.consume();
-            Toolkit.getDefaultToolkit().beep();
-
-        } 
+        if(tecla==KeyEvent.VK_ENTER){
+            jButton3.requestFocusInWindow();
+        }
         if(tecla==KeyEvent.VK_COMMA){
             return;
         }
@@ -518,27 +638,255 @@ public class Dialog_VerCierre extends javax.swing.JDialog {
     }//GEN-LAST:event_jFormattedTextField_totalContadoReportadoKeyPressed
 
     private void jFormattedTextField_totalContadoReportadoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jFormattedTextField_totalContadoReportadoKeyTyped
-         int tecla= evt.getKeyChar();
-         
-         
-        int limite = 15;
-        if (jFormattedTextField_totalContadoReportado.getText().length() >= limite) {
-            evt.consume();
-            Toolkit.getDefaultToolkit().beep();
-
-        } 
+        int tecla= evt.getKeyChar();
+      
         if(tecla==KeyEvent.VK_COMMA){
             return;
         }
-        if(tecla==KeyEvent.VK_PERIOD){
-            return;
-        };
         if (!Character.isDigit(tecla) & !Character.isISOControl(
                 evt.getKeyChar())) {
             Toolkit.getDefaultToolkit().beep();
             evt.consume();
         }
     }//GEN-LAST:event_jFormattedTextField_totalContadoReportadoKeyTyped
+
+    private void jFormattedTextField1PropertyChange(java.beans.PropertyChangeEvent evt) {//GEN-FIRST:event_jFormattedTextField1PropertyChange
+        
+        this.agregaListenerMonedasyBilletes(evt, "1000");
+    }//GEN-LAST:event_jFormattedTextField1PropertyChange
+    private void agregaListenerMonedasyBilletes(PropertyChangeEvent evt, String valor){
+        if (evt.getPropertyName().equals("value")) {
+
+            if (evt.getNewValue() != null) {
+                String text = evt.getNewValue().toString();
+                BigDecimal Billetes1000 = this.StringtoBigDecimal(text);
+                BigDecimal mil = new BigDecimal(valor);
+                if (evt.getOldValue() != null) {
+                    String text2 = evt.getOldValue().toString();
+                    BigDecimal billetesold = this.StringtoBigDecimal(text2);
+                    BigDecimal totalcontado = this.StringtoBigDecimal(this.jFormattedTextField_totalContadoReportado.getText());
+                    this.jFormattedTextField_totalContadoReportado.setValue(totalcontado.add((Billetes1000.multiply(mil)).subtract(billetesold.multiply(mil))));
+                    return;
+                }
+                BigDecimal total = this.StringtoBigDecimal(this.jFormattedTextField_totalContadoReportado.getText());
+                this.jFormattedTextField_totalContadoReportado.setValue(total.add(Billetes1000.multiply(mil)));
+
+            } 
+            
+        }
+    }
+    
+    private void jFormattedTextField1KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jFormattedTextField1KeyTyped
+        int tecla= evt.getKeyChar();
+       
+        if(tecla==KeyEvent.VK_ENTER){
+            this.jFormattedTextField2.requestFocusInWindow();
+            this.jFormattedTextField2.selectAll();
+        }
+        if (!Character.isDigit(tecla) & !Character.isISOControl(
+                evt.getKeyChar())) {
+            Toolkit.getDefaultToolkit().beep();
+            evt.consume();
+        }
+    }//GEN-LAST:event_jFormattedTextField1KeyTyped
+
+    private void jFormattedTextField2KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jFormattedTextField2KeyTyped
+         int tecla= evt.getKeyChar();
+       
+        if(tecla==KeyEvent.VK_ENTER){
+            this.jFormattedTextField3.requestFocusInWindow();
+            this.jFormattedTextField3.selectAll();
+        }
+        if (!Character.isDigit(tecla) & !Character.isISOControl(
+                evt.getKeyChar())) {
+            Toolkit.getDefaultToolkit().beep();
+            evt.consume();
+        }
+    }//GEN-LAST:event_jFormattedTextField2KeyTyped
+
+    private void jFormattedTextField2PropertyChange(java.beans.PropertyChangeEvent evt) {//GEN-FIRST:event_jFormattedTextField2PropertyChange
+        this.agregaListenerMonedasyBilletes(evt, "2000");
+    }//GEN-LAST:event_jFormattedTextField2PropertyChange
+
+    private void jFormattedTextField3KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jFormattedTextField3KeyTyped
+         int tecla= evt.getKeyChar();
+       
+        if(tecla==KeyEvent.VK_ENTER){
+            this.jFormattedTextField4.requestFocusInWindow();
+            this.jFormattedTextField4.selectAll();
+        }
+        if (!Character.isDigit(tecla) & !Character.isISOControl(
+                evt.getKeyChar())) {
+            Toolkit.getDefaultToolkit().beep();
+            evt.consume();
+        }
+    }//GEN-LAST:event_jFormattedTextField3KeyTyped
+
+    private void jFormattedTextField3PropertyChange(java.beans.PropertyChangeEvent evt) {//GEN-FIRST:event_jFormattedTextField3PropertyChange
+        this.agregaListenerMonedasyBilletes(evt, "5000");
+    }//GEN-LAST:event_jFormattedTextField3PropertyChange
+
+    private void jFormattedTextField4KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jFormattedTextField4KeyTyped
+         int tecla= evt.getKeyChar();
+       
+        if(tecla==KeyEvent.VK_ENTER){
+            this.jFormattedTextField5.requestFocusInWindow();
+            this.jFormattedTextField5.selectAll();
+        }
+        if (!Character.isDigit(tecla) & !Character.isISOControl(
+                evt.getKeyChar())) {
+            Toolkit.getDefaultToolkit().beep();
+            evt.consume();
+        }
+    }//GEN-LAST:event_jFormattedTextField4KeyTyped
+
+    private void jFormattedTextField4PropertyChange(java.beans.PropertyChangeEvent evt) {//GEN-FIRST:event_jFormattedTextField4PropertyChange
+        this.agregaListenerMonedasyBilletes(evt, "10000");
+    }//GEN-LAST:event_jFormattedTextField4PropertyChange
+
+    private void jFormattedTextField5KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jFormattedTextField5KeyTyped
+        int tecla= evt.getKeyChar();
+       
+        if(tecla==KeyEvent.VK_ENTER){
+            this.jFormattedTextField6.requestFocusInWindow();
+            this.jFormattedTextField6.selectAll();
+        }
+        if (!Character.isDigit(tecla) & !Character.isISOControl(
+                evt.getKeyChar())) {
+            Toolkit.getDefaultToolkit().beep();
+            evt.consume();
+        }
+    }//GEN-LAST:event_jFormattedTextField5KeyTyped
+
+    private void jFormattedTextField5PropertyChange(java.beans.PropertyChangeEvent evt) {//GEN-FIRST:event_jFormattedTextField5PropertyChange
+        this.agregaListenerMonedasyBilletes(evt,"20000");
+    }//GEN-LAST:event_jFormattedTextField5PropertyChange
+
+    private void jFormattedTextField6KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jFormattedTextField6KeyTyped
+        int tecla= evt.getKeyChar();
+       
+        if(tecla==KeyEvent.VK_ENTER){
+            this.jFormattedTextField7.requestFocusInWindow();
+            this.jFormattedTextField7.selectAll();
+        }
+        if (!Character.isDigit(tecla) & !Character.isISOControl(
+                evt.getKeyChar())) {
+            Toolkit.getDefaultToolkit().beep();
+            evt.consume();
+        }
+    }//GEN-LAST:event_jFormattedTextField6KeyTyped
+
+    private void jFormattedTextField6PropertyChange(java.beans.PropertyChangeEvent evt) {//GEN-FIRST:event_jFormattedTextField6PropertyChange
+        this.agregaListenerMonedasyBilletes(evt,"50000");
+    }//GEN-LAST:event_jFormattedTextField6PropertyChange
+
+    private void jFormattedTextField7KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jFormattedTextField7KeyTyped
+        int tecla= evt.getKeyChar();
+       
+        if(tecla==KeyEvent.VK_ENTER){
+            this.jFormattedTextField8.requestFocusInWindow();
+            this.jFormattedTextField8.selectAll();
+        }
+        if (!Character.isDigit(tecla) & !Character.isISOControl(
+                evt.getKeyChar())) {
+            Toolkit.getDefaultToolkit().beep();
+            evt.consume();
+        }
+    }//GEN-LAST:event_jFormattedTextField7KeyTyped
+
+    private void jFormattedTextField7PropertyChange(java.beans.PropertyChangeEvent evt) {//GEN-FIRST:event_jFormattedTextField7PropertyChange
+        this.agregaListenerMonedasyBilletes(evt, "5");
+    }//GEN-LAST:event_jFormattedTextField7PropertyChange
+
+    private void jFormattedTextField8KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jFormattedTextField8KeyTyped
+        int tecla= evt.getKeyChar();
+       
+        if(tecla==KeyEvent.VK_ENTER){
+            this.jFormattedTextField9.requestFocusInWindow();
+            this.jFormattedTextField9.selectAll();
+        }
+        if (!Character.isDigit(tecla) & !Character.isISOControl(
+                evt.getKeyChar())) {
+            Toolkit.getDefaultToolkit().beep();
+            evt.consume();
+        }
+    }//GEN-LAST:event_jFormattedTextField8KeyTyped
+
+    private void jFormattedTextField8PropertyChange(java.beans.PropertyChangeEvent evt) {//GEN-FIRST:event_jFormattedTextField8PropertyChange
+        this.agregaListenerMonedasyBilletes(evt, "10");
+    }//GEN-LAST:event_jFormattedTextField8PropertyChange
+
+    private void jFormattedTextField9KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jFormattedTextField9KeyTyped
+        int tecla= evt.getKeyChar();
+       
+        if(tecla==KeyEvent.VK_ENTER){
+            this.jFormattedTextField10.requestFocusInWindow();
+            this.jFormattedTextField10.selectAll();
+        }
+        if (!Character.isDigit(tecla) & !Character.isISOControl(
+                evt.getKeyChar())) {
+            Toolkit.getDefaultToolkit().beep();
+            evt.consume();
+        }
+    }//GEN-LAST:event_jFormattedTextField9KeyTyped
+
+    private void jFormattedTextField9PropertyChange(java.beans.PropertyChangeEvent evt) {//GEN-FIRST:event_jFormattedTextField9PropertyChange
+        this.agregaListenerMonedasyBilletes(evt, "25");
+    }//GEN-LAST:event_jFormattedTextField9PropertyChange
+
+    private void jFormattedTextField10KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jFormattedTextField10KeyTyped
+         int tecla= evt.getKeyChar();
+       
+        if(tecla==KeyEvent.VK_ENTER){
+            this.jFormattedTextField11.requestFocusInWindow();
+            this.jFormattedTextField11.selectAll();
+        }
+        if (!Character.isDigit(tecla) & !Character.isISOControl(
+                evt.getKeyChar())) {
+            Toolkit.getDefaultToolkit().beep();
+            evt.consume();
+        }
+    }//GEN-LAST:event_jFormattedTextField10KeyTyped
+
+    private void jFormattedTextField10PropertyChange(java.beans.PropertyChangeEvent evt) {//GEN-FIRST:event_jFormattedTextField10PropertyChange
+        this.agregaListenerMonedasyBilletes(evt, "50");
+    }//GEN-LAST:event_jFormattedTextField10PropertyChange
+
+    private void jFormattedTextField11KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jFormattedTextField11KeyTyped
+          int tecla= evt.getKeyChar();
+       
+        if(tecla==KeyEvent.VK_ENTER){
+            this.jFormattedTextField12.requestFocusInWindow();
+            this.jFormattedTextField12.selectAll();
+        }
+        if (!Character.isDigit(tecla) & !Character.isISOControl(
+                evt.getKeyChar())) {
+            Toolkit.getDefaultToolkit().beep();
+            evt.consume();
+        }
+    }//GEN-LAST:event_jFormattedTextField11KeyTyped
+
+    private void jFormattedTextField11PropertyChange(java.beans.PropertyChangeEvent evt) {//GEN-FIRST:event_jFormattedTextField11PropertyChange
+        this.agregaListenerMonedasyBilletes(evt, "100");
+    }//GEN-LAST:event_jFormattedTextField11PropertyChange
+
+    private void jFormattedTextField12KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jFormattedTextField12KeyTyped
+        int tecla= evt.getKeyChar();
+       
+        if(tecla==KeyEvent.VK_ENTER){
+            this.jFormattedTextField_totalTarjetaReportado.requestFocusInWindow();
+            this.jFormattedTextField_totalTarjetaReportado.selectAll();
+        }
+        if (!Character.isDigit(tecla) & !Character.isISOControl(
+                evt.getKeyChar())) {
+            Toolkit.getDefaultToolkit().beep();
+            evt.consume();
+        }
+    }//GEN-LAST:event_jFormattedTextField12KeyTyped
+
+    private void jFormattedTextField12PropertyChange(java.beans.PropertyChangeEvent evt) {//GEN-FIRST:event_jFormattedTextField12PropertyChange
+        this.agregaListenerMonedasyBilletes(evt, "500");
+    }//GEN-LAST:event_jFormattedTextField12PropertyChange
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     javax.swing.JButton jButton3;

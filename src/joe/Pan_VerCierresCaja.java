@@ -147,6 +147,7 @@ public class Pan_VerCierresCaja extends javax.swing.JPanel {
             BigDecimal totalcont = this.StringtoBigDecimal(InfoCierre[0][0].toString());
             BigDecimal totaltarj = this.StringtoBigDecimal(InfoCierre[0][1].toString());
             BigDecimal totalvent = this.StringtoBigDecimal(InfoCierre[0][2].toString());
+            BigDecimal gastos = this.StringtoBigDecimal(InfoCierre[0][4].toString());
             String fechaFinal = InfoCierre[0][3].toString();
             
             
@@ -160,7 +161,7 @@ public class Pan_VerCierresCaja extends javax.swing.JPanel {
             String Cajero = AdminBD.obtenerCajeroCierre(idCierre);
             BigDecimal montoinicio = AdminBD.obtenerMontoInicio(idCierre);
             panelCreaCerrarCaja.jLabel_horaCierre.setText(fechaFinal);
-            panelCreaCerrarCaja.personalizarTablaCierre(totalcont, totaltarj, totalvent.add(montoinicio), Cajero, fechaInicio, montoinicio);
+            panelCreaCerrarCaja.personalizarTablaCierre(totalcont, totaltarj, totalvent.add(montoinicio), Cajero, fechaInicio, montoinicio,gastos);
 
         } else {
             JOptionPane.showMessageDialog(

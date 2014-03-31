@@ -101,6 +101,11 @@ public class Dialog_VerCierre extends javax.swing.JDialog {
 
         jFormattedTextField_totalTarjetaReportado.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter()));
         jFormattedTextField_totalTarjetaReportado.setText("0.00");
+        jFormattedTextField_totalTarjetaReportado.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jFormattedTextField_totalTarjetaReportadoMouseClicked(evt);
+            }
+        });
         jFormattedTextField_totalTarjetaReportado.addPropertyChangeListener(new java.beans.PropertyChangeListener() {
             public void propertyChange(java.beans.PropertyChangeEvent evt) {
                 jFormattedTextField_totalTarjetaReportadoPropertyChange(evt);
@@ -173,6 +178,11 @@ public class Dialog_VerCierre extends javax.swing.JDialog {
 
         jFormattedTextField1.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(java.text.NumberFormat.getIntegerInstance())));
         jFormattedTextField1.setText("0.00");
+        jFormattedTextField1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jFormattedTextField1MouseClicked(evt);
+            }
+        });
         jFormattedTextField1.addPropertyChangeListener(new java.beans.PropertyChangeListener() {
             public void propertyChange(java.beans.PropertyChangeEvent evt) {
                 jFormattedTextField1PropertyChange(evt);
@@ -186,6 +196,11 @@ public class Dialog_VerCierre extends javax.swing.JDialog {
 
         jFormattedTextField2.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(java.text.NumberFormat.getIntegerInstance())));
         jFormattedTextField2.setText("0.00");
+        jFormattedTextField2.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jFormattedTextField2MouseClicked(evt);
+            }
+        });
         jFormattedTextField2.addPropertyChangeListener(new java.beans.PropertyChangeListener() {
             public void propertyChange(java.beans.PropertyChangeEvent evt) {
                 jFormattedTextField2PropertyChange(evt);
@@ -199,6 +214,11 @@ public class Dialog_VerCierre extends javax.swing.JDialog {
 
         jFormattedTextField3.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(java.text.NumberFormat.getIntegerInstance())));
         jFormattedTextField3.setText("0.00");
+        jFormattedTextField3.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jFormattedTextField3MouseClicked(evt);
+            }
+        });
         jFormattedTextField3.addPropertyChangeListener(new java.beans.PropertyChangeListener() {
             public void propertyChange(java.beans.PropertyChangeEvent evt) {
                 jFormattedTextField3PropertyChange(evt);
@@ -212,6 +232,11 @@ public class Dialog_VerCierre extends javax.swing.JDialog {
 
         jFormattedTextField4.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(java.text.NumberFormat.getIntegerInstance())));
         jFormattedTextField4.setText("0.00");
+        jFormattedTextField4.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jFormattedTextField4MouseClicked(evt);
+            }
+        });
         jFormattedTextField4.addPropertyChangeListener(new java.beans.PropertyChangeListener() {
             public void propertyChange(java.beans.PropertyChangeEvent evt) {
                 jFormattedTextField4PropertyChange(evt);
@@ -225,6 +250,11 @@ public class Dialog_VerCierre extends javax.swing.JDialog {
 
         jFormattedTextField5.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(java.text.NumberFormat.getIntegerInstance())));
         jFormattedTextField5.setText("0.00");
+        jFormattedTextField5.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jFormattedTextField5MouseClicked(evt);
+            }
+        });
         jFormattedTextField5.addPropertyChangeListener(new java.beans.PropertyChangeListener() {
             public void propertyChange(java.beans.PropertyChangeEvent evt) {
                 jFormattedTextField5PropertyChange(evt);
@@ -238,6 +268,11 @@ public class Dialog_VerCierre extends javax.swing.JDialog {
 
         jFormattedTextField6.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(java.text.NumberFormat.getIntegerInstance())));
         jFormattedTextField6.setText("0.00");
+        jFormattedTextField6.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jFormattedTextField6MouseClicked(evt);
+            }
+        });
         jFormattedTextField6.addPropertyChangeListener(new java.beans.PropertyChangeListener() {
             public void propertyChange(java.beans.PropertyChangeEvent evt) {
                 jFormattedTextField6PropertyChange(evt);
@@ -263,6 +298,11 @@ public class Dialog_VerCierre extends javax.swing.JDialog {
 
         jFormattedTextField7.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(java.text.NumberFormat.getIntegerInstance())));
         jFormattedTextField7.setText("0.00");
+        jFormattedTextField7.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jFormattedTextField7MouseClicked(evt);
+            }
+        });
         jFormattedTextField7.addPropertyChangeListener(new java.beans.PropertyChangeListener() {
             public void propertyChange(java.beans.PropertyChangeEvent evt) {
                 jFormattedTextField7PropertyChange(evt);
@@ -276,6 +316,11 @@ public class Dialog_VerCierre extends javax.swing.JDialog {
 
         jFormattedTextField8.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(java.text.NumberFormat.getIntegerInstance())));
         jFormattedTextField8.setText("0.00");
+        jFormattedTextField8.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jFormattedTextField8MouseClicked(evt);
+            }
+        });
         jFormattedTextField8.addPropertyChangeListener(new java.beans.PropertyChangeListener() {
             public void propertyChange(java.beans.PropertyChangeEvent evt) {
                 jFormattedTextField8PropertyChange(evt);
@@ -289,6 +334,11 @@ public class Dialog_VerCierre extends javax.swing.JDialog {
 
         jFormattedTextField9.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(java.text.NumberFormat.getIntegerInstance())));
         jFormattedTextField9.setText("0.00");
+        jFormattedTextField9.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jFormattedTextField9MouseClicked(evt);
+            }
+        });
         jFormattedTextField9.addPropertyChangeListener(new java.beans.PropertyChangeListener() {
             public void propertyChange(java.beans.PropertyChangeEvent evt) {
                 jFormattedTextField9PropertyChange(evt);
@@ -302,6 +352,11 @@ public class Dialog_VerCierre extends javax.swing.JDialog {
 
         jFormattedTextField10.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(java.text.NumberFormat.getIntegerInstance())));
         jFormattedTextField10.setText("0.00");
+        jFormattedTextField10.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jFormattedTextField10MouseClicked(evt);
+            }
+        });
         jFormattedTextField10.addPropertyChangeListener(new java.beans.PropertyChangeListener() {
             public void propertyChange(java.beans.PropertyChangeEvent evt) {
                 jFormattedTextField10PropertyChange(evt);
@@ -315,6 +370,11 @@ public class Dialog_VerCierre extends javax.swing.JDialog {
 
         jFormattedTextField11.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(java.text.NumberFormat.getIntegerInstance())));
         jFormattedTextField11.setText("0.00");
+        jFormattedTextField11.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jFormattedTextField11MouseClicked(evt);
+            }
+        });
         jFormattedTextField11.addPropertyChangeListener(new java.beans.PropertyChangeListener() {
             public void propertyChange(java.beans.PropertyChangeEvent evt) {
                 jFormattedTextField11PropertyChange(evt);
@@ -328,6 +388,11 @@ public class Dialog_VerCierre extends javax.swing.JDialog {
 
         jFormattedTextField12.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(java.text.NumberFormat.getIntegerInstance())));
         jFormattedTextField12.setText("0.00");
+        jFormattedTextField12.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jFormattedTextField12MouseClicked(evt);
+            }
+        });
         jFormattedTextField12.addPropertyChangeListener(new java.beans.PropertyChangeListener() {
             public void propertyChange(java.beans.PropertyChangeEvent evt) {
                 jFormattedTextField12PropertyChange(evt);
@@ -342,9 +407,18 @@ public class Dialog_VerCierre extends javax.swing.JDialog {
         jLabel17.setForeground(new java.awt.Color(255, 255, 255));
         jLabel17.setText("Total Gastos");
 
-        jFormattedTextField_gasto.setEditable(false);
         jFormattedTextField_gasto.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter()));
         jFormattedTextField_gasto.setText("0.00");
+        jFormattedTextField_gasto.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jFormattedTextField_gastoMouseClicked(evt);
+            }
+        });
+        jFormattedTextField_gasto.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                jFormattedTextField_gastoKeyTyped(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
@@ -519,7 +593,7 @@ public class Dialog_VerCierre extends javax.swing.JDialog {
               BigDecimal totalcont = this.StringtoBigDecimal(this.jFormattedTextField_totalContadoReportado.getText());
               BigDecimal totaltarj = this.StringtoBigDecimal(this.jFormattedTextField_totalTarjetaReportado.getText());
               BigDecimal totalvent = this.StringtoBigDecimal(this.jFormattedTextField_totalVentaReportado.getText());
-              
+              BigDecimal gastos = this.StringtoBigDecimal(this.jFormattedTextField_gasto.getText());
               
               Pan_CerrarCaja panelCreaCerrarCaja = new Pan_CerrarCaja(Pan_CerrarCaja.NEW_CALL);
               JF_Facturacion.getInstance().getPanelManager().showPanel(panelCreaCerrarCaja, 800, 471, 0, 0);
@@ -533,7 +607,7 @@ public class Dialog_VerCierre extends javax.swing.JDialog {
               DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
               Date date = new Date();
               panelCreaCerrarCaja.jLabel_horaCierre.setText(dateFormat.format(date));
-              panelCreaCerrarCaja.personalizarTablaCierre(totalcont, totaltarj, totalvent, Cajero, fechaInicio, montoinicio);
+              panelCreaCerrarCaja.personalizarTablaCierre(totalcont, totaltarj, totalvent, Cajero, fechaInicio, montoinicio, gastos);
 
 
 
@@ -887,6 +961,68 @@ public class Dialog_VerCierre extends javax.swing.JDialog {
     private void jFormattedTextField12PropertyChange(java.beans.PropertyChangeEvent evt) {//GEN-FIRST:event_jFormattedTextField12PropertyChange
         this.agregaListenerMonedasyBilletes(evt, "500");
     }//GEN-LAST:event_jFormattedTextField12PropertyChange
+
+    private void jFormattedTextField1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jFormattedTextField1MouseClicked
+        this.jFormattedTextField1.selectAll();
+    }//GEN-LAST:event_jFormattedTextField1MouseClicked
+
+    private void jFormattedTextField2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jFormattedTextField2MouseClicked
+        this.jFormattedTextField2.selectAll();
+    }//GEN-LAST:event_jFormattedTextField2MouseClicked
+
+    private void jFormattedTextField3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jFormattedTextField3MouseClicked
+        this.jFormattedTextField3.selectAll();
+    }//GEN-LAST:event_jFormattedTextField3MouseClicked
+
+    private void jFormattedTextField4MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jFormattedTextField4MouseClicked
+        this.jFormattedTextField4.selectAll();
+    }//GEN-LAST:event_jFormattedTextField4MouseClicked
+
+    private void jFormattedTextField5MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jFormattedTextField5MouseClicked
+        this.jFormattedTextField5.selectAll();
+    }//GEN-LAST:event_jFormattedTextField5MouseClicked
+
+    private void jFormattedTextField6MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jFormattedTextField6MouseClicked
+        this.jFormattedTextField6.selectAll();
+    }//GEN-LAST:event_jFormattedTextField6MouseClicked
+
+    private void jFormattedTextField7MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jFormattedTextField7MouseClicked
+        this.jFormattedTextField7.selectAll();
+    }//GEN-LAST:event_jFormattedTextField7MouseClicked
+
+    private void jFormattedTextField8MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jFormattedTextField8MouseClicked
+        this.jFormattedTextField8.selectAll();
+    }//GEN-LAST:event_jFormattedTextField8MouseClicked
+
+    private void jFormattedTextField9MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jFormattedTextField9MouseClicked
+        this.jFormattedTextField9.selectAll();
+    }//GEN-LAST:event_jFormattedTextField9MouseClicked
+
+    private void jFormattedTextField10MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jFormattedTextField10MouseClicked
+        this.jFormattedTextField10.selectAll();
+    }//GEN-LAST:event_jFormattedTextField10MouseClicked
+
+    private void jFormattedTextField11MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jFormattedTextField11MouseClicked
+        this.jFormattedTextField11.selectAll();
+    }//GEN-LAST:event_jFormattedTextField11MouseClicked
+
+    private void jFormattedTextField12MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jFormattedTextField12MouseClicked
+        this.jFormattedTextField12.selectAll();
+    }//GEN-LAST:event_jFormattedTextField12MouseClicked
+
+    private void jFormattedTextField_gastoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jFormattedTextField_gastoMouseClicked
+        this.jFormattedTextField_gasto.selectAll();
+    }//GEN-LAST:event_jFormattedTextField_gastoMouseClicked
+
+    private void jFormattedTextField_totalTarjetaReportadoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jFormattedTextField_totalTarjetaReportadoMouseClicked
+        this.jFormattedTextField_totalTarjetaReportado.selectAll();
+    }//GEN-LAST:event_jFormattedTextField_totalTarjetaReportadoMouseClicked
+
+    private void jFormattedTextField_gastoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jFormattedTextField_gastoKeyTyped
+        if(evt.getKeyChar()==KeyEvent.VK_ENTER){
+            this.jButton3.requestFocusInWindow();
+        }
+    }//GEN-LAST:event_jFormattedTextField_gastoKeyTyped
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     javax.swing.JButton jButton3;

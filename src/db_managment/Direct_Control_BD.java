@@ -3235,7 +3235,7 @@ public class Direct_Control_BD {
     public void actualizarCierreDeCaja(String HoraCierre,
             BigDecimal totalVendido, String observaciones, BigDecimal reportefinal, BigDecimal totalCont, BigDecimal totalTarj,
             BigDecimal totalContReportado, BigDecimal totalTarjReportado,
-            int idCierreCaja) {//esta bien
+            int idCierreCaja, BigDecimal gastos) {//esta bien
         try {
             String ActualizarCierreCaja = this.readSql("../Joe"
                     + "/src/sql_files/actualizarCierreCaja.sql");
@@ -3249,8 +3249,8 @@ public class Direct_Control_BD {
             stm.setBigDecimal(6, totalTarj);
             stm.setBigDecimal(7, totalContReportado);
             stm.setBigDecimal(8, totalTarjReportado);
-            stm.setInt(9, idCierreCaja);
-
+            stm.setBigDecimal(9, gastos);
+            stm.setInt(10, idCierreCaja);
             stm.executeUpdate();
 
         } catch (Exception e) {

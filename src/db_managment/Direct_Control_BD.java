@@ -4022,4 +4022,37 @@ public class Direct_Control_BD {
         return 0;
     }
 
+    public boolean versiExisteCategoria(String categoria) {
+          try {
+            String verCategoria = this.readSql("../Joe"
+                    + "/src/sql_files/verSiExisteCategoria.sql");
+            PreparedStatement stm = this.conection.prepareStatement(verCategoria);
+            stm.setString(1, categoria);
+            ResultSet rs = stm.executeQuery();
+            return rs.next();
+        } catch (Exception e) {
+            System.out.println("No existe esa categoria");
+            return false;
+        }
+    }
+
+    public void actualizarCategoriaProducto(String idProducto, String categoria) {
+         try {
+            String actualizarCategoria = this.readSql("../Joe"
+                    + "/src/sql_files/actualizarCategoriaInventario.sql");
+            PreparedStatement stm
+                    = this.conection.prepareStatement(actualizarCategoria);
+            
+            if(!this.versiExisteCategoria(categoria)){
+                this.insertarCategoria(categoria);
+            }
+            stm.setInt(1, this.consultarIdCategoriaXNombre(categoria));
+            stm.setString(2, idProducto);
+            stm.executeUpdate();
+
+        } catch (Exception e) {
+            System.out.println("Error al Actualizar el precio de un producto en el inventario");
+        }
+    }
+
 }

@@ -1308,24 +1308,31 @@ public class Pan_CrearEntradaSalida extends javax.swing.JPanel {
                     model.setValueAt(cantidad, row, 2);
                     model.setValueAt(precio, row, 3);
                     AdminBD.actualizarPrecioProducto(idProducto, precio);
+                    AdminBD.actualizarCategoriaProducto(idProducto,inventario[row][5].toUpperCase());
 
                 } else {
                     DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd");
                     Date date = new Date();
                     String fecha = dateFormat.format(date);
-                    String nombre = inventario[row][1];
+                    String nombre = inventario[row][1].toUpperCase();
                     BigDecimal costo;
                     if (inventario[row][4].equals("")) {
                         costo = BigDecimal.ZERO;
                     } else {
                         costo = this.StringtoBigDecimal(inventario[row][4]);
                     }
-                    String categoria = inventario[row][5];
+                    String categoria = inventario[row][5].toUpperCase();
+                    
                     if (categoria.equals("")) {
                         categoria = "General";
                     }
+                    
+                    else{
+                        if(!AdminBD.versiExisteCategoria(categoria)){
+                        AdminBD.insertarCategoria(categoria);}
+                    }
                     int idCategoria = AdminBD.consultarIdCategoriaXNombre(categoria);
-                    AdminBD.crearProducto(idProducto, nombre, precio, costo, fecha, "A", "", idCategoria);
+                    AdminBD.crearProducto(idProducto, nombre, precio, costo, fecha, "A","", idCategoria);
                     model.setValueAt(idProducto, row, 0);
                     model.setValueAt(cantidad, row, 2);
 

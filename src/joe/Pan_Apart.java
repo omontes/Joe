@@ -41,7 +41,7 @@ public class Pan_Apart extends javax.swing.JPanel {
     public static String detalleEliminacionApart = "Elimacion Apart";
     public static String clienteGenerico = "Cliente Generico";
     public static String mensajeNoSeleccion = "No se ha seleccionado ningun apartado";
-
+    public static final String printer = "Generic / Text Only (Copy 5)";
     public Pan_Apart() {
         initComponents();
         completarTablaApartados();
@@ -1433,8 +1433,6 @@ public class Pan_Apart extends javax.swing.JPanel {
     private boolean imprimirPago(String numFact, String date, String saldoAnterior){
         try {
             String rawCmds = "FIRST NAME";
-            String printer = "Generic / Text Only (Copy 3)"; // debe tener 
-            //el mismo nombre que la impresora 
             PrintService ps = PrintServiceMatcher.findPrinter(printer);
             if (ps != null) {
 

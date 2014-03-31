@@ -51,7 +51,7 @@ public class Pan_NuevaFactura extends javax.swing.JPanel {
     public static final String DETALLE_FACT= "Fact Num ";
     public static final String DETALLE_APART="Apartado Num Fact ";
     public static final String DETALLE_CRED="Credito Num Fact ";
-    
+    public static final String printer = "Generic / Text Only (Copy 5)";
     public int _callType;
     
     private boolean _savePress;
@@ -2836,7 +2836,7 @@ public class Pan_NuevaFactura extends javax.swing.JPanel {
             String vendedor) {
         try {
             String rawCmds = "FIRST NAME";
-            String printer = "Generic / Text Only (Copy 3)"; // debe tener 
+             // debe tener 
             //el mismo nombre que la impresora 
             PrintService ps = PrintServiceMatcher.findPrinter(printer);
             if (ps != null) {
@@ -2967,8 +2967,6 @@ public class Pan_NuevaFactura extends javax.swing.JPanel {
             String vendedor) {
         try {
             String rawCmds = "FIRST NAME";
-            String printer = "Generic / Text Only (Copy 3)"; // debe tener 
-            //el mismo nombre que la impresora 
             PrintService ps = PrintServiceMatcher.findPrinter(printer);
             if (ps != null) {
 
@@ -3092,8 +3090,6 @@ public class Pan_NuevaFactura extends javax.swing.JPanel {
             String vendedor) {
         try {
             String rawCmds = "FIRST NAME";
-            String printer = "Generic / Text Only (Copy 3)"; // debe tener 
-            //el mismo nombre que la impresora 
             PrintService ps = PrintServiceMatcher.findPrinter(printer);
             if (ps != null) {
 

@@ -46,7 +46,7 @@ public class Pan_CerrarCaja extends javax.swing.JPanel {
     
     private boolean _savePress;
     private boolean _printPress;
-    
+    public static final String printer = "Generic / Text Only (Copy 5)";
     /**
      * Creates new form JPanel_CerrarCaja
      */
@@ -284,8 +284,6 @@ public class Pan_CerrarCaja extends javax.swing.JPanel {
             String totaltarjetaSistema, String totalVentaSistema, String totalVentaCajaSistema, String Detalle) {
         try {
             String rawCmds = "FIRST NAME";
-            String printer = "Generic / Text Only (Copy 3)"; // debe tener 
-            //el mismo nombre que la impresora 
             PrintService ps = PrintServiceMatcher.findPrinter(printer);
             if (ps != null) {
 

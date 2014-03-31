@@ -47,7 +47,7 @@ public class Pan_CrearEntradaSalida extends javax.swing.JPanel {
     private int _callType;
     public static final int ENTRADA = 0;    
     public static final int SALIDA = 1;
-    
+    public static final String printer = "Generic / Text Only (Copy 5)";
     public Pan_CrearEntradaSalida(int pCallType) {
         initComponents();
         _callType = pCallType;
@@ -1356,8 +1356,6 @@ public class Pan_CrearEntradaSalida extends javax.swing.JPanel {
     private void imprimirMovimiento(JTable table, String numEntrada, String date, String lugarEntrada, String totalEntrada, String referencia) {
         try {
             String rawCmds = "FIRST NAME";
-            String printer = "Generic / Text Only (Copy 3)"; // debe tener 
-            //el mismo nombre que la impresora 
             PrintService ps = PrintServiceMatcher.findPrinter(printer);
             if (ps != null) {
 

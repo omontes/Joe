@@ -281,7 +281,7 @@ public class Pan_CerrarCaja extends javax.swing.JPanel {
     private void imprimirCierre(JTable table,String Cajero, String horaInicio, String horaCierre,
             String totalcontadoReportado, String totaltarjetaReportado, String totalVentaReportado,
             String totalVentaCajaReportado, String totalcontadoSistema,
-            String totaltarjetaSistema, String totalVentaSistema, String totalVentaCajaSistema, String Detalle) {
+            String totaltarjetaSistema, String totalVentaSistema, String totalVentaCajaSistema, String Detalle, String gasto) {
         try {
             String rawCmds = "FIRST NAME";
             PrintService ps = PrintServiceMatcher.findPrinter(printer);
@@ -342,35 +342,36 @@ public class Pan_CerrarCaja extends javax.swing.JPanel {
                 p.append("\u001B" + "\u0064" + "\u0003" + "\r");//*** 1lineas
                 
                 String totalcontadoS = this.fill("Total Contado Sistema", 24, " ");
-                String totalcontadoSys = totalcontadoS+" :"+"  "+ this.fill(totalcontadoSistema,12," ");
+                String totalcontadoSys = totalcontadoS+":"+" "+ this.fill(totalcontadoSistema,14," ");
                 p.append(totalcontadoSys + "\r\n");
                 String totaltarjetaS = this.fill("Total Tarjeta Sistema", 24, " ");
-                String totaltarjetaSys = totaltarjetaS+" :"+"  "+ this.fill(totaltarjetaSistema,12," ");
+                String totaltarjetaSys = totaltarjetaS+":"+" "+ this.fill(totaltarjetaSistema,14," ");
                 p.append(totaltarjetaSys + "\r\n");
                 String totalventaS=this.fill("Total Venta Sistema", 24, " ");
-                String totalventaSys = totalventaS+" :"+"  "+ this.fill(totalVentaSistema,12," ");
+                String totalventaSys = totalventaS+":"+" "+ this.fill(totalVentaSistema,14," ");
                 p.append(totalventaSys + "\r\n");
-                String totalventaCS=this.fill("Total Venta Sistem + Caja", 24, " ");
-                String totalventaCSys = totalventaCS+":"+"  "+ this.fill( totalVentaCajaSistema,12," ");
+                String totalventaCS=this.fill("Total Venta Sistm + Caja", 24, " ");
+                String totalventaCSys = totalventaCS+":"+" "+ this.fill( totalVentaCajaSistema,14," ");
                 p.append(totalventaCSys + "\r\n");
                 
                 p.append("\u001B" + "\u0064" + "\u0001" + "\r");//*** 1lineas
                 
                 String totalcontador = this.fill("Total Contado Reportado", 24, " ");
-                String totalcontadoRep = totalcontador+" :"+"  "+ this.fill(totalcontadoReportado,12," ");
+                String totalcontadoRep = totalcontador+":"+" "+ this.fill(totalcontadoReportado,14," ");
                 p.append(totalcontadoRep + "\r\n");
-                String totaltarjetar = this.fill("Total Tarjeta Reportado", 24, " ");
-                String totaltarjetaRep = totaltarjetar+" :"+"  "+ this.fill(totaltarjetaReportado,12," ");
+                String totaltarjetar = this.fill("Total Tarjeta Reportado",24, " ");
+                String totaltarjetaRep = totaltarjetar+":"+" "+ this.fill(totaltarjetaReportado,14," ");
                 p.append(totaltarjetaRep + "\r\n");
                 String totalventar=this.fill("Total Venta Reportado", 24, " ");
-                String totalventaRep = totalventar+" :"+"  "+ this.fill(totalVentaReportado,12," ");
+                String totalventaRep = totalventar+":"+" "+ this.fill(totalVentaReportado,14," ");
                 p.append(totalventaRep + "\r\n");
-                String totalventaCr=this.fill("Total Venta Report + Caja", 24, " ");
-                String totalventaCRep = totalventaCr+":"+"  "+ this.fill( totalVentaCajaReportado,12," ");
+                String totalgasto=this.fill("Total Gastos", 24, " ");
+                String totalgastoRep = totalgasto+":"+" "+ this.fill(gasto,14," ");
+                p.append(totalgastoRep + "\r\n");
+                String totalventaCr=this.fill("Total Venta Repor + Caja", 24, " ");
+                String totalventaCRep = totalventaCr+":"+" "+ this.fill(totalVentaCajaReportado,14," ");
                 p.append(totalventaCRep + "\r\n");
-                
                 p.append("\u001B" + "\u0064" + "\u0001" + "\r");//*** 1lineas
-                
                 p.append("\u001B" + "\u0061" + "\u0001" + "\r");//*** Centrado
                 p.append(""+Detalle+""+"\r\n");
                 p.append("\u001B" + "\u0061" + "\u0000" + "\r");//Quita Centrado
@@ -442,7 +443,8 @@ public class Pan_CerrarCaja extends javax.swing.JPanel {
                     this.jFormattedTextField_totalTarjeta.getText(),
                     this.jFormattedTextField_totalVenta.getText(),
                     this.jFormattedTextField_totalVentaConCaja.getText(),
-                    this.jLabel_detalle.getText());
+                    this.jLabel_detalle.getText(),
+                    this.jFormattedTextField_gastos.getText());
 
         }
         _printPress = false;

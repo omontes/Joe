@@ -125,6 +125,7 @@ public final class Pan_Inventario extends javax.swing.JPanel {
         jButton_EliminarProducto = new javax.swing.JButton();
         jLabel18 = new javax.swing.JLabel();
         jLabel19 = new javax.swing.JLabel();
+        jButton8 = new javax.swing.JButton();
         jDialog_ModificarProducto = new javax.swing.JDialog();
         jPanel3 = new javax.swing.JPanel();
         jTextField_CodigoProducto = new javax.swing.JTextField();
@@ -389,7 +390,7 @@ public final class Pan_Inventario extends javax.swing.JPanel {
             }
         });
         jPanel1.add(jButton_EliminarProducto);
-        jButton_EliminarProducto.setBounds(150, 70, 69, 23);
+        jButton_EliminarProducto.setBounds(149, 80, 80, 23);
 
         jLabel18.setForeground(new java.awt.Color(255, 255, 255));
         jLabel18.setText("ID del producto");
@@ -401,6 +402,15 @@ public final class Pan_Inventario extends javax.swing.JPanel {
         jLabel19.setText("Eliminar Producto");
         jPanel1.add(jLabel19);
         jLabel19.setBounds(10, 10, 161, 22);
+
+        jButton8.setText("Cancelar");
+        jButton8.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton8ActionPerformed(evt);
+            }
+        });
+        jPanel1.add(jButton8);
+        jButton8.setBounds(60, 80, 80, 23);
 
         jDialog_EliminarProducto.getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 240, 110));
 
@@ -1520,6 +1530,11 @@ public final class Pan_Inventario extends javax.swing.JPanel {
         showModProdDialog();
     }//GEN-LAST:event_jButton11ActionPerformed
 
+    private void jButton8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton8ActionPerformed
+        this.jTextField_IdProducto.setText("          ");
+        this.jDialog_EliminarProducto.dispose();
+    }//GEN-LAST:event_jButton8ActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel bttAdd;
@@ -1535,6 +1550,7 @@ public final class Pan_Inventario extends javax.swing.JPanel {
     private javax.swing.JButton jButton5;
     private javax.swing.JButton jButton6;
     private javax.swing.JButton jButton7;
+    private javax.swing.JButton jButton8;
     private javax.swing.JButton jButton_CrearCategoria;
     private javax.swing.JButton jButton_CrearProducto;
     private javax.swing.JButton jButton_CrearProducto1;

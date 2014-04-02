@@ -46,7 +46,7 @@ public class Pan_CerrarCaja extends javax.swing.JPanel {
     
     private boolean _savePress;
     private boolean _printPress;
-    
+    public static final String printer = "Generic / Text Only (Copy 5)";
     /**
      * Creates new form JPanel_CerrarCaja
      */
@@ -80,6 +80,7 @@ public class Pan_CerrarCaja extends javax.swing.JPanel {
         jLabel6 = new javax.swing.JLabel();
         jFormattedTextField_totalVenta = new javax.swing.JFormattedTextField();
         jFormattedTextField_totalTarjeta = new javax.swing.JFormattedTextField();
+        jLabel14 = new javax.swing.JLabel();
         jScrollPane2 = new javax.swing.JScrollPane();
         jTable_VerCierre = new javax.swing.JTable();
         jLabel7 = new javax.swing.JLabel();
@@ -96,6 +97,7 @@ public class Pan_CerrarCaja extends javax.swing.JPanel {
         jFormattedTextField_totalVentaReportado = new javax.swing.JFormattedTextField();
         jFormattedTextField_totalVentaCajaReportado = new javax.swing.JFormattedTextField();
         jLabel_detalle = new javax.swing.JLabel();
+        jFormattedTextField_gastos = new javax.swing.JFormattedTextField();
         jLabel12 = new javax.swing.JLabel();
 
         setMinimumSize(new java.awt.Dimension(800, 471));
@@ -148,6 +150,9 @@ public class Pan_CerrarCaja extends javax.swing.JPanel {
         jFormattedTextField_totalTarjeta.setText("0.00");
         add(jFormattedTextField_totalTarjeta, new org.netbeans.lib.awtextra.AbsoluteConstraints(570, 320, 151, -1));
 
+        jLabel14.setText("Total Gastos");
+        add(jLabel14, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 410, -1, -1));
+
         jTable_VerCierre.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {},
@@ -178,7 +183,7 @@ public class Pan_CerrarCaja extends javax.swing.JPanel {
         add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 320, -1, 20));
 
         bttPrint.setIcon(new javax.swing.ImageIcon(getClass().getResource("/System/Images/Buttons/printBtt.png"))); // NOI18N
-        bttPrint.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        bttPrint.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         bttPrint.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 bttPrintMouseClicked(evt);
@@ -205,7 +210,7 @@ public class Pan_CerrarCaja extends javax.swing.JPanel {
 
         saveBtt.setIcon(new javax.swing.ImageIcon(getClass().getResource("/System/Images/Buttons/saveBtt.png"))); // NOI18N
         saveBtt.setToolTipText("Aceptar y guardar cierre de caja");
-        saveBtt.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        saveBtt.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         saveBtt.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 saveBttMouseClicked(evt);
@@ -242,11 +247,14 @@ public class Pan_CerrarCaja extends javax.swing.JPanel {
 
         jLabel_detalle.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel_detalle.setText("Todo esta perfecto");
-        add(jLabel_detalle, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 420, 472, -1));
+        add(jLabel_detalle, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 444, 472, 20));
 
-        jLabel12.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        jFormattedTextField_gastos.setEditable(false);
+        jFormattedTextField_gastos.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(new java.text.DecimalFormat("C#,##0.00"))));
+        jFormattedTextField_gastos.setText("0.00");
+        add(jFormattedTextField_gastos, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 410, 136, -1));
+
         jLabel12.setIcon(new javax.swing.ImageIcon(getClass().getResource("/System/Images/Panel1/panelVF.png"))); // NOI18N
-        jLabel12.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
     }// </editor-fold>//GEN-END:initComponents
 
@@ -266,22 +274,21 @@ public class Pan_CerrarCaja extends javax.swing.JPanel {
         BigDecimal totalTarjet = this.corregirDato(this.jFormattedTextField_totalTarjeta.getText());
         BigDecimal totalCont = this.corregirDato(this.jFormattedTextField_totalContado.getText());
         BigDecimal totalVendido = totalTarjet.add(totalCont);
+        BigDecimal gastos= this.corregirDato(this.jFormattedTextField_gastos.getText());
         String observaciones= this.jLabel_detalle.getText();
         BigDecimal ReporteFinal= this.corregirDato(this.jFormattedTextField_totalVentaReportado.getText());
         BigDecimal totalTarjtReportado= this.corregirDato(this.jFormattedTextField_totalTarjetaReportado.getText());
         BigDecimal totalContReportado = this.corregirDato(this.jFormattedTextField_totalContadoReportado.getText());
-        AdminBD.actualizarCierreDeCaja(HoraCierre, totalVendido, observaciones, ReporteFinal, totalCont, totalTarjet, totalContReportado, totalTarjtReportado, idCierreVigente);
+        AdminBD.actualizarCierreDeCaja(HoraCierre, totalVendido, observaciones, ReporteFinal, totalCont, totalTarjet, totalContReportado, totalTarjtReportado, idCierreVigente,gastos);
         StartWindow.getInstance().enableMe();
         JF_Facturacion.getInstance().dispose();
     }//GEN-LAST:event_saveBttMouseClicked
     private void imprimirCierre(JTable table,String Cajero, String horaInicio, String horaCierre,
             String totalcontadoReportado, String totaltarjetaReportado, String totalVentaReportado,
             String totalVentaCajaReportado, String totalcontadoSistema,
-            String totaltarjetaSistema, String totalVentaSistema, String totalVentaCajaSistema, String Detalle) {
+            String totaltarjetaSistema, String totalVentaSistema, String totalVentaCajaSistema, String Detalle, String gasto) {
         try {
             String rawCmds = "FIRST NAME";
-            String printer = "Generic / Text Only (Copy 3)"; // debe tener 
-            //el mismo nombre que la impresora 
             PrintService ps = PrintServiceMatcher.findPrinter(printer);
             if (ps != null) {
 
@@ -340,35 +347,36 @@ public class Pan_CerrarCaja extends javax.swing.JPanel {
                 p.append("\u001B" + "\u0064" + "\u0003" + "\r");//*** 1lineas
                 
                 String totalcontadoS = this.fill("Total Contado Sistema", 24, " ");
-                String totalcontadoSys = totalcontadoS+" :"+"  "+ this.fill(totalcontadoSistema,12," ");
+                String totalcontadoSys = totalcontadoS+":"+" "+ this.fill(totalcontadoSistema,14," ");
                 p.append(totalcontadoSys + "\r\n");
                 String totaltarjetaS = this.fill("Total Tarjeta Sistema", 24, " ");
-                String totaltarjetaSys = totaltarjetaS+" :"+"  "+ this.fill(totaltarjetaSistema,12," ");
+                String totaltarjetaSys = totaltarjetaS+":"+" "+ this.fill(totaltarjetaSistema,14," ");
                 p.append(totaltarjetaSys + "\r\n");
                 String totalventaS=this.fill("Total Venta Sistema", 24, " ");
-                String totalventaSys = totalventaS+" :"+"  "+ this.fill(totalVentaSistema,12," ");
+                String totalventaSys = totalventaS+":"+" "+ this.fill(totalVentaSistema,14," ");
                 p.append(totalventaSys + "\r\n");
-                String totalventaCS=this.fill("Total Venta Sistem + Caja", 24, " ");
-                String totalventaCSys = totalventaCS+":"+"  "+ this.fill( totalVentaCajaSistema,12," ");
+                String totalventaCS=this.fill("Total Venta Sistm + Caja", 24, " ");
+                String totalventaCSys = totalventaCS+":"+" "+ this.fill( totalVentaCajaSistema,14," ");
                 p.append(totalventaCSys + "\r\n");
                 
                 p.append("\u001B" + "\u0064" + "\u0001" + "\r");//*** 1lineas
                 
                 String totalcontador = this.fill("Total Contado Reportado", 24, " ");
-                String totalcontadoRep = totalcontador+" :"+"  "+ this.fill(totalcontadoReportado,12," ");
+                String totalcontadoRep = totalcontador+":"+" "+ this.fill(totalcontadoReportado,14," ");
                 p.append(totalcontadoRep + "\r\n");
-                String totaltarjetar = this.fill("Total Tarjeta Reportado", 24, " ");
-                String totaltarjetaRep = totaltarjetar+" :"+"  "+ this.fill(totaltarjetaReportado,12," ");
+                String totaltarjetar = this.fill("Total Tarjeta Reportado",24, " ");
+                String totaltarjetaRep = totaltarjetar+":"+" "+ this.fill(totaltarjetaReportado,14," ");
                 p.append(totaltarjetaRep + "\r\n");
                 String totalventar=this.fill("Total Venta Reportado", 24, " ");
-                String totalventaRep = totalventar+" :"+"  "+ this.fill(totalVentaReportado,12," ");
+                String totalventaRep = totalventar+":"+" "+ this.fill(totalVentaReportado,14," ");
                 p.append(totalventaRep + "\r\n");
-                String totalventaCr=this.fill("Total Venta Report + Caja", 24, " ");
-                String totalventaCRep = totalventaCr+":"+"  "+ this.fill( totalVentaCajaReportado,12," ");
+                String totalgasto=this.fill("Total Gastos", 24, " ");
+                String totalgastoRep = totalgasto+":"+" "+ this.fill(gasto,14," ");
+                p.append(totalgastoRep + "\r\n");
+                String totalventaCr=this.fill("Total Venta Repor + Caja", 24, " ");
+                String totalventaCRep = totalventaCr+":"+" "+ this.fill(totalVentaCajaReportado,14," ");
                 p.append(totalventaCRep + "\r\n");
-                
                 p.append("\u001B" + "\u0064" + "\u0001" + "\r");//*** 1lineas
-                
                 p.append("\u001B" + "\u0061" + "\u0001" + "\r");//*** Centrado
                 p.append(""+Detalle+""+"\r\n");
                 p.append("\u001B" + "\u0061" + "\u0000" + "\r");//Quita Centrado
@@ -440,7 +448,8 @@ public class Pan_CerrarCaja extends javax.swing.JPanel {
                     this.jFormattedTextField_totalTarjeta.getText(),
                     this.jFormattedTextField_totalVenta.getText(),
                     this.jFormattedTextField_totalVentaConCaja.getText(),
-                    this.jLabel_detalle.getText());
+                    this.jLabel_detalle.getText(),
+                    this.jFormattedTextField_gastos.getText());
 
         }
         _printPress = false;
@@ -458,6 +467,7 @@ public class Pan_CerrarCaja extends javax.swing.JPanel {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     javax.swing.JLabel bttPrint;
+    javax.swing.JFormattedTextField jFormattedTextField_gastos;
     javax.swing.JFormattedTextField jFormattedTextField_totalContado;
     javax.swing.JFormattedTextField jFormattedTextField_totalContadoReportado;
     javax.swing.JFormattedTextField jFormattedTextField_totalTarjeta;
@@ -471,6 +481,7 @@ public class Pan_CerrarCaja extends javax.swing.JPanel {
     javax.swing.JLabel jLabel11;
     javax.swing.JLabel jLabel12;
     javax.swing.JLabel jLabel13;
+    javax.swing.JLabel jLabel14;
     javax.swing.JLabel jLabel2;
     javax.swing.JLabel jLabel3;
     javax.swing.JLabel jLabel4;
@@ -489,7 +500,7 @@ public class Pan_CerrarCaja extends javax.swing.JPanel {
     // End of variables declaration//GEN-END:variables
 
     void personalizarTablaCierre(BigDecimal totalcontadoreportado,BigDecimal totaltarjetareportado,BigDecimal totalventareportado,String Cajero,
-        String fechaInicio,BigDecimal montoinicio) {
+        String fechaInicio,BigDecimal montoinicio, BigDecimal gastos) {
         this.jLabel_Cajero.setText(Cajero);
         this.jLabel_horaInicio.setText(fechaInicio);        
         String[] columnNames = {"Fecha","Concepto",
@@ -511,11 +522,12 @@ public class Pan_CerrarCaja extends javax.swing.JPanel {
         this.jFormattedTextField_totalTarjetaReportado.setValue(totaltarjetareportado);
         this.jFormattedTextField_totalVentaReportado.setValue(totalventareportado.subtract(montoinicio));
         this.jFormattedTextField_totalVentaCajaReportado.setValue(totalventareportado);
-        if(totalventareportado.compareTo(totalventaconcaja)<0){
-            this.jLabel_detalle.setText("Existe un faltante de: "+""+ totalventaconcaja.subtract(totalventareportado));
+        this.jFormattedTextField_gastos.setValue(gastos);
+        if(totalventareportado.add(gastos).compareTo(totalventaconcaja)<0){
+            this.jLabel_detalle.setText("Existe un faltante de: "+""+ totalventaconcaja.subtract(totalventareportado.add(gastos)));
         }
-        if(totalventareportado.compareTo(totalventaconcaja)>0){
-            this.jLabel_detalle.setText("Existe un sobrante de: "+""+ totalventaconcaja.subtract(totalventareportado).abs());
+        if(totalventareportado.add(gastos).compareTo(totalventaconcaja)>0){
+            this.jLabel_detalle.setText("Existe un sobrante de: "+""+ totalventaconcaja.subtract(totalventareportado.add(gastos)).abs());
         }
         /// Ordena la tabla con base a la fecha de la ultima compra
         RowSorter<Modelo_CierreCaja> sorter= new TableRowSorter<Modelo_CierreCaja>(model);

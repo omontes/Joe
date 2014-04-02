@@ -36,7 +36,7 @@ public class Pan_VerEntradaSalida extends javax.swing.JPanel {
 
     public static final int ENTRADA_CALL = 0;
     public static final int SALIDA_CALL = 1;
-    
+    public static final String printer = "Generic / Text Only (Copy 5)";
     
     /**
      * Creates new form JPanel_verEntradaSalidaMercaderia
@@ -267,8 +267,6 @@ public class Pan_VerEntradaSalida extends javax.swing.JPanel {
     private void imprimirMovimiento(JTable table,String numEntrada, String date, String lugarEntrada, String totalEntrada, String referencia) {
         try {
             String rawCmds = "FIRST NAME";
-            String printer = "Generic / Text Only (Copy 3)"; // debe tener 
-            //el mismo nombre que la impresora 
             PrintService ps = PrintServiceMatcher.findPrinter(printer);
             if (ps != null) {
 

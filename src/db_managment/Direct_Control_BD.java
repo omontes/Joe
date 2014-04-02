@@ -3235,7 +3235,7 @@ public class Direct_Control_BD {
     public void actualizarCierreDeCaja(String HoraCierre,
             BigDecimal totalVendido, String observaciones, BigDecimal reportefinal, BigDecimal totalCont, BigDecimal totalTarj,
             BigDecimal totalContReportado, BigDecimal totalTarjReportado,
-            int idCierreCaja) {//esta bien
+            int idCierreCaja, BigDecimal gastos) {//esta bien
         try {
             String ActualizarCierreCaja = this.readSql("../Joe"
                     + "/src/sql_files/actualizarCierreCaja.sql");
@@ -3249,8 +3249,8 @@ public class Direct_Control_BD {
             stm.setBigDecimal(6, totalTarj);
             stm.setBigDecimal(7, totalContReportado);
             stm.setBigDecimal(8, totalTarjReportado);
-            stm.setInt(9, idCierreCaja);
-
+            stm.setBigDecimal(9, gastos);
+            stm.setInt(10, idCierreCaja);
             stm.executeUpdate();
 
         } catch (Exception e) {
@@ -4020,6 +4020,39 @@ public class Direct_Control_BD {
             System.out.println("Error al ingreso por contado");
         }
         return 0;
+    }
+
+    public boolean versiExisteCategoria(String categoria) {
+          try {
+            String verCategoria = this.readSql("../Joe"
+                    + "/src/sql_files/verSiExisteCategoria.sql");
+            PreparedStatement stm = this.conection.prepareStatement(verCategoria);
+            stm.setString(1, categoria);
+            ResultSet rs = stm.executeQuery();
+            return rs.next();
+        } catch (Exception e) {
+            System.out.println("No existe esa categoria");
+            return false;
+        }
+    }
+
+    public void actualizarCategoriaProducto(String idProducto, String categoria) {
+         try {
+            String actualizarCategoria = this.readSql("../Joe"
+                    + "/src/sql_files/actualizarCategoriaInventario.sql");
+            PreparedStatement stm
+                    = this.conection.prepareStatement(actualizarCategoria);
+            
+            if(!this.versiExisteCategoria(categoria)){
+                this.insertarCategoria(categoria);
+            }
+            stm.setInt(1, this.consultarIdCategoriaXNombre(categoria));
+            stm.setString(2, idProducto);
+            stm.executeUpdate();
+
+        } catch (Exception e) {
+            System.out.println("Error al Actualizar el precio de un producto en el inventario");
+        }
     }
 
 }

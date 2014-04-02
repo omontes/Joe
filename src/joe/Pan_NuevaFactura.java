@@ -51,7 +51,7 @@ public class Pan_NuevaFactura extends javax.swing.JPanel {
     public static final String DETALLE_FACT= "Fact Num ";
     public static final String DETALLE_APART="Apartado Num Fact ";
     public static final String DETALLE_CRED="Credito Num Fact ";
-    
+    public static final String printer = "Generic / Text Only (Copy 5)";
     public int _callType;
     
     private boolean _savePress;
@@ -766,7 +766,7 @@ public class Pan_NuevaFactura extends javax.swing.JPanel {
         lbPagoTitle.setBackground(new java.awt.Color(0, 153, 255));
         lbPagoTitle.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         lbPagoTitle.setForeground(new java.awt.Color(255, 255, 255));
-        lbPagoTitle.setText("  Pago de factura");
+        lbPagoTitle.setText("  Texto de Pago ");
         lbPagoTitle.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         lbPagoTitle.setOpaque(true);
         jPanel5.add(lbPagoTitle);
@@ -1527,7 +1527,7 @@ public class Pan_NuevaFactura extends javax.swing.JPanel {
     
     private boolean modApartSave(){
         NewJDialog_PagoApartado pago = NewJDialog_PagoApartado.getInstance();
-        pago.setTitle("Detalles del apartado");
+        pago.setLblTitle("Detalles del apartado");
         pago.setVisible(true);
         BigDecimal montodePago = pago.getMontoDePago();
         if (montodePago != null) {
@@ -1549,7 +1549,7 @@ public class Pan_NuevaFactura extends javax.swing.JPanel {
     
     private boolean apartSave(){
         NewJDialog_PagoApartado pago = NewJDialog_PagoApartado.getInstance();
-        pago.setTitle("Detalles del apartado");
+        pago.setLblTitle("Detalles del apartado");
         pago.setVisible(true);
         BigDecimal montodePago = pago.getMontoDePago();
         if (montodePago != null) {
@@ -1572,6 +1572,7 @@ public class Pan_NuevaFactura extends javax.swing.JPanel {
     private boolean modCredSave(){
         NewJDialog_PagoApartado pago = NewJDialog_PagoApartado.getInstance();
         pago.setVisible(true);
+        pago.setLblTitle("Detalles del crédito");
         BigDecimal montodePago = pago.getMontoDePago();
         if (montodePago != null) {
             BigDecimal saldo = this.corregirDato(this.jFormattedTextField_Total.getText());
@@ -1591,7 +1592,7 @@ public class Pan_NuevaFactura extends javax.swing.JPanel {
     
     private boolean credSave(){
         NewJDialog_PagoApartado pago = NewJDialog_PagoApartado.getInstance();
-        pago.setTittle("Detalles del crédito");
+        pago.setLblTitle("Detalles del crédito");
         pago.setVisible(true);
         BigDecimal montodePago = pago.getMontoDePago();
         if (montodePago != null) {
@@ -2837,7 +2838,7 @@ public class Pan_NuevaFactura extends javax.swing.JPanel {
             String vendedor) {
         try {
             String rawCmds = "FIRST NAME";
-            String printer = "Generic / Text Only (Copy 3)"; // debe tener 
+             // debe tener 
             //el mismo nombre que la impresora 
             PrintService ps = PrintServiceMatcher.findPrinter(printer);
             if (ps != null) {
@@ -2968,8 +2969,6 @@ public class Pan_NuevaFactura extends javax.swing.JPanel {
             String vendedor) {
         try {
             String rawCmds = "FIRST NAME";
-            String printer = "Generic / Text Only (Copy 3)"; // debe tener 
-            //el mismo nombre que la impresora 
             PrintService ps = PrintServiceMatcher.findPrinter(printer);
             if (ps != null) {
 
@@ -3093,8 +3092,6 @@ public class Pan_NuevaFactura extends javax.swing.JPanel {
             String vendedor) {
         try {
             String rawCmds = "FIRST NAME";
-            String printer = "Generic / Text Only (Copy 3)"; // debe tener 
-            //el mismo nombre que la impresora 
             PrintService ps = PrintServiceMatcher.findPrinter(printer);
             if (ps != null) {
 

@@ -128,6 +128,10 @@ public class StartWindow extends javax.swing.JFrame {
             } catch (IOException ex) {
                 Logger.getLogger(StartWindow.class.getName()).log(Level.SEVERE, null, ex);
             }
+        } else {
+            sliderSize.setEnabled(false);
+            sliderXI.setEnabled(false);
+            sliderYI.setEnabled(false);
         }
     }
 
@@ -701,7 +705,7 @@ public class StartWindow extends javax.swing.JFrame {
     }//GEN-LAST:event_bttExitMouseClicked
 
     private void bttFactMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bttFactMouseClicked
-        if (valUsser(false) && _otherWindow == false) {
+        if (!_otherWindow && valUsser(false)) {
             _otherWindow = true;
             DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
             Date date = new Date();
@@ -728,7 +732,7 @@ public class StartWindow extends javax.swing.JFrame {
     }//GEN-LAST:event_bttExitMouseExited
 
     private void bttInvMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bttInvMouseClicked
-        if (valUsser(true) && _otherWindow == false) {
+        if (!_otherWindow && valUsser(true)) {
             _otherWindow = true;
             new JF_Inventario().setVisible(true);
             this.setEnabled(false);
@@ -740,7 +744,7 @@ public class StartWindow extends javax.swing.JFrame {
     }//GEN-LAST:event_bttLoginMouseClicked
 
     private void bttRepMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bttRepMouseClicked
-        if (valUsser(true) && _otherWindow == false) {
+        if (!_otherWindow && valUsser(true)) {
             _otherWindow = true;
             new JF_Reportes().setVisible(true);
             this.setEnabled(false);
@@ -748,7 +752,7 @@ public class StartWindow extends javax.swing.JFrame {
     }//GEN-LAST:event_bttRepMouseClicked
 
     private void bttClientMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bttClientMouseClicked
-        if (valUsser(true) && _otherWindow == false) {
+        if (!_otherWindow && valUsser(true)) {
             _otherWindow = true;
             new JF_Usuario().setVisible(true);
             this.setEnabled(false);
@@ -779,7 +783,7 @@ public class StartWindow extends javax.swing.JFrame {
     }//GEN-LAST:event_formWindowClosing
 
     private void bttConfMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bttConfMouseClicked
-        if (valUsser(true) && _otherWindow == false) {
+        if (!_otherWindow && valUsser(true)) {
             _otherWindow = true;
             new JF_Conf().setVisible(true);
             this.setEnabled(false);
@@ -840,11 +844,15 @@ public class StartWindow extends javax.swing.JFrame {
     }//GEN-LAST:event_fieldPasswordKeyPressed
 
     private void bttConfApMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bttConfApMouseClicked
-        panConf.setEnabled(true);
-        panConf.setVisible(true);
+        if (!_otherWindow && valUsser(true)){
+            _otherWindow = true;
+            panConf.setEnabled(true);
+            panConf.setVisible(true);
+        }
     }//GEN-LAST:event_bttConfApMouseClicked
 
     private void jLabel11MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel11MouseClicked
+        _otherWindow = false;
         panConf.setVisible(false);
         panConf.setEnabled(false);
         ManejoDeArchivos.XMLConfiguracion.getInstance().establecerPosXImagen(String.valueOf(sliderXI.getValue()));
@@ -871,7 +879,19 @@ public class StartWindow extends javax.swing.JFrame {
                     txtImageDir.setText(dialog.getSelectedFile().getAbsolutePath());
                     BufferedImage img = getBkImageAndSize(dialog.getSelectedFile().getAbsolutePath(), 0);
                     bkgImage.setIcon(new javax.swing.ImageIcon(img));
-                    bkgImage.setSize(img.getWidth(), img.getHeight());
+                    bkgImage.setBounds(0, 0, img.getWidth(), img.getHeight());
+                    
+                    sliderXI.setEnabled(true);
+                    sliderYI.setEnabled(true);
+                    sliderSize.setEnabled(true);
+                    
+                    sliderSize.setValue(0);
+                    sliderXI.setValue(0);
+                    sliderYI.setValue(0);
+                    
+                    sliderXI.setMaximum(img.getWidth() - BKG_WIDTH);
+                    sliderYI.setMaximum(img.getHeight() - BKG_HEIGHT);
+                    
                 } catch (IOException ex) {
                     Logger.getLogger(StartWindow.class.getName()).log(Level.SEVERE, null, ex);
                 }
@@ -912,6 +932,9 @@ public class StartWindow extends javax.swing.JFrame {
             BufferedImage img = getBkImageAndSize(txtImageDir.getText(), sliderSize.getValue());
             bkgImage.setIcon(new ImageIcon(img));
             bkgImage.setSize(img.getWidth(), img.getHeight());
+
+            sliderXI.setMaximum(img.getWidth() - BKG_WIDTH);
+            sliderYI.setMaximum(img.getHeight() - BKG_HEIGHT);
         } catch (IOException ex) {
             Logger.getLogger(StartWindow.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -950,12 +973,14 @@ public class StartWindow extends javax.swing.JFrame {
         int type = originalImage.getType() == 0 ? BufferedImage.TYPE_INT_ARGB : originalImage.getType();
 
         int newWidth, newHeight;
-        if (originalImage.getWidth() >= originalImage.getHeight()) {
+        if (originalImage.getHeight() < BKG_HEIGHT/2 && originalImage.getWidth() > BKG_WIDTH/2) {
             newHeight = BKG_HEIGHT + BKG_HEIGHT * pPercent / 100;
-            newWidth = originalImage.getWidth() + newHeight - originalImage.getHeight();
+            double fact = ((double)newHeight)/originalImage.getHeight();
+            newWidth = (int)(originalImage.getWidth()*fact);
         } else {
             newWidth = BKG_WIDTH + BKG_WIDTH * pPercent / 100;
-            newHeight = originalImage.getHeight() + newWidth - originalImage.getWidth();
+            double fact = ((double)newWidth)/originalImage.getHeight();
+            newHeight = (int)(originalImage.getHeight()*fact);
         }
 
         BufferedImage resizedImage = new BufferedImage(newWidth, newHeight, type);

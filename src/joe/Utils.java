@@ -30,7 +30,7 @@ public class Utils {
 
             @Override
             public String getDescription() {
-                return "Archivo de imagen *.jpeg *.png";
+                return "Archivo de imagen *.jpeg";
             }
         };
     }

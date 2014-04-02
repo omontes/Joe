@@ -55,6 +55,7 @@ public class Pan_ConfEmpr extends javax.swing.JPanel {
                 jTextField_ComentarioIni.setText(Comentariosfact[0]);
                 jTextField_ComentarioFin.setText(Comentariosfact[1]);
             }
+            jTextField_slogan.setText(XMLConfiguracion.getInstance().ObtenerSlogan());
         }
         
     }
@@ -86,6 +87,10 @@ public class Pan_ConfEmpr extends javax.swing.JPanel {
         jTextField_ComentarioFin = new javax.swing.JTextField();
         jLabel8 = new javax.swing.JLabel();
         jLabel11 = new javax.swing.JLabel();
+        jLabel9 = new javax.swing.JLabel();
+        jTextField_slogan = new javax.swing.JTextField();
+        jLabel10 = new javax.swing.JLabel();
+        jTextField2 = new javax.swing.JTextField();
 
         setMaximumSize(new java.awt.Dimension(760, 400));
         setMinimumSize(new java.awt.Dimension(760, 400));
@@ -93,7 +98,7 @@ public class Pan_ConfEmpr extends javax.swing.JPanel {
         setPreferredSize(new java.awt.Dimension(760, 400));
         setLayout(null);
 
-        jLabel1.setText("Nombre de la Empresa:");
+        jLabel1.setText("Slogan:");
         add(jLabel1);
         jLabel1.setBounds(140, 40, 140, 27);
 
@@ -115,7 +120,7 @@ public class Pan_ConfEmpr extends javax.swing.JPanel {
 
         jTextField_nombreEmpresa.setText("Mi Empresa");
         add(jTextField_nombreEmpresa);
-        jTextField_nombreEmpresa.setBounds(280, 40, 294, 27);
+        jTextField_nombreEmpresa.setBounds(280, 10, 300, 27);
 
         jLabel6.setText("Ciudad:");
         add(jLabel6);
@@ -123,7 +128,7 @@ public class Pan_ConfEmpr extends javax.swing.JPanel {
 
         jTextField_Direccion.setText("Canton, Distrito, Barrio");
         add(jTextField_Direccion);
-        jTextField_Direccion.setBounds(280, 100, 294, 27);
+        jTextField_Direccion.setBounds(280, 100, 300, 27);
 
         jTextField_CedJ.setText("0000000000");
         jTextField_CedJ.addActionListener(new java.awt.event.ActionListener() {
@@ -132,19 +137,19 @@ public class Pan_ConfEmpr extends javax.swing.JPanel {
             }
         });
         add(jTextField_CedJ);
-        jTextField_CedJ.setBounds(280, 70, 294, 27);
+        jTextField_CedJ.setBounds(280, 70, 300, 27);
 
         jTextField_telefono.setText("88888888");
         add(jTextField_telefono);
-        jTextField_telefono.setBounds(280, 130, 294, 27);
+        jTextField_telefono.setBounds(280, 130, 300, 27);
 
         jTextField_ciudad.setText("Ciudad");
         add(jTextField_ciudad);
-        jTextField_ciudad.setBounds(280, 190, 294, 27);
+        jTextField_ciudad.setBounds(280, 190, 300, 27);
 
         jTextField_correo.setText("miempresa@gmail.com");
         add(jTextField_correo);
-        jTextField_correo.setBounds(280, 160, 294, 27);
+        jTextField_correo.setBounds(280, 160, 300, 27);
 
         jButton_aceptar.setText("Guardar Cambios");
         jButton_aceptar.addActionListener(new java.awt.event.ActionListener() {
@@ -153,33 +158,49 @@ public class Pan_ConfEmpr extends javax.swing.JPanel {
             }
         });
         add(jButton_aceptar);
-        jButton_aceptar.setBounds(441, 360, 130, 27);
+        jButton_aceptar.setBounds(610, 360, 130, 27);
 
         jLabel7.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jLabel7.setText("Comentarios en Factura:");
         add(jLabel7);
-        jLabel7.setBounds(140, 240, 250, 27);
+        jLabel7.setBounds(140, 220, 250, 27);
 
         jTextField_ComentarioIni.setText("Mi Empresa Le Saluda");
         add(jTextField_ComentarioIni);
-        jTextField_ComentarioIni.setBounds(280, 270, 294, 27);
+        jTextField_ComentarioIni.setBounds(280, 250, 300, 27);
 
         jTextField_ComentarioFin.setText("Gracias Por Su Compra");
         add(jTextField_ComentarioFin);
-        jTextField_ComentarioFin.setBounds(280, 300, 294, 27);
+        jTextField_ComentarioFin.setBounds(280, 280, 300, 27);
 
         jLabel8.setText("Inicial:");
         add(jLabel8);
-        jLabel8.setBounds(230, 270, 40, 27);
+        jLabel8.setBounds(230, 250, 40, 27);
 
         jLabel11.setText("Final:");
         add(jLabel11);
-        jLabel11.setBounds(230, 300, 40, 27);
+        jLabel11.setBounds(230, 280, 40, 27);
+
+        jLabel9.setText("Nombre de la Empresa:");
+        add(jLabel9);
+        jLabel9.setBounds(140, 10, 140, 27);
+
+        jTextField_slogan.setText("Servir es nuestra pasión");
+        add(jTextField_slogan);
+        jTextField_slogan.setBounds(280, 40, 300, 27);
+
+        jLabel10.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        jLabel10.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        jLabel10.setText("Impresora:");
+        add(jLabel10);
+        jLabel10.setBounds(140, 330, 130, 27);
+        add(jTextField2);
+        jTextField2.setBounds(280, 330, 300, 27);
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton_aceptarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_aceptarActionPerformed
         XMLConfiguracion xml = new XMLConfiguracion();
-
+        xml.establecerSlogan(jTextField_slogan.getText());
         xml.crearXML(jTextField_nombreEmpresa.getText(), jTextField_CedJ.
                 getText(),
                 jTextField_Direccion.getText(), jTextField_telefono.getText(),
@@ -201,6 +222,7 @@ public class Pan_ConfEmpr extends javax.swing.JPanel {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton_aceptar;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -209,6 +231,8 @@ public class Pan_ConfEmpr extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel jLabel9;
+    private javax.swing.JTextField jTextField2;
     private javax.swing.JTextField jTextField_CedJ;
     private javax.swing.JTextField jTextField_ComentarioFin;
     private javax.swing.JTextField jTextField_ComentarioIni;
@@ -216,6 +240,7 @@ public class Pan_ConfEmpr extends javax.swing.JPanel {
     private javax.swing.JTextField jTextField_ciudad;
     private javax.swing.JTextField jTextField_correo;
     private javax.swing.JTextField jTextField_nombreEmpresa;
+    private javax.swing.JTextField jTextField_slogan;
     private javax.swing.JTextField jTextField_telefono;
     // End of variables declaration//GEN-END:variables
 

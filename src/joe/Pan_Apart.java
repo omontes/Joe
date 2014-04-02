@@ -41,7 +41,8 @@ public class Pan_Apart extends javax.swing.JPanel {
     public static String detalleEliminacionApart = "Elimacion Apart";
     public static String clienteGenerico = "Cliente Generico";
     public static String mensajeNoSeleccion = "No se ha seleccionado ningun apartado";
-    public static final String printer = "Generic / Text Only (Copy 5)";
+     public static final String printer = ManejoDeArchivos.XMLConfiguracion
+            .getInstance().obtenerNombreImpresora();
     public Pan_Apart() {
         initComponents();
         completarTablaApartados();

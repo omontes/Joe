@@ -37,7 +37,8 @@ public class Pan_Cred extends javax.swing.JPanel {
     public static String detalleEliminacionCred = "Eliminacion Cred";
     public static String clienteGenerico = "Cliente Generico";
     public static String mensajeNoSeleccion = "No se ha seleccionado ningun credito";
-    public static final String printer = "Generic / Text Only (Copy 5)";
+     public static final String printer = ManejoDeArchivos.XMLConfiguracion
+            .getInstance().obtenerNombreImpresora();
     /**
      * Creates new form JPanel_Facturacion
      */

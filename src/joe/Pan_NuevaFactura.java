@@ -51,7 +51,8 @@ public class Pan_NuevaFactura extends javax.swing.JPanel {
     public static final String DETALLE_FACT= "Fact Num ";
     public static final String DETALLE_APART="Apartado Num Fact ";
     public static final String DETALLE_CRED="Credito Num Fact ";
-    public static final String printer = "Generic / Text Only (Copy 5)";
+    public static final String printer = ManejoDeArchivos.XMLConfiguracion
+            .getInstance().obtenerNombreImpresora();
     public int _callType;
     
     private boolean _savePress;

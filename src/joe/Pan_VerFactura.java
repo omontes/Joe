@@ -34,7 +34,8 @@ import jzebra.PrintServiceMatcher;
 public class Pan_VerFactura extends javax.swing.JPanel {
 
     private boolean _savePress;
-    public static final String printer = "Generic / Text Only (Copy 5)";
+     public static final String printer = ManejoDeArchivos.XMLConfiguracion
+            .getInstance().obtenerNombreImpresora();
     /**
      * Creates new form JPanel_VerFactura
      */

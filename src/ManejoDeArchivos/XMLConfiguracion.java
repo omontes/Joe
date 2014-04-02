@@ -71,7 +71,7 @@ public class XMLConfiguracion {
             String comentarioInicial, String comentarioFinal, String Usuario,
             String rutaImagen, String posXImagen, String posYImagen,
             String posXNombreEmpresa, String posYNombreEmpresa, String slogan,
-            String TipoUsuario, String tamanoNombreEmpresa, String tamanoImagen, String colorTextoNombreEmpresa) {
+            String TipoUsuario, String tamanoNombreEmpresa, String tamanoImagen, String colorTextoNombreEmpresa, String nombreImpresora) {
         try {
 
             DocumentBuilderFactory docFactory = DocumentBuilderFactory.
@@ -151,6 +151,10 @@ public class XMLConfiguracion {
             // Agregar informacion de imagen
             Element Imagen = doc.createElement("Imagen");
             rootElement.appendChild(Imagen);
+            
+            // Agregar informacion de la impresora
+            Element Impresora = doc.createElement("Impresora");
+            rootElement.appendChild(Impresora);
 
             //Agregar ruta Imagen
             Element RutaImagen = doc.createElement("RutaImagen");
@@ -192,6 +196,13 @@ public class XMLConfiguracion {
             Element PosYNombreEmpresa = doc.createElement("PosYNombreEmpresa");
             PosYNombreEmpresa.appendChild(doc.createTextNode(posYNombreEmpresa));
             Imagen.appendChild(PosYNombreEmpresa);
+            //*********************************************************
+            //*********************************************************
+
+            //Agregar nombre de la impresora
+            Element NombreImpresora = doc.createElement("NombreImpresora");
+            NombreImpresora.appendChild(doc.createTextNode(nombreImpresora));
+            Impresora.appendChild(NombreImpresora);
             //*********************************************************
 
             // escribir los datos en el documento xml
@@ -373,6 +384,9 @@ public class XMLConfiguracion {
     public String obtenerPosYNombreEmpresa() {
         return obtenerValorDeElemeto("Imagen", "PosYNombreEmpresa");
     }
+    public String obtenerNombreImpresora() {
+        return obtenerValorDeElemeto("Impresora", "NombreImpresora");
+    }
 
     /**
      * Actualizar el contenido de un elemento
@@ -463,6 +477,9 @@ public class XMLConfiguracion {
 
     public void establecerPosYNombreEmpresa(String nuevoValor) {
         actualizarContenidoElemento("Imagen", "PosYNombreEmpresa", nuevoValor);
+    }
+    public void establecerNombreImpresora(String nuevoValor) {
+        actualizarContenidoElemento("Impresora", "NombreImpresora", nuevoValor);
     }
 
     /**

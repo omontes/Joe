@@ -55,6 +55,7 @@ public class Pan_ConfEmpr extends javax.swing.JPanel {
                 jTextField_ComentarioIni.setText(Comentariosfact[0]);
                 jTextField_ComentarioFin.setText(Comentariosfact[1]);
             }
+            jTextField2.setText(XMLConfiguracion.getInstance().obtenerNombreImpresora());
             jTextField_slogan.setText(XMLConfiguracion.getInstance().ObtenerSlogan());
         }
         
@@ -211,7 +212,7 @@ public class Pan_ConfEmpr extends javax.swing.JPanel {
                 xml.obtenerPosXNombreEmpresa(), xml.obtenerPosYNombreEmpresa(),
                 xml.ObtenerSlogan(),xml.ObtenerTipoUsuario(),xml.obtenerTamanoNombreEmpresa(),
                 xml.obtenerTamanoImagen(),
-                xml.obtenerColorTextoNombreEmpresa());
+                xml.obtenerColorTextoNombreEmpresa(),jTextField2.getText());
     }//GEN-LAST:event_jButton_aceptarActionPerformed
 
     private void jTextField_CedJActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField_CedJActionPerformed

@@ -6,6 +6,7 @@
 package ManejoDeArchivos;
 
 import java.io.File;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
@@ -14,6 +15,8 @@ import java.util.Date;
 import java.util.Locale;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JFileChooser;
+import javax.swing.filechooser.FileNameExtensionFilter;
 import joe.StartWindow;
 import jxl.Workbook;
 import jxl.WorkbookSettings;
@@ -172,7 +175,7 @@ public class EscribirExcel {
         //cargar datos de las facturas
         int ultimaFila = 10;
         if (datosFact.length != 0) {//verifica que contenga datos
-            ultimaFila = cargarDatos(datosFact, hojaExcel);
+            ultimaFila = cargarDatos(datosFact, hojaExcel, 10);
 
             //Escribir el total dependiendo el tipo de reporte
             escribirResultado(tipoDeReporte, hojaExcel, ultimaFila);
@@ -205,10 +208,14 @@ public class EscribirExcel {
      *
      * @param datosFact
      * @param hojaExcel
+     * @param fil //fil en la que se empieza a colocar los datos
+     * @return
+     * @throws jxl.write.WriteException
      */
-    private int cargarDatos(Object[][] datosFact, WritableSheet hojaExcel)
+    private int cargarDatos(Object[][] datosFact, WritableSheet hojaExcel, int fil)
             throws WriteException {
-        int fil = 10;//fil en la que se empieza a colocar los datos
+        int fi = fil;
+//        int fil = 10;//fil en la que se empieza a colocar los datos
         for (int fila = 0; fila < datosFact.length; fila++, fil++) {
             for (int col = 0; col < datosFact[0].length; col++) {
                 try {//escribir segun tipo(int o string)
@@ -223,8 +230,10 @@ public class EscribirExcel {
                 }
             }
         }
-        for (int col = 0; col < datosFact[0].length; col++) {
-            hojaExcel.addCell(new Label(col, fil + 1, "", timesLines));
+        if (fi != 0) {
+            for (int col = 0; col < datosFact[0].length; col++) {
+                hojaExcel.addCell(new Label(col, fil + 1, "", timesLines));
+            }
         }
         return fil;
 
@@ -535,7 +544,7 @@ public class EscribirExcel {
         //cargar datos de las facturas
         int ultimaFila = 10;
         if (datosFact.length != 0) {//verifica que contenga datos
-            ultimaFila = cargarDatos(datosFact, hojaExcel);
+            ultimaFila = cargarDatos(datosFact, hojaExcel, 10);
 
 //            //Escribir el total dependiendo el tipo de reporte
 //            escribirResultado(tipoDeReporte, hojaExcel, ultimaFila);
@@ -741,9 +750,9 @@ public class EscribirExcel {
     ////////////*****************************/////////////////////////
     ///Esta parte es exclusivo para la tienda valeska/////////////////
     /**
-     * Permite escribir la Proforma
-     *String[]info={Cliente,Numero}
+     * Permite escribir la Proforma String[]info={Cliente,Numero}
      * Object[][]datos={{cantida,codigo,descripcion,precioD}}
+     *
      * @param info
      * @param datos
      * @throws java.io.IOException
@@ -800,7 +809,7 @@ public class EscribirExcel {
         calibri10format2.setBorder(Border.BOTTOM, BorderLineStyle.THIN);
         calibri10format2.setWrap(true);
         calibri10format2.setAlignment(Alignment.CENTRE);
-        
+
         FontName fontName3 = WritableFont.createFont("Calibri");
         WritableFont calibri10font3 = new WritableFont(fontName3, 10,
                 WritableFont.NO_BOLD);
@@ -828,12 +837,12 @@ public class EscribirExcel {
             boolean a = true;
             while (a) {
                 if (info[0].length() >= 35) {
-                    
+
                     hojaExcel.addCell(new Label(0, ultimaFila + 1, info[0].substring(0, 34), calibri10format));
                     info[0] = info[0].substring(34);
 
                 } else {
-                    
+
                     hojaExcel.addCell(new Label(0, ultimaFila + 1, info[0], calibri10format));
                     a = false;
                 }
@@ -913,6 +922,68 @@ public class EscribirExcel {
         } catch (IOException e) {
             System.out.println("Error al abrir el archivo "
                     + nombreArchivoExcel + "\n" + e.getMessage());
+        }
+    }
+/**
+ * Permite escribir datos en excel
+ * Cada fila del object[][] datosFact es una fila en excel
+ * @param datosFact
+ * @throws IOException
+ * @throws WriteException 
+ */
+    public void cargarDatosSalida(Object[][] datosFact) throws IOException, WriteException {
+        Date date = new Date();//hora Actual
+        String fechaAct = dateFormat.format(date);
+        JFileChooser chooser = new JFileChooser();
+
+        //Solo formato .xls
+        FileNameExtensionFilter filter = new FileNameExtensionFilter(
+                "Excel", "xls");
+        chooser.setFileFilter(filter);
+
+        chooser.setCurrentDirectory(new File("/home/me/Documents"));
+
+        //Nombre por defecto
+        File ArchivoExcelNombreSeleccionado = new File("Salida " + fechaAct);
+        chooser.setSelectedFile(ArchivoExcelNombreSeleccionado);
+
+        int retrival = chooser.showSaveDialog(null);
+        if (retrival == JFileChooser.APPROVE_OPTION) {
+            try {
+                //Nombre del excel "Fisico"
+                setNombreArchivoExcel(chooser.getSelectedFile() + ".xls");
+
+                //crear un nuevo excel un el nombreArchivoExcel
+                File ArchivoExcel2 = new File(nombreArchivoExcel);
+                //configuracion de el libro de trabajo
+                WorkbookSettings wbSettings = new WorkbookSettings();
+
+                wbSettings.setLocale(new Locale("en", "EN"));//Configu default para 
+                //generar la hoja de cálculo
+
+                //Crea un libro, con su nombre de Archivo y la respectiva configuracion
+                WritableWorkbook workbook = Workbook.createWorkbook(ArchivoExcel2,
+                        wbSettings);
+                workbook.createSheet("Pag 1", 0);//***crear una hoja***
+                WritableSheet hojaExcel = workbook.getSheet(0);//obtiene la hoja 0
+
+                ///tipo de letra
+                WritableFont times10pt = new WritableFont(WritableFont.TIMES, 10);
+
+                //asignar el tipo de letra times10pt al formato times10
+                times10 = new WritableCellFormat(times10pt);
+
+                cargarDatos(datosFact, hojaExcel, 0);
+
+                //Escribe los datos contenidos en este libro en formato Excel
+                workbook.write();
+
+                //cerrar libro liberando memoria
+                workbook.close();
+
+            } catch (Exception ex) {
+                System.out.println("Error al guardar la salida de bodega");;
+            }
         }
     }
 }

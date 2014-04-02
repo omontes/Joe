@@ -1097,7 +1097,7 @@ public class StartWindow extends javax.swing.JFrame {
             public void run() {
                 new StartWindow().setVisible(true);
             }
-        });
+        });            
       
        
     }

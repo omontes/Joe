@@ -36,7 +36,8 @@ public class Pan_VerEntradaSalida extends javax.swing.JPanel {
 
     public static final int ENTRADA_CALL = 0;
     public static final int SALIDA_CALL = 1;
-    public static final String printer = "Generic / Text Only (Copy 5)";
+     public static final String printer = ManejoDeArchivos.XMLConfiguracion
+            .getInstance().obtenerNombreImpresora();
     
     /**
      * Creates new form JPanel_verEntradaSalidaMercaderia

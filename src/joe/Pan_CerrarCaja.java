@@ -46,7 +46,8 @@ public class Pan_CerrarCaja extends javax.swing.JPanel {
     
     private boolean _savePress;
     private boolean _printPress;
-    public static final String printer = "Generic / Text Only (Copy 5)";
+    public static final String printer = ManejoDeArchivos.XMLConfiguracion
+            .getInstance().obtenerNombreImpresora();
     /**
      * Creates new form JPanel_CerrarCaja
      */

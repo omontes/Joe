@@ -1250,7 +1250,7 @@ jPanel_ModifAdmVendLayout.setHorizontalGroup(
                 xml.obtenerPosXNombreEmpresa(),xml.obtenerPosYNombreEmpresa(),
                 xml.ObtenerSlogan(),xml.ObtenerTipoUsuario(),
                 xml.obtenerTamanoNombreEmpresa(),xml.obtenerTamanoImagen(),
-                xml.obtenerColorTextoNombreEmpresa());
+                xml.obtenerColorTextoNombreEmpresa(),xml.obtenerNombreImpresora());
 
         jDialog_configuracion.dispose();
     }//GEN-LAST:event_jButton_aceptarActionPerformed

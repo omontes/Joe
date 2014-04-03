@@ -2200,6 +2200,9 @@ public class Pan_NuevaFactura extends javax.swing.JPanel {
             Toolkit.getDefaultToolkit().beep();
 
         }
+        if (Character.isLowerCase(evt.getKeyChar())) {
+            evt.setKeyChar(Character.toUpperCase(evt.getKeyChar()));
+        }
         if (KeyEvent.VK_ENTER == evt.getKeyChar()) {
             this.jTextField_nombre.transferFocus();
 

@@ -3,6 +3,7 @@ package db_managment;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
+import java.io.InputStream;
 import java.math.BigDecimal;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -1296,7 +1297,7 @@ public class Direct_Control_BD {
     }
 
     /**
-     * Obtiene la informacion de las ultimos 100 apartados.
+     * Obtiene la informacion de las ultimos 1000 apartados.
      */
     public void verApartadosParaTabla() {
         try {
@@ -4053,6 +4054,7 @@ public class Direct_Control_BD {
         } catch (Exception e) {
             System.out.println("Error al Actualizar el precio de un producto en el inventario");
         }
-    }
+    }    
+    
 
 }
